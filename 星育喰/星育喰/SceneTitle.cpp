@@ -29,7 +29,7 @@ CSceneTitle::~CSceneTitle()
 void CSceneTitle::InitScene()
 {
 	//出力させる文字のグラフィックを作成
-	Font::SetStrTex(L"");
+	//Font::SetStrTex(L"");
 
 	//タイトルオブジェクト作成
 	CObjTitle* obj = new CObjTitle();     //タイトルオブジェクト作成
