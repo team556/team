@@ -22,6 +22,15 @@
     <Filter Include="ソース ファイル\シーン\タイトル">
       <UniqueIdentifier>{2e3292ff-02b0-4ac8-821a-7808873cd924}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\シーン\テスト用">
+      <UniqueIdentifier>{ced1ab1e-449c-4311-affc-b36b289fe422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\住民">
+      <UniqueIdentifier>{20b43ac7-b376-4568-8b2d-534c3ec8a1e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\施設">
+      <UniqueIdentifier>{564cc408-affb-4169-b9f4-20f71a9ec8ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -71,6 +80,24 @@
     </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
       <Filter>ソース ファイル\シーン\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTest.cpp">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTest.cpp">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHuman.cpp">
+      <Filter>ソース ファイル\住民</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFacility.cpp">
+      <Filter>ソース ファイル\施設</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFacility.cpp">
+      <Filter>ソース ファイル\施設</Filter>
     </ClCompile>
     <ClCompile Include="Call_Planet.cpp">
       <Filter>ソース ファイル\関数</Filter>
@@ -127,6 +154,24 @@
     </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>ソース ファイル\シーン\タイトル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTest.h">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTest.h">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHuman.h">
+      <Filter>ソース ファイル\住民</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFacility.h">
+      <Filter>ソース ファイル\施設</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFacility.h">
+      <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
     <ClInclude Include="Call_Planet.h">
       <Filter>ソース ファイル\関数</Filter>
