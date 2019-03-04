@@ -19,6 +19,9 @@
     <Filter Include="ソース ファイル\シーン\タイトル">
       <UniqueIdentifier>{2e3292ff-02b0-4ac8-821a-7808873cd924}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\シーン\テスト用">
+      <UniqueIdentifier>{ced1ab1e-449c-4311-affc-b36b289fe422}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -68,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
       <Filter>ソース ファイル\シーン\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTest.cpp">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTest.cpp">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>ソース ファイル\シーン\タイトル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTest.h">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTest.h">
+      <Filter>ソース ファイル\シーン\テスト用</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
