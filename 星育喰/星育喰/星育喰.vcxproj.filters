@@ -25,6 +25,9 @@
     <Filter Include="ソース ファイル\施設">
       <UniqueIdentifier>{025ec002-d017-40b6-8c93-8845994c187f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\住民">
+      <UniqueIdentifier>{20b43ac7-b376-4568-8b2d-534c3ec8a1e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="SceneTest.cpp">
       <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHuman.cpp">
+      <Filter>ソース ファイル\住民</Filter>
     </ClCompile>
     <ClCompile Include="ObjFacility.cpp">
       <Filter>ソース ファイル\施設</Filter>
@@ -145,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="SceneTest.h">
       <Filter>ソース ファイル\シーン\テスト用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHuman.h">
+      <Filter>ソース ファイル\住民</Filter>
     </ClInclude>
     <ClInclude Include="ObjFacility.h">
       <Filter>ソース ファイル\施設</Filter>
