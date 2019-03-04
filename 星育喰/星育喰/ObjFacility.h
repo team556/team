@@ -5,14 +5,14 @@
 using namespace GameL;
 
 //オブジェクト：タイトル
-class CObjTitle :public CObj
+class CObjFacility :public CObj
 {
 	public:
-		CObjTitle() {};
-		~CObjTitle() {};
+		CObjFacility() {};
+		~CObjFacility() {};
 		void Init();     //イニシャライズ
 		void Action();   //アクション
 		void Draw();     //ドロー
 	private:
-	
+
 };
