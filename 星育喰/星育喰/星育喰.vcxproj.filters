@@ -22,11 +22,11 @@
     <Filter Include="ソース ファイル\シーン\テスト用">
       <UniqueIdentifier>{ced1ab1e-449c-4311-affc-b36b289fe422}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\施設">
-      <UniqueIdentifier>{025ec002-d017-40b6-8c93-8845994c187f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\住民">
       <UniqueIdentifier>{20b43ac7-b376-4568-8b2d-534c3ec8a1e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\施設">
+      <UniqueIdentifier>{564cc408-affb-4169-b9f4-20f71a9ec8ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,10 +90,10 @@
     <ClCompile Include="UtilityModule.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFacility.cpp">
+    <ClCompile Include="SceneFacility.cpp">
       <Filter>ソース ファイル\施設</Filter>
     </ClCompile>
-    <ClCompile Include="SceneFacility.cpp">
+    <ClCompile Include="ObjFacility.cpp">
       <Filter>ソース ファイル\施設</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,10 +161,10 @@
     <ClInclude Include="UtilityModule.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjFacility.h">
+    <ClInclude Include="SceneFacility.h">
       <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
-    <ClInclude Include="SceneFacility.h">
+    <ClInclude Include="ObjFacility.h">
       <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
   </ItemGroup>
