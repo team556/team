@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\関数">
+      <UniqueIdentifier>{27a92017-f5b6-4517-b1f7-3ee3e80a0ef8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ソース ファイル\シーン">
       <UniqueIdentifier>{97a2391c-84c1-467c-b891-6872e9b9e093}</UniqueIdentifier>
     </Filter>
@@ -69,6 +72,9 @@
     <ClCompile Include="ObjTitle.cpp">
       <Filter>ソース ファイル\シーン\タイトル</Filter>
     </ClCompile>
+    <ClCompile Include="Call_Planet.cpp">
+      <Filter>ソース ファイル\関数</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>ソース ファイル\シーン\タイトル</Filter>
+    </ClInclude>
+    <ClInclude Include="Call_Planet.h">
+      <Filter>ソース ファイル\関数</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

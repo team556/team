@@ -4,7 +4,9 @@
 
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,6 +36,12 @@ void CSceneTitle::InitScene()
 	//タイトルオブジェクト作成
 	CObjTitle* obj = new CObjTitle();     //タイトルオブジェクト作成
 	Objs::InsertObj(obj, OBJ_TITLE, 10);  //タイトルオブジェクト登録
+
+	//背景を読み込み0番に登録
+	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
+
+	//プレイヤー惑星を読み込み10番に登録
+	Draw::LoadImage(L"Player_Planet_Test.png", 10, TEX_SIZE_512);
 }
 
 //ゲームメイン実行中メソッド
