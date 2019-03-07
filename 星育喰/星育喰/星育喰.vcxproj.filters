@@ -34,6 +34,9 @@
     <Filter Include="ソース ファイル\シーン\戦闘画面">
       <UniqueIdentifier>{ca88a7f1-86b3-48ae-abd3-91191123489e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\シーン\ホーム">
+      <UniqueIdentifier>{35d1486e-d900-472a-8677-da19f443e570}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -110,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="ObjPlanet.cpp">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHome.cpp">
+      <Filter>ソース ファイル\シーン\ホーム</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHome.cpp">
+      <Filter>ソース ファイル\シーン\ホーム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="ObjPlanet.h">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHome.h">
+      <Filter>ソース ファイル\シーン\ホーム</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHome.h">
+      <Filter>ソース ファイル\シーン\ホーム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -128,12 +128,14 @@
     <ClCompile Include="GameL\WICTextureLoader.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjFacility.cpp" />
+    <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
     <ClCompile Include="SceneFight.cpp" />
+    <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
@@ -156,6 +158,7 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WICTextureLoader.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="ObjHome.h" />
     <ClInclude Include="ObjHuman.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjFacility.h" />
@@ -164,6 +167,7 @@
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneFacility.h" />
     <ClInclude Include="SceneFight.h" />
+    <ClInclude Include="SceneHome.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="UtilityModule.h" />
