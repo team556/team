@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjPlanet :public CObj
 {
 public:
-	CObjPlanet(float x, float y);
+	CObjPlanet(float x, float y, bool type);//座標+タイプを受け取る
 	~CObjPlanet() {};
 	void Init();	//イニシャライズ
 	void Action();  //アクション
@@ -18,5 +18,6 @@ private:
 	float m_py;		//星座標Y
 	float m_size;	//星サイズ
 	float m_cnt;	//縮小用カウント
-
+	
+	int m_pnam;		//画像ナンバー
 };

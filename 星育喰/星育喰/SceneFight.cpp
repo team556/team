@@ -46,9 +46,13 @@ void CSceneFight::InitScene()
 	//CObjTest* obj = new CObjTest();		//タイトルオブジェクト作成
 	//Objs::InsertObj(obj, OBJ_TEST, 10);	//タイトルオブジェクト登録
 
-	//住民オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(200, 300);	//タイトルオブジェクト作成
-	Objs::InsertObj(obj0, OBJ_PLANET, 10);			//タイトルオブジェクト登録
+	//星オブジェクト作成
+	CObjPlanet* obj0 = new CObjPlanet(200, 300,true);	//オブジェクト作成
+	Objs::InsertObj(obj0, OBJ_PLANET, 10);				//ブジェクト登録
+
+	//星2オブジェクト作成
+	CObjPlanet* obj1 = new CObjPlanet(200, 300, false);	//オブジェクト作成
+	Objs::InsertObj(obj1, OBJ_PLANET, 9);				//オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
