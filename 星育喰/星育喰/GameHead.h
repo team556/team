@@ -57,11 +57,13 @@ struct UserData
 #include "ObjTitle.h"
 #include "ObjTest.h"
 #include "ObjHuman.h"
+#include "ObjPlanet.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneTitle.h"
 #include "SceneTest.h"
+#include "SceneFight.h"
 
 //-----------------------------------------------
 

@@ -15,22 +15,26 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneTest::CSceneTest()
+CSceneFight::CSceneFight()
 {
 
 }
 
 //デストラクタ
-CSceneTest::~CSceneTest()
+CSceneFight::~CSceneFight()
 {
 
 }
 
 //ゲーム初期化メソッド
-void CSceneTest::InitScene()
+void CSceneFight::InitScene()
 {
+	//背景を読み込み0番に登録
+	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
+
 	//外部グラフィックを読み込み0番に登録(512×512ピクセル)
-	Draw::LoadImage(L"Human.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
+
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
@@ -40,12 +44,12 @@ void CSceneTest::InitScene()
 	//Objs::InsertObj(obj, OBJ_TEST, 10);	//タイトルオブジェクト登録
 
 	//住民オブジェクト作成
-	CObjHuman* obj0 = new CObjHuman(100,100);	//タイトルオブジェクト作成
-	Objs::InsertObj(obj0, OBJ_HUMAN, 10);		//タイトルオブジェクト登録
+	CObjHuman* obj0 = new CObjHuman(100, 100);	//タイトルオブジェクト作成
+	Objs::InsertObj(obj0, OBJ_TEST, 10);		//タイトルオブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
-void CSceneTest::Scene()
+void CSceneFight::Scene()
 {
 
 }
