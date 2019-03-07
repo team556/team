@@ -89,7 +89,7 @@ void CObjTitle::Draw()
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
 	dst.m_right = 1200.0f;
-	dst.m_bottom = 800.0f;
+	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
 
@@ -114,7 +114,7 @@ void CObjTitle::Draw()
 		//それぞれの敵惑星に適応したランダムな惑星データを取得している。
 		Call_Planet(m_Enemy_id, m_Planet_id);
 
-		m_Ey[m_Enemy_id] = rand() % 601 + 100;//100～700の値をランダム取得し、敵惑星(背景)のY座標とする。
+		m_Ey[m_Enemy_id] = rand() % 501 + 100;//100～600の値をランダム取得し、敵惑星(背景)のY座標とする。
 
 		//次の敵惑星の処理を行う為に、idを次の敵惑星のものにしておく。
 		if (m_Enemy_id == 2)
@@ -171,10 +171,10 @@ void CObjTitle::Draw()
 	src.m_right = 300.0f;
 	src.m_bottom = 168.0f;
 
-	dst.m_top = 220.0f;
+	dst.m_top = 150.0f;
 	dst.m_left = 250.0f;
 	dst.m_right = 950.0f;
-	dst.m_bottom = 620.0f;
+	dst.m_bottom = 550.0f;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 
 
@@ -185,7 +185,7 @@ void CObjTitle::Draw()
 	//Font::StrDraw(L"", 230, 250, 32, c);
 
 	//▼"☆育喰"というタイトルを表示
-	Font::StrDraw(L"☆育喰", 425, 100, 120, y);
+	Font::StrDraw(L"☆育喰", 425, 50, 120, y);
 
 	//▼上下ふわふわする"クリックでスタート"を表示
 	//角度加算
@@ -201,7 +201,7 @@ void CObjTitle::Draw()
 	//速度付ける。
 	m_click_vy *= 10.0f;
 
-	Font::StrDraw(L"クリックでスタート", 460, 700 + m_click_vy, 32, c);
+	Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, c);
 
 
 	
