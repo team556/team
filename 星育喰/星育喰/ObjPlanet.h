@@ -8,11 +8,15 @@ using namespace GameL;
 class CObjPlanet :public CObj
 {
 public:
-	CObjPlanet() {};
+	CObjPlanet(float x, float y);
 	~CObjPlanet() {};
-	void Init();     //イニシャライズ
-	void Action();   //アクション
-	void Draw();     //ドロー
+	void Init();	//イニシャライズ
+	void Action();  //アクション
+	void Draw();    //ドロー
 private:
+	float m_px;		//星座標X
+	float m_py;		//星座標Y
+	float m_size;	//星サイズ
+	float m_cnt;	//縮小用カウント
 
 };

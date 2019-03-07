@@ -104,7 +104,7 @@ void CObjHuman::Draw()
 
 void CObjHuman::Turn(int* pos)
 {//Œü‚«‚ð”½“]‚³‚¹‚é
-	if (*pos >= 1)
+	if (*pos == 0 || 1)
 		*pos += 2;
 	else
 		*pos -= 2;
