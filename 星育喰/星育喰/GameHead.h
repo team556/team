@@ -11,6 +11,8 @@ enum OBJ_NAME
 	OBJ_HOME,
 	OBJ_TEST,
 	OBJ_HUMAN,
+	OBJ_PLANET,
+
 
 };
 //------------------------------------------------
@@ -73,5 +75,5 @@ struct UserData
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START
-#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneFight
 //-----------------------------------------------
