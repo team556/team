@@ -5,7 +5,6 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjTitle.h"
 #include "Call_Planet.h"
 
 #include <stdlib.h>
@@ -74,7 +73,12 @@ void CObjTitle::Action()
 void CObjTitle::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	//動かない画像用[シーン移行時も消えない]
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードアウト]
+	float w[4] = { 1.0f,1.0f,1.0f,m_alpha };
+	//黄色(☆育喰)[シーン移行時フェードアウト]
+	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -137,7 +141,7 @@ void CObjTitle::Draw()
 	dst.m_left = 1200.0f - m_time[0];//+4ずつ増加し続ける変数を引く事で、
 	dst.m_right = 1250.0f - m_time[0];//グラフィックを右から左へ移動させている。
 	dst.m_bottom = m_Ey[0] + 50.0f;
-	Draw::Draw(20, &src, &dst, d, 0.0f);
+	Draw::Draw(20, &src, &dst, w, 0.0f);
 
 	//敵惑星2(背景)表示
 	src.m_top = 0.0f;
@@ -149,7 +153,7 @@ void CObjTitle::Draw()
 	dst.m_left = 1200.0f - m_time[1];//+4ずつ増加し続ける変数を引く事で、
 	dst.m_right = 1250.0f - m_time[1];//グラフィックを右から左へ移動させている。
 	dst.m_bottom = m_Ey[1] + 50.0f;
-	Draw::Draw(22, &src, &dst, d, 0.0f);
+	Draw::Draw(22, &src, &dst, w, 0.0f);
 
 	//敵惑星3(背景)表示
 	src.m_top = 0.0f;
@@ -161,7 +165,7 @@ void CObjTitle::Draw()
 	dst.m_left = 1200.0f - m_time[2];//+4ずつ増加し続ける変数を引く事で、
 	dst.m_right = 1250.0f - m_time[2];//グラフィックを右から左へ移動させている。
 	dst.m_bottom = m_Ey[2] + 50.0f;
-	Draw::Draw(24, &src, &dst, d, 0.0f);
+	Draw::Draw(24, &src, &dst, w, 0.0f);
 
 
 
@@ -177,12 +181,6 @@ void CObjTitle::Draw()
 	dst.m_bottom = 550.0f;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 
-
-	//黄色(☆育喰)
-	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
-	//白(クリックでスタート)
-	float c[4] = { 1.0f,1.0f,1.0f,m_alpha };
-	//Font::StrDraw(L"", 230, 250, 32, c);
 
 	//▼"☆育喰"というタイトルを表示
 	Font::StrDraw(L"☆育喰", 425, 50, 120, y);
@@ -201,7 +199,7 @@ void CObjTitle::Draw()
 	//速度付ける。
 	m_click_vy *= 10.0f;
 
-	Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, c);
+	Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, w);
 
 
 	
@@ -210,5 +208,5 @@ void CObjTitle::Draw()
 	//デバッグ用仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, c);
+	Font::StrDraw(str, 20, 20, 12, d);
 }
