@@ -22,10 +22,10 @@ using namespace GameL;
 #define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
 
 //イニシャライズ
-void CObjTitle::Init()
+void CObjHome::Init()
 {
-	m_click_vy = 0.0f;	
-	m_r = 0.0f;			
+	m_click_vy = 0.0f;
+	m_r = 0.0f;
 
 	m_Ey[3] = {};//全ての要素の値を0で初期化している
 	m_time[0] = ENEMY_PLANET1_START_TIME;
@@ -34,7 +34,7 @@ void CObjTitle::Init()
 	m_Enemy_id = 0;
 	m_Planet_id = 0;
 
-	m_flag  = false;
+	m_flag = false;
 	m_alpha = INI_ALPHA;
 
 	m_mou_x = 0.0f;
@@ -46,7 +46,7 @@ void CObjTitle::Init()
 }
 
 //アクション
-void CObjTitle::Action()
+void CObjHome::Action()
 {
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -54,14 +54,14 @@ void CObjTitle::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
-	
+
 	if (m_flag == true)
 	{
 		m_alpha -= 0.01f;
-		
+
 		if (m_alpha <= 0.0f)
 		{
-			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
+			//ホーム画面へシーン移行
 		}
 	}
 	else if (m_mou_l == true || m_mou_r == true)
@@ -71,7 +71,7 @@ void CObjTitle::Action()
 }
 
 //ドロー
-void CObjTitle::Draw()
+void CObjHome::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -80,7 +80,7 @@ void CObjTitle::Draw()
 	RECT_F dst;//描画先表示位置
 
 
-	//▼背景表示
+			   //▼背景表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 960.0f;
@@ -108,15 +108,15 @@ void CObjTitle::Draw()
 
 		m_Planet_id = rand() % 4 + 1;//1～4の値をランダム取得し、以下の関数で利用する。
 
-		//惑星グラフィックを取得する関数(Call_Planet)を呼び出す。
-		//引数1にこの処理に入ってきた敵惑星の識別番号を入れ、
-		//引数2に先程取得した1～4のランダム値を入れる事で、
-		//それぞれの敵惑星に適応したランダムな惑星データを取得している。
+									 //惑星グラフィックを取得する関数(Call_Planet)を呼び出す。
+									 //引数1にこの処理に入ってきた敵惑星の識別番号を入れ、
+									 //引数2に先程取得した1～4のランダム値を入れる事で、
+									 //それぞれの敵惑星に適応したランダムな惑星データを取得している。
 		Call_Planet(m_Enemy_id, m_Planet_id);
 
 		m_Ey[m_Enemy_id] = rand() % 501 + 100;//100～600の値をランダム取得し、敵惑星(背景)のY座標とする。
 
-		//次の敵惑星の処理を行う為に、idを次の敵惑星のものにしておく。
+											  //次の敵惑星の処理を行う為に、idを次の敵惑星のものにしておく。
 		if (m_Enemy_id == 2)
 		{
 			m_Enemy_id = 0;
@@ -204,7 +204,7 @@ void CObjTitle::Draw()
 	Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, c);
 
 
-	
+
 
 
 	//デバッグ用仮マウス位置表示
