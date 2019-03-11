@@ -12,7 +12,7 @@ enum OBJ_NAME
 	OBJ_TEST,
 	OBJ_HUMAN,
 	OBJ_PLANET,
-
+	OBJ_FIGHT,
 	OBJ_FACILITY,
 	OBJ_BUILD,
 
@@ -66,6 +66,8 @@ struct UserData
 #include "ObjFacility.h"
 #include "ObjBuild.h"
 #include "ObjPlanet.h"
+#include "ObjFight.h"
+
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -80,6 +82,6 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START	CSceneTitle
-//#define SET_GAME_START CSceneFight
+//#define SET_GAME_START	CSceneTitle
+#define SET_GAME_START CSceneFight
 //-----------------------------------------------
