@@ -24,11 +24,12 @@ using namespace GameL;
 //イニシャライズ
 void CObjHome::Init()
 {
-	m_Pvx = 0;	
-	m_Pvy = 0;
-	m_boost = 0;
-	m_rx = 0;
-	m_ry = 0;
+	m_Pvx = 0.0f;	
+	m_Pvy = 0.0f;
+	m_boost = 0.0f;
+	m_rx = 0.0f;
+	m_ry = 0.0f;
+	m_size = 0.0f;
 
 	m_Mig_time = 0;
 
@@ -40,11 +41,15 @@ void CObjHome::Init()
 	m_Planet_id = 0;
 	m_speed = 0;
 
-	m_alpha = INI_ALPHA;
+	m_Tra_move = 0.0f;
+	m_Eat_move = 0.0f;
 	m_Tra_color = INI_COLOR;
 	m_Eat_color = INI_COLOR;
+	m_alpha = INI_ALPHA;
 	m_Tra_flag = false;
 	m_Eat_flag = false;
+
+	m_cloud_flag = false;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -62,7 +67,16 @@ void CObjHome::Action()
 	{
 		if (m_Tra_flag == true)
 		{
-
+			if (m_size > 1200.0f)
+			{
+				m_cloud_flag = true;
+			}
+			else
+			{
+				m_size += 20.0f;
+				m_Tra_move += 5.0f;
+				m_Eat_move += 5.0f;
+			}
 		}
 		else //(m_Eat_flag == true)
 		{
@@ -188,20 +202,6 @@ void CObjHome::Action()
 	{
 		m_speed = 0;
 	}
-
-	//if (m_flag == true)
-	//{
-	//	m_alpha -= 0.01f;
-
-	//	if (m_alpha <= 0.0f)
-	//	{
-	//		//ホーム画面へシーン移行
-	//	}
-	//}
-	//else if (m_mou_l == true || m_mou_r == true)
-	//{
-	//	m_flag = true;
-	//}
 }
 
 //ドロー
@@ -316,10 +316,10 @@ void CObjHome::Draw()
 	src.m_right = 300.0f;
 	src.m_bottom = 168.0f;
 
-	dst.m_top = 150.0f + m_Pvy;
-	dst.m_left = 250.0f + m_Pvx;
-	dst.m_right = 950.0f + m_Pvx;
-	dst.m_bottom = 550.0f + m_Pvy;
+	dst.m_top = 150.0f + m_Pvy - m_size;
+	dst.m_left = 250.0f + m_Pvx - m_size;
+	dst.m_right = 950.0f + m_Pvx + m_size;
+	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 
 
@@ -329,10 +329,10 @@ void CObjHome::Draw()
 	src.m_right = 128.0f;
 	src.m_bottom = 128.0f;
 
-	dst.m_top = 480.0f;
-	dst.m_left = 20.0f;
-	dst.m_right = 220.0f;
-	dst.m_bottom = 680.0f;
+	dst.m_top = 480.0f + m_Tra_move;
+	dst.m_left = 20.0f - m_Tra_move;
+	dst.m_right = 220.0f - m_Tra_move;
+	dst.m_bottom = 680.0f + m_Tra_move;
 	Draw::Draw(1, &src, &dst, t, 0.0f);
 
 	//▼喰アイコン表示
@@ -341,31 +341,38 @@ void CObjHome::Draw()
 	src.m_right = 128.0f;
 	src.m_bottom = 128.0f;
 
-	dst.m_top = 480.0f;
-	dst.m_left = 980.0f;
-	dst.m_right = 1180.0f;
-	dst.m_bottom = 680.0f;
+	dst.m_top = 480.0f + m_Eat_move;
+	dst.m_left = 980.0f + m_Eat_move;
+	dst.m_right = 1180.0f + m_Eat_move;
+	dst.m_bottom = 680.0f + m_Eat_move;
 	Draw::Draw(2, &src, &dst, e, 0.0f);
 
+	if (m_cloud_flag == true)
+	{
+		//▼雲(右上)表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 500.0f;
+		src.m_bottom = 500.0f;
 
-	//▼"☆育喰"というタイトルを表示
-	//Font::StrDraw(L"ホーム画面！", 425, 50, 120, d);
+		dst.m_top = 480.0f;
+		dst.m_left = 20.0f;
+		dst.m_right = 220.0f;
+		dst.m_bottom = 680.0f;
+		Draw::Draw(3, &src, &dst, d, 0.0f);
 
-	////▼上下ふわふわする"クリックでスタート"を表示
-	////角度加算
-	//m_r += 2.0f;
+		//▼雲(左下)表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = -500.0f;
+		src.m_bottom = -500.0f;
 
-	////360°で初期値に戻す
-	//if (m_r > 360.0f)
-	//	m_r = 0.0f;
-
-	////移動方向
-	//m_click_vy = sin(3.14f / 90 * m_r);
-
-	////速度付ける。
-	//m_click_vy *= 10.0f;
-
-	//Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, c);
+		dst.m_top = 480.0f;
+		dst.m_left = 420.0f;
+		dst.m_right = 620.0f;
+		dst.m_bottom = 680.0f;
+		Draw::Draw(3, &src, &dst, d, 0.0f);
+	}
 
 
 
