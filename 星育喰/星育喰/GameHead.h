@@ -67,6 +67,7 @@ struct UserData
 #include "ObjBuild.h"
 #include "ObjPlanet.h"
 #include "ObjFight.h"
+#include "ObjPushUnit.h"
 
 //------------------------------------------------
 

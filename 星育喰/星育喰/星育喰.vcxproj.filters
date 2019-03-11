@@ -132,6 +132,9 @@
     <ClCompile Include="ObjFight.cpp">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
     </ClCompile>
+    <ClCompile Include="ObjPushUnit.cpp">
+      <Filter>ソース ファイル\対戦用惑星</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="ObjFight.h">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPushUnit.h">
+      <Filter>ソース ファイル\対戦用惑星</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

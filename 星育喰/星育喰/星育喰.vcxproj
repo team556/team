@@ -133,6 +133,7 @@
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
+    <ClCompile Include="ObjPushUnit.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjFacility.h" />
     <ClInclude Include="ObjPlanet.h" />
+    <ClInclude Include="ObjPushUnit.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneFacility.h" />
