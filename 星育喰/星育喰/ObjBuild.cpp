@@ -22,6 +22,7 @@ void CObjBuild::Init()
 
 	m_key_f = true;
 	m_turn = true;
+	m_turn0 = true;
 
 	//m_build = true;
 
@@ -118,13 +119,19 @@ void CObjBuild::Action()
 					m_key_f = false;
 					m_turn = false;
 				}
-				else if(m_turn == false)//2回目のクリック
+				else if(m_key_f == true && m_turn == false)//2回目のクリック
 				{
 					Draw::LoadImage(L"建物.jpg", 1, TEX_SIZE_512);
+					m_key_f = false;
+					m_turn0 = false;
 				}
 			}
 			else{//クリック離した時
 				m_key_f = true;
+				if (m_turn0 == false) {
+					m_turn = true;
+					m_turn0 = true;
+				}
 			}
 		}
 	}

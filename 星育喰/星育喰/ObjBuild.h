@@ -30,6 +30,7 @@ class CObjBuild :public CObj
 		int m_time;
 
 		bool m_turn;
+		bool m_turn0;
 		bool m_key_f;
 
 };
