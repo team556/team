@@ -21,6 +21,7 @@ private:
 	float m_a;		//alpha
 
 	int m_type;		//タイプ
+	int m_get_line; //取得したライン(0～2)
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y

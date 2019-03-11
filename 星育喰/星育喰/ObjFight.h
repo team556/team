@@ -13,6 +13,9 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+
+	int GetLine() { return m_line_nam; }
+
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
