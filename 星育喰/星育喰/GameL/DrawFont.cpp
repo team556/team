@@ -56,7 +56,7 @@ void CDrawFont::Init(ID3D11Device* p_device,ID3D11DeviceContext* p_device_contex
 		CLIP_DEFAULT_PRECIS,
 		PROOF_QUALITY,
 		FIXED_PITCH | FF_MODERN,
-		L"ＭＳ ゴシック"	//使用フォント
+		L"HGS創英角ﾎﾟｯﾌﾟ体"	//使用フォント
 		);
 	m_hdc = GetDC(NULL);
 	m_oldFont = (HFONT)SelectObject(m_hdc, hFont);

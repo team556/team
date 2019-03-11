@@ -21,6 +21,7 @@ private:
 	int m_time[3];		//敵惑星(背景)3つの時間経過を管理
 	int m_Enemy_id;		//各敵惑星の識別用変数
 	int m_Planet_id;	//惑星データ読取用変数
+	int	m_speed;		//敵惑星(背景)3つの移動速度変更用(デバッグ用 兼 隠し要素)
 
 	bool  m_flag;		//true=クリックした　false=クリックしてない
 	float m_alpha;		//透過度(アルファ値)

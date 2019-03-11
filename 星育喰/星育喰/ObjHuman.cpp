@@ -61,7 +61,7 @@ void CObjHuman::Action()
 		m_ani_time += 1;//アニメーションを進める
 	}
 	else{
-		m_ani_frame = 1;	//キー入力がない場合は静止フレームにする
+		m_ani_frame = 0;	//キー入力がない場合は静止フレームにする
 		m_ani_time = 0;		//アニメーションを止める
 	}
 
@@ -86,14 +86,14 @@ void CObjHuman::Draw()
 	int PosData[4] = { 0,2,0,1, };
 
 	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
-	RECT_F src;
-	RECT_F dst;
-	//切り取り位置
+	RECT_F src;//切り取り位置
+	RECT_F dst;//表示位置
+	
 	src.m_top   =  0.0f + (PosData[m_pos] * 70.0f);
 	src.m_left  =  0.0f + (AniData[m_ani_frame] * 64.0f);
 	src.m_right = 64.0f + (AniData[m_ani_frame] * 64.0f);
 	src.m_bottom= 70.0f + (PosData[m_pos] * 70.0f);
-	//表示位置
+	
 	dst.m_top   = m_hy;
 	dst.m_left  = m_hx;
 	dst.m_right = m_hx + m_size;
