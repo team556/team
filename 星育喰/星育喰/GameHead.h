@@ -75,5 +75,5 @@ struct UserData
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START
-#define SET_GAME_START CSceneFight
+#define SET_GAME_START CSceneTest
 //-----------------------------------------------

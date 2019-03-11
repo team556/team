@@ -61,7 +61,7 @@ void CObjHuman::Action()
 		m_ani_time += 1;//アニメーションを進める
 	}
 	else{
-		m_ani_frame = 1;	//キー入力がない場合は静止フレームにする
+		m_ani_frame = 0;	//キー入力がない場合は静止フレームにする
 		m_ani_time = 0;		//アニメーションを止める
 	}
 
