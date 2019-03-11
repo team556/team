@@ -27,9 +27,15 @@ CSceneFacility::~CSceneFacility()
 //初期化メソッド
 void CSceneFacility::InitScene()
 {
-	//test用外部グラフィック読み込み0番に登録
-	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
+	////test用外部グラフィック読み込み0番に登録
+	//Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
+	//test用施設画像読み込み1番に登録
+	Draw::LoadImage(L"建物.jpg", 1, TEX_SIZE_512);
+
+	//建物オブジェクト作成
+	CObjBuild* build = new CObjBuild();
+	Objs::InsertObj(build, OBJ_BUILD, 1);
 }
 //実行中メソッド
 void CSceneFacility::Scene()

@@ -35,6 +35,8 @@ enum HIT_ELEMENTS
 	ELEMENT_BLUE,
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
+	ELEMENT_FACILITY,
+	ELEMENT_BUILD,
 };
 //------------------------------------------------
 

@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\HitBoxManager.h"
 
 #include "GameHead.h"
 #include "ObjFacility.h"
@@ -13,13 +14,12 @@ using namespace GameL;
 //イニシャライズ
 void CObjFacility::Init()
 {
-
 }
 
 //アクション
 void CObjFacility::Action()
 {
-
+	
 }
 
 //ドロー

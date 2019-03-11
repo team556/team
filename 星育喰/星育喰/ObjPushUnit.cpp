@@ -42,19 +42,24 @@ void CObjPushUnit::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (obj != nullptr) {					//情報が取得出来ていたら
+		m_get_line = obj->GetLine();		//ラインナンバーを取得
+	}
+
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w))		//X軸範囲
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
 		if (m_type == 0) {		//タイプごとの処理
-			m_a = 0;
+			m_a = 0.1 * m_get_line;
 		}
 		else if (m_type == 1)
 		{
-			m_a = 0.3;
+			m_a = 0.1 * m_get_line;;
 		}
 		else if (m_type == 2)
 		{
-			m_a = 0.6;
+			m_a = 0.1 * m_get_line;;
 		}
 	}
 }
