@@ -1,7 +1,7 @@
 #pragma once
 //使用するヘッダーファイル
 #include"GameL\SceneManager.h"
-
+#include"GameHead.h"
 //使用するネームスペース
 using namespace GameL;
 

@@ -2,6 +2,7 @@
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\DrawTexture.h"
 
 #include "GameHead.h"
 #include "ObjFacility.h"

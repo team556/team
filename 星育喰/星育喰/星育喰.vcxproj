@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ObjBuild.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -129,11 +130,13 @@
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
+    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjBuild.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -154,6 +157,7 @@
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneFacility.h" />
+    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="UtilityModule.h" />

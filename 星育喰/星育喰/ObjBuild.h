@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //オブジェクト：タイトル
-class CObjFacility :public CObj
+class CObjBuild :public CObj
 {
 	public:
-		CObjFacility() {};
-		~CObjFacility() {};
+		CObjBuild() {};
+		~CObjBuild() {};
 		void Init();     //イニシャライズ
 		void Action();   //アクション
 		void Draw();     //ドロー
