@@ -113,6 +113,7 @@
     <ClCompile Include="Call_Planet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ObjBuild.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
+    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="SceneTest.cpp" />
@@ -141,6 +143,7 @@
     <ClCompile Include="UtilityModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjBuild.h" />
     <ClInclude Include="Call_Planet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -168,6 +171,7 @@
     <ClInclude Include="SceneFacility.h" />
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneHome.h" />
+    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="UtilityModule.h" />
