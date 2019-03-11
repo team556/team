@@ -15,5 +15,4 @@ class CObjFacility :public CObj
 		void Action();   //アクション
 		void Draw();     //ドロー
 	private:
-
 };
