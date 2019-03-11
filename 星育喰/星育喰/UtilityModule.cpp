@@ -132,7 +132,7 @@ RECT_F GetBulletEffec(int* ani, int* ani_time, bool del, int timing)
 //Å‘å‚ÆÅ¬‚Ì·‚ÅAì‚ç‚ê‚é—”‚Ì•‚ğŒˆ‚ß‚éB
 int Rand(int n_min, int n_max)
 {
-	n_max -= n_min;
+	n_max = (n_max + 1) - n_min;
 	srand((unsigned int)time(NULL));
 	return rand() % n_max + n_min;
 }

@@ -13,9 +13,13 @@ public:
 	void Init();		//イニシャライズ
 	void Action();		//アクション
 	void Draw();		//ドロー
+	
+	void Turn(int* pos);		//向き反転
 private:
 	float m_hx;			//HumanのX座標
 	float m_hy;			//HumanのY座標
+	float m_mov_spd;	//動きの速さ
+	float m_size;		//Humanのサイズ
 
 	int m_pos;			//Humanの向き(0～3で四方向)
 	int m_ani_time;		//アニメーションフレーム動作間隔
