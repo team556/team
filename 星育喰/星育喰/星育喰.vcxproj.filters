@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\関数">
-      <UniqueIdentifier>{27a92017-f5b6-4517-b1f7-3ee3e80a0ef8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\シーン">
       <UniqueIdentifier>{97a2391c-84c1-467c-b891-6872e9b9e093}</UniqueIdentifier>
     </Filter>
@@ -25,17 +22,11 @@
     <Filter Include="ソース ファイル\シーン\テスト用">
       <UniqueIdentifier>{ced1ab1e-449c-4311-affc-b36b289fe422}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\施設">
+      <UniqueIdentifier>{025ec002-d017-40b6-8c93-8845994c187f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ソース ファイル\住民">
       <UniqueIdentifier>{20b43ac7-b376-4568-8b2d-534c3ec8a1e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\施設">
-      <UniqueIdentifier>{564cc408-affb-4169-b9f4-20f71a9ec8ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\シーン\戦闘画面">
-      <UniqueIdentifier>{ca88a7f1-86b3-48ae-abd3-91191123489e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\シーン\ホーム">
-      <UniqueIdentifier>{35d1486e-d900-472a-8677-da19f443e570}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\施設\建物">
       <UniqueIdentifier>{798801b5-7693-4b17-9465-8dcd2e500274}</UniqueIdentifier>
@@ -102,32 +93,32 @@
     <ClCompile Include="UtilityModule.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneFacility.cpp">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClCompile>
     <ClCompile Include="ObjFacility.cpp">
       <Filter>ソース ファイル\施設</Filter>
     </ClCompile>
-    <ClCompile Include="Call_Planet.cpp">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneFight.cpp">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjPlanet.cpp">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHome.cpp">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneHome.cpp">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
+    <ClCompile Include="SceneFacility.cpp">
+      <Filter>ソース ファイル\施設</Filter>
     </ClCompile>
     <ClCompile Include="SceneMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjBuild.cpp">
       <Filter>ソース ファイル\施設\建物</Filter>
+    </ClCompile>
+    <ClCompile Include="Call_Planet.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHome.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjPlanet.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFight.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHome.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,32 +185,32 @@
     <ClInclude Include="UtilityModule.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneFacility.h">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClInclude>
     <ClInclude Include="ObjFacility.h">
       <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
-    <ClInclude Include="Call_Planet.h">
-      <Filter>ソース ファイル\関数</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneFight.h">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjPlanet.h">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjHome.h">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneHome.h">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
+    <ClInclude Include="SceneFacility.h">
+      <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
     <ClInclude Include="SceneMain.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjBuild.h">
       <Filter>ソース ファイル\施設\建物</Filter>
+    </ClInclude>
+    <ClInclude Include="Call_Planet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHome.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPlanet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFight.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHome.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

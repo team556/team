@@ -28,10 +28,10 @@ CSceneMain::~CSceneMain()
 void CSceneMain::InitScene()
 {
 	//test用外部グラフィック読み込み0番に登録
-	Draw::LoadImage(L"背景.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//test用建物グラフィック読み込み1番に登録
-	Draw::LoadImage(L"建物.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"建物.png", 1, TEX_SIZE_512);
 
 	//背景オブジェクト作成
 	CObjFacility* facility = new CObjFacility();
