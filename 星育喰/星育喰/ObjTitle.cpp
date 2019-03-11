@@ -32,6 +32,7 @@ void CObjTitle::Init()
 	m_time[2] = ENEMY_PLANET3_START_TIME;
 	m_Enemy_id = 0;
 	m_Planet_id = 0;
+	m_speed = 0;
 
 	m_flag  = false;
 	m_alpha = INI_ALPHA;
@@ -54,6 +55,7 @@ void CObjTitle::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 	
+	//左クリックもしくは右クリックでホーム画面へシーン移行
 	if (m_flag == true)
 	{
 		m_alpha -= 0.01f;
@@ -62,10 +64,23 @@ void CObjTitle::Action()
 		{
 			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 		}
+
+		return;
 	}
 	else if (m_mou_l == true || m_mou_r == true)
 	{
 		m_flag = true;
+	}
+
+	//Zキーを押している間、敵惑星(背景)の移動速度が速くなる(デバッグ用)
+	//元々はデバッグのみの使用だったが、隠し要素という感じで残しておいても良いかも。
+	if (Input::GetVKey('Z') == true)
+	{
+		m_speed = 10;
+	}
+	else
+	{
+		m_speed = 0;
 	}
 }
 
@@ -75,8 +90,10 @@ void CObjTitle::Draw()
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	//動かない画像用[シーン移行時も消えない]
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+
 	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードアウト]
 	float w[4] = { 1.0f,1.0f,1.0f,m_alpha };
+
 	//黄色(☆育喰)[シーン移行時フェードアウト]
 	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
 
@@ -99,9 +116,10 @@ void CObjTitle::Draw()
 
 	//▼敵惑星(背景)表示
 	//1500に到達するまで、それぞれ4ずつ加算されていく。
-	m_time[0] += 4;
-	m_time[1] += 4;
-	m_time[2] += 4;
+	//Zキーを押すと加算量が上昇する
+	m_time[0] += 4 + m_speed;
+	m_time[1] += 4 + m_speed;
+	m_time[2] += 4 + m_speed;
 
 	//m_timeが1500に到達すると、以下の処理が実行される。
 	//敵惑星(背景)の開始時間の差により、
