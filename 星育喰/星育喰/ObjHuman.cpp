@@ -20,7 +20,7 @@ CObjHuman::CObjHuman(float x, float y)
 //イニシャライズ
 void CObjHuman::Init()
 {
-	m_size = 50.0f;
+	m_size = 70.0f;
 	m_pos = 0;			//向き( 0← 1↑ 2→ 3↓ )
 	m_move = false;		//動きオフ
 	m_mov_spd = 4.0f;	//動く速さ
@@ -72,8 +72,8 @@ void CObjHuman::Action()
 		m_ani_time = 0;
 	}
 
-	if (m_ani_frame == 4)
-		m_ani_frame = 0;	//フレーム4で0に戻す
+	if (m_ani_frame == 4)	//フレーム4で0に戻す
+		m_ani_frame = 0;	//0～3をループ
 
 	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
 	hit->SetPos(m_hx, m_hy);				//位置を更新
@@ -82,21 +82,27 @@ void CObjHuman::Action()
 //ドロー
 void CObjHuman::Draw()
 {
-	int AniData[4] = { 0,1,2,1, };
+	int AniData[4] = { 1,0,1,2, };
+	int PosData[4] = { 0,2,0,1, };
 
 	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
 	RECT_F src;
 	RECT_F dst;
 	//切り取り位置
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+	src.m_top   =  0.0f + (PosData[m_pos] * 70.0f);
+	src.m_left  =  0.0f + (AniData[m_ani_frame] * 64.0f);
+	src.m_right = 64.0f + (AniData[m_ani_frame] * 64.0f);
+	src.m_bottom= 70.0f + (PosData[m_pos] * 70.0f);
 	//表示位置
 	dst.m_top   = m_hy;
 	dst.m_left  = m_hx;
 	dst.m_right = m_hx + m_size;
 	dst.m_bottom= m_hy + m_size;
+
+	if (m_pos == 2){
+		dst.m_left  = m_hx + m_size;
+		dst.m_right = m_hx;
+	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(0, &src, &dst, c, 0.0f);
@@ -108,7 +114,7 @@ void CObjHuman::Turn(int* pos)
 		*pos += 2;
 	else
 		*pos -= 2;
-	switch (m_pos) {
+	switch (m_pos) {//反転方向に進む
 	case 0:m_hx -= m_mov_spd; break;//←
 	case 1:m_hy -= m_mov_spd; break;//↑
 	case 2:m_hx += m_mov_spd; break;//→
