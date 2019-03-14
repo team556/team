@@ -80,7 +80,7 @@ void CObjHome::Action()
 
 				if (m_Mig_time > 60)
 				{
-					//Scene::SetScene(new CSceneHome());//育成画面へシーン移行
+					Scene::SetScene(new CSceneTraining());//育成画面へシーン移行
 				}
 			}
 			else

@@ -12,6 +12,7 @@ enum OBJ_NAME
 	OBJ_TEST,
 	OBJ_HUMAN,
 	OBJ_PLANET,
+	OBJ_TRAINING,
 	OBJ_FIGHT,
 	OBJ_FACILITY,
 	OBJ_BUILD,
@@ -68,6 +69,7 @@ struct UserData
 #include "ObjFacility.h"
 #include "ObjBuild.h"
 #include "ObjPlanet.h"
+#include "ObjTraining.h"
 #include "ObjFight.h"
 #include "ObjPushUnit.h"
 
@@ -79,6 +81,7 @@ struct UserData
 #include "SceneHome.h"
 #include "SceneTest.h"
 #include "SceneFacility.h"
+#include "SceneTraining.h"
 #include "SceneFight.h"
 
 //-----------------------------------------------

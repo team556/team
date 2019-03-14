@@ -5,7 +5,6 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
-#include "GameL\DrawFont.h"
 
 
 //使用するネームスペース
@@ -33,7 +32,7 @@ void CSceneHome::InitScene()
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
-	//タイトルオブジェクト作成
+	//ホームオブジェクト作成
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
