@@ -5,7 +5,6 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
-#include "GameL\DrawFont.h"
 
 
 //使用するネームスペース
@@ -33,7 +32,7 @@ void CSceneHome::InitScene()
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
-	//タイトルオブジェクト作成
+	//ホームオブジェクト作成
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
@@ -45,6 +44,9 @@ void CSceneHome::InitScene()
 
 	//喰アイコンを読み込み2番に登録
 	Draw::LoadImage(L"喰TEST.png", 2, TEX_SIZE_512);
+
+	//雲を読み込み3番に登録
+	Draw::LoadImage(L"雲TEST.png", 3, TEX_SIZE_512);
 
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"Player_Planet_Test.png", 50, TEX_SIZE_512);

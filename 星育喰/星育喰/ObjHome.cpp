@@ -1,6 +1,6 @@
 //使用するヘッダーファイル
 #include "GameL\DrawTexture.h"
-#include "GameL\DrawFont.h"
+#include "GameL\DrawFont.h"		//使用されているのはマウスデバッグの部分のみ
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 
@@ -24,11 +24,12 @@ using namespace GameL;
 //イニシャライズ
 void CObjHome::Init()
 {
-	m_Pvx = 0;	
-	m_Pvy = 0;
-	m_boost = 0;
-	m_rx = 0;
-	m_ry = 0;
+	m_Pvx = 0.0f;	
+	m_Pvy = 0.0f;
+	m_boost = 0.0f;
+	m_rx = 0.0f;
+	m_ry = 0.0f;
+	m_size = 0.0f;
 
 	m_Mig_time = 0;
 
@@ -40,16 +41,22 @@ void CObjHome::Init()
 	m_Planet_id = 0;
 	m_speed = 0;
 
-	m_alpha = INI_ALPHA;
+	m_Tra_move = 0.0f;
+	m_Eat_move = 0.0f;
 	m_Tra_color = INI_COLOR;
 	m_Eat_color = INI_COLOR;
+	m_alpha = INI_ALPHA;
 	m_Tra_flag = false;
 	m_Eat_flag = false;
+
+	m_Cloud_move = 0.0f;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
 	m_mou_l = false;
+
+	m_key_f = false;
 
 	srand(time(NULL));//ランダム情報を初期化
 }
@@ -60,10 +67,31 @@ void CObjHome::Action()
 	//育アイコン、もしくは喰アイコンクリック時実行
 	if (m_Tra_flag == true || m_Eat_flag == true)
 	{
+		//▼育アイコンクリック処理
 		if (m_Tra_flag == true)
 		{
+			//プレイヤー惑星を拡大、育喰アイコンをそれぞれ画面外へ移動させるズーム演出、
+			//雲が画面全体を覆い隠す処理を同時に行う。
+			if (m_Cloud_move >= 1000.0f)
+			{
+				//雲が画面全体を完全に覆い隠したタイミングで上記の処理を終了し、
+				//同時にm_Mig_timeを作動させ、約1秒後(m_Mig_timeが60より上)にシーン移行を行う
+				m_Mig_time++;
 
+				if (m_Mig_time > 60)
+				{
+					Scene::SetScene(new CSceneTraining());//育成画面へシーン移行
+				}
+			}
+			else
+			{
+				m_size += 20.0f;
+				m_Tra_move += 5.0f;
+				m_Eat_move += 5.0f;
+				m_Cloud_move += 10.0f;
+			}
 		}
+		//▼喰アイコンクリック処理
 		else //(m_Eat_flag == true)
 		{
 			//育喰アイコン、敵惑星(背景)を徐々に非表示にする
@@ -152,9 +180,18 @@ void CObjHome::Action()
 		//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
 		if (m_mou_l == true)
 		{
-			m_Tra_flag = true;
-		}
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_f == true)
+			{
+				m_key_f = false;
 
+				m_Tra_flag = true;
+			}
+		}
+		else
+		{
+			m_key_f = true;
+		}
 	}
 	else
 	{
@@ -168,10 +205,19 @@ void CObjHome::Action()
 
 		//左クリックされたらフラグを立て、戦闘準備画面へ演出を交えながらシーン移行
 		if (m_mou_l == true)
-		{
-			m_Eat_flag = true;
-		}
+		{	
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_f == true)
+			{
+				m_key_f = false;
 
+				m_Eat_flag = true;
+			}
+		}
+		else
+		{
+			m_key_f = true;
+		}
 	}
 	else
 	{
@@ -188,20 +234,6 @@ void CObjHome::Action()
 	{
 		m_speed = 0;
 	}
-
-	//if (m_flag == true)
-	//{
-	//	m_alpha -= 0.01f;
-
-	//	if (m_alpha <= 0.0f)
-	//	{
-	//		//ホーム画面へシーン移行
-	//	}
-	//}
-	//else if (m_mou_l == true || m_mou_r == true)
-	//{
-	//	m_flag = true;
-	//}
 }
 
 //ドロー
@@ -316,10 +348,10 @@ void CObjHome::Draw()
 	src.m_right = 300.0f;
 	src.m_bottom = 168.0f;
 
-	dst.m_top = 150.0f + m_Pvy;
-	dst.m_left = 250.0f + m_Pvx;
-	dst.m_right = 950.0f + m_Pvx;
-	dst.m_bottom = 550.0f + m_Pvy;
+	dst.m_top = 150.0f + m_Pvy - m_size;
+	dst.m_left = 250.0f + m_Pvx - m_size;
+	dst.m_right = 950.0f + m_Pvx + m_size;
+	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 
 
@@ -329,10 +361,10 @@ void CObjHome::Draw()
 	src.m_right = 128.0f;
 	src.m_bottom = 128.0f;
 
-	dst.m_top = 480.0f;
-	dst.m_left = 20.0f;
-	dst.m_right = 220.0f;
-	dst.m_bottom = 680.0f;
+	dst.m_top = 480.0f + m_Tra_move;
+	dst.m_left = 20.0f - m_Tra_move;
+	dst.m_right = 220.0f - m_Tra_move;
+	dst.m_bottom = 680.0f + m_Tra_move;
 	Draw::Draw(1, &src, &dst, t, 0.0f);
 
 	//▼喰アイコン表示
@@ -341,32 +373,49 @@ void CObjHome::Draw()
 	src.m_right = 128.0f;
 	src.m_bottom = 128.0f;
 
-	dst.m_top = 480.0f;
-	dst.m_left = 980.0f;
-	dst.m_right = 1180.0f;
-	dst.m_bottom = 680.0f;
+	dst.m_top = 480.0f + m_Eat_move;
+	dst.m_left = 980.0f + m_Eat_move;
+	dst.m_right = 1180.0f + m_Eat_move;
+	dst.m_bottom = 680.0f + m_Eat_move;
 	Draw::Draw(2, &src, &dst, e, 0.0f);
 
 
-	//▼"☆育喰"というタイトルを表示
-	//Font::StrDraw(L"ホーム画面！", 425, 50, 120, d);
+	//▼雲(右上)表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 500.0f;
+	src.m_bottom = 500.0f;
 
-	////▼上下ふわふわする"クリックでスタート"を表示
-	////角度加算
-	//m_r += 2.0f;
+	dst.m_top = -1000.0f + m_Cloud_move;
+	dst.m_left = 900.0f - m_Cloud_move;
+	dst.m_right = 2200.0f - m_Cloud_move;
+	dst.m_bottom = 100.0f + m_Cloud_move;
+	Draw::Draw(3, &src, &dst, d, 0.0f);
 
-	////360°で初期値に戻す
-	//if (m_r > 360.0f)
-	//	m_r = 0.0f;
+	//以下の位置になると画面全体が隠れる
+	//dst.m_top = 0.0f;
+	//dst.m_left = -100.0f;
+	//dst.m_right = 1200.0f;
+	//dst.m_bottom = 1100.0f;
 
-	////移動方向
-	//m_click_vy = sin(3.14f / 90 * m_r);
 
-	////速度付ける。
-	//m_click_vy *= 10.0f;
+	//▼雲(左下)表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = -500.0f;
+	src.m_bottom = -500.0f;
 
-	//Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, c);
+	dst.m_top = 600.0f - m_Cloud_move;
+	dst.m_left = -1000.0f + m_Cloud_move;
+	dst.m_right = 300.0f + m_Cloud_move;
+	dst.m_bottom = 1700.0f - m_Cloud_move;
+	Draw::Draw(3, &src, &dst, d, 0.0f);
 
+	//以下の位置になると画面全体が隠れる
+	//dst.m_top = -400.0f;
+	//dst.m_left = 0.0f;
+	//dst.m_right = 1300.0f;
+	//dst.m_bottom = 700.0f;
 
 
 
