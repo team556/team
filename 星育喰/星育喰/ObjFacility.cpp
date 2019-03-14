@@ -14,6 +14,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjFacility::Init()
 {
+
 }
 
 //アクション
