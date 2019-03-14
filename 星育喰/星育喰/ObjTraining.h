@@ -22,4 +22,9 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
 	bool  m_key_f;		//キーフラグ
+
+//protected:
+//	static bool test_flag;
 };
+
+//bool CObjTraining::test_flag = false;

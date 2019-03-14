@@ -10,13 +10,14 @@
 using namespace GameL;
 
 //マクロ
+#define INI_CLOUD_POS (1000.0f) //雲の初期位置
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
 //イニシャライズ
 void CObjTraining::Init()
 {
-	m_Cloud_move = 0.0f;
+	m_Cloud_move = INI_CLOUD_POS;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -36,7 +37,11 @@ void CObjTraining::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	
+	//雲を画面外に移動させ、育成画面を見せる
+	if (m_Cloud_move >= 0.0f)
+	{
+		m_Cloud_move -= 10.0f;
+	}
 }
 
 //ドロー

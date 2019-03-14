@@ -104,8 +104,8 @@ void CObjHuman::Draw()
 		dst.m_right = m_hx;
 	}
 
-	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	//10番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+	Draw::Draw(10, &src, &dst, c, 0.0f);
 }
 
 void CObjHuman::Turn(int* pos)
