@@ -14,6 +14,9 @@ using namespace GameL;
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
+//static変数の定義
+bool CObjTraining::test_flag = false;
+
 //イニシャライズ
 void CObjTraining::Init()
 {

@@ -23,8 +23,6 @@ private:
 
 	bool  m_key_f;		//キーフラグ
 
-//protected:
-//	static bool test_flag;
+protected:
+	static bool test_flag;//施設ウインドウの複数起動阻止フラグ(にする予定)
 };
-
-//bool CObjTraining::test_flag = false;
