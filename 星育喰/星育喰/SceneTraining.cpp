@@ -54,6 +54,9 @@ void CSceneTraining::InitScene()
 	//”wŒi‚ğ“Ç‚İ‚İ0”Ô‚É“o˜^
 	Draw::LoadImage(L"’n–ÊTEST.gif", 0, TEX_SIZE_512);
 
+	//(‰¼)–ß‚éƒAƒCƒRƒ“‚ğ“Ç‚İ‚İ1”Ô‚É“o˜^
+	Draw::LoadImage(L"–ß‚éƒAƒCƒRƒ“TEST.png", 1, TEX_SIZE_512);
+
 	//Z–¯‚ğ“Ç‚İ‚İ10”Ô‚É“o˜^
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
 
