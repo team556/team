@@ -66,17 +66,17 @@ void CObjCloud_Effect::Draw()
 	src.m_right = 500.0f;
 	src.m_bottom = 500.0f;
 
-	dst.m_top = -1000.0f + m_Cloud_move;
-	dst.m_left = 900.0f - m_Cloud_move;
-	dst.m_right = 2200.0f - m_Cloud_move;
-	dst.m_bottom = 100.0f + m_Cloud_move;
+	dst.m_top = -1100.0f + m_Cloud_move;
+	dst.m_left = 700.0f - m_Cloud_move;
+	dst.m_right = 2300.0f - m_Cloud_move;
+	dst.m_bottom = 300.0f + m_Cloud_move;
 	Draw::Draw(15, &src, &dst, d, 0.0f);
 
 	//以下の位置になると画面全体が隠れる
-	//dst.m_top = 0.0f;
-	//dst.m_left = -100.0f;
-	//dst.m_right = 1200.0f;
-	//dst.m_bottom = 1100.0f;
+	//dst.m_top = -100.0f;
+	//dst.m_left = -300.0f;
+	//dst.m_right = 1300.0f;
+	//dst.m_bottom = 1300.0f;
 
 
 	//▼雲(左下)表示
@@ -85,15 +85,15 @@ void CObjCloud_Effect::Draw()
 	src.m_right = -500.0f;
 	src.m_bottom = -500.0f;
 
-	dst.m_top = 600.0f - m_Cloud_move;
-	dst.m_left = -1000.0f + m_Cloud_move;
-	dst.m_right = 300.0f + m_Cloud_move;
-	dst.m_bottom = 1700.0f - m_Cloud_move;
+	dst.m_top = 400.0f - m_Cloud_move;
+	dst.m_left = -1100.0f + m_Cloud_move;
+	dst.m_right = 500.0f + m_Cloud_move;
+	dst.m_bottom = 1800.0f - m_Cloud_move;
 	Draw::Draw(15, &src, &dst, d, 0.0f);
 
 	//以下の位置になると画面全体が隠れる
-	//dst.m_top = -400.0f;
-	//dst.m_left = 0.0f;
-	//dst.m_right = 1300.0f;
-	//dst.m_bottom = 700.0f;
+	//dst.m_top = -600.0f;
+	//dst.m_left = -100.0f;
+	//dst.m_right = 1500.0f;
+	//dst.m_bottom = 800.0f;
 }

@@ -58,7 +58,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
 
 	//‰_‚ğ“Ç‚İ‚İ15”Ô‚É“o˜^
-	Draw::LoadImage(L"‰_TEST.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"“§‰ß‰_.png", 15, TEX_SIZE_512);
 
 	//ƒvƒŒƒCƒ„[˜f¯‚ğ“Ç‚İ‚İ50”Ô‚É“o˜^
 	Draw::LoadImage(L"Player_Planet_Test.png", 50, TEX_SIZE_512);
