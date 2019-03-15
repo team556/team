@@ -14,8 +14,6 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
-	float m_Cloud_move;	//雲の移動用ベクトル
-
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)

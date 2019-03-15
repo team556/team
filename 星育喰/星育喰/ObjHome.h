@@ -37,8 +37,6 @@ private:
 	bool  m_Tra_flag;	//育アイコンクリック時trueフラグ
 	bool  m_Eat_flag;	//喰アイコンクリック時trueフラグ
 
-	float m_Cloud_move;	//雲の移動用ベクトル
-
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
