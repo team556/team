@@ -45,8 +45,8 @@ void CSceneHome::InitScene()
 	//‹òƒAƒCƒRƒ“‚ğ“Ç‚İ‚İ2”Ô‚É“o˜^
 	Draw::LoadImage(L"‹òTEST.png", 2, TEX_SIZE_512);
 
-	//‰_‚ğ“Ç‚İ‚İ3”Ô‚É“o˜^
-	Draw::LoadImage(L"‰_TEST.png", 3, TEX_SIZE_512);
+	//‰_‚ğ“Ç‚İ‚İ15”Ô‚É“o˜^
+	Draw::LoadImage(L"‰_TEST.png", 15, TEX_SIZE_512);
 
 	//ƒvƒŒƒCƒ„[˜f¯‚ğ“Ç‚İ‚İ50”Ô‚É“o˜^
 	Draw::LoadImage(L"Player_Planet_Test.png", 50, TEX_SIZE_512);

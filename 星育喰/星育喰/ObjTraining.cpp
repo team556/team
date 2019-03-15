@@ -10,7 +10,6 @@
 using namespace GameL;
 
 //マクロ
-#define INI_CLOUD_POS (1000.0f) //雲の初期位置
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
@@ -20,8 +19,6 @@ bool CObjTraining::test_flag = false;
 //イニシャライズ
 void CObjTraining::Init()
 {
-	m_Cloud_move = INI_CLOUD_POS;
-
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
@@ -40,10 +37,12 @@ void CObjTraining::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	//雲を画面外に移動させ、育成画面を見せる
-	if (m_Cloud_move >= 0.0f)
+
+	//雲INのテスト用
+	if (Input::GetVKey('Z') == true)
 	{
-		m_Cloud_move -= 10.0f;
+		CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
+		obj_cloud->SetCheck(true);
 	}
 }
 
@@ -91,44 +90,6 @@ void CObjTraining::Draw()
 	//dst.m_right = 950.0f + m_Pvx + m_size;
 	//dst.m_bottom = 550.0f + m_Pvy + m_size;
 	//Draw::Draw(50, &src, &dst, d, 0.0f);
-
-
-	//▼雲(右上)表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 500.0f;
-	src.m_bottom = 500.0f;
-
-	dst.m_top = -1000.0f + m_Cloud_move;
-	dst.m_left = 900.0f - m_Cloud_move;
-	dst.m_right = 2200.0f - m_Cloud_move;
-	dst.m_bottom = 100.0f + m_Cloud_move;
-	Draw::Draw(1, &src, &dst, d, 0.0f);
-
-	//以下の位置になると画面全体が隠れる
-	//dst.m_top = 0.0f;
-	//dst.m_left = -100.0f;
-	//dst.m_right = 1200.0f;
-	//dst.m_bottom = 1100.0f;
-
-
-	//▼雲(左下)表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = -500.0f;
-	src.m_bottom = -500.0f;
-
-	dst.m_top = 600.0f - m_Cloud_move;
-	dst.m_left = -1000.0f + m_Cloud_move;
-	dst.m_right = 300.0f + m_Cloud_move;
-	dst.m_bottom = 1700.0f - m_Cloud_move;
-	Draw::Draw(1, &src, &dst, d, 0.0f);
-
-	//以下の位置になると画面全体が隠れる
-	//dst.m_top = -400.0f;
-	//dst.m_left = 0.0f;
-	//dst.m_right = 1300.0f;
-	//dst.m_bottom = 700.0f;
 
 
 
