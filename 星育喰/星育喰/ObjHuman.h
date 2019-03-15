@@ -27,4 +27,5 @@ private:
 	int m_cnt;			//カウント
 
 	bool m_move;		//true動いている,false動いてない
+	bool m_turn;		//ターンフラグ,ture領域外
 };
