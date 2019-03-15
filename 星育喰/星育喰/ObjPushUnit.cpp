@@ -11,14 +11,13 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjPushUnit::CObjPushUnit(float x, float y, float h, float w, int t)
+CObjPushUnit::CObjPushUnit(float x, float y, float h, float w)
 {
 	//作成時に渡された値を、座標の初期値に代入
 	m_x = x;
 	m_y = y;
 	m_h = h;
 	m_w = w;
-	m_type = t;
 }
 
 //イニシャライズ
@@ -42,25 +41,13 @@ void CObjPushUnit::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj != nullptr) {					//情報が取得出来ていたら
-		m_get_line = obj->GetLine();		//ラインナンバーを取得
-	}
 
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w))		//X軸範囲
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
-		if (m_type == 0) {		//タイプごとの処理
-			m_a = 0.1 * m_get_line;
-		}
-		else if (m_type == 1)
-		{
-			m_a = 0.1 * m_get_line;;
-		}
-		else if (m_type == 2)
-		{
-			m_a = 0.1 * m_get_line;;
-		}
+		//オブジェクト作成
+		CObjMissile* M = new CObjMissile(400, 200);	//オブジェクト作成
+		Objs::InsertObj(M, OBJ_MISSILE, 10);				//オブジェクト登録
 	}
 }
 

@@ -16,6 +16,7 @@ enum OBJ_NAME
 	OBJ_FIGHT,
 	OBJ_FACILITY,
 	OBJ_BUILD,
+	OBJ_MISSILE,
 
 };
 //------------------------------------------------
@@ -72,6 +73,7 @@ struct UserData
 #include "ObjTraining.h"
 #include "ObjFight.h"
 #include "ObjPushUnit.h"
+#include "ObjMissile.h"
 
 //------------------------------------------------
 
@@ -88,6 +90,6 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START	CSceneTitle
-//#define SET_GAME_START CSceneFight
+//#define SET_GAME_START	CSceneTitle
+#define SET_GAME_START CSceneFight
 //-----------------------------------------------

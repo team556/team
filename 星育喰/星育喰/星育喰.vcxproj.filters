@@ -37,14 +37,14 @@
     <Filter Include="ソース ファイル\シーン\ホーム">
       <UniqueIdentifier>{35d1486e-d900-472a-8677-da19f443e570}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\対戦用惑星">
-      <UniqueIdentifier>{18caa8f4-49f3-4799-90f3-206c696ecd4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\施設\建物">
       <UniqueIdentifier>{798801b5-7693-4b17-9465-8dcd2e500274}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\シーン\育成画面">
       <UniqueIdentifier>{6f5271e2-bf29-4ce9-9635-3a07b377a1e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\対戦用">
+      <UniqueIdentifier>{18caa8f4-49f3-4799-90f3-206c696ecd4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,19 +133,22 @@
       <Filter>ソース ファイル\シーン\ホーム</Filter>
     </ClCompile>
     <ClCompile Include="ObjPlanet.cpp">
-      <Filter>ソース ファイル\対戦用惑星</Filter>
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
     <ClCompile Include="ObjFight.cpp">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
     </ClCompile>
     <ClCompile Include="ObjPushUnit.cpp">
-      <Filter>ソース ファイル\対戦用惑星</Filter>
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
     <ClCompile Include="ObjTraining.cpp">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
     </ClCompile>
     <ClCompile Include="SceneTraining.cpp">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMissile.cpp">
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,19 +240,22 @@
       <Filter>ソース ファイル\シーン\ホーム</Filter>
     </ClInclude>
     <ClInclude Include="ObjPlanet.h">
-      <Filter>ソース ファイル\対戦用惑星</Filter>
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
     <ClInclude Include="ObjFight.h">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
     </ClInclude>
     <ClInclude Include="ObjPushUnit.h">
-      <Filter>ソース ファイル\対戦用惑星</Filter>
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
     <ClInclude Include="ObjTraining.h">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
     </ClInclude>
     <ClInclude Include="SceneTraining.h">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMissile.h">
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
