@@ -43,7 +43,7 @@ void CSceneTest::InitScene()
 	//Objs::InsertObj(obj, OBJ_TEST, 10);	//タイトルオブジェクト登録
 
 	//住民オブジェクト作成
-	CObjHuman* obj0 = new CObjHuman(100,100);	//タイトルオブジェクト作成
+	CObjHuman* obj0 = new CObjHuman(100,600);	//タイトルオブジェクト作成
 	Objs::InsertObj(obj0, OBJ_HUMAN, 10);		//タイトルオブジェクト登録
 }
 

@@ -22,6 +22,13 @@ CObjMissile::CObjMissile(float x, float y)
 //イニシャライズ
 void CObjMissile::Init()
 {
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (obj != nullptr) {					//情報が取得出来ていたら
+		m_get_line = obj->GetLine();		//ラインナンバーを取得
+		if (m_get_line == 1) { m_x = 400; m_y = 310; }
+		else if(m_get_line == 2){ m_x = 400; m_y = 420; }
+	}
+
 	m_size = 50.0f;//サイズ
 	
 	m_vx = 0.0f;//ベクトル
@@ -33,7 +40,7 @@ void CObjMissile::Init()
 	m_mou_l = false;
 	
 	m_get_line = 0;//ライン取得用
-
+	m_cnt = 0;
 	m_mou_f = false;//マウスフラグ
 
 	//当たり判定用HitBox作成
@@ -46,6 +53,8 @@ void CObjMissile::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 
+	m_cnt++;
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -53,8 +62,9 @@ void CObjMissile::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	if (m_mou_l == false)
+	if (m_mou_l == false && m_mou_f == false)
 	{
+
 		m_mou_f = true;
 	}
 	else
@@ -62,22 +72,22 @@ void CObjMissile::Action()
 		m_mou_f = false;
 	}
 
-	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj != nullptr) {					//情報が取得出来ていたら
-		m_get_line = obj->GetLine();		//ラインナンバーを取得
-	}
+	
 
 	if (m_get_line == 0)
 	{
-
+		m_vx += 0.3f;
+		if (m_x + (m_size / 2) >= 600) {
+			m_vy += 10 - (m_cnt * 0.5f);
+		}
 	}
 	else if (m_get_line == 1)
 	{
-
+		m_vx += 0.5f;
 	}
 	else//if(m_get_line == 2)
 	{
-
+		m_vx += 0.3f;
 	}
 
 	//座標更新
