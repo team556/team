@@ -39,7 +39,6 @@ void CObjMissile::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 	
-	m_get_line = 0;//ライン取得用
 	m_cnt = 0;
 	m_mou_f = false;//マウスフラグ
 
@@ -77,8 +76,14 @@ void CObjMissile::Action()
 	if (m_get_line == 0)
 	{
 		m_vx += 0.3f;
-		if (m_x + (m_size / 2) >= 600) {
-			m_vy += 10 - (m_cnt * 0.5f);
+		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
+			m_vy -= 0.15f - (m_cnt * 0.0003f);
+		}
+		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
+			m_cnt = 0;
+		else if (m_x + (m_size / 2) > 600)
+		{
+			m_vy += m_cnt * 0.0003f;
 		}
 	}
 	else if (m_get_line == 1)
@@ -88,6 +93,15 @@ void CObjMissile::Action()
 	else//if(m_get_line == 2)
 	{
 		m_vx += 0.3f;
+		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
+			m_vy += 0.15f - (m_cnt * 0.0003f);
+		}
+		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
+			m_cnt = 0;
+		else if (m_x + (m_size / 2) > 600)
+		{
+			m_vy -= m_cnt * 0.0003f;
+		}
 	}
 
 	//座標更新
