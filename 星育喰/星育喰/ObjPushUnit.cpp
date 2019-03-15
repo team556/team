@@ -27,6 +27,8 @@ void CObjPushUnit::Init()
 	m_mou_y = 0.0f; //マウスY座標
 	m_mou_r = false;//右クリック
 	m_mou_l = false;//左クリック
+	m_mou_f = false;//マウスフラグ
+
 
 	m_a = 1.0f;
 }
@@ -45,9 +47,17 @@ void CObjPushUnit::Action()
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w))		//X軸範囲
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
-		//オブジェクト作成
-		CObjMissile* M = new CObjMissile(400, 200);	//オブジェクト作成
-		Objs::InsertObj(M, OBJ_MISSILE, 10);				//オブジェクト登録
+		if (m_mou_f == true) {
+			//オブジェクト作成
+			CObjMissile* M = new CObjMissile(400, 200);	//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+
+			m_mou_f = false;
+		}
+	}
+	else
+	{
+		m_mou_f = true;
 	}
 }
 

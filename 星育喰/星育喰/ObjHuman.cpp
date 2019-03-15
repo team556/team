@@ -25,6 +25,7 @@ void CObjHuman::Init()
 	m_move = false;		//動きオフ
 	m_mov_spd = 4.0f;	//動く速さ
 	m_cnt = 0;			//カウント
+	m_turn = false;		//画面外処理
 
 						//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_hx, m_hy, m_size, m_size, ELEMENT_PLAYER, OBJ_HUMAN, 1);
@@ -44,10 +45,16 @@ void CObjHuman::Action()
 		m_move = false;		//静止状態
 	}
 
-	bool check = CheckWindow(m_hx, m_hy, 0.0f, 0.0f, 1150.0f, 650.0f);
+	bool check = CheckWindow(m_hx, m_hy, 0.0f, 0.0f, 1200.0f - m_size, 700.0f - m_size);
 	if (check == false)//画面外の場合
 	{
-		CObjHuman::Turn(&m_pos);//向き反転関数
+		if (m_turn == false) {
+			CObjHuman::Turn(&m_pos);//向き反転関数
+			m_turn = true;
+		}
+	}
+	else {
+		m_turn = false;
 	}
 
 
@@ -57,6 +64,7 @@ void CObjHuman::Action()
 		case 1:m_hy -= m_mov_spd; break;//↑
 		case 2:m_hx += m_mov_spd; break;//→
 		case 3:m_hy += m_mov_spd; break;//↓
+		default:break;
 		}
 		m_ani_time += 1;//アニメーションを進める
 	}
@@ -110,11 +118,9 @@ void CObjHuman::Draw()
 
 void CObjHuman::Turn(int* pos)
 {//向きを反転させる
-	if (*pos == 0 || 1)
-		*pos += 2;
-	else
-		*pos -= 2;
-	switch (m_pos) {//反転方向に進む
+	if (*pos == 0 || *pos == 1) { *pos += 2; }
+	else{ *pos -= 2; }
+	switch (*pos) {//反転方向に進む
 	case 0:m_hx -= m_mov_spd; break;//←
 	case 1:m_hy -= m_mov_spd; break;//↑
 	case 2:m_hx += m_mov_spd; break;//→

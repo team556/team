@@ -27,5 +27,5 @@ private:
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
-	
+	bool m_mou_f;		//マウスフラグ
 };

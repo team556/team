@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\関数">
-      <UniqueIdentifier>{27a92017-f5b6-4517-b1f7-3ee3e80a0ef8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\シーン">
       <UniqueIdentifier>{97a2391c-84c1-467c-b891-6872e9b9e093}</UniqueIdentifier>
     </Filter>
@@ -45,6 +42,9 @@
     </Filter>
     <Filter Include="ソース ファイル\対戦用">
       <UniqueIdentifier>{18caa8f4-49f3-4799-90f3-206c696ecd4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\関数/演出">
+      <UniqueIdentifier>{27a92017-f5b6-4517-b1f7-3ee3e80a0ef8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +121,7 @@
       <Filter>ソース ファイル\施設\建物</Filter>
     </ClCompile>
     <ClCompile Include="Call_Planet.cpp">
-      <Filter>ソース ファイル\関数</Filter>
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
     <ClCompile Include="SceneFight.cpp">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
@@ -149,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="ObjMissile.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCloud_Effect.cpp">
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +231,7 @@
       <Filter>ソース ファイル\施設\建物</Filter>
     </ClInclude>
     <ClInclude Include="Call_Planet.h">
-      <Filter>ソース ファイル\関数</Filter>
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
     <ClInclude Include="ObjHome.h">
       <Filter>ソース ファイル\シーン\ホーム</Filter>
@@ -256,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="ObjMissile.h">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjCloud_Effect.h">
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

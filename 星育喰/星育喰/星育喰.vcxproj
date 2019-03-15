@@ -128,6 +128,7 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WICTextureLoader.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="ObjCloud_Effect.cpp" />
     <ClCompile Include="ObjFacility.cpp" />
     <ClCompile Include="ObjFight.cpp" />
     <ClCompile Include="ObjHome.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WICTextureLoader.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="ObjCloud_Effect.h" />
     <ClInclude Include="ObjFight.h" />
     <ClInclude Include="ObjHome.h" />
     <ClInclude Include="ObjHuman.h" />
