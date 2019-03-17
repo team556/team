@@ -90,6 +90,12 @@ void CObjHuman::Action()
 //ドロー
 void CObjHuman::Draw()
 {
+	//▼シーン切り替え演出後に非表示にする処理
+	if (scene_change_start == true)
+	{
+		return;
+	}
+
 	int AniData[4] = { 1,0,1,2, };
 	int PosData[4] = { 0,2,0,1, };
 

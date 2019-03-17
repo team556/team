@@ -16,6 +16,7 @@ using namespace GameL;
 
 //static変数の定義
 bool CObjTraining::test_flag = false;
+bool CObjTraining::scene_change_start = false;
 
 //イニシャライズ
 void CObjTraining::Init()
@@ -29,10 +30,11 @@ void CObjTraining::Init()
 
 	m_Back_Button_color = INI_COLOR;
 	m_Back_Button_flag = false;
-	m_Player_Display_flag = false;
-
+	
 	m_Mig_time = 0;
 	m_key_f = false;
+
+	scene_change_start = false;
 }
 
 //アクション
@@ -43,7 +45,14 @@ void CObjTraining::Action()
 	{
 		m_Mig_time++;
 
-		if (m_Player_Display_flag == true)
+		//▼シーン切り替え演出
+		//雲演出INが終了するまで(m_Mig_timeが120以上になるまで)待機。
+		//終了すると背景をホーム画面のものに切り替え、
+		//同じくオブジェクトもホーム画面のものに切り替えた後に
+		//雲演出OUTを行い、画面を見せる。
+		//プレイヤー惑星サイズがデフォルトの状態に戻った事を確認すると
+		//ホーム画面へシーン移行を行う。
+		if (scene_change_start == true)
 		{
 			m_size -= 20.0f;
 
@@ -54,14 +63,16 @@ void CObjTraining::Action()
 		}
 		else if (m_Mig_time >= 120)
 		{
-			//背景を読み込み0番に登録
+			//ホーム画面の背景を読み込み0番に登録
 			Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
 			//雲演出OUTを行う
 			CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
 			obj_cloud->SetCheck(false);
 
-			m_Player_Display_flag = true;
+			//シーン切り替え演出にて不必要なオブジェクトを非表示、
+			//また必要なオブジェクトを表示するフラグを立てる
+			scene_change_start = true;
 		}
 
 		return;
@@ -122,12 +133,6 @@ void CObjTraining::Action()
 void CObjTraining::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	////敵惑星(背景)用
-	//float p[4] = { 1.0f,1.0f,1.0f,m_alpha };
-
-	////育アイコン用
-	//float t[4] = { m_Tra_color,m_Tra_color,m_Tra_color,m_alpha };
-
 	//戻るボタン用
 	float b[4] = { m_Back_Button_color,m_Back_Button_color,m_Back_Button_color,1.0f };
 
@@ -152,20 +157,24 @@ void CObjTraining::Draw()
 	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
-	//▼(仮)戻るボタン表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 225.0f;
-	src.m_bottom = 225.0f;
 
-	dst.m_top = 10.0f;
-	dst.m_left = 10.0f;
-	dst.m_right = 60.0f;
-	dst.m_bottom = 60.0f;
-	Draw::Draw(1, &src, &dst, b, 0.0f);
+	//▼シーン切り替え演出前に表示するグラフィック
+	if (scene_change_start == false)
+	{
+		//▼戻るボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 225.0f;
+		src.m_bottom = 225.0f;
 
-
-	if (m_Player_Display_flag == true)
+		dst.m_top = 10.0f;
+		dst.m_left = 10.0f;
+		dst.m_right = 60.0f;
+		dst.m_bottom = 60.0f;
+		Draw::Draw(1, &src, &dst, b, 0.0f);
+	}
+	//▼シーン切り替え演出後に表示するグラフィック
+	else
 	{
 		//▼プレイヤー惑星表示
 		src.m_top = 0.0f;

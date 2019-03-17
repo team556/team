@@ -14,6 +14,9 @@ using namespace GameL;
 //#include "SceneMain.h"
 #include "GameHead.h"
 
+#include <stdlib.h>
+#include <time.h>
+
 //コンストラクタ
 CSceneTraining::CSceneTraining()
 {
@@ -32,22 +35,44 @@ void CSceneTraining::InitScene()
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
-	//育成画面オブジェクト
-	CObjTraining* obj = new CObjTraining();     //育成画面オブジェクト作成
-	Objs::InsertObj(obj, OBJ_TRAINING, 10);  //育成画面オブジェクト登録
+	srand(time(NULL));//ランダム情報を初期化
+	
+	//▼住民の初期X,Y座標をランダムで取得
+	//今は3回ずつの繰り返し回数だが、
+	//繰り返し回数は住民数を管理するグローバル変数を基に
+	//描画する住民の数分行うように後に変更しておく。
+
+	//Humanの初期X座標取得
+	for (int i = 0; i < 3; i++)
+	{
+		m_ini_hx[i] = rand() % 401 + 400;//400～800の値をランダム取得し、Humanの初期X座標とする。
+	}
+	//Humanの初期Y座標取得
+	for (int i = 0; i < 3; i++)
+	{
+		m_ini_hy[i] = rand() % 301 + 200;//200～500の値をランダム取得し、Humanの初期Y座標とする。
+	}
 
 	//住民オブジェクト
-	//for文の中で3~5程度の値をランダムで取得、
-	//その値をfor文繰り返しにぶち込み、その数分の住人を生成。
-	//ついでに、初期位置もランダムにしたい。
-	CObjHuman* obj0 = new CObjHuman(100, 100);	//住民オブジェクト作成
-	Objs::InsertObj(obj0, OBJ_HUMAN, 15);		//住民オブジェクト登録
+	//今は3回ずつの繰り返し回数だが、
+	//繰り返し回数は住民数を管理するグローバル変数を基に
+	//描画する住民の数分行うように後に変更しておく。
+	for (int i = 0; i < 3; i++)
+	{
+		CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i]);	//住民オブジェクト作成
+		Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
+	}
+
+	
+	//育成画面オブジェクト
+	CObjTraining* obj = new CObjTraining();     //育成画面オブジェクト作成
+	Objs::InsertObj(obj, OBJ_TRAINING, 10);		//育成画面オブジェクト登録
 
 	//施設(仮)オブジェクト							
 	//CObjTest* obj1 = new CObjTest(700,300);	//施設(仮)オブジェクト作成
 	//Objs::InsertObj(obj1, OBJ_TEST, 20);		//施設(仮)オブジェクト登録
 
-	//雲演出オブジェクト
+	//雲演出オブジェクト(雲演出OUT)
 	CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(false);	//雲演出オブジェクト作成
 	Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
 

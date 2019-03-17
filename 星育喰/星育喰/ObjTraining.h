@@ -23,11 +23,13 @@ private:
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 	bool  m_Back_Button_flag;	//戻るボタンクリック、もしくは右クリック時trueフラグ
-	bool  m_Player_Display_flag;//プレイヤー惑星表示用フラグ
 
 	int m_Mig_time;		//ホーム画面にシーン移行する際の時間管理変数
 	bool  m_key_f;		//キーフラグ
 
 protected:
 	static bool test_flag;//施設ウインドウの複数起動阻止フラグ(にする予定)
+	//↑メモ書き：int型、列挙で宣言。その数字のものだけ操作できるように各objで条件分岐。
+	//ちなみにその際、objTrainingも操作出来ないようにしておく。(右クリックキャンセルをさせないために)
+	static bool scene_change_start;//シーン切り替え演出開始を伝えるフラグ
 };

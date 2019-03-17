@@ -73,10 +73,10 @@ void CObjHome::Action()
 			if (m_size >= 2000.0f)
 			{
 				//雲が画面全体を完全に覆い隠したタイミング(m_sizeが2000.0f以上)で上記の処理を終了し、
-				//同時にm_Mig_timeを作動させ、約1秒後(m_Mig_timeが60より上)にシーン移行を行う
+				//同時にm_Mig_timeを作動させ、約0.5秒後(m_Mig_timeが20より上)にシーン移行を行う
 				m_Mig_time++;
 
-				if (m_Mig_time > 60)
+				if (m_Mig_time > 20)
 				{
 					Scene::SetScene(new CSceneTraining());//育成画面へシーン移行
 				}
@@ -94,7 +94,7 @@ void CObjHome::Action()
 				m_Tra_move += 5.0f;
 				m_Eat_move += 5.0f;
 
-				//雲演出オブジェクト
+				//雲演出オブジェクト(雲演出IN)
 				CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(true);	//雲演出オブジェクト作成
 				Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
 			}
