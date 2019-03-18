@@ -15,4 +15,6 @@ public:
 	void Action();		//アクション
 	void Draw();		//ドロー
 private:
+	float m_Bar_color;	//兵舎カラー明度
+	bool m_f;
 };
