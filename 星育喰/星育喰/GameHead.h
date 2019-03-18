@@ -20,7 +20,7 @@ enum OBJ_NAME
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
 	OBJ_MATERIALBOTTON,
-	OBJ_BARRACKS,
+//	OBJ_BARRACKS,//とりあえず、一旦コメントアウトしている。
 	OBJ_MISSILE,
 
 };
@@ -73,7 +73,6 @@ struct UserData
 #include "ObjTest.h"
 #include "ObjHuman.h"
 #include "ObjCloud_Effect.h"
-#include "ObjFacility.h"
 #include "ObjBuild.h"
 #include "ObjBarracks.h"
 #include "ObjPlanet.h"
