@@ -11,11 +11,14 @@ using namespace GameL;
 
 //マクロ
 #define INI_PLAYER_SIZE (1500.0f) //プレイヤー惑星の初期サイズ
-#define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
 //static変数の定義
-bool CObjTraining::test_flag = false;
+typedef enum window_start_manage	//施設ウインドウの起動管理フラグ
+{
+	Default,
+	Barracks,
+}manage;
 bool CObjTraining::scene_change_start = false;
 
 //イニシャライズ

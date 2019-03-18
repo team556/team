@@ -20,6 +20,7 @@ enum OBJ_NAME
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
 	OBJ_MATERIALBOTTON,
+//	OBJ_BARRACKS,//とりあえず、一旦コメントアウトしている。
 	OBJ_MISSILE,
 
 };

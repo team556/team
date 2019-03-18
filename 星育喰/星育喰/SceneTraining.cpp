@@ -92,6 +92,12 @@ void CSceneTraining::InitScene()
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
 
+	//灰色ウインドウ(仮)を読み込み20番に登録
+	Draw::LoadImage(L"灰色ウインドウ(仮).png", 20, TEX_SIZE_512);
+
+	//メッセージウインドウ(仮)を読み込み21番に登録
+	Draw::LoadImage(L"メッセージウインドウ(仮).png", 21, TEX_SIZE_512);
+
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"Player_Planet_Test.png", 50, TEX_SIZE_512);
 }
