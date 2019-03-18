@@ -119,6 +119,7 @@
     <ClCompile Include="ObjBarracks.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ObjBarracks.cpp" />
     <ClCompile Include="ObjBuild.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -134,20 +135,25 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WICTextureLoader.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="ObjCloud_Effect.cpp" />
+    <ClCompile Include="ObjFacility.cpp" />
     <ClCompile Include="ObjFight.cpp" />
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
+    <ClCompile Include="ObjMissile.cpp" />
     <ClCompile Include="ObjMaterialBotton.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPushUnit.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="ObjTraining.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="SceneTraining.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
     <ClCompile Include="ObjWarehouse.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -160,6 +166,7 @@
     <ClInclude Include="ObjBarracks.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ObjBarracks.h" />
     <ClInclude Include="ObjBuild.h" />
     <ClInclude Include="Call_Planet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -178,21 +185,26 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WICTextureLoader.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="ObjCloud_Effect.h" />
     <ClInclude Include="ObjFight.h" />
     <ClInclude Include="ObjHome.h" />
     <ClInclude Include="ObjHuman.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="ObjFacility.h" />
+    <ClInclude Include="ObjMissile.h" />
     <ClInclude Include="ObjMaterialBotton.h" />
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPushUnit.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="ObjTraining.h" />
     <ClInclude Include="SceneFacility.h" />
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneHome.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="SceneTraining.h" />
     <ClInclude Include="UtilityModule.h" />
     <ClInclude Include="ObjWarehouse.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>

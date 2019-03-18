@@ -58,15 +58,15 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);				//オブジェクト登録
 
 	//オブジェクト作成
-	CObjPushUnit* obj2 = new CObjPushUnit(300, 600, 100, 100, 0);	//オブジェクト作成
+	CObjPushUnit* obj2 = new CObjPushUnit(300, 600, 100, 100);	//オブジェクト作成
 	Objs::InsertObj(obj2, OBJ_PLANET, 10);				//オブジェクト登録
 
 	//オブジェクト作成
-	CObjPushUnit* obj3 = new CObjPushUnit(410, 600, 100, 100, 1);	//オブジェクト作成
+	CObjPushUnit* obj3 = new CObjPushUnit(410, 600, 100, 100);	//オブジェクト作成
 	Objs::InsertObj(obj3, OBJ_PLANET, 10);				//オブジェクト登録
 
-														//オブジェクト作成
-	CObjPushUnit* obj4 = new CObjPushUnit(520, 600, 100, 100, 2);	//オブジェクト作成
+	//オブジェクト作成
+	CObjPushUnit* obj4 = new CObjPushUnit(520, 600, 100, 100);	//オブジェクト作成
 	Objs::InsertObj(obj4, OBJ_PLANET, 10);				//オブジェクト登録
 }
 

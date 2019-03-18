@@ -12,12 +12,16 @@ enum OBJ_NAME
 	OBJ_TEST,
 	OBJ_HUMAN,
 	OBJ_PLANET,
+	OBJ_CLOUD,
+	OBJ_TRAINING,
 	OBJ_FIGHT,
 	OBJ_BUILD,
 	OBJ_WAREHOUSE,
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
 	OBJ_MATERIALBOTTON,
+	OBJ_BARRACKS,
+	OBJ_MISSILE,
 
 };
 //------------------------------------------------
@@ -68,10 +72,15 @@ struct UserData
 #include "ObjHome.h"
 #include "ObjTest.h"
 #include "ObjHuman.h"
+#include "ObjCloud_Effect.h"
+#include "ObjFacility.h"
 #include "ObjBuild.h"
+#include "ObjBarracks.h"
 #include "ObjPlanet.h"
+#include "ObjTraining.h"
 #include "ObjFight.h"
 #include "ObjPushUnit.h"
+#include "ObjMissile.h"
 #include "ObjBarracks.h"
 #include "ObjInstitute.h"
 #include "ObjWarehouse.h"
@@ -85,13 +94,13 @@ struct UserData
 #include "SceneHome.h"
 #include "SceneTest.h"
 #include "SceneFacility.h"
+#include "SceneTraining.h"
 #include "SceneFight.h"
 
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START CSceneTitle
+#define SET_GAME_START	CSceneTitle
 //#define SET_GAME_START CSceneFight
-#define SET_GAME_START CSceneFacility
 //-----------------------------------------------

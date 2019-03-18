@@ -33,7 +33,7 @@ void CObjPlanet::Init()
 	if(m_type == true)
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_PLAYER, OBJ_PLANET, 1);
 	else
-		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_GREEN, OBJ_PLANET, 1);
+		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_RED, OBJ_PLANET, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“

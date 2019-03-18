@@ -49,8 +49,6 @@ void CObjHome::Init()
 	m_Tra_flag = false;
 	m_Eat_flag = false;
 
-	m_Cloud_move = 0.0f;
-
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
@@ -72,23 +70,33 @@ void CObjHome::Action()
 		{
 			//プレイヤー惑星を拡大、育喰アイコンをそれぞれ画面外へ移動させるズーム演出、
 			//雲が画面全体を覆い隠す処理を同時に行う。
-			if (m_Cloud_move >= 1000.0f)
+			if (m_size >= 2000.0f)
 			{
-				//雲が画面全体を完全に覆い隠したタイミングで上記の処理を終了し、
-				//同時にm_Mig_timeを作動させ、約1秒後(m_Mig_timeが60より上)にシーン移行を行う
+				//雲が画面全体を完全に覆い隠したタイミング(m_sizeが2000.0f以上)で上記の処理を終了し、
+				//同時にm_Mig_timeを作動させ、約0.5秒後(m_Mig_timeが20より上)にシーン移行を行う
 				m_Mig_time++;
 
-				if (m_Mig_time > 60)
+				if (m_Mig_time > 20)
 				{
-					//Scene::SetScene(new CSceneHome());//育成画面へシーン移行
+					Scene::SetScene(new CSceneTraining());//育成画面へシーン移行
 				}
+			}
+			//雲演出オブジェクトを複数生成しないための条件分岐
+			else if (m_size > 0.0f)
+			{
+				m_size += 20.0f;
+				m_Tra_move += 5.0f;
+				m_Eat_move += 5.0f;
 			}
 			else
 			{
 				m_size += 20.0f;
 				m_Tra_move += 5.0f;
 				m_Eat_move += 5.0f;
-				m_Cloud_move += 10.0f;
+
+				//雲演出オブジェクト(雲演出IN)
+				CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(true);	//雲演出オブジェクト作成
+				Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
 			}
 		}
 		//▼喰アイコンクリック処理
@@ -378,44 +386,6 @@ void CObjHome::Draw()
 	dst.m_right = 1180.0f + m_Eat_move;
 	dst.m_bottom = 680.0f + m_Eat_move;
 	Draw::Draw(2, &src, &dst, e, 0.0f);
-
-
-	//▼雲(右上)表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 500.0f;
-	src.m_bottom = 500.0f;
-
-	dst.m_top = -1000.0f + m_Cloud_move;
-	dst.m_left = 900.0f - m_Cloud_move;
-	dst.m_right = 2200.0f - m_Cloud_move;
-	dst.m_bottom = 100.0f + m_Cloud_move;
-	Draw::Draw(3, &src, &dst, d, 0.0f);
-
-	//以下の位置になると画面全体が隠れる
-	//dst.m_top = 0.0f;
-	//dst.m_left = -100.0f;
-	//dst.m_right = 1200.0f;
-	//dst.m_bottom = 1100.0f;
-
-
-	//▼雲(左下)表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = -500.0f;
-	src.m_bottom = -500.0f;
-
-	dst.m_top = 600.0f - m_Cloud_move;
-	dst.m_left = -1000.0f + m_Cloud_move;
-	dst.m_right = 300.0f + m_Cloud_move;
-	dst.m_bottom = 1700.0f - m_Cloud_move;
-	Draw::Draw(3, &src, &dst, d, 0.0f);
-
-	//以下の位置になると画面全体が隠れる
-	//dst.m_top = -400.0f;
-	//dst.m_left = 0.0f;
-	//dst.m_right = 1300.0f;
-	//dst.m_bottom = 700.0f;
 
 
 

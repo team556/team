@@ -1,11 +1,12 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "ObjTraining.h"	//基底クラスとして定義するため読み込む
 //使用するネームスペース
 using namespace GameL;
 
 //オブジェクト：住民
-class CObjHuman :public CObj
+class CObjHuman :public CObjTraining	//CObjTrainingを継承する
 {
 public:
 	CObjHuman(float x,float y);//作成時の座標用引数
@@ -27,4 +28,5 @@ private:
 	int m_cnt;			//カウント
 
 	bool m_move;		//true動いている,false動いてない
+	bool m_turn;		//ターンフラグ,ture領域外
 };
