@@ -110,16 +110,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\team\星育喰\星育喰\ObjBarracks.cpp" />
     <ClCompile Include="Call_Planet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjInstitute.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjBarracks.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="ObjBarracks.cpp" />
     <ClCompile Include="ObjBuild.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -136,7 +133,6 @@
     <ClCompile Include="GameL\WICTextureLoader.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjCloud_Effect.cpp" />
-    <ClCompile Include="ObjFacility.cpp" />
     <ClCompile Include="ObjFight.cpp" />
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
@@ -190,7 +186,6 @@
     <ClInclude Include="ObjHome.h" />
     <ClInclude Include="ObjHuman.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="ObjFacility.h" />
     <ClInclude Include="ObjMissile.h" />
     <ClInclude Include="ObjMaterialBotton.h" />
     <ClInclude Include="ObjPlanet.h" />

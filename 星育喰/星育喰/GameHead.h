@@ -20,7 +20,6 @@ enum OBJ_NAME
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
 	OBJ_MATERIALBOTTON,
-	OBJ_BARRACKS,
 	OBJ_MISSILE,
 
 };
@@ -73,7 +72,6 @@ struct UserData
 #include "ObjTest.h"
 #include "ObjHuman.h"
 #include "ObjCloud_Effect.h"
-#include "ObjFacility.h"
 #include "ObjBuild.h"
 #include "ObjBarracks.h"
 #include "ObjPlanet.h"
@@ -101,6 +99,7 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START	CSceneTitle
+//#define SET_GAME_START	CSceneTitle
 //#define SET_GAME_START CSceneFight
+#define SET_GAME_START CSceneFacility
 //-----------------------------------------------
