@@ -267,9 +267,6 @@
     <ClInclude Include="ObjCloud_Effect.h">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBarracks.h">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClInclude>
     <ClInclude Include="ObjMaterialBotton.h">
       <Filter>ソース ファイル\施設\ボタンオブジェクト</Filter>
     </ClInclude>
@@ -302,6 +299,9 @@
     </ClInclude>
     <ClInclude Include="UtilityModule.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBarracks.h">
+      <Filter>ソース ファイル\施設\兵舎</Filter>
     </ClInclude>
     <ClInclude Include="ObjBarracks.h">
       <Filter>ソース ファイル\施設\兵舎</Filter>
