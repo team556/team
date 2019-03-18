@@ -50,7 +50,7 @@ void CSceneTraining::InitScene()
 	//Humanの初期Y座標取得
 	for (int i = 0; i < 3; i++)
 	{
-		m_ini_hy[i] = rand() % 301 + 200;//200～500の値をランダム取得し、Humanの初期Y座標とする。
+		m_ini_hy[i] = rand() % 201 + 250;//250～450の値をランダム取得し、Humanの初期Y座標とする。
 	}
 
 	//住民オブジェクト
@@ -68,19 +68,23 @@ void CSceneTraining::InitScene()
 	CObjTraining* obj = new CObjTraining();     //育成画面オブジェクト作成
 	Objs::InsertObj(obj, OBJ_TRAINING, 10);		//育成画面オブジェクト登録
 
-	//施設(仮)オブジェクト							
-	//CObjTest* obj1 = new CObjTest(700,300);	//施設(仮)オブジェクト作成
-	//Objs::InsertObj(obj1, OBJ_TEST, 20);		//施設(仮)オブジェクト登録
+	//兵舎オブジェクト							
+	CObjBarracks* obj1 = new CObjBarracks();	//兵舎オブジェクト作成
+	Objs::InsertObj(obj1, OBJ_BARRACKS, 20);	//兵舎オブジェクト登録
 
 	//雲演出オブジェクト(雲演出OUT)
 	CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(false);	//雲演出オブジェクト作成
 	Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
+
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"地面TEST.gif", 0, TEX_SIZE_512);
 
 	//(仮)戻るアイコンを読み込み1番に登録
 	Draw::LoadImage(L"戻るアイコンTEST.png", 1, TEX_SIZE_512);
+
+	//兵舎を読み込み2番に登録
+	Draw::LoadImage(L"兵舎(仮).jfif", 2, TEX_SIZE_512);
 
 	//住民を読み込み10番に登録
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);

@@ -17,6 +17,7 @@ enum OBJ_NAME
 	OBJ_FIGHT,
 	OBJ_FACILITY,
 	OBJ_BUILD,
+	OBJ_BARRACKS,
 	OBJ_MISSILE,
 
 };
@@ -71,6 +72,7 @@ struct UserData
 #include "ObjCloud_Effect.h"
 #include "ObjFacility.h"
 #include "ObjBuild.h"
+#include "ObjBarracks.h"
 #include "ObjPlanet.h"
 #include "ObjTraining.h"
 #include "ObjFight.h"

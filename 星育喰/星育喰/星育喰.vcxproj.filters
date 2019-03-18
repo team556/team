@@ -153,6 +153,9 @@
     <ClCompile Include="ObjCloud_Effect.cpp">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
+    <ClCompile Include="ObjBarracks.cpp">
+      <Filter>ソース ファイル\施設</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="ObjCloud_Effect.h">
       <Filter>ソース ファイル\関数/演出</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBarracks.h">
+      <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
