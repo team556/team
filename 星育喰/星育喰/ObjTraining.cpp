@@ -28,19 +28,19 @@ void CObjTraining::Init()
 	m_mou_l = false;
 
 	m_Back_Button_color = INI_COLOR;
-	m_Back_Button_flag = false;
 	
 	m_Mig_time = 0;
 	m_key_f = false;
 
 	scene_change_start = false;
+	window_start_manage = Default;
 }
 
 //アクション
 void CObjTraining::Action()
 {
 	//戻るボタンクリック、もしくは右クリック時実行
-	if (m_Back_Button_flag == true)
+	if (window_start_manage == BackButton)
 	{
 		m_Mig_time++;
 
@@ -76,6 +76,12 @@ void CObjTraining::Action()
 
 		return;
 	}
+	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+	else if (window_start_manage != Default)
+	{
+		return;
+	}
+
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -99,7 +105,7 @@ void CObjTraining::Action()
 			obj_cloud->SetCheck(true);
 
 			//移行フラグ立て
-			m_Back_Button_flag = true;
+			window_start_manage = BackButton;
 		}
 		//左クリック入力時
 		else if (m_mou_l == true)
@@ -114,7 +120,7 @@ void CObjTraining::Action()
 				obj_cloud->SetCheck(true);
 
 				//移行フラグ立て
-				m_Back_Button_flag = true;
+				window_start_manage = BackButton;
 			}
 		}
 		else

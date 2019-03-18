@@ -15,12 +15,19 @@ using namespace GameL;
 void CObjBarracks::Init()
 {
 	m_Bar_color = INI_COLOR;
-	m_f = false;
 }
 
 //アクション
 void CObjBarracks::Action()
 {
+	//ホーム画面に戻るボタンが押されたり、
+	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+	if (window_start_manage != Default)
+	{
+		return;
+	}
+
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -41,11 +48,8 @@ void CObjBarracks::Action()
 			{
 				m_key_f = false;
 
-				//このウインドウを開いているというフラグを立てる
-				//window_start_manage = Default;
-
-				//↓test_flagのアレでやる。
-				m_f = true;
+				//"兵舎ウインドウを開いている状態"フラグを立てる
+				window_start_manage = Barracks;
 			}
 		}
 		else
@@ -92,7 +96,8 @@ void CObjBarracks::Draw()
 	dst.m_bottom = 690.0f;
 	Draw::Draw(2, &src, &dst, b, 0.0f);
 
-	if (m_f == true)
+	//▼兵舎ウインドウ開いている際に表示するグラフィック
+	if (window_start_manage == Barracks)
 	{
 		//▼灰色ウインドウ表示
 		src.m_top = 0.0f;
