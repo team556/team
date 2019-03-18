@@ -36,6 +36,8 @@ void CSceneFacility::InitScene()
 	//test用倉庫画像読み込み2番に登録
 	Draw::LoadImage(L"倉庫.png", 2, TEX_SIZE_512);
 
+	Draw::LoadImage(L"オブジェクト.png", 3, TEX_SIZE_512);
+
 	//建物オブジェクト作成
 	CObjBuild* build = new CObjBuild();
 	Objs::InsertObj(build, OBJ_BUILD, 1);
@@ -43,6 +45,7 @@ void CSceneFacility::InitScene()
 	//倉庫オブジェクト作成
 	CObjWarehouse* warehouse = new CObjWarehouse();
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 2);
+
 }
 //実行中メソッド
 void CSceneFacility::Scene()
@@ -53,6 +56,7 @@ void CSceneFacility::Scene()
 	RECT_F src;	//切り取り
 	RECT_F dst;	//描画
 	
+	//背景
 	//切り取り
 	src.m_top    =   0.0f;
 	src.m_left   =   0.0f;
@@ -67,5 +71,8 @@ void CSceneFacility::Scene()
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(0, &src, &dst, c, 0.0f);
+
+
+
 
 }

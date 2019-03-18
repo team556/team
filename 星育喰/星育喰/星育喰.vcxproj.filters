@@ -46,9 +46,6 @@
     <ClCompile Include="ObjBuild.cpp">
       <Filter>ソースファイル\施設</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFacility.cpp">
-      <Filter>ソースファイル\施設</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTest.cpp">
       <Filter>ソースファイル\シーン\テスト用</Filter>
     </ClCompile>
@@ -103,6 +100,9 @@
     <ClCompile Include="ObjInstitute.cpp">
       <Filter>ソースファイル\施設\研究所</Filter>
     </ClCompile>
+    <ClCompile Include="ObjMaterialBotton.cpp">
+      <Filter>ソースファイル\施設\ボタンオブジェクト</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -151,9 +151,6 @@
       <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjBuild.h">
-      <Filter>ソースファイル\施設</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFacility.h">
       <Filter>ソースファイル\施設</Filter>
     </ClInclude>
     <ClInclude Include="ObjTest.h">
@@ -210,6 +207,9 @@
     <ClInclude Include="ObjInstitute.h">
       <Filter>ソースファイル\施設\研究所</Filter>
     </ClInclude>
+    <ClInclude Include="ObjMaterialBotton.h">
+      <Filter>ソースファイル\施設\ボタンオブジェクト</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ソースファイル">
@@ -244,6 +244,9 @@
     </Filter>
     <Filter Include="ソースファイル\施設\倉庫">
       <UniqueIdentifier>{39e2be09-f1ec-4fa0-a04d-57663fe60b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\施設\ボタンオブジェクト">
+      <UniqueIdentifier>{c79924e0-4b66-43ef-b12e-f7497b4e6e14}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

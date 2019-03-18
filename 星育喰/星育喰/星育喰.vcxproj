@@ -134,10 +134,10 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WICTextureLoader.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="ObjFacility.cpp" />
     <ClCompile Include="ObjFight.cpp" />
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
+    <ClCompile Include="ObjMaterialBotton.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPushUnit.cpp" />
     <ClCompile Include="ObjTest.cpp" />
@@ -182,7 +182,7 @@
     <ClInclude Include="ObjHome.h" />
     <ClInclude Include="ObjHuman.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="ObjFacility.h" />
+    <ClInclude Include="ObjMaterialBotton.h" />
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPushUnit.h" />
     <ClInclude Include="ObjTest.h" />

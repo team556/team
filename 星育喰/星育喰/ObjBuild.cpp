@@ -22,11 +22,6 @@ void CObjBuild::Init()
 	m_turn = true;
 	m_turn0 = true;
 
-	//m_build = true;
-
-	////当たり判定用HitBoxを作成
-	//Hits::SetHitBox(this, m_x, m_y, 450, 468, ELEMENT_BUILD, OBJ_BUILD, 1);
-
 }
 
 //アクション

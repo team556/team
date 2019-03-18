@@ -17,8 +17,8 @@ void CObjWarehouse::Init()
 {
 	m_x = 100;
 	m_y = 100;
-	m_obx = 225;
-	m_oby = 225;
+	m_obx = 0;
+	m_oby = 0;
 
 	m_key_f = true;
 	m_turn = true;
@@ -26,17 +26,11 @@ void CObjWarehouse::Init()
 	
 	m_obj = true;
 
-	//m_build = true;
-
-	////当たり判定用HitBoxを作成
-	//Hits::SetHitBox(this, m_x, m_y, 450, 468, ELEMENT_BUILD, OBJ_BUILD, 1);
-
 }
 
 //アクション
 void CObjWarehouse::Action()
 {
-
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -48,7 +42,6 @@ void CObjWarehouse::Action()
 		if (m_y <= m_mou_y && m_mou_y <= m_y + 225.0f) {//Y軸の範囲
 			if (m_mou_l == true) {//クリック時
 				if (m_key_f == true && m_turn == true) {
-					Draw::LoadImage(L"オブジェクト.png", 2, TEX_SIZE_512);
 					m_key_f = false;
 					m_turn = false;
 
@@ -61,7 +54,6 @@ void CObjWarehouse::Action()
 					//キャンセル時の範囲
 					if (m_x <= m_mou_x && m_mou_x <= m_x + 100.0f && m_y <= m_mou_y && m_mou_y <= m_y + 100.0f)
 					{
-						Draw::LoadImage(L"倉庫.png", 2, TEX_SIZE_512);
 						m_key_f = false;
 						m_turn0 = false;
 
@@ -81,19 +73,7 @@ void CObjWarehouse::Action()
 		}
 	}
 
-
-
-
-
 }
-
-////初期化メソッド
-//void CObjWarehouse::InitScene()
-//{
-//	//
-//}
-//
-
 
 //ドロー
 void CObjWarehouse::Draw()
@@ -103,17 +83,17 @@ void CObjWarehouse::Draw()
 	RECT_F dst;
 
 	//切り取り
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 225.0f;
+	src.m_top    =   0.0f;
+	src.m_left   =   0.0f;
+	src.m_right  = 225.0f;
 	src.m_bottom = 225.0f;
 
 	if (m_obj == true)
 	{
 		//描画
-		dst.m_top = 0.0f + m_x;
-		dst.m_left = 0.0f + m_y;
-		dst.m_right = 225.0f + m_x;
+		dst.m_top    =   0.0f + m_x;
+		dst.m_left   =   0.0f + m_y;
+		dst.m_right  = 225.0f + m_x;
 		dst.m_bottom = 225.0f + m_y;
 	}
 
@@ -127,5 +107,22 @@ void CObjWarehouse::Draw()
 
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(2, &src, &dst, c, 0.0f);
+
+
+	//ボタンオブジェクト
+	//切り取り
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 800.0f;
+
+	//表示
+	dst.m_top = 50.0f;
+	dst.m_left = 50.0f;
+	dst.m_right = 1150.0f;
+	dst.m_bottom = 650.0f;
+
+	//3番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 }
 
