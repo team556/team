@@ -15,8 +15,11 @@ enum OBJ_NAME
 	OBJ_CLOUD,
 	OBJ_TRAINING,
 	OBJ_FIGHT,
-	OBJ_FACILITY,
 	OBJ_BUILD,
+	OBJ_WAREHOUSE,
+	OBJ_INSTITUTE,
+	OBJ_BARRACKS,
+	OBJ_MATERIALBOTTON,
 	OBJ_BARRACKS,
 	OBJ_MISSILE,
 
@@ -78,6 +81,10 @@ struct UserData
 #include "ObjFight.h"
 #include "ObjPushUnit.h"
 #include "ObjMissile.h"
+#include "ObjBarracks.h"
+#include "ObjInstitute.h"
+#include "ObjWarehouse.h"
+#include "ObjMaterialBotton.h"
 
 //------------------------------------------------
 

@@ -49,94 +49,94 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DirectXDevice.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\Draw2DTex_Source.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawFont.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\DrawTexture.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\GameL_Main.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\HitBoxManager.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\MultiThread.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneManager.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SceneObjManager.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\SetWindow.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\UserData.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\WICTextureLoader.cpp">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
-      <Filter>リソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>ソース ファイル\シーン\タイトル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjTitle.cpp">
-      <Filter>ソース ファイル\シーン\タイトル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjTest.cpp">
-      <Filter>ソース ファイル\シーン\テスト用</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTest.cpp">
-      <Filter>ソース ファイル\シーン\テスト用</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHuman.cpp">
-      <Filter>ソース ファイル\住民</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFacility.cpp">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneFacility.cpp">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjBuild.cpp">
-      <Filter>ソース ファイル\施設\建物</Filter>
+      <Filter>ソースファイル\施設</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTest.cpp">
+      <Filter>ソースファイル\シーン\テスト用</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHuman.cpp">
+      <Filter>ソースファイル\住民</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFacility.cpp">
+      <Filter>ソースファイル\施設</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTest.cpp">
+      <Filter>ソースファイル\シーン\テスト用</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソースファイル\シーン\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>ソースファイル\シーン\タイトル</Filter>
     </ClCompile>
     <ClCompile Include="Call_Planet.cpp">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
-    <ClCompile Include="SceneFight.cpp">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+    <ClCompile Include="ObjFight.cpp">
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjHome.cpp">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjPlanet.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjPushUnit.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFight.cpp">
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneHome.cpp">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjPlanet.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFight.cpp">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+    <ClCompile Include="UtilityModule.cpp">
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjPushUnit.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
@@ -156,100 +156,121 @@
     <ClCompile Include="ObjBarracks.cpp">
       <Filter>ソース ファイル\施設</Filter>
     </ClCompile>
+    <ClCompile Include="ObjWarehouse.cpp">
+      <Filter>ソースファイル\施設\倉庫</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjInstitute.cpp">
+      <Filter>ソースファイル\施設\研究所</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMaterialBotton.cpp">
+      <Filter>ソースファイル\施設\ボタンオブジェクト</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DirectXDevice.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DirectXTex.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawFont.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\HitBoxManager.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\MultiThread.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneManager.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SceneObjManager.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\SetWindow.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\UserData.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\WICTextureLoader.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameL\WinInputs.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameHead.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ソースファイル\ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\HitBoxManager.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ソースファイル\ヘッダーファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>ソース ファイル\シーン\タイトル</Filter>
+    <ClInclude Include="GameL\MultiThread.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjTitle.h">
-      <Filter>ソース ファイル\シーン\タイトル</Filter>
+    <ClInclude Include="GameL\SceneManager.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjTest.h">
-      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    <ClInclude Include="GameL\SceneObjManager.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneTest.h">
-      <Filter>ソース ファイル\シーン\テスト用</Filter>
+    <ClInclude Include="GameL\SetWindow.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjHuman.h">
-      <Filter>ソース ファイル\住民</Filter>
+    <ClInclude Include="GameL\UserData.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="UtilityModule.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="GameL\WICTextureLoader.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjFacility.h">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneFacility.h">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソース ファイル</Filter>
+    <ClInclude Include="GameL\WinInputs.h">
+      <Filter>ソースファイル\リソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjBuild.h">
-      <Filter>ソース ファイル\施設\建物</Filter>
+      <Filter>ソースファイル\施設</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTest.h">
+      <Filter>ソースファイル\シーン\テスト用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHuman.h">
+      <Filter>ソースファイル\住民</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFacility.h">
+      <Filter>ソースファイル\施設</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTest.h">
+      <Filter>ソースファイル\シーン\テスト用</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソースファイル\シーン\タイトル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>ソースファイル\シーン\タイトル</Filter>
     </ClInclude>
     <ClInclude Include="Call_Planet.h">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
+    <ClInclude Include="ObjFight.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
     <ClInclude Include="ObjHome.h">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPlanet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPushUnit.h">
+      <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneFight.h">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+      <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneHome.h">
-      <Filter>ソース ファイル\シーン\ホーム</Filter>
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityModule.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBarracks.h">
+      <Filter>ソースファイル\施設\兵舎</Filter>
     </ClInclude>
     <ClInclude Include="ObjPlanet.h">
       <Filter>ソース ファイル\対戦用</Filter>
+	</ClInclude>
+    <ClInclude Include="ObjWarehouse.h">
+      <Filter>ソースファイル\施設\倉庫</Filter>
     </ClInclude>
-    <ClInclude Include="ObjFight.h">
-      <Filter>ソース ファイル\シーン\戦闘画面</Filter>
+    <ClInclude Include="ObjInstitute.h">
+      <Filter>ソースファイル\施設\研究所</Filter>
     </ClInclude>
     <ClInclude Include="ObjPushUnit.h">
       <Filter>ソース ファイル\対戦用</Filter>
@@ -269,15 +290,56 @@
     <ClInclude Include="ObjBarracks.h">
       <Filter>ソース ファイル\施設</Filter>
     </ClInclude>
+	<ClInclude Include="ObjMaterialBotton.h">
+      <Filter>ソースファイル\施設\ボタンオブジェクト</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{99d70835-2be6-407b-9649-a73aab076e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\ヘッダーファイル">
+      <UniqueIdentifier>{e11181ba-3e7d-40b9-9955-0cd83f5e853d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\リソースファイル">
+      <UniqueIdentifier>{1aa15e5f-86de-44d6-9ef2-0a67c22275a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\シーン">
+      <UniqueIdentifier>{7c4f4809-6e30-44d1-9b6b-ab21f1001410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\シーン\テスト用">
+      <UniqueIdentifier>{bb9dca8e-66b5-4698-b51d-ef6eab5e1d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\シーン\タイトル">
+      <UniqueIdentifier>{8dca0f95-480f-4328-80fa-4a19a179ae1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\施設">
+      <UniqueIdentifier>{d4beac71-c53c-4d33-9b74-a02abd43ec21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\住民">
+      <UniqueIdentifier>{d6127e4a-6bf7-44ac-a005-9aad5247d6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\施設\研究所">
+      <UniqueIdentifier>{70f8d219-31ee-4717-9d97-f6f4fa933c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\施設\兵舎">
+      <UniqueIdentifier>{50982f9b-7ba7-48be-a34c-9dcbbae78234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\施設\倉庫">
+      <UniqueIdentifier>{39e2be09-f1ec-4fa0-a04d-57663fe60b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\施設\ボタンオブジェクト">
+      <UniqueIdentifier>{c79924e0-4b66-43ef-b12e-f7497b4e6e14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="GameL\DirectXTex.lib">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ソースファイル\リソースファイル</Filter>
     </Library>
   </ItemGroup>
 </Project>

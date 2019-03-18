@@ -113,6 +113,12 @@
     <ClCompile Include="Call_Planet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ObjInstitute.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ObjBarracks.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjBarracks.cpp" />
     <ClCompile Include="ObjBuild.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -135,6 +141,7 @@
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
     <ClCompile Include="ObjMissile.cpp" />
+    <ClCompile Include="ObjMaterialBotton.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPushUnit.cpp" />
     <ClCompile Include="ObjTest.cpp" />
@@ -148,8 +155,17 @@
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="SceneTraining.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
+    <ClCompile Include="ObjWarehouse.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjInstitute.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ObjBarracks.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjBarracks.h" />
     <ClInclude Include="ObjBuild.h" />
     <ClInclude Include="Call_Planet.h">
@@ -176,6 +192,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjFacility.h" />
     <ClInclude Include="ObjMissile.h" />
+    <ClInclude Include="ObjMaterialBotton.h" />
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPushUnit.h" />
     <ClInclude Include="ObjTest.h" />
@@ -189,6 +206,9 @@
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SceneTraining.h" />
     <ClInclude Include="UtilityModule.h" />
+    <ClInclude Include="ObjWarehouse.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl" />
