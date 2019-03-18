@@ -27,14 +27,15 @@ protected:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 	bool  m_key_f;		//キーフラグ
 
-	static int manage[4];
-		
-	//	enum window_start_manage	//施設ウインドウの起動管理フラグ
-	//{
-	//	Default,
-	//	Barracks,
-	//}manage;
+	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
+	static int  window_start_manage;//施設ウインドウの起動管理フラグ
 	//↑メモ書き：int型、列挙で宣言。その数字のものだけ操作できるように各objで条件分岐。
 	//ちなみにその際、objTrainingも操作出来ないようにしておく。(右クリックキャンセルをさせないために)
-	static bool scene_change_start;//シーン切り替え演出開始を伝えるフラグ
+
+	//▼各施設ウインドウに列挙型で識別番号を割り振る
+	enum window_id	
+	{
+		Default,	//デフォルト。どのウインドウも開いていない状態。
+		Barracks,	//兵舎ウインドウを開いている状態。
+	};
 };

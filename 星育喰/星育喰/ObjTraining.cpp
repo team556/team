@@ -14,12 +14,8 @@ using namespace GameL;
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
 //static変数の定義
-typedef enum window_start_manage	//施設ウインドウの起動管理フラグ
-{
-	Default,
-	Barracks,
-}manage;
 bool CObjTraining::scene_change_start = false;
+int  CObjTraining::window_start_manage = Default;
 
 //イニシャライズ
 void CObjTraining::Init()

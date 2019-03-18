@@ -41,6 +41,9 @@ void CObjBarracks::Action()
 			{
 				m_key_f = false;
 
+				//このウインドウを開いているというフラグを立てる
+				//window_start_manage = Default;
+
 				//↓test_flagのアレでやる。
 				m_f = true;
 			}
