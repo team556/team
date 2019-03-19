@@ -24,6 +24,7 @@ protected:
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
+	bool  m_message_f;	//メッセージウインドウ表示管理フラグ(true:表示 / false:非表示)
 	bool  m_key_f;		//キーフラグ
 
 	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ

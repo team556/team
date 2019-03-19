@@ -16,4 +16,5 @@ public:
 	void Draw();		//ドロー
 private:
 	float m_Bar_color;	//兵舎カラー明度
+	int Bar_Level_test;	//兵舎レベル管理変数(後にグローバル変数にする予定)
 };

@@ -15,14 +15,20 @@ using namespace GameL;
 void CObjBarracks::Init()
 {
 	m_Bar_color = INI_COLOR;
+	Bar_Level_test = 1;
 }
 
 //アクション
 void CObjBarracks::Action()
 {
+	//▼兵舎ウインドウ表示時の処理
+	if (window_start_manage == Barracks)
+	{
+
+	}
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	if (window_start_manage != Default)
+	else if (window_start_manage != Default)
 	{
 		return;
 	}
@@ -35,9 +41,10 @@ void CObjBarracks::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	//兵舎選択
+	//兵舎選択範囲
 	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)
 	{
+		m_message_f = true;	//メッセージウインドウを表示させる
 		m_Bar_color = 0.7f;
 
 		//左クリックされたらフラグを立て、兵舎ウインドウを開く
@@ -59,6 +66,7 @@ void CObjBarracks::Action()
 	}
 	else
 	{
+		m_message_f = false;//メッセージウインドウを非表示にさせる
 		m_Bar_color = 1.0f;
 	}
 }
@@ -95,6 +103,27 @@ void CObjBarracks::Draw()
 	dst.m_right = 1190.0f;
 	dst.m_bottom = 690.0f;
 	Draw::Draw(2, &src, &dst, b, 0.0f);
+
+	//メッセージウインドウ表示管理フラグがtrueの時、描画。
+	if (m_message_f == true)
+	{
+		//▼メッセージウインドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = m_mou_y - 50.0f;
+		dst.m_left = m_mou_x - 100.0f;
+		dst.m_right = m_mou_x + 100.0f;
+		dst.m_bottom = m_mou_y - 10.0f;
+		Draw::Draw(21, &src, &dst, b, 0.0f);
+
+		//▼フォント表示
+		wchar_t str[9];											//9文字分格納可能な文字配列を宣言(99レベル以上はいかないと想定した文字分)
+		swprintf_s(str, L"兵舎 Lv.%d", Bar_Level_test);			//その文字配列に文字データを入れる
+		Font::StrDraw(str, m_mou_x - 75, m_mou_y - 45, 30, d);	//その文字配列をFontで描画
+	}
 
 	//▼兵舎ウインドウ開いている際に表示するグラフィック
 	if (window_start_manage == Barracks)
