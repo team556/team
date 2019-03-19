@@ -55,6 +55,8 @@ void CObjBarracks::Action()
 			{
 				m_key_f = false;
 
+				//m_message_f = false;//メッセージウインドウを非表示にしたい(兵舎ウインドウ表示時に後ろに出さない為に)
+
 				//"兵舎ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Barracks;
 			}
@@ -139,5 +141,34 @@ void CObjBarracks::Draw()
 		dst.m_right = 1180.0f;
 		dst.m_bottom = 680.0f;
 		Draw::Draw(20, &src, &dst, d, 0.0f);
+
+		//▼戻るボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 225.0f;
+		src.m_bottom = 225.0f;
+
+		dst.m_top = 30.0f;
+		dst.m_left = 30.0f;
+		dst.m_right = 80.0f;
+		dst.m_bottom = 80.0f;
+		Draw::Draw(1, &src, &dst, d, 0.0f);
+
+		//▼フォント集
+		//wchar_t str[9];											//9文字分格納可能な文字配列を宣言(99レベル以上はいかないと想定した文字分)
+		//swprintf_s(str, L"兵舎 Lv.%d", Bar_Level_test);			//その文字配列に文字データを入れる
+		//Font::StrDraw(str, m_mou_x - 75, m_mou_y - 45, 30, d);	//その文字配列をFontで描画
+
+		//Font::StrDraw(L"兵舎レベルUP", 425, 50, 120, d);
+
+		//Font::StrDraw(L"住民振り分け", 425, 50, 120, d);
+
+		//Font::StrDraw(L"パワー", 425, 50, 120, d);
+
+		//Font::StrDraw(L"ディフェンス", 425, 50, 120, d);
+
+		//Font::StrDraw(L"スピード", 425, 50, 120, d);
+
+		//Font::StrDraw(L"バランス", 425, 50, 120, d);
 	}
 }
