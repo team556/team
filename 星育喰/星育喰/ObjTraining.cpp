@@ -14,8 +14,12 @@ using namespace GameL;
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
 //static変数の定義
+bool CObjTraining::m_key_rf = false;
 bool CObjTraining::scene_change_start = false;
 int  CObjTraining::window_start_manage = Default;
+
+//グローバル変数の定義
+int g_test = 50;
 
 //イニシャライズ
 void CObjTraining::Init()
@@ -30,7 +34,7 @@ void CObjTraining::Init()
 	m_Back_Button_color = INI_COLOR;
 	
 	m_Mig_time = 0;
-	m_key_f = false;
+	m_key_lf = false;
 
 	scene_change_start = false;
 	window_start_manage = Default;
@@ -100,20 +104,26 @@ void CObjTraining::Action()
 		//右クリック入力時
 		if (m_mou_r == true)
 		{
-			//雲演出INを行う
-			CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
-			obj_cloud->SetCheck(true);
+			//前シーン(兵舎ウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
+			if (m_key_rf == true)
+			{
+				m_key_rf = false;
 
-			//移行フラグ立て
-			window_start_manage = BackButton;
+				//雲演出INを行う
+				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
+				obj_cloud->SetCheck(true);
+
+				//移行フラグ立て
+				window_start_manage = BackButton;
+			}
 		}
 		//左クリック入力時
 		else if (m_mou_l == true)
 		{
 			//左クリック押したままの状態では入力出来ないようにしている
-			if (m_key_f == true)
+			if (m_key_lf == true)
 			{
-				m_key_f = false;
+				m_key_lf = false;
 
 				//雲演出INを行う
 				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
@@ -125,11 +135,12 @@ void CObjTraining::Action()
 		}
 		else
 		{
-			m_key_f = true;
+			m_key_lf = true;
 		}
 	}
 	else
 	{
+		m_key_rf = true;
 		m_Back_Button_color = 1.0f;
 	}
 }
