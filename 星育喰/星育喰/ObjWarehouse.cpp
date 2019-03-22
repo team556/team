@@ -99,7 +99,34 @@ void CObjWarehouse::Action()
 		m_Back_color = 1.0f;
 	}
 
+	//戻るボタン選択
+	if (350 < m_mou_x && m_mou_x < 525 && 200 < m_mou_y && m_mou_y < 375)
+	{
+		m_Object_color[0] = 0.7f;
 
+		//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+		if (m_mou_l == true)
+		{
+
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_ma == true)
+			{
+				m_key_ma = false;
+
+				//↓test_flagのアレでやる。
+				m_f = true;
+			}
+		}
+		else
+		{
+			m_key_ma = true;
+		}
+	}
+	else
+	{
+		m_Object_color[0] = 1.0f;
+
+	}
 
 }
 
