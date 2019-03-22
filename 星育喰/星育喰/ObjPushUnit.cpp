@@ -49,7 +49,7 @@ void CObjPushUnit::Action()
 		&& m_mou_l == true) {							//クリック
 		if (m_mou_f == true) {
 			//オブジェクト作成
-			CObjMissile* M = new CObjMissile(400, 200);	//オブジェクト作成
+			CObjMissile* M = new CObjMissile(800, 200);	//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 
 			m_mou_f = false;
