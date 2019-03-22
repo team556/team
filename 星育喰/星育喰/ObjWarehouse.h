@@ -37,7 +37,9 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 		bool m_key_eq;	//装備ボタンフラグ
 		bool m_key_md;	//戻るボタンフラグ
 
-		float m_Ware_color;	//倉庫カラー明度
+		float m_Ware_color;		 //倉庫カラー明度
+		float m_Back_color;		 //戻るボタンカラー明度
+		float m_Object_color[3]; //オブジェクトボタンカラー明度
 		bool m_f;
 
 };
