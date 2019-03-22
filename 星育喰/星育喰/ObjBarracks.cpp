@@ -420,7 +420,7 @@ void CObjBarracks::Draw()
 	dst.m_left   =  810.0f;
 	dst.m_right  = 1190.0f;
 	dst.m_bottom =  690.0f;
-	Draw::Draw(2, &src, &dst, b, 0.0f);
+	Draw::Draw(2, &src, &dst, bar, 0.0f);
 
 	//メッセージウインドウ表示管理フラグがtrueの時、描画。
 	if (m_message_f == true)
