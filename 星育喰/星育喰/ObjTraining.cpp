@@ -19,7 +19,12 @@ bool CObjTraining::scene_change_start = false;
 int  CObjTraining::window_start_manage = Default;
 
 //グローバル変数の定義
-int g_test = 50;
+int g_Bar_Level = 1;
+int g_Power_num = 0;
+int g_Defense_num = 0;
+int g_Speed_num = 0;
+int g_Balance_num = 0;
+int g_Remain_num = 1000;
 
 //イニシャライズ
 void CObjTraining::Init()
@@ -43,7 +48,7 @@ void CObjTraining::Init()
 //アクション
 void CObjTraining::Action()
 {
-	//戻るボタンクリック、もしくは右クリック時実行
+	//戻るボタンクリック、もしくは右クリック(どこでも)時実行
 	if (window_start_manage == BackButton)
 	{
 		m_Mig_time++;
@@ -107,8 +112,6 @@ void CObjTraining::Action()
 			//前シーン(兵舎ウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
 			if (m_key_rf == true)
 			{
-				m_key_rf = false;
-
 				//雲演出INを行う
 				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
 				obj_cloud->SetCheck(true);
