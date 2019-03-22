@@ -77,30 +77,30 @@ void CObjBarracks::Draw()
 	//▼テスト
 	//Font::StrDraw(L"☆育喰", 425, 50, 120, d);
 
-	//▼兵舎表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 245.0f;
+	//▼兵舎表示 
+	src.m_top    =   0.0f;
+	src.m_left   =   0.0f;
+	src.m_right  = 245.0f;
 	src.m_bottom = 206.0f;
 
-	dst.m_top = 460.0f;
-	dst.m_left = 810.0f;
-	dst.m_right = 1190.0f;
-	dst.m_bottom = 690.0f;
+	dst.m_top    =  460.0f;
+	dst.m_left   =  810.0f;
+	dst.m_right  = 1190.0f;
+	dst.m_bottom =  690.0f;
 	Draw::Draw(2, &src, &dst, b, 0.0f);
 
 	if (m_f == true)
 	{
 		//▼灰色ウインドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_top    =    0.0f;
+		src.m_left   =    0.0f;
+		src.m_right  = 1160.0f;
+		src.m_bottom =  660.0f;
 
-		dst.m_top = 20.0f;
-		dst.m_left = 20.0f;
-		dst.m_right = 1180.0f;
-		dst.m_bottom = 680.0f;
+		dst.m_top    =   20.0f;
+		dst.m_left   =   20.0f;
+		dst.m_right  = 1180.0f;
+		dst.m_bottom =  680.0f;
 		Draw::Draw(20, &src, &dst, d, 0.0f);
 	}
 }
