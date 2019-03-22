@@ -14,12 +14,12 @@ using namespace GameL;
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
 //static変数の定義
-typedef enum window_start_manage	//施設ウインドウの起動管理フラグ
-{
-	Default,
-	Barracks,
-}manage;
+bool CObjTraining::m_key_rf = false;
 bool CObjTraining::scene_change_start = false;
+int  CObjTraining::window_start_manage = Default;
+
+//グローバル変数の定義
+int g_test = 50;
 
 //イニシャライズ
 void CObjTraining::Init()
@@ -32,19 +32,19 @@ void CObjTraining::Init()
 	m_mou_l = false;
 
 	m_Back_Button_color = INI_COLOR;
-	m_Back_Button_flag = false;
 	
 	m_Mig_time = 0;
-	m_key_f = false;
+	m_key_lf = false;
 
 	scene_change_start = false;
+	window_start_manage = Default;
 }
 
 //アクション
 void CObjTraining::Action()
 {
 	//戻るボタンクリック、もしくは右クリック時実行
-	if (m_Back_Button_flag == true)
+	if (window_start_manage == BackButton)
 	{
 		m_Mig_time++;
 
@@ -80,6 +80,12 @@ void CObjTraining::Action()
 
 		return;
 	}
+	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+	else if (window_start_manage != Default)
+	{
+		return;
+	}
+
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -98,36 +104,43 @@ void CObjTraining::Action()
 		//右クリック入力時
 		if (m_mou_r == true)
 		{
-			//雲演出INを行う
-			CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
-			obj_cloud->SetCheck(true);
-
-			//移行フラグ立て
-			m_Back_Button_flag = true;
-		}
-		//左クリック入力時
-		else if (m_mou_l == true)
-		{
-			//左クリック押したままの状態では入力出来ないようにしている
-			if (m_key_f == true)
+			//前シーン(兵舎ウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
+			if (m_key_rf == true)
 			{
-				m_key_f = false;
+				m_key_rf = false;
 
 				//雲演出INを行う
 				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
 				obj_cloud->SetCheck(true);
 
 				//移行フラグ立て
-				m_Back_Button_flag = true;
+				window_start_manage = BackButton;
+			}
+		}
+		//左クリック入力時
+		else if (m_mou_l == true)
+		{
+			//左クリック押したままの状態では入力出来ないようにしている
+			if (m_key_lf == true)
+			{
+				m_key_lf = false;
+
+				//雲演出INを行う
+				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
+				obj_cloud->SetCheck(true);
+
+				//移行フラグ立て
+				window_start_manage = BackButton;
 			}
 		}
 		else
 		{
-			m_key_f = true;
+			m_key_lf = true;
 		}
 	}
 	else
 	{
+		m_key_rf = true;
 		m_Back_Button_color = 1.0f;
 	}
 }

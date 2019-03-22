@@ -98,6 +98,15 @@ void CSceneTraining::InitScene()
 	//メッセージウインドウ(仮)を読み込み21番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 21, TEX_SIZE_512);
 
+	//施設LVUPを読み込み22番に登録
+	Draw::LoadImage(L"施設LVUP.png", 22, TEX_SIZE_512);
+
+	//兵舎振り分けUPを読み込み23番に登録
+	Draw::LoadImage(L"兵舎振り分けUP.png", 23, TEX_SIZE_512);
+
+	//兵舎振り分けDOWNを読み込み24番に登録
+	Draw::LoadImage(L"兵舎振り分けDOWN.png", 24, TEX_SIZE_512);
+
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"Player_Planet_Test.png", 50, TEX_SIZE_512);
 }

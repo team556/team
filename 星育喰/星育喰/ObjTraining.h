@@ -16,25 +16,28 @@ public:
 private:
 	float m_size;		//プレイヤー惑星のサイズ
 
-	float m_Back_Button_color;	//戻るボタンカラー明度
-	bool  m_Back_Button_flag;	//戻るボタンクリック、もしくは右クリック時trueフラグ
-
 	int m_Mig_time;		//ホーム画面にシーン移行する際の時間管理変数
 protected:
-	float m_mou_x;		//マウスの位置X
-	float m_mou_y;		//マウスの位置Y
-	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
-	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
-	bool  m_key_f;		//キーフラグ
+	float m_mou_x;		 //マウスの位置X
+	float m_mou_y;		 //マウスの位置Y
+	bool  m_mou_r;		 //マウスプッシュ確認(右クリック)
+	bool  m_mou_l;		 //マウスプッシュ確認(左クリック)
+	bool  m_message_f;	 //メッセージウインドウ表示管理フラグ(true:表示 / false:非表示)
+	bool  m_key_lf;		 //左クリック用キーフラグ
+	static bool m_key_rf;//右クリック用キーフラグ
 
-	static int manage[4];
-		
-	//	enum window_start_manage	//施設ウインドウの起動管理フラグ
-	//{
-	//	Default,
-	//	Barracks,
-	//}manage;
+	float m_Back_Button_color;	//戻るボタンカラー明度
+
+	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
+	static int  window_start_manage;//施設ウインドウの起動管理フラグ
 	//↑メモ書き：int型、列挙で宣言。その数字のものだけ操作できるように各objで条件分岐。
 	//ちなみにその際、objTrainingも操作出来ないようにしておく。(右クリックキャンセルをさせないために)
-	static bool scene_change_start;//シーン切り替え演出開始を伝えるフラグ
+
+	//▼各施設ウインドウ(戻るボタン含む)に列挙型で識別番号を割り振る
+	enum window_id	
+	{
+		Default,	//デフォルト。どのウインドウも開いていない状態。
+		BackButton,	//戻るボタンを押して、ホーム画面に戻ろうとしている状態。
+		Barracks,	//兵舎ウインドウを開いている状態。
+	};
 };

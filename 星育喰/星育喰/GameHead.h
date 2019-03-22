@@ -20,7 +20,6 @@ enum OBJ_NAME
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
 	OBJ_MATERIALBOTTON,
-//	OBJ_BARRACKS,//とりあえず、一旦コメントアウトしている。
 	OBJ_MISSILE,
 
 };
@@ -58,7 +57,7 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-
+extern int g_test;
 
 
 //------------------------------------------------
@@ -102,5 +101,4 @@ struct UserData
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
-#define SET_GAME_START CSceneFacility
 //-----------------------------------------------

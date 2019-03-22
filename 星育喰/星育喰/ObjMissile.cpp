@@ -25,8 +25,8 @@ void CObjMissile::Init()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (obj != nullptr) {					//情報が取得出来ていたら
 		m_get_line = obj->GetLine();		//ラインナンバーを取得
-		if (m_get_line == 1) { m_x = 400; m_y = 310; }
-		else if(m_get_line == 2){ m_x = 400; m_y = 420; }
+		if (m_get_line == 1) { m_y = 310; }
+		else if(m_get_line == 2){ m_y = 420; }
 	}
 
 	m_size = 50.0f;//サイズ
@@ -75,24 +75,24 @@ void CObjMissile::Action()
 
 	if (m_get_line == 0)
 	{
-		m_vx += 0.3f;
-		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
+		m_vx -= 0.3f;
+		if ((m_x + (m_size / 2) > 599) && (m_vy <= 0)) {
 			m_vy -= 0.15f - (m_cnt * 0.0003f);
 		}
 		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
 			m_cnt = 0;
-		else if (m_x + (m_size / 2) > 600)
+		else if (m_x + (m_size / 2) < 600)
 		{
 			m_vy += m_cnt * 0.0003f;
 		}
 	}
 	else if (m_get_line == 1)
 	{
-		m_vx += 0.5f;
+		m_vx -= 0.5f;
 	}
 	else//if(m_get_line == 2)
 	{
-		m_vx += 0.3f;
+		m_vx -= 0.3f;
 		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
 			m_vy += 0.15f - (m_cnt * 0.0003f);
 		}
