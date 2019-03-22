@@ -20,11 +20,15 @@ void CObjFight::Init()
 	
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
+
+	m_cnt = 2400;
 }
 
 //アクション
 void CObjFight::Action()
 {
+	m_cnt--;//カウントダウン
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -33,7 +37,7 @@ void CObjFight::Action()
 	m_mou_l = Input::GetMouButtonL();
 	
 
-	m_line = 6;
+	m_line = 6;//常に選択前ラインを初期化
 
 	if (400 <= m_mou_x && m_mou_x <= 800) 
 	{
@@ -58,6 +62,17 @@ void CObjFight::Action()
 //ドロー
 void CObjFight::Draw()
 {
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	int s = (m_cnt / 60), m = (s / 60);	//ミニッツ,セコンドを宣言＆初期化
+	if (s >= 60) {						//60秒以上の場合
+		m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
+	}													//nはその減らす分。
+
+	wchar_t str[256];
+	swprintf_s(str, L"%02d :%02d", m, s);		//2桁、0詰め表示
+	Font::StrDraw(str,500 ,60 ,50 , c);
+
+
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
 	float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
@@ -88,6 +103,7 @@ void CObjFight::Draw()
 	src.m_right =100.0f;
 	src.m_bottom=100.0f;
 
+	//攻撃用ライン画像
 	dst.m_top   =200.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;

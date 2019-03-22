@@ -24,4 +24,6 @@ private:
 	
 	int m_line;			//選択前
 	int m_line_nam;		//選択中ラインナンバー(上から0,1,2)
+
+	int m_cnt;			//カウント用
 };
