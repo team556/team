@@ -8,23 +8,28 @@
 #include "GameHead.h"
 #include "ObjWarehouse.h"
 
-
 //使用するネームスペース
 using namespace GameL;
+
+//マクロ
+#define INI_COLOR (1.0f) //全カラー明度の初期値
 
 //イニシャライズ
 void CObjWarehouse::Init()
 {
+	m_Ware_color = INI_COLOR;
+	m_f = false;
+
 	m_x = 100;
 	m_y = 100;
-	m_obx = 0;
-	m_oby = 0;
+	//m_obx = 0;
+	//m_oby = 0;
 
-	m_key_f = true;
-	m_turn = true;
-	m_turn0 = true;
-	
-	m_obj = true;
+	//m_key_f = true;
+	//m_turn = true;
+	//m_turn0 = true;
+	//
+	//m_obj = true;
 
 }
 
@@ -38,91 +43,191 @@ void CObjWarehouse::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	if (m_x <= m_mou_x && m_mou_x <= m_x + 225.0f) {//X軸の範囲
-		if (m_y <= m_mou_y && m_mou_y <= m_y + 225.0f) {//Y軸の範囲
-			if (m_mou_l == true) {//クリック時
-				if (m_key_f == true && m_turn == true) {
-					m_key_f = false;
-					m_turn = false;
+	//倉庫選択
+	if (m_x < m_mou_x && m_mou_x < m_x+225 && m_y < m_mou_y && m_mou_y < m_y+225)
+	{
+		m_Ware_color = 0.7f;
 
-					m_obx = 1150;
-					m_oby = 650;
-					m_obj = false;
-				}
-				else if (m_key_f == true && m_turn == false)//2回目のクリック
-				{
-					//キャンセル時の範囲
-					if (m_x <= m_mou_x && m_mou_x <= m_x + 100.0f && m_y <= m_mou_y && m_mou_y <= m_y + 100.0f)
-					{
-						m_key_f = false;
-						m_turn0 = false;
+		//左クリックされたらフラグを立て、倉庫ウインドウを開く
+		if (m_mou_l == true)
+		{
+			
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_f == true)
+			{
+				m_key_f = false;
 
-						m_obx = 225;
-						m_oby = 225;
-						m_obj = true;
-					}
-				}
-			}
-			else {//クリック離した時
-				m_key_f = true;
-				if (m_turn0 == false) {
-					m_turn = true;
-					m_turn0 = true;
-				}
+				//↓test_flagのアレでやる。
+				m_f = true;
 			}
 		}
+		else
+		{
+			m_key_f = true;
+		}
 	}
+	else
+	{
+		m_Ware_color = 1.0f;
+	}
+
+	//戻るボタン選択
+	if (m_x < m_mou_x && m_mou_x < m_x + 225 && m_y < m_mou_y && m_mou_y < m_y + 225)
+	{
+		m_Ware_color = 0.7f;
+
+		//左クリックされたらフラグを立て、倉庫ウインドウを開く
+		if (m_mou_l == true)
+		{
+
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_f == true)
+			{
+				m_key_f = false;
+
+				//↓test_flagのアレでやる。
+				m_f = true;
+			}
+		}
+		else
+		{
+			m_key_f = true;
+		}
+	}
+	else
+	{
+		m_Ware_color = 1.0f;
+	}
+
 
 }
 
 //ドロー
 void CObjWarehouse::Draw()
 {
-	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
-	RECT_F src;
-	RECT_F dst;
+	//▼シーン切り替え演出後に非表示にする処理
+	if (scene_change_start == true)
+	{
+		return;
+	}
+	//倉庫画像
+	float c[4] = { m_Ware_color,m_Ware_color, m_Ware_color, 1.0f };
 
+	//それ以外の画像
+	float sb[4] = { 1.0f,1.0f,1.0f,1.0f };
+
+	RECT_F src;//描画先切り取り位置
+	RECT_F dst;//描画先表示位置
+
+	//倉庫表示
 	//切り取り
 	src.m_top    =   0.0f;
 	src.m_left   =   0.0f;
 	src.m_right  = 225.0f;
 	src.m_bottom = 225.0f;
 
-	if (m_obj == true)
-	{
-		//描画
-		dst.m_top    =   0.0f + m_x;
-		dst.m_left   =   0.0f + m_y;
-		dst.m_right  = 225.0f + m_x;
-		dst.m_bottom = 225.0f + m_y;
-	}
-
-	else
-	{
-		dst.m_top    = 50.0f;
-		dst.m_left   = 50.0f;
-		dst.m_right  = m_obx;
-		dst.m_bottom = m_oby;
-	}
+	dst.m_top    = 100.0f;
+	dst.m_left   = 100.0f;
+	dst.m_right  = 325.0f;
+	dst.m_bottom = 325.0f;
 
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
+	if (m_f == true)
+	{
+		//ボタン背景作成
+		src.m_top    =    0.0f;
+		src.m_left   =    0.0f;
+		src.m_right  = 1200.0f;
+		src.m_bottom =  800.0f;
 
-	//ボタンオブジェクト
-	//切り取り
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1200.0f;
-	src.m_bottom = 800.0f;
+		dst.m_top    =   0.0f;
+		dst.m_left   =   0.0f;
+		dst.m_right  = 1200.0f;
+		dst.m_bottom =  700.0f;
+		Draw::Draw(3, &src, &dst, sb, 0.0f);
 
-	//表示
-	dst.m_top = 50.0f;
-	dst.m_left = 50.0f;
-	dst.m_right = 1150.0f;
-	dst.m_bottom = 650.0f;
+		//戻るアイコン作成
+		src.m_top    =   0.0f;
+		src.m_left   =   0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
 
-	//3番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+		dst.m_top    =  0.0f;
+		dst.m_left   =  0.0f;
+		dst.m_right  = 175.0f;
+		dst.m_bottom = 175.0f;
+		Draw::Draw(4, &src, &dst, sb, 0.0f);
+
+		//資材選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
+
+		dst.m_top    = 200.0f;
+		dst.m_left   = 350.0f;
+		dst.m_right  = 525.0f;
+		dst.m_bottom = 375.0f;
+		Draw::Draw(5, &src, &dst, sb, 0.0f);
+
+		//住民選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
+
+		dst.m_top    = 200.0f;
+		dst.m_left   = 700.0f;
+		dst.m_right  = 875.0f;
+		dst.m_bottom = 375.0f;
+		Draw::Draw(6, &src, &dst, sb, 0.0f);
+
+		//スペシャル技選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
+
+		dst.m_top    = 450.0f;
+		dst.m_left   = 350.0f;
+		dst.m_right  = 525.0f;
+		dst.m_bottom = 625.0f;
+		Draw::Draw(7, &src, &dst, sb, 0.0f);
+
+		//装備選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
+
+		dst.m_top    = 450.0f;
+		dst.m_left   = 700.0f;
+		dst.m_right  = 875.0f;
+		dst.m_bottom = 625.0f;
+		Draw::Draw(8, &src, &dst, sb, 0.0f);
+
+	}
+
+	if (m_key_md == true)
+	{
+		//倉庫表示
+		//切り取り
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 225.0f;
+		src.m_bottom = 225.0f;
+
+		dst.m_top = 100.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 325.0f;
+		dst.m_bottom = 325.0f;
+
+		//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(2, &src, &dst, c, 0.0f);
+
+	}
+
 }
 

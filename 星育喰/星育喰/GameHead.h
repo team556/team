@@ -57,7 +57,7 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-
+extern int g_test;
 
 
 //------------------------------------------------
@@ -99,6 +99,6 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START	CSceneTitle
-#define SET_GAME_START CSceneFight
+//#define SET_GAME_START CSceneTitle
+//#define SET_GAME_START CSceneFight
 //-----------------------------------------------
