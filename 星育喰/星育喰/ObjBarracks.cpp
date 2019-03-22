@@ -19,18 +19,12 @@ void CObjBarracks::Init()
 
 	for (int i = 0; i < 4; i++)
 	{
-		m_Human_up_color[i] = INI_COLOR;
-		m_Human_down_color[i] = INI_COLOR;
+		m_Human_up_color[i] = INI_COLOR;	//全ての要素の値をINI_COLORで初期化している
+		m_Human_down_color[i] = INI_COLOR;	//全ての要素の値をINI_COLORで初期化している
 	}
 
+	m_introduce_f = false;
 	m_key_lf = false;
-
-	m_Bar_Level_test = 10;
-	m_power_num = 0;
-	m_defense_num = 0;
-	m_speed_num = 0;
-	m_balance_num = 0;
-	m_remain_num = 1000;
 }
 
 //アクション
@@ -46,23 +40,20 @@ void CObjBarracks::Action()
 	//▼兵舎ウインドウ表示時の処理
 	if (window_start_manage == Barracks)
 	{
-		//戻るボタン左クリック、もしくは右クリックする事で兵舎ウインドウを閉じる
+		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
 		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
 		{
 			m_Back_Button_color = 0.7f;
 
-			//▼移行フラグを立て、ホーム画面へ演出を交えながらシーン移行
+			//▼クリックされたらフラグを立て、兵舎ウインドウを閉じる
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_rf == true)
-				{
-					m_key_rf = false;
+				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+				m_key_rf = false;
 
-					//移行フラグ立て
-					window_start_manage = Default;
-				}
+				//"どのウインドウも開いていない状態"フラグを立てる
+				window_start_manage = Default;
 			}
 			//左クリック入力時
 			else if (m_mou_l == true)
@@ -72,7 +63,7 @@ void CObjBarracks::Action()
 				{
 					m_key_lf = false;
 
-					//移行フラグ立て
+					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
 				}
 			}
@@ -83,26 +74,25 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Back_Button_color = 1.0f;
-			m_key_rf = true;
+			m_Back_Button_color = 1.0f;	
 		}
 
-		//パワー住民UP
+		//パワー住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
 		{
 			m_Human_up_color[0] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_up_color[0] = 0.0f;
 			
-					m_power_num = Allocation(m_power_num, +1);
+					g_Power_num = Allocation(g_Power_num, +1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -115,22 +105,22 @@ void CObjBarracks::Action()
 			m_Human_up_color[0] = 1.0f;
 		}
 
-		//ディフェンス住民UP
+		//ディフェンス住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 228 < m_mou_y && m_mou_y < 328)
 		{
 			m_Human_up_color[1] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_up_color[1] = 0.0f;
 
-					m_defense_num = Allocation(m_defense_num, +1);
+					g_Defense_num = Allocation(g_Defense_num, +1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -143,22 +133,22 @@ void CObjBarracks::Action()
 			m_Human_up_color[1] = 1.0f;
 		}
 
-		//スピード住民UP
+		//スピード住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 338 < m_mou_y && m_mou_y < 438)
 		{
 			m_Human_up_color[2] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_up_color[2] = 0.0f;
 
-					m_speed_num = Allocation(m_speed_num, +1);
+					g_Speed_num = Allocation(g_Speed_num, +1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -171,22 +161,22 @@ void CObjBarracks::Action()
 			m_Human_up_color[2] = 1.0f;
 		}
 
-		//バランス住民UP
+		//バランス住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 448 < m_mou_y && m_mou_y < 548)
 		{
 			m_Human_up_color[3] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_up_color[3] = 0.0f;
 
-					m_balance_num = Allocation(m_balance_num, +1);
+					g_Balance_num = Allocation(g_Balance_num, +1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -199,22 +189,22 @@ void CObjBarracks::Action()
 			m_Human_up_color[3] = 1.0f;
 		}
 		
-		//パワー住民DOWN
+		//パワー住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 		{
 			m_Human_down_color[0] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_down_color[0] = 0.0f;
 
-					m_power_num = Allocation(m_power_num, -1);
+					g_Power_num = Allocation(g_Power_num, -1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -227,22 +217,22 @@ void CObjBarracks::Action()
 			m_Human_down_color[0] = 1.0f;
 		}
 
-		//ディフェンス住民DOWN
+		//ディフェンス住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 228 < m_mou_y && m_mou_y < 328)
 		{
 			m_Human_down_color[1] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_down_color[1] = 0.0f;
 
-					m_defense_num = Allocation(m_defense_num, -1);
+					g_Defense_num = Allocation(g_Defense_num, -1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -255,22 +245,22 @@ void CObjBarracks::Action()
 			m_Human_down_color[1] = 1.0f;
 		}
 
-		//スピード住民DOWN
+		//スピード住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 338 < m_mou_y && m_mou_y < 438)
 		{
 			m_Human_down_color[2] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_down_color[2] = 0.0f;
 
-					m_speed_num = Allocation(m_speed_num, -1);
+					g_Speed_num = Allocation(g_Speed_num, -1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -283,22 +273,22 @@ void CObjBarracks::Action()
 			m_Human_down_color[2] = 1.0f;
 		}
 
-		//バランス住民DOWN
+		//バランス住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 448 < m_mou_y && m_mou_y < 548)
 		{
 			m_Human_down_color[3] = 0.7f;
 
-			//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
+				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
 					m_Human_down_color[3] = 0.0f;
 
-					m_balance_num = Allocation(m_balance_num, -1);
+					g_Balance_num = Allocation(g_Balance_num, -1);//振り分け関数を呼び出す
 				}
 			}
 			else
@@ -325,18 +315,18 @@ void CObjBarracks::Action()
 	//兵舎選択範囲
 	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)
 	{
-		m_message_f = true;	//メッセージウインドウを表示する
+		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Bar_color = 0.7f;
 
 		//左クリックされたらフラグを立て、兵舎ウインドウを開く
 		if (m_mou_l == true)
 		{
-			//クリック押したままの状態では入力出来ないようにしている
+			//左クリック押したままの状態では入力出来ないようにしている
 			if (m_key_lf == true)
 			{
 				m_key_lf = false;
 
-				m_message_f = false;//メッセージウインドウを非表示にする(兵舎ウインドウ表示時に後ろに出さない為に)
+				m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ表示時に後ろに出さない為に)
 
 				//"兵舎ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Barracks;
@@ -349,7 +339,7 @@ void CObjBarracks::Action()
 	}
 	else
 	{
-		m_message_f = false;//メッセージウインドウを非表示にする
+		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Bar_color = 1.0f;
 	}
 }
@@ -364,7 +354,7 @@ void CObjBarracks::Draw()
 	}
 
 
-	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	//赤色
 	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
 
@@ -404,11 +394,25 @@ void CObjBarracks::Draw()
 		{ m_Human_down_color[3],m_Human_down_color[3],m_Human_down_color[3],1.0f },
 	};
 
+	//▽フォント準備
+	//兵舎レベル用
+	wchar_t Bar[9];									 //9文字分格納可能な文字配列を宣言(99レベル以上はいかないと想定した文字分)
+	swprintf_s(Bar, L"兵舎 Lv.%d", g_Bar_Level);//その文字配列に文字データを入れる
+
+	//残り住民数用
+	wchar_t human_remain[12];						 //12文字分格納可能な文字配列を宣言(最大値は999999)
+	swprintf_s(human_remain, L"残り %6d 人", g_Remain_num);//その文字配列に文字データを入れる
+
+	//各タイプ(パワー、スピード等)の住民数用
+	wchar_t human_num[4][9];						 //9文字分格納可能な文字配列を4つ宣言(それぞれ最大値は999999)
+	swprintf_s(human_num[0], L"%6d 人", g_Power_num);//▽それぞれの文字配列に対応する文字データを入れる
+	swprintf_s(human_num[1], L"%6d 人", g_Defense_num);
+	swprintf_s(human_num[2], L"%6d 人", g_Speed_num);
+	swprintf_s(human_num[3], L"%6d 人", g_Balance_num);
+
+
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
-
-	//▼テスト
-	//Font::StrDraw(L"☆育喰", 425, 50, 120, d);
 
 	//▼兵舎表示 
 	src.m_top    =   0.0f;
@@ -422,10 +426,10 @@ void CObjBarracks::Draw()
 	dst.m_bottom =  690.0f;
 	Draw::Draw(2, &src, &dst, bar, 0.0f);
 
-	//メッセージウインドウ表示管理フラグがtrueの時、描画。
-	if (m_message_f == true)
+	//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
+	if (m_introduce_f == true)
 	{
-		//▼メッセージウインドウ表示
+		//▼施設紹介ウインドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 64.0f;
@@ -438,12 +442,11 @@ void CObjBarracks::Draw()
 		Draw::Draw(21, &src, &dst, bar, 0.0f);//灰色のウインドウにする為"bar"にしている。
 
 		//▼フォント表示
-		wchar_t Bar[9];												//9文字分格納可能な文字配列を宣言(99レベル以上はいかないと想定した文字分)
-		swprintf_s(Bar, L"兵舎 Lv.%d", m_Bar_Level_test);			//その文字配列に文字データを入れる
-		Font::StrDraw(Bar, m_mou_x - 75, m_mou_y - 45, 30, white);	//その文字配列をFontで描画
+		//兵舎レベル
+		Font::StrDraw(Bar, m_mou_x - 75, m_mou_y - 45, 30, white);
 	}
 
-	//▼兵舎ウインドウ開いている際に表示するグラフィック
+	//兵舎ウインドウ開いている際に表示するグラフィック
 	if (window_start_manage == Barracks)
 	{
 		//▼灰色ウインドウ表示
@@ -544,7 +547,7 @@ void CObjBarracks::Draw()
 			dst.m_bottom = 220.0f + i * 110.0f;
 			Draw::Draw(24, &src, &dst, down[i], 0.0f);
 
-			//▼各住民数のウインドウ表示
+			//▼各タイプ(パワー、スピード等)の住民数ウインドウ表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 64.0f;
@@ -556,27 +559,15 @@ void CObjBarracks::Draw()
 			dst.m_bottom = 200.0f + i * 110.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 		}
-		
 
-		//▼フォント準備
-		wchar_t Bar[9];											//9文字分格納可能な文字配列を宣言(99レベル以上はいかないと想定した文字分)
-		swprintf_s(Bar, L"兵舎 Lv.%d", m_Bar_Level_test);			//その文字配列に文字データを入れる
+		//▼フォント表示
+		//兵舎レベル
+		Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);
 
-		wchar_t human_remain[12]; //999999が最大
-		swprintf_s(human_remain, L"残り %6d 人", m_remain_num);
-
-		//用
-		wchar_t human_num[4][9];
-		swprintf_s(human_num[0], L"%6d 人", m_power_num);
-		swprintf_s(human_num[1], L"%6d 人", m_defense_num);
-		swprintf_s(human_num[2], L"%6d 人", m_speed_num);
-		swprintf_s(human_num[3], L"%6d 人", m_balance_num);
-	
-		//▼フォント描画
-		Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);	//その文字配列をFontで描画
-
+		//残り住民数
 		Font::StrDraw(human_remain, 780.0f, 590.0f, 50.0f, black);
 
+		//各タイプ(パワー、スピード等)の住民数
 		for (int i = 0; i < 4; i++)
 		{
 			Font::StrDraw(human_num[i], 950.0f, 150.0f + i * 110.0f, 40.0f, black);
@@ -600,8 +591,6 @@ void CObjBarracks::Draw()
 
 		
 
-
-
 		//デバッグ用仮マウス位置表示
 		wchar_t str[256];
 		swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
@@ -609,18 +598,30 @@ void CObjBarracks::Draw()
 	}
 }
 
-int CObjBarracks::Allocation(int human_num,int updown_flag)
+//---Allocation関数
+//引数1　int type_num		:住民タイプ決定
+//引数2　int up_down_check	:振り分けUP / DOWNチェック(+1=振り分けUP / -1=振り分けDOWN)
+//▼内容
+//住民タイプと振り分けUP or DOWNを引数で渡せば、
+//以下の処理を行い、その住民タイプの振り分け後の値を返す。
+//※同時にグローバル変数である"残り住民数(g_Remain_num)"の値も変化させている。
+int CObjBarracks::Allocation(int type_num,int up_down_check)
 {
-	int Ins_human = human_num;
-	int Ins_remain = m_remain_num;
+	//▼それぞれ検査用の変数に代入
+	int Ins_human = type_num;
+	int Ins_remain = g_Remain_num;
 
-	Ins_human += 100 * updown_flag;
-	Ins_remain -= 100 * updown_flag;
+	//▼検査用の変数で変化させてみる
+	Ins_human += 100 * up_down_check;
+	Ins_remain -= 100 * up_down_check;
 
+	//▼検査用の変数が以下の条件を全て満たしていれば、実際の値を変化させる。
+	//満たしていなければ、それに応じたエラーメッセージを出し、
+	//実際の値を変化させずに関数を終了させる。
 	if (0 <= Ins_human && Ins_human <= 999900 && Ins_remain >= 0)
 	{
-		human_num += 100 * updown_flag;
-		m_remain_num -= 100 * updown_flag;
+		type_num += 100 * up_down_check;
+		g_Remain_num -= 100 * up_down_check;
 	}
 	else if (Ins_remain < 0)
 	{
@@ -631,5 +632,5 @@ int CObjBarracks::Allocation(int human_num,int updown_flag)
 		//これ以上振り分けられません
 	}
 
-	return human_num;
+	return type_num;
 }
