@@ -33,7 +33,7 @@ void CObjPlanet::Init()
 	if(m_type == true)
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_PLAYER, OBJ_PLANET, 1);
 	else
-		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_RED, OBJ_PLANET, 1);
+		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
 }
 
 //アクション
@@ -47,6 +47,11 @@ void CObjPlanet::Action()
 
 	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
 	hit->SetPos(m_px - m_siz_vec, m_py - m_siz_vec, 2 * m_siz_vec + m_size, 2 * m_siz_vec + m_size);//位置を更新
+
+	if (hit->CheckElementHit(ELEMENT_RED) == true)
+	{//敵のミサイルに当たった場合
+		
+	}
 }
 
 //ドロー
@@ -58,8 +63,8 @@ void CObjPlanet::Draw()
 	//切り取り位置
 	src.m_top   =  0.0f;
 	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+	src.m_right = 62.0f;
+	src.m_bottom= 62.0f;
 	//表示位置
 	dst.m_top   = m_py - m_siz_vec;
 	dst.m_left  = m_px - m_siz_vec;
@@ -67,5 +72,5 @@ void CObjPlanet::Draw()
 	dst.m_bottom= m_py + m_siz_vec + m_size;
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 }

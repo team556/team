@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjMissile :public CObj
 {
 public:
-	CObjMissile(float x, float y);
+	CObjMissile(float x, float y,bool type);
 	~CObjMissile() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -19,7 +19,7 @@ private:
 	float m_vx;		//ベクトルX
 	float m_vy;		//ベクトルY
 	float m_size;	//ミサイルのサイズ
-	bool  m_mou_f;
+	bool  m_mou_f;	//マウスフラッグ
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -27,5 +27,8 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
 	int m_get_line;		//取得したラインナンバー
+	int m_get_cnt;		//取得したカウント
 	int m_cnt;			//カウント用
+
+	bool m_type;		//生成時のタイプ
 };

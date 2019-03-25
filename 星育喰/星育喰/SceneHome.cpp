@@ -49,7 +49,7 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
 
 	//プレイヤー惑星を読み込み50番に登録
-	Draw::LoadImage(L"Player_Planet_Test.png", 50, TEX_SIZE_512);
+	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
 }
 
 //ゲームメイン実行中メソッド

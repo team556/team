@@ -12,11 +12,11 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjMissile::CObjMissile(float x, float y)
+CObjMissile::CObjMissile(float x, float y, bool type)
 {
-	//作成時に渡された値を、座標の初期値に代入
 	m_x = x;
 	m_y = y;
+	m_type = type;
 }
 
 //イニシャライズ
@@ -25,8 +25,11 @@ void CObjMissile::Init()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (obj != nullptr) {					//情報が取得出来ていたら
 		m_get_line = obj->GetLine();		//ラインナンバーを取得
-		if (m_get_line == 1) { m_x = 400; m_y = 310; }
-		else if(m_get_line == 2){ m_x = 400; m_y = 420; }
+		if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
+		else if(m_get_line == 2){ m_y = 420; }
+
+		m_get_cnt = obj->GetCount();		//カウントを取得
+		m_x += obj->GetCount() / 9;
 	}
 
 	m_size = 50.0f;//サイズ
@@ -43,7 +46,11 @@ void CObjMissile::Init()
 	m_mou_f = false;//マウスフラグ
 
 	//当たり判定用HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_BLUE, OBJ_MISSILE, 1);
+	if (m_type == false) 
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
+	else
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
+
 }
 
 //アクション
@@ -51,7 +58,7 @@ void CObjMissile::Action()
 {
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
-
+	
 	m_cnt++;
 
 	//マウスの位置を取得
@@ -72,44 +79,52 @@ void CObjMissile::Action()
 	}
 
 	
-
-	if (m_get_line == 0)
+	//各ライン毎の動き方
+	if (m_get_line == 0 || m_get_line == 3)//上ライン---
 	{
-		m_vx += 0.3f;
-		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
-			m_vy -= 0.15f - (m_cnt * 0.0003f);
+		m_vx -= 0.3f;
+		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+			m_vy -= 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
+		else if (m_x >= 590 && m_x <= 610)
 			m_cnt = 0;
-		else if (m_x + (m_size / 2) > 600)
+		else if (m_x < 600 - m_size)
 		{
-			m_vy += m_cnt * 0.0003f;
+			m_vy += m_cnt * 0.0002f;
 		}
 	}
-	else if (m_get_line == 1)
+	else if (m_get_line == 1)//中ライン---
 	{
-		m_vx += 0.5f;
+		m_vx -= 0.5f;
 	}
-	else//if(m_get_line == 2)
+	else//if(m_get_line == 2)下ライン---
 	{
-		m_vx += 0.3f;
-		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
-			m_vy += 0.15f - (m_cnt * 0.0003f);
+		m_vx -= 0.3f;
+		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+			m_vy += 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
+		else if (m_x >= 590 && m_x <= 610)
 			m_cnt = 0;
-		else if (m_x + (m_size / 2) > 600)
+		else if (m_x < 600 - m_size)
 		{
-			m_vy -= m_cnt * 0.0003f;
+			m_vy -= m_cnt * 0.0002f;
 		}
 	}
+	
 
 	//座標更新
 	m_x += m_vx;
 	m_y += m_vy;
 
-	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
-	hit->SetPos(m_x, m_y, m_size, m_size);	//位置を更新
+
+	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
+	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+	{//位置を更新//惑星と接触しているかどうかを調べる
+		this->SetStatus(false);		//当たった場合削除
+		Hits::DeleteHitBox(this);
+	}
 }
 
 //ドロー

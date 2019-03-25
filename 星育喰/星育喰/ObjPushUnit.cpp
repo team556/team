@@ -29,8 +29,9 @@ void CObjPushUnit::Init()
 	m_mou_l = false;//左クリック
 	m_mou_f = false;//マウスフラグ
 
+	m_a = 1.0f;		//透明度
 
-	m_a = 1.0f;
+	m_cnt = 0;		//カウント
 }
 
 //アクション
@@ -47,17 +48,24 @@ void CObjPushUnit::Action()
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w))		//X軸範囲
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
-		if (m_mou_f == true) {
+		if (m_mou_f == false) {
 			//オブジェクト作成
-			CObjMissile* M = new CObjMissile(400, 200);	//オブジェクト作成
+			CObjMissile* M = new CObjMissile(600,200,false);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 
-			m_mou_f = false;
+			m_mou_f = true;
+			m_a = 0.3f;
 		}
 	}
-	else
-	{
-		m_mou_f = true;
+	else{}
+
+	if (m_mou_f == true) {	//クリックした後の処理
+		m_cnt++;			//カウントする
+		if (m_cnt == 300) {	//5秒間数えたら
+			m_mou_f = false;	//クリックできるようにする。
+			m_cnt = 0;
+			m_a = 1.0f;
+		}
 	}
 }
 

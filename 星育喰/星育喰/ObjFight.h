@@ -14,7 +14,8 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 
-	int GetLine() { return m_line_nam; }
+	int GetLine() { return m_line_nam; }//選択ラインを返す
+	int GetCount() { return m_cnt; }	//カウント数を返す
 
 private:
 	float m_mou_x;		//マウスの位置X
@@ -24,4 +25,6 @@ private:
 	
 	int m_line;			//選択前
 	int m_line_nam;		//選択中ラインナンバー(上から0,1,2)
+
+	int m_cnt;			//カウント用
 };

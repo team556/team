@@ -31,6 +31,7 @@ void CSceneFight::InitScene()
 {
 	m_cnt = 0;
 	m_speed = 0.12f;
+	m_a = 1.0f;
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
@@ -41,6 +42,10 @@ void CSceneFight::InitScene()
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
+	//背景を読み込み0番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 3, TEX_SIZE_512);
+	
+
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
@@ -49,7 +54,7 @@ void CSceneFight::InitScene()
 	CObjFight* obj = new CObjFight();		//タイトルオブジェクト作成
 	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//タイトルオブジェクト登録
 
-	//星オブジェクト作成
+	//敵星オブジェクト作成
 	CObjPlanet* obj0 = new CObjPlanet(200, 300,false);	//オブジェクト作成
 	Objs::InsertObj(obj0, OBJ_PLANET, 10);				//ブジェクト登録
 
@@ -57,17 +62,15 @@ void CSceneFight::InitScene()
 	CObjPlanet* obj1 = new CObjPlanet(900, 300, true);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);				//オブジェクト登録
 
-	//オブジェクト作成
-	CObjPushUnit* obj2 = new CObjPushUnit(300, 600, 100, 100);	//オブジェクト作成
-	Objs::InsertObj(obj2, OBJ_PLANET, 10);				//オブジェクト登録
+	//民発射ボタン
+	CObjPushUnit* obj2 = new CObjPushUnit(400, 600, 100, 100);	//オブジェクト作成
+	Objs::InsertObj(obj2, OBJ_PLANET, 10);						//オブジェクト登録
 
-	//オブジェクト作成
-	CObjPushUnit* obj3 = new CObjPushUnit(410, 600, 100, 100);	//オブジェクト作成
-	Objs::InsertObj(obj3, OBJ_PLANET, 10);				//オブジェクト登録
+	CObjPushUnit* obj3 = new CObjPushUnit(550, 600, 100, 100);	//オブジェクト作成
+	Objs::InsertObj(obj3, OBJ_PLANET, 10);						//オブジェクト登録
 
-	//オブジェクト作成
-	CObjPushUnit* obj4 = new CObjPushUnit(520, 600, 100, 100);	//オブジェクト作成
-	Objs::InsertObj(obj4, OBJ_PLANET, 10);				//オブジェクト登録
+	CObjPushUnit* obj4 = new CObjPushUnit(700, 600, 100, 100);	//オブジェクト作成
+	Objs::InsertObj(obj4, OBJ_PLANET, 10);						//オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
@@ -95,4 +98,12 @@ void CSceneFight::Scene()
 	dst.m_right =1200.0f;
 	dst.m_bottom= 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
+
+
+	if (m_cnt >= 0.5 && m_a >=0 ) {
+		m_a -= 0.01f;
+	}
+	
+	float c[4] = { 1.0f,1.0f,1.0f,m_a };
+	Font::StrDraw(L"スタート！", 420, 250, 80, c);
 }
