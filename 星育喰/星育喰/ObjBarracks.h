@@ -14,14 +14,9 @@ public:
 	void Init();		//イニシャライズ
 	void Action();		//アクション
 	void Draw();		//ドロー
-	
-	int Allocation(int type_num, int up_down_check);//振り分け関数
 private:
 	float m_Bar_color;			//兵舎カラー明度
 	float m_Bar_Lvup_color;		//兵舎レベルUPカラー明度
 	float m_Human_up_color[4];	//住民振り分けUPカラー明度
 	float m_Human_down_color[4];//住民振り分けDOWNカラー明度
-
-	wchar_t m_error[14];		//エラーメッセージのフォント用
-	float	m_alpha;			//透過度(アルファ値)
 };

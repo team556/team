@@ -72,6 +72,10 @@ void CSceneTraining::InitScene()
 	CObjBarracks* obj1 = new CObjBarracks();	//兵舎オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_BARRACKS, 20);	//兵舎オブジェクト登録
 
+	//研究所オブジェクト							
+	CObjInstitute* obj2 = new CObjInstitute();	//研究所オブジェクト作成
+	Objs::InsertObj(obj2, OBJ_INSTITUTE, 20);	//研究所オブジェクト登録
+
 	//雲演出オブジェクト(雲演出OUT)
 	CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(false);	//雲演出オブジェクト作成
 	Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
@@ -80,11 +84,14 @@ void CSceneTraining::InitScene()
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"地面TEST.gif", 0, TEX_SIZE_512);
 
-	//(仮)戻るアイコンを読み込み1番に登録
-	Draw::LoadImage(L"戻るアイコンTEST.png", 1, TEX_SIZE_512);
+	//戻るアイコンを読み込み1番に登録
+	Draw::LoadImage(L"戻る.png", 1, TEX_SIZE_512);
 
 	//兵舎を読み込み2番に登録
 	Draw::LoadImage(L"兵舎(仮).jfif", 2, TEX_SIZE_512);
+
+	//研究所を読み込み3番に登録
+	Draw::LoadImage(L"研究所.png", 3, TEX_SIZE_512);
 
 	//住民を読み込み10番に登録
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
@@ -101,10 +108,10 @@ void CSceneTraining::InitScene()
 	//施設LVUPを読み込み22番に登録
 	Draw::LoadImage(L"施設LVUP.png", 22, TEX_SIZE_512);
 
-	//兵舎振り分けUPを読み込み23番に登録
+	//住民振り分けUPを読み込み23番に登録
 	Draw::LoadImage(L"兵舎振り分けUP.png", 23, TEX_SIZE_512);
 
-	//兵舎振り分けDOWNを読み込み24番に登録
+	//住民振り分けDOWNを読み込み24番に登録
 	Draw::LoadImage(L"兵舎振り分けDOWN.png", 24, TEX_SIZE_512);
 
 	//プレイヤー惑星を読み込み50番に登録

@@ -27,7 +27,6 @@ void CObjBarracks::Init()
 
 	m_introduce_f = false;
 	m_key_lf = false;
-	
 	m_alpha = INI_ALPHA;
 }
 
@@ -373,7 +372,7 @@ void CObjBarracks::Action()
 			{
 				m_key_lf = false;
 
-				m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ表示時に後ろに出さない為に)
+				m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ閉じた時に一瞬映り込むため)
 
 				//"兵舎ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Barracks;
@@ -467,40 +466,44 @@ void CObjBarracks::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	//▼兵舎表示 
-	src.m_top    =   0.0f;
-	src.m_left   =   0.0f;
-	src.m_right  = 245.0f;
-	src.m_bottom = 206.0f;
-
-	dst.m_top    =  460.0f;
-	dst.m_left   =  810.0f;
-	dst.m_right  = 1190.0f;
-	dst.m_bottom =  690.0f;
-	Draw::Draw(2, &src, &dst, bar, 0.0f);
-
-	//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
-	if (m_introduce_f == true)
+	//施設ウインドウ(兵舎、研究所、倉庫)が開いてない時に表示するグラフィック
+	if (window_start_manage == Default || window_start_manage == BackButton)
 	{
-		//▼施設紹介ウインドウ表示
+		//▼兵舎表示 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 245.0f;
+		src.m_bottom = 206.0f;
 
-		dst.m_top = m_mou_y - 50.0f;
-		dst.m_left = m_mou_x - 100.0f;
-		dst.m_right = m_mou_x + 100.0f;
-		dst.m_bottom = m_mou_y - 10.0f;
-		Draw::Draw(21, &src, &dst, bar, 0.0f);//灰色のウインドウにする為"bar"にしている。
+		dst.m_top = 460.0f;
+		dst.m_left = 810.0f;
+		dst.m_right = 1190.0f;
+		dst.m_bottom = 690.0f;
+		Draw::Draw(2, &src, &dst, bar, 0.0f);
 
-		//▼フォント表示
-		//兵舎レベル
-		Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, white);
+		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
+		if (m_introduce_f == true)
+		{
+			//▼施設紹介ウインドウ表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x - 100.0f;
+			dst.m_right = m_mou_x + 100.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, bar, 0.0f);//灰色のウインドウにする為"bar"にしている。
+
+			//▼フォント表示
+			//兵舎レベル
+			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, white);
+		}
 	}
 
 	//兵舎ウインドウ開いている際に表示するグラフィック
-	if (window_start_manage == Barracks)
+	else if (window_start_manage == Barracks)
 	{
 		//▼灰色ウインドウ表示
 		src.m_top    =    0.0f;
@@ -517,8 +520,8 @@ void CObjBarracks::Draw()
 		//▼戻るボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 225.0f;
-		src.m_bottom = 225.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
 		dst.m_top = 30.0f;
 		dst.m_left = 30.0f;
@@ -652,43 +655,4 @@ void CObjBarracks::Draw()
 		swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
 		Font::StrDraw(str, 20, 20, 12, white);
 	}
-}
-
-//---Allocation関数
-//引数1　int type_num		:住民タイプ決定
-//引数2　int up_down_check	:振り分けUP / DOWNチェック(+1=振り分けUP / -1=振り分けDOWN)
-//▼内容
-//住民タイプと振り分けUP or DOWNを引数で渡せば、
-//以下の処理を行い、その住民タイプの振り分け後の値を返す。
-//※同時にグローバル変数である"残り住民数(g_Remain_num)"の値も変化させている。
-int CObjBarracks::Allocation(int type_num,int up_down_check)
-{
-	//▼それぞれ検査用の変数に代入
-	int Ins_human = type_num;
-	int Ins_remain = g_Remain_num;
-
-	//▼検査用の変数で変化させてみる
-	Ins_human += 100 * up_down_check;
-	Ins_remain -= 100 * up_down_check;
-
-	//▼検査用の変数が以下の条件を全て満たしていれば、実際の値を変化させる。
-	//満たしていなければ、それに応じたエラーメッセージを出し、
-	//実際の値を変化させずに関数を終了させる。
-	if (0 <= Ins_human && Ins_human <= 999900 && Ins_remain >= 0)
-	{
-		type_num += 100 * up_down_check;
-		g_Remain_num -= 100 * up_down_check;
-	}
-	else if (Ins_remain < 0) //残り住民数がいない場合
-	{	
-		swprintf_s(m_error, L"残り住民数がいません");//文字配列に文字データを入れる
-		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
-	}
-	else  //(Ins_human < 0 || 999900 < Ins_human) これ以上振り分けられない場合
-	{
-		swprintf_s(m_error, L"これ以上振り分けられません");//文字配列に文字データを入れる
-		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
-	}
-
-	return type_num;
 }
