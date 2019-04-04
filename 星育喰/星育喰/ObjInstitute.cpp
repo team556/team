@@ -174,8 +174,82 @@ void CObjInstitute::Action()
 		{
 			m_Human_down_color = 1.0f;
 		}
-		
 
+		//ミサイルボタン
+		if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473)
+		{
+			m_Mis_Button_color = 0.7f;
+
+			//左クリックされたらフラグを立て、ミサイルウインドウを開く
+			if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					m_Mis_Button_color = 0.0f;
+
+					//エラーメッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
+					//"ミサイルウインドウを開いている状態"フラグを立てる
+					window_start_manage = Missile;
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Mis_Button_color = 1.0f;
+		}
+		
+		//武器ポッドボタン
+		if (515 < m_mou_x && m_mou_x < 1120 && 493 < m_mou_y && m_mou_y < 641)
+		{
+			m_Equ_Button_color = 0.7f;
+
+			//左クリックされたらフラグを立て、武器ポッドウインドウを開く
+			if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					m_Equ_Button_color = 0.0f;
+
+					//エラーメッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
+					//"武器ポッドウインドウを開いている状態"フラグを立てる
+					window_start_manage = Equipment;
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Equ_Button_color = 1.0f;
+		}
+
+
+		return;
+	}
+	//▼ミサイルウインドウ表示時の処理
+	else if (window_start_manage == Missile)
+	{
+		return;
+	}
+	//▼武器ポッドウインドウ表示時の処理
+	else if (window_start_manage == Equipment)
+	{
 		return;
 	}
 	//ホーム画面に戻るボタンが押されたり、
@@ -252,6 +326,12 @@ void CObjInstitute::Draw()
 
 	//住民振り分けDOWN画像用
 	float down[4] = { m_Human_down_color,m_Human_down_color,m_Human_down_color,1.0f };
+
+	//ミサイルボタン用
+	float missile[4] = { m_Mis_Button_color,m_Mis_Button_color,m_Mis_Button_color,1.0f };
+
+	//武器ポッドボタン用
+	float equip[4] = { m_Equ_Button_color,m_Equ_Button_color,m_Equ_Button_color,1.0f };
 
 	//エラーメッセージ用
 	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
@@ -420,6 +500,30 @@ void CObjInstitute::Draw()
 		dst.m_bottom = 200.0f;
 		Draw::Draw(21, &src, &dst, white, 0.0f);
 
+		//▼ミサイルボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 269.0f;
+		src.m_bottom = 96.0f;
+
+		dst.m_top = 330.0f;
+		dst.m_left = 520.0f;
+		dst.m_right = 1130.0f;
+		dst.m_bottom = 480.0f;
+		Draw::Draw(25, &src, &dst, missile, 0.0f);
+
+		//▼武器ポッドボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 269.0f;
+		src.m_bottom = 96.0f;
+
+		dst.m_top = 500.0f;
+		dst.m_left = 520.0f;
+		dst.m_right = 1130.0f;
+		dst.m_bottom = 650.0f;
+		Draw::Draw(26, &src, &dst, equip, 0.0f);
+
 		//▼フォント表示
 		//研究所レベル
 		Font::StrDraw(Ins, 105.0f, 95.0f, 50.0f, white);
@@ -442,13 +546,189 @@ void CObjInstitute::Draw()
 
 		//エラーメッセージ
 		Font::StrDraw(m_error, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
-
-
-
-		//デバッグ用仮マウス位置表示
-		wchar_t str[256];
-		swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-		Font::StrDraw(str, 20, 20, 12, white);
 	}
+	
+	//ミサイルウインドウ開いている際に表示するグラフィック
+	else if (window_start_manage == Missile)
+	{
+		//▽研究所ウインドウの上に開いているように見せるため、
+		//ダミーの研究所ウインドウのグラフィックを描画する。
+
+		//▼灰色ウインドウ表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1160.0f;
+		src.m_bottom = 660.0f;
+
+		dst.m_top = 20.0f;
+		dst.m_left = 20.0f;
+		dst.m_right = 1180.0f;
+		dst.m_bottom = 680.0f;
+		Draw::Draw(20, &src, &dst, white, 0.0f);
+
+		//▼戻るボタン表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 30.0f;
+		dst.m_left = 30.0f;
+		dst.m_right = 80.0f;
+		dst.m_bottom = 80.0f;
+		Draw::Draw(1, &src, &dst, back, 0.0f);
+
+		//▼研究所LVUP表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 48.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 470.0f;
+		dst.m_left = 30.0f;
+		dst.m_right = 150.0f;
+		dst.m_bottom = 620.0f;
+		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
+
+		//▼レベルUP条件ウインドウ表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 420.0f;
+		dst.m_left = 150.0f;
+		dst.m_right = 450.0f;
+		dst.m_bottom = 670.0f;
+		Draw::Draw(21, &src, &dst, white, 0.0f);
+
+
+		//▽以下はミサイルウインドウで描画するもの
+
+		//▼灰色ウインドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1160.0f;
+		src.m_bottom = 660.0f;
+
+		dst.m_top = 40.0f;
+		dst.m_left = 40.0f;
+		dst.m_right = 1160.0f;
+		dst.m_bottom = 660.0f;
+		Draw::Draw(20, &src, &dst, white, 0.0f);
+
+		//▼戻るボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 50.0f;
+		dst.m_right = 100.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(1, &src, &dst, back, 0.0f);
+
+		//▼ミサイル表示 
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 80.0f;
+		src.m_bottom = 82.0f;
+
+		dst.m_top = 150.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 400.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(4, &src, &dst, white, 0.0f);
+	}
+
+	//武器ポッドウインドウ開いている際に表示するグラフィック
+	else if (window_start_manage == Equipment)
+	{
+		//▽研究所ウインドウの上に開いているように見せるため、
+		//ダミーの研究所ウインドウのグラフィックを描画する。
+
+		//▼灰色ウインドウ表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1160.0f;
+		src.m_bottom = 660.0f;
+
+		dst.m_top = 20.0f;
+		dst.m_left = 20.0f;
+		dst.m_right = 1180.0f;
+		dst.m_bottom = 680.0f;
+		Draw::Draw(20, &src, &dst, white, 0.0f);
+
+		//▼戻るボタン表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 30.0f;
+		dst.m_left = 30.0f;
+		dst.m_right = 80.0f;
+		dst.m_bottom = 80.0f;
+		Draw::Draw(1, &src, &dst, back, 0.0f);
+
+		//▼研究所LVUP表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 48.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 470.0f;
+		dst.m_left = 30.0f;
+		dst.m_right = 150.0f;
+		dst.m_bottom = 620.0f;
+		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
+
+		//▼レベルUP条件ウインドウ表示(ダミー研究所ウインドウ用)
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 420.0f;
+		dst.m_left = 150.0f;
+		dst.m_right = 450.0f;
+		dst.m_bottom = 670.0f;
+		Draw::Draw(21, &src, &dst, white, 0.0f);
+
+
+		//▽以下は武器ポッドウインドウで描画するもの
+
+		//▼灰色ウインドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1160.0f;
+		src.m_bottom = 660.0f;
+
+		dst.m_top = 40.0f;
+		dst.m_left = 40.0f;
+		dst.m_right = 1160.0f;
+		dst.m_bottom = 660.0f;
+		Draw::Draw(20, &src, &dst, white, 0.0f);
+
+		//▼戻るボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 50.0f;
+		dst.m_right = 100.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(1, &src, &dst, back, 0.0f);
+	}
+
+
+
+	//デバッグ用仮マウス位置表示
+	wchar_t str[256];
+	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	Font::StrDraw(str, 20, 20, 12, white);
 }
 

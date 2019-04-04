@@ -93,6 +93,9 @@ void CSceneTraining::InitScene()
 	//研究所を読み込み3番に登録
 	Draw::LoadImage(L"研究所.png", 3, TEX_SIZE_512);
 
+	//ミサイル(仮)を読み込み4番に登録
+	Draw::LoadImage(L"ミサイル(仮).png", 4, TEX_SIZE_512);
+
 	//住民を読み込み10番に登録
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
 
@@ -113,6 +116,12 @@ void CSceneTraining::InitScene()
 
 	//住民振り分けDOWNを読み込み24番に登録
 	Draw::LoadImage(L"兵舎振り分けDOWN.png", 24, TEX_SIZE_512);
+
+	//ミサイルボタン(仮)を読み込み25番に登録
+	Draw::LoadImage(L"ミサイルボタン(仮).png", 25, TEX_SIZE_512);
+
+	//武器ポッドボタン(仮)を読み込み26番に登録
+	Draw::LoadImage(L"武器ポッドボタン(仮).png", 26, TEX_SIZE_512);
 
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);

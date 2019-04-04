@@ -19,4 +19,6 @@ private:
 	float m_Ins_Lvup_color;		//研究所レベルUPカラー明度
 	float m_Human_up_color;		//住民振り分けUPカラー明度
 	float m_Human_down_color;	//住民振り分けDOWNカラー明度
+	float m_Mis_Button_color;	//ミサイルボタンカラー明度
+	float m_Equ_Button_color;	//武器ポッドボタンカラー明度
 };
