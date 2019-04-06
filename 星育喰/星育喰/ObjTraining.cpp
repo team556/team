@@ -21,6 +21,7 @@ int  CObjTraining::window_start_manage = Default;
 //グローバル変数の定義
 int g_Bar_Level = 1;
 int g_Ins_Level = 1;
+int g_Mis_Recast_Level = 0;
 int g_Power_num = 0;
 int g_Defense_num = 0;
 int g_Speed_num = 0;

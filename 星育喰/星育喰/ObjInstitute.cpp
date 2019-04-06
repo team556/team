@@ -24,6 +24,25 @@ void CObjInstitute::Init()
 	m_introduce_f = false;
 	m_key_lf = false;
 	m_alpha = INI_ALPHA;
+
+	//▼ミサイルリキャストタイム(RCT)設定
+	m_Mis_recast_time[0] = 5.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
+	m_Mis_recast_time[1] = 4.2f;//RCLvが1の時のRCT
+	m_Mis_recast_time[2] = 3.4f;//RCLvが2の時のRCT
+	m_Mis_recast_time[3] = 2.6f;//RCLvが3の時のRCT
+	m_Mis_recast_time[4] = 1.8f;//RCLvが4の時のRCT(最大レベル)
+
+	//▼ミサイルリキャストの次のLVUPに必要な研究所レベル設定
+	m_Mis_recast_next_Ins_Lv[0] = 1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[1] = 3; //RCLvが1の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[2] = 6; //RCLvが2の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[3] = 10; //RCLvが3の時の必要研究所レベル
+
+	//▼ミサイルリキャストの次のLVUPに必要な研究員の住民数設定
+	m_Mis_recast_next_Hum_num[0] = 100;  //ミサイルリキャストレベル(RCLv)が0の時の必要研究員数
+	m_Mis_recast_next_Hum_num[1] = 1000; //RCLvが1の時の必要研究員数
+	m_Mis_recast_next_Hum_num[2] = 5000; //RCLvが2の時の必要研究員数
+	m_Mis_recast_next_Hum_num[3] = 10000;//RCLvが3の時の必要研究員数
 }
 
 //アクション
@@ -54,14 +73,18 @@ void CObjInstitute::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
-				m_key_rf = false;
+				//前シーン(ミサイルウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
 
-				//エラーメッセージを非表示にするため、透過度を0.0fにする
-				m_alpha = 0.0f;
+					//エラーメッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
 
-				//"どのウインドウも開いていない状態"フラグを立てる
-				window_start_manage = Default;
+					//"どのウインドウも開いていない状態"フラグを立てる
+					window_start_manage = Default;
+				}
 			}
 			//左クリック入力時
 			else if (m_mou_l == true)
@@ -85,6 +108,7 @@ void CObjInstitute::Action()
 		}
 		else
 		{
+			m_key_rf = true;
 			m_Back_Button_color = 1.0f;
 		}
 
@@ -135,6 +159,19 @@ void CObjInstitute::Action()
 					m_Human_up_color = 0.0f;
 
 					g_Research_num = Allocation(g_Research_num, +1);//振り分け関数を呼び出す
+
+					//▼ミサイルリキャストレベルUPチェック
+					//レベルUP条件を満たしているかチェックし、
+					//満たしていればレベルUPさせる。
+					if (g_Mis_Recast_Level == MIS_MAX_LV - 1)
+					{
+						;//最大レベルの時はこのチェック処理を飛ばす
+					}
+					else if (g_Ins_Level >= m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] &&
+						g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
+					{
+						g_Mis_Recast_Level++;//条件を満たしているのでレベルUP
+					}
 				}
 			}
 			else
@@ -163,6 +200,18 @@ void CObjInstitute::Action()
 					m_Human_down_color = 0.0f;
 
 					g_Research_num = Allocation(g_Research_num, -1);//振り分け関数を呼び出す
+
+					//▼ミサイルリキャストレベルDOWNチェック
+					//レベルDOWN条件を満たしているかチェックし、
+					//満たしていればレベルDOWNさせる。
+					if (g_Mis_Recast_Level == 0)
+					{
+						;//初期レベルの時はこのチェック処理を飛ばす
+					}
+					else if (g_Research_num < m_Mis_recast_next_Hum_num[g_Mis_Recast_Level - 1])
+					{
+						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
+					}
 				}
 			}
 			else
@@ -245,6 +294,44 @@ void CObjInstitute::Action()
 	//▼ミサイルウインドウ表示時の処理
 	else if (window_start_manage == Missile)
 	{
+		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でミサイルウインドウを閉じる
+		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		{
+			m_Back_Button_color = 0.7f;
+
+			//▼クリックされたらフラグを立て、ミサイルウインドウを閉じる
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+				m_key_rf = false;
+
+				//"研究所ウインドウを開いている状態"フラグを立てる
+				window_start_manage = Institute;
+			}
+			//左クリック入力時
+			else if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					//"研究所ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Institute;
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Back_Button_color = 1.0f;
+		}
+
+
 		return;
 	}
 	//▼武器ポッドウインドウ表示時の処理
@@ -346,9 +433,29 @@ void CObjInstitute::Draw()
 	swprintf_s(human_remain, L"残り %6d 人", g_Remain_num);//その文字配列に文字データを入れる
 
 	//研究員の住民数用
-	wchar_t Research_num[9];						 //9文字分格納可能な文字配列を4つ宣言(それぞれ最大値は999999)
+	wchar_t Research_num[9];						 //9文字分格納可能な文字配列を宣言(最大値は999999)
 	swprintf_s(Research_num, L"%6d 人", g_Research_num);//その文字配列に文字データを入れる
 
+	//ミサイルリキャストタイム用
+	wchar_t Mis_recast[7];							 //7文字分格納可能な文字配列を宣言(最大値は99.9f)
+	swprintf_s(Mis_recast, L"%4.1f s", m_Mis_recast_time[g_Mis_Recast_Level]);//その文字配列に文字データを入れる
+
+	//ミサイルリキャスト次のLVUPに関する情報用
+	wchar_t Next_Lvup[26];							 //26文字分格納可能な文字配列を宣言
+	//最大レベルの時の処理
+	if (g_Mis_Recast_Level == MIS_MAX_LV - 1)
+	{
+		swprintf_s(Next_Lvup, L"これ以上レベルUP出来ません");//その文字配列に文字データを入れる
+	}
+	//それ以外のレベルの時の処理
+	else
+	{
+		swprintf_s(Next_Lvup, L"Lv.%2d & %6d 人 = %4.1f s", 
+			m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level], 
+			m_Mis_recast_next_Hum_num[g_Mis_Recast_Level], 
+			m_Mis_recast_time[g_Mis_Recast_Level + 1]);//その文字配列に文字データを入れる
+	}
+	
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -576,7 +683,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 30.0f;
 		dst.m_right = 80.0f;
 		dst.m_bottom = 80.0f;
-		Draw::Draw(1, &src, &dst, back, 0.0f);
+		Draw::Draw(1, &src, &dst, white, 0.0f);
 
 		//▼研究所LVUP表示(ダミー研究所ウインドウ用)
 		src.m_top = 0.0f;
@@ -588,7 +695,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 30.0f;
 		dst.m_right = 150.0f;
 		dst.m_bottom = 620.0f;
-		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
+		Draw::Draw(22, &src, &dst, white, 0.0f);
 
 		//▼レベルUP条件ウインドウ表示(ダミー研究所ウインドウ用)
 		src.m_top = 0.0f;
@@ -635,11 +742,42 @@ void CObjInstitute::Draw()
 		src.m_right = 80.0f;
 		src.m_bottom = 82.0f;
 
-		dst.m_top = 150.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 400.0f;
-		dst.m_bottom = 350.0f;
+		dst.m_top = 325.0f;
+		dst.m_left = 75.0f;
+		dst.m_right = 375.0f;
+		dst.m_bottom = 575.0f;
 		Draw::Draw(4, &src, &dst, white, 0.0f);
+
+		//▼メッセージウインドウを3つ表示
+		for (int i = 0; i < 3; i++)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = 75.0f + 190.0f * i;
+			dst.m_left = 400.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 255.0f + 190.0f * i;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+		}
+
+		//▼フォント表示
+		//研究所レベル
+		Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
+
+		//研究員の住民数
+		Font::StrDraw(L"研究員", 510.0f, 175.0f, 65.0f, black);
+		Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
+
+		//ミサイルリキャストタイム
+		Font::StrDraw(L"再生産スピード(リキャスト)", 455.0f, 285.0f, 50.0f, black);
+		Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
+
+		//ミサイルリキャスト次のLVUPに関する情報
+		Font::StrDraw(L"NEXT LV UP", 740.0f, 475.0f, 65.0f, black);
+		Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 	}
 
 	//武器ポッドウインドウ開いている際に表示するグラフィック
@@ -670,7 +808,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 30.0f;
 		dst.m_right = 80.0f;
 		dst.m_bottom = 80.0f;
-		Draw::Draw(1, &src, &dst, back, 0.0f);
+		Draw::Draw(1, &src, &dst, white, 0.0f);
 
 		//▼研究所LVUP表示(ダミー研究所ウインドウ用)
 		src.m_top = 0.0f;
@@ -682,7 +820,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 30.0f;
 		dst.m_right = 150.0f;
 		dst.m_bottom = 620.0f;
-		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
+		Draw::Draw(22, &src, &dst, white, 0.0f);
 
 		//▼レベルUP条件ウインドウ表示(ダミー研究所ウインドウ用)
 		src.m_top = 0.0f;
