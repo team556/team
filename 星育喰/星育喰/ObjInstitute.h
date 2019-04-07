@@ -25,6 +25,9 @@ private:
 	float m_Mis_Button_color;	//ミサイルボタンカラー明度
 	float m_Equ_Button_color;	//武器ポッドボタンカラー明度
 
+	//wchar_t m_Wep_message[3(←3行分仮に用意)][100(入れれる文字数)];//武器必要素材&人数メッセージのフォント用
+	float m_Wep_message_alpha;	//武器必要素材&人数メッセージの透過度(アルファ値)
+
 	float m_Mis_recast_time[MIS_MAX_LV];			//ミサイルリキャストタイム
 	int m_Mis_recast_next_Ins_Lv[MIS_MAX_LV - 1];	//ミサイルリキャストの次のLVUPに必要な研究所レベル管理用
 	int m_Mis_recast_next_Hum_num[MIS_MAX_LV - 1];	//ミサイルリキャストの次のLVUPに必要な研究員の住民数管理用

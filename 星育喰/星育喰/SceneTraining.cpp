@@ -102,6 +102,9 @@ void CSceneTraining::InitScene()
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
 
+	//プレイヤー惑星を読み込み16番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 16, TEX_SIZE_512);
+
 	//灰色ウインドウ(仮)を読み込み20番に登録
 	Draw::LoadImage(L"灰色ウインドウ(仮).png", 20, TEX_SIZE_512);
 
@@ -123,8 +126,50 @@ void CSceneTraining::InitScene()
 	//武器ポッドボタン(仮)を読み込み26番に登録
 	Draw::LoadImage(L"武器ポッドボタン(仮).png", 26, TEX_SIZE_512);
 
-	//プレイヤー惑星を読み込み50番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+	//パワー武器Lv.1の画像を読み込み49番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 49, TEX_SIZE_512);
+
+	//パワー武器Lv.2の画像を読み込み50番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 50, TEX_SIZE_512);
+
+	//パワー武器Lv.3の画像を読み込み51番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 51, TEX_SIZE_512);
+
+	//ディフェンス武器Lv.1の画像を読み込み52番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 52, TEX_SIZE_512);
+
+	//ディフェンス武器Lv.2の画像を読み込み53番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 53, TEX_SIZE_512);
+
+	//ディフェンス武器Lv.3の画像を読み込み54番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 54, TEX_SIZE_512);
+
+	//スピード武器Lv.1の画像を読み込み55番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 55, TEX_SIZE_512);
+
+	//スピード武器Lv.2の画像を読み込み56番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 56, TEX_SIZE_512);
+
+	//スピード武器Lv.3の画像を読み込み57番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 57, TEX_SIZE_512);
+
+	//バランス武器Lv.1の画像を読み込み58番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 58, TEX_SIZE_512);
+
+	//バランス武器Lv.2の画像を読み込み59番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 59, TEX_SIZE_512);
+
+	//バランス武器Lv.3の画像を読み込み60番に登録
+	Draw::LoadImage(L"武器画像(仮).png", 60, TEX_SIZE_512);
+
+	//ポッドLv.1の画像を読み込み61番に登録
+	Draw::LoadImage(L"ポッド画像(仮).png", 61, TEX_SIZE_512);
+
+	//ポッドLv.2の画像を読み込み62番に登録
+	Draw::LoadImage(L"ポッド画像(仮).png", 62, TEX_SIZE_512);
+
+	//ポッドLv.3の画像を読み込み63番に登録
+	Draw::LoadImage(L"ポッド画像(仮).png", 63, TEX_SIZE_512);
 }
 
 //ゲームメイン実行中メソッド

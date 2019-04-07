@@ -20,10 +20,14 @@ void CObjInstitute::Init()
 	m_Ins_Lvup_color = INI_COLOR;
 	m_Human_up_color = INI_COLOR;
 	m_Human_down_color = INI_COLOR;
+	m_Mis_Button_color = INI_COLOR;
+	m_Equ_Button_color = INI_COLOR;
+
+	m_Wep_message_alpha = INI_ALPHA;
 
 	m_introduce_f = false;
 	m_key_lf = false;
-	m_alpha = INI_ALPHA;
+	m_error_alpha = INI_ALPHA;
 
 	//▼ミサイルリキャストタイム(RCT)設定
 	m_Mis_recast_time[0] = 5.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
@@ -59,9 +63,9 @@ void CObjInstitute::Action()
 	if (window_start_manage == Institute)
 	{
 		//マウスカーソル上部に表示されるエラーメッセージを徐々に非表示にする
-		if (m_alpha > 0.0f)
+		if (m_error_alpha > 0.0f)
 		{
-			m_alpha -= 0.01f;
+			m_error_alpha -= 0.01f;
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
@@ -80,7 +84,7 @@ void CObjInstitute::Action()
 					m_key_rf = false;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+					m_error_alpha = 0.0f;
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
@@ -95,7 +99,7 @@ void CObjInstitute::Action()
 					m_key_lf = false;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+					m_error_alpha = 0.0f;
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
@@ -240,7 +244,7 @@ void CObjInstitute::Action()
 					m_Mis_Button_color = 0.0f;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+					m_error_alpha = 0.0f;
 
 					//"ミサイルウインドウを開いている状態"フラグを立てる
 					window_start_manage = Missile;
@@ -272,7 +276,7 @@ void CObjInstitute::Action()
 					m_Equ_Button_color = 0.0f;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+					m_error_alpha = 0.0f;
 
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
@@ -291,15 +295,15 @@ void CObjInstitute::Action()
 
 		return;
 	}
-	//▼ミサイルウインドウ表示時の処理
-	else if (window_start_manage == Missile)
+	//▼ミサイルウインドウ、もしくは武器ポッドウインドウ表示時の処理
+	else if (window_start_manage == Missile || window_start_manage == Equipment)
 	{
-		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でミサイルウインドウを閉じる
+		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
 		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
 			m_Back_Button_color = 0.7f;
 
-			//▼クリックされたらフラグを立て、ミサイルウインドウを閉じる
+			//▼クリックされたらフラグを立て、このウインドウを閉じる
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
@@ -332,11 +336,20 @@ void CObjInstitute::Action()
 		}
 
 
-		return;
-	}
-	//▼武器ポッドウインドウ表示時の処理
-	else if (window_start_manage == Equipment)
-	{
+		//武器ポッドウインドウを開いていた場合、更に以下の処理を行う
+		if (window_start_manage == Equipment)
+		{
+			if (277 < m_mou_x && m_mou_x < 407 && 207 < m_mou_y && m_mou_y < 336)
+			{
+				m_Wep_message_alpha = 1.0f;
+			}
+			else
+			{
+				m_Wep_message_alpha = 0.0f;
+			}
+		}
+
+
 		return;
 	}
 	//ホーム画面に戻るボタンが押されたり、
@@ -390,8 +403,20 @@ void CObjInstitute::Draw()
 
 
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	//赤色
+	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
+
+	//青色
+	float blue[4] = { 0.0f,0.0f,1.0f,1.0f };
+
 	//青色(若干緑入り)
-	float blue[4] = { 0.0f,0.3f,0.9f,1.0f };
+	float blue2[4] = { 0.0f,0.3f,0.9f,1.0f };
+
+	//緑色
+	float green[4] = { 0.0f,1.0f,0.0f,1.0f };
+
+	//黄色
+	float yellow[4] = { 1.0f,1.0f,0.0f,1.0f };
 
 	//黒色
 	float black[4] = { 0.0f,0.0f,0.0f,1.0f };
@@ -420,8 +445,14 @@ void CObjInstitute::Draw()
 	//武器ポッドボタン用
 	float equip[4] = { m_Equ_Button_color,m_Equ_Button_color,m_Equ_Button_color,1.0f };
 
+	//武器必要素材&人数フォント用
+	float Wep_message_font[4] = { 0.0f,0.0f,0.0f,m_Wep_message_alpha };
+
+	//武器必要素材&人数ウインドウ用
+	float Wep_message_window[4] = { 1.0f,1.0f,1.0f,m_Wep_message_alpha };
+
 	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
+	float error[4] = { 1.0f,0.0f,0.0f,m_error_alpha };
 
 	//▽フォント準備
 	//研究所レベル用
@@ -645,18 +676,18 @@ void CObjInstitute::Draw()
 
 		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
 
-		Font::StrDraw(L"研究員", 505.0f, 145.0f, 55.0f, blue);
+		Font::StrDraw(L"研究員", 505.0f, 145.0f, 55.0f, blue2);
 
 		Font::StrDraw(L"▼レベルUP条件", 175.0f, 440.0f, 25.0f, black);
-		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, black);
-		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, black);
+		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
+		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
 
 		//エラーメッセージ
 		Font::StrDraw(m_error, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
 	}
 	
-	//ミサイルウインドウ開いている際に表示するグラフィック
-	else if (window_start_manage == Missile)
+	//ミサイルウインドウ、もしくは武器ポッドウインドウ開いている際に表示するグラフィック
+	else if (window_start_manage == Missile || window_start_manage == Equipment)
 	{
 		//▽研究所ウインドウの上に開いているように見せるため、
 		//ダミーの研究所ウインドウのグラフィックを描画する。
@@ -710,7 +741,7 @@ void CObjInstitute::Draw()
 		Draw::Draw(21, &src, &dst, white, 0.0f);
 
 
-		//▽以下はミサイルウインドウで描画するもの
+		//▽以下はミサイルウインドウ、武器ポッドウインドウのどちらでも描画
 
 		//▼灰色ウインドウ表示
 		src.m_top = 0.0f;
@@ -736,137 +767,115 @@ void CObjInstitute::Draw()
 		dst.m_bottom = 100.0f;
 		Draw::Draw(1, &src, &dst, back, 0.0f);
 
-		//▼ミサイル表示 
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 80.0f;
-		src.m_bottom = 82.0f;
 
-		dst.m_top = 325.0f;
-		dst.m_left = 75.0f;
-		dst.m_right = 375.0f;
-		dst.m_bottom = 575.0f;
-		Draw::Draw(4, &src, &dst, white, 0.0f);
-
-		//▼メッセージウインドウを3つ表示
-		for (int i = 0; i < 3; i++)
+		//▽以下はミサイルウインドウで描画するもの
+		if (window_start_manage == Missile)
 		{
+			//▼ミサイル表示 
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 80.0f;
+			src.m_bottom = 82.0f;
+
+			dst.m_top = 325.0f;
+			dst.m_left = 75.0f;
+			dst.m_right = 375.0f;
+			dst.m_bottom = 575.0f;
+			Draw::Draw(4, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウを3つ表示
+			for (int i = 0; i < 3; i++)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = 75.0f + 190.0f * i;
+				dst.m_left = 400.0f;
+				dst.m_right = 1150.0f;
+				dst.m_bottom = 255.0f + 190.0f * i;
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+			}
+
+			//▼フォント表示
+			//研究所レベル
+			Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
+
+			//研究員の住民数
+			Font::StrDraw(L"研究員", 510.0f, 175.0f, 65.0f, black);
+			Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
+
+			//ミサイルリキャストタイム
+			Font::StrDraw(L"再生産スピード(リキャスト)", 455.0f, 285.0f, 50.0f, black);
+			Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
+
+			//ミサイルリキャスト次のLVUPに関する情報
+			Font::StrDraw(L"NEXT LV UP", 740.0f, 475.0f, 65.0f, black);
+			Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
+		}
+
+		//▽以下は武器ポッドウインドウで描画するもの
+		else // (window_start_manage == Equipment)
+		{
+			//▼武器ポッド画像集を表示
+			for (int i = 0; i < 5; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 64.0f;
+					src.m_bottom = 64.0f;
+
+					dst.m_top = 210.0f + j * 150.0f;
+					dst.m_left = 280.0f + i * 170.0f;
+					dst.m_right = 410.0f + i * 170.0f;
+					dst.m_bottom = 340.0f + j * 150.0f;
+					Draw::Draw(49 + j + i * 3, &src, &dst, white, 0.0f);
+				}
+			}
+
+			//▼フォント表示
+			//武器レベル
+			wchar_t weapon_Lv[5];
+			for (int i = 0; i < 3; i++)
+			{
+				swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
+				Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
+			}
+
+			//各タイプ(パワー、スピード等)、ポッドのフォント
+			Font::StrDraw(L"パワー", 285.0f, 98.0f, 40.0f, red);
+
+			Font::StrDraw(L"ディフェンス", 440.0f, 105.0f, 25.0f, blue);
+
+			Font::StrDraw(L"スピード", 615.0f, 100.0f, 35.0f, green);
+
+			Font::StrDraw(L"バランス", 785.0f, 100.0f, 35.0f, white);
+
+			Font::StrDraw(L"ポッド", 965.0f, 97.0f, 40.0f, yellow);
+
+			//▼武器必要素材&人数メッセージ表示
+			//ウインドウ表示 
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 64.0f;
 			src.m_bottom = 64.0f;
 
-			dst.m_top = 75.0f + 190.0f * i;
-			dst.m_left = 400.0f;
-			dst.m_right = 1150.0f;
-			dst.m_bottom = 255.0f + 190.0f * i;
-			Draw::Draw(21, &src, &dst, white, 0.0f);
+			dst.m_top = m_mou_y - 210.0f;
+			dst.m_left = m_mou_x - 150.0f;
+			dst.m_right = m_mou_x + 150.0f;
+			dst.m_bottom = m_mou_y + 0.0f;
+			Draw::Draw(21, &src, &dst, Wep_message_window, 0.0f);
 		}
-
-		//▼フォント表示
-		//研究所レベル
-		Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
-
-		//研究員の住民数
-		Font::StrDraw(L"研究員", 510.0f, 175.0f, 65.0f, black);
-		Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
-
-		//ミサイルリキャストタイム
-		Font::StrDraw(L"再生産スピード(リキャスト)", 455.0f, 285.0f, 50.0f, black);
-		Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
-
-		//ミサイルリキャスト次のLVUPに関する情報
-		Font::StrDraw(L"NEXT LV UP", 740.0f, 475.0f, 65.0f, black);
-		Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 	}
 
-	//武器ポッドウインドウ開いている際に表示するグラフィック
-	else if (window_start_manage == Equipment)
-	{
-		//▽研究所ウインドウの上に開いているように見せるため、
-		//ダミーの研究所ウインドウのグラフィックを描画する。
-
-		//▼灰色ウインドウ表示(ダミー研究所ウインドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
-
-		dst.m_top = 20.0f;
-		dst.m_left = 20.0f;
-		dst.m_right = 1180.0f;
-		dst.m_bottom = 680.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
-
-		//▼戻るボタン表示(ダミー研究所ウインドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-		dst.m_top = 30.0f;
-		dst.m_left = 30.0f;
-		dst.m_right = 80.0f;
-		dst.m_bottom = 80.0f;
-		Draw::Draw(1, &src, &dst, white, 0.0f);
-
-		//▼研究所LVUP表示(ダミー研究所ウインドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 48.0f;
-		src.m_bottom = 64.0f;
-
-		dst.m_top = 470.0f;
-		dst.m_left = 30.0f;
-		dst.m_right = 150.0f;
-		dst.m_bottom = 620.0f;
-		Draw::Draw(22, &src, &dst, white, 0.0f);
-
-		//▼レベルUP条件ウインドウ表示(ダミー研究所ウインドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-		dst.m_top = 420.0f;
-		dst.m_left = 150.0f;
-		dst.m_right = 450.0f;
-		dst.m_bottom = 670.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
-
-
-		//▽以下は武器ポッドウインドウで描画するもの
-
-		//▼灰色ウインドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
-
-		dst.m_top = 40.0f;
-		dst.m_left = 40.0f;
-		dst.m_right = 1160.0f;
-		dst.m_bottom = 660.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
-
-		//▼戻るボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-		dst.m_top = 50.0f;
-		dst.m_left = 50.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 100.0f;
-		Draw::Draw(1, &src, &dst, back, 0.0f);
-	}
-
-
+	
 
 	//デバッグ用仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, white);
+	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
 }
 

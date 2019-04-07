@@ -208,7 +208,7 @@ void CObjTraining::Draw()
 		dst.m_left = 450.0f - m_size;
 		dst.m_right = 750.0f + m_size;
 		dst.m_bottom = 550.0f + m_size;
-		Draw::Draw(50, &src, &dst, d, 0.0f);
+		Draw::Draw(16, &src, &dst, d, 0.0f);
 	}
 
 
@@ -216,7 +216,7 @@ void CObjTraining::Draw()
 	//デバッグ用仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, d);
+	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }
 
 //---Allocation関数
@@ -248,12 +248,12 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	else if (Tmp_remain < 0) //残り住民数がいない場合
 	{
 		swprintf_s(m_error, L"残り住民数がいません");//文字配列に文字データを入れる
-		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
+		m_error_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
 	}
 	else  //(Tmp_human < 0 || 999900 < Tmp_human) これ以上振り分けられない場合
 	{
 		swprintf_s(m_error, L"これ以上振り分けられません");//文字配列に文字データを入れる
-		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
+		m_error_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
 	}
 
 	return type_num;

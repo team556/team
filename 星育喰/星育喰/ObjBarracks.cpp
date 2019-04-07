@@ -27,7 +27,7 @@ void CObjBarracks::Init()
 
 	m_introduce_f = false;
 	m_key_lf = false;
-	m_alpha = INI_ALPHA;
+	m_error_alpha = INI_ALPHA;
 }
 
 //アクション
@@ -44,9 +44,9 @@ void CObjBarracks::Action()
 	if (window_start_manage == Barracks)
 	{
 		//マウスカーソル上部に表示されるエラーメッセージを徐々に非表示にする
-		if (m_alpha > 0.0f)
+		if (m_error_alpha > 0.0f)
 		{
-			m_alpha -= 0.01f;
+			m_error_alpha -= 0.01f;
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
@@ -62,7 +62,7 @@ void CObjBarracks::Action()
 				m_key_rf = false;
 
 				//エラーメッセージを非表示にするため、透過度を0.0fにする
-				m_alpha = 0.0f;
+				m_error_alpha = 0.0f;
 
 				//"どのウインドウも開いていない状態"フラグを立てる
 				window_start_manage = Default;
@@ -76,7 +76,7 @@ void CObjBarracks::Action()
 					m_key_lf = false;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+					m_error_alpha = 0.0f;
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
@@ -444,7 +444,7 @@ void CObjBarracks::Draw()
 	};
 
 	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
+	float error[4] = { 1.0f,0.0f,0.0f,m_error_alpha };
 
 	//▽フォント準備
 	//兵舎レベル用
@@ -629,6 +629,7 @@ void CObjBarracks::Draw()
 			Font::StrDraw(human_num[i], 950.0f, 150.0f + i * 110.0f, 40.0f, black);
 		}
 
+		//その他フォント
 		Font::StrDraw(L"兵舎レベルＵＰ", 60.0f, 370.0f, 50.0f, white);
 
 		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
@@ -653,6 +654,6 @@ void CObjBarracks::Draw()
 		//デバッグ用仮マウス位置表示
 		wchar_t str[256];
 		swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-		Font::StrDraw(str, 20, 20, 12, white);
+		Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
 	}
 }

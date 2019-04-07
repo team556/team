@@ -31,7 +31,7 @@ protected:
 	float m_Back_Button_color;	//戻るボタンカラー明度
 
 	wchar_t m_error[14];		//エラーメッセージのフォント用
-	float	m_alpha;			//透過度(アルファ値)
+	float	m_error_alpha;		//エラーメッセージの透過度(アルファ値)
 
 	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
 	static int  window_start_manage;//施設ウインドウの起動管理フラグ
