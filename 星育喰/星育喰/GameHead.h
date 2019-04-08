@@ -57,12 +57,15 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
-extern int g_Bar_Level;		//兵舎レベル
-extern int g_Power_num;		//パワー住民数
-extern int g_Defense_num;	//ディフェンス住民数
-extern int g_Speed_num;		//スピード住民数
-extern int g_Balance_num;	//バランス住民数
-extern int g_Remain_num;	//残り住民数
+extern int g_Bar_Level;			//兵舎レベル
+extern int g_Ins_Level;			//研究所レベル
+extern int g_Mis_Recast_Level;	//ミサイルリキャストレベル
+extern int g_Power_num;			//パワー住民数
+extern int g_Defense_num;		//ディフェンス住民数
+extern int g_Speed_num;			//スピード住民数
+extern int g_Balance_num;		//バランス住民数
+extern int g_Research_num;		//研究員住民数
+extern int g_Remain_num;		//残り住民数
 
 
 //------------------------------------------------

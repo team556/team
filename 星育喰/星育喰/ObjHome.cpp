@@ -393,5 +393,5 @@ void CObjHome::Draw()
 	//デバッグ用仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, d);
+	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }
