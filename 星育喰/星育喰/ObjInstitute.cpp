@@ -346,13 +346,13 @@ void CObjInstitute::Action()
 			}
 
 			//パワー武器Lv.2
-			else if (277 < m_mou_x && m_mou_x < 407 && 357 < m_mou_y && m_mou_y < 486)
+			else if (277 < m_mou_x && m_mou_x < 407 && 355 < m_mou_y && m_mou_y < 483)
 			{
 				m_Wep_message_alpha = 1.0f;
 			}
 
 			//パワー武器Lv.3
-			else if (277 < m_mou_x && m_mou_x < 407 && 507 < m_mou_y && m_mou_y < 636)
+			else if (277 < m_mou_x && m_mou_x < 407 && 502 < m_mou_y && m_mou_y < 632)
 			{
 				m_Wep_message_alpha = 1.0f;
 			}
