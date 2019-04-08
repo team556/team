@@ -39,7 +39,7 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 
 		float m_Ware_color;		 //倉庫カラー明度
 		float m_Back_color;		 //戻るボタンカラー明度
-		float m_Object_color[3]; //オブジェクトボタンカラー明度
+		float m_Object_color[4]; //オブジェクトボタンカラー明度
 		bool m_f;
 
 };
