@@ -339,14 +339,32 @@ void CObjInstitute::Action()
 		//武器ポッドウインドウを開いていた場合、更に以下の処理を行う
 		if (window_start_manage == Equipment)
 		{
+			//パワー武器Lv.1
 			if (277 < m_mou_x && m_mou_x < 407 && 207 < m_mou_y && m_mou_y < 336)
 			{
 				m_Wep_message_alpha = 1.0f;
 			}
+
+			//パワー武器Lv.2
+			else if (277 < m_mou_x && m_mou_x < 407 && 357 < m_mou_y && m_mou_y < 486)
+			{
+				m_Wep_message_alpha = 1.0f;
+			}
+
+			//パワー武器Lv.3
+			else if (277 < m_mou_x && m_mou_x < 407 && 507 < m_mou_y && m_mou_y < 636)
+			{
+				m_Wep_message_alpha = 1.0f;
+			}
+
+			//上記の範囲外にマウスカーソルがある場合、
+			//武器必要素材&人数メッセージを非表示にする
 			else
 			{
 				m_Wep_message_alpha = 0.0f;
 			}
+
+
 		}
 
 
