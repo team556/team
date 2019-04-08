@@ -353,12 +353,12 @@ void CObjHome::Draw()
 	//▼プレイヤー惑星表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 300.0f;
-	src.m_bottom = 168.0f;
+	src.m_right = 62.0f;
+	src.m_bottom = 62.0f;
 
-	dst.m_top = 150.0f + m_Pvy - m_size;
-	dst.m_left = 250.0f + m_Pvx - m_size;
-	dst.m_right = 950.0f + m_Pvx + m_size;
+	dst.m_top = 250.0f + m_Pvy - m_size;
+	dst.m_left = 450.0f + m_Pvx - m_size;
+	dst.m_right = 750.0f + m_Pvx + m_size;
 	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 
@@ -393,5 +393,5 @@ void CObjHome::Draw()
 	//デバッグ用仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, d);
+	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }

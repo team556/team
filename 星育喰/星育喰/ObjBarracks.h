@@ -8,16 +8,15 @@ using namespace GameL;
 //オブジェクト：兵舎
 class CObjBarracks :public CObjTraining	//CObjTrainingを継承する
 {
-	public:
-		CObjBarracks() {};
-		~CObjBarracks() {};
-		void Init();		//イニシャライズ
-		void Action();		//アクション
-		void Draw();		//ドロー
-	
-		int Allocation(int type_num, int up_down_check);//振り分け関数
-	private:
-		float m_Bar_color;			//兵舎カラー明度
-		float m_Human_up_color[4];	//住民振り分けUPカラー明度
-		float m_Human_down_color[4];//住民振り分けDOWNカラー明度
+public:
+	CObjBarracks() {};
+	~CObjBarracks() {};
+	void Init();		//イニシャライズ
+	void Action();		//アクション
+	void Draw();		//ドロー
+private:
+	float m_Bar_color;			//兵舎カラー明度
+	float m_Bar_Lvup_color;		//兵舎レベルUPカラー明度
+	float m_Human_up_color[4];	//住民振り分けUPカラー明度
+	float m_Human_down_color[4];//住民振り分けDOWNカラー明度
 };

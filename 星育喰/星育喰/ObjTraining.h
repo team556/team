@@ -13,6 +13,8 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+
+	int Allocation(int type_num, int up_down_check);//振り分け関数
 private:
 	float m_size;		//プレイヤー惑星のサイズ
 
@@ -28,10 +30,11 @@ protected:
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 
+	wchar_t m_error[14];		//エラーメッセージのフォント用
+	float	m_error_alpha;		//エラーメッセージの透過度(アルファ値)
+
 	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
 	static int  window_start_manage;//施設ウインドウの起動管理フラグ
-	//↑メモ書き：int型、列挙で宣言。その数字のものだけ操作できるように各objで条件分岐。
-	//ちなみにその際、objTrainingも操作出来ないようにしておく。(右クリックキャンセルをさせないために)
 
 	//▼各施設ウインドウ(戻るボタン含む)に列挙型で識別番号を割り振る
 	enum window_id	
@@ -39,5 +42,8 @@ protected:
 		Default,	//デフォルト。どのウインドウも開いていない状態。
 		BackButton,	//戻るボタンを押して、ホーム画面に戻ろうとしている状態。
 		Barracks,	//兵舎ウインドウを開いている状態。
+		Institute,	//研究所ウインドウを開いている状態。
+		Missile,	//ミサイルウインドウを開いている状態。
+		Equipment,	//武器ポッドウインドウを開いている状態。
 	};
 };
