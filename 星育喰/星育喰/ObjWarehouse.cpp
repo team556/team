@@ -18,19 +18,9 @@ using namespace GameL;
 void CObjWarehouse::Init()
 {
 	m_Ware_color = INI_COLOR;
-	m_f = false;
 
 	m_x = 100;
 	m_y = 100;
-	//m_obx = 0;
-	//m_oby = 0;
-
-	//m_key_f = true;
-	//m_turn = true;
-	//m_turn0 = true;
-	//
-	//m_obj = true;
-
 }
 
 //アクション
@@ -51,19 +41,18 @@ void CObjWarehouse::Action()
 		//左クリックされたらフラグを立て、倉庫ウインドウを開く
 		if (m_mou_l == true)
 		{
-			
 			//クリック押したままの状態では入力出来ないようにしている
-			if (m_key_f == true)
+			if (m_key_lf == true)
 			{
-				m_key_f = false;
+				m_key_lf = false;
 
 				//↓test_flagのアレでやる。
-				m_f = true;
+				m_key_wh = true;
 			}
 		}
 		else
 		{
-			m_key_f = true;
+			m_key_lf = true;
 		}
 	}
 	else
@@ -72,49 +61,48 @@ void CObjWarehouse::Action()
 	}
 
 	//戻るボタン選択
-	if (20 < m_mou_x && m_mou_x < 135 && 20 < m_mou_y && m_mou_y < 135)
+	 if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80)
 	{
-		m_Back_color = 0.7f;
+		m_Back_Button_color = 0.7f;
 
 		//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 		if (m_mou_l == true)
 		{
-
 			//クリック押したままの状態では入力出来ないようにしている
-			if (m_key_md == true)
+			if (m_key_lf == true)
 			{
-				m_key_md = false;
+				m_key_lf = false;
 
 				//↓test_flagのアレでやる。
-				m_f = true;
+				m_key_md = true;
 			}
 		}
 		else
 		{
-			m_key_md = true;
+			m_key_lf = true;
 		}
 	}
 	else
 	{
-		m_Back_color = 1.0f;
+		m_introduce_f = false;//施設紹介ウィンドウを非表示にする
+		m_Back_Button_color = 1.0f;
 	}
 
 	//資材ボタン選択
 	if (350 < m_mou_x && m_mou_x < 525 && 200 < m_mou_y && m_mou_y < 375)
 	{
-		m_Object_color[0] = 0.7f;
+		m_object_ma = 0.7f;
 
 		//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 		if (m_mou_l == true)
 		{
-
 			//クリック押したままの状態では入力出来ないようにしている
 			if (m_key_ma == true)
 			{
 				m_key_ma = false;
 
 				//↓test_flagのアレでやる。
-				m_f = true;
+				//m_f = true;
 			}
 		}
 		else
@@ -124,7 +112,91 @@ void CObjWarehouse::Action()
 	}
 	else
 	{
-		m_Object_color[0] = 1.0f;
+		m_object_ma = 1.0f;
+
+	}
+
+	//住民ボタン選択
+	if (700 < m_mou_x && m_mou_x < 875 && 200 < m_mou_y && m_mou_y < 375)
+	{
+		m_object_re = 0.7f;
+
+		//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+		if (m_mou_l == true)
+		{
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_re == true)
+			{
+				m_key_re = false;
+
+				//↓test_flagのアレでやる。
+				//m_f = true;
+			}
+		}
+		else
+		{
+			m_key_re = true;
+		}
+	}
+	else
+	{
+		m_object_re = 1.0f;
+
+	}
+
+	//スペシャル技ボタン選択
+	if (350 < m_mou_x && m_mou_x < 525 && 450 < m_mou_y && m_mou_y < 625)
+	{
+		m_object_sp = 0.7f;
+
+		//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+		if (m_mou_l == true)
+		{
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_sp == true)
+			{
+				m_key_sp = false;
+
+				//↓test_flagのアレでやる。
+				//m_f = true;
+			}
+		}
+		else
+		{
+			m_key_sp = true;
+		}
+	}
+	else
+	{
+		m_object_sp = 1.0f;
+
+	}
+
+	//装備ボタン選択
+	if (700 < m_mou_x && m_mou_x < 875 && 450 < m_mou_y && m_mou_y < 625)
+	{
+		m_object_eq = 0.7f;
+
+		//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+		if (m_mou_l == true)
+		{
+			//クリック押したままの状態では入力出来ないようにしている
+			if (m_key_eq == true)
+			{
+				m_key_eq = false;
+
+				//↓test_flagのアレでやる。
+				//m_f = true;
+			}
+		}
+		else
+		{
+			m_key_eq = true;
+		}
+	}
+	else
+	{
+		m_object_eq = 1.0f;
 
 	}
 
@@ -145,16 +217,21 @@ void CObjWarehouse::Draw()
 	//それ以外の画像
 	//背景オブジェクト
 	float sb[4] = { 1.0f,1.0f,1.0f,1.0f };
+
 	//戻るボタン画像
-	float mb[4] = { m_Back_color,m_Back_color,m_Back_color,1.0f };
-	//オブジェクトボタン
-	float bt[4][4] =
-	{
-		{ m_Object_color[0],m_Object_color[0],m_Object_color[0],1.0f },
-		{ m_Object_color[1],m_Object_color[1],m_Object_color[1],1.0f },
-		{ m_Object_color[2],m_Object_color[2],m_Object_color[2],1.0f },
-		{ m_Object_color[3],m_Object_color[3],m_Object_color[3],1.0f },
-	};
+	float md[4] = { m_Back_Button_color,m_Back_Button_color,m_Back_Button_color,1.0f };
+
+	//資材ボタン画像
+	float ma[4] = { m_object_ma,m_object_ma,m_object_ma ,1.0f };
+
+	//住民ボタン画像
+	float re[4] = { m_object_re,m_object_re,m_object_re,1.0f };
+
+	//スペシャル技ボタン画像
+	float sp[4] = { m_object_sp,m_object_sp,m_object_sp,1.0f };
+
+	//装備ボタン画像
+	float eq[4] = { m_object_eq,m_object_eq,m_object_eq,1.0f };
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -174,7 +251,7 @@ void CObjWarehouse::Draw()
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	if (m_f == true)
+	if (m_key_wh == true)
 	{
 		//ボタン背景作成
 		src.m_top    =    0.0f;
@@ -196,63 +273,62 @@ void CObjWarehouse::Draw()
 
 		dst.m_top    =  20.0f;
 		dst.m_left   =  20.0f;
-		dst.m_right  = 135.0f;
-		dst.m_bottom = 135.0f;
-		Draw::Draw(4, &src, &dst, mb, 0.0f);
+		dst.m_right  =  80.0f;
+		dst.m_bottom =  80.0f;
+		Draw::Draw(4, &src, &dst, md, 0.0f);
 
-		////資材選択ボタン作成
-		//src.m_top    = 0.0f;
-		//src.m_left   = 0.0f;
-		//src.m_right  = 225.0f;
-		//src.m_bottom = 225.0f;
+		//資材選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
 
-		//dst.m_top    = 200.0f;
-		//dst.m_left   = 350.0f;
-		//dst.m_right  = 525.0f;
-		//dst.m_bottom = 375.0f;
-		//Draw::Draw(5, &src, &dst, bt, 0.0f);
+		dst.m_top    = 200.0f;
+		dst.m_left   = 350.0f;
+		dst.m_right  = 525.0f;
+		dst.m_bottom = 375.0f;
+		Draw::Draw(5, &src, &dst, ma, 0.0f);
 
-		////住民選択ボタン作成
-		//src.m_top    = 0.0f;
-		//src.m_left   = 0.0f;
-		//src.m_right  = 225.0f;
-		//src.m_bottom = 225.0f;
+		//住民選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
 
-		//dst.m_top    = 200.0f;
-		//dst.m_left   = 700.0f;
-		//dst.m_right  = 875.0f;
-		//dst.m_bottom = 375.0f;
-		//Draw::Draw(6, &src, &dst, bt, 0.0f);
+		dst.m_top    = 200.0f;
+		dst.m_left   = 700.0f;
+		dst.m_right  = 875.0f;
+		dst.m_bottom = 375.0f;
+		Draw::Draw(6, &src, &dst, re, 0.0f);
 
-		////スペシャル技選択ボタン作成
-		//src.m_top    = 0.0f;
-		//src.m_left   = 0.0f;
-		//src.m_right  = 225.0f;
-		//src.m_bottom = 225.0f;
+		//スペシャル技選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
 
-		//dst.m_top    = 450.0f;
-		//dst.m_left   = 350.0f;
-		//dst.m_right  = 525.0f;
-		//dst.m_bottom = 625.0f;
-		//Draw::Draw(7, &src, &dst, bt, 0.0f);
+		dst.m_top    = 450.0f;
+		dst.m_left   = 350.0f;
+		dst.m_right  = 525.0f;
+		dst.m_bottom = 625.0f;
+		Draw::Draw(7, &src, &dst, sp, 0.0f);
 
-		////装備選択ボタン作成
-		//src.m_top    = 0.0f;
-		//src.m_left   = 0.0f;
-		//src.m_right  = 225.0f;
-		//src.m_bottom = 225.0f;
+		//装備選択ボタン作成
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 225.0f;
+		src.m_bottom = 225.0f;
 
-		//dst.m_top    = 450.0f;
-		//dst.m_left   = 700.0f;
-		//dst.m_right  = 875.0f;
-		//dst.m_bottom = 625.0f;
-		//Draw::Draw(8, &src, &dst, bt, 0.0f);
-
+		dst.m_top    = 450.0f;
+		dst.m_left   = 700.0f;
+		dst.m_right  = 875.0f;
+		dst.m_bottom = 625.0f;
+		Draw::Draw(8, &src, &dst, eq, 0.0f);
 	}
 
-	if (m_key_md == true)
+	//戻るボタンを選択して描画する画像
+	else if (m_key_md == true)
 	{
-
 		//背景
 		//切り取り
 		src.m_top = 0.0f;
@@ -271,14 +347,14 @@ void CObjWarehouse::Draw()
 
 		//倉庫表示
 		//切り取り
-		src.m_top    =   0.0f;
-		src.m_left   =   0.0f;
-		src.m_right  = 225.0f;
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 225.0f;
 		src.m_bottom = 225.0f;
 
-		dst.m_top    = 100.0f;
-		dst.m_left   = 100.0f;
-		dst.m_right  = 325.0f;
+		dst.m_top = 100.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 325.0f;
 		dst.m_bottom = 325.0f;
 
 		//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
