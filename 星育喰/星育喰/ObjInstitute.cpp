@@ -23,10 +23,78 @@ void CObjInstitute::Init()
 	m_Mis_Button_color = INI_COLOR;
 	m_Equ_Button_color = INI_COLOR;
 
+	//▼武器ポッド画像集全てのカラー明度を0.1f(黒色)で初期化
 	for (int i = 0; i < 15; i++)
 	{
-		m_Equ_pic_color[i] = INI_COLOR;//全ての要素の値をINI_COLORで初期化している
+		m_Equ_pic_red_color[i] = 0.1f;
+		m_Equ_pic_green_color[i] = 0.1f;
+		m_Equ_pic_blue_color[i] = 0.1f;
 	}
+	//▼現在の各武器、ポッドレベルに応じて
+	//武器ポッド画像集のカラーを以下のように設定していく。
+	//「装備不可」…………………0.1f(黒色)
+	//「レベルUP済(装備可)」……0.5f(灰色)
+	//「装備中」……………………1.0f(白色)
+	for (int i = 0; i < 15; i++)
+	{
+		//下記のif文(各武器レベルの最大到達度)に入るまで、
+		//レベル1から順に灰色を設定していく。
+		m_Equ_pic_red_color[i] = 0.5f;
+		m_Equ_pic_green_color[i] = 0.5f;
+		m_Equ_pic_blue_color[i] = 0.5f;
+		
+		//パワー武器レベルの最大到達度
+		if (i == g_Pow_equip_Lv_achieve - 1)
+		{
+			//現在のパワー武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Pow_equip_Level - 1] = 1.0f;
+			m_Equ_pic_green_color[g_Pow_equip_Level - 1] = 1.0f;
+			m_Equ_pic_blue_color[g_Pow_equip_Level - 1] = 1.0f;
+			
+			i = 2;//ディフェンス武器レベルのカラー設定処理を開始させる
+		}
+		//ディフェンス武器レベルの最大到達度
+		else if (i == g_Def_equip_Lv_achieve + 2)
+		{
+			//現在のディフェンス武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Def_equip_Level + 2] = 1.0f;
+			m_Equ_pic_green_color[g_Def_equip_Level + 2] = 1.0f;
+			m_Equ_pic_blue_color[g_Def_equip_Level + 2] = 1.0f;
+			
+			i = 5;//スピード武器レベルのカラー設定処理を開始させる
+		}
+		//スピード武器レベルの最大到達度
+		else if (i == g_Spe_equip_Lv_achieve + 5)
+		{
+			//現在のスピード武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Spe_equip_Level + 5] = 1.0f;
+			m_Equ_pic_green_color[g_Spe_equip_Level + 5] = 1.0f;
+			m_Equ_pic_blue_color[g_Spe_equip_Level + 5] = 1.0f;
+			
+			i = 8;//バランス武器レベルのカラー設定処理を開始させる
+		}
+		//バランス武器レベルの最大到達度
+		else if (i == g_Bal_equip_Lv_achieve + 8)
+		{
+			//現在のバランス武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Bal_equip_Level + 8] = 1.0f;
+			m_Equ_pic_green_color[g_Bal_equip_Level + 8] = 1.0f;
+			m_Equ_pic_blue_color[g_Bal_equip_Level + 8] = 1.0f;
+
+			i = 11;//ポッドレベルのカラー設定処理を開始させる
+		}
+		//ポッドレベルの最大到達度
+		else if(i == g_Pod_equip_Lv_achieve + 11)
+		{
+			//現在のポッドレベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Bal_equip_Level + 11] = 1.0f;
+			m_Equ_pic_green_color[g_Bal_equip_Level + 11] = 1.0f;
+			m_Equ_pic_blue_color[g_Bal_equip_Level + 11] = 1.0f;
+
+			break;//カラー設定処理を終了させる
+		}
+	}
+
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -185,6 +253,17 @@ void CObjInstitute::Action()
 						g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
 					{
 						g_Mis_Recast_Level++;//条件を満たしているのでレベルUP
+
+
+						//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
+						swprintf_s(m_message, L"ミサイルリキャストレベルUP！");//文字配列に文字データを入れる
+
+						//リキャストレベルUPメッセージのカラーを黄色にする
+						m_message_red_color = 1.0f;
+						m_message_green_color = 1.0f;
+						m_message_blue_color = 0.0f;
+
+						m_alpha = 1.0f;		//リキャストレベルUPメッセージを表示するため、透過度を1.0fにする
 					}
 				}
 			}
@@ -225,6 +304,17 @@ void CObjInstitute::Action()
 					else if (g_Research_num < m_Mis_recast_next_Hum_num[g_Mis_Recast_Level - 1])
 					{
 						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
+
+
+						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージにて知らせる
+						swprintf_s(m_message, L"ミサイルリキャストレベルDOWN…");//文字配列に文字データを入れる
+
+						//リキャストレベルDOWNメッセージのカラーを水色にする
+						m_message_red_color = 0.0f;
+						m_message_green_color = 1.0f;
+						m_message_blue_color = 1.0f;
+
+						m_alpha = 1.0f;		//リキャストレベルDOWNメッセージを表示するため、透過度を1.0fにする
 					}
 				}
 			}
@@ -287,6 +377,15 @@ void CObjInstitute::Action()
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
 					m_alpha = 0.0f;
+
+					//▼メモ
+					//ここで各住民数、各素材の必要数を各武器ポッド毎にif文で確認
+					//必要数をそれぞれ満たしていれば、
+					//次のレベルの武器グラフィックのカラーを黄色に変更。
+					//必要な各武器ポッド(Lv2以降)の処理の中に黄色に変更されているか否かのif文作って、
+					//レベルＵＰの選択肢を選べるように。
+					//ちなみにレベルＵＰ後は、ここの処理と同じ事を行い、
+					//現段階でまたすぐにレベルＵＰできるようであれば黄色に変更する。
 
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
@@ -552,21 +651,21 @@ void CObjInstitute::Draw()
 	//武器ポッド画像集用
 	float equip_pic[15][4] =
 	{
-		{ m_Equ_pic_color[0],m_Equ_pic_color[0],m_Equ_pic_color[0],1.0f },
-		{ m_Equ_pic_color[1],m_Equ_pic_color[1],m_Equ_pic_color[1],1.0f },
-		{ m_Equ_pic_color[2],m_Equ_pic_color[2],m_Equ_pic_color[2],1.0f },
-		{ m_Equ_pic_color[3],m_Equ_pic_color[3],m_Equ_pic_color[3],1.0f },
-		{ m_Equ_pic_color[4],m_Equ_pic_color[4],m_Equ_pic_color[4],1.0f },
-		{ m_Equ_pic_color[5],m_Equ_pic_color[5],m_Equ_pic_color[5],1.0f },
-		{ m_Equ_pic_color[6],m_Equ_pic_color[6],m_Equ_pic_color[6],1.0f },
-		{ m_Equ_pic_color[7],m_Equ_pic_color[7],m_Equ_pic_color[7],1.0f },
-		{ m_Equ_pic_color[8],m_Equ_pic_color[8],m_Equ_pic_color[8],1.0f },
-		{ m_Equ_pic_color[9],m_Equ_pic_color[9],m_Equ_pic_color[9],1.0f },
-		{ m_Equ_pic_color[10],m_Equ_pic_color[10],m_Equ_pic_color[10],1.0f },
-		{ m_Equ_pic_color[11],m_Equ_pic_color[11],m_Equ_pic_color[11],1.0f },
-		{ m_Equ_pic_color[12],m_Equ_pic_color[12],m_Equ_pic_color[12],1.0f },
-		{ m_Equ_pic_color[13],m_Equ_pic_color[13],m_Equ_pic_color[13],1.0f },
-		{ m_Equ_pic_color[14],m_Equ_pic_color[14],m_Equ_pic_color[14],1.0f },
+		{ m_Equ_pic_red_color[0],m_Equ_pic_green_color[0],m_Equ_pic_blue_color[0],1.0f },
+		{ m_Equ_pic_red_color[1],m_Equ_pic_green_color[1],m_Equ_pic_blue_color[1],1.0f },
+		{ m_Equ_pic_red_color[2],m_Equ_pic_green_color[2],m_Equ_pic_blue_color[2],1.0f },
+		{ m_Equ_pic_red_color[3],m_Equ_pic_green_color[3],m_Equ_pic_blue_color[3],1.0f },
+		{ m_Equ_pic_red_color[4],m_Equ_pic_green_color[4],m_Equ_pic_blue_color[4],1.0f },
+		{ m_Equ_pic_red_color[5],m_Equ_pic_green_color[5],m_Equ_pic_blue_color[5],1.0f },
+		{ m_Equ_pic_red_color[6],m_Equ_pic_green_color[6],m_Equ_pic_blue_color[6],1.0f },
+		{ m_Equ_pic_red_color[7],m_Equ_pic_green_color[7],m_Equ_pic_blue_color[7],1.0f },
+		{ m_Equ_pic_red_color[8],m_Equ_pic_green_color[8],m_Equ_pic_blue_color[8],1.0f },
+		{ m_Equ_pic_red_color[9],m_Equ_pic_green_color[9],m_Equ_pic_blue_color[9],1.0f },
+		{ m_Equ_pic_red_color[10],m_Equ_pic_green_color[10],m_Equ_pic_blue_color[10],1.0f },
+		{ m_Equ_pic_red_color[11],m_Equ_pic_green_color[11],m_Equ_pic_blue_color[11],1.0f },
+		{ m_Equ_pic_red_color[12],m_Equ_pic_green_color[12],m_Equ_pic_blue_color[12],1.0f },
+		{ m_Equ_pic_red_color[13],m_Equ_pic_green_color[13],m_Equ_pic_blue_color[13],1.0f },
+		{ m_Equ_pic_red_color[14],m_Equ_pic_green_color[14],m_Equ_pic_blue_color[14],1.0f },
 	};
 
 	//武器必要素材&人数フォント用

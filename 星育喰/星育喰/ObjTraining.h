@@ -30,7 +30,7 @@ protected:
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 
-	wchar_t m_message[14];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用
+	wchar_t m_message[18];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用
 	float m_message_red_color;	//簡易メッセージカラー(Red)
 	float m_message_green_color;//簡易メッセージカラー(Green)
 	float m_message_blue_color;	//簡易メッセージカラー(Blue)

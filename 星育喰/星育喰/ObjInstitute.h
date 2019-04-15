@@ -18,13 +18,15 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
-	float m_Ins_color;			//研究所カラー明度
-	float m_Ins_Lvup_color;		//研究所レベルUPカラー明度
-	float m_Human_up_color;		//住民振り分けUPカラー明度
-	float m_Human_down_color;	//住民振り分けDOWNカラー明度
-	float m_Mis_Button_color;	//ミサイルボタンカラー明度
-	float m_Equ_Button_color;	//武器ポッドボタンカラー明度
-	float m_Equ_pic_color[15];	//武器ポッド画像集カラー明度
+	float m_Ins_color;				//研究所カラー明度
+	float m_Ins_Lvup_color;			//研究所レベルUPカラー明度
+	float m_Human_up_color;			//住民振り分けUPカラー明度
+	float m_Human_down_color;		//住民振り分けDOWNカラー明度
+	float m_Mis_Button_color;		//ミサイルボタンカラー明度
+	float m_Equ_Button_color;		//武器ポッドボタンカラー明度
+	float m_Equ_pic_red_color[15];	//武器ポッド画像集カラー(Red)
+	float m_Equ_pic_green_color[15];//武器ポッド画像集カラー(Green)
+	float m_Equ_pic_blue_color[15];	//武器ポッド画像集カラー(Blue)
 
 	//wchar_t m_Wep_message[3(←3行分仮に用意)][100(入れれる文字数)];//武器必要素材&人数メッセージのフォント用
 
