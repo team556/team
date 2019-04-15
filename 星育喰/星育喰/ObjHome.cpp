@@ -117,7 +117,7 @@ void CObjHome::Action()
 
 				if (m_Mig_time > 60)
 				{
-					//Scene::SetScene(new CSceneHome());//戦闘準備画面へシーン移行
+					Scene::SetScene(new CSceneFight());//戦闘準備画面へシーン移行
 				}
 			}
 			else //画面内にいるため、移動を行う

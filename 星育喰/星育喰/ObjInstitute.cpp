@@ -23,11 +23,14 @@ void CObjInstitute::Init()
 	m_Mis_Button_color = INI_COLOR;
 	m_Equ_Button_color = INI_COLOR;
 
-	m_Wep_message_alpha = INI_ALPHA;
+	for (int i = 0; i < 15; i++)
+	{
+		m_Equ_pic_color[i] = INI_COLOR;//全ての要素の値をINI_COLORで初期化している
+	}
 
 	m_introduce_f = false;
 	m_key_lf = false;
-	m_error_alpha = INI_ALPHA;
+	m_alpha = INI_ALPHA;
 
 	//▼ミサイルリキャストタイム(RCT)設定
 	m_Mis_recast_time[0] = 5.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
@@ -63,9 +66,9 @@ void CObjInstitute::Action()
 	if (window_start_manage == Institute)
 	{
 		//マウスカーソル上部に表示されるエラーメッセージを徐々に非表示にする
-		if (m_error_alpha > 0.0f)
+		if (m_alpha > 0.0f)
 		{
-			m_error_alpha -= 0.01f;
+			m_alpha -= 0.01f;
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
@@ -84,7 +87,7 @@ void CObjInstitute::Action()
 					m_key_rf = false;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_error_alpha = 0.0f;
+					m_alpha = 0.0f;
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
@@ -99,7 +102,7 @@ void CObjInstitute::Action()
 					m_key_lf = false;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_error_alpha = 0.0f;
+					m_alpha = 0.0f;
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
@@ -244,7 +247,7 @@ void CObjInstitute::Action()
 					m_Mis_Button_color = 0.0f;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_error_alpha = 0.0f;
+					m_alpha = 0.0f;
 
 					//"ミサイルウインドウを開いている状態"フラグを立てる
 					window_start_manage = Missile;
@@ -276,7 +279,7 @@ void CObjInstitute::Action()
 					m_Equ_Button_color = 0.0f;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_error_alpha = 0.0f;
+					m_alpha = 0.0f;
 
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
@@ -339,13 +342,101 @@ void CObjInstitute::Action()
 		//武器ポッドウインドウを開いていた場合、更に以下の処理を行う
 		if (window_start_manage == Equipment)
 		{
+			//パワー武器Lv.1
 			if (277 < m_mou_x && m_mou_x < 407 && 207 < m_mou_y && m_mou_y < 336)
 			{
-				m_Wep_message_alpha = 1.0f;
+				m_alpha = 1.0f;
 			}
+
+			//パワー武器Lv.2
+			else if (277 < m_mou_x && m_mou_x < 407 && 355 < m_mou_y && m_mou_y < 483)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//パワー武器Lv.3
+			else if (277 < m_mou_x && m_mou_x < 407 && 503 < m_mou_y && m_mou_y < 632)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//ディフェンス武器Lv.1
+			else if (445 < m_mou_x && m_mou_x < 575 && 207 < m_mou_y && m_mou_y < 336)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//ディフェンス武器Lv.2
+			else if (445 < m_mou_x && m_mou_x < 575 && 355 < m_mou_y && m_mou_y < 483)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//ディフェンス武器Lv.3
+			else if (445 < m_mou_x && m_mou_x < 575 && 503 < m_mou_y && m_mou_y < 632)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//スピード武器Lv.1
+			else if (614 < m_mou_x && m_mou_x < 744 && 207 < m_mou_y && m_mou_y < 336)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//スピード武器Lv.2
+			else if (614 < m_mou_x && m_mou_x < 744 && 355 < m_mou_y && m_mou_y < 483)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//スピード武器Lv.3
+			else if (614 < m_mou_x && m_mou_x < 744 && 503 < m_mou_y && m_mou_y < 632)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//バランス武器Lv.1
+			else if (783 < m_mou_x && m_mou_x < 913 && 207 < m_mou_y && m_mou_y < 336)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//バランス武器Lv.2
+			else if (783 < m_mou_x && m_mou_x < 913 && 355 < m_mou_y && m_mou_y < 483)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//バランス武器Lv.3
+			else if (783 < m_mou_x && m_mou_x < 913 && 503 < m_mou_y && m_mou_y < 632)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//ポッドLv.1
+			else if (952 < m_mou_x && m_mou_x < 1081 && 207 < m_mou_y && m_mou_y < 336)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//ポッドLv.2
+			else if (952 < m_mou_x && m_mou_x < 1081 && 355 < m_mou_y && m_mou_y < 483)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//ポッドLv.3
+			else if (952 < m_mou_x && m_mou_x < 1081 && 503 < m_mou_y && m_mou_y < 632)
+			{
+				m_alpha = 1.0f;
+			}
+
+			//上記の範囲外にマウスカーソルがある場合、
+			//武器必要素材&人数メッセージを非表示にする
 			else
 			{
-				m_Wep_message_alpha = 0.0f;
+				m_alpha = 0.0f;
 			}
 		}
 
@@ -445,14 +536,34 @@ void CObjInstitute::Draw()
 	//武器ポッドボタン用
 	float equip[4] = { m_Equ_Button_color,m_Equ_Button_color,m_Equ_Button_color,1.0f };
 
+	//武器ポッド画像集用
+	float equip_pic[15][4] =
+	{
+		{ m_Equ_pic_color[0],m_Equ_pic_color[0],m_Equ_pic_color[0],1.0f },
+		{ m_Equ_pic_color[1],m_Equ_pic_color[1],m_Equ_pic_color[1],1.0f },
+		{ m_Equ_pic_color[2],m_Equ_pic_color[2],m_Equ_pic_color[2],1.0f },
+		{ m_Equ_pic_color[3],m_Equ_pic_color[3],m_Equ_pic_color[3],1.0f },
+		{ m_Equ_pic_color[4],m_Equ_pic_color[4],m_Equ_pic_color[4],1.0f },
+		{ m_Equ_pic_color[5],m_Equ_pic_color[5],m_Equ_pic_color[5],1.0f },
+		{ m_Equ_pic_color[6],m_Equ_pic_color[6],m_Equ_pic_color[6],1.0f },
+		{ m_Equ_pic_color[7],m_Equ_pic_color[7],m_Equ_pic_color[7],1.0f },
+		{ m_Equ_pic_color[8],m_Equ_pic_color[8],m_Equ_pic_color[8],1.0f },
+		{ m_Equ_pic_color[9],m_Equ_pic_color[9],m_Equ_pic_color[9],1.0f },
+		{ m_Equ_pic_color[10],m_Equ_pic_color[10],m_Equ_pic_color[10],1.0f },
+		{ m_Equ_pic_color[11],m_Equ_pic_color[11],m_Equ_pic_color[11],1.0f },
+		{ m_Equ_pic_color[12],m_Equ_pic_color[12],m_Equ_pic_color[12],1.0f },
+		{ m_Equ_pic_color[13],m_Equ_pic_color[13],m_Equ_pic_color[13],1.0f },
+		{ m_Equ_pic_color[14],m_Equ_pic_color[14],m_Equ_pic_color[14],1.0f },
+	};
+
 	//武器必要素材&人数フォント用
-	float Wep_message_font[4] = { 0.0f,0.0f,0.0f,m_Wep_message_alpha };
+	float Wep_message_font[4] = { 0.0f,0.0f,0.0f,m_alpha };
 
 	//武器必要素材&人数ウインドウ用
-	float Wep_message_window[4] = { 1.0f,1.0f,1.0f,m_Wep_message_alpha };
+	float Wep_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
 	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_error_alpha };
+	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
 
 	//▽フォント準備
 	//研究所レベル用
@@ -832,7 +943,7 @@ void CObjInstitute::Draw()
 					dst.m_left = 280.0f + i * 170.0f;
 					dst.m_right = 410.0f + i * 170.0f;
 					dst.m_bottom = 340.0f + j * 150.0f;
-					Draw::Draw(49 + j + i * 3, &src, &dst, white, 0.0f);
+					Draw::Draw(49 + j + i * 3, &src, &dst, equip_pic[j + i * 3], 0.0f);
 				}
 			}
 

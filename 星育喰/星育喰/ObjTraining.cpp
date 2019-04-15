@@ -248,12 +248,12 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	else if (Tmp_remain < 0) //残り住民数がいない場合
 	{
 		swprintf_s(m_error, L"残り住民数がいません");//文字配列に文字データを入れる
-		m_error_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
+		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
 	}
 	else  //(Tmp_human < 0 || 999900 < Tmp_human) これ以上振り分けられない場合
 	{
 		swprintf_s(m_error, L"これ以上振り分けられません");//文字配列に文字データを入れる
-		m_error_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
+		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
 	}
 
 	return type_num;

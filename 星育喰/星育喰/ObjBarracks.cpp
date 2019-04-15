@@ -27,7 +27,7 @@ void CObjBarracks::Init()
 
 	m_introduce_f = false;
 	m_key_lf = false;
-	m_error_alpha = INI_ALPHA;
+	m_alpha = INI_ALPHA;
 }
 
 //アクション
@@ -44,9 +44,9 @@ void CObjBarracks::Action()
 	if (window_start_manage == Barracks)
 	{
 		//マウスカーソル上部に表示されるエラーメッセージを徐々に非表示にする
-		if (m_error_alpha > 0.0f)
+		if (m_alpha > 0.0f)
 		{
-			m_error_alpha -= 0.01f;
+			m_alpha -= 0.01f;
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
@@ -62,7 +62,7 @@ void CObjBarracks::Action()
 				m_key_rf = false;
 
 				//エラーメッセージを非表示にするため、透過度を0.0fにする
-				m_error_alpha = 0.0f;
+				m_alpha = 0.0f;
 
 				//"どのウインドウも開いていない状態"フラグを立てる
 				window_start_manage = Default;
@@ -76,7 +76,7 @@ void CObjBarracks::Action()
 					m_key_lf = false;
 
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_error_alpha = 0.0f;
+					m_alpha = 0.0f;
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
@@ -444,7 +444,7 @@ void CObjBarracks::Draw()
 	};
 
 	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_error_alpha };
+	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
 
 	//▽フォント準備
 	//兵舎レベル用
