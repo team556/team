@@ -25,6 +25,10 @@ void CObjBarracks::Init()
 		m_Human_down_color[i] = INI_COLOR;	//全ての要素の値をINI_COLORで初期化している
 	}
 
+	m_mou_x = 0.0f;
+	m_mou_y = 0.0f;
+	m_mou_r = false;
+	m_mou_l = false;
 	m_introduce_f = false;
 	m_key_lf = false;
 	m_alpha = INI_ALPHA;
@@ -647,7 +651,7 @@ void CObjBarracks::Draw()
 		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
 
 		//エラーメッセージ
-		Font::StrDraw(m_error, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
+		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
 		
 
 

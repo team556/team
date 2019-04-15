@@ -28,8 +28,15 @@ void CObjInstitute::Init()
 		m_Equ_pic_color[i] = INI_COLOR;//全ての要素の値をINI_COLORで初期化している
 	}
 
+	m_mou_x = 0.0f;
+	m_mou_y = 0.0f;
+	m_mou_r = false;
+	m_mou_l = false;
 	m_introduce_f = false;
 	m_key_lf = false;
+	m_message_red_color = INI_COLOR;
+	m_message_green_color = INI_COLOR;
+	m_message_blue_color = INI_COLOR;
 	m_alpha = INI_ALPHA;
 
 	//▼ミサイルリキャストタイム(RCT)設定
@@ -313,6 +320,9 @@ void CObjInstitute::Action()
 				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 				m_key_rf = false;
 
+				//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+				m_alpha = 0.0f;
+
 				//"研究所ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Institute;
 			}
@@ -323,6 +333,9 @@ void CObjInstitute::Action()
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
+
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
 
 					//"研究所ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Institute;
@@ -562,8 +575,8 @@ void CObjInstitute::Draw()
 	//武器必要素材&人数ウインドウ用
 	float Wep_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
-	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
+	//簡易メッセージ(エラーメッセージ、レベルUP表示等)用
+	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
 
 	//▽フォント準備
 	//研究所レベル用
@@ -793,8 +806,8 @@ void CObjInstitute::Draw()
 		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
 		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
 
-		//エラーメッセージ
-		Font::StrDraw(m_error, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
+		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
+		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
 	}
 	
 	//ミサイルウインドウ、もしくは武器ポッドウインドウ開いている際に表示するグラフィック
