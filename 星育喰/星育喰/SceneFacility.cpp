@@ -67,7 +67,7 @@ void CSceneFacility::InitScene()
 void CSceneFacility::Scene()
 {
 	//描画カラー情報 R=RED G=Green B=Blue A=alpha(透過情報) 
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float h[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;	//切り取り
 	RECT_F dst;	//描画
@@ -86,6 +86,6 @@ void CSceneFacility::Scene()
 	dst.m_bottom =  800.0f;
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(0, &src, &dst, h, 0.0f);
 
 }

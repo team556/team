@@ -39,5 +39,6 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 		float m_object_re;			//住民ボタンカラー明度
 		float m_object_sp;			//スペシャル技ボタンカラー明度
 		float m_object_eq;			//装備ボタンカラー明度
+		float m_Ware_botton_color[10];	//倉庫ボタン画像集カラー明度
 
 };

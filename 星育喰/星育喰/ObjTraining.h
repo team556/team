@@ -45,5 +45,9 @@ protected:
 		Institute,	//研究所ウインドウを開いている状態。
 		Missile,	//ミサイルウインドウを開いている状態。
 		Equipment,	//武器ポッドウインドウを開いている状態。
+		Warehouse,	//倉庫ウィンドウを開いている状態。
+		Materials,	//資材ウィンドウを開いている状態。
+		Residents,	//住民ウィンドウを開いている状態。
+		Specialskill,//スペシャル技ウィンドウを開いている状態。
 	};
 };
