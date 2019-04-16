@@ -7,6 +7,7 @@ using namespace GameL;
 
 //マクロ
 #define MIS_MAX_LV (5) //ミサイルリキャストのMAXレベル(仮決めで"5"としている)
+#define EQU_MAX_LV (3) //各武器ポッドのMAXレベル
 
 //オブジェクト：研究所
 class CObjInstitute :public CObjTraining //CObjTrainingを継承する
@@ -33,4 +34,8 @@ private:
 	float m_Mis_recast_time[MIS_MAX_LV];			//ミサイルリキャストタイム
 	int m_Mis_recast_next_Ins_Lv[MIS_MAX_LV - 1];	//ミサイルリキャストの次のLVUPに必要な研究所レベル管理用
 	int m_Mis_recast_next_Hum_num[MIS_MAX_LV - 1];	//ミサイルリキャストの次のLVUPに必要な研究員の住民数管理用
+	
+	int m_Equ_next_Hum_num[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な研究員の住民数管理用
+	int m_Equ_next_Mat_type[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な素材種類とその素材の所持数を管理
+	int m_Equ_next_Mat_num[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な素材数管理用(仮で必要素材1種類として考えている。2種類以上ならその分Mat_typeとMat_numを増やす予定)
 };

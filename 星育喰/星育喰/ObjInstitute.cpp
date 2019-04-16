@@ -125,6 +125,59 @@ void CObjInstitute::Init()
 	m_Mis_recast_next_Hum_num[1] = 1000; //RCLvが1の時の必要研究員数
 	m_Mis_recast_next_Hum_num[2] = 5000; //RCLvが2の時の必要研究員数
 	m_Mis_recast_next_Hum_num[3] = 10000;//RCLvが3の時の必要研究員数
+
+	//▼各武器、ポッドの次のLVUPに必要な研究員の住民数設定
+	//▽パワー武器
+	m_Equ_next_Hum_num[0][0] = 100;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[0][1] = 1000; //レベルが2の時の必要研究員数
+	//▽ディフェンス武器
+	m_Equ_next_Hum_num[1][0] = 200;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[1][1] = 1000; //レベルが2の時の必要研究員数
+	//▽スピード武器
+	m_Equ_next_Hum_num[2][0] = 300;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[2][1] = 1000; //レベルが2の時の必要研究員数
+	//▽バランス武器
+	m_Equ_next_Hum_num[3][0] = 500;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[3][1] = 1000; //レベルが2の時の必要研究員数
+	//▽ポッド
+	m_Equ_next_Hum_num[4][0] = 300;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[4][1] = 1000; //レベルが2の時の必要研究員数
+
+	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
+	//※以下のように素材数を管理しているグローバル変数を代入する事で素材の種類設定と所持数の代入をしている。
+	//ただし現在は素材種類が確定していないため、仮で定数を入れている。後で変更すべし。
+	//▽パワー武器
+	m_Equ_next_Mat_type[0][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = 0;		//レベルが2の時の必要素材種類
+	//▽ディフェンス武器
+	m_Equ_next_Mat_type[1][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = 0;		//レベルが2の時の必要素材種類
+	//▽スピード武器
+	m_Equ_next_Mat_type[2][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[2][1] = 0;		//レベルが2の時の必要素材種類
+	//▽バランス武器
+	m_Equ_next_Mat_type[3][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = 0;		//レベルが2の時の必要素材種類
+	//▽ポッド
+	m_Equ_next_Mat_type[4][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[4][1] = 0;		//レベルが2の時の必要素材種類
+
+	//▼各武器、ポッドの次のLVUPに必要な素材数設定
+	//▽パワー武器
+	m_Equ_next_Mat_num[0][0] = 0;	 //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[0][1] = 1000; //レベルが2の時の必要素材数
+	//▽ディフェンス武器
+	m_Equ_next_Mat_num[1][0] = 100;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[1][1] = 1000; //レベルが2の時の必要素材数
+	//▽スピード武器
+	m_Equ_next_Mat_num[2][0] = 300;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[2][1] = 1000; //レベルが2の時の必要素材数
+	//▽バランス武器
+	m_Equ_next_Mat_num[3][0] = 500;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[3][1] = 1000; //レベルが2の時の必要素材数
+	//▽ポッド
+	m_Equ_next_Mat_num[4][0] = 200;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[4][1] = 1000; //レベルが2の時の必要素材数
 }
 
 //アクション
@@ -250,7 +303,7 @@ void CObjInstitute::Action()
 						;//最大レベルの時はこのチェック処理を飛ばす
 					}
 					else if (g_Ins_Level >= m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] &&
-						g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
+							 g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
 					{
 						g_Mis_Recast_Level++;//条件を満たしているのでレベルUP
 
@@ -386,6 +439,55 @@ void CObjInstitute::Action()
 					//レベルＵＰの選択肢を選べるように。
 					//ちなみにレベルＵＰ後は、ここの処理と同じ事を行い、
 					//現段階でまたすぐにレベルＵＰできるようであれば黄色に変更する。
+					//素材も減少するので、素材種類＆所持数配列も更新する。
+					//あと、以下の処理このメモ消す前に説明足りてない所のコメント書く
+					for (int i = 0; i < 5; i++)
+					{
+						int Tmp_equip_Lv_achieve;
+						
+						if (i == 0)
+						{
+							Tmp_equip_Lv_achieve = g_Pow_equip_Lv_achieve;
+						}
+						else if (i == 1)
+						{
+							Tmp_equip_Lv_achieve = g_Def_equip_Lv_achieve;
+						}
+						else if (i == 2)
+						{
+							Tmp_equip_Lv_achieve = g_Spe_equip_Lv_achieve;
+						}
+						else if (i == 3)
+						{
+							Tmp_equip_Lv_achieve = g_Bal_equip_Lv_achieve;
+						}
+						else  //(i == 4)
+						{
+							Tmp_equip_Lv_achieve = g_Pod_equip_Lv_achieve;
+						}
+
+
+						if (Tmp_equip_Lv_achieve == EQU_MAX_LV)
+						{
+							;//最大レベルの時はこのLvUP可能判定処理を飛ばす
+						}
+						else if (g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
+								 m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
+						{
+							//レベルアップ可能な武器ポッド画像を黄色にする。
+							m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
+							m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
+							m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.0f;
+						}
+						else
+						{
+							//レベルアップ不可な武器ポッド画像は黒色にする。
+							m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+							m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+							m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+						}
+					}
+		
 
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
