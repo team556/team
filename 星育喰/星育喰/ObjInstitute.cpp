@@ -23,13 +23,88 @@ void CObjInstitute::Init()
 	m_Mis_Button_color = INI_COLOR;
 	m_Equ_Button_color = INI_COLOR;
 
+	//▼武器ポッド画像集全てのカラー明度を0.1f(黒色)で初期化
 	for (int i = 0; i < 15; i++)
 	{
-		m_Equ_pic_color[i] = INI_COLOR;//全ての要素の値をINI_COLORで初期化している
+		m_Equ_pic_red_color[i] = 0.1f;
+		m_Equ_pic_green_color[i] = 0.1f;
+		m_Equ_pic_blue_color[i] = 0.1f;
+	}
+	//▼現在の各武器、ポッドレベルに応じて
+	//武器ポッド画像集のカラーを以下のように設定していく。
+	//「装備不可」…………………0.1f(黒色)
+	//「レベルUP済(装備可)」……0.5f(灰色)
+	//「装備中」……………………1.0f(白色)
+	for (int i = 0; i < 15; i++)
+	{
+		//下記のif文(各武器レベルの最大到達度)に入るまで、
+		//レベル1から順に灰色を設定していく。
+		m_Equ_pic_red_color[i] = 0.5f;
+		m_Equ_pic_green_color[i] = 0.5f;
+		m_Equ_pic_blue_color[i] = 0.5f;
+		
+		//パワー武器レベルの最大到達度
+		if (i == g_Pow_equip_Lv_achieve - 1)
+		{
+			//現在のパワー武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Pow_equip_Level - 1] = 1.0f;
+			m_Equ_pic_green_color[g_Pow_equip_Level - 1] = 1.0f;
+			m_Equ_pic_blue_color[g_Pow_equip_Level - 1] = 1.0f;
+			
+			i = 2;//ディフェンス武器レベルのカラー設定処理を開始させる
+		}
+		//ディフェンス武器レベルの最大到達度
+		else if (i == g_Def_equip_Lv_achieve + 2)
+		{
+			//現在のディフェンス武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Def_equip_Level + 2] = 1.0f;
+			m_Equ_pic_green_color[g_Def_equip_Level + 2] = 1.0f;
+			m_Equ_pic_blue_color[g_Def_equip_Level + 2] = 1.0f;
+			
+			i = 5;//スピード武器レベルのカラー設定処理を開始させる
+		}
+		//スピード武器レベルの最大到達度
+		else if (i == g_Spe_equip_Lv_achieve + 5)
+		{
+			//現在のスピード武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Spe_equip_Level + 5] = 1.0f;
+			m_Equ_pic_green_color[g_Spe_equip_Level + 5] = 1.0f;
+			m_Equ_pic_blue_color[g_Spe_equip_Level + 5] = 1.0f;
+			
+			i = 8;//バランス武器レベルのカラー設定処理を開始させる
+		}
+		//バランス武器レベルの最大到達度
+		else if (i == g_Bal_equip_Lv_achieve + 8)
+		{
+			//現在のバランス武器レベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Bal_equip_Level + 8] = 1.0f;
+			m_Equ_pic_green_color[g_Bal_equip_Level + 8] = 1.0f;
+			m_Equ_pic_blue_color[g_Bal_equip_Level + 8] = 1.0f;
+
+			i = 11;//ポッドレベルのカラー設定処理を開始させる
+		}
+		//ポッドレベルの最大到達度
+		else if(i == g_Pod_equip_Lv_achieve + 11)
+		{
+			//現在のポッドレベルのカラーを白色に設定する
+			m_Equ_pic_red_color[g_Bal_equip_Level + 11] = 1.0f;
+			m_Equ_pic_green_color[g_Bal_equip_Level + 11] = 1.0f;
+			m_Equ_pic_blue_color[g_Bal_equip_Level + 11] = 1.0f;
+
+			break;//カラー設定処理を終了させる
+		}
 	}
 
+
+	m_mou_x = 0.0f;
+	m_mou_y = 0.0f;
+	m_mou_r = false;
+	m_mou_l = false;
 	m_introduce_f = false;
 	m_key_lf = false;
+	m_message_red_color = INI_COLOR;
+	m_message_green_color = INI_COLOR;
+	m_message_blue_color = INI_COLOR;
 	m_alpha = INI_ALPHA;
 
 	//▼ミサイルリキャストタイム(RCT)設定
@@ -50,6 +125,59 @@ void CObjInstitute::Init()
 	m_Mis_recast_next_Hum_num[1] = 1000; //RCLvが1の時の必要研究員数
 	m_Mis_recast_next_Hum_num[2] = 5000; //RCLvが2の時の必要研究員数
 	m_Mis_recast_next_Hum_num[3] = 10000;//RCLvが3の時の必要研究員数
+
+	//▼各武器、ポッドの次のLVUPに必要な研究員の住民数設定
+	//▽パワー武器
+	m_Equ_next_Hum_num[0][0] = 100;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[0][1] = 1000; //レベルが2の時の必要研究員数
+	//▽ディフェンス武器
+	m_Equ_next_Hum_num[1][0] = 200;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[1][1] = 1000; //レベルが2の時の必要研究員数
+	//▽スピード武器
+	m_Equ_next_Hum_num[2][0] = 300;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[2][1] = 1000; //レベルが2の時の必要研究員数
+	//▽バランス武器
+	m_Equ_next_Hum_num[3][0] = 500;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[3][1] = 1000; //レベルが2の時の必要研究員数
+	//▽ポッド
+	m_Equ_next_Hum_num[4][0] = 300;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[4][1] = 1000; //レベルが2の時の必要研究員数
+
+	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
+	//※以下のように素材数を管理しているグローバル変数を代入する事で素材の種類設定と所持数の代入をしている。
+	//ただし現在は素材種類が確定していないため、仮で定数を入れている。後で変更すべし。
+	//▽パワー武器
+	m_Equ_next_Mat_type[0][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = 0;		//レベルが2の時の必要素材種類
+	//▽ディフェンス武器
+	m_Equ_next_Mat_type[1][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = 0;		//レベルが2の時の必要素材種類
+	//▽スピード武器
+	m_Equ_next_Mat_type[2][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[2][1] = 0;		//レベルが2の時の必要素材種類
+	//▽バランス武器
+	m_Equ_next_Mat_type[3][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = 0;		//レベルが2の時の必要素材種類
+	//▽ポッド
+	m_Equ_next_Mat_type[4][0] = 400;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[4][1] = 0;		//レベルが2の時の必要素材種類
+
+	//▼各武器、ポッドの次のLVUPに必要な素材数設定
+	//▽パワー武器
+	m_Equ_next_Mat_num[0][0] = 0;	 //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[0][1] = 1000; //レベルが2の時の必要素材数
+	//▽ディフェンス武器
+	m_Equ_next_Mat_num[1][0] = 100;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[1][1] = 1000; //レベルが2の時の必要素材数
+	//▽スピード武器
+	m_Equ_next_Mat_num[2][0] = 300;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[2][1] = 1000; //レベルが2の時の必要素材数
+	//▽バランス武器
+	m_Equ_next_Mat_num[3][0] = 500;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[3][1] = 1000; //レベルが2の時の必要素材数
+	//▽ポッド
+	m_Equ_next_Mat_num[4][0] = 200;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[4][1] = 1000; //レベルが2の時の必要素材数
 }
 
 //アクション
@@ -175,9 +303,20 @@ void CObjInstitute::Action()
 						;//最大レベルの時はこのチェック処理を飛ばす
 					}
 					else if (g_Ins_Level >= m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] &&
-						g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
+							 g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
 					{
 						g_Mis_Recast_Level++;//条件を満たしているのでレベルUP
+
+
+						//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
+						swprintf_s(m_message, L"ミサイルリキャストレベルUP！");//文字配列に文字データを入れる
+
+						//リキャストレベルUPメッセージのカラーを黄色にする
+						m_message_red_color = 1.0f;
+						m_message_green_color = 1.0f;
+						m_message_blue_color = 0.0f;
+
+						m_alpha = 1.0f;		//リキャストレベルUPメッセージを表示するため、透過度を1.0fにする
 					}
 				}
 			}
@@ -218,6 +357,17 @@ void CObjInstitute::Action()
 					else if (g_Research_num < m_Mis_recast_next_Hum_num[g_Mis_Recast_Level - 1])
 					{
 						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
+
+
+						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージにて知らせる
+						swprintf_s(m_message, L"ミサイルリキャストレベルDOWN…");//文字配列に文字データを入れる
+
+						//リキャストレベルDOWNメッセージのカラーを水色にする
+						m_message_red_color = 0.0f;
+						m_message_green_color = 1.0f;
+						m_message_blue_color = 1.0f;
+
+						m_alpha = 1.0f;		//リキャストレベルDOWNメッセージを表示するため、透過度を1.0fにする
 					}
 				}
 			}
@@ -281,6 +431,64 @@ void CObjInstitute::Action()
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
 					m_alpha = 0.0f;
 
+					//▼メモ
+					//ここで各住民数、各素材の必要数を各武器ポッド毎にif文で確認
+					//必要数をそれぞれ満たしていれば、
+					//次のレベルの武器グラフィックのカラーを黄色に変更。
+					//必要な各武器ポッド(Lv2以降)の処理の中に黄色に変更されているか否かのif文作って、
+					//レベルＵＰの選択肢を選べるように。
+					//ちなみにレベルＵＰ後は、ここの処理と同じ事を行い、
+					//現段階でまたすぐにレベルＵＰできるようであれば黄色に変更する。
+					//素材も減少するので、素材種類＆所持数配列も更新する。
+					//あと、以下の処理このメモ消す前に説明足りてない所のコメント書く
+					for (int i = 0; i < 5; i++)
+					{
+						int Tmp_equip_Lv_achieve;
+						
+						if (i == 0)
+						{
+							Tmp_equip_Lv_achieve = g_Pow_equip_Lv_achieve;
+						}
+						else if (i == 1)
+						{
+							Tmp_equip_Lv_achieve = g_Def_equip_Lv_achieve;
+						}
+						else if (i == 2)
+						{
+							Tmp_equip_Lv_achieve = g_Spe_equip_Lv_achieve;
+						}
+						else if (i == 3)
+						{
+							Tmp_equip_Lv_achieve = g_Bal_equip_Lv_achieve;
+						}
+						else  //(i == 4)
+						{
+							Tmp_equip_Lv_achieve = g_Pod_equip_Lv_achieve;
+						}
+
+
+						if (Tmp_equip_Lv_achieve == EQU_MAX_LV)
+						{
+							;//最大レベルの時はこのLvUP可能判定処理を飛ばす
+						}
+						else if (g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
+								 m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
+						{
+							//レベルアップ可能な武器ポッド画像を黄色にする。
+							m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
+							m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
+							m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.0f;
+						}
+						else
+						{
+							//レベルアップ不可な武器ポッド画像は黒色にする。
+							m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+							m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+							m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+						}
+					}
+		
+
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
 				}
@@ -313,6 +521,9 @@ void CObjInstitute::Action()
 				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 				m_key_rf = false;
 
+				//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+				m_alpha = 0.0f;
+
 				//"研究所ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Institute;
 			}
@@ -323,6 +534,9 @@ void CObjInstitute::Action()
 				if (m_key_lf == true)
 				{
 					m_key_lf = false;
+
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
 
 					//"研究所ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Institute;
@@ -539,21 +753,21 @@ void CObjInstitute::Draw()
 	//武器ポッド画像集用
 	float equip_pic[15][4] =
 	{
-		{ m_Equ_pic_color[0],m_Equ_pic_color[0],m_Equ_pic_color[0],1.0f },
-		{ m_Equ_pic_color[1],m_Equ_pic_color[1],m_Equ_pic_color[1],1.0f },
-		{ m_Equ_pic_color[2],m_Equ_pic_color[2],m_Equ_pic_color[2],1.0f },
-		{ m_Equ_pic_color[3],m_Equ_pic_color[3],m_Equ_pic_color[3],1.0f },
-		{ m_Equ_pic_color[4],m_Equ_pic_color[4],m_Equ_pic_color[4],1.0f },
-		{ m_Equ_pic_color[5],m_Equ_pic_color[5],m_Equ_pic_color[5],1.0f },
-		{ m_Equ_pic_color[6],m_Equ_pic_color[6],m_Equ_pic_color[6],1.0f },
-		{ m_Equ_pic_color[7],m_Equ_pic_color[7],m_Equ_pic_color[7],1.0f },
-		{ m_Equ_pic_color[8],m_Equ_pic_color[8],m_Equ_pic_color[8],1.0f },
-		{ m_Equ_pic_color[9],m_Equ_pic_color[9],m_Equ_pic_color[9],1.0f },
-		{ m_Equ_pic_color[10],m_Equ_pic_color[10],m_Equ_pic_color[10],1.0f },
-		{ m_Equ_pic_color[11],m_Equ_pic_color[11],m_Equ_pic_color[11],1.0f },
-		{ m_Equ_pic_color[12],m_Equ_pic_color[12],m_Equ_pic_color[12],1.0f },
-		{ m_Equ_pic_color[13],m_Equ_pic_color[13],m_Equ_pic_color[13],1.0f },
-		{ m_Equ_pic_color[14],m_Equ_pic_color[14],m_Equ_pic_color[14],1.0f },
+		{ m_Equ_pic_red_color[0],m_Equ_pic_green_color[0],m_Equ_pic_blue_color[0],1.0f },
+		{ m_Equ_pic_red_color[1],m_Equ_pic_green_color[1],m_Equ_pic_blue_color[1],1.0f },
+		{ m_Equ_pic_red_color[2],m_Equ_pic_green_color[2],m_Equ_pic_blue_color[2],1.0f },
+		{ m_Equ_pic_red_color[3],m_Equ_pic_green_color[3],m_Equ_pic_blue_color[3],1.0f },
+		{ m_Equ_pic_red_color[4],m_Equ_pic_green_color[4],m_Equ_pic_blue_color[4],1.0f },
+		{ m_Equ_pic_red_color[5],m_Equ_pic_green_color[5],m_Equ_pic_blue_color[5],1.0f },
+		{ m_Equ_pic_red_color[6],m_Equ_pic_green_color[6],m_Equ_pic_blue_color[6],1.0f },
+		{ m_Equ_pic_red_color[7],m_Equ_pic_green_color[7],m_Equ_pic_blue_color[7],1.0f },
+		{ m_Equ_pic_red_color[8],m_Equ_pic_green_color[8],m_Equ_pic_blue_color[8],1.0f },
+		{ m_Equ_pic_red_color[9],m_Equ_pic_green_color[9],m_Equ_pic_blue_color[9],1.0f },
+		{ m_Equ_pic_red_color[10],m_Equ_pic_green_color[10],m_Equ_pic_blue_color[10],1.0f },
+		{ m_Equ_pic_red_color[11],m_Equ_pic_green_color[11],m_Equ_pic_blue_color[11],1.0f },
+		{ m_Equ_pic_red_color[12],m_Equ_pic_green_color[12],m_Equ_pic_blue_color[12],1.0f },
+		{ m_Equ_pic_red_color[13],m_Equ_pic_green_color[13],m_Equ_pic_blue_color[13],1.0f },
+		{ m_Equ_pic_red_color[14],m_Equ_pic_green_color[14],m_Equ_pic_blue_color[14],1.0f },
 	};
 
 	//武器必要素材&人数フォント用
@@ -562,8 +776,8 @@ void CObjInstitute::Draw()
 	//武器必要素材&人数ウインドウ用
 	float Wep_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
-	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
+	//簡易メッセージ(エラーメッセージ、レベルUP表示等)用
+	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
 
 	//▽フォント準備
 	//研究所レベル用
@@ -793,8 +1007,8 @@ void CObjInstitute::Draw()
 		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
 		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
 
-		//エラーメッセージ
-		Font::StrDraw(m_error, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
+		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
+		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
 	}
 	
 	//ミサイルウインドウ、もしくは武器ポッドウインドウ開いている際に表示するグラフィック
