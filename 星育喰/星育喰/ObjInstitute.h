@@ -18,6 +18,9 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+
+	int Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_achieve);//武器ポッドレベルUPチェック関数
+	int Equip_Lvdown_check(int equip_id, int equip_Level);					//武器ポッドレベルDOWNチェック関数
 private:
 	float m_Ins_color;				//研究所カラー明度
 	float m_Ins_Lvup_color;			//研究所レベルUPカラー明度
