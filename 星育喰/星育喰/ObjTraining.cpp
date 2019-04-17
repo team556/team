@@ -22,6 +22,16 @@ int  CObjTraining::window_start_manage = Default;
 int g_Bar_Level = 1;
 int g_Ins_Level = 1;
 int g_Mis_Recast_Level = 0;
+int g_Pow_equip_Level = 1;	
+int g_Pow_equip_Lv_achieve = 1;
+int g_Def_equip_Level = 1;		
+int g_Def_equip_Lv_achieve = 1;	
+int g_Spe_equip_Level = 1;		
+int g_Spe_equip_Lv_achieve = 1;	
+int g_Bal_equip_Level = 1;
+int g_Bal_equip_Lv_achieve = 1;
+int g_Pod_equip_Level = 1;
+int g_Pod_equip_Lv_achieve = 1;
 int g_Power_num = 0;
 int g_Defense_num = 0;
 int g_Speed_num = 0;
@@ -33,17 +43,17 @@ int g_Remain_num = 1000;
 void CObjTraining::Init()
 {
 	m_size = INI_PLAYER_SIZE;
+	m_Mig_time = 0;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
 	m_mou_l = false;
-
-	m_Back_Button_color = INI_COLOR;
-	
-	m_Mig_time = 0;
 	m_key_lf = false;
 
+	m_Back_Button_color = INI_COLOR;
+
+	//▼以下のstatic変数は他シーンから育成画面に入る度に初期化を行う
 	scene_change_start = false;
 	window_start_manage = Default;
 }
@@ -247,13 +257,25 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	}
 	else if (Tmp_remain < 0) //残り住民数がいない場合
 	{
-		swprintf_s(m_error, L"残り住民数がいません");//文字配列に文字データを入れる
-		m_error_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
+		swprintf_s(m_message, L"残り住民数がいません");//文字配列に文字データを入れる
+		
+		//▼エラーメッセージのカラーを赤色にする
+		m_message_red_color = 1.0f;
+		m_message_green_color = 0.0f;
+		m_message_blue_color = 0.0f;
+		
+		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
 	}
 	else  //(Tmp_human < 0 || 999900 < Tmp_human) これ以上振り分けられない場合
 	{
-		swprintf_s(m_error, L"これ以上振り分けられません");//文字配列に文字データを入れる
-		m_error_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
+		swprintf_s(m_message, L"これ以上振り分けられません");//文字配列に文字データを入れる
+
+		//▼エラーメッセージのカラーを赤色にする
+		m_message_red_color = 1.0f;
+		m_message_green_color = 0.0f;
+		m_message_blue_color = 0.0f;
+
+		m_alpha = 1.0f;		//エラーメッセージを表示するため、透過度を1.0fにする
 	}
 
 	return type_num;

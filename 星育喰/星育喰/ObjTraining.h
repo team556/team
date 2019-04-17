@@ -30,8 +30,11 @@ protected:
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 
-	wchar_t m_error[14];		//エラーメッセージのフォント用
-	float	m_error_alpha;		//エラーメッセージの透過度(アルファ値)
+	wchar_t m_message[18];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用
+	float m_message_red_color;	//簡易メッセージカラー(Red)
+	float m_message_green_color;//簡易メッセージカラー(Green)
+	float m_message_blue_color;	//簡易メッセージカラー(Blue)
+	float m_alpha;				//マウスカーソル上部に描画するグラフィックの透過度(アルファ値)
 
 	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
 	static int  window_start_manage;//施設ウインドウの起動管理フラグ
@@ -45,5 +48,9 @@ protected:
 		Institute,	//研究所ウインドウを開いている状態。
 		Missile,	//ミサイルウインドウを開いている状態。
 		Equipment,	//武器ポッドウインドウを開いている状態。
+		Warehouse,	//倉庫ウィンドウを開いている状態。
+		Materials,	//資材ウィンドウを開いている状態。
+		Residents,	//住民ウィンドウを開いている状態。
+		Specialskill,//スペシャル技ウィンドウを開いている状態。
 	};
 };
