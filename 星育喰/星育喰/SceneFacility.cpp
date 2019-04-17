@@ -37,10 +37,10 @@ void CSceneFacility::InitScene()
 	Draw::LoadImage(L"倉庫.png", 2, TEX_SIZE_512);
 
 	//倉庫選択画面画像読み込み3番に登録
-	Draw::LoadImage(L"倉庫オブジェクト(仮).png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"灰色ウインドウ(仮).png", 3, TEX_SIZE_512);
 
 	//(仮)戻るアイコンを読み込み4番に登録
-	Draw::LoadImage(L"戻るアイコンTEST.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"戻る.png", 4, TEX_SIZE_512);
 
 	//資材選択ボタン画像読み込み5番に登録
 	Draw::LoadImage(L"資材選択ボタン(仮).png", 5, TEX_SIZE_512);

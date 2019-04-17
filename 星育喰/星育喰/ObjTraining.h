@@ -52,5 +52,6 @@ protected:
 		Materials,	//資材ウィンドウを開いている状態。
 		Residents,	//住民ウィンドウを開いている状態。
 		Specialskill,//スペシャル技ウィンドウを開いている状態。
+		Soubicheck,	//装備ウィンドウを開いている状態。
 	};
 };

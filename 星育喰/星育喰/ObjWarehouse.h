@@ -25,12 +25,6 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 		int m_x;
 		int m_y;
 
-		bool m_key_wh;	//倉庫を開くフラグ
-		bool m_key_ma;	//資材ボタンフラグ
-		bool m_key_re;	//住民ボタンフラグ
-		bool m_key_sp;	//スペシャル技ボタンフラグ
-		bool m_key_eq;	//装備ボタンフラグ
-		bool m_key_md;	//戻るボタンフラグ
 		bool m_key_lf;  //左クリック用キーフラグ
 
 		float m_Ware_color;			//倉庫カラー明度
