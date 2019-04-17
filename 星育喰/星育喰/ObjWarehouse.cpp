@@ -20,14 +20,8 @@ void CObjWarehouse::Init()
 	m_Ware_color = INI_COLOR;
 	m_Back_Button_color = INI_COLOR;
 
-	for (int i = 0; i < 10; i++)
-	{
-		m_Ware_botton_color[i] = INI_COLOR;//全ての要素の値をINI_COLORで初期化している
-	}
 	m_key_lf = false;
 
-	m_x = 100;
-	m_y = 100;
 }
 
 //アクション
@@ -55,8 +49,6 @@ void CObjWarehouse::Action()
 
 				//倉庫をクリックすると、倉庫が開かれる
 				m_key_wh = true;
-				//↓test_flagのアレでやる。
-				m_key_wh = true;
 			}
 		}
 		else
@@ -82,12 +74,8 @@ void CObjWarehouse::Action()
 			{
 				m_key_lf = false;
 
-				//↓test_flagのアレでやる。
-				m_key_md = true;
-
 				//"どのウインドウも開いていない状態"フラグを立てる
 				window_start_manage = Default;
-				m_key_md = true;
 			}
 		}
 		else
@@ -114,8 +102,6 @@ void CObjWarehouse::Action()
 			{
 				m_key_ma = false;
 
-				//↓test_flagのアレでやる。
-				//m_f = true;
 			}
 		}
 		else
@@ -142,8 +128,6 @@ void CObjWarehouse::Action()
 			{
 				m_key_re = false;
 
-				//↓test_flagのアレでやる。
-				//m_f = true;
 			}
 		}
 		else
@@ -170,8 +154,6 @@ void CObjWarehouse::Action()
 			{
 				m_key_sp = false;
 
-				//↓test_flagのアレでやる。
-				//m_f = true;
 			}
 		}
 		else
@@ -198,8 +180,6 @@ void CObjWarehouse::Action()
 			{
 				m_key_eq = false;
 
-				//↓test_flagのアレでやる。
-				//m_f = true;
 			}
 		}
 		else
@@ -304,7 +284,6 @@ void CObjWarehouse::Draw()
 
 	//倉庫をクリックした時
 	else if (m_key_wh == true)
-	if (m_key_wh == true)
 	{
 		//ボタン背景作成
 		src.m_top    =    0.0f;
@@ -392,17 +371,6 @@ void CObjWarehouse::Draw()
 		Draw::Draw(8, &src, &dst, eq, 0.0f);
 	}
 
-		//住民選択ボタン作成
-		src.m_top    = 0.0f;
-		src.m_left   = 0.0f;
-		src.m_right  = 225.0f;
-		src.m_bottom = 225.0f;
-
-		dst.m_top    = 200.0f;
-		dst.m_left   = 700.0f;
-		dst.m_right  = 875.0f;
-		dst.m_bottom = 375.0f;
-		Draw::Draw(6, &src, &dst, re, 0.0f);
 	//戻るボタンを選択して描画する画像
 	else if (m_key_md == true)
 	{
