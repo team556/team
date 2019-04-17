@@ -461,54 +461,8 @@ void CObjInstitute::Action()
 					//現段階でまたすぐにレベルＵＰできるようであれば黄色に変更する。
 					//素材も減少するので、素材種類＆所持数配列も更新する。
 					//あと、以下の処理このメモ消す前に説明足りてない所のコメント書く
-					for (int i = 0; i < 5; i++)
-					{
-						int Tmp_equip_Lv_achieve;
-						
-						if (i == 0)
-						{
-							Tmp_equip_Lv_achieve = g_Pow_equip_Lv_achieve;
-						}
-						else if (i == 1)
-						{
-							Tmp_equip_Lv_achieve = g_Def_equip_Lv_achieve;
-						}
-						else if (i == 2)
-						{
-							Tmp_equip_Lv_achieve = g_Spe_equip_Lv_achieve;
-						}
-						else if (i == 3)
-						{
-							Tmp_equip_Lv_achieve = g_Bal_equip_Lv_achieve;
-						}
-						else  //(i == 4)
-						{
-							Tmp_equip_Lv_achieve = g_Pod_equip_Lv_achieve;
-						}
-
-
-						if (Tmp_equip_Lv_achieve == EQU_MAX_LV)
-						{
-							;//最大レベルの時はこのLvUP可能判定処理を飛ばす
-						}
-						else if (g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
-								 m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
-						{
-							//レベルアップ可能な武器ポッド画像を黄色にする。
-							m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
-							m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
-							m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.0f;
-						}
-						else
-						{
-							//レベルアップ不可な武器ポッド画像は黒色にする。
-							m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
-							m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
-							m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
-						}
-					}
+					Equip_Lvup_possible_check();
 		
-
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
 				}
@@ -1349,4 +1303,54 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 	}
 
 	return equip_Level;
+}
+
+void CObjInstitute::Equip_Lvup_possible_check()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		int Tmp_equip_Lv_achieve;
+
+		if (i == 0)
+		{
+			Tmp_equip_Lv_achieve = g_Pow_equip_Lv_achieve;
+		}
+		else if (i == 1)
+		{
+			Tmp_equip_Lv_achieve = g_Def_equip_Lv_achieve;
+		}
+		else if (i == 2)
+		{
+			Tmp_equip_Lv_achieve = g_Spe_equip_Lv_achieve;
+		}
+		else if (i == 3)
+		{
+			Tmp_equip_Lv_achieve = g_Bal_equip_Lv_achieve;
+		}
+		else  //(i == 4)
+		{
+			Tmp_equip_Lv_achieve = g_Pod_equip_Lv_achieve;
+		}
+
+
+		if (Tmp_equip_Lv_achieve == EQU_MAX_LV)
+		{
+			;//最大レベルの時はこの武器ポッドLvUP可能チェック処理を飛ばす
+		}
+		else if (g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
+			m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
+		{
+			//レベルアップ可能な武器ポッド画像を黄色にする。
+			m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
+			m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
+			m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.0f;
+		}
+		else
+		{
+			//レベルアップ不可な武器ポッド画像は黒色にする。
+			m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+			m_Equ_pic_green_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+			m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
+		}
+	}
 }
