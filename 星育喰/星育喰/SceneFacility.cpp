@@ -43,16 +43,16 @@ void CSceneFacility::InitScene()
 	Draw::LoadImage(L"戻る.png", 4, TEX_SIZE_512);
 
 	//資材選択ボタン画像読み込み5番に登録
-	Draw::LoadImage(L"資材選択ボタン(仮).png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"資材選択ボタン.png", 5, TEX_SIZE_512);
 
 	//住民選択ボタン画像読み込み6番に登録
-	Draw::LoadImage(L"住民選択ボタン(仮).png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"住民選択ボタン.png", 6, TEX_SIZE_512);
 
 	//スペシャル技選択ボタン画像読み込み7番に登録
-	Draw::LoadImage(L"スペシャル技選択ボタン(仮).png", 7, TEX_SIZE_512);
+	Draw::LoadImage(L"スペシャル技選択ボタン.png", 7, TEX_SIZE_512);
 
 	//装備選択ボタン画像読み込み8番に登録
-	Draw::LoadImage(L"装備選択ボタン(仮).png", 8, TEX_SIZE_512);
+	Draw::LoadImage(L"装備選択ボタン.png", 8, TEX_SIZE_512);
 
 	//建物オブジェクト作成
 	CObjBuild* build = new CObjBuild();
