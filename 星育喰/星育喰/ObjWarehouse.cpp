@@ -25,10 +25,6 @@ void CObjWarehouse::Init()
 	m_object_sp = INI_COLOR;			//スペシャル技確認ボタンカラー
 	m_object_eq = INI_COLOR;			//装備確認ボタンカラー
 
-	for (int i = 0; i < 10; i++)
-	{
-		m_Ware_botton_color[i] = INI_COLOR;//全ての要素の値をINI_COLORで初期化している
-	}
 	m_key_lf = false;
 
 }
@@ -119,6 +115,9 @@ void CObjWarehouse::Draw()
 		dst.m_right  =  80.0f;
 		dst.m_bottom =  80.0f;
 		Draw::Draw(4, &src, &dst, md, 0.0f);
+		dst.m_right  =  80.0f;
+		dst.m_bottom =  80.0f;
+		Draw::Draw(4, &src, &dst, md, 0.0f);
 
 		//▼資材選択ボタン表示
 		src.m_top    = 0.0f;
@@ -162,6 +161,11 @@ void CObjWarehouse::Draw()
 		src.m_right  = 225.0f;
 		src.m_bottom = 225.0f;
 
+		dst.m_top    = 200.0f;
+		dst.m_left   = 350.0f;
+		dst.m_right  = 525.0f;
+		dst.m_bottom = 375.0f;
+		Draw::Draw(5, &src, &dst, ma, 0.0f);
 		dst.m_top    = 450.0f;
 		dst.m_left   = 700.0f;
 		dst.m_right  = 875.0f;

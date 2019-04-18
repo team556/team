@@ -18,6 +18,10 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+
+	int Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_achieve);//武器ポッドレベルUPチェック関数
+	int Equip_Lvdown_check(int equip_id, int equip_Level);					//武器ポッドレベルDOWNチェック関数
+	void Equip_Lvup_possible_check();										//武器ポッドLvUP可能チェック関数
 private:
 	float m_Ins_color;				//研究所カラー明度
 	float m_Ins_Lvup_color;			//研究所レベルUPカラー明度
@@ -37,5 +41,5 @@ private:
 	
 	int m_Equ_next_Hum_num[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な研究員の住民数管理用
 	int m_Equ_next_Mat_type[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な素材種類とその素材の所持数を管理
-	int m_Equ_next_Mat_num[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な素材数管理用(仮で必要素材1種類として考えている。2種類以上ならその分Mat_typeとMat_numを増やす予定)
+	int m_Equ_next_Mat_num[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な素材数管理用(仮で必要素材1種類として考えている。2種類以上ならその分Mat_typeとMat_numを配列構造体に入れて増やす予定)
 };
