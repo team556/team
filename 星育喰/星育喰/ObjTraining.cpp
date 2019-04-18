@@ -39,6 +39,8 @@ int g_Balance_num = 0;
 int g_Research_num = 0;
 int g_Remain_num = 1000;
 
+int g_Material_num_test = 400;
+
 //イニシャライズ
 void CObjTraining::Init()
 {
