@@ -144,7 +144,6 @@
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="SceneTest.cpp" />
@@ -193,7 +192,6 @@
     <ClInclude Include="SceneFacility.h" />
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneHome.h" />
-    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SceneTraining.h" />

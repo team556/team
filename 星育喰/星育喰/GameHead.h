@@ -105,7 +105,6 @@ extern int g_Remain_num;			//残り住民数
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
-#include "SceneMain.h"
 #include "SceneTitle.h"
 #include "SceneHome.h"
 #include "SceneTest.h"
@@ -119,5 +118,5 @@ extern int g_Remain_num;			//残り住民数
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
-#define SET_GAME_START CSceneFacility
+#define SET_GAME_START CSceneTraining
 //-----------------------------------------------
