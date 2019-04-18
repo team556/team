@@ -144,23 +144,23 @@ void CObjInstitute::Init()
 	m_Equ_next_Hum_num[4][1] = 1000; //レベルが2の時の必要研究員数
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
-	//※以下のように素材数を管理しているグローバル変数を代入する事で素材の種類設定と所持数の代入をしている。
-	//ただし現在は素材種類が確定していないため、仮で定数を入れている。後で変更すべし。
+	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
+	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
 	//▽パワー武器
-	m_Equ_next_Mat_type[0][0] = 400;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[0][1] = 0;		//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[0][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
 	//▽ディフェンス武器
-	m_Equ_next_Mat_type[1][0] = 400;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[1][1] = 0;		//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[1][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
 	//▽スピード武器
-	m_Equ_next_Mat_type[2][0] = 400;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[2][1] = 0;		//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[2][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[2][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
 	//▽バランス武器
-	m_Equ_next_Mat_type[3][0] = 400;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[3][1] = 0;		//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[3][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
 	//▽ポッド
-	m_Equ_next_Mat_type[4][0] = 400;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[4][1] = 0;		//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[4][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[4][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
@@ -298,26 +298,7 @@ void CObjInstitute::Action()
 					//▼ミサイルリキャストレベルUPチェック
 					//レベルUP条件を満たしているかチェックし、
 					//満たしていればレベルUPさせる。
-					if (g_Mis_Recast_Level == MIS_MAX_LV - 1)
-					{
-						;//最大レベルの時はこのチェック処理を飛ばす
-					}
-					else if (g_Ins_Level >= m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] &&
-							 g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
-					{
-						g_Mis_Recast_Level++;//条件を満たしているのでレベルUP
-
-
-						//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
-						swprintf_s(m_message, L"ミサイルリキャストレベルUP！");//文字配列に文字データを入れる
-
-						//リキャストレベルUPメッセージのカラーを黄色にする
-						m_message_red_color = 1.0f;
-						m_message_green_color = 1.0f;
-						m_message_blue_color = 0.0f;
-
-						m_alpha = 1.0f;		//リキャストレベルUPメッセージを表示するため、透過度を1.0fにする
-					}
+					Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
 
 					//▼武器ポッドレベルUPチェック
 					//既にレベルUP済みの武器ポッドの現在の研究員数をチェックし、
@@ -452,16 +433,14 @@ void CObjInstitute::Action()
 					m_alpha = 0.0f;
 
 					//▼メモ
-					//ここで各住民数、各素材の必要数を各武器ポッド毎にif文で確認
-					//必要数をそれぞれ満たしていれば、
-					//次のレベルの武器グラフィックのカラーを黄色に変更。
 					//必要な各武器ポッド(Lv2以降)の処理の中に黄色に変更されているか否かのif文作って、
 					//レベルＵＰの選択肢を選べるように。
 					//ちなみにレベルＵＰ後は、ここの処理と同じ事を行い、
 					//現段階でまたすぐにレベルＵＰできるようであれば黄色に変更する。
-					//素材も減少するので、素材種類＆所持数配列も更新する。
-					//あと、以下の処理このメモ消す前に説明足りてない所のコメント書く
-					Equip_Lvup_possible_check();
+					//素材も減少するので、素材種類＆所持数配列も更新する。//←ポインタでやったので必要なし
+
+					//▼武器ポッドLvUP可能チェック
+					Equip_Lvup_possible_check();//武器ポッドレベルUP可能チェック関数を呼び出す
 		
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
@@ -533,98 +512,113 @@ void CObjInstitute::Action()
 			//パワー武器Lv.1
 			if (277 < m_mou_x && m_mou_x < 407 && 207 < m_mou_y && m_mou_y < 336)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(0, 0);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//パワー武器Lv.2
 			else if (277 < m_mou_x && m_mou_x < 407 && 355 < m_mou_y && m_mou_y < 483)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(0, 1);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//パワー武器Lv.3
 			else if (277 < m_mou_x && m_mou_x < 407 && 503 < m_mou_y && m_mou_y < 632)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(0, 2);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//ディフェンス武器Lv.1
 			else if (445 < m_mou_x && m_mou_x < 575 && 207 < m_mou_y && m_mou_y < 336)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(1, 0);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//ディフェンス武器Lv.2
 			else if (445 < m_mou_x && m_mou_x < 575 && 355 < m_mou_y && m_mou_y < 483)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(1, 1);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//ディフェンス武器Lv.3
 			else if (445 < m_mou_x && m_mou_x < 575 && 503 < m_mou_y && m_mou_y < 632)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(1, 2);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//スピード武器Lv.1
 			else if (614 < m_mou_x && m_mou_x < 744 && 207 < m_mou_y && m_mou_y < 336)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(2, 0);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//スピード武器Lv.2
 			else if (614 < m_mou_x && m_mou_x < 744 && 355 < m_mou_y && m_mou_y < 483)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(2, 1);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//スピード武器Lv.3
 			else if (614 < m_mou_x && m_mou_x < 744 && 503 < m_mou_y && m_mou_y < 632)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(2, 2);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//バランス武器Lv.1
 			else if (783 < m_mou_x && m_mou_x < 913 && 207 < m_mou_y && m_mou_y < 336)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(3, 0);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//バランス武器Lv.2
 			else if (783 < m_mou_x && m_mou_x < 913 && 355 < m_mou_y && m_mou_y < 483)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(3, 1);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//バランス武器Lv.3
 			else if (783 < m_mou_x && m_mou_x < 913 && 503 < m_mou_y && m_mou_y < 632)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(3, 2);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//ポッドLv.1
 			else if (952 < m_mou_x && m_mou_x < 1081 && 207 < m_mou_y && m_mou_y < 336)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(4, 0);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//ポッドLv.2
 			else if (952 < m_mou_x && m_mou_x < 1081 && 355 < m_mou_y && m_mou_y < 483)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(4, 1);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//ポッドLv.3
 			else if (952 < m_mou_x && m_mou_x < 1081 && 503 < m_mou_y && m_mou_y < 632)
 			{
-				m_alpha = 1.0f;
+				//▼武器ポッド必要素材&人数メッセージを表示
+				Equip_message(4, 2);//武器ポッド必要素材&人数メッセージ表示関数を呼び出す
 			}
 
 			//上記の範囲外にマウスカーソルがある場合、
 			//武器必要素材&人数メッセージを非表示にする
 			else
 			{
-				m_alpha = 0.0f;
+				m_alpha = 0.0f;//武器必要素材&人数メッセージを非表示
 			}
 		}
 
@@ -744,11 +738,16 @@ void CObjInstitute::Draw()
 		{ m_Equ_pic_red_color[14],m_Equ_pic_green_color[14],m_Equ_pic_blue_color[14],1.0f },
 	};
 
-	//武器必要素材&人数フォント用
-	float Wep_message_font[4] = { 0.0f,0.0f,0.0f,m_alpha };
-
-	//武器必要素材&人数ウインドウ用
-	float Wep_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
+	//武器ポッド必要素材&人数フォント用
+	float Equ_message_font[EQU_MES_MAX_FONT_LINE][4] =
+	{
+		{ 0.0f,0.0f,1.0f,m_alpha },//1行目は青色
+		{ 0.0f,0.0f,0.0f,m_alpha },//2行目以降は全て黒色
+		{ 0.0f,0.0f,0.0f,m_alpha },
+	};
+	
+	//武器ポッド必要素材&人数ウインドウ用
+	float Equ_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
 	//簡易メッセージ(エラーメッセージ、レベルUP表示等)用
 	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
@@ -1162,11 +1161,20 @@ void CObjInstitute::Draw()
 			src.m_right = 64.0f;
 			src.m_bottom = 64.0f;
 
-			dst.m_top = m_mou_y - 210.0f;
+			dst.m_top = m_mou_y - 170.0f;
 			dst.m_left = m_mou_x - 150.0f;
 			dst.m_right = m_mou_x + 150.0f;
 			dst.m_bottom = m_mou_y + 0.0f;
-			Draw::Draw(21, &src, &dst, Wep_message_window, 0.0f);
+			Draw::Draw(21, &src, &dst, Equ_message_window, 0.0f);
+
+			//フォント表示
+			for (int i = 0; i < EQU_MES_MAX_FONT_LINE; i++)
+			{
+				Font::StrDraw(m_Equ_message[i], m_mou_x - 135.0f, m_mou_y - 160.0f + i * 40.0f, 25.0f, Equ_message_font[i]);
+			}
+
+			//簡易メッセージ(ウインドウ一番下にあるフォントはコレで描画している)
+			Font::StrDraw(m_message, m_mou_x - 135.0f, m_mou_y - 40.0f, 30.0f, message);
 		}
 	}
 
@@ -1176,6 +1184,35 @@ void CObjInstitute::Draw()
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
 	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
+}
+
+
+//---Missile_Lvup_check関数
+//▼内容
+//ミサイルリキャストレベルUP条件を満たしているかチェックし、
+//満たしていればレベルUPさせる。
+void CObjInstitute::Missile_Lvup_check()
+{
+	if (g_Mis_Recast_Level == MIS_MAX_LV - 1)
+	{
+		;//最大レベルの時はこのチェック処理を飛ばす
+	}
+	else if (g_Ins_Level >= m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] &&
+		g_Research_num >= m_Mis_recast_next_Hum_num[g_Mis_Recast_Level])
+	{
+		g_Mis_Recast_Level++;//条件を満たしているのでレベルUP
+
+
+		//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
+		swprintf_s(m_message, L"ミサイルリキャストレベルUP！");//文字配列に文字データを入れる
+
+		//リキャストレベルUPメッセージのカラーを黄色にする
+		m_message_red_color = 1.0f;
+		m_message_green_color = 1.0f;
+		m_message_blue_color = 0.0f;
+
+		m_alpha = 1.0f;		//リキャストレベルUPメッセージを表示するため、透過度を1.0fにする
+	}
 }
 
 //---Equip_Lvup_check関数
@@ -1188,6 +1225,7 @@ void CObjInstitute::Draw()
 //装備可能な研究員数に達していれば、レベルUPさせる。
 int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_achieve)
 {
+	//▼武器ポッドレベルUPチェック処理
 	if (equip_Level == equip_Lv_achieve)
 	{
 		;//レベルが最大到達度に達している時はこのチェック処理を飛ばす
@@ -1251,6 +1289,7 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 //装備不可な研究員数に達していれば、レベルDOWNさせる。
 int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 {
+	//▼武器ポッドレベルDOWNチェック処理
 	if (equip_Level == 1)
 	{
 		;//初期レベルの時はこのチェック処理を飛ばす
@@ -1305,12 +1344,21 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 	return equip_Level;
 }
 
+//---Equip_Lvup_possible_check関数
+//▼内容
+//それぞれの武器、ポッドが
+//レベルアップ可能な状態(住民数と素材数それぞれが必要数を満たしている)
+//であるかどうかをチェックし、
+//レベルアップ可能であればその武器ポッドの画像を黄色にし、
+//レベルアップ不可であればその武器ポッドの画像を黒色にする。
 void CObjInstitute::Equip_Lvup_possible_check()
 {
 	for (int i = 0; i < 5; i++)
 	{
+		//▼各武器レベルの最大到達度を管理する変数を宣言
 		int Tmp_equip_Lv_achieve;
 
+		//▼適切なタイミングで先程宣言した変数に各武器レベルの最大到達度を代入
 		if (i == 0)
 		{
 			Tmp_equip_Lv_achieve = g_Pow_equip_Lv_achieve;
@@ -1332,13 +1380,13 @@ void CObjInstitute::Equip_Lvup_possible_check()
 			Tmp_equip_Lv_achieve = g_Pod_equip_Lv_achieve;
 		}
 
-
+		//▼武器ポッドレベルUP可能チェック処理
 		if (Tmp_equip_Lv_achieve == EQU_MAX_LV)
 		{
-			;//最大レベルの時はこの武器ポッドLvUP可能チェック処理を飛ばす
+			;//最大レベルの時はこの武器ポッドレベルUP可能チェック処理を飛ばす
 		}
 		else if (g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
-			m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
+			*m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
 		{
 			//レベルアップ可能な武器ポッド画像を黄色にする。
 			m_Equ_pic_red_color[Tmp_equip_Lv_achieve + i * 3] = 1.0f;
@@ -1353,4 +1401,79 @@ void CObjInstitute::Equip_Lvup_possible_check()
 			m_Equ_pic_blue_color[Tmp_equip_Lv_achieve + i * 3] = 0.1f;
 		}
 	}
+}
+
+//---Equip_message関数
+//引数1　int equip_id	:武器ポッド識別番号(パワー武器:0　ディフェンス武器:1　スピード武器:2　バランス武器:3　ポッド:4)
+//引数2　int Lv_id		:レベル識別番号(Lv.1 = 0  Lv.2 = 1  Lv.3 = 2)
+//▼内容
+//マウスで選択している武器ポッドが何であるかを識別し、
+//それに対応する武器ポッド必要素材&人数メッセージを表示する。
+void CObjInstitute::Equip_message(int equip_id, int Lv_id)
+{
+	//▼武器ポッド画像が黄色(レベルアップ可能)の時の処理
+	if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 1.0f &&
+		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 1.0f &&
+		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 0.0f)
+	{
+		//簡易メッセージでクリックで強化可能と知らせる
+
+		//左クリックされたらフラグを立て、最終確認ウインドウを開く
+		if (m_mou_l == true)
+		{
+			//左クリック押したままの状態では入力出来ないようにしている
+			if (m_key_lf == true)
+			{
+				m_key_lf = false;
+
+				m_alpha = 0.0f;//武器ポッド必要素材&人数メッセージを非表示にする
+
+				//"最終確認ウインドウを開いている状態"フラグを立てる
+				window_start_manage = Finalcheck;
+			}
+		}
+		else
+		{
+			m_key_lf = true;
+		}
+	}
+	//▼武器ポッド画像が白色(装備中)の処理
+	else if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 1.0f &&
+		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 1.0f &&
+		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 1.0f)
+	{
+		//▽文字データを全てクリアする
+		swprintf_s(m_Equ_message[0], L"");//文字配列に文字データを入れる
+		swprintf_s(m_Equ_message[1], L"");//文字配列に文字データを入れる
+		swprintf_s(m_Equ_message[2], L"");//文字配列に文字データを入れる
+
+		//簡易メッセージ
+		swprintf_s(m_message, L"装備中");//文字配列に文字データを入れる
+
+		//簡易メッセージのカラーを黒色にする
+		m_message_red_color = 0.0f;
+		m_message_green_color = 0.0f;
+		m_message_blue_color = 0.0f;
+	}
+	//▼武器ポッド画像が灰色(レベルUP済[装備可])の処理
+	else if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 0.5f &&
+		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 0.5f &&
+		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 0.5f)
+	{
+
+	}
+	//▼武器ポッド画像が黒色(装備不可)の処理
+	else if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 0.1f &&
+		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 0.1f &&
+		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 0.1f)
+	{
+		swprintf_s(m_Equ_message[0], L"LvUP条件  所持/  必要");//文字配列に文字データを入れる
+		swprintf_s(m_Equ_message[1], L"研究員  %6d/%6d", g_Research_num, m_Equ_next_Hum_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
+		swprintf_s(m_Equ_message[2], L"素材    %6d/%6d", *m_Equ_next_Mat_type[equip_id][Lv_id - 1], m_Equ_next_Mat_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
+
+		//簡易メッセージ
+		swprintf_s(m_message, L"");//文字配列に文字データを入れる
+	}
+
+	m_alpha = 1.0f;//武器ポッド必要素材&人数メッセージを表示
 }

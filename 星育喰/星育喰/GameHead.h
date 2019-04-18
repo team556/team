@@ -77,6 +77,8 @@ extern int g_Balance_num;			//バランス住民数
 extern int g_Research_num;			//研究員住民数
 extern int g_Remain_num;			//残り住民数
 
+extern int g_Material_num_test;		//TEST用所持素材数
+
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------
