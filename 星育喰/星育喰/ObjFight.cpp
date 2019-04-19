@@ -21,14 +21,15 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 2400;
+	m_cnt = 60 * 30;
 }
 
 //アクション
 void CObjFight::Action()
 {
-	m_cnt--;//カウントダウン
-
+	if (m_cnt > 0)	//0より大きい時
+		m_cnt--;	//カウントダウン
+	
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -56,14 +57,13 @@ void CObjFight::Action()
 		else {};//ライン外何もしない
 	}
 	else {};//範囲外の場合、初期値に戻す
-
 }
 
 //ドロー
 void CObjFight::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	int s = (m_cnt / 60), m = (s / 60);	//ミニッツ,セコンドを宣言＆初期化
+	int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
 	if (s >= 60) {						//60秒以上の場合
 		m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
 	}													//nはその減らす分。
