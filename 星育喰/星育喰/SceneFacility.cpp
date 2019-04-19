@@ -36,7 +36,23 @@ void CSceneFacility::InitScene()
 	//test用倉庫画像読み込み2番に登録
 	Draw::LoadImage(L"倉庫.png", 2, TEX_SIZE_512);
 
-	Draw::LoadImage(L"オブジェクト.png", 3, TEX_SIZE_512);
+	//倉庫選択画面画像読み込み3番に登録
+	Draw::LoadImage(L"倉庫オブジェクト(仮).png", 3, TEX_SIZE_512);
+
+	//(仮)戻るアイコンを読み込み4番に登録
+	Draw::LoadImage(L"戻るアイコンTEST.png", 4, TEX_SIZE_512);
+
+	//資材選択ボタン画像読み込み5番に登録
+	Draw::LoadImage(L"資材選択ボタン(仮).png", 5, TEX_SIZE_512);
+
+	//住民選択ボタン画像読み込み6番に登録
+	Draw::LoadImage(L"住民選択ボタン(仮).png", 6, TEX_SIZE_512);
+
+	//スペシャル技選択ボタン画像読み込み7番に登録
+	Draw::LoadImage(L"スペシャル技選択ボタン(仮).png", 7, TEX_SIZE_512);
+
+	//装備選択ボタン画像読み込み8番に登録
+	Draw::LoadImage(L"装備選択ボタン(仮).png", 8, TEX_SIZE_512);
 
 	//建物オブジェクト作成
 	CObjBuild* build = new CObjBuild();
@@ -51,7 +67,7 @@ void CSceneFacility::InitScene()
 void CSceneFacility::Scene()
 {
 	//描画カラー情報 R=RED G=Green B=Blue A=alpha(透過情報) 
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float h[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;	//切り取り
 	RECT_F dst;	//描画
@@ -70,9 +86,6 @@ void CSceneFacility::Scene()
 	dst.m_bottom =  800.0f;
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-
-
-
+	Draw::Draw(0, &src, &dst, h, 0.0f);
 
 }

@@ -16,4 +16,6 @@ public:
 private:
 	float m_cnt;		//縮小比カウント
 	float m_speed;		//縮小スピード
+
+	float m_a;			//透明度
 };
