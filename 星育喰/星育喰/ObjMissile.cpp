@@ -72,35 +72,35 @@ void CObjMissile::Action()
 	}
 
 	
-
-	if (m_get_line == 0)
+	//各ライン毎の動き方
+	if (m_get_line == 0)//上ライン---
 	{
 		m_vx -= 0.3f;
-		if ((m_x + (m_size / 2) > 599) && (m_vy <= 0)) {
-			m_vy -= 0.15f - (m_cnt * 0.0003f);
+		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+			m_vy -= 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
+		else if (m_x >= 590 && m_x <= 610)
 			m_cnt = 0;
-		else if (m_x + (m_size / 2) < 600)
+		else if (m_x < 600 - m_size)
 		{
-			m_vy += m_cnt * 0.0003f;
+			m_vy += m_cnt * 0.0002f;
 		}
 	}
-	else if (m_get_line == 1)
+	else if (m_get_line == 1)//中ライン---
 	{
 		m_vx -= 0.5f;
 	}
-	else//if(m_get_line == 2)
+	else//if(m_get_line == 2)下ライン---
 	{
 		m_vx -= 0.3f;
-		if ((m_x + (m_size / 2) < 599) && (m_vy <= 0)) {
-			m_vy += 0.15f - (m_cnt * 0.0003f);
+		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+			m_vy += 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x + (m_size / 2) >= 590 && m_x + (m_size / 2) <= 610)
+		else if (m_x >= 590 && m_x <= 610)
 			m_cnt = 0;
-		else if (m_x + (m_size / 2) > 600)
+		else if (m_x < 600 - m_size)
 		{
-			m_vy -= m_cnt * 0.0003f;
+			m_vy -= m_cnt * 0.0002f;
 		}
 	}
 

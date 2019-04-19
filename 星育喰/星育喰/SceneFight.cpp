@@ -49,7 +49,7 @@ void CSceneFight::InitScene()
 	CObjFight* obj = new CObjFight();		//タイトルオブジェクト作成
 	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//タイトルオブジェクト登録
 
-	//星オブジェクト作成
+	//敵星オブジェクト作成
 	CObjPlanet* obj0 = new CObjPlanet(200, 300,false);	//オブジェクト作成
 	Objs::InsertObj(obj0, OBJ_PLANET, 10);				//ブジェクト登録
 
@@ -57,17 +57,15 @@ void CSceneFight::InitScene()
 	CObjPlanet* obj1 = new CObjPlanet(900, 300, true);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);				//オブジェクト登録
 
-	//オブジェクト作成
+	//民発射ボタン
 	CObjPushUnit* obj2 = new CObjPushUnit(300, 600, 100, 100);	//オブジェクト作成
-	Objs::InsertObj(obj2, OBJ_PLANET, 10);				//オブジェクト登録
+	Objs::InsertObj(obj2, OBJ_PLANET, 10);						//オブジェクト登録
 
-	//オブジェクト作成
 	CObjPushUnit* obj3 = new CObjPushUnit(410, 600, 100, 100);	//オブジェクト作成
-	Objs::InsertObj(obj3, OBJ_PLANET, 10);				//オブジェクト登録
+	Objs::InsertObj(obj3, OBJ_PLANET, 10);						//オブジェクト登録
 
-	//オブジェクト作成
 	CObjPushUnit* obj4 = new CObjPushUnit(520, 600, 100, 100);	//オブジェクト作成
-	Objs::InsertObj(obj4, OBJ_PLANET, 10);				//オブジェクト登録
+	Objs::InsertObj(obj4, OBJ_PLANET, 10);						//オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
