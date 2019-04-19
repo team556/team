@@ -22,7 +22,9 @@ private:
 	float m_mov_spd;	//惑星移動スピード
 	float m_siz_spd;	//サイズ変更スピード
 
-	bool m_type;		//惑星タイプ(true主人公)
+	float m_hp;			//ヒットポイント
 
+	bool m_type;		//惑星タイプ(true主人公)
+	bool m_cnt_f;		//カウントフラグ
 	
 };

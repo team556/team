@@ -29,7 +29,7 @@ void CObjMissile::Init()
 		else if(m_get_line == 2){ m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_x += obj->GetCount() / 9;
+		m_x += obj->GetCount() / 7;
 	}
 
 	m_size = 50.0f;//サイズ
@@ -83,14 +83,14 @@ void CObjMissile::Action()
 	if (m_get_line == 0 || m_get_line == 3)//上ライン---
 	{
 		m_vx -= 0.3f;
-		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+		if ((m_x > 600) && (m_vy <= 0)) {
 			m_vy -= 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x >= 590 && m_x <= 610)
+		else if (m_x >= 598 && m_x <= 600)
 			m_cnt = 0;
-		else if (m_x < 600 - m_size)
+		else if (m_x < 600)
 		{
-			m_vy += m_cnt * 0.0002f;
+			m_vy += m_cnt * 0.0004f;
 		}
 	}
 	else if (m_get_line == 1)//中ライン---
@@ -100,14 +100,14 @@ void CObjMissile::Action()
 	else//if(m_get_line == 2)下ライン---
 	{
 		m_vx -= 0.3f;
-		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+		if ((m_x > 600) && (m_vy <= 0)) {
 			m_vy += 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x >= 590 && m_x <= 610)
+		else if (m_x >= 598 && m_x <= 600)
 			m_cnt = 0;
-		else if (m_x < 600 - m_size)
+		else if (m_x < 600)
 		{
-			m_vy -= m_cnt * 0.0002f;
+			m_vy -= m_cnt * 0.0004f;
 		}
 	}
 	
