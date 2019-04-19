@@ -148,8 +148,26 @@ void CSceneTraining::InitScene()
 	//資材ボタン選択後の画面背景画像32番に登録
 	Draw::LoadImage(L"w.png", 32 , TEX_SIZE_512);
 
-	//資材(鉄)画像70番に登録
-	Draw::LoadImage(L"鉄(仮).png", 33/*70*/, TEX_SIZE_512);
+	//資材(木材)画像33番に登録
+	Draw::LoadImage(L"木材.png", 33, TEX_SIZE_512);
+
+	//資材(鉄)画像34番に登録
+	Draw::LoadImage(L"鉄.png", 34, TEX_SIZE_512);
+
+	//資材(銀)画像35番に登録
+	Draw::LoadImage(L"銀.png", 35, TEX_SIZE_512);
+
+	//資材(プラスチック)画像36番に登録
+	Draw::LoadImage(L"プラスチック.png", 36, TEX_SIZE_512);
+
+	//資材(アルミニウム)画像37番に登録
+	Draw::LoadImage(L"アルミニウム.png", 37, TEX_SIZE_512);
+
+	//資材(ガス)画像38番に登録
+	Draw::LoadImage(L"ガス.png", 38, TEX_SIZE_512);
+
+	//資材(レアメタル)画像39番に登録
+	Draw::LoadImage(L"レアメタル.png", 39, TEX_SIZE_512);
 
 	//パワー武器Lv.1の画像を読み込み49番に登録
 	Draw::LoadImage(L"武器画像(仮).png", 49, TEX_SIZE_512);

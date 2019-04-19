@@ -5,6 +5,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define WARE_MES_MAX_FONT_LINE (3) //倉庫資材、技名、住民数、装備名最大フォント桁数
+
 //オブジェクト：タイトル
 class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 {
@@ -26,6 +29,8 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 		int m_y;
 
 		bool m_key_lf;  //左クリック用キーフラグ
+
+		wchar_t m_Ware_message[WARE_MES_MAX_FONT_LINE][100];	//武器ポッド必要素材&人数メッセージのフォント用
 
 		float m_Ware_color;			//倉庫カラー明度
 		float m_Back_Button_color;	//戻るボタンカラー明度

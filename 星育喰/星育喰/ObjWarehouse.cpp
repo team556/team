@@ -289,7 +289,7 @@ void CObjWarehouse::Draw()
 
 	//▽フォント準備
 	//倉庫用
-	wchar_t Ware[5];
+	wchar_t g_Ware[5];
 	//swprintf_s(Ware, L"倉庫", g_Ware);
 
 	RECT_F src;//描画先切り取り位置
@@ -482,21 +482,94 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 
-		//▼鉄表示
+		//▼木材表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 500.0f;
-		src.m_bottom = 549.0f;
+		src.m_right = 717.0f;
+		src.m_bottom = 627.0f;
 
 		dst.m_top = 120.0f;
 		dst.m_left = 120.0f;
-		dst.m_right = 251.0f;
-		dst.m_bottom = 300.0f;
+		dst.m_right = 257.0f;
+		dst.m_bottom = 197.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
+
+		//▼鉄表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 192.0f;
+		src.m_bottom = 167.0f;
+
+		dst.m_top = 120.0f;
+		dst.m_left = 450.0f;
+		dst.m_right = 642.0f;
+		dst.m_bottom = 287.0f;
+		Draw::Draw(34, &src, &dst, it, 0.0f);
+
+		//▼銀表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 192.0f;
+		src.m_bottom = 170.0f;
+
+		dst.m_top = 120.0f;
+		dst.m_left = 800.0f;
+		dst.m_right = 992.0f;
+		dst.m_bottom = 290.0f;
+		Draw::Draw(35, &src, &dst, it, 0.0f);
+
+		//▼プラスチック表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 135.0f;
+		src.m_bottom = 245.0f;
+
+		dst.m_top = 240.0f;
+		dst.m_left = 110.0f;
+		dst.m_right = 245.0f;
+		dst.m_bottom = 390.0f;
+		Draw::Draw(36, &src, &dst, it, 0.0f);
+
+		//▼アルミニウム表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 192.0f;
+		src.m_bottom = 176.0f;
+
+		dst.m_top = 290.0f;
+		dst.m_left = 450.0f;
+		dst.m_right = 642.0f;
+		dst.m_bottom = 466.0f;
+		Draw::Draw(37, &src, &dst, it, 0.0f);
+
+		//▼ガス表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 300.0f;
+		src.m_bottom = 300.0f;
+
+		dst.m_top = 240.0f;
+		dst.m_left = 780.0f;
+		dst.m_right = 930.0f;
+		dst.m_bottom = 390.0f;
+		Draw::Draw(38, &src, &dst, it, 0.0f);
+
+		//▼レアメタル表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 179.0f;
+		src.m_bottom = 179.0f;
+
+		dst.m_top = 430.0f;
+		dst.m_left = 450.0f;
+		dst.m_right = 629.0f;
+		dst.m_bottom = 629.0f;
+		Draw::Draw(39, &src, &dst, it, 0.0f);
 
 		//▽フォント準備
 		//資材在庫数
-		//wchar_t;
+		wchar_t Ware[10];
+		//swprintf_s(Ware, "L木材\n%d個\n", g_Ware);
 
 	}
 	//住民ボタンを押して描画する画像
