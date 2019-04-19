@@ -30,7 +30,7 @@ CSceneFight::~CSceneFight()
 void CSceneFight::InitScene()
 {
 	m_cnt = 0;
-	m_speed = 0.12f;
+	m_speed = 0.04f;
 	m_a = 1.0f;
 
 	//背景を読み込み0番に登録
@@ -55,11 +55,11 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//タイトルオブジェクト登録
 
 	//敵星オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(200, 300,false);	//オブジェクト作成
+	CObjPlanet* obj0 = new CObjPlanet(250, 350,false);	//オブジェクト作成
 	Objs::InsertObj(obj0, OBJ_PLANET, 10);				//ブジェクト登録
 
 	//自星オブジェクト作成
-	CObjPlanet* obj1 = new CObjPlanet(900, 300, true);	//オブジェクト作成
+	CObjPlanet* obj1 = new CObjPlanet(950, 350, true);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);				//オブジェクト登録
 
 	//民発射ボタン
@@ -78,7 +78,7 @@ void CSceneFight::Scene()
 {
 	m_cnt += m_speed;
 	if(m_speed > 0)
-		m_speed -= 0.00005f;
+		m_speed -= 0.00001f;
 
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
