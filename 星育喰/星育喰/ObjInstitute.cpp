@@ -22,8 +22,8 @@ void CObjInstitute::Init()
 	m_Human_down_color = INI_COLOR;
 	m_Mis_Button_color = INI_COLOR;
 	m_Equ_Button_color = INI_COLOR;
-	m_Yes_Button_color = INI_COLOR;
-	m_No_Button_color = INI_COLOR;
+	m_Yes_Button_color = 0.0f;
+	m_No_Button_color = 0.0f;
 
 	//▼武器ポッド画像集全てのカラー明度を0.1f(黒色)で初期化
 	for (int i = 0; i < 15; i++)
@@ -106,6 +106,7 @@ void CObjInstitute::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 	m_introduce_f = false;
+	m_finalcheck_f = false;
 	m_key_lf = false;
 	m_message_red_color = INI_COLOR;
 	m_message_green_color = INI_COLOR;
@@ -187,7 +188,7 @@ void CObjInstitute::Init()
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
 	m_Equ_next_Mat_num[0][0] = 0;	 //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[0][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[0][1] = 100;  //レベルが2の時の必要素材数
 	//▽ディフェンス武器
 	m_Equ_next_Mat_num[1][0] = 100;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[1][1] = 1000; //レベルが2の時の必要素材数
@@ -199,7 +200,7 @@ void CObjInstitute::Init()
 	m_Equ_next_Mat_num[3][1] = 1000; //レベルが2の時の必要素材数
 	//▽ポッド
 	m_Equ_next_Mat_num[4][0] = 200;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[4][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[4][1] = 100;  //レベルが2の時の必要素材数
 }
 
 //アクション
@@ -454,11 +455,6 @@ void CObjInstitute::Action()
 					//エラーメッセージを非表示にするため、透過度を0.0fにする
 					m_alpha = 0.0f;
 
-					//▼メモ
-					//レベルＵＰ後は、武器ポッドLvUP可能チェックを行い、
-					//現段階でまたすぐにレベルＵＰできるようであれば黄色に変更する。
-					//素材も減少するので、素材種類＆所持数配列も更新する。//←ポインタでやったので必要なし。ただ、動作してるか確認はする。
-
 					//▼武器ポッドLvUP可能チェック
 					Equip_Lvup_possible_check();//武器ポッドレベルUP可能チェック関数を呼び出す
 		
@@ -482,6 +478,107 @@ void CObjInstitute::Action()
 	//▼ミサイルウインドウ、もしくは武器ポッドウインドウ表示時の処理
 	else if (window_start_manage == Missile || window_start_manage == Equipment)
 	{
+		//▼(武器ポッド)最終確認ウインドウ表示時の処理
+		if (m_finalcheck_f == true)
+		{
+			//最終確認[はい]ボタン
+			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
+			{
+				m_Yes_Button_color = 1.0f;
+
+				//▼クリックされたら武器ポッドレベルUP処理を行い、このウインドウを閉じる
+				//左クリック入力時
+				if (m_mou_l == true)
+				{
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
+
+						//▽武器ポッドレベルUP処理
+						//素材消費処理
+						*m_Equ_next_Mat_type[finalcheck_Lvup_type][*finalcheck_Lvup_achieve - 1] -= m_Equ_next_Mat_num[finalcheck_Lvup_type][*finalcheck_Lvup_achieve - 1];
+
+						//選択した武器ポッドタイプ(パワー、スピード等)のレベルUP処理
+						(*finalcheck_Lvup_Level)++;
+						(*finalcheck_Lvup_achieve)++;
+
+						//LvUP後、更にレベルUP出来るか確かめる為に武器ポッドレベルUP可能チェックを行う
+						Equip_Lvup_possible_check();//武器ポッドレベルUP可能チェック関数を呼び出す
+
+						//▽レベルUP前後の装備武器ポッドカラーを適切なものに変更する
+						//レベルUP後の装備武器のカラーを白色に設定する
+						m_Equ_pic_red_color[*finalcheck_Lvup_achieve - 1 + finalcheck_Lvup_type * 3] = 1.0f;
+						m_Equ_pic_green_color[*finalcheck_Lvup_achieve - 1 + finalcheck_Lvup_type * 3] = 1.0f;
+						m_Equ_pic_blue_color[*finalcheck_Lvup_achieve - 1 + finalcheck_Lvup_type * 3] = 1.0f;
+
+						//レベルUP前の装備武器のカラーを灰色に設定する
+						m_Equ_pic_red_color[*finalcheck_Lvup_achieve - 2 + finalcheck_Lvup_type * 3] = 0.5f;
+						m_Equ_pic_green_color[*finalcheck_Lvup_achieve - 2 + finalcheck_Lvup_type * 3] = 0.5f;
+						m_Equ_pic_blue_color[*finalcheck_Lvup_achieve - 2 + finalcheck_Lvup_type * 3] = 0.5f;
+
+
+						m_Yes_Button_color = 0.0f;
+
+						//最終確認ウインドウを非表示にする
+						m_finalcheck_f = false;
+					}
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+			}
+			else
+			{
+				m_Yes_Button_color = 0.0f;
+			}
+
+			//最終確認[いいえ]ボタン
+			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
+			{
+				m_No_Button_color = 1.0f;
+
+				//▼クリックされたら、このウインドウを閉じる
+				//右クリック入力時
+				if (m_mou_r == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
+
+					m_No_Button_color = 0.0f;
+
+					//最終確認ウインドウを非表示にする
+					m_finalcheck_f = false;
+				}
+				//左クリック入力時
+				else if (m_mou_l == true)
+				{
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
+
+						m_No_Button_color = 0.0f;
+
+						//最終確認ウインドウを非表示にする
+						m_finalcheck_f = false;
+					}
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+			}
+			else
+			{
+				m_No_Button_color = 0.0f;
+			}
+
+
+			return;
+		}
+
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
 		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
@@ -491,14 +588,18 @@ void CObjInstitute::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
-				m_key_rf = false;
+				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
 
-				//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
-				m_alpha = 0.0f;
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
 
-				//"研究所ウインドウを開いている状態"フラグを立てる
-				window_start_manage = Institute;
+					//"研究所ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Institute;
+				}
 			}
 			//左クリック入力時
 			else if (m_mou_l == true)
@@ -522,6 +623,7 @@ void CObjInstitute::Action()
 		}
 		else
 		{
+			m_key_rf = true;
 			m_Back_Button_color = 1.0f;
 		}
 
@@ -643,11 +745,6 @@ void CObjInstitute::Action()
 		}
 
 
-		return;
-	}
-	//▼最終確認ウインドウ表示時の処理
-	else if (window_start_manage == Finalcheck)
-	{
 		return;
 	}
 	//ホーム画面に戻るボタンが押されたり、
@@ -775,10 +872,10 @@ void CObjInstitute::Draw()
 	float Equ_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
+	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
+	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
 
 	//簡易メッセージ(エラーメッセージ、レベルUP表示等)用
 	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
@@ -1015,8 +1112,8 @@ void CObjInstitute::Draw()
 		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
 	}
 	
-	//ミサイルウインドウ、武器ポッドウインドウ、最終確認ウインドウ開いている際に表示するグラフィック
-	else if (window_start_manage == Missile || window_start_manage == Equipment || window_start_manage == Finalcheck)
+	//ミサイルウインドウ、もしくは武器ポッドウインドウ開いている際に表示するグラフィック
+	else if (window_start_manage == Missile || window_start_manage == Equipment)
 	{
 		//▽研究所ウインドウの上に開いているように見せるため、
 		//ダミーの研究所ウインドウのグラフィックを描画する。
@@ -1070,7 +1167,7 @@ void CObjInstitute::Draw()
 		Draw::Draw(21, &src, &dst, white, 0.0f);
 
 
-		//▽以下はミサイルウインドウ、武器ポッドウインドウ、最終確認ウインドウのどれでも描画
+		//▽以下はミサイルウインドウ、武器ポッドウインドウのどちらでも描画
 
 		//▼灰色ウインドウ表示
 		src.m_top = 0.0f;
@@ -1144,8 +1241,8 @@ void CObjInstitute::Draw()
 			Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 		}
 
-		//▽以下は武器ポッドウインドウ、最終確認ウインドウで描画するもの
-		else // (window_start_manage == Equipment || window_start_manage == Finalcheck)
+		//▽以下は武器ポッドウインドウで描画するもの
+		else // (window_start_manage == Equipment)
 		{
 			//▼武器ポッド画像集を表示
 			for (int i = 0; i < 5; i++)
@@ -1213,8 +1310,8 @@ void CObjInstitute::Draw()
 
 
 
-			//▽以下は最終確認ウインドウでのみ描画するもの
-			if (window_start_manage == Finalcheck)
+			//▽最終確認ウインドウ表示管理フラグがtrueの時、描画。
+			if (m_finalcheck_f == true)
 			{
 				//▼最終確認ウインドウ表示
 				src.m_top = 0.0f;
@@ -1406,8 +1503,9 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 
 //---Equip_Lvup_possible_check関数
 //▼内容
-//それぞれの武器、ポッドが
-//レベルアップ可能な状態(住民数と素材数それぞれが必要数を満たしている)
+//それぞれの武器、ポッドがレベルアップ可能な状態
+//(住民数と素材数それぞれが必要数を満たしており、
+//現在の武器ポッドレベルと、そのレベルの最大到達度が同値)
 //であるかどうかをチェックし、
 //レベルアップ可能であればその武器ポッドの画像を黄色にし、
 //レベルアップ不可であればその武器ポッドの画像を黒色にする。
@@ -1415,28 +1513,34 @@ void CObjInstitute::Equip_Lvup_possible_check()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		//▼各武器レベルの最大到達度を管理する変数を宣言
+		//▼各武器レベル、そのレベルの最大到達度を管理する変数をそれぞれ宣言
+		int Tmp_equip_Level;
 		int Tmp_equip_Lv_achieve;
 
-		//▼適切なタイミングで先程宣言した変数に各武器レベルの最大到達度を代入
+		//▼適切なタイミングで先程宣言した変数に各武器レベルと、そのレベルの最大到達度を代入
 		if (i == 0)
 		{
+			Tmp_equip_Level = g_Pow_equip_Level;
 			Tmp_equip_Lv_achieve = g_Pow_equip_Lv_achieve;
 		}
 		else if (i == 1)
 		{
+			Tmp_equip_Level = g_Def_equip_Level;
 			Tmp_equip_Lv_achieve = g_Def_equip_Lv_achieve;
 		}
 		else if (i == 2)
 		{
+			Tmp_equip_Level = g_Spe_equip_Level;
 			Tmp_equip_Lv_achieve = g_Spe_equip_Lv_achieve;
 		}
 		else if (i == 3)
 		{
+			Tmp_equip_Level = g_Bal_equip_Level;
 			Tmp_equip_Lv_achieve = g_Bal_equip_Lv_achieve;
 		}
 		else  //(i == 4)
 		{
+			Tmp_equip_Level = g_Pod_equip_Level;
 			Tmp_equip_Lv_achieve = g_Pod_equip_Lv_achieve;
 		}
 
@@ -1445,7 +1549,8 @@ void CObjInstitute::Equip_Lvup_possible_check()
 		{
 			;//最大レベルの時はこの武器ポッドレベルUP可能チェック処理を飛ばす
 		}
-		else if (g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
+		else if (Tmp_equip_Level == Tmp_equip_Lv_achieve &&
+			g_Research_num >= m_Equ_next_Hum_num[i][Tmp_equip_Lv_achieve - 1] &&
 			*m_Equ_next_Mat_type[i][Tmp_equip_Lv_achieve - 1] >= m_Equ_next_Mat_num[i][Tmp_equip_Lv_achieve - 1])
 		{
 			//レベルアップ可能な武器ポッド画像を黄色にする。
@@ -1502,10 +1607,39 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 			{
 				m_key_lf = false;
 
+				//▼以下の変数、ポインタにマウス選択中の武器ポッドタイプ(パワー、スピード等)、
+				//現在のレベル、レベル最大到達度のアドレスをそれぞれ代入
+				finalcheck_Lvup_type = equip_id;
+				
+				if (equip_id == 0)
+				{
+					finalcheck_Lvup_Level = &g_Pow_equip_Level;
+					finalcheck_Lvup_achieve = &g_Pow_equip_Lv_achieve;
+				}
+				else if (equip_id == 1)
+				{
+					finalcheck_Lvup_Level = &g_Def_equip_Level;
+					finalcheck_Lvup_achieve = &g_Def_equip_Lv_achieve;
+				}
+				else if (equip_id == 2)
+				{
+					finalcheck_Lvup_Level = &g_Spe_equip_Level;
+					finalcheck_Lvup_achieve = &g_Spe_equip_Lv_achieve;
+				}
+				else if (equip_id == 3)
+				{
+					finalcheck_Lvup_Level = &g_Bal_equip_Level;
+					finalcheck_Lvup_achieve = &g_Bal_equip_Lv_achieve;
+				}
+				else  //(equip_id == 4)
+				{
+					finalcheck_Lvup_Level = &g_Pod_equip_Level;
+					finalcheck_Lvup_achieve = &g_Pod_equip_Lv_achieve;
+				}
+
 				m_alpha = 0.0f;//武器ポッド必要素材&人数メッセージを非表示にする
 
-				//"最終確認ウインドウを開いている状態"フラグを立てる
-				window_start_manage = Finalcheck;
+				m_finalcheck_f = true;//最終確認ウインドウを表示する
 
 				return;
 			}

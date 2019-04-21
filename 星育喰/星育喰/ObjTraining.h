@@ -25,6 +25,7 @@ protected:
 	bool  m_mou_r;		 //マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		 //マウスプッシュ確認(左クリック)
 	bool  m_introduce_f; //施設紹介ウインドウ表示管理フラグ(true:表示 / false:非表示)
+	bool  m_finalcheck_f;//最終確認ウインドウ表示管理フラグ(true:表示 / false:非表示)
 	bool  m_key_lf;		 //左クリック用キーフラグ
 	static bool m_key_rf;//右クリック用キーフラグ
 
@@ -48,7 +49,6 @@ protected:
 		Institute,	//研究所ウインドウを開いている状態。
 		Missile,	//ミサイルウインドウを開いている状態。
 		Equipment,	//武器ポッドウインドウを開いている状態。
-		Finalcheck,	//最終確認ウインドウを開いている状態。
 		Warehouse,	//倉庫ウィンドウを開いている状態。
 		Materials,	//資材ウィンドウを開いている状態。
 		Residents,	//住民ウィンドウを開いている状態。

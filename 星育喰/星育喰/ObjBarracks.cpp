@@ -30,6 +30,7 @@ void CObjBarracks::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 	m_introduce_f = false;
+	m_finalcheck_f = false;
 	m_key_lf = false;
 	m_alpha = INI_ALPHA;
 }
