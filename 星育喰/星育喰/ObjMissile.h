@@ -21,6 +21,8 @@ private:
 	float m_size;	//ミサイルのサイズ
 	bool  m_mou_f;	//マウスフラッグ
 
+	float m_r;		//ミサイル角度
+
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)

@@ -109,7 +109,6 @@ extern int g_Material_num_test;		//TEST用所持素材数
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
-#include "SceneMain.h"
 #include "SceneTitle.h"
 #include "SceneHome.h"
 #include "SceneTest.h"
@@ -124,5 +123,5 @@ extern int g_Material_num_test;		//TEST用所持素材数
 //ゲーム開始時のシーンクラス登録
 #define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
-//#define SET_GAME_START CSceneFacility
+//#define SET_GAME_START CSceneTraining
 //-----------------------------------------------

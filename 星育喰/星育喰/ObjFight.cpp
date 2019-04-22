@@ -21,7 +21,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 30;
+	m_cnt = 60 * 10;
 }
 
 //アクション

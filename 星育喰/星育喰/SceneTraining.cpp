@@ -76,6 +76,10 @@ void CSceneTraining::InitScene()
 	CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(false);	//雲演出オブジェクト作成
 	Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
 
+	//倉庫オブジェクト作成
+	CObjWarehouse* warehouse = new CObjWarehouse();
+	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
+
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"地面TEST.gif", 0, TEX_SIZE_512);
@@ -122,6 +126,45 @@ void CSceneTraining::InitScene()
 	//武器ポッドボタン(仮)を読み込み26番に登録
 	Draw::LoadImage(L"武器ポッドボタン(仮).png", 26, TEX_SIZE_512);
 
+	//test用倉庫画像読み込み27番に登録
+	Draw::LoadImage(L"倉庫.png", 27, TEX_SIZE_512);
+
+	//資材選択ボタン画像読み込み28番に登録
+	Draw::LoadImage(L"資材選択ボタン.png", 28 , TEX_SIZE_512);
+
+	//住民選択ボタン画像読み込み29番に登録
+	Draw::LoadImage(L"住民選択ボタン.png", 29, TEX_SIZE_512);
+
+	//スペシャル技選択ボタン画像読み込み30番に登録
+	Draw::LoadImage(L"スペシャル技選択ボタン.png", 30, TEX_SIZE_512);
+
+	//装備選択ボタン画像読み込み31番に登録
+	Draw::LoadImage(L"装備選択ボタン.png", 31, TEX_SIZE_512);
+
+	//資材ボタン選択後の画面背景画像32番に登録
+	Draw::LoadImage(L"w.png", 32 , TEX_SIZE_512);
+
+	//資材(木材)画像33番に登録
+	Draw::LoadImage(L"木材.png", 33, TEX_SIZE_512);
+
+	//資材(鉄)画像34番に登録
+	Draw::LoadImage(L"鉄.png", 34, TEX_SIZE_512);
+
+	//資材(銀)画像35番に登録
+	Draw::LoadImage(L"銀.png", 35, TEX_SIZE_512);
+
+	//資材(プラスチック)画像36番に登録
+	Draw::LoadImage(L"プラスチック.png", 36, TEX_SIZE_512);
+
+	//資材(アルミニウム)画像37番に登録
+	Draw::LoadImage(L"アルミニウム.png", 37, TEX_SIZE_512);
+
+	//資材(ガス)画像38番に登録
+	Draw::LoadImage(L"ガス.png", 38, TEX_SIZE_512);
+
+	//資材(レアメタル)画像39番に登録
+	Draw::LoadImage(L"レアメタル.png", 39, TEX_SIZE_512);
+
 	//パワー武器Lv.1の画像を読み込み49番に登録
 	Draw::LoadImage(L"武器画像(仮).png", 49, TEX_SIZE_512);
 
@@ -166,6 +209,8 @@ void CSceneTraining::InitScene()
 
 	//ポッドLv.3の画像を読み込み63番に登録
 	Draw::LoadImage(L"ポッド画像(仮).png", 63, TEX_SIZE_512);
+
+
 }
 
 //ゲームメイン実行中メソッド
