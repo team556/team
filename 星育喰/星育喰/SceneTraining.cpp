@@ -11,7 +11,6 @@
 using namespace GameL;
 
 //使用ヘッダー
-//#include "SceneMain.h"
 #include "GameHead.h"
 
 #include <stdlib.h>
@@ -32,9 +31,6 @@ CSceneTraining::~CSceneTraining()
 //ゲーム初期化メソッド
 void CSceneTraining::InitScene()
 {
-	//出力させる文字のグラフィックを作成
-	//Font::SetStrTex(L"");
-
 	srand(time(NULL));//ランダム情報を初期化
 	
 	//▼住民の初期X,Y座標をランダムで取得
