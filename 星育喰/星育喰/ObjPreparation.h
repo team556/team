@@ -32,7 +32,11 @@ private:
 	float m_ry;			//サインカーブ用の角度(プレイヤー惑星y移動に使用)
 	float m_size;		//プレイヤー惑星のサイズ
 
-	int m_Mig_time;		//シーン移行までの時間管理変数
+	float m_Evx;		//敵惑星4つの移動用ベクトルX
+						//ボス惑星のヤツは個別で用意予定
+	float m_Espeed;		//敵惑星4つの移動スピード
+
+	int m_staging_time;		//演出時間管理変数
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 	float m_Yes_Button_color;	//最終確認[はい]ボタンカラー(Red)調節用

@@ -10,6 +10,9 @@
 using namespace GameL;
 
 //マクロ
+#define INI_ENEMY_X_POS (1150.0f)	//敵惑星4つ全体の初期X位置
+#define INI_ENEMY_Y_POS (150.0f)	//敵惑星4つ全体の初期Y位置
+#define INI_ENEMY_SPEED (50.0f)		//敵惑星4つの初期移動スピード
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (1.0f) //全カラー明度の初期値
 
@@ -31,7 +34,10 @@ void CObjPreparation::Init()
 	m_ry = 0.0f;
 	m_size = 0.0f;
 
-	m_Mig_time = 0;
+	m_Evx = 0.0f;
+	m_Espeed = INI_ENEMY_SPEED;
+
+	m_staging_time = 0;
 
 	m_Back_Button_color = INI_COLOR;
 	m_Yes_Button_color = INI_COLOR;
@@ -45,6 +51,56 @@ void CObjPreparation::Init()
 //アクション
 void CObjPreparation::Action()
 {
+	////マウスの位置を取得
+	//m_mou_x = (float)Input::GetPosX();
+	//m_mou_y = (float)Input::GetPosY();
+	////マウスのボタンの状態
+	//m_mou_r = Input::GetMouButtonR();
+	//m_mou_l = Input::GetMouButtonL();
+
+	////育喰アイコン、敵惑星(背景)を徐々に表示させる
+	//if (m_alpha < 1.0f)
+	//{
+	//	m_alpha += 0.01f;
+	//}
+
+	////育アイコン
+	//if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680)
+	//{
+	//	//m_Tra_color = 0.7f;
+
+	//	//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
+	//	if (m_mou_l == true)
+	//	{
+	//		//クリック押したままの状態では入力出来ないようにしている
+	//		if (m_key_lf == true)
+	//		{
+	//			m_key_lf = false;
+
+	//			//m_Tra_flag = true;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		m_key_lf = true;
+	//	}
+	//}
+	//else
+	//{
+	//	//m_Tra_color = 1.0f;
+	//}
+
+	//▼戦闘準備画面開始演出
+	if (m_Evx > -1000.0f)
+	{
+		m_staging_time++;
+
+		m_Espeed -= m_Espeed * 0.047;
+
+		m_Evx -= m_Espeed;
+
+		return;
+	}
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -52,38 +108,6 @@ void CObjPreparation::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
-
-	//育喰アイコン、敵惑星(背景)を徐々に表示させる
-	if (m_alpha < 1.0f)
-	{
-		m_alpha += 0.01f;
-	}
-
-	//育アイコン
-	if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680)
-	{
-		//m_Tra_color = 0.7f;
-
-		//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
-		if (m_mou_l == true)
-		{
-			//クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
-			{
-				m_key_lf = false;
-
-				//m_Tra_flag = true;
-			}
-		}
-		else
-		{
-			m_key_lf = true;
-		}
-	}
-	else
-	{
-		//m_Tra_color = 1.0f;
-	}
 }
 
 //ドロー
@@ -109,6 +133,54 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
+	//▼敵惑星1表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 384.0f;
+
+	dst.m_top = INI_ENEMY_Y_POS;
+	dst.m_left = INI_ENEMY_X_POS + m_Evx;
+	dst.m_right = INI_ENEMY_X_POS + 200.0f + m_Evx;
+	dst.m_bottom = INI_ENEMY_Y_POS + 200.0f;
+	Draw::Draw(1, &src, &dst, d, 0.0f);
+
+	//▼敵惑星2表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 384.0f;
+
+	dst.m_top = INI_ENEMY_Y_POS - 100.0f;
+	dst.m_left = INI_ENEMY_X_POS + 300.0f + m_Evx;
+	dst.m_right = INI_ENEMY_X_POS + 400.0f + m_Evx;
+	dst.m_bottom = INI_ENEMY_Y_POS;
+	Draw::Draw(2, &src, &dst, d, 0.0f);
+
+	//▼敵惑星3表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 384.0f;
+
+	dst.m_top = INI_ENEMY_Y_POS + 200.0f;
+	dst.m_left = INI_ENEMY_X_POS + 500.0f + m_Evx;
+	dst.m_right = INI_ENEMY_X_POS + 800.0f + m_Evx;
+	dst.m_bottom = INI_ENEMY_Y_POS + 500.0f;
+	Draw::Draw(3, &src, &dst, d, 0.0f);
+
+	//▼敵惑星4表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 384.0f;
+
+	dst.m_top = INI_ENEMY_Y_POS - 50.0f;
+	dst.m_left = INI_ENEMY_X_POS + 700.0f + m_Evx;
+	dst.m_right = INI_ENEMY_X_POS + 900.0f + m_Evx;
+	dst.m_bottom = INI_ENEMY_Y_POS + 150.0f;
+	Draw::Draw(4, &src, &dst, d, 0.0f);
+
 	//▼プレイヤー惑星表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -119,7 +191,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 450.0f + m_Pvx - m_size;
 	dst.m_right = 750.0f + m_Pvx + m_size;
 	dst.m_bottom = 550.0f + m_Pvy + m_size;
-	Draw::Draw(50, &src, &dst, d, 0.0f);
+	Draw::Draw(63, &src, &dst, d, 0.0f);
 
 
 
