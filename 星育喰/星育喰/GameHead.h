@@ -14,6 +14,7 @@ enum OBJ_NAME
 	OBJ_PLANET,
 	OBJ_CLOUD,
 	OBJ_TRAINING,
+	OBJ_PREPARATION,
 	OBJ_FIGHT,
 	OBJ_BUILD,
 	OBJ_WAREHOUSE,
@@ -96,6 +97,7 @@ extern int g_Material_num_test;		//TEST用所持素材数
 #include "ObjBarracks.h"
 #include "ObjPlanet.h"
 #include "ObjTraining.h"
+#include "ObjPreparation.h"
 #include "ObjFight.h"
 #include "ObjPushUnit.h"
 #include "ObjMissile.h"
@@ -107,19 +109,19 @@ extern int g_Material_num_test;		//TEST用所持素材数
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
-#include "SceneMain.h"
 #include "SceneTitle.h"
 #include "SceneHome.h"
 #include "SceneTest.h"
 #include "SceneFacility.h"
 #include "SceneTraining.h"
+#include "ScenePreparation.h"
 #include "SceneFight.h"
 
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START CSceneTitle
-#define SET_GAME_START CSceneFight
-//#define SET_GAME_START CSceneFacility
+#define SET_GAME_START CSceneTitle
+//#define SET_GAME_START CSceneFight
+//#define SET_GAME_START CSceneTraining
 //-----------------------------------------------

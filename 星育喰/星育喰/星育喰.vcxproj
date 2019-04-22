@@ -139,14 +139,15 @@
     <ClCompile Include="ObjMissile.cpp" />
     <ClCompile Include="ObjMaterialBotton.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
+    <ClCompile Include="ObjPreparation.cpp" />
     <ClCompile Include="ObjPushUnit.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
     <ClCompile Include="SceneFacility.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneHome.cpp" />
+    <ClCompile Include="ScenePreparation.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="SceneTraining.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="ObjMissile.h" />
     <ClInclude Include="ObjMaterialBotton.h" />
     <ClInclude Include="ObjPlanet.h" />
+    <ClInclude Include="ObjPreparation.h" />
     <ClInclude Include="ObjPushUnit.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
@@ -194,6 +196,7 @@
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneHome.h" />
     <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="ScenePreparation.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SceneTraining.h" />
