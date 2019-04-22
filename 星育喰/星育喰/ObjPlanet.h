@@ -18,13 +18,18 @@ private:
 	float m_px;			//星座標X
 	float m_py;			//星座標Y
 	float m_size;		//星サイズ
+	float m_siz_max;	//サイズマックス
 	float m_siz_vec;	//サイズ変更ベクトル
-	float m_mov_spd;	//惑星移動スピード
 	float m_siz_spd;	//サイズ変更スピード
+	float m_mov_spd;	//惑星移動スピード
 
 	float m_hp;			//ヒットポイント
-
+	int m_cnt;			//カウント
 	bool m_type;		//惑星タイプ(true主人公)
-	bool m_cnt_f;		//カウントフラグ
 	
+	int m_ani[4];
+	int m_ani_time;
+	int m_ani_frame;
+
+	bool m_eat_f;
 };

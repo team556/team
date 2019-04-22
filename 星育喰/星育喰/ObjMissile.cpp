@@ -37,6 +37,8 @@ void CObjMissile::Init()
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
 	
+	m_r = 0.0f;
+
 	m_mou_x = 0.0f;	//マウス情報
 	m_mou_y = 0.0f;
 	m_mou_r = false;
@@ -150,5 +152,5 @@ void CObjMissile::Draw()
 	dst.m_bottom= m_y + m_size;
 
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, d, 0.0f);
+	Draw::Draw(2, &src, &dst, d, 45.0f);
 }
