@@ -29,13 +29,13 @@ void CObjPreparation::Init()
 
 	m_Pvx = 0.0f;
 	m_Pvy = 0.0f;
-	m_boost = 0.0f;
-	m_rx = 0.0f;
-	m_ry = 0.0f;
-	m_size = 0.0f;
+	//m_boost = 0.0f;
+	//m_rx = 0.0f;
+	//m_ry = 0.0f;
+	m_Psize = 0.0f;
 
 	m_Evx = 0.0f;
-	m_Espeed = INI_ENEMY_SPEED;
+	m_speed = INI_ENEMY_SPEED;
 
 	m_staging_time = 0;
 
@@ -91,13 +91,21 @@ void CObjPreparation::Action()
 	//}
 
 	//▼戦闘準備画面開始演出
+	//敵惑星が目的地に到達するまで以下の処理を実行
+	//※プレイヤー惑星、スペシャル技変更ウインドウは敵惑星を基準にタイミング調整している
 	if (m_Evx > -1000.0f)
 	{
-		m_staging_time++;
+		//m_staging_time++;
 
-		m_Espeed -= m_Espeed * 0.047;
 
-		m_Evx -= m_Espeed;
+		//移動速度を各惑星のベクトルに加算、もしくは減算し
+		//惑星を所定の位置まで移動させる
+		m_Evx -= m_speed;		//画面外の右から左の方へ移動
+		m_Pvx += m_speed * 0.4;	//敵惑星ほど大きく移動する訳ではない為、0.4倍の値を加算。
+		m_Pvy -= m_speed * 0.4;	
+
+		//徐々にプレイヤー惑星、各敵惑星の移動速度を減少させる
+		m_speed *= 0.951f;
 
 		return;
 	}
@@ -163,10 +171,10 @@ void CObjPreparation::Draw()
 	src.m_right = 384.0f;
 	src.m_bottom = 384.0f;
 
-	dst.m_top = INI_ENEMY_Y_POS + 200.0f;
-	dst.m_left = INI_ENEMY_X_POS + 500.0f + m_Evx;
+	dst.m_top = INI_ENEMY_Y_POS - 50.0f;
+	dst.m_left = INI_ENEMY_X_POS + 600.0f + m_Evx;
 	dst.m_right = INI_ENEMY_X_POS + 800.0f + m_Evx;
-	dst.m_bottom = INI_ENEMY_Y_POS + 500.0f;
+	dst.m_bottom = INI_ENEMY_Y_POS + 150.0f;
 	Draw::Draw(3, &src, &dst, d, 0.0f);
 
 	//▼敵惑星4表示
@@ -175,10 +183,10 @@ void CObjPreparation::Draw()
 	src.m_right = 384.0f;
 	src.m_bottom = 384.0f;
 
-	dst.m_top = INI_ENEMY_Y_POS - 50.0f;
-	dst.m_left = INI_ENEMY_X_POS + 700.0f + m_Evx;
-	dst.m_right = INI_ENEMY_X_POS + 900.0f + m_Evx;
-	dst.m_bottom = INI_ENEMY_Y_POS + 150.0f;
+	dst.m_top = INI_ENEMY_Y_POS + 250.0f;
+	dst.m_left = INI_ENEMY_X_POS + 750.0f + m_Evx;
+	dst.m_right = INI_ENEMY_X_POS + 1000.0f + m_Evx;
+	dst.m_bottom = INI_ENEMY_Y_POS + 500.0f;
 	Draw::Draw(4, &src, &dst, d, 0.0f);
 
 	//▼プレイヤー惑星表示
@@ -187,10 +195,10 @@ void CObjPreparation::Draw()
 	src.m_right = 62.0f;
 	src.m_bottom = 62.0f;
 
-	dst.m_top = 250.0f + m_Pvy - m_size;
-	dst.m_left = 450.0f + m_Pvx - m_size;
-	dst.m_right = 750.0f + m_Pvx + m_size;
-	dst.m_bottom = 550.0f + m_Pvy + m_size;
+	dst.m_top = 800.0f + m_Pvy - m_Psize;
+	dst.m_left = -500.0f + m_Pvx - m_Psize;
+	dst.m_right = -50.0f + m_Pvx + m_Psize;
+	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
 	Draw::Draw(63, &src, &dst, d, 0.0f);
 
 
