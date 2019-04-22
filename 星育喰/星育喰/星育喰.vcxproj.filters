@@ -56,6 +56,9 @@
     <Filter Include="ソース ファイル\施設\建物">
       <UniqueIdentifier>{798801b5-7693-4b17-9465-8dcd2e500274}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\シーン\戦闘準備画面">
+      <UniqueIdentifier>{410b8348-2b14-4cfc-8f81-474c2078c90e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -177,6 +180,12 @@
     </ClCompile>
     <ClCompile Include="ObjBarracks.cpp">
       <Filter>ソース ファイル\施設\兵舎</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjPreparation.cpp">
+      <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenePreparation.cpp">
+      <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +314,12 @@
     </ClInclude>
     <ClInclude Include="ObjBarracks.h">
       <Filter>ソース ファイル\施設\兵舎</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPreparation.h">
+      <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePreparation.h">
+      <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

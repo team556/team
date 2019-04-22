@@ -14,36 +14,33 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneTitle::CSceneTitle()
+CScenePreparation::CScenePreparation()
 {
 
 }
 
 //デストラクタ
-CSceneTitle::~CSceneTitle()
+CScenePreparation::~CScenePreparation()
 {
 
 }
 
 //ゲーム初期化メソッド
-void CSceneTitle::InitScene()
+void CScenePreparation::InitScene()
 {
-	//出力させる文字のグラフィックを作成
-	//Font::SetStrTex(L"");
-
-	//タイトルオブジェクト作成
-	CObjTitle* obj = new CObjTitle();     //タイトルオブジェクト作成
-	Objs::InsertObj(obj, OBJ_TITLE, 10);  //タイトルオブジェクト登録
+	//ホームオブジェクト作成
+	CObjPreparation* obj = new CObjPreparation();	//戦闘準備画面オブジェクト作成
+	Objs::InsertObj(obj, OBJ_PREPARATION, 10);		//戦闘準備画面オブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
-	//プレイヤー惑星を読み込み50番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+	//プレイヤー惑星を読み込み1番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 1, TEX_SIZE_512);
 }
 
 //ゲームメイン実行中メソッド
-void CSceneTitle::Scene()
+void CScenePreparation::Scene()
 {
 
 }
