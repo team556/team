@@ -37,6 +37,7 @@ void CObjPushUnit::Init()
 //アクション
 void CObjPushUnit::Action()
 {
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -71,7 +72,9 @@ void CObjPushUnit::Action()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (obj->GetCount() == 0) {	//時間切れで
 		m_mou_f = true;			//マウス無効
-		m_a = 0.3f;				//透明化
+		m_a -= 0.03f;				//透明化
+		if (m_a > 0.0f) 
+			this->SetStatus(false);	//消滅
 	}
 }
 

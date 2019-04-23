@@ -35,6 +35,9 @@ void CSceneTest::InitScene()
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"w.png", 1, TEX_SIZE_512);
 
+	//10番に登録
+	Draw::LoadImage(L"w.png", 10, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
@@ -42,28 +45,32 @@ void CSceneTest::InitScene()
 	//CObjTest* obj = new CObjTest();		//タイトルオブジェクト作成
 	//Objs::InsertObj(obj, OBJ_TEST, 10);	//タイトルオブジェクト登録
 
-	//住民オブジェクト作成
-	CObjHuman* obj0 = new CObjHuman(100,600);	//タイトルオブジェクト作成
-	Objs::InsertObj(obj0, OBJ_HUMAN, 10);		//タイトルオブジェクト登録
+	////住民オブジェクト作成
+	//CObjHuman* obj = new CObjHuman(100,600);	//タイトルオブジェクト作成
+	//Objs::InsertObj(obj, OBJ_HUMAN, 10);		//タイトルオブジェクト登録
+
+	//オブジェクト作成
+	CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
+	Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
 void CSceneTest::Scene()
 {
-	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
-	RECT_F src;
-	RECT_F dst;
-	//切り取り位置
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
-	//表示位置
-	dst.m_top   =   0.0f;
-	dst.m_left  =   0.0f;
-	dst.m_right =1200.0f;
-	dst.m_bottom= 700.0f;
+	//float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
+	//RECT_F src;
+	//RECT_F dst;
+	////切り取り位置
+	//src.m_top   =  0.0f;
+	//src.m_left  =  0.0f;
+	//src.m_right =100.0f;
+	//src.m_bottom=100.0f;
+	////表示位置
+	//dst.m_top   =   0.0f;
+	//dst.m_left  =   0.0f;
+	//dst.m_right =1200.0f;
+	//dst.m_bottom= 700.0f;
 
-	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	////0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+	//Draw::Draw(1, &src, &dst, c, 0.0f);
 }

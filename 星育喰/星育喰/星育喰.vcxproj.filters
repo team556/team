@@ -59,6 +59,9 @@
     <Filter Include="ソース ファイル\シーン\戦闘準備画面">
       <UniqueIdentifier>{410b8348-2b14-4cfc-8f81-474c2078c90e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\対戦用\クリア＆オーバー">
+      <UniqueIdentifier>{b66ac50a-e27f-45d4-a63e-b8134fc0364a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -183,6 +186,12 @@
     </ClCompile>
     <ClCompile Include="ScenePreparation.cpp">
       <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFightClear.cpp">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFightOver.cpp">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +323,13 @@
     </ClInclude>
     <ClInclude Include="ScenePreparation.h">
       <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="ObjFightClear.h">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFightOver.h">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
