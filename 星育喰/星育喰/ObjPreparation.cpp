@@ -209,6 +209,35 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
 	Draw::Draw(63, &src, &dst, d, 0.0f);
 
+	//▼スペシャル技選択ウインドウ表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 500.0f;
+	src.m_bottom = 200.0f;
+
+	dst.m_top = 900.0f + m_Pvy;
+	dst.m_left = 360.0f;
+	dst.m_right = 860.0f;
+	dst.m_bottom = 1100.0f + m_Pvy;
+	Draw::Draw(62, &src, &dst, d, 0.0f);
+
+	//▼スペシャル技アイコン集表示
+	for (int i = 0; i < 5; i++)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 36.0f;
+		src.m_bottom = 35.0f;
+
+		dst.m_top = 985.0f + m_Pvy;
+		dst.m_left = 380.0f + i * 95.0f;
+		dst.m_right = 460.0f + i * 95.0f;
+		dst.m_bottom = 1065.0f + m_Pvy;
+		Draw::Draw(57 + i, &src, &dst, d, 0.0f);
+	}
+
+
+
 
 
 	//デバッグ用仮マウス位置表示
