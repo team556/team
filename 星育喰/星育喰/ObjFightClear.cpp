@@ -28,7 +28,7 @@ void CObjFightClear::Init()
 
 	m_people = 0;	//住民
 	m_mrl = 0;		//マテリアルズ(資材)
-	m_skill = "";	//スペシャル技
+	m_skill = 0;	//スペシャル技
 }
 
 //アクション
