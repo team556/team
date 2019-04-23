@@ -26,4 +26,6 @@ private:
 	int m_people;	//住民
 	int m_mrl;		//マテリアルズ(資材)
 	char m_skill;	//スペシャル技
+
+	int m_cnt;		//カウント
 };
