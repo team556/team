@@ -22,6 +22,7 @@ void CObjFight::Init()
 	m_line_nam = 3; //初期値、無選択
 
 	m_cnt = 60 * 10;
+	m_a = 1;		//初期値、不透明
 }
 
 //アクション
@@ -61,8 +62,8 @@ void CObjFight::Action()
 
 //ドロー
 void CObjFight::Draw()
-{
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+{	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	float c[4] = { 1.0f,1.0f,1.0f,m_a };
 	int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
 	if (s >= 60) {						//60秒以上の場合
 		m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
@@ -73,52 +74,61 @@ void CObjFight::Draw()
 	Font::StrDraw(str,500 ,60 ,50 , c);
 
 
-	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
-	float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
-	float d2[4] = { 1.0f,1.0f,1.0f,0.3f };
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (obj->GetCount() == 0) {	//時間切れで
+		if (m_a > 0.0f) {
+			m_a -= 0.03f;				//透明化
+			float d0[4] = { 1.0f,1.0f,1.0f,m_a };//個別に初期化
+			float d1[4] = { 1.0f,1.0f,1.0f,m_a };
+			float d2[4] = { 1.0f,1.0f,1.0f,m_a };
+		}
+	}
+	else {//------------------------------------------対戦時間中のみ動作
+		//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+		float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
+		float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
+		float d2[4] = { 1.0f,1.0f,1.0f,0.3f };
 
-	if (m_line == 0)		//選択時に各ラインを不透明化
-		d0[3] = 0.6f;
-	else if (m_line == 1)
-		d1[3] = 0.6f;
-	else if (m_line == 2)
-		d2[3] = 0.6f;
+		if (m_line == 0)		//選択時に各ラインを不透明化
+			d0[3] = 0.6f;
+		else if (m_line == 1)
+			d1[3] = 0.6f;
+		else if (m_line == 2)
+			d2[3] = 0.6f;
 
-	if (m_line_nam == 0)	//カーソル時に半不透明化
-		d0[3] = 1.0f;
-	else if (m_line_nam == 1)
-		d1[3] = 1.0f;
-	else if (m_line_nam == 2)
-		d2[3] = 1.0f;
+		if (m_line_nam == 0)	//カーソル時に半不透明化
+			d0[3] = 1.0f;
+		else if (m_line_nam == 1)
+			d1[3] = 1.0f;
+		else if (m_line_nam == 2)
+			d2[3] = 1.0f;
 
-	
-	
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
+		RECT_F src;//描画元切り取り位置
+		RECT_F dst;//描画先表示位置
 
-	//▼背景表示
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+		//▼背景表示
+		src.m_top   =  0.0f;
+		src.m_left  =  0.0f;
+		src.m_right =100.0f;
+		src.m_bottom=100.0f;
 
-	//攻撃用ライン画像
-	dst.m_top   =200.0f;
-	dst.m_left  =400.0f;
-	dst.m_right =800.0f;
-	dst.m_bottom=260.0f;
-	Draw::Draw(2, &src, &dst, d0, 0.0f);
+		//攻撃用ライン画像
+		dst.m_top   =200.0f;
+		dst.m_left  =400.0f;
+		dst.m_right =800.0f;
+		dst.m_bottom=260.0f;
+		Draw::Draw(2, &src, &dst, d0, 0.0f);
 
-	dst.m_top   =310.0f;
-	dst.m_left  =400.0f;
-	dst.m_right =800.0f;
-	dst.m_bottom=370.0f;
-	Draw::Draw(2, &src, &dst, d1, 0.0f);
+		dst.m_top   =310.0f;
+		dst.m_left  =400.0f;
+		dst.m_right =800.0f;
+		dst.m_bottom=370.0f;
+		Draw::Draw(2, &src, &dst, d1, 0.0f);
 
-	dst.m_top   =420.0f;
-	dst.m_left  =400.0f;
-	dst.m_right =800.0f;
-	dst.m_bottom=480.0f;
-	Draw::Draw(2, &src, &dst, d2, 0.0f);
+		dst.m_top   =420.0f;
+		dst.m_left  =400.0f;
+		dst.m_right =800.0f;
+		dst.m_bottom=480.0f;
+		Draw::Draw(2, &src, &dst, d2, 0.0f);
+	}
 }

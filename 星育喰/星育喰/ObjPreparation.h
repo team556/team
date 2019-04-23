@@ -46,4 +46,6 @@ private:
 	wchar_t m_Enemy_detail_message[ENEMY_PLANET_DETAIL_MES_MAX_FONT_LINE][22];	//敵惑星詳細説明メッセージのフォント用
 	float	m_Enemy_detail_message_window_x_size;	//敵惑星詳細説明ウインドウのサイズX
 	float	m_Enemy_detail_message_window_y_size;	//敵惑星詳細説明ウインドウのサイズY
+
+	static bool destroy_progress[4];//現在ステージでの敵惑星撃破進行度
 };

@@ -16,6 +16,14 @@ using namespace GameL;
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
+//static変数の定義
+bool CObjPreparation::destroy_progress[4] = { false,false,false,false };
+
+//グローバル変数の定義
+int g_Stage_progress = 1;
+int g_Special_equipment = 0;
+bool g_Special_mastering[5] = { false,false,false,false,false };
+
 //イニシャライズ
 void CObjPreparation::Init()
 {

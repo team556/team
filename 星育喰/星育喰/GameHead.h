@@ -20,6 +20,8 @@ enum OBJ_NAME
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
 	OBJ_MISSILE,
+	OBJ_FIGHT_CLEAR,
+	OBJ_FIGHT_OVER,
 
 };
 //------------------------------------------------
@@ -56,6 +58,7 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
+extern int g_Stage_progress;		//現在のステージ進行度(1ステージ:1　2ステージ:2　3ステージ:3)
 extern int g_Bar_Level;				//兵舎レベル
 extern int g_Ins_Level;				//研究所レベル
 extern int g_Mis_Recast_Level;		//ミサイルリキャストレベル
@@ -69,6 +72,8 @@ extern int g_Bal_equip_Level;		//現在のバランス武器レベル
 extern int g_Bal_equip_Lv_achieve;	//バランス武器レベルの最大到達度
 extern int g_Pod_equip_Level;		//現在のポッドレベル
 extern int g_Pod_equip_Lv_achieve;	//ポッドレベルの最大到達度
+extern int g_Special_equipment;		//現在装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+extern bool g_Special_mastering[5];	//習得済みのスペシャル技			(0:敵に大ダメージ　1:一列殺し　2:一定時間無敵　3:生産性効率アップ　4:住民の士気がアップ)
 extern int g_Power_num;				//パワー住民数
 extern int g_Defense_num;			//ディフェンス住民数
 extern int g_Speed_num;				//スピード住民数
@@ -101,6 +106,9 @@ extern int g_Material_num_test;		//TEST用所持素材数
 #include "ObjBarracks.h"
 #include "ObjInstitute.h"
 #include "ObjWarehouse.h"
+#include "ObjMaterialBotton.h"
+#include "ObjFightClear.h"
+#include "ObjFightOver.h"
 
 //------------------------------------------------
 
@@ -118,5 +126,6 @@ extern int g_Material_num_test;		//TEST用所持素材数
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
-#define SET_GAME_START CSceneTraining
+//#define SET_GAME_START CSceneTraining
+#define SET_GAME_START CSceneTest
 //-----------------------------------------------
