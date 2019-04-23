@@ -13,7 +13,7 @@ using namespace GameL;
 
 //マクロ
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値
 
 //グローバル変数の定義
 int g_Ware = 1;
@@ -52,7 +52,7 @@ void CObjWarehouse::Action()
 		//戻るボタン選択
 		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80)
 		{
-			m_Back_Button_color = 0.7f;
+			m_Back_Button_color = 1.0f;
 
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 			if (m_mou_l == true)
@@ -74,13 +74,13 @@ void CObjWarehouse::Action()
 		else
 		{
 			m_introduce_f = false;//施設紹介ウィンドウを非表示にする
-			m_Back_Button_color = 1.0f;
+			m_Back_Button_color = INI_COLOR;
 		}
 
 		//資材ボタン選択
 		if (245 < m_mou_x && m_mou_x < 560 && 150 < m_mou_y && m_mou_y < 325)
 		{
-			m_object_ma = 0.7f;
+			m_object_ma = 1.0f;
 
 			//左クリックされたらフラグを立て、資材ウインドウを開く
 			if (m_mou_l == true)
@@ -98,17 +98,44 @@ void CObjWarehouse::Action()
 			{
 				m_key_lf = true;
 			}
+
+			//戻るボタン選択
+			if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100)
+			{
+				m_Back_Button_color = 1.0f;
+
+				//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+				if (m_mou_l == true)
+				{
+					//クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
+
+						//"どのウインドウも開いていない状態"フラグを立てる
+						window_start_manage = Warehouse;
+					}
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+			}
+			else
+			{
+				m_Back_Button_color = INI_COLOR;
+			}
 		}
 		else
 		{
-			m_object_ma = 1.0f;
+			m_object_ma = 0.9f;
 
 		}
 
 		//住民ボタン選択
 		if (680 < m_mou_x && m_mou_x < 1005 && 150 < m_mou_y && m_mou_y < 325)
 		{
-			m_object_re = 0.7f;
+			m_object_re = 1.0f;
 
 			//左クリックされたらフラグを立て、住民ウインドウを開く
 			if (m_mou_l == true)
@@ -129,14 +156,14 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_object_re = 1.0f;
+			m_object_re = 0.9f;
 
 		}
 
 		//スペシャル技ボタン選択
 		if (245 < m_mou_x && m_mou_x < 560 && 390 < m_mou_y && m_mou_y < 570)
 		{
-			m_object_sp = 0.7f;
+			m_object_sp = 1.0f;
 
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
 			if (m_mou_l == true)
@@ -157,7 +184,7 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_object_sp = 1.0f;
+			m_object_sp = 0.9f;
 
 		}
 
@@ -185,7 +212,7 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_object_eq = 1.0f;
+			m_object_eq = 0.9f;
 
 		}
 
@@ -195,7 +222,7 @@ void CObjWarehouse::Action()
 	if (95 < m_mou_x && m_mou_x < 320 && 170 < m_mou_y && m_mou_y < 280)
 	{
 		m_introduce_f = true;	//施設紹介ウィンドウを表示する
-		m_Ware_color = 0.7f;
+		m_Ware_color = 1.0f;
 		//左クリックされたらフラグを立て、倉庫ウインドウを開く
 		if (m_mou_l == true)
 		{
@@ -218,7 +245,7 @@ void CObjWarehouse::Action()
 	else
 	{
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Ware_color = 1.0f;
+		m_Ware_color = INI_COLOR;
 	}
 }
 
