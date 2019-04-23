@@ -16,12 +16,12 @@ enum OBJ_NAME
 	OBJ_TRAINING,
 	OBJ_PREPARATION,
 	OBJ_FIGHT,
-	OBJ_BUILD,
 	OBJ_WAREHOUSE,
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
-	OBJ_MATERIALBOTTON,
 	OBJ_MISSILE,
+	OBJ_FIGHT_CLEAR,
+	OBJ_FIGHT_OVER,
 
 };
 //------------------------------------------------
@@ -96,7 +96,6 @@ extern int g_Material_num_test;		//TEST用所持素材数
 #include "ObjTest.h"
 #include "ObjHuman.h"
 #include "ObjCloud_Effect.h"
-#include "ObjBuild.h"
 #include "ObjBarracks.h"
 #include "ObjPlanet.h"
 #include "ObjTraining.h"
@@ -108,6 +107,8 @@ extern int g_Material_num_test;		//TEST用所持素材数
 #include "ObjInstitute.h"
 #include "ObjWarehouse.h"
 #include "ObjMaterialBotton.h"
+#include "ObjFightClear.h"
+#include "ObjFightOver.h"
 
 //------------------------------------------------
 
@@ -115,7 +116,6 @@ extern int g_Material_num_test;		//TEST用所持素材数
 #include "SceneTitle.h"
 #include "SceneHome.h"
 #include "SceneTest.h"
-#include "SceneFacility.h"
 #include "SceneTraining.h"
 #include "ScenePreparation.h"
 #include "SceneFight.h"
@@ -124,7 +124,8 @@ extern int g_Material_num_test;		//TEST用所持素材数
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneTitle
+//#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
+#define SET_GAME_START CSceneTest
 //-----------------------------------------------

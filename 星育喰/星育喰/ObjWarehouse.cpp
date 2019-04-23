@@ -31,6 +31,8 @@ void CObjWarehouse::Init()
 
 	m_key_lf = false;
 
+	k = 0; //資材の所持している数
+
 }
 
 //アクション
@@ -74,35 +76,32 @@ void CObjWarehouse::Action()
 			m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 			m_Back_Button_color = 1.0f;
 		}
-		if (window_start_manage == Materials)
+
+		//資材ボタン選択
+		if (245 < m_mou_x && m_mou_x < 560 && 150 < m_mou_y && m_mou_y < 325)
 		{
-			//資材ボタン選択
-			if (350 < m_mou_x && m_mou_x < 525 && 200 < m_mou_y && m_mou_y < 375)
+			m_object_ma = 0.7f;
+
+			//左クリックされたらフラグを立て、資材ウインドウを開く
+			if (m_mou_l == true)
 			{
-				m_object_ma = 0.7f;
-
-				//左クリックされたらフラグを立て、資材ウインドウを開く
-				if (m_mou_l == true)
+				//クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
 				{
-					//クリック押したままの状態では入力出来ないようにしている
-					if (m_key_lf == true)
-					{
-						m_key_lf = false;
+					m_key_lf = false;
 
-						//"資材ウィンドウを開いている状態"フラグを立てる
-						window_start_manage = Materials;
-					}
-				}
-				else
-				{
-					m_key_lf = true;
+					//"資材ウィンドウを開いている状態"フラグを立てる
+					window_start_manage = Materials;
 				}
 			}
 			else
 			{
-				m_object_ma = 1.0f;
-
+				m_key_lf = true;
 			}
+		}
+		else
+		{
+			m_object_ma = 1.0f;
 
 		}
 
@@ -189,6 +188,7 @@ void CObjWarehouse::Action()
 			m_object_eq = 1.0f;
 
 		}
+
 	}
 
 	//倉庫選択
@@ -219,34 +219,6 @@ void CObjWarehouse::Action()
 	{
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ware_color = 1.0f;
-	}
-
-	//資材ボタン選択
-	if (245 < m_mou_x && m_mou_x < 560 && 150 < m_mou_y && m_mou_y < 325)
-	{
-		m_object_ma = 0.7f;
-
-		//左クリックされたらフラグを立て、資材ウインドウを開く
-		if (m_mou_l == true)
-		{
-			//クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
-			{
-				m_key_lf = false;
-
-				//"資材ウィンドウを開いている状態"フラグを立てる
-				window_start_manage = Materials;
-			}
-		}
-		else
-		{
-			m_key_lf = true;
-		}
-	}
-	else
-	{
-		m_object_ma = 1.0f;
-
 	}
 }
 
@@ -290,13 +262,20 @@ void CObjWarehouse::Draw()
 	//白色＆その他画像用
 	float white[4] = { 1.0f,1.0f,1.0f,1.0f };
 
+	//黒色
+	float black[4] = { 0.0f,0.0f,0.0f,1.0f };
+
 	//フォントの色
-	float Ware[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float ware[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	//▽フォント準備
 	//倉庫用
-	wchar_t g_Ware[5];
-	swprintf_s(g_Ware, L"倉庫", g_Ware);
+	wchar_t Ware[5];
+	swprintf_s(Ware, L"倉庫", g_Ware);
+
+	//資材(名前・持っている数)表示
+	wchar_t mrl[256];
+	swprintf_s(mrl, L"%d 個", k);
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -329,11 +308,11 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x + 110.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, Ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
+			Draw::Draw(21, &src, &dst, ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
 
 		    //▼フォント表示
 		    //倉庫
-			Font::StrDraw(g_Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
+			Font::StrDraw(Ware, m_mou_x - 40.0f, m_mou_y - 45.0f, 30.0f, black);
 
 		}
 }
@@ -443,11 +422,12 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x + 110.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, Ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
+			Draw::Draw(21, &src, &dst, ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
 
 		    //▼フォント表示
 			//研究所レベル
-			Font::StrDraw(g_Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
+			Font::StrDraw(Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
+
 		}
 	}
 
@@ -513,6 +493,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 257.0f;
 		dst.m_bottom = 197.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"木材", 280.0f, 130.0f,30.0f, black);
+		Font::StrDraw(mrl, 280.0f, 170.0f, 30.0f, black);
 
 		//▼鉄表示
 		src.m_top = 0.0f;
@@ -525,6 +507,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 642.0f;
 		dst.m_bottom = 287.0f;
 		Draw::Draw(34, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"鉄", 580.0f, 130.0f, 30.0f, black);
+		Font::StrDraw(mrl, 580.0f, 170.0f, 30.0f, black);
 
 		//▼銀表示
 		src.m_top = 0.0f;
@@ -537,6 +521,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 992.0f;
 		dst.m_bottom = 290.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"銀", 950.0f, 130.0f, 30.0f, black);
+		Font::StrDraw(mrl, 950.0f, 170.0f, 30.0f, black);
 
 		//▼プラスチック表示
 		src.m_top = 0.0f;
@@ -549,6 +535,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 245.0f;
 		dst.m_bottom = 390.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"プラスチック", 240.0f, 280.0f, 30.0f, black);
+		Font::StrDraw(mrl, 240.0f, 330.0f, 30.0f, black);
 
 		//▼アルミニウム表示
 		src.m_top = 0.0f;
@@ -561,6 +549,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 642.0f;
 		dst.m_bottom = 466.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"アルミニウム", 580.0f, 280.0f, 30.0f, black);
+		Font::StrDraw(mrl, 580.0f, 330.0f, 30.0f, black);
 
 		//▼ガス表示
 		src.m_top = 0.0f;
@@ -573,6 +563,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 930.0f;
 		dst.m_bottom = 390.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"ガス", 950.0f, 280.0f, 30.0f, black);
+		Font::StrDraw(mrl, 950.0f, 330.0f, 30.0f, black);
 
 		//▼レアメタル表示
 		src.m_top = 0.0f;
@@ -585,6 +577,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 629.0f;
 		dst.m_bottom = 629.0f;
 		Draw::Draw(39, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
+		Font::StrDraw(mrl, 580.0f, 500.0f, 30.0f, black);
 	}
 
 	//住民ボタンを押して描画する画像

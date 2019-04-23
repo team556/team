@@ -50,14 +50,11 @@
     <Filter Include="ソース ファイル\施設\倉庫">
       <UniqueIdentifier>{39e2be09-f1ec-4fa0-a04d-57663fe60b15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\施設\ボタンオブジェクト">
-      <UniqueIdentifier>{c79924e0-4b66-43ef-b12e-f7497b4e6e14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\施設\建物">
-      <UniqueIdentifier>{798801b5-7693-4b17-9465-8dcd2e500274}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\シーン\戦闘準備画面">
       <UniqueIdentifier>{410b8348-2b14-4cfc-8f81-474c2078c90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\対戦用\クリア＆オーバー">
+      <UniqueIdentifier>{b66ac50a-e27f-45d4-a63e-b8134fc0364a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +103,6 @@
     <ClCompile Include="ObjTest.cpp">
       <Filter>ソース ファイル\シーン\テスト用</Filter>
     </ClCompile>
-    <ClCompile Include="SceneFacility.cpp">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClCompile>
     <ClCompile Include="SceneTest.cpp">
       <Filter>ソース ファイル\シーン\テスト用</Filter>
     </ClCompile>
@@ -145,9 +139,6 @@
     <ClCompile Include="ObjInstitute.cpp">
       <Filter>ソース ファイル\施設\研究所</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMaterialBotton.cpp">
-      <Filter>ソース ファイル\施設\ボタンオブジェクト</Filter>
-    </ClCompile>
     <ClCompile Include="ObjHome.cpp">
       <Filter>ソース ファイル\シーン\ホーム</Filter>
     </ClCompile>
@@ -159,9 +150,6 @@
     </ClCompile>
     <ClCompile Include="ObjHuman.cpp">
       <Filter>ソース ファイル\住民</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjBuild.cpp">
-      <Filter>ソース ファイル\施設\建物</Filter>
     </ClCompile>
     <ClCompile Include="SceneFight.cpp">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
@@ -183,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="ScenePreparation.cpp">
       <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFightClear.cpp">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFightOver.cpp">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +228,6 @@
     <ClInclude Include="ObjTest.h">
       <Filter>ソース ファイル\シーン\テスト用</Filter>
     </ClInclude>
-    <ClInclude Include="SceneFacility.h">
-      <Filter>ソース ファイル\施設</Filter>
-    </ClInclude>
     <ClInclude Include="SceneTest.h">
       <Filter>ソース ファイル\シーン\テスト用</Filter>
     </ClInclude>
@@ -273,9 +264,6 @@
     <ClInclude Include="ObjCloud_Effect.h">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMaterialBotton.h">
-      <Filter>ソース ファイル\施設\ボタンオブジェクト</Filter>
-    </ClInclude>
     <ClInclude Include="ObjHome.h">
       <Filter>ソース ファイル\シーン\ホーム</Filter>
     </ClInclude>
@@ -287,9 +275,6 @@
     </ClInclude>
     <ClInclude Include="ObjHuman.h">
       <Filter>ソース ファイル\住民</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjBuild.h">
-      <Filter>ソース ファイル\施設\建物</Filter>
     </ClInclude>
     <ClInclude Include="SceneFight.h">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
@@ -314,6 +299,13 @@
     </ClInclude>
     <ClInclude Include="ScenePreparation.h">
       <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="ObjFightClear.h">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFightOver.h">
+      <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
