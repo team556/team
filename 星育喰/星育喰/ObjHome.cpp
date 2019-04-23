@@ -139,11 +139,11 @@ void CObjHome::Action()
 				//X移動速度を移動ベクトルXの状況に応じて増加させる
 				if (m_Pvx < 0.0f)
 				{
-					m_boost += 24.0;
+					m_boost += 24.0f;
 				}
 				else
 				{
-					m_boost += 6.0;
+					m_boost += 6.0f;
 				}
 
 

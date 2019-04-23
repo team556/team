@@ -54,7 +54,7 @@ void CObjPushUnit::Action()
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 
 			m_mou_f = true;
-			m_a = 0.3f;
+			m_a = 0.3f;		//透明化
 		}
 	}
 	else{}
@@ -64,13 +64,15 @@ void CObjPushUnit::Action()
 		if (m_cnt == 60 * 5) {	//5秒間数えたら
 			m_mou_f = false;	//クリックできるようにする。
 			m_cnt = 0;
-			m_a = 1.0f;
+			m_a = 1.0f;		//不透明化
 		}
 	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj->GetCount() == 0)//時間切れで
-		m_mou_f = true;//	 //マウス無効
+	if (obj->GetCount() == 0) {	//時間切れで
+		m_mou_f = true;			//マウス無効
+		m_a = 0.3f;				//透明化
+	}
 }
 
 //ドロー

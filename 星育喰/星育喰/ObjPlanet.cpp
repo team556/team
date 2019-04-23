@@ -24,16 +24,26 @@ CObjPlanet::CObjPlanet(float x, float y, bool type)
 void CObjPlanet::Init()
 {
 	m_size	 = 50.0f;
+	m_siz_max= 50.0f;
 	m_siz_vec=  0.0f;
+
+	m_cnt = 0;
 
 	m_hp = 10;
 
-	m_cnt_f = false;
-
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	m_mov_spd = 0.09f * 30 / (obj->GetCount() / 60);
+	m_mov_spd = 0.093f* 30 / (obj->GetCount() / 60);
 	m_siz_spd = 0.07f * 30 / (obj->GetCount() / 60);
 
+	m_ani[0] = 3;
+	m_ani[1] = 4;
+	m_ani[2] = 5;
+	m_ani[3] = 4;
+	m_ani_frame = 0;
+	m_ani_time = 0;
+
+	m_eat_f = false;
+	
 
 	//当たり判定用HitBoxを作成
 	if(m_type == true)
@@ -49,25 +59,62 @@ void CObjPlanet::Action()
 	if (obj->GetCount() != 0)
 		m_siz_vec += m_siz_spd;
 
-	if (m_type == true)
-		m_px -= m_mov_spd;
-	else
-		m_px += m_mov_spd;
 
 	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
-	hit->SetPos(m_px - m_siz_vec - m_size,
-				m_py - m_siz_vec - m_size,
-				2 * m_siz_vec + m_size * 2,
-				2 * m_siz_vec + m_size * 2);//位置を更新
-
-	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
-	{//敵のミサイルに当たった場合
-		m_hp -= 1;
-		m_size -= m_size / 10;
+	if (((hit->CheckElementHit(ELEMENT_ENEMY) == true)
+		|| (hit->CheckElementHit(ELEMENT_PLAYER) == true))	//お互い当たっているかつ
+		&& (m_cnt < 250 * m_mov_spd)) {		//3秒カウントしてない場合
+		m_cnt++;
 	}
 
-	if (obj->GetCount() == 0)
-		m_cnt_f = true;
+	//-------------------------------------------------アニメーション、星の動き
+	if (m_ani_time == 60) {	//フレーム切り替え時間
+		m_ani_time = 0;		//タイムリセット
+		m_ani_frame++;		//フレーム切り替え
+		if (m_ani_frame == 4)
+			m_ani_time = -1;
+	}
+
+	if (m_cnt < 250 * m_mov_spd)//カウントし終わってない場合
+		if (m_type == true)
+			m_px -= m_mov_spd;	//それぞれ移動させる
+		else
+			m_px += m_mov_spd;
+	else { 						//カウントし終わった後 (停止後)
+		if(m_type == true)
+			m_eat_f = true;
+	}
+
+	if (m_eat_f == true) {
+		if (m_ani_time >= 0)	//ani_time が0以上の場合
+			m_ani_time++;		//ani_time 加算
+		else					//フレームが3の場合
+			m_ani_frame = 0;	//初期フレーム
+	}
+
+	if (m_ani_frame == 2) {		//喰う時の移動
+		m_px -= m_mov_spd * 20;
+		if (m_ani_time == 59)
+			m_size += m_size;
+	}
+	
+
+	
+
+	
+	hit->SetPos(m_px - m_siz_vec - m_size,
+				m_py - m_siz_vec - m_size,		//HitBox更新
+				2 * m_siz_vec + m_size * 2,
+				2 * m_siz_vec + m_size * 2);
+
+
+	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
+	{							//敵のミサイルに当たった場合
+		m_hp -= 1;				//HP-1
+		m_size -= m_size / 10;	//サイズ減少
+	}
+
+	
 }
 
 //ドロー
@@ -88,5 +135,5 @@ void CObjPlanet::Draw()
 	dst.m_bottom= m_py + m_siz_vec + m_size;
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(m_ani[m_ani_frame], &src, &dst, c, 0.0f);
 }

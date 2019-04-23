@@ -5,12 +5,12 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン：ホーム画面
-class CSceneHome :public CScene
+//シーン：戦闘準備画面
+class CScenePreparation :public CScene
 {
 public:
-	CSceneHome();
-	~CSceneHome();
+	CScenePreparation();
+	~CScenePreparation();
 	void InitScene();  //ゲームタイトルの初期化メソッド
 	void Scene();      //ゲームタイトルの実行中メソッド
 private:
