@@ -14,7 +14,7 @@ using namespace GameL;
 #define INI_ENEMY_Y_POS (150.0f)	//敵惑星4つ全体の初期Y位置
 #define INI_ENEMY_SPEED (50.0f)		//敵惑星4つの初期移動スピード
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -67,7 +67,7 @@ void CObjPreparation::Action()
 	////育アイコン
 	//if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680)
 	//{
-	//	//m_Tra_color = 0.7f;
+	//	//m_Tra_color = 1.0f;
 
 	//	//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
 	//	if (m_mou_l == true)
@@ -87,7 +87,7 @@ void CObjPreparation::Action()
 	//}
 	//else
 	//{
-	//	//m_Tra_color = 1.0f;
+	//	//m_Tra_color = INI_COLOR;
 	//}
 
 	//▼戦闘準備画面開始演出

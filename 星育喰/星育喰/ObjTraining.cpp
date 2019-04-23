@@ -11,7 +11,7 @@ using namespace GameL;
 
 //マクロ
 #define INI_PLAYER_SIZE (1500.0f) //プレイヤー惑星の初期サイズ
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //static変数の定義
 bool CObjTraining::m_key_rf = false;
@@ -118,7 +118,7 @@ void CObjTraining::Action()
 	//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
 	if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 	{
-		m_Back_Button_color = 0.7f;
+		m_Back_Button_color = 1.0f;
 
 		//▼移行フラグを立て、ホーム画面へ演出を交えながらシーン移行
 		//右クリック入力時
@@ -159,7 +159,7 @@ void CObjTraining::Action()
 	else
 	{
 		m_key_rf = true;
-		m_Back_Button_color = 1.0f;
+		m_Back_Button_color = INI_COLOR;
 	}
 }
 
