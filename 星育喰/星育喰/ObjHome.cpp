@@ -19,7 +19,7 @@ using namespace GameL;
 #define ENEMY_PLANET2_START_TIME (800)  //敵惑星2(背景)の開始時間
 #define ENEMY_PLANET3_START_TIME (300)  //敵惑星3(背景)の開始時間
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //イニシャライズ
 void CObjHome::Init()
@@ -117,7 +117,7 @@ void CObjHome::Action()
 
 				if (m_Mig_time > 60)
 				{
-					//Scene::SetScene(new CSceneHome());//戦闘準備画面へシーン移行
+					Scene::SetScene(new CSceneFight());//戦闘準備画面へシーン移行
 				}
 			}
 			else //画面内にいるため、移動を行う
@@ -139,11 +139,11 @@ void CObjHome::Action()
 				//X移動速度を移動ベクトルXの状況に応じて増加させる
 				if (m_Pvx < 0.0f)
 				{
-					m_boost += 24.0;
+					m_boost += 24.0f;
 				}
 				else
 				{
-					m_boost += 6.0;
+					m_boost += 6.0f;
 				}
 
 
@@ -183,7 +183,7 @@ void CObjHome::Action()
 	//育アイコン
 	if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680)
 	{
-		m_Tra_color = 0.7f;
+		m_Tra_color = 1.0f;
 
 		//左クリックされたらフラグを立て、育成画面へ演出を交えながらシーン移行
 		if (m_mou_l == true)
@@ -203,13 +203,13 @@ void CObjHome::Action()
 	}
 	else
 	{
-		m_Tra_color = 1.0f;
+		m_Tra_color = INI_COLOR;
 	}
 
 	//喰アイコン
 	if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680)
 	{
-		m_Eat_color = 0.7f;
+		m_Eat_color = 1.0f;
 
 		//左クリックされたらフラグを立て、戦闘準備画面へ演出を交えながらシーン移行
 		if (m_mou_l == true)
@@ -229,7 +229,7 @@ void CObjHome::Action()
 	}
 	else
 	{
-		m_Eat_color = 1.0f;
+		m_Eat_color = INI_COLOR;
 	}
 
 	//Zキーを押している間、敵惑星(背景)の移動速度が速くなる(デバッグ用)
@@ -393,5 +393,5 @@ void CObjHome::Draw()
 	//デバッグ用仮マウス位置表示
 	wchar_t str[256];
 	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20, 12, d);
+	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }

@@ -29,7 +29,7 @@ void CObjMissile::Init()
 		else if(m_get_line == 2){ m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_x += obj->GetCount() / 9;
+		m_x += obj->GetCount() / 7;
 	}
 
 	m_size = 50.0f;//サイズ
@@ -37,6 +37,8 @@ void CObjMissile::Init()
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
 	
+	m_r = 0.0f;
+
 	m_mou_x = 0.0f;	//マウス情報
 	m_mou_y = 0.0f;
 	m_mou_r = false;
@@ -83,14 +85,14 @@ void CObjMissile::Action()
 	if (m_get_line == 0 || m_get_line == 3)//上ライン---
 	{
 		m_vx -= 0.3f;
-		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+		if ((m_x > 600) && (m_vy <= 0)) {
 			m_vy -= 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x >= 590 && m_x <= 610)
+		else if (m_x >= 598 && m_x <= 600)
 			m_cnt = 0;
-		else if (m_x < 600 - m_size)
+		else if (m_x < 600)
 		{
-			m_vy += m_cnt * 0.0002f;
+			m_vy += m_cnt * 0.0004f;
 		}
 	}
 	else if (m_get_line == 1)//中ライン---
@@ -100,14 +102,14 @@ void CObjMissile::Action()
 	else//if(m_get_line == 2)下ライン---
 	{
 		m_vx -= 0.3f;
-		if ((m_x > 600 + m_size) && (m_vy <= 0)) {
+		if ((m_x > 600) && (m_vy <= 0)) {
 			m_vy += 0.15f - (m_cnt * 0.0002f);
 		}
-		else if (m_x >= 590 && m_x <= 610)
+		else if (m_x >= 598 && m_x <= 600)
 			m_cnt = 0;
-		else if (m_x < 600 - m_size)
+		else if (m_x < 600)
 		{
-			m_vy -= m_cnt * 0.0002f;
+			m_vy -= m_cnt * 0.0004f;
 		}
 	}
 	
@@ -150,5 +152,5 @@ void CObjMissile::Draw()
 	dst.m_bottom= m_y + m_size;
 
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, d, 0.0f);
+	Draw::Draw(2, &src, &dst, d, 45.0f);
 }

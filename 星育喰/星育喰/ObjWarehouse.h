@@ -5,6 +5,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define WARE_MES_MAX_FONT_LINE (3) //倉庫資材、技名、住民数、装備名最大フォント桁数
+
 //オブジェクト：タイトル
 class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 {
@@ -15,31 +18,27 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 		void Action();   //アクション
 		void Draw();     //ドロー
 
-		float m_mou_x;
-		float m_mou_y;
+		float m_mou_x;		//マウスx座標
+		float m_mou_y;		//マウスy座標
 
-		bool m_mou_r;
-		bool m_mou_l;
+		bool m_mou_r;		//右クリックフラグ
+		bool m_mou_l;		//左クリックフラグ
 
 	private:
 		int m_x;
 		int m_y;
-		//int m_obx;//育成画面オブジェクトX軸
-		//int m_oby;//育成画面オブジェクトY軸
 
-		int m_time;
+		bool m_key_lf;  //左クリック用キーフラグ
 
-		bool m_key_f;
+		wchar_t m_Ware_message[WARE_MES_MAX_FONT_LINE][100];	//武器ポッド必要素材&人数メッセージのフォント用
 
-		bool m_key_ma;	//資材ボタンフラグ
-		bool m_key_re;	//住民ボタンフラグ
-		bool m_key_sp;	//スペシャル技ボタンフラグ
-		bool m_key_eq;	//装備ボタンフラグ
-		bool m_key_md;	//戻るボタンフラグ
+		float m_Ware_color;			//倉庫カラー明度
+		float m_Back_Button_color;	//戻るボタンカラー明度
+		float m_object_ma;			//資材ボタンカラー明度
+		float m_object_re;			//住民ボタンカラー明度
+		float m_object_sp;			//スペシャル技ボタンカラー明度
+		float m_object_eq;			//装備ボタンカラー明度
 
-		float m_Ware_color;		 //倉庫カラー明度
-		float m_Back_color;		 //戻るボタンカラー明度
-		float m_Object_color[3]; //オブジェクトボタンカラー明度
-		bool m_f;
+		int k ;
 
 };

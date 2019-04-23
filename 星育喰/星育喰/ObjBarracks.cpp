@@ -9,13 +9,15 @@
 using namespace GameL;
 
 //マクロ
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //イニシャライズ
 void CObjBarracks::Init()
 {
 	m_Back_Button_color = INI_COLOR;
 	m_Bar_color = INI_COLOR;
+	m_Bar_Lvup_color = INI_COLOR;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -23,8 +25,14 @@ void CObjBarracks::Init()
 		m_Human_down_color[i] = INI_COLOR;	//全ての要素の値をINI_COLORで初期化している
 	}
 
+	m_mou_x = 0.0f;
+	m_mou_y = 0.0f;
+	m_mou_r = false;
+	m_mou_l = false;
 	m_introduce_f = false;
+	m_finalcheck_f = false;
 	m_key_lf = false;
+	m_alpha = INI_ALPHA;
 }
 
 //アクション
@@ -40,10 +48,16 @@ void CObjBarracks::Action()
 	//▼兵舎ウインドウ表示時の処理
 	if (window_start_manage == Barracks)
 	{
+		//マウスカーソル上部に表示されるエラーメッセージを徐々に非表示にする
+		if (m_alpha > 0.0f)
+		{
+			m_alpha -= 0.01f;
+		}
+
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
 		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
 		{
-			m_Back_Button_color = 0.7f;
+			m_Back_Button_color = 1.0f;
 
 			//▼クリックされたらフラグを立て、兵舎ウインドウを閉じる
 			//右クリック入力時
@@ -51,6 +65,9 @@ void CObjBarracks::Action()
 			{
 				//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 				m_key_rf = false;
+
+				//エラーメッセージを非表示にするため、透過度を0.0fにする
+				m_alpha = 0.0f;
 
 				//"どのウインドウも開いていない状態"フラグを立てる
 				window_start_manage = Default;
@@ -63,6 +80,9 @@ void CObjBarracks::Action()
 				{
 					m_key_lf = false;
 
+					//エラーメッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
 				}
@@ -74,13 +94,44 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Back_Button_color = 1.0f;	
+			m_Back_Button_color = INI_COLOR;
+		}
+
+		//兵舎レベルUP
+		if (30 < m_mou_x && m_mou_x < 148 && 465 < m_mou_y && m_mou_y < 610)
+		{
+			m_Bar_Lvup_color = 1.0f;
+			
+			//左クリックされたらLvUP条件を満たしているかチェックを行い、
+			//満たしていれば、兵舎LvUPの処理を行う。
+			//満たしていなければ、エラーメッセージを表示する。
+			if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					m_Bar_Lvup_color = 0.0f;
+
+					//ここで兵舎LvUP処理を行う。
+					//しかし、現状未実装である。
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Bar_Lvup_color = INI_COLOR;
 		}
 
 		//パワー住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
 		{
-			m_Human_up_color[0] = 0.7f;
+			m_Human_up_color[0] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -102,13 +153,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[0] = 1.0f;
+			m_Human_up_color[0] = INI_COLOR;
 		}
 
 		//ディフェンス住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 228 < m_mou_y && m_mou_y < 328)
 		{
-			m_Human_up_color[1] = 0.7f;
+			m_Human_up_color[1] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -130,13 +181,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[1] = 1.0f;
+			m_Human_up_color[1] = INI_COLOR;
 		}
 
 		//スピード住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 338 < m_mou_y && m_mou_y < 438)
 		{
-			m_Human_up_color[2] = 0.7f;
+			m_Human_up_color[2] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -158,13 +209,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[2] = 1.0f;
+			m_Human_up_color[2] = INI_COLOR;
 		}
 
 		//バランス住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 448 < m_mou_y && m_mou_y < 548)
 		{
-			m_Human_up_color[3] = 0.7f;
+			m_Human_up_color[3] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -186,13 +237,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[3] = 1.0f;
+			m_Human_up_color[3] = INI_COLOR;
 		}
 		
 		//パワー住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 		{
-			m_Human_down_color[0] = 0.7f;
+			m_Human_down_color[0] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -214,13 +265,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[0] = 1.0f;
+			m_Human_down_color[0] = INI_COLOR;
 		}
 
 		//ディフェンス住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 228 < m_mou_y && m_mou_y < 328)
 		{
-			m_Human_down_color[1] = 0.7f;
+			m_Human_down_color[1] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -242,13 +293,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[1] = 1.0f;
+			m_Human_down_color[1] = INI_COLOR;
 		}
 
 		//スピード住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 338 < m_mou_y && m_mou_y < 438)
 		{
-			m_Human_down_color[2] = 0.7f;
+			m_Human_down_color[2] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -270,13 +321,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[2] = 1.0f;
+			m_Human_down_color[2] = INI_COLOR;
 		}
 
 		//バランス住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 448 < m_mou_y && m_mou_y < 548)
 		{
-			m_Human_down_color[3] = 0.7f;
+			m_Human_down_color[3] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -298,7 +349,7 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[3] = 1.0f;
+			m_Human_down_color[3] = INI_COLOR;
 		}
 
 
@@ -316,7 +367,7 @@ void CObjBarracks::Action()
 	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
-		m_Bar_color = 0.7f;
+		m_Bar_color = 1.0f;
 
 		//左クリックされたらフラグを立て、兵舎ウインドウを開く
 		if (m_mou_l == true)
@@ -326,7 +377,7 @@ void CObjBarracks::Action()
 			{
 				m_key_lf = false;
 
-				m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ表示時に後ろに出さない為に)
+				m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ閉じた時に一瞬映り込むため)
 
 				//"兵舎ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Barracks;
@@ -340,7 +391,7 @@ void CObjBarracks::Action()
 	else
 	{
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Bar_color = 1.0f;
+		m_Bar_color = INI_COLOR;
 	}
 }
 
@@ -376,6 +427,9 @@ void CObjBarracks::Draw()
 	//兵舎画像用
 	float bar[4] = { m_Bar_color,m_Bar_color,m_Bar_color,1.0f };
 
+	//兵舎LvUP画像用
+	float Lvup[4] = { m_Bar_Lvup_color, m_Bar_Lvup_color, m_Bar_Lvup_color,1.0f };
+
 	//住民振り分けUP画像用
 	float up[4][4] =
 	{
@@ -393,6 +447,9 @@ void CObjBarracks::Draw()
 		{ m_Human_down_color[2],m_Human_down_color[2],m_Human_down_color[2],1.0f },
 		{ m_Human_down_color[3],m_Human_down_color[3],m_Human_down_color[3],1.0f },
 	};
+
+	//エラーメッセージ用
+	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
 
 	//▽フォント準備
 	//兵舎レベル用
@@ -414,40 +471,44 @@ void CObjBarracks::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	//▼兵舎表示 
-	src.m_top    =   0.0f;
-	src.m_left   =   0.0f;
-	src.m_right  = 245.0f;
-	src.m_bottom = 206.0f;
-
-	dst.m_top    =  460.0f;
-	dst.m_left   =  810.0f;
-	dst.m_right  = 1190.0f;
-	dst.m_bottom =  690.0f;
-	Draw::Draw(2, &src, &dst, bar, 0.0f);
-
-	//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
-	if (m_introduce_f == true)
+	//施設ウインドウ(兵舎、研究所、倉庫)が開いてない時に表示するグラフィック
+	if (window_start_manage == Default || window_start_manage == BackButton)
 	{
-		//▼施設紹介ウインドウ表示
+		//▼兵舎表示 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 245.0f;
+		src.m_bottom = 206.0f;
 
-		dst.m_top = m_mou_y - 50.0f;
-		dst.m_left = m_mou_x - 100.0f;
-		dst.m_right = m_mou_x + 100.0f;
-		dst.m_bottom = m_mou_y - 10.0f;
-		Draw::Draw(21, &src, &dst, bar, 0.0f);//灰色のウインドウにする為"bar"にしている。
+		dst.m_top = 460.0f;
+		dst.m_left = 810.0f;
+		dst.m_right = 1190.0f;
+		dst.m_bottom = 690.0f;
+		Draw::Draw(2, &src, &dst, bar, 0.0f);
 
-		//▼フォント表示
-		//兵舎レベル
-		Font::StrDraw(Bar, m_mou_x - 75, m_mou_y - 45, 30, white);
+		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
+		if (m_introduce_f == true)
+		{
+			//▼施設紹介ウインドウ表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x - 100.0f;
+			dst.m_right = m_mou_x + 100.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼フォント表示
+			//兵舎レベル
+			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
+		}
 	}
 
 	//兵舎ウインドウ開いている際に表示するグラフィック
-	if (window_start_manage == Barracks)
+	else if (window_start_manage == Barracks)
 	{
 		//▼灰色ウインドウ表示
 		src.m_top    =    0.0f;
@@ -464,8 +525,8 @@ void CObjBarracks::Draw()
 		//▼戻るボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 225.0f;
-		src.m_bottom = 225.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
 		dst.m_top = 30.0f;
 		dst.m_left = 30.0f;
@@ -485,7 +546,7 @@ void CObjBarracks::Draw()
 		dst.m_bottom = 350.0f;
 		Draw::Draw(2, &src, &dst, white, 0.0f);
 
-		//▼施設LVUP表示
+		//▼兵舎LVUP表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 48.0f;
@@ -495,7 +556,7 @@ void CObjBarracks::Draw()
 		dst.m_left = 30.0f;
 		dst.m_right = 150.0f;
 		dst.m_bottom = 620.0f;
-		Draw::Draw(22, &src, &dst, white, 0.0f);
+		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
 		//▼レベルUP条件ウインドウ表示
 		src.m_top = 0.0f;
@@ -573,6 +634,7 @@ void CObjBarracks::Draw()
 			Font::StrDraw(human_num[i], 950.0f, 150.0f + i * 110.0f, 40.0f, black);
 		}
 
+		//その他フォント
 		Font::StrDraw(L"兵舎レベルＵＰ", 60.0f, 370.0f, 50.0f, white);
 
 		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
@@ -589,48 +651,14 @@ void CObjBarracks::Draw()
 		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
 		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
 
+		//エラーメッセージ
+		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
 		
+
 
 		//デバッグ用仮マウス位置表示
 		wchar_t str[256];
 		swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-		Font::StrDraw(str, 20, 20, 12, white);
+		Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
 	}
-}
-
-//---Allocation関数
-//引数1　int type_num		:住民タイプ決定
-//引数2　int up_down_check	:振り分けUP / DOWNチェック(+1=振り分けUP / -1=振り分けDOWN)
-//▼内容
-//住民タイプと振り分けUP or DOWNを引数で渡せば、
-//以下の処理を行い、その住民タイプの振り分け後の値を返す。
-//※同時にグローバル変数である"残り住民数(g_Remain_num)"の値も変化させている。
-int CObjBarracks::Allocation(int type_num,int up_down_check)
-{
-	//▼それぞれ検査用の変数に代入
-	int Ins_human = type_num;
-	int Ins_remain = g_Remain_num;
-
-	//▼検査用の変数で変化させてみる
-	Ins_human += 100 * up_down_check;
-	Ins_remain -= 100 * up_down_check;
-
-	//▼検査用の変数が以下の条件を全て満たしていれば、実際の値を変化させる。
-	//満たしていなければ、それに応じたエラーメッセージを出し、
-	//実際の値を変化させずに関数を終了させる。
-	if (0 <= Ins_human && Ins_human <= 999900 && Ins_remain >= 0)
-	{
-		type_num += 100 * up_down_check;
-		g_Remain_num -= 100 * up_down_check;
-	}
-	else if (Ins_remain < 0)
-	{
-		//残り住民数がいません
-	}
-	else  //(Ins_human < 0 || 999900 < Ins_human)
-	{
-		//これ以上振り分けられません
-	}
-
-	return type_num;
 }

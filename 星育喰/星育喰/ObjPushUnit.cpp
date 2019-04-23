@@ -50,22 +50,28 @@ void CObjPushUnit::Action()
 		&& m_mou_l == true) {							//クリック
 		if (m_mou_f == false) {
 			//オブジェクト作成
-			CObjMissile* M = new CObjMissile(600,200,false);//オブジェクト作成
+			CObjMissile* M = new CObjMissile(600,200,true);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 
 			m_mou_f = true;
-			m_a = 0.3f;
+			m_a = 0.3f;		//透明化
 		}
 	}
 	else{}
 
 	if (m_mou_f == true) {	//クリックした後の処理
 		m_cnt++;			//カウントする
-		if (m_cnt == 300) {	//5秒間数えたら
+		if (m_cnt == 60 * 5) {	//5秒間数えたら
 			m_mou_f = false;	//クリックできるようにする。
 			m_cnt = 0;
-			m_a = 1.0f;
+			m_a = 1.0f;		//不透明化
 		}
+	}
+
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (obj->GetCount() == 0) {	//時間切れで
+		m_mou_f = true;			//マウス無効
+		m_a = 0.3f;				//透明化
 	}
 }
 

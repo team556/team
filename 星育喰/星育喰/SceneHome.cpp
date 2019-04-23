@@ -11,7 +11,6 @@
 using namespace GameL;
 
 //使用ヘッダー
-//#include "SceneMain.h"
 #include "GameHead.h"
 
 //コンストラクタ
@@ -29,9 +28,6 @@ CSceneHome::~CSceneHome()
 //ゲーム初期化メソッド
 void CSceneHome::InitScene()
 {
-	//出力させる文字のグラフィックを作成
-	//Font::SetStrTex(L"");
-
 	//ホームオブジェクト作成
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
