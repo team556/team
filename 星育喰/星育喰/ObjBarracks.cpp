@@ -10,7 +10,7 @@ using namespace GameL;
 
 //マクロ
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //イニシャライズ
 void CObjBarracks::Init()
@@ -57,7 +57,7 @@ void CObjBarracks::Action()
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
 		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
 		{
-			m_Back_Button_color = 0.7f;
+			m_Back_Button_color = 1.0f;
 
 			//▼クリックされたらフラグを立て、兵舎ウインドウを閉じる
 			//右クリック入力時
@@ -94,13 +94,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Back_Button_color = 1.0f;	
+			m_Back_Button_color = INI_COLOR;
 		}
 
 		//兵舎レベルUP
 		if (30 < m_mou_x && m_mou_x < 148 && 465 < m_mou_y && m_mou_y < 610)
 		{
-			m_Bar_Lvup_color = 0.7f;
+			m_Bar_Lvup_color = 1.0f;
 			
 			//左クリックされたらLvUP条件を満たしているかチェックを行い、
 			//満たしていれば、兵舎LvUPの処理を行う。
@@ -125,13 +125,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Bar_Lvup_color = 1.0f;
+			m_Bar_Lvup_color = INI_COLOR;
 		}
 
 		//パワー住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
 		{
-			m_Human_up_color[0] = 0.7f;
+			m_Human_up_color[0] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -153,13 +153,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[0] = 1.0f;
+			m_Human_up_color[0] = INI_COLOR;
 		}
 
 		//ディフェンス住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 228 < m_mou_y && m_mou_y < 328)
 		{
-			m_Human_up_color[1] = 0.7f;
+			m_Human_up_color[1] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -181,13 +181,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[1] = 1.0f;
+			m_Human_up_color[1] = INI_COLOR;
 		}
 
 		//スピード住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 338 < m_mou_y && m_mou_y < 438)
 		{
-			m_Human_up_color[2] = 0.7f;
+			m_Human_up_color[2] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -209,13 +209,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[2] = 1.0f;
+			m_Human_up_color[2] = INI_COLOR;
 		}
 
 		//バランス住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 448 < m_mou_y && m_mou_y < 548)
 		{
-			m_Human_up_color[3] = 0.7f;
+			m_Human_up_color[3] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -237,13 +237,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_up_color[3] = 1.0f;
+			m_Human_up_color[3] = INI_COLOR;
 		}
 		
 		//パワー住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 		{
-			m_Human_down_color[0] = 0.7f;
+			m_Human_down_color[0] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -265,13 +265,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[0] = 1.0f;
+			m_Human_down_color[0] = INI_COLOR;
 		}
 
 		//ディフェンス住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 228 < m_mou_y && m_mou_y < 328)
 		{
-			m_Human_down_color[1] = 0.7f;
+			m_Human_down_color[1] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -293,13 +293,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[1] = 1.0f;
+			m_Human_down_color[1] = INI_COLOR;
 		}
 
 		//スピード住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 338 < m_mou_y && m_mou_y < 438)
 		{
-			m_Human_down_color[2] = 0.7f;
+			m_Human_down_color[2] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -321,13 +321,13 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[2] = 1.0f;
+			m_Human_down_color[2] = INI_COLOR;
 		}
 
 		//バランス住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 448 < m_mou_y && m_mou_y < 548)
 		{
-			m_Human_down_color[3] = 0.7f;
+			m_Human_down_color[3] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -349,7 +349,7 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_Human_down_color[3] = 1.0f;
+			m_Human_down_color[3] = INI_COLOR;
 		}
 
 
@@ -367,7 +367,7 @@ void CObjBarracks::Action()
 	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
-		m_Bar_color = 0.7f;
+		m_Bar_color = 1.0f;
 
 		//左クリックされたらフラグを立て、兵舎ウインドウを開く
 		if (m_mou_l == true)
@@ -391,7 +391,7 @@ void CObjBarracks::Action()
 	else
 	{
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Bar_color = 1.0f;
+		m_Bar_color = INI_COLOR;
 	}
 }
 
@@ -499,11 +499,11 @@ void CObjBarracks::Draw()
 			dst.m_left = m_mou_x - 100.0f;
 			dst.m_right = m_mou_x + 100.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, bar, 0.0f);//灰色のウインドウにする為"bar"にしている。
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼フォント表示
 			//兵舎レベル
-			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, white);
+			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
 		}
 	}
 

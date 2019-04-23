@@ -35,8 +35,20 @@ void CScenePreparation::InitScene()
 	//”wŒi‚ğ“Ç‚İ‚İ0”Ô‚É“o˜^
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
-	//ƒvƒŒƒCƒ„[˜f¯‚ğ“Ç‚İ‚İ1”Ô‚É“o˜^
-	Draw::LoadImage(L"ƒvƒŒƒCƒ„[˜f¯.png", 1, TEX_SIZE_512);
+	//“G˜f¯1‚ğ“Ç‚İ‚İ1”Ô‚É“o˜^
+	Draw::LoadImage(L"Enemy_Planet_Test.jpg", 1, TEX_SIZE_512);
+
+	//“G˜f¯2‚ğ“Ç‚İ‚İ2”Ô‚É“o˜^
+	Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 2, TEX_SIZE_512);
+
+	//“G˜f¯3‚ğ“Ç‚İ‚İ3”Ô‚É“o˜^
+	Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 3, TEX_SIZE_512);
+
+	//“G˜f¯4‚ğ“Ç‚İ‚İ4”Ô‚É“o˜^
+	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 4, TEX_SIZE_512);
+
+	//ƒvƒŒƒCƒ„[˜f¯‚ğ“Ç‚İ‚İ63”Ô‚É“o˜^
+	Draw::LoadImage(L"ƒvƒŒƒCƒ„[˜f¯.png", 63, TEX_SIZE_512);
 }
 
 //ƒQ[ƒ€ƒƒCƒ“Às’†ƒƒ\ƒbƒh

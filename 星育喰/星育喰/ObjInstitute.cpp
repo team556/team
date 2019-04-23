@@ -10,7 +10,7 @@ using namespace GameL;
 
 //マクロ
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
-#define INI_COLOR (1.0f) //全カラー明度の初期値
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -225,7 +225,7 @@ void CObjInstitute::Action()
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
 		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
 		{
-			m_Back_Button_color = 0.7f;
+			m_Back_Button_color = 1.0f;
 
 			//▼クリックされたらフラグを立て、研究所ウインドウを閉じる
 			//右クリック入力時
@@ -267,13 +267,13 @@ void CObjInstitute::Action()
 		else
 		{
 			m_key_rf = true;
-			m_Back_Button_color = 1.0f;
+			m_Back_Button_color = INI_COLOR;
 		}
 
 		//研究所レベルUP
 		if (30 < m_mou_x && m_mou_x < 148 && 465 < m_mou_y && m_mou_y < 610)
 		{
-			m_Ins_Lvup_color = 0.7f;
+			m_Ins_Lvup_color = 1.0f;
 
 			//左クリックされたらLvUP条件を満たしているかチェックを行い、
 			//満たしていれば、研究所LvUPの処理を行う。
@@ -298,13 +298,13 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_Ins_Lvup_color = 1.0f;
+			m_Ins_Lvup_color = INI_COLOR;
 		}
 
 		//研究員住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
 		{
-			m_Human_up_color = 0.7f;
+			m_Human_up_color = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -341,13 +341,13 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_Human_up_color = 1.0f;
+			m_Human_up_color = INI_COLOR;
 		}
 
 		//研究員住民振り分けDOWN
 		if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 		{
-			m_Human_down_color = 0.7f;
+			m_Human_down_color = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
@@ -402,13 +402,13 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_Human_down_color = 1.0f;
+			m_Human_down_color = INI_COLOR;
 		}
 
 		//ミサイルボタン
 		if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473)
 		{
-			m_Mis_Button_color = 0.7f;
+			m_Mis_Button_color = 1.0f;
 
 			//左クリックされたらフラグを立て、ミサイルウインドウを開く
 			if (m_mou_l == true)
@@ -434,13 +434,13 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_Mis_Button_color = 1.0f;
+			m_Mis_Button_color = INI_COLOR;
 		}
 		
 		//武器ポッドボタン
 		if (515 < m_mou_x && m_mou_x < 1120 && 493 < m_mou_y && m_mou_y < 641)
 		{
-			m_Equ_Button_color = 0.7f;
+			m_Equ_Button_color = 1.0f;
 
 			//左クリックされたらフラグを立て、武器ポッドウインドウを開く
 			if (m_mou_l == true)
@@ -469,7 +469,7 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_Equ_Button_color = 1.0f;
+			m_Equ_Button_color = INI_COLOR;
 		}
 
 
@@ -582,7 +582,7 @@ void CObjInstitute::Action()
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
 		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
-			m_Back_Button_color = 0.7f;
+			m_Back_Button_color = 1.0f;
 
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
 			//右クリック入力時
@@ -624,7 +624,7 @@ void CObjInstitute::Action()
 		else
 		{
 			m_key_rf = true;
-			m_Back_Button_color = 1.0f;
+			m_Back_Button_color = INI_COLOR;
 		}
 
 
@@ -759,7 +759,7 @@ void CObjInstitute::Action()
 	if (60 < m_mou_x && m_mou_x < 325 && 505 < m_mou_y && m_mou_y < 637)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
-		m_Ins_color = 0.7f;
+		m_Ins_color = 1.0f;
 
 		//左クリックされたらフラグを立て、研究所ウインドウを開く
 		if (m_mou_l == true)
@@ -783,7 +783,7 @@ void CObjInstitute::Action()
 	else
 	{
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Ins_color = 1.0f;
+		m_Ins_color = INI_COLOR;
 	}
 }
 
@@ -945,11 +945,11 @@ void CObjInstitute::Draw()
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x + 110.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ins, 0.0f);//灰色のウインドウにする為"ins"にしている。
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼フォント表示
 			//研究所レベル
-			Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
+			Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
 		}
 	}
 	

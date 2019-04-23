@@ -27,12 +27,16 @@ private:
 
 	float m_Pvx;		//プレイヤー惑星の移動用ベクトルX
 	float m_Pvy;		//プレイヤー惑星の移動用ベクトルY
-	float m_boost;		//プレイヤー惑星のX移動速度上昇用
-	float m_rx;			//サインカーブ用の角度(プレイヤー惑星x移動に使用)
-	float m_ry;			//サインカーブ用の角度(プレイヤー惑星y移動に使用)
-	float m_size;		//プレイヤー惑星のサイズ
+	//float m_boost;		//プレイヤー惑星のX移動速度上昇用
+	//float m_rx;			//サインカーブ用の角度(プレイヤー惑星x移動に使用)
+	//float m_ry;			//サインカーブ用の角度(プレイヤー惑星y移動に使用)
+	float m_Psize;		//プレイヤー惑星のサイズ
 
-	int m_Mig_time;		//シーン移行までの時間管理変数
+	float m_Evx;		//敵惑星4つの移動用ベクトルX
+						//ボス惑星のヤツは個別で用意予定
+	float m_speed;		//開始演出、終了演出で移動するオブジェクト(プレイヤー惑星、各敵惑星等)の移動速度
+
+	int m_staging_time;		//演出時間管理変数
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 	float m_Yes_Button_color;	//最終確認[はい]ボタンカラー(Red)調節用
