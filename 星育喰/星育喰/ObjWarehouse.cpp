@@ -194,8 +194,8 @@ void CObjWarehouse::Action()
 	//倉庫選択
 	if (95 < m_mou_x && m_mou_x < 320 && 170 < m_mou_y && m_mou_y < 280)
 	{
+		m_introduce_f = true;	//施設紹介ウィンドウを表示する
 		m_Ware_color = 0.7f;
-
 		//左クリックされたらフラグを立て、倉庫ウインドウを開く
 		if (m_mou_l == true)
 		{
@@ -203,6 +203,8 @@ void CObjWarehouse::Action()
 			if (m_key_lf == true)
 			{
 				m_key_lf = false;
+
+				m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 
 				//倉庫をクリックすると、倉庫が開かれる
 				window_start_manage = Warehouse;
@@ -215,6 +217,7 @@ void CObjWarehouse::Action()
 	}
 	else
 	{
+		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ware_color = 1.0f;
 	}
 
@@ -257,7 +260,7 @@ void CObjWarehouse::Draw()
 	}
 
 	//倉庫画像
-	float c[4] = { m_Ware_color,m_Ware_color, m_Ware_color, 1.0f };
+	float wh[4] = { m_Ware_color,m_Ware_color, m_Ware_color, 1.0f };
 
 	//オブジェクトクリックする前の背景オブジェクト
 	float h[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -284,13 +287,16 @@ void CObjWarehouse::Draw()
 	//資材・白色ウィンドウ画像
 	float it[4] = { 1.0f,1.0f,1.0f,1.0f };
 
+	//白色＆その他画像用
+	float white[4] = { 1.0f,1.0f,1.0f,1.0f };
+
 	//フォントの色
-	float Ware[4] = { 1.0f,1.0f,1.0f, };
+	float Ware[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	//▽フォント準備
 	//倉庫用
 	wchar_t g_Ware[5];
-	//swprintf_s(Ware, L"倉庫", g_Ware);
+	swprintf_s(g_Ware, L"倉庫", g_Ware);
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -308,9 +314,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 100.0f;
 		dst.m_right = 325.0f;
 		dst.m_bottom = 325.0f;
-
-		//27番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-		Draw::Draw(27, &src, &dst, c, 0.0f);
+		Draw::Draw(27, &src, &dst, wh, 0.0f);
 
 		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_introduce_f == true)
@@ -329,11 +333,9 @@ void CObjWarehouse::Draw()
 
 		    //▼フォント表示
 		    //倉庫
-			Font::StrDraw(L"倉庫", 105.0f, 95.0f, 50.0f, Ware);
+			Font::StrDraw(g_Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
 
 		}
-
-
 }
 
 	//倉庫をクリックした時
@@ -426,9 +428,27 @@ void CObjWarehouse::Draw()
 		dst.m_left = 100.0f;
 		dst.m_right = 325.0f;
 		dst.m_bottom = 325.0f;
+		Draw::Draw(27, &src, &dst, wh, 0.0f);
 
-		//64番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-		Draw::Draw(27, &src, &dst, c, 0.0f);
+		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
+		if (m_introduce_f == true)
+		{
+			//▼施設紹介ウインドウ表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x - 120.0f;
+			dst.m_right = m_mou_x + 110.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, Ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
+
+		    //▼フォント表示
+			//研究所レベル
+			Font::StrDraw(g_Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
+		}
 	}
 
 	//資材ボタンを押して描画する画像
@@ -565,13 +585,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 629.0f;
 		dst.m_bottom = 629.0f;
 		Draw::Draw(39, &src, &dst, it, 0.0f);
-
-		//▽フォント準備
-		//資材在庫数
-		wchar_t Ware[10];
-		//swprintf_s(Ware, "L木材\n%d個\n", g_Ware);
-
 	}
+
 	//住民ボタンを押して描画する画像
 	else if (window_start_manage == Residents)
 	{
@@ -691,8 +706,6 @@ void CObjWarehouse::Draw()
 		dst.m_right = 100.0f;
 		dst.m_bottom = 100.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
-
 	}
-
 }
 
