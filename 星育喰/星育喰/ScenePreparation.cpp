@@ -47,6 +47,24 @@ void CScenePreparation::InitScene()
 	//敵惑星4を読み込み4番に登録
 	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 4, TEX_SIZE_512);
 
+	//スペシャル技アイコン(敵に大ダメージ)
+	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 57, TEX_SIZE_512);
+
+	//スペシャル技アイコン(一列殺し)
+	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 58, TEX_SIZE_512);
+
+	//スペシャル技アイコン(一定時間無敵)
+	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 59, TEX_SIZE_512);
+
+	//スペシャル技アイコン(生産性効率アップ)
+	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 60, TEX_SIZE_512);
+
+	//スペシャル技アイコン(住民の士気がアップ)
+	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 61, TEX_SIZE_512);
+
+	//スペシャル技選択ウインドウを読み込み62番に登録
+	Draw::LoadImage(L"スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);
+
 	//プレイヤー惑星を読み込み63番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 63, TEX_SIZE_512);
 }
