@@ -1067,8 +1067,8 @@ void CObjInstitute::Draw()
 		//▼ミサイルボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 269.0f;
-		src.m_bottom = 96.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
 
 		dst.m_top = 330.0f;
 		dst.m_left = 520.0f;
@@ -1079,8 +1079,8 @@ void CObjInstitute::Draw()
 		//▼武器ポッドボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 269.0f;
-		src.m_bottom = 96.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
 
 		dst.m_top = 500.0f;
 		dst.m_left = 520.0f;
