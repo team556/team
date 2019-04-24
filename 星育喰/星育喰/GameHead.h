@@ -127,5 +127,5 @@ extern int g_Material_num_test;		//TESTópèäéùëfçﬁêî
 //#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
-#define SET_GAME_START CSceneTest
+//#define SET_GAME_START CSceneTest
 //-----------------------------------------------
