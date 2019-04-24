@@ -136,7 +136,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"住民選択ボタン.png", 29, TEX_SIZE_512);
 
 	//スペシャル技選択ボタン画像読み込み30番に登録
-	Draw::LoadImage(L"スペシャル技選択ボタン.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"スペシャル技選択ボタン(仮).png", 30, TEX_SIZE_512);
 
 	//装備選択ボタン画像読み込み31番に登録
 	Draw::LoadImage(L"装備選択ボタン.png", 31, TEX_SIZE_512);

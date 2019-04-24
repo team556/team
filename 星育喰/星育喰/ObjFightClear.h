@@ -23,6 +23,10 @@ private:
 	//bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
+	float m_a;		//alpha 透明度
+	float m_a_vec;	//m_aベクトル
+	bool m_a_f;		//不透明化フラグ
+
 	int m_people;	//住民
 	int m_mrl;		//マテリアルズ(資材)
 	char m_skill;	//スペシャル技
