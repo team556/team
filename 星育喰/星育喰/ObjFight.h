@@ -16,7 +16,7 @@ public:
 
 	int GetLine() { return m_line_nam; }//選択ラインを返す
 	int GetCount() { return m_cnt; }	//カウント数を返す
-	bool GetEndF() { return m_end_f; }	//カウント数を返す
+	void GetEndF() { m_end_f = true; }	//カウント数を返す
 
 private:
 	float m_mou_x;		//マウスの位置X

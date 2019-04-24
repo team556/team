@@ -23,6 +23,8 @@ void CObjFight::Init()
 
 	m_cnt = 60 * 10;
 	m_a = 1;		//初期値、不透明
+
+	m_end_f = false;
 }
 
 //アクション
@@ -58,6 +60,10 @@ void CObjFight::Action()
 		else {};//ライン外何もしない
 	}
 	else {};//範囲外の場合、初期値に戻す
+
+	//オブジェクト作成
+	//CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
+	//Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
 }
 
 //ドロー
@@ -75,7 +81,7 @@ void CObjFight::Draw()
 
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj->GetCount() == 0) {	//時間切れで
+	if (obj->GetCount() == 0) {//-------------------------時間切れの場合----
 		if (m_a > 0.0f) {
 			m_a -= 0.03f;				//透明化
 			float d0[4] = { 1.0f,1.0f,1.0f,m_a };//個別に初期化
@@ -83,7 +89,7 @@ void CObjFight::Draw()
 			float d2[4] = { 1.0f,1.0f,1.0f,m_a };
 		}
 	}
-	else {//------------------------------------------対戦時間中のみ動作
+	else {//------------------------------------------対戦時間中のみ動作-----
 		//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 		float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
 		float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
