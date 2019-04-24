@@ -49,9 +49,9 @@ void CSceneTest::InitScene()
 	//CObjHuman* obj = new CObjHuman(100,600);	//タイトルオブジェクト作成
 	//Objs::InsertObj(obj, OBJ_HUMAN, 10);		//タイトルオブジェクト登録
 
-	//オブジェクト作成
-	CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
-	Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
+	////オブジェクト作成
+	//CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
+	//Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
 }
 
 //ゲームメイン実行中メソッド

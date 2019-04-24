@@ -26,9 +26,15 @@ void CObjFightClear::Init()
 	//m_mou_r = false;//右クリック
 	m_mou_l = false;//左クリック
 
+	m_a = 0.0f;
+	m_a_vec = 0.0f;
+	m_a_f = false;
+
 	m_people = 0;	//住民
 	m_mrl = 0;		//マテリアルズ(資材)
 	m_skill = 0;	//スペシャル技
+
+	m_cnt = 3 * 60;	//3秒カウント
 }
 
 //アクション
@@ -40,12 +46,28 @@ void CObjFightClear::Action()
 	////マウスのボタンの状態
 	//m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	if (m_cnt == 0) {							//カウント終了後
+		if (m_mou_l == true)					//クリックした場合
+			Scene::SetScene(new CSceneHome());	//シーン移行
+		m_a_f = true;			//フラグ有効
+	}
+	else
+		m_cnt--;	//0でない場合カウントダウン
+
+	if (m_a_f == true)			//フラグ有効の場合
+		if (m_a <= 0.5)						//0.5で切り替え
+			m_a_vec += 0.003f;	//ベクトルに加算
+		else
+			m_a_vec -= 0.003f;	//ベクトルに減算
+
+	m_a += m_a_vec;	//ベクトルを反映
 }
 
 //ドロー
 void CObjFightClear::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };//charの色
+	float c[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
 	Font::StrDraw(L"住民", 0, 0, 32, c);
 
 	Font::StrDraw(L"資材", 0, 100, 32, c);

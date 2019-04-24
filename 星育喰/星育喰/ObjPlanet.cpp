@@ -74,6 +74,9 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {	//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
+			//オブジェクト作成
+			CObjFightClear* obj = new CObjFightClear();	//オブジェクト作成
+			Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);	//オブジェクト登録
 		}
 	}
 				//2.5秒
