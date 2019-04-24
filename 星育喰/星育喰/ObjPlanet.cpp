@@ -12,11 +12,12 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjPlanet::CObjPlanet(float x, float y, bool type)
+CObjPlanet::CObjPlanet(float x, float y, float hp, bool type)
 {
 	//作成時に渡された値を、座標の初期値に代入
 	m_px = x;
 	m_py = y;
+	m_hp = hp;
 	m_type = type;
 }
 
@@ -30,6 +31,7 @@ void CObjPlanet::Init()
 	m_cnt = 0;
 
 	m_hp = 10;
+	m_get_hp = 0;
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (obj->GetCount() / 60);
@@ -74,17 +76,33 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {	//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
+			//オブジェクト作成
+			CObjFightClear* obj = new CObjFightClear();	//オブジェクト作成
+			Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);	//オブジェクト登録
 		}
 	}
 				//2.5秒
-	if (m_cnt < (2.5 * 60) * m_mov_spd)//カウントし終わってない場合
-		if (m_type == true)
-			m_px -= m_mov_spd;	//それぞれ移動させる
+	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
+		if (m_type == true)				//(戦闘中)
+			m_px -= m_mov_spd;	//自星の動き
 		else
-			m_px += m_mov_spd;
+			m_px += m_mov_spd;	//敵星の動き
 	else { 						//カウントし終わった後 (停止後)
-		if((m_type == true) && (m_ani_time == 0))	//timeでループ制御☆
-			m_eat_f = true;	//食べるフラグ★ON
+		if (m_ani_time == 0) {	//timeでループ制御☆
+			if (m_type == true) {
+				m_hp -= 1;//
+				CObjPlanet* obj = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+				m_get_hp = obj->GetHp();
+			}
+			else {
+				CObjPlanet* obj = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+				m_get_hp = obj->GetHp();
+			}
+			if (m_hp > m_get_hp) {
+				m_eat_f = true;		//喰うフラグ有効
+				obj->SetEndF();
+			}
+		}
 	}
 
 	if (m_eat_f == true) {	//食べるフラグ★処理
@@ -96,7 +114,10 @@ void CObjPlanet::Action()
 		m_ani_frame = 0;	//初期フレーム
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
-		m_px -= m_mov_spd * 20;	//スピード×20加算
+		if (m_type == true)
+			m_px -= m_mov_spd * 20;	//スピード×20加算
+		else
+			m_px += m_mov_spd * 20;	//スピード×20加算
 		
 	//-------------------------------------------------------------
 
