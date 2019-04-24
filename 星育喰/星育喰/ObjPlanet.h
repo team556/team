@@ -8,11 +8,16 @@ using namespace GameL;
 class CObjPlanet :public CObj
 {
 public:
-	CObjPlanet(float x, float y, bool type);//座標+タイプを受け取る
+	CObjPlanet(float x, float y, float hp,bool type);//座標+タイプを受け取る
 	~CObjPlanet() {};
 	void Init();	//イニシャライズ
 	void Action();  //アクション
 	void Draw();    //ドロー
+
+	float GetX() { return m_px; }
+	float GetY() { return m_px; }
+	float GetHp() { return m_hp; }	//カウント数を返す
+	void SetEeatF() { m_eat_f = true; }
 private:
 
 	float m_px;			//星座標X
@@ -24,6 +29,7 @@ private:
 	float m_mov_spd;	//惑星移動スピード
 
 	float m_hp;			//ヒットポイント
+	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
 	bool m_type;		//惑星タイプ(true主人公)
 	
