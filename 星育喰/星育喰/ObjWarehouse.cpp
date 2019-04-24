@@ -372,51 +372,51 @@ void CObjWarehouse::Draw()
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
 		//▼資材選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 150.0f;
 		dst.m_left   = 250.0f;
-		dst.m_right  = 1018.0f;
-		dst.m_bottom = 764.0f;
+		dst.m_right  = 560.0f;
+		dst.m_bottom = 325.0f;
 		Draw::Draw(28, &src, &dst, ma, 0.0f);
 
 		//▼住民選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top	 = 0.0f;
+		src.m_left	 = 0.0f;
+		src.m_right	 = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 150.0f;
 		dst.m_left   = 700.0f;
-		dst.m_right  = 1468.0f;
-		dst.m_bottom = 764.0f;
+		dst.m_right  = 1005.0f;
+		dst.m_bottom = 325.0f;
 		Draw::Draw(29, &src, &dst, re, 0.0f);
 
 		//▼スペシャル技選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top	 = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right	 = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 400.0f;
 		dst.m_left   = 250.0f;
-		dst.m_right  = 1018.0f;
-		dst.m_bottom = 1014.0f;
+		dst.m_right  = 560.0f;
+		dst.m_bottom = 570.0f;
 		Draw::Draw(30, &src, &dst, sp, 0.0f);
 
 		//▼装備選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top	 = 0.0f;
+		src.m_left	 = 0.0f;
+		src.m_right  = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 400.0f;
 		dst.m_left   = 700.0f;
-		dst.m_right  = 1468.0f;
-		dst.m_bottom = 1014.0f;
+		dst.m_right  = 1005.0f;
+		dst.m_bottom = 570.0f;
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
