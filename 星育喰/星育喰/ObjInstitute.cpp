@@ -1200,8 +1200,8 @@ void CObjInstitute::Draw()
 			//▼ミサイル表示 
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 80.0f;
-			src.m_bottom = 82.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
 
 			dst.m_top = 325.0f;
 			dst.m_left = 75.0f;
