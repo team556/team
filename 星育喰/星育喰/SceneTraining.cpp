@@ -94,7 +94,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"研究所.png", 3, TEX_SIZE_512);
 
 	//ミサイル(仮)を読み込み4番に登録
-	Draw::LoadImage(L"ミサイル(仮).png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイル.png", 4, TEX_SIZE_512);
 
 	//住民を読み込み10番に登録
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
@@ -121,10 +121,10 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"兵舎振り分けDOWN.png", 24, TEX_SIZE_512);
 
 	//ミサイルボタン(仮)を読み込み25番に登録
-	Draw::LoadImage(L"ミサイルボタン(仮).png", 25, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイルボタン.png", 25, TEX_SIZE_512);
 
 	//武器ポッドボタン(仮)を読み込み26番に登録
-	Draw::LoadImage(L"武器ポッドボタン(仮).png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"武器ポッドボタン.png", 26, TEX_SIZE_512);
 
 	//test用倉庫画像読み込み27番に登録
 	Draw::LoadImage(L"倉庫.png", 27, TEX_SIZE_512);
@@ -136,7 +136,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"住民選択ボタン.png", 29, TEX_SIZE_512);
 
 	//スペシャル技選択ボタン画像読み込み30番に登録
-	Draw::LoadImage(L"スペシャル技選択ボタン.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"スペシャル技選択ボタン(仮).png", 30, TEX_SIZE_512);
 
 	//装備選択ボタン画像読み込み31番に登録
 	Draw::LoadImage(L"装備選択ボタン.png", 31, TEX_SIZE_512);

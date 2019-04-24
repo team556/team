@@ -32,6 +32,16 @@ void CObjWarehouse::Init()
 	m_key_lf = false;
 
 	k = 0; //資材の所持している数
+	p = 0;//住民パワーの値
+	s = 0;//住民スピードの値
+	d = 0;//住民ディフェンスの値
+	b = 0;//住民バランスの値
+	r = 0;//研究員の値
+	crvp = 0;//補正値パワー
+	crvs = 0;//補正値スピード
+	crvd = 0;//補正値ディフェンス
+	crvb = 0;//補正値バランス
+	crvr = 0;//補正値研究員
 
 }
 
@@ -82,6 +92,7 @@ void CObjWarehouse::Action()
 		{
 			m_object_ma = 1.0f;
 
+
 			//左クリックされたらフラグを立て、資材ウインドウを開く
 			if (m_mou_l == true)
 			{
@@ -94,41 +105,15 @@ void CObjWarehouse::Action()
 					window_start_manage = Materials;
 				}
 			}
-			else
+			else 
 			{
 				m_key_lf = true;
 			}
 
-			//戻るボタン選択
-			if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100)
-			{
-				m_Back_Button_color = 1.0f;
-
-				//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
-				if (m_mou_l == true)
-				{
-					//クリック押したままの状態では入力出来ないようにしている
-					if (m_key_lf == true)
-					{
-						m_key_lf = false;
-
-						//"どのウインドウも開いていない状態"フラグを立てる
-						window_start_manage = Warehouse;
-					}
-				}
-				else
-				{
-					m_key_lf = true;
-				}
-			}
-			else
-			{
-				m_Back_Button_color = INI_COLOR;
-			}
 		}
 		else
 		{
-			m_object_ma = 0.9f;
+			m_object_ma = INI_COLOR;
 
 		}
 
@@ -156,7 +141,7 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_object_re = 0.9f;
+			m_object_re = INI_COLOR;
 
 		}
 
@@ -184,14 +169,14 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_object_sp = 0.9f;
+			m_object_sp = INI_COLOR;
 
 		}
 
 		//装備ボタン選択
 		if (680 < m_mou_x && m_mou_x < 1005 && 390 < m_mou_y && m_mou_y < 570)
 		{
-			m_object_eq = 0.7f;
+			m_object_eq = 1.0f;
 
 			//左クリックされたらフラグを立て、装備ウインドウを開く
 			if (m_mou_l == true)
@@ -212,10 +197,10 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_object_eq = 0.9f;
-
+			m_object_eq = INI_COLOR;
 		}
 
+		return;
 	}
 
 	//倉庫選択
@@ -247,6 +232,42 @@ void CObjWarehouse::Action()
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ware_color = INI_COLOR;
 	}
+
+	//資材、住民、スペシャル技、装備画面の戻るボタン
+	if (window_start_manage == Materials|| window_start_manage == Residents||
+		window_start_manage == Specialskill|| window_start_manage == Soubicheck)
+	{
+		//戻るボタン選択
+		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100)
+		{
+			m_Back_Button_color = 1.0f;
+
+			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+			if (m_mou_l == true)
+			{
+				//クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					//"どのウインドウも開いていない状態"フラグを立てる
+					window_start_manage = Warehouse;
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Back_Button_color = INI_COLOR;
+
+		}
+	}
+
+
+
 }
 
 //ドロー
@@ -303,6 +324,49 @@ void CObjWarehouse::Draw()
 	//資材(名前・持っている数)表示
 	wchar_t mrl[256];
 	swprintf_s(mrl, L"%d 個", k);
+
+	//住民(各ステータス)表示
+	//パワー
+	wchar_t pow[256];
+	swprintf_s(pow, L"Lv%d", p);
+
+	//スピード
+	wchar_t spd[256];
+	swprintf_s(spd, L"Lv%d", s);
+
+	//ディフェンス
+	wchar_t dfs[256];
+	swprintf_s(dfs, L"Lv%d", d);
+
+	//バランス
+	wchar_t brs[256];
+	swprintf_s(brs, L"Lv%d", b);
+
+	//研究員
+	wchar_t rsc[256];
+	swprintf_s(rsc, L"Lv%d", r);
+
+	//補正値パワー
+	wchar_t crvp[256];
+	swprintf_s(crvp, L"攻撃力＋%d", crvp);
+
+	//補正値スピード
+	wchar_t crvs[256];
+	swprintf_s(crvs, L"素早さ＋%d", crvs);
+
+	//補正値ディフェンス
+	wchar_t crvd[256];
+	swprintf_s(crvd, L"体力＋%d", crvd);
+
+	//補正値バランス
+	wchar_t crvb[256];
+	swprintf_s(crvb, L"体力＋%d", crvb);
+	swprintf_s(crvb, L"攻撃力＋%d", crvb);
+	swprintf_s(crvb, L"素早さ＋%d", crvb);
+
+	//補正値研究員
+	wchar_t crvr[256];
+	swprintf_s(crvr, L"%d", crvr);
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -372,51 +436,51 @@ void CObjWarehouse::Draw()
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
 		//▼資材選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top    = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right  = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 150.0f;
 		dst.m_left   = 250.0f;
-		dst.m_right  = 1018.0f;
-		dst.m_bottom = 764.0f;
+		dst.m_right  = 560.0f;
+		dst.m_bottom = 325.0f;
 		Draw::Draw(28, &src, &dst, ma, 0.0f);
 
 		//▼住民選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top	 = 0.0f;
+		src.m_left	 = 0.0f;
+		src.m_right	 = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 150.0f;
 		dst.m_left   = 700.0f;
-		dst.m_right  = 1468.0f;
-		dst.m_bottom = 764.0f;
+		dst.m_right  = 1005.0f;
+		dst.m_bottom = 325.0f;
 		Draw::Draw(29, &src, &dst, re, 0.0f);
 
 		//▼スペシャル技選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top	 = 0.0f;
+		src.m_left   = 0.0f;
+		src.m_right	 = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 400.0f;
 		dst.m_left   = 250.0f;
-		dst.m_right  = 1018.0f;
-		dst.m_bottom = 1014.0f;
+		dst.m_right  = 560.0f;
+		dst.m_bottom = 570.0f;
 		Draw::Draw(30, &src, &dst, sp, 0.0f);
 
 		//▼装備選択ボタン表示
-		src.m_top    = 2.0f;
-		src.m_left   = 4.0f;
-		src.m_right  = 768.0f;
-		src.m_bottom = 614.0f;
+		src.m_top	 = 0.0f;
+		src.m_left	 = 0.0f;
+		src.m_right  = 307.0f;
+		src.m_bottom = 175.0f;
 
 		dst.m_top    = 400.0f;
 		dst.m_left   = 700.0f;
-		dst.m_right  = 1468.0f;
-		dst.m_bottom = 1014.0f;
+		dst.m_right  = 1005.0f;
+		dst.m_bottom = 570.0f;
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
@@ -647,6 +711,24 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 100.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
+		//▼白色ウィンドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 100.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 600.0f;
+		Draw::Draw(32, &src, &dst, it, 0.0f);
+		
+		//フォント表示
+		Font::StrDraw(L"パワー", 180.0f, 130.0f, 30.0f, black);
+		Font::StrDraw(pow,300.0f, 130.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 180.0f, 200.0f, 30.0f, black);
+
+
 	}
 
 	//スペシャル技ボタンを押して描画する画像
@@ -687,6 +769,19 @@ void CObjWarehouse::Draw()
 		dst.m_right = 100.0f;
 		dst.m_bottom = 100.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
+
+		//▼白色ウィンドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 100.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 600.0f;
+		Draw::Draw(32, &src, &dst, it, 0.0f);
+
 	}
 
 	//装備ボタンを押して描画する画像
@@ -727,6 +822,19 @@ void CObjWarehouse::Draw()
 		dst.m_right = 100.0f;
 		dst.m_bottom = 100.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
+
+		//▼白色ウィンドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 100.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 600.0f;
+		Draw::Draw(32, &src, &dst, it, 0.0f);
+
 	}
 }
 
