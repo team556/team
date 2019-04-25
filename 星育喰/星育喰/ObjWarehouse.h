@@ -48,6 +48,8 @@ class CObjWarehouse :public CObjTraining//CObjTraining‚ğŒp³‚·‚é
 		int crvp;
 		int crvs;
 		int crvd;
-		int crvb;
+		int crvbh;
+		int crvbp;
+		int crvbs;
 		int crvr;
 };
