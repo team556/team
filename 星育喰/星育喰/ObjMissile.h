@@ -22,6 +22,8 @@ private:
 	bool  m_mou_f;	//マウスフラッグ
 
 	float m_r;		//ミサイル角度
+	float m_mov;	//
+	float m_mov_spd;//動く速さ(上下)
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -30,7 +32,8 @@ private:
 
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
-	int m_cnt;			//カウント用
+
+	
 
 	bool m_type;		//生成時のタイプ
 };

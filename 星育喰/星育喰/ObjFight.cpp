@@ -68,17 +68,21 @@ void CObjFight::Action()
 
 	if (m_end_f == true) {
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-		m_hp = ene->GetHp();
+		if (ene != nullptr)
+			m_hp = ene->GetHp();
 
 		CObjPlanet* pnt = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-		m_hp2 = pnt->GetHp();
+		if (pnt != nullptr)
+			m_hp2 = pnt->GetHp();
 
 		if (m_hp > m_hp2) {
-			m_ex = ene->GetX();
-			m_ey = ene->GetY();
-			//敵星オブジェクト作成
-			CObjPlanet* obj0 = new CObjPlanet(m_ex, m_ey, m_hp, false);	//オブジェクト作成
-			Objs::InsertObj(obj0, OBJ_ENEMY, 5);				//ブジェクト登録
+			if (ene != nullptr)
+				ene->SetDelF();
+		}
+		else {
+			CObjPlanet* ene2 = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
+			if (ene2 != nullptr)
+				ene2->SetDelF();
 		}
 	}
 
@@ -99,6 +103,12 @@ void CObjFight::Draw()
 
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
+	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
+	float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
+	float d2[4] = { 1.0f,1.0f,1.0f,0.3f };
+
 	if (obj->GetCount() == 0) {//-------------------------時間切れの場合----
 		if (m_a > 0.0f) {
 			m_a -= 0.03f;				//透明化
@@ -108,11 +118,6 @@ void CObjFight::Draw()
 		}
 	}
 	else {//------------------------------------------対戦時間中のみ動作-----
-		//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-		float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
-		float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
-		float d2[4] = { 1.0f,1.0f,1.0f,0.3f };
-
 		if (m_line == 0)		//選択時に各ラインを不透明化
 			d0[3] = 0.6f;
 		else if (m_line == 1)
@@ -126,33 +131,32 @@ void CObjFight::Draw()
 			d1[3] = 1.0f;
 		else if (m_line_nam == 2)
 			d2[3] = 1.0f;
-
-		RECT_F src;//描画元切り取り位置
-		RECT_F dst;//描画先表示位置
-
-		//▼背景表示
-		src.m_top   =  0.0f;
-		src.m_left  =  0.0f;
-		src.m_right =100.0f;
-		src.m_bottom=100.0f;
-
-		//攻撃用ライン画像
-		dst.m_top   =200.0f;
-		dst.m_left  =400.0f;
-		dst.m_right =800.0f;
-		dst.m_bottom=260.0f;
-		Draw::Draw(2, &src, &dst, d0, 0.0f);
-
-		dst.m_top   =310.0f;
-		dst.m_left  =400.0f;
-		dst.m_right =800.0f;
-		dst.m_bottom=370.0f;
-		Draw::Draw(2, &src, &dst, d1, 0.0f);
-
-		dst.m_top   =420.0f;
-		dst.m_left  =400.0f;
-		dst.m_right =800.0f;
-		dst.m_bottom=480.0f;
-		Draw::Draw(2, &src, &dst, d2, 0.0f);
 	}
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+
+	//▼背景表示
+	src.m_top   =  0.0f;
+	src.m_left  =  0.0f;
+	src.m_right =100.0f;
+	src.m_bottom=100.0f;
+
+	//攻撃用ライン画像
+	dst.m_top   =200.0f;
+	dst.m_left  =400.0f;
+	dst.m_right =800.0f;
+	dst.m_bottom=260.0f;
+	Draw::Draw(2, &src, &dst, d0, 0.0f);
+
+	dst.m_top   =310.0f;
+	dst.m_left  =400.0f;
+	dst.m_right =800.0f;
+	dst.m_bottom=370.0f;
+	Draw::Draw(2, &src, &dst, d1, 0.0f);
+
+	dst.m_top   =420.0f;
+	dst.m_left  =400.0f;
+	dst.m_right =800.0f;
+	dst.m_bottom=480.0f;
+	Draw::Draw(2, &src, &dst, d2, 0.0f);
 }

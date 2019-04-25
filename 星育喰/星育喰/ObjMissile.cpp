@@ -29,13 +29,15 @@ void CObjMissile::Init()
 		else if(m_get_line == 2){ m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_x += obj->GetCount() / 7;
+		m_x -= obj->GetCount() / 7;
 	}
 
 	m_size = 50.0f;//サイズ
 	
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
+	m_mov_spd = 0.0005f;
+	m_mov = 0;
 	
 	m_r = 0.0f;
 
@@ -44,7 +46,6 @@ void CObjMissile::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 	
-	m_cnt = 0;
 	m_mou_f = false;//マウスフラグ
 
 	//当たり判定用HitBox作成
@@ -61,7 +62,7 @@ void CObjMissile::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 	
-	m_cnt++;
+	m_mov += m_mov_spd;
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -82,59 +83,54 @@ void CObjMissile::Action()
 
 	
 	//各ライン毎の動き方
-	if (m_get_line == 0 || m_get_line == 3)//上ライン---
+	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
 		m_vx -= 0.3f;
-		if ((m_x > 600) && (m_vy <= 0)) {
-			m_vy -= 0.15f - (m_cnt * 0.0002f);
-		}
-		else if (m_x >= 598 && m_x <= 600)
-			m_cnt = 0;
-		else if (m_x < 600)
-		{
-			m_vy += m_cnt * 0.0004f;
-		}
+		m_vy -= (-0.3 + m_mov);
 	}
-	else if (m_get_line == 1)//中ライン---
+	else if (m_get_line == 1)//---------------中ライン-----
 	{
 		m_vx -= 0.5f;
 	}
-	else//if(m_get_line == 2)下ライン---
+	else//if(m_get_line == 2)---------------下ライン------
 	{
 		m_vx -= 0.3f;
-		if ((m_x > 600) && (m_vy <= 0)) {
-			m_vy += 0.15f - (m_cnt * 0.0002f);
-		}
-		else if (m_x >= 598 && m_x <= 600)
-			m_cnt = 0;
-		else if (m_x < 600)
-		{
-			m_vy -= m_cnt * 0.0004f;
-		}
+		
 	}
 	
-
-	//座標更新
-	m_x += m_vx;
-	m_y += m_vy;
+	//-----------------------座標更新
+	if (m_type == true) {
+		m_x += m_vx;
+		m_y += m_vy;
+	}
+	else {
+		m_x -= m_vx;
+		m_y -= m_vy;
+	}
 
 
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-	{//位置を更新//惑星と接触しているかどうかを調べる
-		this->SetStatus(false);		//当たった場合削除
-		Hits::DeleteHitBox(this);
+	if (m_type == true) {
+		if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+		{//位置を更新//惑星と接触しているかどうかを調べる
+			this->SetStatus(false);		//当たった場合削除
+			Hits::DeleteHitBox(this);
+		}
+	}
+	else {
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+		{//位置を更新//惑星と接触しているかどうかを調べる
+			this->SetStatus(false);		//当たった場合削除
+			Hits::DeleteHitBox(this);
+		}
 	}
 }
 
 //ドロー
 void CObjMissile::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	Font::StrDraw(L"", 230, 250, 32, c);
-	
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };
 

@@ -12,39 +12,41 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjPlanet::CObjPlanet(float x, float y, float hp, bool type)
+CObjPlanet::CObjPlanet(float x, float y, float hp, bool type, float siz)
 {
-	//作成時に渡された値を、座標の初期値に代入
+	//作成時に渡された値を、各ステータスに代入
 	m_px = x;
 	m_py = y;
 	m_hp = hp;
 	m_type = type;
+	m_get_siz = siz;
 }
 
 //イニシャライズ
 void CObjPlanet::Init()
 {
-	m_size	 = 50.0f;
+	//各ステータス初期化
+	m_size	 = 50.0f;//サイズ
 	m_siz_max= 50.0f;
 	m_siz_vec=  0.0f;
 
-	m_cnt = 0;
+	m_cnt = 0;		//カウント
 
-	m_hp = 10;
-	m_get_hp = 0;
+	m_get_hp = 0;	//取得HP
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (obj->GetCount() / 60);
 	m_siz_spd = 0.07f * 30 / (obj->GetCount() / 60);
 
-	m_ani[0] = 3;
+	m_ani[0] = 3;//アニメーションデータの初期化
 	m_ani[1] = 4;
 	m_ani[2] = 5;
 	m_ani[3] = 4;
 	m_ani_frame = 0;
 	m_ani_time = 0;
 
-	m_eat_f = false;
+	m_eat_f = false;	//喰うフラグ(true = 喰う)
+	m_del_f = false;	//消すフラグ(true = 消す)
 	
 	//当たり判定用HitBoxを作成
 	if(m_type == true)
@@ -56,8 +58,8 @@ void CObjPlanet::Init()
 //アクション
 void CObjPlanet::Action()
 {
-	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj->GetCount() != 0)	//対戦時間が0でない場合
+	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (fit->GetCount() != 0)		//対戦時間が0でない場合
 		m_siz_vec += m_siz_spd; //拡大非をベクトルに加算
 
 
@@ -73,12 +75,17 @@ void CObjPlanet::Action()
 	if (m_ani_time == 60) {	//フレーム切り替え時間
 		m_ani_time = 0;		//タイムリセット
 		m_ani_frame++;		//フレーム切り替え
-		if (m_ani_frame == 4) {	//最終初期フレームにする前
+		if (m_ani_frame == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
-			//オブジェクト作成
-			CObjFightClear* obj = new CObjFightClear();	//オブジェクト作成
-			Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);	//オブジェクト登録
+			if (m_type == true) {
+				CObjFightClear* crer = new CObjFightClear();	//主人公の場合
+				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
+			}
+			else {
+				CObjFightOver* over = new CObjFightOver();	//敵の場合
+				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+			}
 		}
 	}
 				//2.5秒
@@ -88,27 +95,38 @@ void CObjPlanet::Action()
 		else
 			m_px += m_mov_spd;	//敵星の動き
 	else { 						//カウントし終わった後 (停止後)
-		if (m_ani_time == 0) {	//timeでループ制御☆
+		if (m_ani_time == 0) {					//timeでループ制御☆
 			if (m_type == true) {
 				m_hp -= 1;//
-				CObjPlanet* obj = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-				m_get_hp = obj->GetHp();
+				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
+				if(ene != nullptr)
+					m_get_hp = ene->GetHp();
 			}
 			else {
-				CObjPlanet* obj = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-				m_get_hp = obj->GetHp();
+				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+				if (pla != nullptr)
+					m_get_hp = pla->GetHp();
 			}
 			if (m_hp > m_get_hp) {
 				m_eat_f = true;		//喰うフラグ有効
-				obj->SetEndF();
+				fit->SetEndF();
 			}
 		}
 	}
 
 	if (m_eat_f == true) {	//食べるフラグ★処理
 		m_ani_time++;		//ani_time 加算
-		if((m_ani_frame == 3)&&(m_ani_time == 1))//口閉じた瞬間
-			m_size += m_size;					//サイズ変更
+		if ((m_ani_frame == 3) && (m_ani_time == 1)) {//口閉じた瞬間
+			m_size += m_size;					//サイズ変更(倍)
+			if (m_type == true) {
+				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+				ene->SetDelF();
+			}
+			else {
+				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+				pla->SetDelF();
+			}	
+		}
 	}
 	else
 		m_ani_frame = 0;	//初期フレーム
@@ -128,11 +146,20 @@ void CObjPlanet::Action()
 				2 * m_siz_vec + m_size * 2);
 
 	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
-	{							//敵のミサイルに当たった場合
+	{							//ミサイルに当たった場合
 		m_hp -= 1;				//HP-1
 		m_size -= m_size / 10;	//サイズ減少
 	}
-	
+	else if ((hit->CheckElementHit(ELEMENT_RED) == true) && (m_type == true) && (m_hp > 0))
+	{
+		m_hp -= 1;				//HP-1
+		m_size -= m_size / 10;	//サイズ減少
+	}
+
+	if (m_del_f == true) {				//消すフラグ判定＆処理
+		this->SetStatus(false);	 //オブジェクト削除
+		Hits::DeleteHitBox(this);//HitBox削除
+	}
 }
 
 //ドロー
@@ -147,10 +174,18 @@ void CObjPlanet::Draw()
 	src.m_right = 62.0f;
 	src.m_bottom= 62.0f;
 	//表示位置
-	dst.m_top   = m_py - m_siz_vec - m_size;//300
-	dst.m_left  = m_px - m_siz_vec - m_size;//800
-	dst.m_right = m_px + m_siz_vec + m_size;
-	dst.m_bottom= m_py + m_siz_vec + m_size;
+	if(m_get_siz == 0){
+		dst.m_top   = m_py - m_siz_vec - m_size;//300
+		dst.m_left  = m_px - m_siz_vec - m_size;//800
+		dst.m_right = m_px + m_siz_vec + m_size;
+		dst.m_bottom= m_py + m_siz_vec + m_size;
+	}
+	else {
+		dst.m_top   = m_py;//300
+		dst.m_left  = m_px;//800
+		dst.m_right = m_px + (m_get_siz * 2);
+		dst.m_bottom= m_py + (m_get_siz * 2);
+	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(m_ani[m_ani_frame], &src, &dst, c, 0.0f);
