@@ -923,8 +923,8 @@ void CObjInstitute::Draw()
 		//Å•å§ãÜèäï\é¶ 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 75.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
 
 		dst.m_top = 460.0f;
 		dst.m_left = 10.0f;
@@ -983,8 +983,8 @@ void CObjInstitute::Draw()
 		//Å•å§ãÜèäï\é¶
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 75.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
 
 		dst.m_top = 150.0f;
 		dst.m_left = 100.0f;

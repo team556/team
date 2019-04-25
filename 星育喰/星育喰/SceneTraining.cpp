@@ -91,7 +91,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"兵舎(仮).jfif", 2, TEX_SIZE_512);
 
 	//研究所を読み込み3番に登録
-	Draw::LoadImage(L"研究所.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"研究所Lv1.png", 3, TEX_SIZE_512);
 
 	//ミサイル(仮)を読み込み4番に登録
 	Draw::LoadImage(L"ミサイル.png", 4, TEX_SIZE_512);
