@@ -33,7 +33,6 @@ private:
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
 
-	
 
 	bool m_type;		//生成時のタイプ
 };
