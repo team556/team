@@ -590,13 +590,13 @@ void CObjWarehouse::Draw()
 		//▼鉄表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 192.0f;
-		src.m_bottom = 167.0f;
+		src.m_right = 160.0f;
+		src.m_bottom = 160.0f;
 
 		dst.m_top = 120.0f;
 		dst.m_left = 450.0f;
-		dst.m_right = 642.0f;
-		dst.m_bottom = 287.0f;
+		dst.m_right = 560.0f;
+		dst.m_bottom = 230.0f;
 		Draw::Draw(34, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"鉄", 580.0f, 130.0f, 30.0f, black);
 		Font::StrDraw(mrl, 580.0f, 170.0f, 30.0f, black);
@@ -604,13 +604,13 @@ void CObjWarehouse::Draw()
 		//▼銀表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 192.0f;
-		src.m_bottom = 170.0f;
+		src.m_right = 160.0f;
+		src.m_bottom = 160.0f;
 
 		dst.m_top = 120.0f;
 		dst.m_left = 800.0f;
-		dst.m_right = 992.0f;
-		dst.m_bottom = 290.0f;
+		dst.m_right = 910.0f;
+		dst.m_bottom = 230.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"銀", 950.0f, 130.0f, 30.0f, black);
 		Font::StrDraw(mrl, 950.0f, 170.0f, 30.0f, black);
@@ -632,13 +632,13 @@ void CObjWarehouse::Draw()
 		//▼アルミニウム表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 192.0f;
-		src.m_bottom = 176.0f;
+		src.m_right = 160.0f;
+		src.m_bottom = 160.0f;
 
-		dst.m_top = 290.0f;
+		dst.m_top = 270.0f;
 		dst.m_left = 450.0f;
-		dst.m_right = 642.0f;
-		dst.m_bottom = 466.0f;
+		dst.m_right = 560.0f;
+		dst.m_bottom = 380.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"アルミニウム", 580.0f, 280.0f, 30.0f, black);
 		Font::StrDraw(mrl, 580.0f, 330.0f, 30.0f, black);
@@ -660,13 +660,13 @@ void CObjWarehouse::Draw()
 		//▼レアメタル表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 179.0f;
-		src.m_bottom = 179.0f;
+		src.m_right = 160.0f;
+		src.m_bottom = 160.0f;
 
-		dst.m_top = 430.0f;
+		dst.m_top = 440.0f;
 		dst.m_left = 450.0f;
-		dst.m_right = 629.0f;
-		dst.m_bottom = 629.0f;
+		dst.m_right = 560.0f;
+		dst.m_bottom = 550.0f;
 		Draw::Draw(39, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
 		Font::StrDraw(mrl, 580.0f, 500.0f, 30.0f, black);

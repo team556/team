@@ -46,7 +46,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"プレイヤー惑星.png", 3, TEX_SIZE_512);
 
 	//4番に登録
-	Draw::LoadImage(L"口綴じプレイヤー.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"プレイヤー口とじ.png", 4, TEX_SIZE_512);
 
 	//5番に登録
 	Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
