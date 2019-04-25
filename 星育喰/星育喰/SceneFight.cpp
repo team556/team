@@ -73,7 +73,7 @@ void CSceneFight::InitScene()
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, false);	//オブジェクト作成
-	Objs::InsertObj(obj01, OBJ_ENEMY2, 10);					//ブジェクト登録
+	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//ブジェクト登録
 
 	//民発射ボタン
 	CObjPushUnit* obj2 = new CObjPushUnit(400, 600, 100, 100);	//オブジェクト作成
