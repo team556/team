@@ -40,7 +40,9 @@ void CObjWarehouse::Init()
 	crvp = 0;//補正値パワー
 	crvs = 0;//補正値スピード
 	crvd = 0;//補正値ディフェンス
-	crvb = 0;//補正値バランス
+	crvbh = 0;//補正値バランス	体力
+	crvbp = 0;//補正値バランス	パワー
+	crvbs = 0;//補正値バランス	スピード
 	crvr = 0;//補正値研究員
 
 }
@@ -356,13 +358,17 @@ void CObjWarehouse::Draw()
 
 	//補正値ディフェンス
 	wchar_t crvd[256];
-	swprintf_s(crvd, L"体力＋%d", crvd);
+	swprintf_s(crvd, L"体力  ＋%d", crvd);
 
-	//補正値バランス
-	wchar_t crvb[256];
-	swprintf_s(crvb, L"体力＋%d", crvb);
-	swprintf_s(crvb, L"攻撃力＋%d", crvb);
-	swprintf_s(crvb, L"素早さ＋%d", crvb);
+	//補正値バランス	体力
+	wchar_t crvbh[256];
+	swprintf_s(crvbh, L"体力  ＋%d", crvbh);
+	//補正値バランス	パワー
+	wchar_t crvbp[256];
+	swprintf_s(crvbp, L"攻撃力＋%d", crvbp);
+	//補正値バランス	スピード
+	wchar_t crvbs[256];
+	swprintf_s(crvbs, L"素早さ＋%d", crvbs);
 
 	//補正値研究員
 	wchar_t crvr[256];
@@ -723,10 +729,39 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 		
-		//フォント表示
+		//▼フォント表示
+		//住民ステータス
+		//パワー
 		Font::StrDraw(L"パワー", 180.0f, 130.0f, 30.0f, black);
 		Font::StrDraw(pow,300.0f, 130.0f, 30.0f, black);
 		Font::StrDraw(L"補正値", 180.0f, 200.0f, 30.0f, black);
+		Font::StrDraw(crvp, 300.0f, 200.0f, 30.0f, black);
+		
+		//スピード
+		Font::StrDraw(L"スピード", 180.0f, 300.0f, 30.0f, black);
+		Font::StrDraw(spd, 330.0f, 300.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 180.0f, 370.0f, 30.0f, black);
+		Font::StrDraw(crvs, 300.0f, 370.0f, 30.0f, black);
+
+		//ディフェンス
+		Font::StrDraw(L"ディフェンス", 180.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(dfs, 390.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 180.0f, 540.0f, 30.0f, black);
+		Font::StrDraw(crvd, 300.0f, 540.0f, 30.0f, black);
+
+		//バランス
+		Font::StrDraw(L"バランス", 620.0f, 130.0f, 30.0f, black);
+		Font::StrDraw(brs, 780.0f, 130.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 620.0f, 200.0f, 30.0f, black);
+		Font::StrDraw(crvbh, 780.0f, 200.0f, 30.0f, black);
+		Font::StrDraw(crvbp, 780.0f, 250.0f, 30.0f, black);
+		Font::StrDraw(crvbs, 780.0f, 300.0f, 30.0f, black);
+
+		//研究員
+		Font::StrDraw(L"研究員", 620.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(brs, 780.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 620.0f, 540.0f, 30.0f, black);
+		Font::StrDraw(crvbh, 780.0f, 540.0f, 30.0f, black);
 
 
 	}
@@ -781,6 +816,78 @@ void CObjWarehouse::Draw()
 		dst.m_right = 1100.0f;
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
+
+		//スペシャル技1選択ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 100.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 200.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(40, &src, &dst, it, 0.0f);
+
+		//スペシャル技2選択ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 195.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 200.0f;
+		dst.m_bottom = 295.0f;
+		Draw::Draw(41, &src, &dst, it, 0.0f);
+
+		//スペシャル技3選択ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 290.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 200.0f;
+		dst.m_bottom = 390.0f;
+		Draw::Draw(42, &src, &dst, it, 0.0f);
+
+		//スペシャル技4選択ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 385.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 200.0f;
+		dst.m_bottom = 485.0f;
+		Draw::Draw(43, &src, &dst, it, 0.0f);
+
+		//スペシャル技5選択ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = 480.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 200.0f;
+		dst.m_bottom = 580.0f;
+		Draw::Draw(44, &src, &dst, it, 0.0f);
+
+		////スペシャル技メッセージウィンドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 200.0f;
+		//src.m_bottom = 100.0f;
+
+		//dst.m_top = 480.0f;
+		//dst.m_left = 100.0f;
+		//dst.m_right = 200.0f;
+		//dst.m_bottom = 580.0f;
+		//Draw::Draw(44, &src, &dst, it, 0.0f);
 
 	}
 

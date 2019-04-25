@@ -165,6 +165,24 @@ void CSceneTraining::InitScene()
 	//資材(レアメタル)画像39番に登録
 	Draw::LoadImage(L"レアメタル.png", 39, TEX_SIZE_512);
 
+	//スペシャル技1画像40番に登録
+	Draw::LoadImage(L"スペシャル技1.png", 40, TEX_SIZE_512);
+
+	//スペシャル技2画像41番に登録
+	Draw::LoadImage(L"スペシャル技2.png", 41, TEX_SIZE_512);
+
+	//スペシャル技3画像42番に登録
+	Draw::LoadImage(L"スペシャル技3.png", 42, TEX_SIZE_512);
+
+	//スペシャル技4画像43番に登録
+	Draw::LoadImage(L"スペシャル技4.png", 43, TEX_SIZE_512);
+
+	//スペシャル技5画像44番に登録
+	Draw::LoadImage(L"スペシャル技5.png", 44, TEX_SIZE_512);
+
+	//スペシャル技メッセージウィンドウ画像45番に登録
+	Draw::LoadImage(L"スペシャル技メッセージウィンドウ.png", 45, TEX_SIZE_512);
+
 	//パワー武器Lv.1の画像を読み込み49番に登録
 	Draw::LoadImage(L"武器画像(仮).png", 49, TEX_SIZE_512);
 
