@@ -923,8 +923,8 @@ void CObjInstitute::Draw()
 		//▼研究所表示 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 75.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
 
 		dst.m_top = 460.0f;
 		dst.m_left = 10.0f;
@@ -983,8 +983,8 @@ void CObjInstitute::Draw()
 		//▼研究所表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 75.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
 
 		dst.m_top = 150.0f;
 		dst.m_left = 100.0f;
@@ -1067,8 +1067,8 @@ void CObjInstitute::Draw()
 		//▼ミサイルボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 269.0f;
-		src.m_bottom = 96.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
 
 		dst.m_top = 330.0f;
 		dst.m_left = 520.0f;
@@ -1079,8 +1079,8 @@ void CObjInstitute::Draw()
 		//▼武器ポッドボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 269.0f;
-		src.m_bottom = 96.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
 
 		dst.m_top = 500.0f;
 		dst.m_left = 520.0f;
@@ -1200,8 +1200,8 @@ void CObjInstitute::Draw()
 			//▼ミサイル表示 
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 80.0f;
-			src.m_bottom = 82.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
 
 			dst.m_top = 325.0f;
 			dst.m_left = 75.0f;
@@ -1251,8 +1251,8 @@ void CObjInstitute::Draw()
 				{
 					src.m_top = 0.0f;
 					src.m_left = 0.0f;
-					src.m_right = 64.0f;
-					src.m_bottom = 64.0f;
+					src.m_right = 150.0f;
+					src.m_bottom = 150.0f;
 
 					dst.m_top = 210.0f + j * 150.0f;
 					dst.m_left = 280.0f + i * 170.0f;

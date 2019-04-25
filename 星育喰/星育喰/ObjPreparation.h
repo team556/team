@@ -26,17 +26,22 @@ private:
 	bool  m_key_rf;		//右クリック用キーフラグ
 
 	float m_Pvx;		//プレイヤー惑星の移動用ベクトルX
-	float m_Pvy;		//プレイヤー惑星の移動用ベクトルY(それに加え、スペシャル技系アイコン移動にも使用している。変数名考えなおす)
+	float m_PSvy;		//プレイヤー惑星、スペシャル技アイコン等の移動用ベクトルY(同じ移動距離の為、共有している)
 	//float m_boost;		//プレイヤー惑星のX移動速度上昇用
 	//float m_rx;			//サインカーブ用の角度(プレイヤー惑星x移動に使用)
 	//float m_ry;			//サインカーブ用の角度(プレイヤー惑星y移動に使用)
 	float m_Psize;		//プレイヤー惑星のサイズ
 
+	float m_warning_message_x[2];//警告メッセージ移動用ベクトルX
+	float m_warning_message_y[2];//警告メッセージ移動用ベクトルY
+	float m_warning_message_size;//警告メッセージサイズ
+
 	float m_Evx;		//敵惑星4つの移動用ベクトルX
 						//ボス惑星のヤツは個別で用意予定
-	float m_speed;		//開始演出、終了演出で移動するオブジェクト(プレイヤー惑星、各敵惑星等)の移動速度
+	float m_speed;		//開始演出で移動する各オブジェクト(プレイヤー惑星、各敵惑星等)の移動速度
 
-	int m_staging_time;		//演出時間管理変数
+	//int m_staging_time;		//演出時間管理変数
+	bool m_is_operatable;	//操作可能か確認フラグ(true:操作可能　false;操作不可)
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 	float m_Yes_Button_color;	//最終確認[はい]ボタンカラー(Red)調節用
@@ -47,5 +52,6 @@ private:
 	float	m_Enemy_detail_message_window_x_size;	//敵惑星詳細説明ウインドウのサイズX
 	float	m_Enemy_detail_message_window_y_size;	//敵惑星詳細説明ウインドウのサイズY
 
-	static bool destroy_progress[4];//現在ステージでの敵惑星撃破進行度
+	int	  m_destroy_count;			//現在ステージでの敵惑星撃破数
+	static bool destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)
 };

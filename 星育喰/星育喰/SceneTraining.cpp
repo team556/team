@@ -91,10 +91,10 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"兵舎(仮).jfif", 2, TEX_SIZE_512);
 
 	//研究所を読み込み3番に登録
-	Draw::LoadImage(L"研究所.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"研究所Lv1.png", 3, TEX_SIZE_512);
 
 	//ミサイル(仮)を読み込み4番に登録
-	Draw::LoadImage(L"ミサイル(仮).png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイル.png", 4, TEX_SIZE_512);
 
 	//住民を読み込み10番に登録
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
@@ -121,10 +121,10 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"兵舎振り分けDOWN.png", 24, TEX_SIZE_512);
 
 	//ミサイルボタン(仮)を読み込み25番に登録
-	Draw::LoadImage(L"ミサイルボタン(仮).png", 25, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイルボタン.png", 25, TEX_SIZE_512);
 
 	//武器ポッドボタン(仮)を読み込み26番に登録
-	Draw::LoadImage(L"武器ポッドボタン(仮).png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"武器ポッドボタン.png", 26, TEX_SIZE_512);
 
 	//test用倉庫画像読み込み27番に登録
 	Draw::LoadImage(L"倉庫.png", 27, TEX_SIZE_512);
@@ -184,49 +184,49 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"スペシャル技メッセージウィンドウ.png", 45, TEX_SIZE_512);
 
 	//パワー武器Lv.1の画像を読み込み49番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 49, TEX_SIZE_512);
+	Draw::LoadImage(L"パワーLv1.png", 49, TEX_SIZE_512);
 
 	//パワー武器Lv.2の画像を読み込み50番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 50, TEX_SIZE_512);
+	Draw::LoadImage(L"パワーLv2.png", 50, TEX_SIZE_512);
 
 	//パワー武器Lv.3の画像を読み込み51番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 51, TEX_SIZE_512);
+	Draw::LoadImage(L"パワーLv3.png", 51, TEX_SIZE_512);
 
 	//ディフェンス武器Lv.1の画像を読み込み52番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 52, TEX_SIZE_512);
+	Draw::LoadImage(L"ディフェンスLv1.png", 52, TEX_SIZE_512);
 
 	//ディフェンス武器Lv.2の画像を読み込み53番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 53, TEX_SIZE_512);
+	Draw::LoadImage(L"ディフェンスLv2.png", 53, TEX_SIZE_512);
 
 	//ディフェンス武器Lv.3の画像を読み込み54番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 54, TEX_SIZE_512);
+	Draw::LoadImage(L"ディフェンスLv3.png", 54, TEX_SIZE_512);
 
 	//スピード武器Lv.1の画像を読み込み55番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 55, TEX_SIZE_512);
+	Draw::LoadImage(L"スピードLv1.png", 55, TEX_SIZE_512);
 
 	//スピード武器Lv.2の画像を読み込み56番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 56, TEX_SIZE_512);
+	Draw::LoadImage(L"スピードLv2.png", 56, TEX_SIZE_512);
 
 	//スピード武器Lv.3の画像を読み込み57番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 57, TEX_SIZE_512);
+	Draw::LoadImage(L"スピードLv3.png", 57, TEX_SIZE_512);
 
 	//バランス武器Lv.1の画像を読み込み58番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 58, TEX_SIZE_512);
+	Draw::LoadImage(L"バランスLv1.png", 58, TEX_SIZE_512);
 
 	//バランス武器Lv.2の画像を読み込み59番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 59, TEX_SIZE_512);
+	Draw::LoadImage(L"バランスLv2.png", 59, TEX_SIZE_512);
 
 	//バランス武器Lv.3の画像を読み込み60番に登録
-	Draw::LoadImage(L"武器画像(仮).png", 60, TEX_SIZE_512);
+	Draw::LoadImage(L"バランスLv3.png", 60, TEX_SIZE_512);
 
 	//ポッドLv.1の画像を読み込み61番に登録
-	Draw::LoadImage(L"ポッド画像(仮).png", 61, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドLv1.png", 61, TEX_SIZE_512);
 
 	//ポッドLv.2の画像を読み込み62番に登録
-	Draw::LoadImage(L"ポッド画像(仮).png", 62, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドLv2.png", 62, TEX_SIZE_512);
 
 	//ポッドLv.3の画像を読み込み63番に登録
-	Draw::LoadImage(L"ポッド画像(仮).png", 63, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
 
 
 }

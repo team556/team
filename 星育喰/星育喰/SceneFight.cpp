@@ -46,7 +46,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"プレイヤー惑星.png", 3, TEX_SIZE_512);
 
 	//4番に登録
-	Draw::LoadImage(L"口綴じプレイヤー.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"プレイヤー口とじ.png", 4, TEX_SIZE_512);
 
 	//5番に登録
 	Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
@@ -64,11 +64,11 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//タイトルオブジェクト登録
 
 	//敵星オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(250, 350,false);	//オブジェクト作成
-	Objs::InsertObj(obj0, OBJ_PLANET,  5);				//ブジェクト登録
+	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, false);	//オブジェクト作成
+	Objs::InsertObj(obj0, OBJ_ENEMY,  5);				//ブジェクト登録
 
 	//自星オブジェクト作成
-	CObjPlanet* obj1 = new CObjPlanet(950, 350, true);	//オブジェクト作成
+	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, true);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);				//オブジェクト登録
 
 	//民発射ボタン

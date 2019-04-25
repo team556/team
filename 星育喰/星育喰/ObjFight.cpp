@@ -25,6 +25,11 @@ void CObjFight::Init()
 	m_a = 1;		//初期値、不透明
 
 	m_end_f = false;
+
+	m_hp = 0;
+	m_hp2 = 0;
+	m_ex = 0;
+	m_ey = 0;
 }
 
 //アクション
@@ -61,9 +66,22 @@ void CObjFight::Action()
 	}
 	else {};//範囲外の場合、初期値に戻す
 
-	//オブジェクト作成
-	//CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
-	//Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
+	if (m_end_f == true) {
+		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+		m_hp = ene->GetHp();
+
+		CObjPlanet* pnt = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+		m_hp2 = pnt->GetHp();
+
+		if (m_hp > m_hp2) {
+			m_ex = ene->GetX();
+			m_ey = ene->GetY();
+			//敵星オブジェクト作成
+			CObjPlanet* obj0 = new CObjPlanet(m_ex, m_ey, m_hp, false);	//オブジェクト作成
+			Objs::InsertObj(obj0, OBJ_ENEMY, 5);				//ブジェクト登録
+		}
+	}
+
 }
 
 //ドロー
