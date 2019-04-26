@@ -32,19 +32,58 @@ void CObjWarehouse::Init()
 	m_key_lf = false;
 
 	k = 0; //資材の所持している数
+	//住民
 	p = 0;//住民パワーの値
 	s = 0;//住民スピードの値
 	d = 0;//住民ディフェンスの値
 	b = 0;//住民バランスの値
 	r = 0;//研究員の値
-	crvp = 0;//補正値パワー
-	crvs = 0;//補正値スピード
-	crvd = 0;//補正値ディフェンス
-	crvbh = 0;//補正値バランス	体力
-	crvbp = 0;//補正値バランス	パワー
-	crvbs = 0;//補正値バランス	スピード
-	crvr = 0;//補正値研究員
 
+	//住民補正値
+	crvp = 0;//補正値パワー
+	crp = 0;
+
+	crvs = 0;//補正値スピード
+	crs = 0;
+
+	crvd = 0;//補正値ディフェンス
+	crd = 0;
+
+	crvbh = 0;//補正値バランス	体力
+	crbh = 0;
+
+	crvbp = 0;//補正値バランス	パワー
+	crbp = 0;
+
+	crvbs = 0;//補正値バランス	スピード
+	crbs = 0;
+
+	crvr = 0;//補正値研究員
+	crr = 0;
+
+	//装備
+	eqpp = 0;	//装備補正値パワープラス
+	epp = 0;
+	eqpm = 0;	//装備補正値パワーマイナス
+	epm = 0;
+
+	eqsp = 0;	//装備補正値スピードプラス
+	esp = 0;
+	eqsm = 0;	//装備補正値スピードマイナス
+	esm = 0;
+
+	eqdp = 0;	//装備補正値ディフェンスプラス
+	edp = 0;
+	eqdm = 0;	//装備補正値ディフェンスマイナス
+	edm = 0;
+
+	eqbp = 0;	//装備補正値バランスプラス
+	ebp = 0;
+
+	epdp = 0;	//装備補正値ポッドプラス
+	edpp = 0;
+
+	m_time =5;
 }
 
 //アクション
@@ -53,18 +92,40 @@ void CObjWarehouse::Action()
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
+	m_time--;
 	//マウスのボタンの状態
-	m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
+	if (0 > m_time)
+	{
+		m_mou_r = Input::GetMouButtonR();
+		m_mou_l = Input::GetMouButtonL();
 
+		m_time = 5;
+	}
 
 	//▼倉庫ウィンドウ表示の処理
 	if (window_start_manage == Warehouse)
 	{
-		//戻るボタン選択
-		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80)
+		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
+		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
+			//▼クリックされたらフラグを立て、このウインドウを閉じる
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
+
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
+					//"倉庫ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Default;
+				}
+			}
 
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 			if (m_mou_l == true)
@@ -85,6 +146,7 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
+			m_key_rf = true;
 			m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 			m_Back_Button_color = INI_COLOR;
 		}
@@ -107,7 +169,7 @@ void CObjWarehouse::Action()
 					window_start_manage = Materials;
 				}
 			}
-			else 
+			else
 			{
 				m_key_lf = true;
 			}
@@ -205,6 +267,63 @@ void CObjWarehouse::Action()
 		return;
 	}
 
+	//資材、住民、スペシャル技、装備画面の戻るボタン
+	if (window_start_manage == Materials || window_start_manage == Residents ||
+		window_start_manage == Specialskill || window_start_manage == Soubicheck)
+	{
+		//戻るボタン選択
+		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		{
+			m_Back_Button_color = 1.0f;
+			//▼クリックされたらフラグを立て、このウインドウを閉じる
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
+
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
+					//"研究所ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Warehouse;
+				}
+			}
+
+			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
+			if (m_mou_l == true)
+			{
+				//クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					//"どのウインドウも開いていない状態"フラグを立てる
+					window_start_manage = Warehouse;
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Back_Button_color = INI_COLOR;
+			m_key_rf = true;
+		}
+	}
+
+	//ホーム画面に戻るボタンが押されたり、
+	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+	if (window_start_manage != Default)
+	{
+		return;
+	}
+
 	//倉庫選択
 	if (95 < m_mou_x && m_mou_x < 320 && 170 < m_mou_y && m_mou_y < 280)
 	{
@@ -231,45 +350,10 @@ void CObjWarehouse::Action()
 	}
 	else
 	{
+		m_key_rf = true;
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ware_color = INI_COLOR;
 	}
-
-	//資材、住民、スペシャル技、装備画面の戻るボタン
-	if (window_start_manage == Materials|| window_start_manage == Residents||
-		window_start_manage == Specialskill|| window_start_manage == Soubicheck)
-	{
-		//戻るボタン選択
-		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100)
-		{
-			m_Back_Button_color = 1.0f;
-
-			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
-			if (m_mou_l == true)
-			{
-				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
-				{
-					m_key_lf = false;
-
-					//"どのウインドウも開いていない状態"フラグを立てる
-					window_start_manage = Warehouse;
-				}
-			}
-			else
-			{
-				m_key_lf = true;
-			}
-		}
-		else
-		{
-			m_Back_Button_color = INI_COLOR;
-
-		}
-	}
-
-
-
 }
 
 //ドロー
@@ -350,29 +434,64 @@ void CObjWarehouse::Draw()
 
 	//補正値パワー
 	wchar_t crvp[256];
-	swprintf_s(crvp, L"攻撃力＋%d", crvp);
+	swprintf_s(crvp, L"攻撃力＋%d", crp);
 
 	//補正値スピード
 	wchar_t crvs[256];
-	swprintf_s(crvs, L"素早さ＋%d", crvs);
+	swprintf_s(crvs, L"素早さ＋%d", crs);
 
 	//補正値ディフェンス
 	wchar_t crvd[256];
-	swprintf_s(crvd, L"体力  ＋%d", crvd);
+	swprintf_s(crvd, L"体力  ＋%d", crd);
 
 	//補正値バランス	体力
 	wchar_t crvbh[256];
-	swprintf_s(crvbh, L"体力  ＋%d", crvbh);
+	swprintf_s(crvbh, L"体力  ＋%d", crbh);
+
 	//補正値バランス	パワー
 	wchar_t crvbp[256];
-	swprintf_s(crvbp, L"攻撃力＋%d", crvbp);
+	swprintf_s(crvbp, L"攻撃力＋%d", crbp);
+
 	//補正値バランス	スピード
 	wchar_t crvbs[256];
-	swprintf_s(crvbs, L"素早さ＋%d", crvbs);
+	swprintf_s(crvbs, L"素早さ＋%d", crbs);
 
 	//補正値研究員
 	wchar_t crvr[256];
-	swprintf_s(crvr, L"%d", crvr);
+	swprintf_s(crvr, L"%d", crr);
+
+	//装備
+	//補正値パワープラス
+	wchar_t eqpp[256];
+	swprintf_s(eqpp, L"攻撃力+%d", epp);
+
+	//補正値パワーマイナス
+	wchar_t eqpm[256];
+	swprintf_s(eqpm, L"体力-%d", epm);
+
+	//補正値スピードプラス
+	wchar_t eqsp[256];
+	swprintf_s(eqsp, L"素早さ+%d", esp);
+
+	//補正値スピードマイナス
+	wchar_t eqsm[256];
+	swprintf_s(eqsm, L"攻撃力-%d", esm);
+
+	//補正値ディフェンスプラス
+	wchar_t eqdp[256];
+	swprintf_s(eqdp, L"体力+%d", edp);
+
+	//補正値ディフェンスマイナス
+	wchar_t eqdm[256];
+	swprintf_s(eqdm, L"素早さ-%d", edm);
+
+	//補正値バランスプラス
+	wchar_t eqbp[256];
+	swprintf_s(eqbp, L"+%d", ebp);
+
+	//補正値ポッドプラス
+	wchar_t epdp[256];
+	swprintf_s(epdp, L"防御力+%d", edpp);
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -383,8 +502,8 @@ void CObjWarehouse::Draw()
 		//▼倉庫表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 225.0f;
-		src.m_bottom = 225.0f;
+		src.m_right = 402.0f;
+		src.m_bottom = 332.0f;
 
 		dst.m_top = 100.0f;
 		dst.m_left = 100.0f;
@@ -901,7 +1020,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 300.0f;
 		Draw::Draw(45, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"メリット", 310.0f, 210.0f, 20.0f, black);
-		Font::StrDraw(L"相手の攻撃（一列）をすべて破壊する", 310.0f, 235.0f, 20.0f, black);
+		Font::StrDraw(L"相手の攻撃一列を破壊する", 310.0f, 235.0f, 20.0f, black);
 		Font::StrDraw(L"デメリット", 710.0f, 210.0f, 20.0f, black);
 		Font::StrDraw(L"5秒間から10秒間攻撃力ダウン", 710.0f, 235.0f, 20.0f, black);
 
@@ -914,7 +1033,7 @@ void CObjWarehouse::Draw()
 		Font::StrDraw(L"メリット", 310.0f, 310.0f, 20.0f, black);
 		Font::StrDraw(L"約10秒間無敵になることができる", 310.0f, 335.0f, 20.0f, black);
 		Font::StrDraw(L"デメリット", 710.0f, 310.0f, 20.0f, black);
-		Font::StrDraw(L"攻撃力を一定時間ダウン(5秒)", 710.0f, 335.0f, 20.0f, black);
+		Font::StrDraw(L"攻撃力を5秒間ダウン", 710.0f, 335.0f, 20.0f, black);
 
 		//スペシャル技4メッセージウィンドウ表示
 		dst.m_top = 400.0f;
@@ -936,10 +1055,10 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(45, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"メリット", 310.0f, 510.0f, 20.0f, black);
-		Font::StrDraw(L"住民の攻撃が上がる", 310.0f, 435.0f, 20.0f, black);
-		Font::StrDraw(L"効果が終わると一定時間(5秒)", 710.0f, 435.0f, 20.0f, black);
-		Font::StrDraw(L"効果が終わると一定時間(5秒)", 710.0f, 435.0f, 20.0f, black);
-		Font::StrDraw(L"効果が終わると一定時間(5秒)", 710.0f, 435.0f, 20.0f, black);
+		Font::StrDraw(L"住民のポッド5機攻撃が上がる", 310.0f, 535.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 710.0f, 510.0f, 20.0f, black);
+		Font::StrDraw(L"効果終了後住民の攻撃ポッド3機の", 710.0f, 535.0f, 20.0f, black);
+		Font::StrDraw(L"攻撃力が下がる", 710.0f, 560.0f, 20.0f, black);
 
 	}
 
@@ -994,6 +1113,40 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 
+		//▼装備
+		//▼パワー補正値
+		Font::StrDraw(L"パワー", 110.0f, 120.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 110.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(eqpp, 310.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(eqpm, 310.0f, 220.0f, 30.0f, black);
+
+		//▼スピード補正値
+		Font::StrDraw(L"スピード", 110.0f, 270.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 110.0f, 320.0f, 30.0f, black);
+		Font::StrDraw(eqsp, 310.0f, 320.0f, 30.0f, black);
+		Font::StrDraw(eqsm, 310.0f, 370.0f, 30.0f, black);
+
+		//▼ディフェンス補正値
+		Font::StrDraw(L"ディフェンス", 110.0f, 420.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 110.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(eqdp, 300.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(eqdm, 300.0f, 520.0f, 30.0f, black);
+
+
+		//▼バランス補正値
+		Font::StrDraw(L"バランス", 500.0f, 120.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 500.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(L"体力", 690.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(eqbp, 790.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(L"素早さ", 690.0f, 220.0f, 30.0f, black);
+		Font::StrDraw(eqbp, 790.0f, 220.0f, 30.0f, black);
+		Font::StrDraw(L"攻撃力", 690.0f, 270.0f, 30.0f, black);
+		Font::StrDraw(eqbp, 790.0f, 270.0f, 30.0f, black);
+
+		//▼ポッド補正値
+		Font::StrDraw(L"ポッド", 500.0f, 420.0f, 30.0f, black);
+		Font::StrDraw(L"補正値", 500.0f, 470.0f, 30.0f, black);
+		Font::StrDraw(epdp, 690.0f, 470.0f, 30.0f, black);
+
 	}
 }
-

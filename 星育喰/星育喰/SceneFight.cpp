@@ -54,7 +54,21 @@ void CSceneFight::InitScene()
 	//10番に登録
 	Draw::LoadImage(L"w.png", 10, TEX_SIZE_512);
 	
+	//11番に登録
+	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
 
+	//12番に登録
+	Draw::LoadImage(L"ディフェンスボタン(仮).png", 12, TEX_SIZE_512);
+
+	//13番に登録
+	Draw::LoadImage(L"スピードボタン(仮).png", 13, TEX_SIZE_512);
+
+	//14番に登録
+	Draw::LoadImage(L"バランスボタン(仮).png", 14, TEX_SIZE_512);
+
+	//15番に登録
+	Draw::LoadImage(L"ミサイルボタン(仮).png", 15, TEX_SIZE_512);
+	
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
@@ -76,14 +90,21 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//ブジェクト登録
 
 	//民発射ボタン
-	CObjPushUnit* obj2 = new CObjPushUnit(400, 600, 100, 100);	//オブジェクト作成
+	CObjPushUnit* obj2 = new CObjPushUnit(500, 600, 100, 100, 1);	//オブジェクト作成
 	Objs::InsertObj(obj2, OBJ_PLANET, 10);						//オブジェクト登録
 
-	CObjPushUnit* obj3 = new CObjPushUnit(550, 600, 100, 100);	//オブジェクト作成
+	CObjPushUnit* obj3 = new CObjPushUnit(650, 600, 100, 100, 2);	//オブジェクト作成
 	Objs::InsertObj(obj3, OBJ_PLANET, 10);						//オブジェクト登録
 
-	CObjPushUnit* obj4 = new CObjPushUnit(700, 600, 100, 100);	//オブジェクト作成
+	CObjPushUnit* obj4 = new CObjPushUnit(800, 600, 100, 100, 3);	//オブジェクト作成
 	Objs::InsertObj(obj4, OBJ_PLANET, 10);						//オブジェクト登録
+
+	CObjPushUnit* obj5 = new CObjPushUnit(950, 600, 100, 100, 4);	//オブジェクト作成
+	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
+
+	//ミサイル発射ボタン
+	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 200, 100);	//オブジェクト作成
+	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド

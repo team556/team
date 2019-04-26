@@ -24,6 +24,7 @@ enum OBJ_NAME
 	OBJ_MISSILE,
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
+	OBJ_FIGHT_MISSILE,
 
 };
 //------------------------------------------------
@@ -85,6 +86,7 @@ extern int g_Remain_num;			//残り住民数
 
 extern int g_Material_num_test;		//TEST用所持素材数
 
+extern bool g_key_fg;//
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------
@@ -111,6 +113,7 @@ extern int g_Material_num_test;		//TEST用所持素材数
 #include "ObjMaterialBotton.h"
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
+#include "ObjPushMissile.h"
 
 //------------------------------------------------
 
