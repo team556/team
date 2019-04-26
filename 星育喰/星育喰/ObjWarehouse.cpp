@@ -98,10 +98,27 @@ void CObjWarehouse::Action()
 	//▼倉庫ウィンドウ表示の処理
 	if (window_start_manage == Warehouse)
 	{
-		//戻るボタン選択
+		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
 		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80)
 		{
 			m_Back_Button_color = 1.0f;
+			//▼クリックされたらフラグを立て、このウインドウを閉じる
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
+
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
+					//"研究所ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Default;
+				}
+			}
 
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 			if (m_mou_l == true)
@@ -250,6 +267,23 @@ void CObjWarehouse::Action()
 		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100)
 		{
 			m_Back_Button_color = 1.0f;
+			//▼クリックされたらフラグを立て、このウインドウを閉じる
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
+
+					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
+					m_alpha = 0.0f;
+
+					//"研究所ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Warehouse;
+				}
+			}
 
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 			if (m_mou_l == true)
