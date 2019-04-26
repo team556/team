@@ -24,6 +24,7 @@ enum OBJ_NAME
 	OBJ_MISSILE,
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
+	OBJ_FIGHT_MISSILE,
 
 };
 //------------------------------------------------
@@ -111,6 +112,7 @@ extern int g_Material_num_test;		//TESTópèäéùëfçﬁêî
 #include "ObjMaterialBotton.h"
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
+#include "ObjPushMissile.h"
 
 //------------------------------------------------
 

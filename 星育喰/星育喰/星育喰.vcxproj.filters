@@ -178,6 +178,9 @@
     <ClCompile Include="ObjFightOver.cpp">
       <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClCompile>
+    <ClCompile Include="ObjPushMissile.cpp">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -306,6 +309,9 @@
     </ClInclude>
     <ClInclude Include="ObjFightOver.h">
       <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPushMissile.h">
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
