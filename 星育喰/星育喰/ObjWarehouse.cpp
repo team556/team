@@ -460,8 +460,8 @@ void CObjWarehouse::Draw()
 		//Å•ëqå…ï\é¶
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 225.0f;
-		src.m_bottom = 225.0f;
+		src.m_right = 402.0f;
+		src.m_bottom = 332.0f;
 
 		dst.m_top = 100.0f;
 		dst.m_left = 100.0f;

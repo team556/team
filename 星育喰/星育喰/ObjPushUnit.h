@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjPushUnit :public CObj
 {
 public:
-	CObjPushUnit(float x, float y, float h, float w);
+	CObjPushUnit(float x, float y, float h, float w, int n);
 	~CObjPushUnit() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -22,6 +22,8 @@ private:
 
 	int m_get_line; //取得したライン(0～2)
 	int m_cnt;		//カウント
+
+	int Button_num; //パワーなどのボタン番号
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y

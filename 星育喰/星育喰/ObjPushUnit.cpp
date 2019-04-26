@@ -11,13 +11,15 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjPushUnit::CObjPushUnit(float x, float y, float h, float w)
+CObjPushUnit::CObjPushUnit(float x, float y, float h, float w, int n)
 {
 	//作成時に渡された値を、座標の初期値に代入
 	m_x = x;
 	m_y = y;
 	m_h = h;
 	m_w = w;
+
+	Button_num = n;
 }
 
 //イニシャライズ
@@ -89,14 +91,35 @@ void CObjPushUnit::Draw()
 	
 	src.m_top   =  0.0f;
 	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+	src.m_right =156.0f;
+	src.m_bottom=156.0f;
 	
 	dst.m_top   = m_y;
 	dst.m_left  = m_x;
 	dst.m_right = m_x + m_h;
 	dst.m_bottom= m_y + m_w;
 
-	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	if (Button_num == 1)
+	{
+		//11番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(11, &src, &dst, c, 0.0f);
+	}
+
+	if (Button_num == 2)
+	{
+		//12番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(12, &src, &dst, c, 0.0f);
+	}
+	
+	if (Button_num == 3)
+	{
+		//13番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(13, &src, &dst, c, 0.0f);
+	}
+
+	if (Button_num == 4)
+	{
+		//14番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(14, &src, &dst, c, 0.0f);
+	}
 }
