@@ -52,4 +52,12 @@ class CObjWarehouse :public CObjTraining//CObjTraining‚ğŒp³‚·‚é
 		int crvbp;
 		int crvbs;
 		int crvr;
+
+		int crp;
+		int crs;
+		int crd;
+		int crbh;
+		int crbp;
+		int crbs;
+		int crr;
 };
