@@ -24,6 +24,7 @@ enum OBJ_NAME
 	OBJ_MISSILE,
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
+	OBJ_FIGHT_MISSILE,
 
 };
 //------------------------------------------------
@@ -112,6 +113,7 @@ extern bool g_key_fg;//
 #include "ObjMaterialBotton.h"
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
+#include "ObjPushMissile.h"
 
 //------------------------------------------------
 
