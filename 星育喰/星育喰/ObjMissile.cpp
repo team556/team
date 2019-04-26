@@ -4,6 +4,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
+#include "UtilityModule.h"
 
 #include "GameHead.h"
 #include "ObjMissile.h"
@@ -29,14 +30,14 @@ void CObjMissile::Init()
 		else if(m_get_line == 2){ m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_x -= obj->GetCount() / 7;
+		m_x -= obj->GetCount() / 10;
+		m_mov_spd = 0.5f / obj->GetCount();
 	}
 
 	m_size = 50.0f;//サイズ
 	
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
-	m_mov_spd = 0.0005f;
 	m_mov = 0;
 	
 	m_r = 0.0f;
@@ -49,10 +50,14 @@ void CObjMissile::Init()
 	m_mou_f = false;//マウスフラグ
 
 	//当たり判定用HitBox作成
-	if (m_type == false) 
+	if (m_type == false) {
 		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
-	else
+		m_x -= 100;
+	}
+	else {
 		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
+		m_x += 100;
+	}
 
 }
 
@@ -86,7 +91,7 @@ void CObjMissile::Action()
 	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
 		m_vx -= 0.3f;
-		m_vy -= (-0.3 + m_mov);
+		m_vy -= (-0.2 + m_mov);
 	}
 	else if (m_get_line == 1)//---------------中ライン-----
 	{
@@ -146,7 +151,8 @@ void CObjMissile::Draw()
 	dst.m_left  = m_x;
 	dst.m_right = m_x + m_size;
 	dst.m_bottom= m_y + m_size;
-
+	
+	m_r -= 0.05;
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, d, 45.0f);
+	Draw::Draw(2, &src, &dst, d, m_r+15);
 }

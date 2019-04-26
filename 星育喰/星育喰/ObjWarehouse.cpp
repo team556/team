@@ -205,6 +205,8 @@ void CObjWarehouse::Action()
 		return;
 	}
 
+
+
 	//倉庫選択
 	if (95 < m_mou_x && m_mou_x < 320 && 170 < m_mou_y && m_mou_y < 280)
 	{
@@ -268,6 +270,11 @@ void CObjWarehouse::Action()
 		}
 	}
 
+	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+	else if (window_start_manage != Default)
+	{
+		return;
+	}
 
 
 }
@@ -835,10 +842,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 100.0f;
 		src.m_bottom = 100.0f;
 
-		dst.m_top = 195.0f;
+		dst.m_top = 200.0f;
 		dst.m_left = 100.0f;
 		dst.m_right = 200.0f;
-		dst.m_bottom = 295.0f;
+		dst.m_bottom = 300.0f;
 		Draw::Draw(41, &src, &dst, it, 0.0f);
 
 		//スペシャル技3選択ボタン表示
@@ -847,10 +854,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 100.0f;
 		src.m_bottom = 100.0f;
 
-		dst.m_top = 290.0f;
+		dst.m_top = 300.0f;
 		dst.m_left = 100.0f;
 		dst.m_right = 200.0f;
-		dst.m_bottom = 390.0f;
+		dst.m_bottom = 400.0f;
 		Draw::Draw(42, &src, &dst, it, 0.0f);
 
 		//スペシャル技4選択ボタン表示
@@ -859,10 +866,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 100.0f;
 		src.m_bottom = 100.0f;
 
-		dst.m_top = 385.0f;
+		dst.m_top = 400.0f;
 		dst.m_left = 100.0f;
 		dst.m_right = 200.0f;
-		dst.m_bottom = 485.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(43, &src, &dst, it, 0.0f);
 
 		//スペシャル技5選択ボタン表示
@@ -871,23 +878,75 @@ void CObjWarehouse::Draw()
 		src.m_right = 100.0f;
 		src.m_bottom = 100.0f;
 
-		dst.m_top = 480.0f;
+		dst.m_top = 500.0f;
 		dst.m_left = 100.0f;
 		dst.m_right = 200.0f;
-		dst.m_bottom = 580.0f;
+		dst.m_bottom = 600.0f;
 		Draw::Draw(44, &src, &dst, it, 0.0f);
 
-		////スペシャル技メッセージウィンドウ表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 200.0f;
-		//src.m_bottom = 100.0f;
+		//スペシャル技1メッセージウィンドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 200.0f;
+		src.m_bottom = 100.0f;
 
-		//dst.m_top = 480.0f;
-		//dst.m_left = 100.0f;
-		//dst.m_right = 200.0f;
-		//dst.m_bottom = 580.0f;
-		//Draw::Draw(44, &src, &dst, it, 0.0f);
+		dst.m_top = 100.0f;
+		dst.m_left = 300.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(45, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"メリット", 310.0f, 110.0f, 20.0f, black);
+		Font::StrDraw(L"相手の惑星に固定ダメージを与える", 310.0f, 135.0f, 20.0f, black);
+		Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 310.0f, 160.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 810.0f, 110.0f, 20.0f, black);
+		Font::StrDraw(L"自分のHPを7%減らす", 810.0f, 135.0f, 20.0f, black);
+
+		//スペシャル技2メッセージウィンドウ表示
+		dst.m_top = 200.0f;
+		dst.m_left = 300.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 300.0f;
+		Draw::Draw(45, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"メリット", 310.0f, 210.0f, 20.0f, black);
+		Font::StrDraw(L"相手の攻撃一列を破壊する", 310.0f, 235.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 710.0f, 210.0f, 20.0f, black);
+		Font::StrDraw(L"5秒間から10秒間攻撃力ダウン", 710.0f, 235.0f, 20.0f, black);
+
+		//スペシャル技3メッセージウィンドウ表示
+		dst.m_top = 300.0f;
+		dst.m_left = 300.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 400.0f;
+		Draw::Draw(45, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"メリット", 310.0f, 310.0f, 20.0f, black);
+		Font::StrDraw(L"約10秒間無敵になることができる", 310.0f, 335.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 710.0f, 310.0f, 20.0f, black);
+		Font::StrDraw(L"攻撃力を5秒間ダウン", 710.0f, 335.0f, 20.0f, black);
+
+		//スペシャル技4メッセージウィンドウ表示
+		dst.m_top = 400.0f;
+		dst.m_left = 300.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 500.0f;
+		Draw::Draw(45, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"メリット", 310.0f, 410.0f, 20.0f, black);
+		Font::StrDraw(L"20秒間攻撃スピードアップ", 310.0f, 435.0f, 20.0f, black);
+		Font::StrDraw(L"武器生産頻度アップ", 310.0f, 460.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 710.0f, 410.0f, 20.0f, black);
+		Font::StrDraw(L"効果が終わると5秒間", 710.0f, 435.0f, 20.0f, black);
+		Font::StrDraw(L"生産性が10%ダウン", 710.0f, 460.0f, 20.0f, black);
+
+		//スペシャル技5メッセージウィンドウ表示
+		dst.m_top = 500.0f;
+		dst.m_left = 300.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 600.0f;
+		Draw::Draw(45, &src, &dst, it, 0.0f);
+		Font::StrDraw(L"メリット", 310.0f, 510.0f, 20.0f, black);
+		Font::StrDraw(L"住民のポッド5機攻撃が上がる", 310.0f, 535.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 710.0f, 510.0f, 20.0f, black);
+		Font::StrDraw(L"効果終了後住民の攻撃ポッド3機の", 710.0f, 535.0f, 20.0f, black);
+		Font::StrDraw(L"攻撃力が下がる", 710.0f, 560.0f, 20.0f, black);
 
 	}
 

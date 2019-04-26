@@ -42,5 +42,6 @@ private:
 	int m_ani_frame;
 
 	bool m_eat_f;
+	float m_eat_spd;
 	bool m_del_f;
 };

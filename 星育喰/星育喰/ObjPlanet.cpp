@@ -34,9 +34,14 @@ void CObjPlanet::Init()
 
 	m_get_hp = 0;	//取得HP
 
-	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	m_mov_spd = 0.093f* 30 / (obj->GetCount() / 60);
-	m_siz_spd = 0.07f * 30 / (obj->GetCount() / 60);
+	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
+	m_siz_spd = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
+
+	if (m_type == true)
+		m_px += (fit->GetCount() / 30);
+	else
+		m_px -= (fit->GetCount() / 30);
 
 	m_ani[0] = 3;//アニメーションデータの初期化
 	m_ani[1] = 4;
@@ -46,6 +51,7 @@ void CObjPlanet::Init()
 	m_ani_time = 0;
 
 	m_eat_f = false;	//喰うフラグ(true = 喰う)
+	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
 	
 	//当たり判定用HitBoxを作成
@@ -133,9 +139,9 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
 		if (m_type == true)
-			m_px -= m_mov_spd * 20;	//スピード×20加算
+			m_px -= m_mov_spd + m_eat_spd/140;
 		else
-			m_px += m_mov_spd * 20;	//スピード×20加算
+			m_px += m_mov_spd + m_eat_spd/140;
 		
 	//-------------------------------------------------------------
 
