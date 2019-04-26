@@ -93,6 +93,40 @@ void CObjPreparation::Action()
 	//▼操作可能時の処理
 	if (m_is_operatable == true)
 	{
+		//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
+		if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
+		{
+			m_Back_Button_color = 1.0f;
+
+			//▼移行フラグを立て、ホーム画面へ演出を交えながらシーン移行
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				//移行フラグ立て
+				//window_start_manage = BackButton;
+			}
+			//左クリック入力時
+			else if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					//移行フラグ立て
+					//window_start_manage = BackButton;
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Back_Button_color = INI_COLOR;
+		}
+
 		return;
 	}
 
@@ -179,6 +213,9 @@ void CObjPreparation::Draw()
 	//黒色
 	float black[4] = { 0.0f,0.0f,0.0f,1.0f };
 
+	//戻るボタン用
+	float back[4] = { m_Back_Button_color,m_Back_Button_color,m_Back_Button_color,1.0f };
+
 	//ボス出現警告メッセージ用
 	float warning_message[4] = { 1.0f,0.0f,0.0f,m_alpha };
 
@@ -202,6 +239,18 @@ void CObjPreparation::Draw()
 	dst.m_right = 1200.0f;
 	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
+
+	//▼戻るボタン表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
+	src.m_bottom = 64.0f;
+
+	dst.m_top = 10.0f;
+	dst.m_left = 10.0f;
+	dst.m_right = 60.0f;
+	dst.m_bottom = 60.0f;
+	Draw::Draw(56, &src, &dst, back, 0.0f);
 
 	//▼敵惑星1表示
 	src.m_top = 0.0f;
@@ -280,8 +329,8 @@ void CObjPreparation::Draw()
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 36.0f;
-		src.m_bottom = 35.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
 
 		dst.m_top = 985.0f + m_PSvy;
 		dst.m_left = 380.0f + i * 95.0f;
