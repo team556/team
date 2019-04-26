@@ -37,14 +37,27 @@ void CObjWarehouse::Init()
 	d = 0;//住民ディフェンスの値
 	b = 0;//住民バランスの値
 	r = 0;//研究員の値
-	crvp = 0;//補正値パワー
-	crvs = 0;//補正値スピード
-	crvd = 0;//補正値ディフェンス
-	crvbh = 0;//補正値バランス	体力
-	crvbp = 0;//補正値バランス	パワー
-	crvbs = 0;//補正値バランス	スピード
-	crvr = 0;//補正値研究員
 
+	crvp = 0;//補正値パワー
+	crp = 0;
+
+	crvs = 0;//補正値スピード
+	crs = 0;
+
+	crvd = 0;//補正値ディフェンス
+	crd = 0;
+
+	crvbh = 0;//補正値バランス	体力
+	crbh = 0;
+
+	crvbp = 0;//補正値バランス	パワー
+	crbp = 0;
+
+	crvbs = 0;//補正値バランス	スピード
+	crbs = 0;
+
+	crvr = 0;//補正値研究員
+	crr = 0;
 }
 
 //アクション
@@ -357,29 +370,31 @@ void CObjWarehouse::Draw()
 
 	//補正値パワー
 	wchar_t crvp[256];
-	swprintf_s(crvp, L"攻撃力＋%d", crvp);
+	swprintf_s(crvp, L"攻撃力＋%d", crp);
 
 	//補正値スピード
 	wchar_t crvs[256];
-	swprintf_s(crvs, L"素早さ＋%d", crvs);
+	swprintf_s(crvs, L"素早さ＋%d", crs);
 
 	//補正値ディフェンス
 	wchar_t crvd[256];
-	swprintf_s(crvd, L"体力  ＋%d", crvd);
+	swprintf_s(crvd, L"体力  ＋%d", crd);
 
 	//補正値バランス	体力
 	wchar_t crvbh[256];
-	swprintf_s(crvbh, L"体力  ＋%d", crvbh);
+	swprintf_s(crvbh, L"体力  ＋%d", crbh);
+
 	//補正値バランス	パワー
 	wchar_t crvbp[256];
-	swprintf_s(crvbp, L"攻撃力＋%d", crvbp);
+	swprintf_s(crvbp, L"攻撃力＋%d", crbp);
+
 	//補正値バランス	スピード
 	wchar_t crvbs[256];
-	swprintf_s(crvbs, L"素早さ＋%d", crvbs);
+	swprintf_s(crvbs, L"素早さ＋%d", crbs);
 
 	//補正値研究員
 	wchar_t crvr[256];
-	swprintf_s(crvr, L"%d", crvr);
+	swprintf_s(crvr, L"%d", crr);
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
