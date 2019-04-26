@@ -82,6 +82,8 @@ void CObjWarehouse::Init()
 
 	epdp = 0;	//装備補正値ポッドプラス
 	edpp = 0;
+
+	m_time =5;
 }
 
 //アクション
@@ -90,16 +92,21 @@ void CObjWarehouse::Action()
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
+	m_time--;
 	//マウスのボタンの状態
-	m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
+	if (0 > m_time)
+	{
+		m_mou_r = Input::GetMouButtonR();
+		m_mou_l = Input::GetMouButtonL();
 
+		m_time = 5;
+	}
 
 	//▼倉庫ウィンドウ表示の処理
 	if (window_start_manage == Warehouse)
 	{
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80)
+		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
@@ -115,7 +122,7 @@ void CObjWarehouse::Action()
 					//武器必要素材&人数メッセージを非表示にするため、透過度を0.0fにする
 					m_alpha = 0.0f;
 
-					//"研究所ウインドウを開いている状態"フラグを立てる
+					//"倉庫ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Default;
 				}
 			}
@@ -139,6 +146,7 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
+			m_key_rf = true;
 			m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 			m_Back_Button_color = INI_COLOR;
 		}
@@ -161,7 +169,7 @@ void CObjWarehouse::Action()
 					window_start_manage = Materials;
 				}
 			}
-			else 
+			else
 			{
 				m_key_lf = true;
 			}
@@ -264,7 +272,7 @@ void CObjWarehouse::Action()
 		window_start_manage == Specialskill || window_start_manage == Soubicheck)
 	{
 		//戻るボタン選択
-		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100)
+		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
@@ -305,7 +313,7 @@ void CObjWarehouse::Action()
 		else
 		{
 			m_Back_Button_color = INI_COLOR;
-
+			m_key_rf = true;
 		}
 	}
 
@@ -342,10 +350,10 @@ void CObjWarehouse::Action()
 	}
 	else
 	{
+		m_key_rf = true;
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ware_color = INI_COLOR;
 	}
-
 }
 
 //ドロー

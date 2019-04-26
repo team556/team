@@ -91,5 +91,5 @@ class CObjWarehouse :public CObjTraining//CObjTrainingを継承する
 
 		int epdp;	//装備補正値ポッドプラス
 		int edpp;
-
+		int m_time;
 };
