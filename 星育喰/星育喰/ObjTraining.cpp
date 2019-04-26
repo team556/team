@@ -56,6 +56,7 @@ void CObjTraining::Init()
 	m_Back_Button_color = INI_COLOR;
 
 	//▼以下のstatic変数は他シーンから育成画面に入る度に初期化を行う
+	m_key_rf = false;
 	scene_change_start = false;
 	window_start_manage = Default;
 }
