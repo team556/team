@@ -205,6 +205,8 @@ void CObjWarehouse::Action()
 		return;
 	}
 
+
+
 	//倉庫選択
 	if (95 < m_mou_x && m_mou_x < 320 && 170 < m_mou_y && m_mou_y < 280)
 	{
@@ -268,6 +270,11 @@ void CObjWarehouse::Action()
 		}
 	}
 
+	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+	else if (window_start_manage != Default)
+	{
+		return;
+	}
 
 
 }
@@ -901,7 +908,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 300.0f;
 		Draw::Draw(45, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"メリット", 310.0f, 210.0f, 20.0f, black);
-		Font::StrDraw(L"相手の攻撃（一列）をすべて破壊する", 310.0f, 235.0f, 20.0f, black);
+		Font::StrDraw(L"相手の攻撃一列を破壊する", 310.0f, 235.0f, 20.0f, black);
 		Font::StrDraw(L"デメリット", 710.0f, 210.0f, 20.0f, black);
 		Font::StrDraw(L"5秒間から10秒間攻撃力ダウン", 710.0f, 235.0f, 20.0f, black);
 
@@ -914,7 +921,7 @@ void CObjWarehouse::Draw()
 		Font::StrDraw(L"メリット", 310.0f, 310.0f, 20.0f, black);
 		Font::StrDraw(L"約10秒間無敵になることができる", 310.0f, 335.0f, 20.0f, black);
 		Font::StrDraw(L"デメリット", 710.0f, 310.0f, 20.0f, black);
-		Font::StrDraw(L"攻撃力を一定時間ダウン(5秒)", 710.0f, 335.0f, 20.0f, black);
+		Font::StrDraw(L"攻撃力を5秒間ダウン", 710.0f, 335.0f, 20.0f, black);
 
 		//スペシャル技4メッセージウィンドウ表示
 		dst.m_top = 400.0f;
@@ -936,10 +943,10 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(45, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"メリット", 310.0f, 510.0f, 20.0f, black);
-		Font::StrDraw(L"住民の攻撃が上がる", 310.0f, 435.0f, 20.0f, black);
-		Font::StrDraw(L"効果が終わると一定時間(5秒)", 710.0f, 435.0f, 20.0f, black);
-		Font::StrDraw(L"効果が終わると一定時間(5秒)", 710.0f, 435.0f, 20.0f, black);
-		Font::StrDraw(L"効果が終わると一定時間(5秒)", 710.0f, 435.0f, 20.0f, black);
+		Font::StrDraw(L"住民のポッド5機攻撃が上がる", 310.0f, 535.0f, 20.0f, black);
+		Font::StrDraw(L"デメリット", 710.0f, 510.0f, 20.0f, black);
+		Font::StrDraw(L"効果終了後住民の攻撃ポッド3機の", 710.0f, 535.0f, 20.0f, black);
+		Font::StrDraw(L"攻撃力が下がる", 710.0f, 560.0f, 20.0f, black);
 
 	}
 
