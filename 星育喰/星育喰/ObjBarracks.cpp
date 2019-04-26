@@ -477,8 +477,8 @@ void CObjBarracks::Draw()
 		//Å•ï∫é…ï\é¶ 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 245.0f;
-		src.m_bottom = 206.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
 
 		dst.m_top = 460.0f;
 		dst.m_left = 810.0f;

@@ -88,7 +88,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"–ß‚é.png", 1, TEX_SIZE_512);
 
 	//•ºÉ‚ğ“Ç‚İ‚İ2”Ô‚É“o˜^
-	Draw::LoadImage(L"•ºÉ(‰¼).jfif", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"•ºÉLv1.png", 2, TEX_SIZE_512);
 
 	//Œ¤‹†Š‚ğ“Ç‚İ‚İ3”Ô‚É“o˜^
 	Draw::LoadImage(L"Œ¤‹†ŠLv1.png", 3, TEX_SIZE_512);
