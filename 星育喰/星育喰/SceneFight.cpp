@@ -54,7 +54,14 @@ void CSceneFight::InitScene()
 	//10番に登録
 	Draw::LoadImage(L"w.png", 10, TEX_SIZE_512);
 	
+	//11番に登録
+	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
 
+	//12番に登録
+	Draw::LoadImage(L"ディフェンスボタン(仮).png", 12, TEX_SIZE_512);
+
+	//13番に登録
+	Draw::LoadImage(L"スピードボタン(仮).png", 13, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");

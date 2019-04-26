@@ -98,5 +98,5 @@ void CObjPushUnit::Draw()
 	dst.m_bottom= m_y + m_w;
 
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(11, &src, &dst, c, 0.0f);
 }
