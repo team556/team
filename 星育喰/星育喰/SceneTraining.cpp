@@ -108,7 +108,7 @@ void CSceneTraining::InitScene()
 	//灰色ウインドウ(仮)を読み込み20番に登録
 	Draw::LoadImage(L"灰色ウインドウ(仮).png", 20, TEX_SIZE_512);
 
-	//メッセージウインドウ(仮)を読み込み21番に登録
+	//メッセージウインドウを読み込み21番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 21, TEX_SIZE_512);
 
 	//施設LVUPを読み込み22番に登録

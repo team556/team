@@ -1310,7 +1310,7 @@ void CObjInstitute::Draw()
 
 
 
-			//▽最終確認ウインドウ表示管理フラグがtrueの時、描画。
+			//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
 			if (m_finalcheck_f == true)
 			{
 				//▼最終確認ウインドウ表示

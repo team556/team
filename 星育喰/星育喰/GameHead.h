@@ -61,6 +61,7 @@ struct UserData
 
 
 //ゲーム内で使用されるグローバル変数・定数・列挙--
+//▼セーブ必要性有り
 extern int g_Stage_progress;		//現在のステージ進行度(1ステージ:1　2ステージ:2　3ステージ:3)
 extern int g_Bar_Level;				//兵舎レベル
 extern int g_Ins_Level;				//研究所レベル
@@ -76,7 +77,7 @@ extern int g_Bal_equip_Lv_achieve;	//バランス武器レベルの最大到達度
 extern int g_Pod_equip_Level;		//現在のポッドレベル
 extern int g_Pod_equip_Lv_achieve;	//ポッドレベルの最大到達度
 extern int g_Special_equipment;		//現在装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
-extern bool g_Special_mastering[5];	//習得済みのスペシャル技			(0:敵に大ダメージ　1:一列殺し　2:一定時間無敵　3:生産性効率アップ　4:住民の士気がアップ)
+extern bool g_Special_mastering[5];	//習得済みのスペシャル技[true:習得済  false:未習得](0:敵に大ダメージ　1:一列殺し　2:一定時間無敵　3:生産性効率アップ　4:住民の士気がアップ)
 extern int g_Power_num;				//パワー住民数
 extern int g_Defense_num;			//ディフェンス住民数
 extern int g_Speed_num;				//スピード住民数
@@ -85,6 +86,9 @@ extern int g_Research_num;			//研究員住民数
 extern int g_Remain_num;			//残り住民数
 
 extern int g_Material_num_test;		//TEST用所持素材数
+
+//▼セーブ必要性無し
+extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
 
 extern bool g_key_fg;//
 
