@@ -99,7 +99,7 @@ void CObjWarehouse::Action()
 		m_mou_r = Input::GetMouButtonR();
 		m_mou_l = Input::GetMouButtonL();
 
-		m_time = 5;
+		//m_time = 10;
 	}
 
 	//▼倉庫ウィンドウ表示の処理
