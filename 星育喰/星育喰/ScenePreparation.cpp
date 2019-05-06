@@ -47,20 +47,23 @@ void CScenePreparation::InitScene()
 	//敵惑星4を読み込み4番に登録
 	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 4, TEX_SIZE_512);
 
-	//スペシャル技アイコン(敵に大ダメージ)
-	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 57, TEX_SIZE_512);
+	//戻るアイコンを読み込み56番に登録
+	Draw::LoadImage(L"戻る.png", 56, TEX_SIZE_512);
 
-	//スペシャル技アイコン(一列殺し)
-	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 58, TEX_SIZE_512);
+	//スペシャル技アイコン(敵に大ダメージ)を読み込み57番に登録
+	Draw::LoadImage(L"スペシャル技1.png", 57, TEX_SIZE_512);
 
-	//スペシャル技アイコン(一定時間無敵)
-	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 59, TEX_SIZE_512);
+	//スペシャル技アイコン(一列殺し)を読み込み58番に登録
+	Draw::LoadImage(L"スペシャル技2.png", 58, TEX_SIZE_512);
 
-	//スペシャル技アイコン(生産性効率アップ)
-	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 60, TEX_SIZE_512);
+	//スペシャル技アイコン(一定時間無敵)を読み込み59番に登録
+	Draw::LoadImage(L"スペシャル技3.png", 59, TEX_SIZE_512);
 
-	//スペシャル技アイコン(住民の士気がアップ)
-	Draw::LoadImage(L"スペシャル技アイコン(仮).png", 61, TEX_SIZE_512);
+	//スペシャル技アイコン(生産性効率アップ)を読み込み60番に登録
+	Draw::LoadImage(L"スペシャル技4.png", 60, TEX_SIZE_512);
+
+	//スペシャル技アイコン(住民の士気がアップ)を読み込み61番に登録
+	Draw::LoadImage(L"スペシャル技5.png", 61, TEX_SIZE_512);
 
 	//スペシャル技選択ウインドウを読み込み62番に登録
 	Draw::LoadImage(L"スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);

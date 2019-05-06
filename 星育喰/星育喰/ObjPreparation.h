@@ -32,9 +32,9 @@ private:
 	//float m_ry;			//サインカーブ用の角度(プレイヤー惑星y移動に使用)
 	float m_Psize;		//プレイヤー惑星のサイズ
 
-	float m_warning_message_x[2];//警告メッセージ移動用ベクトルX
-	float m_warning_message_y[2];//警告メッセージ移動用ベクトルY
-	float m_warning_message_size;//警告メッセージサイズ
+	float m_warning_message_x[2];//ボス出現警告メッセージ移動用ベクトルX
+	float m_warning_message_y[2];//ボス出現警告メッセージ移動用ベクトルY
+	float m_warning_message_size;//ボス出現警告メッセージサイズ
 
 	float m_Evx;		//敵惑星4つの移動用ベクトルX
 						//ボス惑星のヤツは個別で用意予定
