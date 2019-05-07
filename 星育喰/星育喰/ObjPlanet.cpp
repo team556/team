@@ -8,6 +8,8 @@
 #include "GameHead.h"
 #include "ObjPlanet.h"
 
+#include <time.h>
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -165,6 +167,39 @@ void CObjPlanet::Action()
 	if (m_del_f == true) {				//消すフラグ判定＆処理
 		this->SetStatus(false);	 //オブジェクト削除
 		Hits::DeleteHitBox(this);//HitBox削除
+	}
+
+	if (m_type == false)
+	{
+		srand(time(NULL));
+		m_attackf = rand() % 4 + 1;
+
+		if (m_attackf == 1 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+		else if (m_attackf == 2 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+		else if (m_attackf == 3 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+		else if (m_attackf == 4 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+
+		m_time--;
 	}
 }
 
