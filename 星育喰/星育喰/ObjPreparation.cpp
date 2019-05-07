@@ -15,18 +15,18 @@ using namespace GameL;
 #define INI_WARNING_MESSAGE_X_POS (125.0f)	//警告メッセージ全体の初期X位置
 #define INI_WARNING_MESSAGE_Y_POS (250.0f)	//警告メッセージ全体の初期Y位置
 #define INI_WARNING_MESSAGE_SIZE  (100.0f)	//警告メッセージ全体のサイズ
-#define INI_SPEED (50.0f)		//開始演出で移動する各オブジェクトの初期移動速度
+#define INI_SPEED (50.0f)//各演出で移動する各オブジェクトの初期移動速度
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //static変数の定義
-bool CObjPreparation::destroy_progress[4] = { false,true,true,true };//テストの為、一部true。後で全てfalseに戻すように。
+bool CObjPreparation::destroy_progress[4] = { false,false,false,false };
 
 //グローバル変数の定義
 int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
 int g_Special_equipment = 0;
-bool g_Special_mastering[5] = { true,true,true,true,true };//テストの為、全てtrue。後で全てfalseに戻すように。
+bool g_Special_mastering[5] = { false,false,false,false,false };
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -41,8 +41,6 @@ void CObjPreparation::Init()
 
 	m_Pvx = 0.0f;
 	m_Pvy = 0.0f;
-	//m_boost = 0.0f;
-	//m_rx = 0.0f;
 	m_Pr = 0.0f;
 	m_Psize = 0.0f;
 
@@ -92,7 +90,7 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 0;//デバッグ用に3にしてる。後で0に戻して↓のヤツのコメントも戻すように。
+	m_destroy_count = 0;
 
 	//現在の撃破数をカウント
 	for (int i = 0; i < 4; i++)
@@ -208,21 +206,19 @@ void CObjPreparation::Init()
 //アクション
 void CObjPreparation::Action()
 {
-	/*以下のホーム画面移行演出のコメント結構適当なので、後でしっかり書き直す*/
 	//▼ホーム画面移行演出
 	if (m_Back_flag == true)
 	{
 		if (m_Pvx >= 950.0f)
 		{
+			//プレイヤー惑星が画面中央に移動完了後、ホーム画面へ移行する。
 			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 		}
 		else if (m_Psize == -150.0f)
 		{
-			//移動速度を各惑星のベクトルに加算、もしくは減算し
-			//惑星を所定の位置まで移動させる
+			//画面外(左側)から画面中央に向かってプレイヤー惑星を移動させる
 			//▼プレイヤー惑星X移動処理
 			m_Pvx += m_speed;
-
 
 			//▼プレイヤー惑星Y移動処理
 			//角度加算
@@ -239,7 +235,7 @@ void CObjPreparation::Action()
 			m_Pvy -= m_speed;
 
 
-			//徐々にプレイヤー惑星、各敵惑星、スペシャル技アイコン等の移動速度を減少させる
+			//徐々にプレイヤー惑星の移動速度を減少させる
 			m_speed *= 0.948f;
 		}
 		else if(m_Evx >= 0.0f)
@@ -250,21 +246,22 @@ void CObjPreparation::Action()
 			if (m_staging_time >= 30)
 			{
 				//プレイヤー惑星の位置を画面外(左側)に移動。
-				//また、サイズをホーム画面のプレイヤー惑星と同じサイズにしておく。
+				//また、サイズをホーム画面のプレイヤー惑星と同じサイズにする。
 				m_Pvx = 0.0f;
 				m_Pvy = -550.0f;
 				m_Psize = -150.0f;
 
-				//m_speedの値を初期値にリセットしておく。
+				//移動速度を初期値に戻す。
 				m_speed = INI_SPEED;
 			}
 		}
 		else if (m_Evx < 0.0f)
 		{
-			//惑星、スペシャル技アイコン、ボス出現警告メッセージ等をそれぞれ画面外に移動させる
-			m_Evx += m_speed;			//画面外の右から左の方へ移動
-			m_Pvx -= m_speed * 0.37;	//敵惑星ほど大きく移動する訳ではない為、0.37倍の値を加算。
-			m_Pvy += m_speed * 0.37;
+			//各惑星、スペシャル技アイコン、戻るボタン、
+			//ボス出現警告メッセージ等をそれぞれ画面外に移動させる
+			m_Evx += m_speed;			//移動速度は共通の変数を使い、敵惑星を基準に設定している。
+			m_Pvx -= m_speed * 0.37;	//例えばプレイヤー惑星は敵惑星ほど大きく移動する訳ではない為、
+			m_Pvy += m_speed * 0.37;	//0.37倍の値を移動速度に加算して、移動量を調節している。
 			m_Svy += m_speed * 0.37;
 			m_Bvx -= m_speed * 0.065;
 			m_Bvy -= m_speed * 0.065;
@@ -278,7 +275,7 @@ void CObjPreparation::Action()
 				m_Boss_vx[2] += m_speed * 0.91;
 			}
 
-			//徐々にプレイヤー惑星、各敵惑星、スペシャル技アイコン等の移動速度を増加させる
+			//徐々に上記オブジェクトの画面外移動速度を増加させる
 			m_speed /= 0.956f;
 		}
 
@@ -289,10 +286,21 @@ void CObjPreparation::Action()
 	{
 		if (m_black_star_effect_size >= 1400.0f)
 		{
+			//★画像が画面全体を覆いつくした後、下記の撃破フラグ処理を実行
+			//その後、戦闘画面へシーン移行する。
+
 			//再度この戦闘準備画面に戻ってくる＝現在挑戦する敵惑星を撃破したという事。
-			//その為、このタイミングで既に撃破フラグを立てておく。
-			//※ボス惑星と戦う際はこの処理を飛ばす
-			if (m_destroy_count != 4)
+			//その為、このタイミングで既に撃破フラグをtrueにしておく。
+			//※挑戦するのがボス惑星の場合、撃破すると次のステージに行く為、
+			//このタイミングで全ての撃破フラグをfalseに戻しておく。
+			if (m_destroy_count == 4)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					destroy_progress[i] = false;
+				}
+			}
+			else
 			{
 				destroy_progress[g_Challenge_enemy] = true;
 			}
@@ -301,6 +309,8 @@ void CObjPreparation::Action()
 		}
 		else if (m_black_star_effect_size < 1400.0f)
 		{
+			//画面中央を起点として、★の画像を徐々に拡大
+			//そのまま画面全体を覆いつくす。
 			m_black_star_effect_size += 20.0f;
 		}
 
@@ -309,17 +319,18 @@ void CObjPreparation::Action()
 	}
 
 
-	//マウスの位置を取得
-	m_mou_x = (float)Input::GetPosX();
-	m_mou_y = (float)Input::GetPosY();
-	//マウスのボタンの状態
-	m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
-
 
 	//▼操作可能時の処理
 	if (m_is_operatable == true)
 	{
+		//マウスの位置を取得
+		m_mou_x = (float)Input::GetPosX();
+		m_mou_y = (float)Input::GetPosY();
+		//マウスのボタンの状態
+		m_mou_r = Input::GetMouButtonR();
+		m_mou_l = Input::GetMouButtonL();
+
+
 		//▼最終確認ウインドウ表示時の処理
 		if (m_finalcheck_f == true)
 		{
@@ -328,7 +339,7 @@ void CObjPreparation::Action()
 			{
 				m_Yes_Button_color = 1.0f;
 
-				//▼クリックされたらフラグを立て、
+				//▼クリックされたら移行開始フラグを立て、
 				//演出を交えながら、戦闘画面にシーン移行する
 				//左クリック入力時
 				if (m_mou_l == true)
@@ -426,7 +437,7 @@ void CObjPreparation::Action()
 				{
 					m_key_lf = false;
 
-					//移行フラグ立て
+					//移行開始フラグ立て
 					m_Back_flag = true;
 				}
 			}
@@ -442,35 +453,35 @@ void CObjPreparation::Action()
 		}
 
 
-		//敵惑星1(左から1番目の敵惑星)
-		if (147 < m_mou_x && m_mou_x < 346 && 187 < m_mou_y && m_mou_y < 383 && m_destroy_count != 4)
+		//敵惑星1(左から1番目の敵惑星)[未撃破時のみ選択可能]
+		if (147 < m_mou_x && m_mou_x < 346 && 187 < m_mou_y && m_mou_y < 383 && destroy_progress[0] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(0);//敵惑星詳細説明表示関数を呼び出す
 		}
 
-		//敵惑星2(左から2番目の敵惑星)
-		else if (446 < m_mou_x && m_mou_x < 544 && 158 < m_mou_y && m_mou_y < 255 && m_destroy_count != 4)
+		//敵惑星2(左から2番目の敵惑星)[未撃破時のみ選択可能]
+		else if (446 < m_mou_x && m_mou_x < 544 && 158 < m_mou_y && m_mou_y < 255 && destroy_progress[1] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(1);//敵惑星詳細説明表示関数を呼び出す
 		}
 
-		//敵惑星3(左から3番目の敵惑星)
-		else if (744 < m_mou_x && m_mou_x < 941 && 137 < m_mou_y && m_mou_y < 334 && m_destroy_count != 4)
+		//敵惑星3(左から3番目の敵惑星)[未撃破時のみ選択可能]
+		else if (744 < m_mou_x && m_mou_x < 941 && 137 < m_mou_y && m_mou_y < 334 && destroy_progress[2] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(2);//敵惑星詳細説明表示関数を呼び出す
 		}
 
-		//敵惑星4(左から4番目の敵惑星)
-		else if (892 < m_mou_x && m_mou_x < 1139 && 433 < m_mou_y && m_mou_y < 679 && m_destroy_count != 4)
+		//敵惑星4(左から4番目の敵惑星)[未撃破時のみ選択可能]
+		else if (892 < m_mou_x && m_mou_x < 1139 && 433 < m_mou_y && m_mou_y < 679 && destroy_progress[3] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(3);//敵惑星詳細説明表示関数を呼び出す
 		}
 
-		//ボス惑星
+		//ボス惑星[ボス惑星出現時のみ選択可能]
 		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4)
 		{
 			//▼敵惑星詳細説明を表示
@@ -531,6 +542,7 @@ void CObjPreparation::Action()
 	{
 		if (m_destroy_count == 4)
 		{
+			//メッセージ内容を変更した為、
 			//警告メッセージを徐々に表示させる
 			//完全に表示後、操作可能な状態にする。
 			if (m_warning_message_alpha >= 1.0f)
@@ -544,6 +556,8 @@ void CObjPreparation::Action()
 		}
 		else if (m_Boss_vy[2] < 0.0f)
 		{
+			//画面中央まで移動完了後、以下の2つの処理を同時に行う。
+
 			//警告メッセージを徐々に非表示にする
 			//完全に非表示後、敵惑星撃破数を4に設定する事で
 			//ボス出現警告メッセージ内容を変える。
@@ -558,7 +572,7 @@ void CObjPreparation::Action()
 				m_warning_message_alpha -= 0.01f;
 			}
 
-			//ボス惑星描画元切り取り位置を徐々に変更し、口を閉じた状態にする
+			//ボス惑星描画元切り取り位置を徐々に変更し、最終的に口を閉じた状態にする
 			if (m_warning_message_alpha <= 0.4f)
 			{
 				m_Boss_clip_pos = 0.0f;
@@ -570,7 +584,11 @@ void CObjPreparation::Action()
 		}
 		else if (m_Boss_clip_pos == 128.0f)
 		{
-			//ボス惑星が敵惑星を通過し、
+			//ボス惑星の準備完了後、
+			//ボス惑星が画面外(右下)から画面中央へと敵惑星の上を通りながら通過。
+			//通過タイミングで敵惑星を非表示にし、食べているように演出。
+
+			//ボス惑星が敵惑星の上を通過し、
 			//隠したタイミングで撃破フラグを立てる
 			if (m_Boss_vy[2] <= 270.0f)
 			{
@@ -586,6 +604,7 @@ void CObjPreparation::Action()
 		}
 		else if (m_Boss_vx[1] >= 1520.0f)
 		{
+			//▽次の演出の準備
 			//ボス惑星位置Yを適切な位置に移動させる
 			m_Boss_vy[2] = 650.0f;
 
@@ -598,7 +617,11 @@ void CObjPreparation::Action()
 		}
 		else if (m_Boss_vx[0] <= -1420.0f)
 		{
-			//ボス惑星が敵惑星を通過し、
+			//演出用のボス惑星1が画面外(左)に移動完了後、
+			//演出用のボス惑星2が画面外(左)から画面外(右)へと敵惑星2つの上を通りながら通過。
+			//通過タイミングで敵惑星をそれぞれ非表示にし、食べているように演出。
+
+			//ボス惑星が敵惑星の上を通過し、
 			//隠したタイミングで撃破フラグを立てる
 			if (m_Boss_vx[1] >= 1010.0f)
 			{
@@ -615,7 +638,10 @@ void CObjPreparation::Action()
 		}
 		else if (m_Boss_vx[0] > -1420.0f)
 		{
-			//ボス惑星が敵惑星を通過し、
+			//演出用のボス惑星1が画面外(右)から画面外(左)へと敵惑星の上を通りながら通過。
+			//通過タイミングで敵惑星を非表示にし、食べているように演出。
+
+			//ボス惑星が敵惑星の上を通過し、
 			//隠したタイミングで撃破フラグを立てる
 			if (m_Boss_vx[0] <= -820.0f)
 			{
@@ -628,12 +654,11 @@ void CObjPreparation::Action()
 		}
 	}
 
-	/*以下の戦闘準備画面開始演出のコメント結構適当なので、後でしっかり書き直す*/
 	//▼戦闘準備画面開始演出
-	//敵惑星が目的地に到達するまで以下の処理を実行
-	//※プレイヤー惑星、スペシャル技変更ウインドウは敵惑星を基準にタイミング調整している
+	//戦闘準備画面に入ると、まず以下の処理が実行される
 	else if (m_warning_message_y[0] < 30.0f)
 	{
+		//警告メッセージ移動完了後、
 		//ボス惑星出現カウントが0であれば、ボス惑星出現演出に移行する。
 		//そうでなければ、操作可能な状態にする。
 		//※ボス演出を既に見ている場合も操作可能な状態にする。
@@ -648,6 +673,10 @@ void CObjPreparation::Action()
 	}
 	else if (m_warning_message_alpha >= 1.2f)
 	{
+		//警告メッセージ完全表示後、
+		//警告メッセージサイズを徐々に小さくしながら、
+		//画面上部へと警告メッセージを移動させる
+
 		//ボス惑星出現時の処理
 		if (m_destroy_count == 4)
 		{
@@ -666,6 +695,7 @@ void CObjPreparation::Action()
 	}
 	else if (m_Evx <= -1100.0f)
 	{
+		//画面内移動完了後、
 		//警告メッセージを徐々に表示させる
 		//1.0f以上にする意味は、フォント移動までの時間調節もついでに行っている為。
 		if (m_warning_message_alpha < 1.2f)
@@ -675,11 +705,11 @@ void CObjPreparation::Action()
 	}
 	else if (m_Evx > -1100.0f)
 	{
-		//移動速度を各惑星のベクトルに加算、もしくは減算し
-		//惑星を所定の位置まで移動させる
-		m_Evx -= m_speed;		//画面外の右から左の方へ移動
-		m_Pvx += m_speed * 0.37;	//敵惑星ほど大きく移動する訳ではない為、0.37倍の値を加算。
-		m_Pvy -= m_speed * 0.37;	
+		//各惑星、スペシャル技アイコン、戻るボタン等を
+		//それぞれ画面外→画面内に移動させる
+		m_Evx -= m_speed;			//移動速度は共通の変数を使い、敵惑星を基準に設定している。
+		m_Pvx += m_speed * 0.37;	//例えばプレイヤー惑星は敵惑星ほど大きく移動する訳ではない為、
+		m_Pvy -= m_speed * 0.37;	//0.37倍の値を移動速度に加算して、移動量を調節している。
 		m_Svy -= m_speed * 0.37;
 		m_Bvx += m_speed * 0.065;
 		m_Bvy += m_speed * 0.065;
@@ -688,10 +718,10 @@ void CObjPreparation::Action()
 		if (m_destroy_count == 4)
 		{
 			m_Boss_vx[2] -= m_speed * 0.91;
-			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を設定する
+			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
 		}
 
-		//徐々にプレイヤー惑星、各敵惑星、スペシャル技アイコン等の移動速度を減少させる
+		//徐々に上記オブジェクトの画面内移動速度を減少させる
 		m_speed *= 0.956f;
 	}
 }
@@ -789,6 +819,7 @@ void CObjPreparation::Draw()
 	dst.m_bottom = -10.0f + m_Bvy;
 	Draw::Draw(56, &src, &dst, back, 0.0f);
 
+	//未撃破時のみ表示
 	if (destroy_progress[1] == false)
 	{
 		//▼敵惑星2(左から2番目の敵惑星)表示
@@ -816,6 +847,7 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 510.0f + m_Boss_vy[0];
 	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
+	//未撃破時のみ表示
 	if (destroy_progress[0] == false)
 	{
 		//▼敵惑星1(左から1番目の敵惑星)表示
@@ -831,6 +863,7 @@ void CObjPreparation::Draw()
 		Draw::Draw(1 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 	}
 
+	//未撃破時のみ表示
 	if (destroy_progress[2] == false)
 	{
 		//▼敵惑星3(左から3番目の敵惑星)表示
@@ -858,6 +891,7 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 500.0f + m_Boss_vy[1];
 	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
+	//未撃破時のみ表示
 	if (destroy_progress[3] == false)
 	{
 		//▼敵惑星4(左から4番目の敵惑星)表示
@@ -1009,78 +1043,74 @@ void CObjPreparation::Draw()
 //それに対応する敵惑星詳細説明を表示する。
 void CObjPreparation::Enemy_message(int enemy_id)
 {
-	//マウス選択中の敵惑星が未撃破の時、もしくはボス惑星の時のみ処理を行う
-	if (enemy_id == 4 || destroy_progress[enemy_id] == false)
+	//▽以下は各敵惑星毎に異なる値を代入する個別処理
+	if (enemy_id == 0)
 	{
-		//▽以下は各敵惑星毎に異なる値を代入する個別処理
-		if (enemy_id == 0)
+		//敵惑星詳細説明ウインドウのサイズを設定
+		m_detail_message_window_top = -85.0f;
+		m_detail_message_window_left = 20.0f;
+		m_detail_message_window_right = 320.0f;
+		m_detail_message_window_bottom = 85.0f;
+
+		//敵惑星詳細説明フォントの位置を設定
+		m_detail_message_font_x = 33.0f;
+		m_detail_message_font_y = -73.0f;
+	}
+	else if (enemy_id == 3)
+	{
+		//敵惑星詳細説明ウインドウのサイズを設定
+		m_detail_message_window_top = -85.0f;
+		m_detail_message_window_left = 0.0f;
+		m_detail_message_window_right = -300.0f;
+		m_detail_message_window_bottom = 85.0f;
+
+		//敵惑星詳細説明フォントの位置を設定
+		m_detail_message_font_x = -288.0f;
+		m_detail_message_font_y = -73.0f;
+	}
+	else  //(enemy_id == 1 || enemy_id == 2 || enemy_id == 4)
+	{
+		//敵惑星詳細説明ウインドウのサイズを設定
+		m_detail_message_window_top = 20.0f;
+		m_detail_message_window_left = -150.0f;
+		m_detail_message_window_right = 150.0f;
+		m_detail_message_window_bottom = 190.0f;
+
+		//敵惑星詳細説明フォントの位置を設定
+		m_detail_message_font_x = -138.0f;
+		m_detail_message_font_y = 33.0f;
+	}
+
+	//▽以下は各敵惑星関係なく行う共通処理
+	//敵惑星詳細説明フォント設定
+	swprintf_s(m_detail_message[0], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][0]);//文字配列に文字データを入れる
+	swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
+	swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
+	swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
+
+	m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
+
+
+	//左クリックされたらフラグを立て、最終確認ウインドウを開く
+	if (m_mou_l == true)
+	{
+		//左クリック押したままの状態では入力出来ないようにしている
+		if (m_key_lf == true)
 		{
-			//敵惑星詳細説明ウインドウのサイズを設定
-			m_detail_message_window_top = -85.0f;
-			m_detail_message_window_left = 20.0f;
-			m_detail_message_window_right = 320.0f;
-			m_detail_message_window_bottom = 85.0f;
+			m_key_lf = false;
 
-			//敵惑星詳細説明フォントの位置を設定
-			m_detail_message_font_x = 33.0f;
-			m_detail_message_font_y = -73.0f;
+			m_detail_message_alpha = 0.0f;//敵惑星詳細説明を非表示にする
+
+			g_Challenge_enemy = enemy_id;//マウス選択中の敵惑星識別番号を取得
+
+			m_finalcheck_f = true;//最終確認ウインドウを表示する
+
+			return;
 		}
-		else if (enemy_id == 3)
-		{
-			//敵惑星詳細説明ウインドウのサイズを設定
-			m_detail_message_window_top = -85.0f;
-			m_detail_message_window_left = 0.0f;
-			m_detail_message_window_right = -300.0f;
-			m_detail_message_window_bottom = 85.0f;
-
-			//敵惑星詳細説明フォントの位置を設定
-			m_detail_message_font_x = -288.0f;
-			m_detail_message_font_y = -73.0f;
-		}
-		else  //(enemy_id == 1 || enemy_id == 2 || enemy_id == 4)
-		{
-			//敵惑星詳細説明ウインドウのサイズを設定
-			m_detail_message_window_top = 20.0f;
-			m_detail_message_window_left = -150.0f;
-			m_detail_message_window_right = 150.0f;
-			m_detail_message_window_bottom = 190.0f;
-
-			//敵惑星詳細説明フォントの位置を設定
-			m_detail_message_font_x = -138.0f;
-			m_detail_message_font_y = 33.0f;
-		}
-
-		//▽以下は各敵惑星関係なく行う共通処理
-		//敵惑星詳細説明フォント設定
-		swprintf_s(m_detail_message[0], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][0]);//文字配列に文字データを入れる
-		swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
-		swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
-		swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
-
-		m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
-
-
-		//左クリックされたらフラグを立て、最終確認ウインドウを開く
-		if (m_mou_l == true)
-		{
-			//左クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
-			{
-				m_key_lf = false;
-
-				m_detail_message_alpha = 0.0f;//敵惑星詳細説明を非表示にする
-
-				g_Challenge_enemy = enemy_id;//マウス選択中の敵惑星識別番号を取得
-
-				m_finalcheck_f = true;//最終確認ウインドウを表示する
-
-				return;
-			}
-		}
-		else
-		{
-			m_key_lf = true;
-		}
+	}
+	else
+	{
+		m_key_lf = true;
 	}
 }
 
