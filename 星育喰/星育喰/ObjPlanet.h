@@ -36,6 +36,9 @@ private:
 	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
 	bool m_type;		//惑星タイプ(true主人公)
+
+	int m_time;
+	int m_attackf;
 	
 	int m_ani[4];
 	int m_ani_time;
