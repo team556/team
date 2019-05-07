@@ -64,7 +64,7 @@ void CObjFight::Action()
 		}
 		else {};//ライン外何もしない
 	}
-	else {};//範囲外の場合、初期値に戻す
+	else {};
 
 	if (m_end_f == true) {
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -86,6 +86,7 @@ void CObjFight::Action()
 		}
 	}
 
+	m_end_f = false;
 }
 
 //ドロー
