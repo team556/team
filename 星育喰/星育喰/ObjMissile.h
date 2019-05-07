@@ -23,7 +23,7 @@ private:
 
 	float m_r;		//ミサイル角度
 	float m_mov;	//
-	float m_mov_spd;//動く速さ(上下)
+	float m_mov_spd;//動く速さ
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
