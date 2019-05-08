@@ -44,7 +44,7 @@ private:
 	int m_ani_time;
 	int m_ani_frame;
 
-	bool m_eat_f;
+	bool m_eat_f;		//喰うフラグ(true = 喰う)
 	float m_eat_spd;
-	bool m_del_f;
+	bool m_del_f;		//消すフラグ(true = 消す)
 };

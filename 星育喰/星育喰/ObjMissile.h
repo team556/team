@@ -34,5 +34,5 @@ private:
 	int m_get_cnt;		//取得したカウント
 
 
-	bool m_type;		//生成時のタイプ
+	bool m_type;		//生成時のタイプ(true主人公)
 };

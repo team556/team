@@ -114,11 +114,11 @@ void CObjInstitute::Init()
 	m_alpha = INI_ALPHA;
 
 	//▼ミサイルリキャストタイム(RCT)設定
-	m_Mis_recast_time[0] = 5.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
-	m_Mis_recast_time[1] = 4.2f;//RCLvが1の時のRCT
-	m_Mis_recast_time[2] = 3.4f;//RCLvが2の時のRCT
-	m_Mis_recast_time[3] = 2.6f;//RCLvが3の時のRCT
-	m_Mis_recast_time[4] = 1.8f;//RCLvが4の時のRCT(最大レベル)
+	m_Mis_recast_time[0] = 10.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
+	m_Mis_recast_time[1] = 8.6f;//RCLvが1の時のRCT
+	m_Mis_recast_time[2] = 7.2f;//RCLvが2の時のRCT
+	m_Mis_recast_time[3] = 5.8f;//RCLvが3の時のRCT
+	m_Mis_recast_time[4] = 4.4f;//RCLvが4の時のRCT(最大レベル)
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究所レベル設定
 	m_Mis_recast_next_Ins_Lv[0] = 1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
