@@ -68,6 +68,9 @@ void CSceneFight::InitScene()
 
 	//15番に登録
 	Draw::LoadImage(L"ミサイルボタン(仮).png", 15, TEX_SIZE_512);
+
+	//16番に爆発エフェクトを登録
+	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
 	
 
 	//出力させる文字のグラフィックを作成
