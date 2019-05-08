@@ -303,7 +303,6 @@
     <ClInclude Include="ScenePreparation.h">
       <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ObjFightClear.h">
       <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClInclude>

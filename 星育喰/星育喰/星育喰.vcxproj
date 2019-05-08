@@ -195,7 +195,6 @@
     <ClInclude Include="ObjTraining.h" />
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneHome.h" />
-    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="ScenePreparation.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
