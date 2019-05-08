@@ -159,4 +159,6 @@ void CObjFight::Draw()
 	dst.m_right =800.0f;
 	dst.m_bottom=480.0f;
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
+
+	//if()
 }
