@@ -70,7 +70,7 @@ void CObjPushMissile::Action()
 	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj->GetCount() == 0) {	//ŠÔØ‚ê‚Å
+	if (obj->GetCount() <= 60) {	//ŠÔØ‚ê‚Å
 		m_mou_f = true;			//ƒ}ƒEƒX–³Œø
 		m_a -= 0.03f;				//“§–¾‰»
 		if (m_a > 0.0f)

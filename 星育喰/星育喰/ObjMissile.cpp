@@ -10,6 +10,8 @@
 #include "UtilityModule.h"
 #include "ObjMissile.h"
 
+#include <time.h>
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -24,15 +26,29 @@ CObjMissile::CObjMissile(float x, float y, bool type)
 //イニシャライズ
 void CObjMissile::Init()
 {
-	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj != nullptr) {					//情報が取得出来ていたら
-		m_get_line = obj->GetLine();		//ラインナンバーを取得
+	if (m_type == true) {
+		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		if (obj != nullptr) {					//情報が取得出来ていたら
+			m_get_line = obj->GetLine();		//ラインナンバーを取得
+			if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
+			else if (m_get_line == 2) { m_y = 420; }
+
+			m_get_cnt = obj->GetCount();		//カウントを取得
+			m_x -= obj->GetCount() / 10;
+			m_mov_spd = 0.5f / obj->GetCount();
+		}
+	}
+	else {
+		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
+		srand(time(NULL));
+		m_get_line = rand() % 3 + 1;
 		if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
-		else if(m_get_line == 2){ m_y = 420; }
+		else if (m_get_line == 2) { m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
 		m_x -= obj->GetCount() / 10;
-		m_mov_spd = 0.5f / obj->GetCount();
+		m_mov_spd = 1.0f / obj->GetCount();
 	}
 
 	m_size = 50.0f;//サイズ
@@ -68,7 +84,7 @@ void CObjMissile::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 	
-	m_mov += m_mov_spd;
+	m_mov += m_mov_spd / 2;
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -92,7 +108,7 @@ void CObjMissile::Action()
 	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
 		m_vx -= 0.3f;
-		m_vy -= (-0.2 + m_mov);
+		m_vy += (-0.2 + m_mov);
 	}
 	else if (m_get_line == 1)//---------------中ライン-----
 	{
@@ -101,17 +117,17 @@ void CObjMissile::Action()
 	else//if(m_get_line == 2)---------------下ライン------
 	{
 		m_vx -= 0.3f;
-		
+		m_vy -= (-0.2 + m_mov);
 	}
 	
 	//-----------------------座標更新
 	if (m_type == true) {
-		m_x += m_vx;
+		m_x += m_vx - m_mov_spd * 200;
 		m_y += m_vy;
 	}
 	else {
-		m_x -= m_vx;
-		m_y -= m_vy;
+		m_x -= m_vx - m_mov_spd * 200;
+		m_y += m_vy;
 	}
 
 
@@ -153,7 +169,13 @@ void CObjMissile::Draw()
 	dst.m_right = m_x + m_size;
 	dst.m_bottom= m_y + m_size;
 	
-	m_r -= 0.05;
-	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, d, m_r+15);
+	if (m_type == true) {
+		m_r += 0.05 + m_mov_spd * 2;
+		Draw::Draw(2, &src, &dst, d, m_r - 15);
+	}
+	else {
+		m_r -= 0.05 - m_mov_spd * 2;
+		Draw::Draw(2, &src, &dst, d, m_r + 15);
+	}
+	
 }

@@ -30,8 +30,6 @@ private:
 
 	float m_Pvx;	//プレイヤー惑星の移動用ベクトルX
 	float m_Pvy;	//プレイヤー惑星の移動用ベクトルY
-	//float m_boost;	//プレイヤー惑星のX移動速度上昇用
-	//float m_rx;		//サインカーブ用の角度(プレイヤー惑星x移動に使用)
 	float m_Pr;		//サインカーブ用の角度(プレイヤー惑星y移動に使用)
 	float m_Psize;	//プレイヤー惑星のサイズ
 

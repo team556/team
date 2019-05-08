@@ -8,6 +8,8 @@
 #include "GameHead.h"
 #include "ObjPlanet.h"
 
+#include <time.h>
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -43,10 +45,10 @@ void CObjPlanet::Init()
 	else
 		m_px -= (fit->GetCount() / 30);
 
-	m_ani[0] = 3;//アニメーションデータの初期化
-	m_ani[1] = 4;
-	m_ani[2] = 5;
-	m_ani[3] = 4;
+	m_ani[0] = 0;//アニメーションデータの初期化
+	m_ani[1] = 1;
+	m_ani[2] = 2;
+	m_ani[3] = 1;
 	m_ani_frame = 0;
 	m_ani_time = 0;
 
@@ -104,9 +106,9 @@ void CObjPlanet::Action()
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			if (m_type == true) {
 				m_hp -= 1;//
-				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
-				if(ene != nullptr)
-					m_get_hp = ene->GetHp();
+				CObjPlanet* ene2 = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
+				if(ene2 != nullptr)
+					m_get_hp = ene2->GetHp();
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
@@ -139,9 +141,9 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
 		if (m_type == true)
-			m_px -= m_mov_spd + m_eat_spd/140;
+			m_px -= m_mov_spd + m_eat_spd/160;
 		else
-			m_px += m_mov_spd + m_eat_spd/140;
+			m_px += m_mov_spd + m_eat_spd/160;
 		
 	//-------------------------------------------------------------
 
@@ -166,6 +168,39 @@ void CObjPlanet::Action()
 		this->SetStatus(false);	 //オブジェクト削除
 		Hits::DeleteHitBox(this);//HitBox削除
 	}
+
+	if (m_type == false)
+	{
+		srand(time(NULL));
+		m_attackf = rand() % 4 + 1;
+
+		if (m_attackf == 1 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+		else if (m_attackf == 2 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+		else if (m_attackf == 3 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+		else if (m_attackf == 4 && m_time <= 0)
+		{
+			CObjMissile* M = new CObjMissile(575, 200, false);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+			m_time = 200;
+		}
+
+		m_time--;
+	}
 }
 
 //ドロー
@@ -176,9 +211,9 @@ void CObjPlanet::Draw()
 	RECT_F dst;
 	//切り取り位置
 	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right = 62.0f;
-	src.m_bottom= 62.0f;
+	src.m_left  = m_ani[m_ani_frame] * 64.0f;
+	src.m_right = m_ani[m_ani_frame] * 64.0f + 64.0f;
+	src.m_bottom= 64.0f;
 	//表示位置
 	if(m_get_siz == 0){
 		dst.m_top   = m_py - m_siz_vec - m_size;//300
@@ -194,5 +229,5 @@ void CObjPlanet::Draw()
 	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(m_ani[m_ani_frame], &src, &dst, c, 0.0f);
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 }
