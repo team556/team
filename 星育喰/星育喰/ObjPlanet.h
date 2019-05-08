@@ -4,7 +4,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：タイトル
+//オブジェクト：惑星(プレイヤー & 敵)
 class CObjPlanet :public CObj
 {
 public:
