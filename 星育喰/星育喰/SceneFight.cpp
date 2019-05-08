@@ -51,8 +51,11 @@ void CSceneFight::InitScene()
 	//5番に登録
 	//Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
 
-	//10番に登録
-	Draw::LoadImage(L"w.png", 10, TEX_SIZE_512);
+	//10番に登録赤色ポッド
+	Draw::LoadImage(L"ポッド1.png", 10, TEX_SIZE_512);
+
+	//16番目に登録青色ポッド
+	Draw::LoadImage(L"ポッド2.png", 16, TEX_SIZE_512);
 	
 	//11番に登録
 	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
