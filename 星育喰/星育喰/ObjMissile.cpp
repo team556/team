@@ -39,7 +39,6 @@ void CObjMissile::Init()
 			m_get_cnt = obj->GetCount();		//カウントを取得
 			//m_psize = obj2->GetSiz();			//サイズを取得
 			//m_x +=obj2->GetX() - m_psize;
-			m_x += obj->GetCount() / 10;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
@@ -53,7 +52,6 @@ void CObjMissile::Init()
 		else if (m_get_line == 2) { m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_x -= obj->GetCount() / 10;
 		m_mov_spd = 1.0f / obj->GetCount();
 	}
 
@@ -75,11 +73,9 @@ void CObjMissile::Init()
 	//当たり判定用HitBox作成
 	if (m_type == false) {
 		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
-		m_x -= 100;
 	}
 	else {
 		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
-		m_x += 100;
 	}
 
 }
