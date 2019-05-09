@@ -60,16 +60,14 @@ void CObjPushUnit::Action()
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
-
-
-			if (Button_num == 2)
+			else if (Button_num == 2)
 			{
 				//オブジェクト作成
 				CObjMissile* M = new CObjMissile(745, 200, true, 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
-			if (Button_num == 3)
+			else if (Button_num == 3)
 			{
 				//オブジェクト作成
 				CObjMissile* M = new CObjMissile(745, 200, true, 3);//オブジェクト作成
@@ -77,10 +75,10 @@ void CObjPushUnit::Action()
 
 			}
 
-			if (Button_num == 4)
+			else if (Button_num == 4)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(745, 200, true, 3);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(745, 200, true, 4);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 			}
 
@@ -128,27 +126,23 @@ void CObjPushUnit::Draw()
 	dst.m_right = m_x + m_w;
 	dst.m_bottom= m_y + m_h;
 
-	if (Button_num == 1)
-	{
+
+	switch (Button_num){
+	case 1:
 		//11番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(11, &src, &dst, c, 0.0f);
-	}
-
-	if (Button_num == 2)
-	{
+		break;
+	case 2:
 		//12番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(12, &src, &dst, c, 0.0f);
-	}
-	
-	if (Button_num == 3)
-	{
+		break;
+	case 3:
 		//13番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(13, &src, &dst, c, 0.0f);
-	}
-
-	if (Button_num == 4)
-	{
+		break;
+	case 4:
 		//14番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
+		break;
 	}
 }
