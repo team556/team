@@ -37,8 +37,9 @@ void CObjMissile::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_psize = obj2->GetSiz();			//サイズを取得
-			m_x +=obj2->GetX() - m_psize;
+			//m_psize = obj2->GetSiz();			//サイズを取得
+			//m_x +=obj2->GetX() - m_psize;
+			m_x += obj->GetCount() / 10;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
@@ -113,7 +114,7 @@ void CObjMissile::Action()
 	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
 		m_vx -= 0.3f;
-		m_vy += (-0.15 + m_mov);
+		m_vy += (-0.09 + m_mov);
 	}
 	else if (m_get_line == 1)//---------------中ライン-----
 	{
@@ -122,7 +123,7 @@ void CObjMissile::Action()
 	else//if(m_get_line == 2)---------------下ライン------
 	{
 		m_vx -= 0.3f;
-		m_vy -= (-0.15 + m_mov);
+		m_vy -= (-0.09 + m_mov);
 	}
 	
 	//-----------------------座標更新

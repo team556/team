@@ -56,21 +56,21 @@ void CObjPushUnit::Action()
 			if (Button_num == 1)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(745, 200, true,1);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true,1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
 			else if (Button_num == 2)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(745, 200, true, 2);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
 			else if (Button_num == 3)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(745, 200, true, 3);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 3);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
@@ -78,7 +78,7 @@ void CObjPushUnit::Action()
 			else if (Button_num == 4)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(745, 200, true, 4);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 3);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 			}
 

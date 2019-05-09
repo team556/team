@@ -66,6 +66,9 @@ void CObjFight::Action()
 	}
 	else {};
 
+	//▼戦闘終了時処理
+	//プレイヤー惑星、敵惑星のHPをそれぞれ取得し、比べ、
+	//HPが多い方の惑星画像が手前に来るようにする
 	if (m_end_f == true) {
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		if (ene != nullptr)
@@ -162,4 +165,12 @@ void CObjFight::Draw()
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
 
 	//if()
+
+
+
+	//デバッグ用仮マウス位置表示
+	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+	wchar_t test_mou[256];
+	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }

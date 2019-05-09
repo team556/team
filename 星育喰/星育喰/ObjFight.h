@@ -33,8 +33,8 @@ private:
 
 	bool m_end_f;		//終わったフラグ
 
-	float m_hp;
-	float m_hp2;
+	float m_hp;			//敵惑星HP
+	float m_hp2;		//プレイヤー惑星HP
 	float m_ex;
 	float m_ey;
 };

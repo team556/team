@@ -153,6 +153,7 @@ void CObjPlanet::Action()
 				2 * m_siz_vec + m_size * 2,
 				2 * m_siz_vec + m_size * 2);
 
+	//▼ダメージ処理
 	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
 	{							//ミサイルに当たった場合
 		m_hp -= 1;				//HP-1
@@ -169,6 +170,7 @@ void CObjPlanet::Action()
 		Hits::DeleteHitBox(this);//HitBox削除
 	}
 
+	//▼敵惑星攻撃パターン
 	if (m_type == false)
 	{
 		srand(time(NULL));
