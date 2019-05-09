@@ -52,14 +52,43 @@ void CObjPushUnit::Action()
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
 		if (m_mou_f == false) {
-			//オブジェクト作成
-			CObjMissile* M = new CObjMissile(575,200,true);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+
+			if (Button_num == 1)
+			{
+				//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true,1);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+
+			}
+
+
+			if (Button_num == 2)
+			{
+				//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 2);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+
+			}
+			if (Button_num == 3)
+			{
+				//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 3);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+
+			}
+
+			if (Button_num == 4)
+			{
+				//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 3);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+			}
 
 			m_mou_f = true;
 			m_a = 0.3f;		//透明化
 		}
 	}
+
 	else{}
 
 	if (m_mou_f == true) {	//クリックした後の処理

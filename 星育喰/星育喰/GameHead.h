@@ -25,6 +25,8 @@ enum OBJ_NAME
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
 	OBJ_FIGHT_MISSILE,
+	OBJ_POD,
+	OBJ_ENEMYPOD,
 
 };
 //------------------------------------------------
@@ -47,6 +49,8 @@ enum HIT_ELEMENTS
 	ELEMENT_WHITE,
 	ELEMENT_FACILITY,
 	ELEMENT_BUILD,
+	ELEMENT_POD,
+	ELEMENT_ENEMYPOD,
 };
 //------------------------------------------------
 
@@ -118,7 +122,7 @@ extern bool g_key_fg;//
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
 #include "ObjPushMissile.h"
-
+#include "ObjPod.h"
 
 //------------------------------------------------
 

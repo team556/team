@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjMissile :public CObj
 {
 public:
-	CObjMissile(float x, float y,bool type);
+	CObjMissile(float x, float y,bool type,int n);
 	~CObjMissile() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -33,6 +33,8 @@ private:
 
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
+
+	int ButtonU;
 
 
 	bool m_type;		//生成時のタイプ(true主人公)
