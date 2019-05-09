@@ -103,7 +103,7 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
 
 	//ミサイル発射ボタン
-	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 200, 100);	//オブジェクト作成
+	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 100, 200);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
 }
 
