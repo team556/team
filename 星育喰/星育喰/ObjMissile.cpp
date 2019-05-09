@@ -36,8 +36,9 @@ void CObjMissile::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_psize = obj2->GetSiz();			//サイズを取得
-			m_x +=obj2->GetX() - m_psize;
+			//m_psize = obj2->GetSiz();			//サイズを取得
+			//m_x +=obj2->GetX() - m_psize;
+			m_x += obj->GetCount() / 10;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
