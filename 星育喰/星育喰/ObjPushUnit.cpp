@@ -125,8 +125,8 @@ void CObjPushUnit::Draw()
 	
 	dst.m_top   = m_y;
 	dst.m_left  = m_x;
-	dst.m_right = m_x + m_h;
-	dst.m_bottom= m_y + m_w;
+	dst.m_right = m_x + m_w;
+	dst.m_bottom= m_y + m_h;
 
 	if (Button_num == 1)
 	{

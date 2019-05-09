@@ -29,19 +29,22 @@ void CObjMissile::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		CObjPlanet * obj2 = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+
 		if (obj != nullptr) {					//情報が取得出来ていたら
 			m_get_line = obj->GetLine();		//ラインナンバーを取得
 			if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_x -= obj->GetCount() / 10;
-			m_mov_spd = 0.5f / obj->GetCount();
-
+			m_psize = obj2->GetSiz();			//サイズを取得
+			m_x +=obj2->GetX() - m_psize;
+			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
 	else {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		CObjPlanet * obj2 = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 		srand(time(NULL));
 		m_get_line = rand() % 3 + 1;
@@ -110,7 +113,7 @@ void CObjMissile::Action()
 	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
 		m_vx -= 0.3f;
-		m_vy += (-0.2 + m_mov);
+		m_vy += (-0.15 + m_mov);
 	}
 	else if (m_get_line == 1)//---------------中ライン-----
 	{
@@ -119,7 +122,7 @@ void CObjMissile::Action()
 	else//if(m_get_line == 2)---------------下ライン------
 	{
 		m_vx -= 0.3f;
-		m_vy -= (-0.2 + m_mov);
+		m_vy -= (-0.15 + m_mov);
 	}
 	
 	//-----------------------座標更新
