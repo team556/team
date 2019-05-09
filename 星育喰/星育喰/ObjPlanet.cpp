@@ -117,6 +117,7 @@ void CObjPlanet::Action()
 			if (m_hp > m_get_hp) {
 				m_eat_f = true;		//喰うフラグ有効
 				fit->SetEndF();
+				battle_end = true;	//戦闘終了フラグを立てる
 			}
 		}
 	}

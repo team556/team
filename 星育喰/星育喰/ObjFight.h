@@ -37,4 +37,8 @@ private:
 	float m_hp2;		//プレイヤー惑星HP
 	float m_ex;
 	float m_ey;
+
+protected:
+	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前)
+	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
 };

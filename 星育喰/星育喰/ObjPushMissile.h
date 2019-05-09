@@ -1,11 +1,12 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "ObjFight.h"	//基底クラスとして定義するため読み込む
 //使用するネームスペース
 using namespace GameL;
 
 //オブジェクト：ミサイルボタン
-class CObjPushMissile :public CObj
+class CObjPushMissile :public CObjFight //CObjFightを継承する
 {
 public:
 	CObjPushMissile(float x, float y, float h, float w);
