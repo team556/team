@@ -15,10 +15,10 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 
-	float GetX() { return m_px; }
-	float GetY() { return m_px; }
+	//float GetX() { return m_px; }
+	//float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//カウント数を返す
-	float GetSiz() { return (m_siz_vec + m_size); }
+	//float GetSiz() { return (m_siz_vec + m_size); }
 	void SetEeatF() { m_eat_f = true; }//セット喰うフラグ
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
