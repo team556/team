@@ -156,12 +156,12 @@ void CObjPlanet::Action()
 	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
 	{							//ミサイルに当たった場合
 		m_hp -= 1;				//HP-1
-		m_size -= m_size / 10;	//サイズ減少
+		m_size -= m_size / 20;	//サイズ減少
 	}
 	else if ((hit->CheckElementHit(ELEMENT_RED) == true) && (m_type == true) && (m_hp > 0))
 	{
 		m_hp -= 1;				//HP-1
-		m_size -= m_size / 10;	//サイズ減少
+		m_size -= m_size / 20;	//サイズ減少
 	}
 
 	if (m_del_f == true) {				//消すフラグ判定＆処理

@@ -81,13 +81,13 @@ void CObjPushUnit::Action()
 			else if (Button_num == 4)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(575, 200, true, 4);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575 + m_create_x , 200, true, 4);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 5)
 			{
-				CObjMissile* M = new CObjMissile(575, 200, true, 5);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575 + m_create_x , 200, true, 5);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 			}
 
