@@ -114,7 +114,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjBarracks.cpp" />
-    <ClCompile Include="ObjEnemyPod.cpp" />
     <ClCompile Include="ObjFightClear.cpp" />
     <ClCompile Include="ObjFightOver.cpp" />
     <ClCompile Include="ObjInstitute.cpp">
@@ -160,7 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjBarracks.h" />
-    <ClInclude Include="ObjEnemyPod.h" />
     <ClInclude Include="ObjFightClear.h" />
     <ClInclude Include="ObjFightOver.h" />
     <ClInclude Include="ObjInstitute.h">

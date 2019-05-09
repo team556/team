@@ -49,15 +49,35 @@ void CObjPod::Init()
 
 	m_mou_f = false;//マウスフラグ
 
-					//当たり判定用HitBox作成
+	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_ENEMYPOD, 1);
 		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_POD, 1);
 		m_x += 100;
 	}
+
+	//HitBoxの内容を更新
+	CHitBox* hit = Hits::GetHitBox(this);	//作成したHitBox更新用の入り口を取り出す
+	hit->SetPos(m_x, m_y);					//入り口から新しい(主人公機の位置)情報に置き換える
+
+	//ELEMENT_ENEMYPODを持つ敵ポッドと接触したらプレイヤーポッド削除
+	if (hit->CheckElementHit(OBJ_POD) == true)
+	{
+		this->SetStatus(false);		//自身に削除命令を出す
+		Hits::DeleteHitBox(this);	//主人公機が所有するHitBoxに削除する
+	}
+
+	//ELEMENT_PODを持つポッドと接触したら敵ポッド削除
+	if (hit->CheckElementHit(OBJ_ENEMYPOD) == true)
+	{
+		this->SetStatus(false);		//自身に削除命令を出す
+		Hits::DeleteHitBox(this);	//主人公機が所有するHitBoxに削除する
+	}
+
+
 
 }
 
@@ -131,6 +151,19 @@ void CObjPod::Action()
 			Hits::DeleteHitBox(this);
 		}
 	}
+
+	//プレイヤーと敵のポッドの距離が30px以下の時エフェクトを出す
+	if (ELEMENT_ENEMYPOD < 30.0f == true)
+	{
+
+	}
+
+	//プレイヤーと敵のポッドの距離が30px以下の時エフェクトを出す
+	if (ELEMENT_POD < 30.0f == true)
+	{
+
+	}
+
 }
 
 //ドロー
@@ -155,4 +188,44 @@ void CObjPod::Draw()
 	m_r -= 0.05;
 	//2番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(2, &src, &dst, d, m_r + 15);
+
+	//プレイヤーと敵のポッドの距離が30px以下の時エフェクトを出す
+	if (ELEMENT_ENEMYPOD > 30.0f == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
+
+		m_r -= 0.05;
+		//16番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(16, &src, &dst, d, m_r + 15);
+
+	}
+
+	//プレイヤーと敵のポッドの距離が30px以下の時エフェクトを出す
+	if (ELEMENT_POD > 30.0f == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
+
+		m_r -= 0.05;
+		//16番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(16, &src, &dst, d, m_r + 15);
+
+	}
+
+
 }

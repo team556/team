@@ -184,9 +184,6 @@
     <ClCompile Include="ObjPod.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
-    <ClCompile Include="ObjEnemyPod.cpp">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -319,9 +316,6 @@
       <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
     <ClInclude Include="ObjPod.h">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjEnemyPod.h">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
   </ItemGroup>
