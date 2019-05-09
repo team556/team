@@ -175,7 +175,7 @@ void CObjPlanet::Action()
 	{
 		srand(time(NULL));
 		m_attackf = rand() % 4 + 1;
-
+		
 		if (m_attackf == 1 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575, 200, false,1);//オブジェクト作成
