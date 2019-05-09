@@ -47,4 +47,6 @@ private:
 	bool m_eat_f;		//喰うフラグ(true = 喰う)
 	float m_eat_spd;
 	bool m_del_f;		//消すフラグ(true = 消す)
+
+	int m_cntf;
 };
