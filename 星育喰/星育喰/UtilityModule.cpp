@@ -1,7 +1,9 @@
 //使用するヘッダー
 #include <math.h>   //数学計算ヘッダー
+#include <time.h>
 #include "GameL\DrawTexture.h"
-#include "time.h"
+#include "UtilityModule.h"
+
 //使用するネームスペース
 using namespace GameL;
 bool UnitVec(float* vx, float* vy)
@@ -136,3 +138,4 @@ int Rand(int n_min, int n_max)
 	srand((unsigned int)time(NULL));
 	return rand() % n_max + n_min;
 }
+
