@@ -16,11 +16,12 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjMissile::CObjMissile(float x, float y, bool type)
+CObjMissile::CObjMissile(float x, float y, bool type,int n)
 {
 	m_x = x;
 	m_y = y;
 	m_type = type;
+	ButtonU = n;
 }
 
 //イニシャライズ
@@ -28,18 +29,22 @@ void CObjMissile::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		CObjPlanet * obj2 = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+
 		if (obj != nullptr) {					//情報が取得出来ていたら
 			m_get_line = obj->GetLine();		//ラインナンバーを取得
 			if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_x -= obj->GetCount() / 10;
-			m_mov_spd = 0.5f / obj->GetCount();
+			m_psize = obj2->GetSiz();			//サイズを取得
+			m_x +=obj2->GetX() - m_psize;
+			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
 	else {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		CObjPlanet * obj2 = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 		srand(time(NULL));
 		m_get_line = rand() % 3 + 1;
@@ -154,28 +159,66 @@ void CObjMissile::Action()
 void CObjMissile::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };
+	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
+	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f };
+
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
-	
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
-	
-	dst.m_top   = m_y;
-	dst.m_left  = m_x;
-	dst.m_right = m_x + m_size;
-	dst.m_bottom= m_y + m_size;
-	
-	if (m_type == true) {
-		m_r += 0.05 + m_mov_spd * 2;
-		Draw::Draw(2, &src, &dst, d, m_r - 15);
+
+	//赤ボタンを押された時の描画情報
+	if (ButtonU == 1){
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
 	}
 	else {
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 100.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
+	}
+	
+	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
+		m_r += 0.05 + m_mov_spd * 2;
+		if (ButtonU == 1)
+		{
+			Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤
+		}
+		else if (ButtonU == 2)
+		{
+			Draw::Draw(10, &src, &dst, b, m_r + 180);  //青
+		}
+		else if (ButtonU == 3)
+		{
+			Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑
+		}
+		else if (ButtonU == 4)
+		{
+			Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色
+		}
+		//Draw::Draw(10, &src, &dst, d, m_r - 15);
+	}
+	//else if (m_type == true&&)
+	//{
+
+	//}
+	else {
 		m_r -= 0.05 - m_mov_spd * 2;
-		Draw::Draw(2, &src, &dst, d, m_r + 15);
+		Draw::Draw(10, &src, &dst, d, m_r + 15);
 	}
 	
 }

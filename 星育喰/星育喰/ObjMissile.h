@@ -4,11 +4,11 @@
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：タイトル
+//オブジェクト：ミサイル
 class CObjMissile :public CObj
 {
 public:
-	CObjMissile(float x, float y,bool type);
+	CObjMissile(float x, float y,bool type,int n);
 	~CObjMissile() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -24,6 +24,7 @@ private:
 	float m_r;		//ミサイル角度
 	float m_mov;	//
 	float m_mov_spd;//動く速さ
+	float m_psize;
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -33,6 +34,8 @@ private:
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
 
+	int ButtonU;
 
-	bool m_type;		//生成時のタイプ
+
+	bool m_type;		//生成時のタイプ(true主人公)
 };

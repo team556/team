@@ -51,8 +51,11 @@ void CSceneFight::InitScene()
 	//5番に登録
 	//Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
 
-	//10番に登録
-	Draw::LoadImage(L"w.png", 10, TEX_SIZE_512);
+	//10番に登録赤色ポッド
+	Draw::LoadImage(L"ポッド1.png", 10, TEX_SIZE_512);
+
+	//16番目に登録青色ポッド
+	Draw::LoadImage(L"ポッド2.png", 16, TEX_SIZE_512);
 	
 	//11番に登録
 	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
@@ -76,13 +79,13 @@ void CSceneFight::InitScene()
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
-	//テストオブジェクト作成
-	CObjFight* obj = new CObjFight();		//タイトルオブジェクト作成
-	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//タイトルオブジェクト登録
+	//戦闘画面オブジェクト作成
+	CObjFight* obj = new CObjFight();		//戦闘画面オブジェクト作成
+	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//戦闘画面オブジェクト登録
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, false);	//オブジェクト作成
-	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//ブジェクト登録
+	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
 
 	//自星オブジェクト作成
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, true);	//オブジェクト作成
@@ -90,7 +93,7 @@ void CSceneFight::InitScene()
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, false);	//オブジェクト作成
-	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//ブジェクト登録
+	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//オブジェクト登録
 
 	//民発射ボタン
 	CObjPushUnit* obj2 = new CObjPushUnit(500, 600, 100, 100, 1);	//オブジェクト作成
@@ -106,7 +109,7 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
 
 	//ミサイル発射ボタン
-	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 200, 100);	//オブジェクト作成
+	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 100, 200);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
 }
 
