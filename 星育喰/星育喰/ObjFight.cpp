@@ -10,6 +10,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//static変数の定義
+bool CObjFight::battle_start = false;
+bool CObjFight::battle_end = false;
+
 //イニシャライズ
 void CObjFight::Init()
 {
@@ -30,6 +34,10 @@ void CObjFight::Init()
 	m_hp2 = 0;
 	m_ex = 0;
 	m_ey = 0;
+
+	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
+	battle_start = false;
+	battle_end = false;
 }
 
 //アクション
