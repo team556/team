@@ -81,7 +81,13 @@ void CObjPushUnit::Action()
 			else if (Button_num == 4)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true, 3);//オブジェクト作成
+				CObjMissile* M = new CObjMissile(575, 200, true, 4);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+			}
+
+			else if (Button_num == 5)
+			{
+				CObjMissile* M = new CObjMissile(575, 200, true, 5);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 			}
 
@@ -119,33 +125,48 @@ void CObjPushUnit::Draw()
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 	
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =156.0f;
-	src.m_bottom=156.0f;
-	
-	dst.m_top   = m_y;
-	dst.m_left  = m_x;
-	dst.m_right = m_x + m_w;
-	dst.m_bottom= m_y + m_h;
+	//ボタン入力が1～4の時の切り取り位置
+	if (Button_num >= 1 && Button_num <= 4)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 156.0f;
+		src.m_bottom = 156.0f;
+	}
+	//それ以外ならミサイルの切り取り位置
+	else
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 300.0f;
+		src.m_bottom = 180.0f;
+	}
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_w;
+		dst.m_bottom = m_y + m_h;
 
-
+	//ポッド・ミサイルの表示するためのswitch文
 	switch (Button_num){
-	case 1:
+	case 1:                 //-------------------------赤色ボタン
 		//11番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(11, &src, &dst, c, 0.0f);
 		break;
-	case 2:
+	case 2:                 //-------------------------青色ボタン
 		//12番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(12, &src, &dst, c, 0.0f);
 		break;
-	case 3:
+	case 3:                 //-------------------------緑色ボタン
 		//13番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(13, &src, &dst, c, 0.0f);
 		break;
-	case 4:
+	case 4:                 //-------------------------灰色ボタン
 		//14番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(14, &src, &dst, c, 0.0f);
+		break;
+	case 5:                 //-------------------------ミサイルボタン
+		//15番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(15, &src, &dst, c, 0.0f);
 		break;
 	}
 }

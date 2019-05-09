@@ -38,7 +38,7 @@ void CObjPlanet::Init()
 
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
-	m_siz_spd = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
+	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
 
 	if (m_type == true)
 		m_px += (fit->GetCount() / 30);
@@ -51,7 +51,7 @@ void CObjPlanet::Init()
 	m_ani[3] = 1;
 	m_ani_frame = 0;
 	m_ani_time = 0;
-
+	m_cntf = 0;
 	m_eat_f = false;	//喰うフラグ(true = 喰う)
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
@@ -68,7 +68,7 @@ void CObjPlanet::Action()
 {
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (fit->GetCount() != 0)		//対戦時間が0でない場合
-		m_siz_vec += m_siz_spd; //拡大非をベクトルに加算
+		/*m_siz_vec += m_siz_spd*/; //拡大非をベクトルに加算
 
 
 	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
@@ -76,8 +76,7 @@ void CObjPlanet::Action()
 		|| (hit->CheckElementHit(ELEMENT_PLAYER) == true))	//お互い当たっているかつ
 		&& (m_cnt < (2.5 * 60) * m_mov_spd)) {		//2.5秒カウントしてない場合
 		m_cnt++;
-	}
-
+	}	
 
 	//-------------------------------------------------アニメーション、星の動き
 	if (m_ani_time == 60) {	//フレーム切り替え時間
@@ -126,7 +125,7 @@ void CObjPlanet::Action()
 	if (m_eat_f == true) {	//食べるフラグ★処理
 		m_ani_time++;		//ani_time 加算
 		if ((m_ani_frame == 3) && (m_ani_time == 1)) {//口閉じた瞬間
-			m_size += m_size;					//サイズ変更(倍)
+			m_size = m_size*1.5f;					//サイズ変更(1.5倍)
 			if (m_type == true) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
@@ -142,17 +141,17 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
 		if (m_type == true)
-			m_px -= m_mov_spd + m_eat_spd/160;
+			m_px -= 2.0f;
 		else
-			m_px += m_mov_spd + m_eat_spd/160;
+			m_px += 2.0f;
 		
 	//-------------------------------------------------------------
 
 	
-	hit->SetPos(m_px - m_siz_vec - m_size,	//HitBox更新
-				m_py - m_siz_vec - m_size,		
-				2 * m_siz_vec + m_size * 2,
-				2 * m_siz_vec + m_size * 2);
+	hit->SetPos(m_px - m_siz_vec - m_size * 2,	//HitBox更新
+				m_py - m_siz_vec - m_size * 2,		
+				2 * m_siz_vec + m_size * 4,
+				2 * m_siz_vec + m_size * 4);
 
 	//▼ダメージ処理
 	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
@@ -180,7 +179,7 @@ void CObjPlanet::Action()
 
 		srand(time(NULL));
 		m_attackf = rand() % 4 + 1;
-
+		
 		if (m_attackf == 1 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
@@ -208,6 +207,22 @@ void CObjPlanet::Action()
 
 		m_time--;
 	}
+
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	m_cntf = obj->GetCount();	//CObjFightのカウント数を持ってくる
+
+	if (m_cntf <= 0)			//カウント数が0以下になったら
+	{
+		if (m_cnt < m_mov_spd)	//惑星同士が重なっていないとき
+		{
+			if (m_type == true)
+				m_px -= 1.0f;
+				
+			else
+				m_px += 1.0f;
+		}
+	}
+
 }
 
 //ドロー
@@ -223,10 +238,15 @@ void CObjPlanet::Draw()
 	src.m_bottom= 64.0f;
 	//表示位置
 	if(m_get_siz == 0){
-		dst.m_top   = m_py - m_siz_vec - m_size;//300
-		dst.m_left  = m_px - m_siz_vec - m_size;//800
-		dst.m_right = m_px + m_siz_vec + m_size;
-		dst.m_bottom= m_py + m_siz_vec + m_size;
+		//dst.m_top   = m_py - m_siz_vec - m_size;//300
+		//dst.m_left  = m_px - m_siz_vec - m_size;//800
+		//dst.m_right = m_px + m_siz_vec + m_size;
+		//dst.m_bottom= m_py + m_siz_vec + m_size;
+
+		dst.m_top = m_py - m_size * 2;//300
+		dst.m_left = m_px -m_size * 2;//800
+		dst.m_right = m_px +m_size * 2;
+		dst.m_bottom = m_py +m_size * 2;
 	}
 	else {
 		dst.m_top   = m_py;//300
