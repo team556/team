@@ -68,7 +68,7 @@ void CObjPlanet::Action()
 {
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (fit->GetCount() != 0)		//対戦時間が0でない場合
-		/*m_siz_vec += m_siz_spd;*/ //拡大非をベクトルに加算
+		/*m_siz_vec += m_siz_spd*/; //拡大非をベクトルに加算
 
 
 	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
