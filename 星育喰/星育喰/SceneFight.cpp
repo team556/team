@@ -74,6 +74,9 @@ void CSceneFight::InitScene()
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
+
+	//17番目に登録
+	Draw::LoadImage(L"ミサイル.png", 17, TEX_SIZE_512);
 	
 
 	//出力させる文字のグラフィックを作成
@@ -108,8 +111,11 @@ void CSceneFight::InitScene()
 	CObjPushUnit* obj5 = new CObjPushUnit(950, 600, 100, 100, 4);	//オブジェクト作成
 	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
 
+	//CObjPushUnit* obj6 = new CObjPushUnit(950, 600, 100, 100, 5);	//オブジェクト作成
+	//Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
+
 	//ミサイル発射ボタン
-	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 100, 200);	//オブジェクト作成
+	CObjPushUnit* obj6 = new CObjPushUnit(150, 600, 100, 200, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
 }
 

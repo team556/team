@@ -39,7 +39,6 @@ void CObjMissile::Init()
 			m_get_cnt = obj->GetCount();		//カウントを取得
 			//m_psize = obj2->GetSiz();			//サイズを取得
 			//m_x +=obj2->GetX() - m_psize;
-			m_x += obj->GetCount() / 10;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
@@ -53,7 +52,6 @@ void CObjMissile::Init()
 		else if (m_get_line == 2) { m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_x -= obj->GetCount() / 10;
 		m_mov_spd = 1.0f / obj->GetCount();
 	}
 
@@ -75,11 +73,9 @@ void CObjMissile::Init()
 	//当たり判定用HitBox作成
 	if (m_type == false) {
 		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
-		m_x -= 100;
 	}
 	else {
 		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
-		m_x += 100;
 	}
 
 }
@@ -160,25 +156,41 @@ void CObjMissile::Action()
 void CObjMissile::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
-	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
-	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f };
+	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
+	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f }; //赤
+	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f }; //緑
+	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f }; //青
 
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 
-	//ポッドの描画情報
-	src.m_top =0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 100.0f;
-	src.m_bottom =70.0f;
+	if (ButtonU >= 1 && ButtonU <= 4)
+	{
+		//ポッドの描画情報
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 70.0f;
 
-	dst.m_top = m_y;
-	dst.m_left = m_x;
-	dst.m_right = m_x + m_size;
-	dst.m_bottom = m_y + m_size;
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
+	}
+	else
+	{
+		//ミサイルの描画情報
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
+	}
 
 	
 	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
@@ -194,8 +206,13 @@ void CObjMissile::Draw()
 			case 3:
 				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑
 				break;
-			default:
+			case 4:
 				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色
+				break;
+			case 5:
+				Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
+				break;
+
 		}
 		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
