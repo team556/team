@@ -50,8 +50,12 @@ void CObjPushMissile::Action()
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
 		if (m_mou_f == false) {
+			//▼ミサイル作成X位置を設定
+			CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+			m_create_x = obj->GetCount() / 10 + 100;
+
 			//オブジェクト作成
-			CObjMissile* M = new CObjMissile(575, 200, true,10);//オブジェクト作成
+			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true, 10);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 
 			m_mou_f = true;

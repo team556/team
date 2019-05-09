@@ -173,30 +173,34 @@ void CObjPlanet::Action()
 	//▼敵惑星攻撃パターン
 	if (m_type == false)
 	{
+		//▼ミサイルポッド作成X位置を設定
+		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		m_create_x = -(obj->GetCount() / 10 + 100);
+
 		srand(time(NULL));
 		m_attackf = rand() % 4 + 1;
 
 		if (m_attackf == 1 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575, 200, false,1);//オブジェクト作成
+			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 2 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575, 200, false,1);//オブジェクト作成
+			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 3 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575, 200, false,1);//オブジェクト作成
+			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 4 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575, 200, false,1);//オブジェクト作成
+			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
 			m_time = 100;
 		}

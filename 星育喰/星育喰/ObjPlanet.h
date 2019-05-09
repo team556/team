@@ -39,6 +39,8 @@ private:
 
 	int m_time;
 	int m_attackf;
+
+	float m_create_x;	//敵惑星ミサイルポッド作成X位置
 	
 	int m_ani[4];
 	int m_ani_time;
