@@ -25,7 +25,7 @@ private:
 
 	int Button_num; //パワーなどのボタン番号
 
-	float m_create_x;	//プレイヤー惑星ポッド作成X位置
+	float m_create_x;	//プレイヤー惑星ポッド作成X位置調整用
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
