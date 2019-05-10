@@ -252,9 +252,6 @@
     <ClInclude Include="ObjInstitute.h">
       <Filter>ソース ファイル\施設\研究所</Filter>
     </ClInclude>
-    <ClInclude Include="ObjPushUnit.h">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClInclude>
     <ClInclude Include="ObjTraining.h">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
     </ClInclude>
@@ -310,6 +307,12 @@
       <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClInclude>
     <ClInclude Include="ObjPushMissile.h">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPod.h">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjPushUnit.h">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
   </ItemGroup>

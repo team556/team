@@ -17,7 +17,7 @@ public:
 
 	int GetLine() { return m_line_nam; }//選択ラインを返す
 	int GetCount() { return m_cnt; }	//カウント数を返す
-	void SetEndF() { m_end_f = true; }	//カウント数を返す
+	void SetEndF() { m_end_f = true; }	//終了フラグを立てる
 
 private:
 	float m_mou_x;		//マウスの位置X
@@ -47,4 +47,8 @@ private:
 	RECT_F m_eff;	   //着弾エフェクト描画用
 	int m_vx;
 
+
+protected:
+	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前)
+	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
 };

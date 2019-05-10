@@ -1,11 +1,12 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "ObjFight.h"	//基底クラスとして定義するため読み込む
 //使用するネームスペース
 using namespace GameL;
 
 //オブジェクト：惑星(プレイヤー & 敵)
-class CObjPlanet :public CObj
+class CObjPlanet :public CObjFight //CObjFightを継承する
 {
 public:
 	CObjPlanet(float x, float y, float hp, bool type, float siz = 0);//座標+HP+タイプ+サイズ
@@ -14,10 +15,10 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 
-	float GetX() { return m_px; }
-	float GetY() { return m_px; }
+	//float GetX() { return m_px; }
+	//float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//カウント数を返す
-	float GetSiz() { return (m_siz_vec + m_size); }
+	//float GetSiz() { return (m_siz_vec + m_size); }
 	void SetEeatF() { m_eat_f = true; }//セット喰うフラグ
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
@@ -39,6 +40,8 @@ private:
 
 	int m_time;
 	int m_attackf;
+
+	float m_create_x;	//敵惑星ミサイルポッド作成X位置調整用
 	
 	int m_ani[4];
 	int m_ani_time;
@@ -47,4 +50,6 @@ private:
 	bool m_eat_f;		//喰うフラグ(true = 喰う)
 	float m_eat_spd;
 	bool m_del_f;		//消すフラグ(true = 消す)
+
+	int m_cntf;
 };

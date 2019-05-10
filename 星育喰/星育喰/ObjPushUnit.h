@@ -1,11 +1,12 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "ObjFight.h"	//基底クラスとして定義するため読み込む
 //使用するネームスペース
 using namespace GameL;
 
 //オブジェクト：ポッドボタン
-class CObjPushUnit :public CObj
+class CObjPushUnit :public CObjFight //CObjFightを継承する
 {
 public:
 	CObjPushUnit(float x, float y, float h, float w, int n);
@@ -24,6 +25,8 @@ private:
 	int m_cnt;		//カウント
 
 	int Button_num; //パワーなどのボタン番号
+
+	float m_create_x;	//プレイヤー惑星ポッド作成X位置調整用
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
