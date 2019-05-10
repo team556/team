@@ -110,6 +110,7 @@ void CObjPlanet::Action()
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			if (m_type == 0) {
+				//m_hp -= 1;//
 				CObjPlanet* ene2 = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
 				if(ene2 != nullptr)
 					m_get_hp = ene2->GetHp();
