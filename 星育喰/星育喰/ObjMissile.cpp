@@ -234,6 +234,32 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
+
+	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
+		m_r += 0.05 + m_mov_spd * 2;
+
+		switch (ButtonU) {
+		case 1:
+			Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
+			break;
+		case 2:
+			Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
+			break;
+		case 3:
+			Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
+			break;
+		case 4:
+			Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
+			break;
+		case 5:
+			Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
+			break;
+
+		}
+		//Draw::Draw(10, &src, &dst, d, m_r - 15);
+	}
+
+
 	//敵ポッドの1～4の番号(ポッド)の描画情報
 	if (Enemypod >= 1 && Enemypod <= 4)
 	{
@@ -261,33 +287,7 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
-	
 
-
-	
-	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
-		m_r += 0.05 + m_mov_spd * 2;
-
-		switch (ButtonU) {
-			case 1:
-				Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
-				break;
-			case 2:
-				Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
-				break;
-			case 3:
-				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
-				break;
-			case 4:
-				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
-				break;
-			case 5:
-				Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
-				break;
-
-		}
-		//Draw::Draw(10, &src, &dst, d, m_r - 15);
-	}
 	if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
 		m_r += 0.05 + m_mov_spd * 2;
 
