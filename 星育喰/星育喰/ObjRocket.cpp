@@ -8,7 +8,7 @@
 
 #include "GameHead.h"
 #include "UtilityModule.h"
-#include "ObjMissile.h"
+#include "ObjRocket.h"
 
 #include <time.h>
 
@@ -16,7 +16,7 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjMissile::CObjMissile(float x, float y, bool type,int n)
+CObjRocket::CObjRocket(float x, float y, bool type,int n)
 {
 	m_x = x;
 	m_y = y;
@@ -25,7 +25,7 @@ CObjMissile::CObjMissile(float x, float y, bool type,int n)
 }
 
 //イニシャライズ
-void CObjMissile::Init()
+void CObjRocket::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -52,7 +52,8 @@ void CObjMissile::Init()
 		m_mov_spd = 1.0f / obj->GetCount();
 
 		srand(time(NULL));
-		Enemypod = rand() % 5 + 1;
+		//敵のポッドの番号をランダムにする処理
+		Enemypod = rand() % 5 + 1;	
 	}
 
 	m_size = 50.0f;//サイズ
@@ -74,11 +75,11 @@ void CObjMissile::Init()
 
 	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_Rocket, 1);
 		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_Rocket, 1);
 		m_x += 100;
 	}
 
@@ -97,7 +98,7 @@ void CObjMissile::Init()
 }
 
 //アクション
-void CObjMissile::Action()
+void CObjRocket::Action()
 {
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
@@ -167,7 +168,35 @@ void CObjMissile::Action()
 			m_y += m_vy;
 		}
 	}
+	//-----------------------座標更新
+	if (m_type == true) {
+		m_x += m_vx - m_mov_spd * 200;
+		m_y += m_vy;
+	}
+	else {
+		m_x -= m_vx - m_mov_spd * 200;
+		m_y += m_vy;
+	}
+
+	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
+	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+
+	////敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
+
 	//ポッド消滅処理
+	if (m_del == true)
+	{
+
+		if (m_ani == 4)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+
+		return;
+	}
+
 	if (m_ani_max == 0)
 	{
 		this->SetStatus(false);
@@ -193,7 +222,7 @@ void CObjMissile::Action()
 }
 
 //ドロー
-void CObjMissile::Draw()
+void CObjRocket::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
@@ -233,6 +262,32 @@ void CObjMissile::Draw()
 		dst.m_bottom = m_y + m_size;
 	}
 
+	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
+		m_r += 0.05 + m_mov_spd * 2;
+
+		switch (ButtonU) {
+		case 1:
+			Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
+			break;
+		case 2:
+			Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
+			break;
+		case 3:
+			Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
+			break;
+		case 4:
+			Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
+			break;
+		case 5:
+			Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
+			break;
+
+		}
+		//Draw::Draw(10, &src, &dst, d, m_r - 15);
+	}
+
+
+	//敵ポッドの1～4の番号(ポッド)の描画情報
 	if (Enemypod >= 1 && Enemypod <= 4)
 	{
 		//ポッドの描画情報
@@ -246,7 +301,7 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
-	else
+	else  //------------敵ミサイルの描画用
 	{
 		//ミサイルの描画情報
 		src.m_top = 0.0f;
@@ -259,50 +314,24 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
-	
 
-
-	
-	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
-		m_r += 0.05 + m_mov_spd * 2;
-
-		switch (ButtonU) {
-			case 1:
-				Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
-				break;
-			case 2:
-				Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
-				break;
-			case 3:
-				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
-				break;
-			case 4:
-				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
-				break;
-			case 5:
-				Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
-				break;
-
-		}
-		//Draw::Draw(10, &src, &dst, d, m_r - 15);
-	}
-	if (m_type == false) { //-----------ボタン赤・青・緑を分ける判定
+	if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
 		m_r += 0.05 + m_mov_spd * 2;
 
 		switch (Enemypod) {
-		case 1:
+		case 1://---------ランダムの情報が1なら
 			Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
 			break;
-		case 2:
+		case 2://---------ランダムの情報が2なら
 			Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
 			break;
-		case 3:
+		case 3://---------ランダムの情報が3なら
 			Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
 			break;
-		case 4:
+		case 4://---------ランダムの情報が4なら
 			Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
 			break;
-		case 5:
+		case 5://---------ランダムの情報が5なら
 			Draw::Draw(17, &src, &dst, d, m_r-145);   //ミサイル
 			break;
 		}

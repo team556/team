@@ -54,9 +54,6 @@ void CSceneFight::InitScene()
 	//10番に登録赤色ポッド
 	Draw::LoadImage(L"ポッド1.png", 10, TEX_SIZE_512);
 
-	//16番目に登録青色ポッド
-	Draw::LoadImage(L"ポッド2.png", 16, TEX_SIZE_512);
-	
 	//11番に登録
 	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
 
@@ -80,6 +77,9 @@ void CSceneFight::InitScene()
 
 	//戦闘画面移行演出(黒星)を読み込み18番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
+
+	//19番目に登録青色ポッド
+	Draw::LoadImage(L"ポッド2.png", 19, TEX_SIZE_512);
 	
 
 	//出力させる文字のグラフィックを作成
@@ -102,24 +102,21 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//オブジェクト登録
 
 	//民発射ボタン
-	CObjPushUnit* obj2 = new CObjPushUnit(500, 600, 100, 100, 1);	//オブジェクト作成
+	CObjRocketButton* obj2 = new CObjRocketButton(500, 600, 100, 100, 1);	//オブジェクト作成
 	Objs::InsertObj(obj2, OBJ_PLANET, 10);						//オブジェクト登録
 
-	CObjPushUnit* obj3 = new CObjPushUnit(650, 600, 100, 100, 2);	//オブジェクト作成
+	CObjRocketButton* obj3 = new CObjRocketButton(650, 600, 100, 100, 2);	//オブジェクト作成
 	Objs::InsertObj(obj3, OBJ_PLANET, 10);						//オブジェクト登録
 
-	CObjPushUnit* obj4 = new CObjPushUnit(800, 600, 100, 100, 3);	//オブジェクト作成
+	CObjRocketButton* obj4 = new CObjRocketButton(800, 600, 100, 100, 3);	//オブジェクト作成
 	Objs::InsertObj(obj4, OBJ_PLANET, 10);						//オブジェクト登録
 
-	CObjPushUnit* obj5 = new CObjPushUnit(950, 600, 100, 100, 4);	//オブジェクト作成
+	CObjRocketButton* obj5 = new CObjRocketButton(950, 600, 100, 100, 4);	//オブジェクト作成
 	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
 
-	//CObjPushUnit* obj6 = new CObjPushUnit(950, 600, 100, 100, 5);	//オブジェクト作成
-	//Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
-
-	//ミサイル発射ボタン
-	CObjPushUnit* obj6 = new CObjPushUnit(150, 600, 100, 200, 5);	//オブジェクト作成
+	CObjRocketButton* obj6 = new CObjRocketButton(150, 600, 100, 200, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
+
 }
 
 //ゲームメイン実行中メソッド

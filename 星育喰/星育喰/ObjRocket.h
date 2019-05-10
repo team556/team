@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //オブジェクト：ミサイル
-class CObjMissile :public CObjFight //CObjFightを継承する
+class CObjRocket :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjMissile(float x, float y,bool type,int n);
-	~CObjMissile() {};
+	CObjRocket(float x, float y,bool type,int n);
+	~CObjRocket() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
