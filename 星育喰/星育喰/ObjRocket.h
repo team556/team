@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //オブジェクト：ミサイル
-class CObjMissile :public CObjFight //CObjFightを継承する
+class CObjRocket :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjMissile(float x, float y,bool type,int n);
-	~CObjMissile() {};
+	CObjRocket(float x, float y,bool type,int n);
+	~CObjRocket() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
@@ -42,11 +42,13 @@ private:
 	bool m_type;		//生成時のタイプ(true主人公)
 
 	int  m_ani;			//着弾アニメーション
+	int m_ani_max;
 	int  m_ani_time;	//着弾アニメーション間隔タイム
 	bool m_del;			//削除チェック
 	RECT_F m_eff;	   //着弾エフェクト描画用
 
 	float m_a;			//alpha(透明度)
-
+	bool m_fight;		//ポッド同士の衝突時のエフェクト管理
+	int m_bom;			//爆発エフェクトのランダム(0～3)
 
 };

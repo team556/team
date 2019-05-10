@@ -5,13 +5,13 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjPushUnit.h"
+#include "ObjRocketButton.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 //コンストラクタ
-CObjPushUnit::CObjPushUnit(float x, float y, float h, float w, int n)
+CObjRocketButton::CObjRocketButton(float x, float y, float h, float w, int n)
 {
 	//作成時に渡された値を、座標の初期値に代入
 	m_x = x;
@@ -23,7 +23,7 @@ CObjPushUnit::CObjPushUnit(float x, float y, float h, float w, int n)
 }
 
 //イニシャライズ
-void CObjPushUnit::Init()
+void CObjRocketButton::Init()
 {
 	m_mou_x = 0.0f;	//マウスX座標
 	m_mou_y = 0.0f; //マウスY座標
@@ -37,8 +37,13 @@ void CObjPushUnit::Init()
 }
 
 //アクション
-void CObjPushUnit::Action()
+void CObjRocketButton::Action()
 {
+	//▼戦闘開始前は操作不能にする処理
+	if (battle_start == false)
+	{
+		return;
+	}
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
@@ -64,36 +69,36 @@ void CObjPushUnit::Action()
 			if (Button_num == 1 && g_Power_num != 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true,1);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(575 + m_create_x, 200, true,1);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 
 			}
 			else if (Button_num == 2 && g_Defense_num != 0)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true, 2);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(575 + m_create_x, 200, true, 2);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 
 			}
 			else if (Button_num == 3 && g_Speed_num != 0)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true, 3);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(575 + m_create_x, 200, true, 3);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 
 			}
 
 			else if (Button_num == 4 && g_Balance_num != 0)
 			{
 				//オブジェクト作成
-				CObjMissile* M = new CObjMissile(575 + m_create_x , 200, true, 4);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(575 + m_create_x , 200, true, 4);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 5)
 			{
-				CObjMissile* M = new CObjMissile(575 + m_create_x , 200, true, 5);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(575 + m_create_x , 200, true, 5);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 			}
 
 			m_mou_f = true;
@@ -122,7 +127,7 @@ void CObjPushUnit::Action()
 }
 
 //ドロー
-void CObjPushUnit::Draw()
+void CObjRocketButton::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float c[4] = { 1.0f,1.0f, 1.0f, m_a };

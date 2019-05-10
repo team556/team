@@ -83,7 +83,7 @@ void CObjFightClear::Draw()
 	dst.m_right =1100.0f;
 	dst.m_bottom= 600.0f;
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(10, &src, &dst, d, 0.0f);
+	Draw::Draw(2, &src, &dst, d, 0.0f);
 
 	float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
 	Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);

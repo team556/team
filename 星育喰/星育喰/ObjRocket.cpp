@@ -8,7 +8,7 @@
 
 #include "GameHead.h"
 #include "UtilityModule.h"
-#include "ObjMissile.h"
+#include "ObjRocket.h"
 
 #include <time.h>
 
@@ -16,7 +16,7 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjMissile::CObjMissile(float x, float y, bool type,int n)
+CObjRocket::CObjRocket(float x, float y, bool type,int n)
 {
 	m_x = x;
 	m_y = y;
@@ -25,7 +25,7 @@ CObjMissile::CObjMissile(float x, float y, bool type,int n)
 }
 
 //イニシャライズ
-void CObjMissile::Init()
+void CObjRocket::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -75,11 +75,11 @@ void CObjMissile::Init()
 
 	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_Rocket, 1);
 		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_Rocket, 1);
 		m_x += 100;
 	}
 
@@ -88,6 +88,7 @@ void CObjMissile::Init()
 	m_eff.m_right = 32;
 	m_eff.m_bottom = 29;
 	m_ani = 0;
+	m_ani_max = 1;
 	m_ani_time = 0;
 	m_del = false;
 	m_vx = 0.0f;
@@ -97,7 +98,7 @@ void CObjMissile::Init()
 }
 
 //アクション
-void CObjMissile::Action()
+void CObjRocket::Action()
 {
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
@@ -121,23 +122,46 @@ void CObjMissile::Action()
 		m_mou_f = false;
 	}
 
+	//爆発エフェクト
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
 
-	//各ライン毎の動き方
-	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
+	//爆発エフェクト回数処理
+	if (m_del == true)
 	{
-		m_vx -= 0.3f;
-		m_vy += (-0.15 + m_mov);
+		if (m_ani == 4)
+		{
+			m_ani = 0;
+			m_ani_max++;
+		}
 	}
-	else if (m_get_line == 1)//---------------中ライン-----
+	else//ポッド同士が当たると動きを止め勝敗を決める処理
 	{
-		m_vx -= 0.5f;
-	}
-	else//if(m_get_line == 2)---------------下ライン------
-	{
-		m_vx -= 0.3f;
-		m_vy -= (-0.15 + m_mov);
-	}
+		//各ライン毎の動き方
+		if (m_get_line == 0 || m_get_line == 3)//------上ライン----
+		{
+			m_vx -= 0.3f;
+			m_vy += (-0.15 + m_mov);
+		}
+		else if (m_get_line == 1)//---------------中ライン-----
+		{
+			m_vx -= 0.5f;
+		}
+		else//if(m_get_line == 2)---------------下ライン------
+		{
+			m_vx -= 0.3f;
+			m_vy -= (-0.15 + m_mov);
+		}
 
+		//-----------------------座標更新
+		if (m_type == true) {
+			m_x += m_vx - m_mov_spd * 200;
+			m_y += m_vy;
+		}
+		else {
+			m_x -= m_vx - m_mov_spd * 200;
+			m_y += m_vy;
+		}
+	}
 	//-----------------------座標更新
 	if (m_type == true) {
 		m_x += m_vx - m_mov_spd * 200;
@@ -151,10 +175,7 @@ void CObjMissile::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-
-												////敵とプレイヤーのポッド当たっているとき処理
-												//if (ELEMENT_POD&&ELEMENT_ENEMYPOD == true && hit->CheckObjNameHit(OBJ_POD) == nullptr)
-												//{
+	////敵とプレイヤーのポッド当たっているとき処理
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
 
 	//ポッド消滅処理
@@ -168,14 +189,14 @@ void CObjMissile::Action()
 		}
 
 		return;
-
 	}
-	//	return;
-	//}
 
+	if (m_ani_max == 0)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
-
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
 		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
 	{
@@ -195,7 +216,7 @@ void CObjMissile::Action()
 }
 
 //ドロー
-void CObjMissile::Draw()
+void CObjRocket::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
@@ -234,6 +255,32 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
+
+	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
+		m_r += 0.05 + m_mov_spd * 2;
+
+		switch (ButtonU) {
+		case 1:
+			Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
+			break;
+		case 2:
+			Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
+			break;
+		case 3:
+			Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
+			break;
+		case 4:
+			Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
+			break;
+		case 5:
+			Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
+			break;
+
+		}
+		//Draw::Draw(10, &src, &dst, d, m_r - 15);
+	}
+
+
 	//敵ポッドの1～4の番号(ポッド)の描画情報
 	if (Enemypod >= 1 && Enemypod <= 4)
 	{
@@ -261,33 +308,7 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
-	
 
-
-	
-	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
-		m_r += 0.05 + m_mov_spd * 2;
-
-		switch (ButtonU) {
-			case 1:
-				Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
-				break;
-			case 2:
-				Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
-				break;
-			case 3:
-				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
-				break;
-			case 4:
-				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
-				break;
-			case 5:
-				Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
-				break;
-
-		}
-		//Draw::Draw(10, &src, &dst, d, m_r - 15);
-	}
 	if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
 		m_r += 0.05 + m_mov_spd * 2;
 
@@ -310,23 +331,20 @@ void CObjMissile::Draw()
 		}
 	}
 
-	//爆発エフェクトアニメーションRECT情報
-	RECT_F ani_src[4] =
-	{
-		{ 0, 0, 32,29 },
-		{ 0,32, 64,29 },
-		{ 0,64, 96,29 },
-		{ 0,96,128,29 },
-	};
-
-	
 	//エフェクト
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 32.0f + m_x;
-	dst.m_bottom = 32.0f + m_y;
+	if (m_ani_max == 0) 
+	{
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + m_x;
+		dst.m_bottom = 29.0f + m_y;
+	}
+	//dst.m_top = 0.0f + m_y;
+	//dst.m_left = 0.0f + m_x;
+	//dst.m_right = 50.0f + m_x;
+	//dst.m_bottom = 50.0f + m_y;
 
-	if (m_del == true)
+	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 
 

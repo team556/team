@@ -118,17 +118,11 @@
     <ClCompile Include="ObjPlanet.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
-    <ClCompile Include="ObjPushUnit.cpp">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTraining.cpp">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
     </ClCompile>
     <ClCompile Include="SceneTraining.cpp">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjMissile.cpp">
-      <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
     <ClCompile Include="ObjCloud_Effect.cpp">
       <Filter>ソース ファイル\関数/演出</Filter>
@@ -178,8 +172,14 @@
     <ClCompile Include="ObjFightOver.cpp">
       <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClCompile>
-    <ClCompile Include="ObjPushMissile.cpp">
+    <ClCompile Include="ObjRocket.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRocketButton.cpp">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBefore_Fight_Effect.cpp">
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,9 +258,6 @@
     <ClInclude Include="SceneTraining.h">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMissile.h">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClInclude>
     <ClInclude Include="ObjCloud_Effect.h">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
@@ -278,9 +275,6 @@
     </ClInclude>
     <ClInclude Include="SceneFight.h">
       <Filter>ソース ファイル\シーン\戦闘画面</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjPushUnit.h">
-      <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
     <ClInclude Include="ObjPlanet.h">
       <Filter>ソース ファイル\対戦用</Filter>
@@ -306,14 +300,17 @@
     <ClInclude Include="ObjFightOver.h">
       <Filter>ソース ファイル\対戦用\クリア＆オーバー</Filter>
     </ClInclude>
-    <ClInclude Include="ObjPushMissile.h">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjPod.h">
-      <Filter>ソース ファイル\対戦用</Filter>
-    </ClInclude>
     <ClInclude Include="ObjPushUnit.h">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRocket.h">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRocketButton.h">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBefore_Fight_Effect.h">
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

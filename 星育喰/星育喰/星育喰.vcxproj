@@ -114,6 +114,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjBarracks.cpp" />
+    <ClCompile Include="ObjBefore_Fight_Effect.cpp" />
     <ClCompile Include="ObjFightClear.cpp" />
     <ClCompile Include="ObjFightOver.cpp" />
     <ClCompile Include="ObjInstitute.cpp">
@@ -137,11 +138,10 @@
     <ClCompile Include="ObjFight.cpp" />
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
-    <ClCompile Include="ObjMissile.cpp" />
+    <ClCompile Include="ObjRocket.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPreparation.cpp" />
-    <ClCompile Include="ObjPushMissile.cpp" />
-    <ClCompile Include="ObjPushUnit.cpp" />
+    <ClCompile Include="ObjRocketButton.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjBarracks.h" />
+    <ClInclude Include="ObjBefore_Fight_Effect.h" />
     <ClInclude Include="ObjFightClear.h" />
     <ClInclude Include="ObjFightOver.h" />
     <ClInclude Include="ObjInstitute.h">
@@ -185,11 +186,10 @@
     <ClInclude Include="ObjHome.h" />
     <ClInclude Include="ObjHuman.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="ObjMissile.h" />
+    <ClInclude Include="ObjRocket.h" />
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPreparation.h" />
-    <ClInclude Include="ObjPushMissile.h" />
-    <ClInclude Include="ObjPushUnit.h" />
+    <ClInclude Include="ObjRocketButton.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="ObjTraining.h" />

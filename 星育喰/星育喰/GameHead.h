@@ -15,16 +15,17 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_ENEMY2,
 	OBJ_CLOUD,
+	OBJ_BEFORE_FIGHT_EFFECT,
 	OBJ_TRAINING,
 	OBJ_PREPARATION,
 	OBJ_FIGHT,
 	OBJ_WAREHOUSE,
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
-	OBJ_MISSILE,
+	OBJ_Rocket,
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
-	OBJ_FIGHT_MISSILE,
+	OBJ_FIGHT_Rocket,
 	OBJ_POD,
 	OBJ_ENEMYPOD,
 
@@ -111,20 +112,20 @@ extern bool g_key_fg;//
 #include "ObjTest.h"
 #include "ObjHuman.h"
 #include "ObjCloud_Effect.h"
+#include "ObjBefore_Fight_Effect.h"
 #include "ObjBarracks.h"
 #include "ObjPlanet.h"
 #include "ObjTraining.h"
 #include "ObjPreparation.h"
 #include "ObjFight.h"
-#include "ObjPushUnit.h"
-#include "ObjMissile.h"
+#include "ObjRocketButton.h"
+#include "ObjRocket.h"
 #include "ObjBarracks.h"
 #include "ObjInstitute.h"
 #include "ObjWarehouse.h"
 #include "ObjMaterialBotton.h"
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
-#include "ObjPushMissile.h"
 
 //------------------------------------------------
 

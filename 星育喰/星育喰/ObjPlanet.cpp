@@ -66,6 +66,12 @@ void CObjPlanet::Init()
 //アクション
 void CObjPlanet::Action()
 {
+	//▼戦闘開始前は戦闘処理(敵惑星の行動等)を実行しないようにする
+	if (battle_start == false)
+	{
+		return;
+	}
+
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (fit->GetCount() != 0)		//対戦時間が0でない場合
 		/*m_siz_vec += m_siz_spd*/; //拡大非をベクトルに加算
@@ -140,19 +146,21 @@ void CObjPlanet::Action()
 		m_ani_frame = 0;	//初期フレーム
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
+	{
 		if (m_type == 0)
 		{
 			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-			if(m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
-			m_px -= 4.0f;
+			if (m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
+				m_px -= 4.0f;
 		}
 		else
 		{
 			CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 			if (m_px < pla->GetX())		//自分のX座標より敵惑星が小さくなると移動を止める
-			m_px += 4.0f;
+				m_px += 4.0f;
 		}
-		
+	}
+
 	//-------------------------------------------------------------
 
 	
@@ -190,26 +198,26 @@ void CObjPlanet::Action()
 		
 		if (m_attackf == 1 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 2 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 3 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 4 && m_time <= 0)
 		{
-			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 

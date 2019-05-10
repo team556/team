@@ -14,8 +14,4 @@ public:
 	void InitScene();  //ゲームタイトルの初期化メソッド
 	void Scene();      //ゲームタイトルの実行中メソッド
 private:
-	float m_cnt;		//縮小比カウント
-	float m_speed;		//縮小スピード
-
-	float m_a;			//透明度
 };
