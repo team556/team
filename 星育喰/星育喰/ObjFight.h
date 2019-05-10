@@ -1,6 +1,7 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "GameL\DrawTexture.h"
 //使用するネームスペース
 using namespace GameL;
 
@@ -37,6 +38,15 @@ private:
 	float m_hp2;		//プレイヤー惑星HP
 	float m_ex;
 	float m_ey;
+
+	int  m_ani;			//着弾アニメーション
+	int  m_ani_time;	//着弾アニメーション間隔タイム
+	bool m_del;			//削除チェック
+	int  m_x;
+	int  m_y;
+	RECT_F m_eff;	   //着弾エフェクト描画用
+	int m_vx;
+
 
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前)

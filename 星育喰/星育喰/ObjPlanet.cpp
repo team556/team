@@ -14,7 +14,7 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjPlanet::CObjPlanet(float x, float y, float hp, bool type, float siz)
+CObjPlanet::CObjPlanet(float x, float y, float hp, int type, float siz)
 {
 	//作成時に渡された値を、各ステータスに代入
 	m_px = x;
@@ -40,7 +40,7 @@ void CObjPlanet::Init()
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
 	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
 
-	if (m_type == true)
+	if (m_type == 0)
 		m_px += (fit->GetCount() / 30);
 	else
 		m_px -= (fit->GetCount() / 30);
@@ -57,7 +57,7 @@ void CObjPlanet::Init()
 	m_del_f = false;	//消すフラグ(true = 消す)
 	
 	//当たり判定用HitBoxを作成
-	if(m_type == true)
+	if(m_type == 0)
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_PLAYER, OBJ_PLANET, 1);
 	else
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
@@ -85,7 +85,7 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
-			if (m_type == true) {
+			if (m_type == 0) {
 				CObjFightClear* crer = new CObjFightClear();	//主人公の場合
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 			}
@@ -97,13 +97,13 @@ void CObjPlanet::Action()
 	}
 				//2.5秒
 	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
-		if (m_type == true)				//(戦闘中)
+		if (m_type == 0)				//(戦闘中)
 			m_px -= m_mov_spd;	//自星の動き
 		else
 			m_px += m_mov_spd;	//敵星の動き
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
-			if (m_type == true) {
+			if (m_type == 0) {
 				m_hp -= 1;//
 				CObjPlanet* ene2 = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
 				if(ene2 != nullptr)
@@ -126,7 +126,7 @@ void CObjPlanet::Action()
 		m_ani_time++;		//ani_time 加算
 		if ((m_ani_frame == 3) && (m_ani_time == 1)) {//口閉じた瞬間
 			m_size = m_size*1.5f;					//サイズ変更(1.5倍)
-			if (m_type == true) {
+			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
 			}
@@ -162,12 +162,12 @@ void CObjPlanet::Action()
 				2 * m_siz_vec + m_size * 4);
 
 	//▼ダメージ処理
-	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type == false) && (m_hp > 0))
+	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type != 0) && (m_hp > 0))
 	{							//ミサイルに当たった場合
 		m_hp -= 1;				//HP-1
 		m_size -= m_size / 20;	//サイズ減少
 	}
-	else if ((hit->CheckElementHit(ELEMENT_RED) == true) && (m_type == true) && (m_hp > 0))
+	else if ((hit->CheckElementHit(ELEMENT_RED) == true) && (m_type == 0) && (m_hp > 0))
 	{
 		m_hp -= 1;				//HP-1
 		m_size -= m_size / 20;	//サイズ減少
@@ -179,7 +179,7 @@ void CObjPlanet::Action()
 	}
 
 	//▼敵惑星攻撃パターン
-	if (m_type == false && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
+	if (m_type == 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 	{
 		//▼ミサイルポッド作成X位置を設定
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -192,24 +192,28 @@ void CObjPlanet::Action()
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+
 			m_time = 100;
 		}
 		else if (m_attackf == 2 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+
 			m_time = 100;
 		}
 		else if (m_attackf == 3 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+
 			m_time = 100;
 		}
 		else if (m_attackf == 4 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
+
 			m_time = 100;
 		}
 
@@ -223,7 +227,7 @@ void CObjPlanet::Action()
 	{
 		if (m_cnt < m_mov_spd)	//惑星同士が重なっていないとき
 		{
-			if (m_type == true)
+			if (m_type == 0)
 				m_px -= 1.0f;
 				
 			else
