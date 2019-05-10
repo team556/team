@@ -15,4 +15,4 @@ RECT_F GetBulletEffec(int* ani, int* ani_time, bool del, int tining);//del‚Å’eŠÛ
 
 int Rand(int n_min, int n_max);//ó‚¯æ‚Á‚½”“à‚Åƒ‰ƒ“ƒ_ƒ€”‚ğ•Ô‚·(1,5)=(1`5)
 
-RECT_F GetPodtEffec(int*ani, int* ani_time, bool del, int timing);
+RECT_F GetPodEffec(int*ani, int* ani_time, bool del, int timing);

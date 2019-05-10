@@ -39,7 +39,7 @@ private:
 	int m_type;		//惑星タイプ(0=主人公)
 
 	int m_time;
-	int m_attackf;
+	int m_attackf;		//敵の攻撃タイプ
 
 	float m_create_x;	//敵惑星ミサイルポッド作成X位置調整用
 	

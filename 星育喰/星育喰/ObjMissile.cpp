@@ -83,6 +83,17 @@ void CObjMissile::Init()
 		m_x += 100;
 	}
 
+	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 32;
+	m_eff.m_bottom = 29;
+	m_ani = 0;
+	m_ani_time = 0;
+	m_del = false;
+	m_vx = 0.0f;
+
+	m_a = 1.0f;
+
 }
 
 //アクション
@@ -140,20 +151,47 @@ void CObjMissile::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
+
+												////敵とプレイヤーのポッド当たっているとき処理
+												//if (ELEMENT_POD&&ELEMENT_ENEMYPOD == true && hit->CheckObjNameHit(OBJ_POD) == nullptr)
+												//{
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
+
+	//ポッド消滅処理
+	if (m_del == true)
+	{
+
+		if (m_ani == 4)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+
+		return;
+
+	}
+	//	return;
+	//}
+
+
+
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
 		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
 	{
 		//位置を更新//惑星と接触しているかどうかを調べる
-		this->SetStatus(false);		//当たった場合削除
-		Hits::DeleteHitBox(this);
+		m_del = true;
+		hit->SetInvincibility(true);
 	}
 
 	if ((hit->CheckElementHit(ELEMENT_PLAYER) == true ||
 		hit->CheckElementHit(ELEMENT_P_MIS) == true) && m_type == false)//プレイヤーの惑星かミサイルに当たった時かつ敵弾
 	{
-		this->SetStatus(false);		//当たった場合削除
-		Hits::DeleteHitBox(this);
+		m_del = true;
+		hit->SetInvincibility(true);
 	}
+
+
 }
 
 //ドロー
@@ -164,6 +202,7 @@ void CObjMissile::Draw()
 	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f }; //赤
 	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f }; //緑
 	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f }; //青
+	float c[4] = { 1.0f,1.0f,1.0f,m_a };
 
 
 	RECT_F src;//切り取り位置
@@ -270,4 +309,25 @@ void CObjMissile::Draw()
 			break;
 		}
 	}
+
+	//爆発エフェクトアニメーションRECT情報
+	RECT_F ani_src[4] =
+	{
+		{ 0, 0, 32,29 },
+		{ 0,32, 64,29 },
+		{ 0,64, 96,29 },
+		{ 0,96,128,29 },
+	};
+
+	
+	//エフェクト
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 32.0f + m_x;
+	dst.m_bottom = 32.0f + m_y;
+
+	if (m_del == true)
+		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
+
+
 }
