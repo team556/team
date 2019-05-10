@@ -52,7 +52,8 @@ void CObjMissile::Init()
 		m_mov_spd = 1.0f / obj->GetCount();
 
 		srand(time(NULL));
-		Enemypod = rand() % 5 + 1;
+		//敵のポッドの番号をランダムにする処理
+		Enemypod = rand() % 5 + 1;	
 	}
 
 	m_size = 50.0f;//サイズ
@@ -224,7 +225,7 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
-
+	//敵ポッドの1～4の番号(ポッド)の描画情報
 	if (Enemypod >= 1 && Enemypod <= 4)
 	{
 		//ポッドの描画情報
@@ -238,7 +239,7 @@ void CObjMissile::Draw()
 		dst.m_right = m_x + m_size;
 		dst.m_bottom = m_y + m_size;
 	}
-	else
+	else  //------------敵ミサイルの描画用
 	{
 		//ミサイルの描画情報
 		src.m_top = 0.0f;
@@ -278,23 +279,23 @@ void CObjMissile::Draw()
 		}
 		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
-	if (m_type == false) { //-----------ボタン赤・青・緑を分ける判定
+	if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
 		m_r += 0.05 + m_mov_spd * 2;
 
 		switch (Enemypod) {
-		case 1:
+		case 1://---------ランダムの情報が1なら
 			Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
 			break;
-		case 2:
+		case 2://---------ランダムの情報が2なら
 			Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
 			break;
-		case 3:
+		case 3://---------ランダムの情報が3なら
 			Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
 			break;
-		case 4:
+		case 4://---------ランダムの情報が4なら
 			Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
 			break;
-		case 5:
+		case 5://---------ランダムの情報が5なら
 			Draw::Draw(17, &src, &dst, d, m_r-145);   //ミサイル
 			break;
 		}
