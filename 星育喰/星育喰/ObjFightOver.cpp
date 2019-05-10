@@ -45,7 +45,7 @@ void CObjFightOver::Action()
 
 	if (m_cnt == 0) {							//カウント終了後
 		if (m_mou_l == true)					//クリックした場合
-			Scene::SetScene(new CSceneHome());	//シーン移行
+			Scene::SetScene(new CSceneTitle());	//シーン移行
 		m_a_f = true;			//フラグ有効
 	}
 	else

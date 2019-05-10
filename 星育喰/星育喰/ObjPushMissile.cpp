@@ -31,13 +31,13 @@ void CObjPushMissile::Init()
 
 	m_a = 1.0f;		//透明度
 
-	m_cnt = 0;		//カウント
+	m_re_time = 0;		//カウント
+	m_cnt = 0;
 }
 
 //アクション
 void CObjPushMissile::Action()
 {
-
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -64,9 +64,16 @@ void CObjPushMissile::Action()
 	}
 	else {}
 
+	switch (g_Mis_Recast_Level) {//ミサイルリキャストレベルでリキャストタイムの設定
+	case 1:m_re_time = 5 * 60; break;
+	case 2:m_re_time = 4 * 60; break;
+	case 3:m_re_time = 3 * 60; break;
+	}
+		
+
 	if (m_mou_f == true) {	//クリックした後の処理
 		m_cnt++;			//カウントする
-		if (m_cnt == 60 * 5) {	//5秒間数えたら
+		if (m_cnt == m_re_time) {	//5秒間数えたら
 			m_mou_f = false;	//クリックできるようにする。
 			m_cnt = 0;
 			m_a = 1.0f;		//不透明化

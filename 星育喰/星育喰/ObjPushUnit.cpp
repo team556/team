@@ -56,21 +56,26 @@ void CObjPushUnit::Action()
 			CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 			m_create_x = obj->GetCount() / 10 + 100;
 
-			if (Button_num == 1)
+			g_Power_num;				//パワー住民数
+			g_Defense_num;			//ディフェンス住民数
+			g_Speed_num;				//スピード住民数
+			g_Balance_num;			//バランス住民数
+
+			if (Button_num == 1 && g_Power_num != 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
 				//オブジェクト作成
 				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true,1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
-			else if (Button_num == 2)
+			else if (Button_num == 2 && g_Defense_num != 0)
 			{
 				//オブジェクト作成
 				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true, 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_MISSILE, 15);		//オブジェクト登録
 
 			}
-			else if (Button_num == 3)
+			else if (Button_num == 3 && g_Speed_num != 0)
 			{
 				//オブジェクト作成
 				CObjMissile* M = new CObjMissile(575 + m_create_x, 200, true, 3);//オブジェクト作成
@@ -78,7 +83,7 @@ void CObjPushUnit::Action()
 
 			}
 
-			else if (Button_num == 4)
+			else if (Button_num == 4 && g_Balance_num != 0)
 			{
 				//オブジェクト作成
 				CObjMissile* M = new CObjMissile(575 + m_create_x , 200, true, 4);//オブジェクト作成
