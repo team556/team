@@ -10,11 +10,12 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjHuman::CObjHuman(float x, float y)
+CObjHuman::CObjHuman(float x, float y, int n)
 {
 	//作成時に渡された値を、座標の初期値に代入
 	m_hx = x;
 	m_hy = y;
+	m_nam = n;
 }
 
 //イニシャライズ
@@ -36,11 +37,11 @@ void CObjHuman::Action()
 {
 	m_cnt++;
 
-	if (m_cnt == 60) {
+	if (m_cnt == 60 + (90 * m_nam)) {
 		m_pos = Rand(0, 3);	//向きをランダムに決める
 		m_move = true;		//動き状態
 	}
-	else if (m_cnt == 120) {
+	else if (m_cnt == 120 + 70 * m_nam) {
 		m_cnt = 0;
 		m_move = false;		//静止状態
 	}
