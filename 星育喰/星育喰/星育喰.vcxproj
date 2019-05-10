@@ -140,7 +140,6 @@
     <ClCompile Include="ObjMissile.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPreparation.cpp" />
-    <ClCompile Include="ObjPushMissile.cpp" />
     <ClCompile Include="ObjPushUnit.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
@@ -188,7 +187,6 @@
     <ClInclude Include="ObjMissile.h" />
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPreparation.h" />
-    <ClInclude Include="ObjPushMissile.h" />
     <ClInclude Include="ObjPushUnit.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />

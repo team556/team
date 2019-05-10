@@ -114,12 +114,9 @@ void CSceneFight::InitScene()
 	CObjPushUnit* obj5 = new CObjPushUnit(950, 600, 100, 100, 4);	//オブジェクト作成
 	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
 
-	//CObjPushUnit* obj6 = new CObjPushUnit(950, 600, 100, 100, 5);	//オブジェクト作成
-	//Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
-
-	//ミサイル発射ボタン
-	CObjPushMissile* obj6 = new CObjPushMissile(150, 600, 100, 200);	//オブジェクト作成
+	CObjPushUnit* obj6 = new CObjPushUnit(150, 600, 100, 200, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
+
 }
 
 //ゲームメイン実行中メソッド
