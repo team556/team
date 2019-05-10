@@ -74,11 +74,11 @@ void CObjMissile::Init()
 
 	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMY, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_MISSILE, 1);
 		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_PLAYER, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_MISSILE, 1);
 		m_x += 100;
 	}
 
@@ -139,14 +139,16 @@ void CObjMissile::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
+		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
 	{
 		//位置を更新//惑星と接触しているかどうかを調べる
 		this->SetStatus(false);		//当たった場合削除
 		Hits::DeleteHitBox(this);
 	}
 
-	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+	if ((hit->CheckElementHit(ELEMENT_PLAYER) == true ||
+		hit->CheckElementHit(ELEMENT_P_MIS) == true) && m_type == false)//プレイヤーの惑星かミサイルに当たった時かつ敵弾
 	{
 		this->SetStatus(false);		//当たった場合削除
 		Hits::DeleteHitBox(this);
