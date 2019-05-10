@@ -191,29 +191,25 @@ void CObjPlanet::Action()
 		if (m_attackf == 1 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
-
+			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 2 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
-
+			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 3 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
-
+			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 4 && m_time <= 0)
 		{
 			CObjMissile* M = new CObjMissile(575 + m_create_x, 200, false,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_MISSILE, 10);		//オブジェクト登録
-
+			Objs::InsertObj(M, OBJ_MISSILE, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 
