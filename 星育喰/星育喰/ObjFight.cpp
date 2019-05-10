@@ -3,9 +3,11 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\HitBoxManager.h"
 
 #include "GameHead.h"
 #include "ObjFight.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -25,7 +27,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 30;//戦闘時間(60 * X = X秒)
+	m_cnt = 60 * 10;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
 	m_end_f = false;
@@ -251,9 +253,11 @@ void CObjFight::Draw()
 	}
 
 
-	//if()
-
-
+	
+	//m_eff.m_top = 0;
+	//m_eff.m_left = 0;
+	//m_eff.m_right = 32;
+	//m_eff.m_bottom = 29;
 
 	//デバッグ用仮マウス位置表示
 	wchar_t test_mou[256];

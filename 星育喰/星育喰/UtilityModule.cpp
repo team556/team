@@ -81,14 +81,14 @@ float GetAtan2Angle(float w, float h)
 	return r;
 }
 
-//---GetBulletEffec関数
-//引数1 int*   ani;     着弾アニメーション
-//引数1 int*   ani_time;着弾アニメーション間隔タイム
+//---GetPodEffec関数
+//引数1 int*   ani;     爆発アニメーション
+//引数1 int*   ani_time;爆発アニメーション間隔タイム
 //引数1 bool   del;     削除チェック(true=着弾エフェクト false=普通の弾丸)
 //引数1 int   timing    間隔区間RECT
 //戻り値 RECT_F eff;    描画するRECT
 //delで弾丸のRECTや着弾effectのRECT(アニメーションのRECT)を返す
-RECT_F GetBulletEffec(int* ani, int* ani_time, bool del, int timing)
+RECT_F GetPodEffec(int* ani, int* ani_time, bool del, int timing)
 {
 	//返すRECT情報
 	RECT_F rect;
@@ -100,10 +100,10 @@ RECT_F GetBulletEffec(int* ani, int* ani_time, bool del, int timing)
 		//リソース着弾アニメーション位置
 		RECT_F ani_src[4] =
 		{
-			{ 32,  0, 32, 64 },
-			{ 32, 32, 64, 64 },
-			{ 32, 64, 96, 64 },
-			{ 32, 96,128, 64 },
+			{ 0, 0, 32,29 },
+			{ 0,32, 64,29 },
+			{ 0,64, 96,29 },
+			{ 0,96,128,29 },
 		};
 		//アニメーションのコマ間隔
 		if (*ani_time > timing)

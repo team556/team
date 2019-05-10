@@ -8,7 +8,7 @@
 
 #include "GameHead.h"
 #include "UtilityModule.h"
-#include "ObjMissile.h"
+#include "ObjRocket.h"
 
 #include <time.h>
 
@@ -16,7 +16,7 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjMissile::CObjMissile(float x, float y, bool type,int n)
+CObjRocket::CObjRocket(float x, float y, bool type,int n)
 {
 	m_x = x;
 	m_y = y;
@@ -25,7 +25,7 @@ CObjMissile::CObjMissile(float x, float y, bool type,int n)
 }
 
 //イニシャライズ
-void CObjMissile::Init()
+void CObjRocket::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -36,6 +36,7 @@ void CObjMissile::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
+			m_x += obj->GetCount() / 10;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
@@ -49,10 +50,16 @@ void CObjMissile::Init()
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
 		m_mov_spd = 1.0f / obj->GetCount();
+
+		srand(time(NULL));
+		//敵のポッドの番号をランダムにする処理
+		Enemypod = rand() % 5 + 1;	
 	}
 
 	m_size = 50.0f;//サイズ
 	
+	m_time = 100;
+
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
 	m_mov = 0;
@@ -68,20 +75,33 @@ void CObjMissile::Init()
 
 	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_Rocket, 1);
+		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_Rocket, 1);
+		m_x += 100;
 	}
+
+	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 32;
+	m_eff.m_bottom = 29;
+	m_ani = 0;
+	m_ani_time = 0;
+	m_del = false;
+	m_vx = 0.0f;
+
+	m_a = 1.0f;
 
 }
 
 //アクション
-void CObjMissile::Action()
+void CObjRocket::Action()
 {
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
-	
+
 	m_mov += m_mov_spd / 2;
 
 	//マウスの位置を取得
@@ -101,7 +121,7 @@ void CObjMissile::Action()
 		m_mou_f = false;
 	}
 
-	
+
 	//各ライン毎の動き方
 	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
@@ -117,7 +137,7 @@ void CObjMissile::Action()
 		m_vx -= 0.3f;
 		m_vy -= (-0.15 + m_mov);
 	}
-	
+
 	//-----------------------座標更新
 	if (m_type == true) {
 		m_x += m_vx - m_mov_spd * 200;
@@ -128,34 +148,52 @@ void CObjMissile::Action()
 		m_y += m_vy;
 	}
 
-
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (m_type == true) {
-		if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-		{//位置を更新//惑星と接触しているかどうかを調べる
-			this->SetStatus(false);		//当たった場合削除
+	////敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
+
+	//ポッド消滅処理
+	if (m_del == true)
+	{
+
+		if (m_ani == 4)
+		{
+			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 		}
+
+		return;
 	}
-	else {
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
-		{//位置を更新//惑星と接触しているかどうかを調べる
-			this->SetStatus(false);		//当たった場合削除
-			Hits::DeleteHitBox(this);
-		}
+
+	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
+		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
+	{
+		//位置を更新//惑星と接触しているかどうかを調べる
+		m_del = true;
+		hit->SetInvincibility(true);
 	}
+
+	if ((hit->CheckElementHit(ELEMENT_PLAYER) == true ||
+		hit->CheckElementHit(ELEMENT_P_MIS) == true) && m_type == false)//プレイヤーの惑星かミサイルに当たった時かつ敵弾
+	{
+		m_del = true;
+		hit->SetInvincibility(true);
+	}
+
+
 }
 
 //ドロー
-void CObjMissile::Draw()
+void CObjRocket::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
 	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f }; //赤
 	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f }; //緑
 	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f }; //青
+	float c[4] = { 1.0f,1.0f,1.0f,m_a };
 
 
 	RECT_F src;//切り取り位置
@@ -188,33 +226,99 @@ void CObjMissile::Draw()
 		dst.m_bottom = m_y + m_size;
 	}
 
-	
 	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
 		m_r += 0.05 + m_mov_spd * 2;
 
 		switch (ButtonU) {
-			case 1:
-				Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤
-				break;
-			case 2:
-				Draw::Draw(10, &src, &dst, b, m_r + 180);  //青
-				break;
-			case 3:
-				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑
-				break;
-			case 4:
-				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色
-				break;
-			case 5:
-				Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
-				break;
+		case 1:
+			Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
+			break;
+		case 2:
+			Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
+			break;
+		case 3:
+			Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
+			break;
+		case 4:
+			Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
+			break;
+		case 5:
+			Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
+			break;
 
 		}
 		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
-	else {
-		m_r -= 0.05 - m_mov_spd * 2;
-		Draw::Draw(10, &src, &dst, d, m_r + 15);
+
+
+	//敵ポッドの1～4の番号(ポッド)の描画情報
+	if (Enemypod >= 1 && Enemypod <= 4)
+	{
+		//ポッドの描画情報
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 100.0f;
+		src.m_bottom = 70.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
 	}
+	else  //------------敵ミサイルの描画用
+	{
+		//ミサイルの描画情報
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = m_y;
+		dst.m_left = m_x;
+		dst.m_right = m_x + m_size;
+		dst.m_bottom = m_y + m_size;
+	}
+
+	if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
+		m_r += 0.05 + m_mov_spd * 2;
+
+		switch (Enemypod) {
+		case 1://---------ランダムの情報が1なら
+			Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
+			break;
+		case 2://---------ランダムの情報が2なら
+			Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
+			break;
+		case 3://---------ランダムの情報が3なら
+			Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
+			break;
+		case 4://---------ランダムの情報が4なら
+			Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
+			break;
+		case 5://---------ランダムの情報が5なら
+			Draw::Draw(17, &src, &dst, d, m_r-145);   //ミサイル
+			break;
+		}
+	}
+
+	//爆発エフェクトアニメーションRECT情報
+	RECT_F ani_src[4] =
+	{
+		{ 0, 0, 32,29 },
+		{ 0,32, 64,29 },
+		{ 0,64, 96,29 },
+		{ 0,96,128,29 },
+	};
+
 	
+	//エフェクト
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 32.0f + m_x;
+	dst.m_bottom = 32.0f + m_y;
+
+	if (m_del == true)
+		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
+
+
 }

@@ -32,10 +32,10 @@ int g_Bal_equip_Level = 1;
 int g_Bal_equip_Lv_achieve = 1;
 int g_Pod_equip_Level = 1;
 int g_Pod_equip_Lv_achieve = 1;
-int g_Power_num = 0;
-int g_Defense_num = 0;
-int g_Speed_num = 0;
-int g_Balance_num = 0;
+int g_Power_num = 10000;		//デバッグ用に10000。後で0に戻す。
+int g_Defense_num = 10000;		//デバッグ用に10000。後で0に戻す。
+int g_Speed_num = 10000;		//デバッグ用に10000。後で0に戻す。
+int g_Balance_num = 10000;		//デバッグ用に10000。後で0に戻す。
 int g_Research_num = 0;
 int g_Remain_num = 1000;
 
