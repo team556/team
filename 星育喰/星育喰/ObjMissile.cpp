@@ -49,6 +49,9 @@ void CObjMissile::Init()
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
 		m_mov_spd = 1.0f / obj->GetCount();
+
+		srand(time(NULL));
+		Enemypod = rand() % 5 + 1;
 	}
 
 	m_size = 50.0f;//サイズ
@@ -194,16 +197,16 @@ void CObjMissile::Draw()
 
 		switch (ButtonU) {
 			case 1:
-				Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤
+				Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
 				break;
 			case 2:
-				Draw::Draw(10, &src, &dst, b, m_r + 180);  //青
+				Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
 				break;
 			case 3:
-				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑
+				Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
 				break;
 			case 4:
-				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色
+				Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
 				break;
 			case 5:
 				Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
@@ -212,9 +215,35 @@ void CObjMissile::Draw()
 		}
 		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
-	else {
-		m_r -= 0.05 - m_mov_spd * 2;
-		Draw::Draw(10, &src, &dst, d, m_r + 15);
+	//else {
+	//	m_r -= 0.05 - m_mov_spd * 2;
+	//	Draw::Draw(10, &src, &dst, d, m_r + 15);
+
+	//}
+	if (m_type == false) { //-----------ボタン赤・青・緑を分ける判定
+		m_r += 0.05 + m_mov_spd * 2;
+
+		switch (Enemypod) {
+		case 1:
+			Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
+			break;
+		case 2:
+			Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
+			break;
+		case 3:
+			Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
+			break;
+		case 4:
+			Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
+			break;
+		case 5:
+			Draw::Draw(17, &src, &dst, d, m_r);   //ミサイル
+			break;
+		}
 	}
-	
+	//else {
+	//	m_r -= 0.05 - m_mov_spd * 2;
+	//	Draw::Draw(10, &src, &dst, d, m_r + 15);
+
+	//}
 }

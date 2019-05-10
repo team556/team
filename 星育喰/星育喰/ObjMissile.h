@@ -36,6 +36,7 @@ private:
 
 	int ButtonU;
 
+	int Enemypod;
 
 	bool m_type;		//生成時のタイプ(true主人公)
 };
