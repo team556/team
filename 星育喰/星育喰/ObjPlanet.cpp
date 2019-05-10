@@ -140,7 +140,7 @@ void CObjPlanet::Action()
 		m_ani_frame = 0;	//初期フレーム
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
-		if (m_type == true)
+		if (m_type == 0)
 		{
 			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 			if(m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
