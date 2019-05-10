@@ -122,7 +122,6 @@ extern bool g_key_fg;//
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
 #include "ObjPushMissile.h"
-#include "ObjPod.h"
 
 //------------------------------------------------
 

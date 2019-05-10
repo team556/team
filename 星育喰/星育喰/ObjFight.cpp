@@ -3,9 +3,11 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\HitBoxManager.h"
 
 #include "GameHead.h"
 #include "ObjFight.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -25,7 +27,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 30;//戦闘時間(60 * X = X秒)
+	m_cnt = 60 * 10;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
 	m_end_f = false;
@@ -34,6 +36,16 @@ void CObjFight::Init()
 	m_hp2 = 0;
 	m_ex = 0;
 	m_ey = 0;
+
+	m_eff.m_top    = 0;
+	m_eff.m_left   = 0;
+	m_eff.m_right  = 32;
+	m_eff.m_bottom = 29;
+	m_ani = 0;
+	m_ani_time = 0;
+	m_del = false;
+	m_vx = 0.0f;
+
 
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
@@ -73,6 +85,46 @@ void CObjFight::Action()
 		else {};//ライン外何もしない
 	}
 	else {};
+	//消さずに置いといてください
+	////敵とプレイヤーのポッドの距離が30px未満と等しいときの処理
+	//if (ELEMENT_ENEMY || ELEMENT_PLAYER <= 30 == true)
+	//{
+	//	m_eff = GetPodtEffec(&m_ani, &m_ani_time,m_del,2);
+
+	//	//ポッド消滅処理
+	//	if (m_del == true)
+	//	{
+	//		//爆発エフェクトアニメーションRECT情報
+	//		RECT_F ani_src[4] =
+	//		{
+	//			{ 0, 0, 32,29 },
+	//			{ 0,32, 64,29 },
+	//			{ 0,64, 96,29 },
+	//			{ 0,96,128,29 },
+	//		};
+
+	//		//アニメーションのコマ間隔制御
+	//		if (m_ani_time > 2)
+	//		{
+	//			m_ani++;
+	//			m_ani_time = 0;
+
+	//			//m_eff=ani_src{m_ani};
+	//		}
+	//		else
+	//		{
+	//			m_ani_time++;
+	//		}
+
+	//		if (m_ani == 4)
+	//		{
+	//			this->SetStatus(false);
+	//			Hits::DeleteHitBox(this);
+	//		}
+	//	}
+	//	return;
+	//}
+
 
 	//▼戦闘終了時処理
 	//プレイヤー惑星、敵惑星のHPをそれぞれ取得し、比べ、
@@ -172,9 +224,27 @@ void CObjFight::Draw()
 	dst.m_bottom=480.0f;
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
 
-	//if()
+	//爆発エフェクトアニメーションRECT情報
+	RECT_F ani_src[4]=
+	{
+		{0, 0, 32,29},
+		{0,32, 64,29},
+		{0,64, 96,29},
+		{0,96,128,29},
+	};
+	
+	//m_eff.m_top = 0;
+	//m_eff.m_left = 0;
+	//m_eff.m_right = 32;
+	//m_eff.m_bottom = 29;
 
+	//エフェクト
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 32.0f + m_x;
+	dst.m_bottom = 32.0f + m_y;
 
+	Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 
 	//デバッグ用仮マウス位置表示
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };

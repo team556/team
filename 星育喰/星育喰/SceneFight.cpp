@@ -90,15 +90,15 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//戦闘画面オブジェクト登録
 
 	//敵星オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, false);	//オブジェクト作成
-	Objs::InsertObj(obj0, OBJ_ENEMY,  10);					//オブジェクト登録
+	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, 1);	//オブジェクト作成
+	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
 
 	//自星オブジェクト作成
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, true);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 20);					//オブジェクト登録
 
-	//敵星オブジェクト作成(消去する時はこちらを消してください)
-	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, false);	//オブジェクト作成
+	//敵星オブジェクト作成
+	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, 2);	//オブジェクト作成
 	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//オブジェクト登録
 
 	//民発射ボタン
