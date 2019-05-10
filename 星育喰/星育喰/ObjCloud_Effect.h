@@ -4,7 +4,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：ホーム
+//オブジェクト：雲演出
 class CObjCloud_Effect :public CObj
 {
 public:

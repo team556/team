@@ -39,6 +39,11 @@ void CObjPushUnit::Init()
 //アクション
 void CObjPushUnit::Action()
 {
+	//▼戦闘開始前は操作不能にする処理
+	if (battle_start == false)
+	{
+		return;
+	}
 
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();

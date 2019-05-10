@@ -15,6 +15,7 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_ENEMY2,
 	OBJ_CLOUD,
+	OBJ_BEFORE_FIGHT_EFFECT,
 	OBJ_TRAINING,
 	OBJ_PREPARATION,
 	OBJ_FIGHT,
@@ -108,6 +109,7 @@ extern bool g_key_fg;//
 #include "ObjTest.h"
 #include "ObjHuman.h"
 #include "ObjCloud_Effect.h"
+#include "ObjBefore_Fight_Effect.h"
 #include "ObjBarracks.h"
 #include "ObjPlanet.h"
 #include "ObjTraining.h"
