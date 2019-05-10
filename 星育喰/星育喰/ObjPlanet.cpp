@@ -140,17 +140,17 @@ void CObjPlanet::Action()
 		m_ani_frame = 0;	//初期フレーム
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
-		if (m_type == true)
+		if (m_type == 0)
 		{
 			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 			if(m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
-			m_px -= 3.0f;
+			m_px -= 4.0f;
 		}
 		else
 		{
 			CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 			if (m_px < pla->GetX())		//自分のX座標より敵惑星が小さくなると移動を止める
-			m_px += 3.0f;
+			m_px += 4.0f;
 		}
 		
 	//-------------------------------------------------------------
@@ -162,12 +162,12 @@ void CObjPlanet::Action()
 				2 * m_siz_vec + m_size * 4);
 
 	//▼ダメージ処理
-	if ((hit->CheckElementHit(ELEMENT_MAGIC) == true) && (m_type != 0) && (m_hp > 0))
+	if ((hit->CheckElementHit(ELEMENT_E_MIS) == true) && (m_type == 0) && (m_hp > 0))
 	{							//ミサイルに当たった場合
 		m_hp -= 1;				//HP-1
 		m_size -= m_size / 20;	//サイズ減少
 	}
-	else if ((hit->CheckElementHit(ELEMENT_RED) == true) && (m_type == 0) && (m_hp > 0))
+	else if ((hit->CheckElementHit(ELEMENT_P_MIS) == true) && (m_type != 0) && (m_hp > 0))
 	{
 		m_hp -= 1;				//HP-1
 		m_size -= m_size / 20;	//サイズ減少
