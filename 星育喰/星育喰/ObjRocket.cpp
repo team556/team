@@ -88,7 +88,7 @@ void CObjRocket::Init()
 	m_eff.m_right = 32;
 	m_eff.m_bottom = 29;
 	m_ani = 0;
-	m_ani_max = 0;
+	m_ani_max = 1;
 	m_ani_time = 0;
 	m_del = false;
 	m_vx = 0.0f;
