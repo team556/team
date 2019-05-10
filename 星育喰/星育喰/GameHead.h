@@ -21,10 +21,10 @@ enum OBJ_NAME
 	OBJ_WAREHOUSE,
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
-	OBJ_MISSILE,
+	OBJ_Rocket,
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
-	OBJ_FIGHT_MISSILE,
+	OBJ_FIGHT_Rocket,
 	OBJ_POD,
 	OBJ_ENEMYPOD,
 
@@ -116,8 +116,8 @@ extern bool g_key_fg;//
 #include "ObjTraining.h"
 #include "ObjPreparation.h"
 #include "ObjFight.h"
-#include "ObjPushUnit.h"
-#include "ObjMissile.h"
+#include "ObjRocketButton.h"
+#include "ObjRocket.h"
 #include "ObjBarracks.h"
 #include "ObjInstitute.h"
 #include "ObjWarehouse.h"

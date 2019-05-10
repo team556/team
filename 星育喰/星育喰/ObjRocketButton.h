@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //オブジェクト：ポッドボタン
-class CObjPushUnit :public CObjFight //CObjFightを継承する
+class CObjRocketButton :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjPushUnit(float x, float y, float h, float w, int n);
-	~CObjPushUnit() {};
+	CObjRocketButton(float x, float y, float h, float w, int n);
+	~CObjRocketButton() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー

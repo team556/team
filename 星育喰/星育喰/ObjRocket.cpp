@@ -8,7 +8,7 @@
 
 #include "GameHead.h"
 #include "UtilityModule.h"
-#include "ObjMissile.h"
+#include "ObjRocket.h"
 
 #include <time.h>
 
@@ -16,7 +16,7 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjMissile::CObjMissile(float x, float y, bool type,int n)
+CObjRocket::CObjRocket(float x, float y, bool type,int n)
 {
 	m_x = x;
 	m_y = y;
@@ -25,7 +25,7 @@ CObjMissile::CObjMissile(float x, float y, bool type,int n)
 }
 
 //イニシャライズ
-void CObjMissile::Init()
+void CObjRocket::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -75,11 +75,11 @@ void CObjMissile::Init()
 
 	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_Rocket, 1);
 		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_Rocket, 1);
 		m_x += 100;
 	}
 
@@ -97,7 +97,7 @@ void CObjMissile::Init()
 }
 
 //アクション
-void CObjMissile::Action()
+void CObjRocket::Action()
 {
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
@@ -186,7 +186,7 @@ void CObjMissile::Action()
 }
 
 //ドロー
-void CObjMissile::Draw()
+void CObjRocket::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
