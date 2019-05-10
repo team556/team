@@ -37,8 +37,6 @@ void CObjMissile::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			//m_psize = obj2->GetSiz();			//サイズを取得
-			//m_x +=obj2->GetX() - m_psize;
 			m_x += obj->GetCount() / 10;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
@@ -59,6 +57,8 @@ void CObjMissile::Init()
 
 	m_size = 50.0f;//サイズ
 	
+	m_time = 100;
+
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
 	m_mov = 0;
@@ -74,11 +74,11 @@ void CObjMissile::Init()
 
 	//当たり判定用HitBox作成
 	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RED, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMY, OBJ_MISSILE, 1);
 		m_x -= 100;
 	}
 	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_MAGIC, OBJ_MISSILE, 1);
+		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_PLAYER, OBJ_MISSILE, 1);
 		m_x += 100;
 	}
 
@@ -89,7 +89,7 @@ void CObjMissile::Action()
 {
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
-	
+
 	m_mov += m_mov_spd / 2;
 
 	//マウスの位置を取得
@@ -109,7 +109,7 @@ void CObjMissile::Action()
 		m_mou_f = false;
 	}
 
-	
+
 	//各ライン毎の動き方
 	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 	{
@@ -125,7 +125,7 @@ void CObjMissile::Action()
 		m_vx -= 0.3f;
 		m_vy -= (-0.15 + m_mov);
 	}
-	
+
 	//-----------------------座標更新
 	if (m_type == true) {
 		m_x += m_vx - m_mov_spd * 200;
@@ -136,23 +136,20 @@ void CObjMissile::Action()
 		m_y += m_vy;
 	}
 
-
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (m_type == true) {
-		if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-		{//位置を更新//惑星と接触しているかどうかを調べる
-			this->SetStatus(false);		//当たった場合削除
-			Hits::DeleteHitBox(this);
-		}
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+	{
+		//位置を更新//惑星と接触しているかどうかを調べる
+		this->SetStatus(false);		//当たった場合削除
+		Hits::DeleteHitBox(this);
 	}
-	else {
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
-		{//位置を更新//惑星と接触しているかどうかを調べる
-			this->SetStatus(false);		//当たった場合削除
-			Hits::DeleteHitBox(this);
-		}
+
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+	{
+		this->SetStatus(false);		//当たった場合削除
+		Hits::DeleteHitBox(this);
 	}
 }
 
