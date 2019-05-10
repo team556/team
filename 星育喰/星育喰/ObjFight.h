@@ -39,15 +39,6 @@ private:
 	float m_ex;
 	float m_ey;
 
-	int  m_ani;			//着弾アニメーション
-	int  m_ani_time;	//着弾アニメーション間隔タイム
-	bool m_del;			//削除チェック
-	int  m_x;
-	int  m_y;
-	RECT_F m_eff;	   //着弾エフェクト描画用
-	int m_vx;
-
-
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)

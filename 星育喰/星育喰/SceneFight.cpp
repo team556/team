@@ -39,13 +39,13 @@ void CSceneFight::InitScene()
 	//外部グラフィックを読み込み0番に登録(512×512ピクセル)
 	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
 
-	//ミサイル2番に登録
+	//2番にミサイル登録
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
-	//3番に登録
+	//3番にプレイヤー登録
 	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
 
-	//4番に登録
+	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー口とじ.png", 4, TEX_SIZE_512);
 
 	//5番に登録
@@ -95,7 +95,7 @@ void CSceneFight::InitScene()
 
 	//自星オブジェクト作成
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, 0);	//オブジェクト作成
-	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
+	Objs::InsertObj(obj1, OBJ_PLANET, 20);					//オブジェクト登録
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, 2);	//オブジェクト作成
