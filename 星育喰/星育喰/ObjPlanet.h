@@ -9,13 +9,13 @@ using namespace GameL;
 class CObjPlanet :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjPlanet(float x, float y, float hp, bool type, float siz = 0);//座標+HP+タイプ+サイズ
+	CObjPlanet(float x, float y, float hp, int type, float siz = 0);//座標+HP+タイプ+サイズ
 	~CObjPlanet() {};
 	void Init();	//イニシャライズ
 	void Action();  //アクション
 	void Draw();    //ドロー
 
-	//float GetX() { return m_px; }
+	float GetX() { return m_px; }
 	//float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//カウント数を返す
 	//float GetSiz() { return (m_siz_vec + m_size); }
@@ -36,10 +36,10 @@ private:
 	float m_hp;			//ヒットポイント
 	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
-	bool m_type;		//惑星タイプ(true主人公)
+	int m_type;		//惑星タイプ(0=主人公)
 
 	int m_time;
-	int m_attackf;
+	int m_attackf;		//敵の攻撃タイプ
 
 	float m_create_x;	//敵惑星ミサイルポッド作成X位置調整用
 	
@@ -51,5 +51,6 @@ private:
 	float m_eat_spd;
 	bool m_del_f;		//消すフラグ(true = 消す)
 
-	int m_cntf;
+	int m_cntf;			//fightのm_cnt変数の値を格納する用
+	int m_mov_stop;		//
 };

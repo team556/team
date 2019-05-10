@@ -51,6 +51,9 @@ enum HIT_ELEMENTS
 	ELEMENT_BUILD,
 	ELEMENT_POD,
 	ELEMENT_ENEMYPOD,
+	ELEMENT_P_MIS,			//プレイヤーと
+	ELEMENT_E_MIS,			//敵のミサイル
+
 };
 //------------------------------------------------
 

@@ -34,9 +34,10 @@ private:
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
 
-	int ButtonU;
+	int ButtonU;		//プレイヤーが撃ったポッドの種類
 
 	int m_time;
+	int Enemypod;
 
 	bool m_type;		//生成時のタイプ(true主人公)
 
