@@ -122,12 +122,6 @@ void CObjRocket::Action()
 		m_mou_f = false;
 	}
 
-
-	
-
-	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
-	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
-
 	//爆発エフェクト
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
 
