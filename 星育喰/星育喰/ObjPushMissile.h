@@ -23,6 +23,7 @@ private:
 
 	int m_get_line; //取得したライン(0～2)
 	int m_cnt;		//カウント
+	int m_re_time;	//リキャストタイム
 
 	float m_create_x;	//プレイヤー惑星ミサイル作成X位置調整用
 
