@@ -171,7 +171,7 @@ void CObjPlanet::Action()
 	}
 
 	//▼敵惑星攻撃パターン
-	if (m_type == 1)
+	if (m_type == 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 	{
 		//▼ミサイルポッド作成X位置を設定
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
