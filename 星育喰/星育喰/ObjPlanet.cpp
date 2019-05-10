@@ -141,9 +141,17 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame == 2)		//‹ò‚¤ƒtƒŒ[ƒ€‚ÌˆÚ“®
 		if (m_type == true)
-			m_px -= 2.0f;
+		{
+			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+			if(m_px > ene->GetX())
+			m_px -= 3.0f;
+		}
 		else
-			m_px += 2.0f;
+		{
+			CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+			if (m_px < pla->GetX())
+			m_px += 3.0f;
+		}
 		
 	//-------------------------------------------------------------
 

@@ -15,7 +15,7 @@ public:
 	void Action();  //アクション
 	void Draw();    //ドロー
 
-	//float GetX() { return m_px; }
+	float GetX() { return m_px; }
 	//float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//カウント数を返す
 	//float GetSiz() { return (m_siz_vec + m_size); }
@@ -51,5 +51,6 @@ private:
 	float m_eat_spd;
 	bool m_del_f;		//消すフラグ(true = 消す)
 
-	int m_cntf;
+	int m_cntf;			//fightのm_cnt変数の値を格納する用
+	int m_mov_stop;		//
 };
