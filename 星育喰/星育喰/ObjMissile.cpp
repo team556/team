@@ -29,7 +29,6 @@ void CObjMissile::Init()
 {
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-		CObjPlanet * obj2 = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 		if (obj != nullptr) {					//情報が取得出来ていたら
 			m_get_line = obj->GetLine();		//ラインナンバーを取得
@@ -37,14 +36,11 @@ void CObjMissile::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			//m_psize = obj2->GetSiz();			//サイズを取得
-			//m_x +=obj2->GetX() - m_psize;
 			m_mov_spd = 1.0f / obj->GetCount();
 		}
 	}
 	else {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-		CObjPlanet * obj2 = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 		srand(time(NULL));
 		m_get_line = rand() % 3 + 1;

@@ -77,6 +77,9 @@ void CSceneFight::InitScene()
 
 	//17番目に登録
 	Draw::LoadImage(L"ミサイル.png", 17, TEX_SIZE_512);
+
+	//戦闘画面移行演出(黒星)を読み込み18番に登録
+	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 	
 
 	//出力させる文字のグラフィックを作成
@@ -88,13 +91,13 @@ void CSceneFight::InitScene()
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, false);	//オブジェクト作成
-	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
+	Objs::InsertObj(obj0, OBJ_ENEMY,  10);					//オブジェクト登録
 
 	//自星オブジェクト作成
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, true);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
-	//敵星オブジェクト作成
+	//敵星オブジェクト作成(消去する時はこちらを消してください)
 	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, false);	//オブジェクト作成
 	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//オブジェクト登録
 
