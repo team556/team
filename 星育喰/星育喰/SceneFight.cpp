@@ -29,10 +29,6 @@ CSceneFight::~CSceneFight()
 //ゲーム初期化メソッド
 void CSceneFight::InitScene()
 {
-	m_cnt = 0;
-	m_speed = 0.04f;
-	m_a = 1.0f;
-
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
@@ -87,7 +83,7 @@ void CSceneFight::InitScene()
 
 	//戦闘画面オブジェクト作成
 	CObjFight* obj = new CObjFight();		//戦闘画面オブジェクト作成
-	Objs::InsertObj(obj, OBJ_FIGHT, 10);	//戦闘画面オブジェクト登録
+	Objs::InsertObj(obj, OBJ_FIGHT, 1);		//戦闘画面オブジェクト登録
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, 1);	//オブジェクト作成
@@ -117,39 +113,13 @@ void CSceneFight::InitScene()
 	CObjRocketButton* obj6 = new CObjRocketButton(150, 600, 100, 200, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
 
+	//戦闘前演出オブジェクト
+	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
+	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
 void CSceneFight::Scene()
 {
-	m_cnt += m_speed;
-	if(m_speed > 0)
-		m_speed -= 0.00001f;
 
-	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
-
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
-
-
-	//▼背景表示
-	src.m_top   =  0.0f +(m_cnt * 4.5 / 6);
-	src.m_left  =  0.0f + m_cnt;
-	src.m_right =960.0f - m_cnt;
-	src.m_bottom=638.0f -(m_cnt * 4.5 / 6);
-
-	dst.m_top   =   0.0f;
-	dst.m_left  =   0.0f;
-	dst.m_right =1200.0f;
-	dst.m_bottom= 700.0f;
-	Draw::Draw(0, &src, &dst, d, 0.0f);
-
-
-	if (m_cnt >= 0.5 && m_a >=0 ) {
-		m_a -= 0.01f;
-	}
-	
-	float c[4] = { 1.0f,1.0f,1.0f,m_a };
-	Font::StrDraw(L"スタート！", 420, 250, 80, c);
 }

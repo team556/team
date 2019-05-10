@@ -66,6 +66,12 @@ void CObjPlanet::Init()
 //アクション
 void CObjPlanet::Action()
 {
+	//▼戦闘開始前は戦闘処理(敵惑星の行動等)を実行しないようにする
+	if (battle_start == false)
+	{
+		return;
+	}
+
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (fit->GetCount() != 0)		//対戦時間が0でない場合
 		/*m_siz_vec += m_siz_spd*/; //拡大非をベクトルに加算

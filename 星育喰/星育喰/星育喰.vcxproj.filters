@@ -178,6 +178,9 @@
     <ClCompile Include="ObjRocketButton.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
+    <ClCompile Include="ObjBefore_Fight_Effect.cpp">
+      <Filter>ソース ファイル\関数/演出</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -305,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="ObjRocketButton.h">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBefore_Fight_Effect.h">
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

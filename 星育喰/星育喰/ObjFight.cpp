@@ -37,6 +37,12 @@ void CObjFight::Init()
 	m_ex = 0;
 	m_ey = 0;
 
+	m_scale_down_cnt = 0;
+	m_scale_down_speed = 0.04f;
+	m_font_a = 1.0f;
+
+	m_start_count = 60 * 3;	//3秒経過後、戦闘開始
+	m_start_count_f = false;
 
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
@@ -46,9 +52,37 @@ void CObjFight::Init()
 //アクション
 void CObjFight::Action()
 {
+	//▼戦闘開始前は戦闘処理を実行しないようにする＆
+	//戦闘開始カウントの処理
+	if (battle_start == false)
+	{
+		//戦闘前演出オブジェクトから「戦闘開始カウント」開始フラグをtrueにした時に実行
+		//戦闘開始カウントを徐々に減らしていき、0になった時、戦闘開始フラグを立てる。
+		if (m_start_count <= 60 * 0)
+		{
+			battle_start = true;//戦闘開始フラグを立てる
+		}
+		else if (m_start_count_f == true)
+		{
+			m_start_count--;//戦闘開始カウントダウン
+		}
+
+		return;
+	}
+
 	if (m_cnt > 0)	//0より大きい時
 		m_cnt--;	//カウントダウン
 	
+	//背景縮小処理
+	m_scale_down_cnt += m_scale_down_speed;
+	if (m_scale_down_speed > 0)
+		m_scale_down_speed -= 0.00001f;
+
+	//戦闘開始時表示される"スタート"の文字を徐々に透明化
+	if (m_scale_down_cnt >= 0.5 && m_font_a >= 0) {
+		m_font_a -= 0.01f;
+	}
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -105,8 +139,28 @@ void CObjFight::Action()
 
 //ドロー
 void CObjFight::Draw()
-{	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+{	
+	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float c[4] = { 1.0f,1.0f,1.0f,m_a };
+	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+
+	//▼背景表示
+	src.m_top = 0.0f + (m_scale_down_cnt * 4.5 / 6);
+	src.m_left = 0.0f + m_scale_down_cnt;
+	src.m_right = 960.0f - m_scale_down_cnt;
+	src.m_bottom = 638.0f - (m_scale_down_cnt * 4.5 / 6);
+
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(0, &src, &dst, d, 0.0f);
+
+
+	//▼戦闘時間表示
 	int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
 	if (s >= 60) {						//60秒以上の場合
 		m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
@@ -117,6 +171,7 @@ void CObjFight::Draw()
 	Font::StrDraw(str,500 ,60 ,50 , c);
 
 
+	//▼攻撃用ライン描画処理
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
@@ -147,16 +202,13 @@ void CObjFight::Draw()
 		else if (m_line_nam == 2)
 			d2[3] = 1.0f;
 	}
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
 
-	//▼背景表示
+	//攻撃用ライン画像
 	src.m_top   =  0.0f;
 	src.m_left  =  0.0f;
 	src.m_right =100.0f;
 	src.m_bottom=100.0f;
 
-	//攻撃用ライン画像
 	dst.m_top   =200.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
@@ -175,6 +227,32 @@ void CObjFight::Draw()
 	dst.m_bottom=480.0f;
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
 
+	//▼戦闘開始カウント
+	//戦闘開始カウントの値に合わせて、
+	//３→２→１と徐々にカウントダウンしていき、
+	//０になると「スタート！」と表示。
+	//その後「スタート！」の文字は徐々に透明化していき、
+	//最終的に見えなくなる。
+	float start_font[4] = { 1.0f,1.0f,1.0f,m_font_a };
+	
+	if (battle_start == true)
+	{
+		Font::StrDraw(L"スタート！", 420, 250, 80, start_font);
+	}
+	else if (m_start_count <= 60 * 1)
+	{
+		Font::StrDraw(L"１", 495, 260, 160, start_font);
+	}
+	else if (m_start_count <= 60 * 2)
+	{
+		Font::StrDraw(L"２", 495, 260, 160, start_font);
+	}
+	else if (m_start_count_f == true)
+	{
+		Font::StrDraw(L"３", 495, 260, 160, start_font);
+	}
+
+
 	
 	//m_eff.m_top = 0;
 	//m_eff.m_left = 0;
@@ -182,7 +260,6 @@ void CObjFight::Draw()
 	//m_eff.m_bottom = 29;
 
 	//デバッグ用仮マウス位置表示
-	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
 	wchar_t test_mou[256];
 	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
 	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
