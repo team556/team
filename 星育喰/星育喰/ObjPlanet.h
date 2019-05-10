@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjPlanet :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjPlanet(float x, float y, float hp, bool type, float siz = 0);//座標+HP+タイプ+サイズ
+	CObjPlanet(float x, float y, float hp, int type, float siz = 0);//座標+HP+タイプ+サイズ
 	~CObjPlanet() {};
 	void Init();	//イニシャライズ
 	void Action();  //アクション
@@ -36,7 +36,7 @@ private:
 	float m_hp;			//ヒットポイント
 	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
-	bool m_type;		//惑星タイプ(true主人公)
+	int m_type;		//惑星タイプ(0=主人公)
 
 	int m_time;
 	int m_attackf;
