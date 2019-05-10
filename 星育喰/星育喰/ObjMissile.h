@@ -39,4 +39,13 @@ private:
 	int m_time;
 
 	bool m_type;		//生成時のタイプ(true主人公)
+
+	int  m_ani;			//着弾アニメーション
+	int  m_ani_time;	//着弾アニメーション間隔タイム
+	bool m_del;			//削除チェック
+	RECT_F m_eff;	   //着弾エフェクト描画用
+
+	float m_a;			//alpha(透明度)
+
+
 };
