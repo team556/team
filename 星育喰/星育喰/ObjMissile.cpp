@@ -87,6 +87,7 @@ void CObjMissile::Init()
 	m_eff.m_right = 32;
 	m_eff.m_bottom = 29;
 	m_ani = 0;
+	m_ani_max = 0;
 	m_ani_time = 0;
 	m_del = false;
 	m_vx = 0.0f;
@@ -121,60 +122,58 @@ void CObjMissile::Action()
 	}
 
 
-	//各ライン毎の動き方
-	if (m_get_line == 0 || m_get_line == 3)//------上ライン----
-	{
-		m_vx -= 0.3f;
-		m_vy += (-0.15 + m_mov);
-	}
-	else if (m_get_line == 1)//---------------中ライン-----
-	{
-		m_vx -= 0.5f;
-	}
-	else//if(m_get_line == 2)---------------下ライン------
-	{
-		m_vx -= 0.3f;
-		m_vy -= (-0.15 + m_mov);
-	}
-
-	//-----------------------座標更新
-	if (m_type == true) {
-		m_x += m_vx - m_mov_spd * 200;
-		m_y += m_vy;
-	}
-	else {
-		m_x -= m_vx - m_mov_spd * 200;
-		m_y += m_vy;
-	}
+	
 
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-
-												////敵とプレイヤーのポッド当たっているとき処理
-												//if (ELEMENT_POD&&ELEMENT_ENEMYPOD == true && hit->CheckObjNameHit(OBJ_POD) == nullptr)
-												//{
+	//爆発エフェクト
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
 
-	//ポッド消滅処理
+	//爆発エフェクト回数処理
 	if (m_del == true)
 	{
-
 		if (m_ani == 4)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+			m_ani = 0;
+			m_ani_max++;
+		}
+	}
+	else//ポッド同士が当たると動きを止め勝敗を決める処理
+	{
+		//各ライン毎の動き方
+		if (m_get_line == 0 || m_get_line == 3)//------上ライン----
+		{
+			m_vx -= 0.3f;
+			m_vy += (-0.15 + m_mov);
+		}
+		else if (m_get_line == 1)//---------------中ライン-----
+		{
+			m_vx -= 0.5f;
+		}
+		else//if(m_get_line == 2)---------------下ライン------
+		{
+			m_vx -= 0.3f;
+			m_vy -= (-0.15 + m_mov);
 		}
 
-		return;
-
+		//-----------------------座標更新
+		if (m_type == true) {
+			m_x += m_vx - m_mov_spd * 200;
+			m_y += m_vy;
+		}
+		else {
+			m_x -= m_vx - m_mov_spd * 200;
+			m_y += m_vy;
+		}
 	}
-	//	return;
-	//}
+	//ポッド消滅処理
+	if (m_ani_max == 0)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
-
-
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
 		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
 	{
@@ -309,23 +308,20 @@ void CObjMissile::Draw()
 		}
 	}
 
-	//爆発エフェクトアニメーションRECT情報
-	RECT_F ani_src[4] =
-	{
-		{ 0, 0, 32,29 },
-		{ 0,32, 64,29 },
-		{ 0,64, 96,29 },
-		{ 0,96,128,29 },
-	};
-
-	
 	//エフェクト
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 32.0f + m_x;
-	dst.m_bottom = 32.0f + m_y;
+	if (m_ani_max == 0) 
+	{
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + m_x;
+		dst.m_bottom = 29.0f + m_y;
+	}
+	//dst.m_top = 0.0f + m_y;
+	//dst.m_left = 0.0f + m_x;
+	//dst.m_right = 50.0f + m_x;
+	//dst.m_bottom = 50.0f + m_y;
 
-	if (m_del == true)
+	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 
 
