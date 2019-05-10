@@ -150,10 +150,7 @@ void CObjMissile::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-
-												////敵とプレイヤーのポッド当たっているとき処理
-												//if (ELEMENT_POD&&ELEMENT_ENEMYPOD == true && hit->CheckObjNameHit(OBJ_POD) == nullptr)
-												//{
+	////敵とプレイヤーのポッド当たっているとき処理
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
 
 	//ポッド消滅処理
@@ -167,14 +164,8 @@ void CObjMissile::Action()
 		}
 
 		return;
-
 	}
-	//	return;
-	//}
 
-
-
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
 		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
 	{
