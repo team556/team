@@ -120,6 +120,7 @@ extern bool g_key_fg;//
 #include "ObjFight.h"
 #include "ObjRocketButton.h"
 #include "ObjRocket.h"
+#include "ObjSpecialButton.h"
 #include "ObjBarracks.h"
 #include "ObjInstitute.h"
 #include "ObjWarehouse.h"

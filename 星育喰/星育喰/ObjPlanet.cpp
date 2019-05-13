@@ -110,7 +110,6 @@ void CObjPlanet::Action()
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			if (m_type == 0) {
-				m_hp -= 1;//
 				CObjPlanet* ene2 = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
 				if(ene2 != nullptr)
 					m_get_hp = ene2->GetHp();
@@ -120,10 +119,19 @@ void CObjPlanet::Action()
 				if (pla != nullptr)
 					m_get_hp = pla->GetHp();
 			}
-			if (m_hp > m_get_hp) {
-				m_eat_f = true;		//喰うフラグ有効
-				fit->SetEndF();
+			if (m_type == 0) {
+				if (m_hp >= m_get_hp) {
+					m_eat_f = true;		//喰うフラグ有効
+					fit->SetEndF();
+				}
 			}
+			else {
+				if (m_hp > m_get_hp) {
+					m_eat_f = true;		//喰うフラグ有効
+					fit->SetEndF();
+				}
+			}
+			
 			battle_end = true;	//戦闘終了フラグを立てる
 		}
 	}
@@ -146,19 +154,21 @@ void CObjPlanet::Action()
 		m_ani_frame = 0;	//初期フレーム
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
+	{
 		if (m_type == 0)
 		{
 			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-			if(m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
-			m_px -= 4.0f;
+			if (m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
+				m_px -= 4.0f;
 		}
 		else
 		{
 			CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 			if (m_px < pla->GetX())		//自分のX座標より敵惑星が小さくなると移動を止める
-			m_px += 4.0f;
+				m_px += 4.0f;
 		}
-		
+	}
+
 	//-------------------------------------------------------------
 
 	

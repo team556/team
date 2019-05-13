@@ -55,7 +55,7 @@ void CSceneTraining::InitScene()
 	//描画する住民の数分行うように後に変更しておく。
 	for (int i = 0; i < 3; i++)
 	{
-		CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i]);	//住民オブジェクト作成
+		CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
 		Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
 	}
 
