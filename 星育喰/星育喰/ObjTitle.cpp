@@ -187,8 +187,6 @@ void CObjTitle::Draw()
 	dst.m_bottom = m_Ey[2] + 50.0f;
 	Draw::Draw(24, &src, &dst, w, 0.0f);
 
-
-
 	//▼プレイヤー惑星表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -200,10 +198,6 @@ void CObjTitle::Draw()
 	dst.m_right = 750.0f;
 	dst.m_bottom = 550.0f;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
-
-
-	//▼"星育喰"というタイトルを表示
-	Font::StrDraw(L"星育喰", 425, 50, 120, y);
 
 	//▼上下ふわふわする"クリックでスタート"を表示
 	//角度加算
@@ -221,8 +215,18 @@ void CObjTitle::Draw()
 
 	Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, w);
 
+	//タイトルロゴ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1557.0f;
+	src.m_bottom = 929.0f;
 
-	
+	dst.m_top = 0.0f;
+	dst.m_left = 350.0f;
+	dst.m_right = 861.0f;
+	dst.m_bottom = 310.0f;
+	Draw::Draw(1, &src, &dst, d, 0.0f);
+
 
 
 	//デバッグ用仮マウス位置表示
