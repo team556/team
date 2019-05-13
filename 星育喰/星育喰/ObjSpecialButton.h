@@ -5,21 +5,25 @@
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：ミサイル&ポッドボタン
-class CObjRocketButton :public CObjFight //CObjFightを継承する
+//オブジェクト：スペシャル技ボタン
+class CObjSpecialButton :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjRocketButton(float x, float y, float h, float w, int n);
-	~CObjRocketButton() {};
+	CObjSpecialButton(float x, float y, float h, float w);
+	~CObjSpecialButton() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
-	float m_x;		//座標X
-	float m_y;		//座標Y
-	float m_h;		//height高
-	float m_w;		//width幅
-	float m_a;		//alpha
+	float m_x;		//スペシャル技ボタンの位置X
+	float m_y;		//スペシャル技ボタンの位置Y
+	float m_h;		//スペシャル技ボタンのheight(高さ)
+	float m_w;		//スペシャル技ボタンのwidth(幅)
+	float m_a;		//スペシャル技ボタンのalpha(透過度)
+
+	bool m_is_used_special;	//スペシャル技が使用されたか(true:使用済　false:未使用)
+
+
 
 	int m_get_line; //取得したライン(0～2)
 	int m_cnt;		//カウント

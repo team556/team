@@ -1154,7 +1154,7 @@ void CObjPreparation::Special_message(int special_id)
 		else if (special_id == 1)
 		{
 			swprintf_s(m_detail_message[0], L"Fracture Ray");			//文字配列に文字データを入れる
-			swprintf_s(m_detail_message[1], L"選択した列上の");			//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[1], L"選択ライン上の");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"相手ポッド等を破壊する");	//文字配列に文字データを入れる
 		}
 		else if (special_id == 2)

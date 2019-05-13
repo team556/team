@@ -142,6 +142,7 @@
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPreparation.cpp" />
     <ClCompile Include="ObjRocketButton.cpp" />
+    <ClCompile Include="ObjSpecialButton.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPreparation.h" />
     <ClInclude Include="ObjRocketButton.h" />
+    <ClInclude Include="ObjSpecialButton.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="ObjTraining.h" />
