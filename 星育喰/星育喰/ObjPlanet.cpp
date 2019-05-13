@@ -36,6 +36,11 @@ void CObjPlanet::Init()
 
 	m_get_hp = 0;	//取得HP
 
+	m_time = 0; //タイムカウント初期化
+
+	i = 0;
+	j = 0;
+
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
 	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
@@ -201,8 +206,47 @@ void CObjPlanet::Action()
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 		m_create_x = -(obj->GetCount() / 10 + 100);
 
-		srand(time(NULL));
-		m_attackf = rand() % 5 + 1;
+		if (m_time == 0)
+		{
+			int Enemy_Fight_type[5][6] =
+			{
+				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
+				{ 1,1,2,1,1,0 },
+				{ 2,2,3,2,2,0 },
+				{ 3,3,4,3,3,0 },
+				{ 4,4,5,4,4,0 },
+				{ 5,5,1,5,5,0 },
+				//{ 2,2,3,4,5,0 },
+				//{ 5,1,1,1,3,0 },
+				//{ 4,2,2,2,1,0 },
+				//{ 2,3,3,1,2,0 },
+			};
+
+			//列決め作業
+			if (j == 0)
+			{
+				srand(time(NULL));
+				j = rand() % 5;//列が決まる
+			}
+
+			//列決まってる
+			if(j != 0)
+			{
+				m_attackf = Enemy_Fight_type[j][i];
+				if (i < 5)
+				{
+					i++;
+				}
+				if (m_attackf == 0)
+				{
+					j = 0;
+				}
+			}
+
+		
+		}
+
+
 		
 		if (m_attackf == 1 && m_time <= 0)
 		{

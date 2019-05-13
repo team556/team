@@ -54,4 +54,7 @@ private:
 
 	int m_cntf;			//fight‚Ìm_cnt•Ï”‚Ì’l‚ğŠi”[‚·‚é—p
 	int m_mov_stop;		//
+
+	int i;
+	int j;
 };
