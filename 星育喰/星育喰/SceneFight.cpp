@@ -74,8 +74,12 @@ void CSceneFight::InitScene()
 	//戦闘画面移行演出(黒星)を読み込み18番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 
-	//19番目に登録青色ポッド
-	Draw::LoadImage(L"ポッド2.png", 19, TEX_SIZE_512);
+	//スペシャル技ボタンを読み込み19番に登録
+	Draw::LoadImage(L"スペシャル技ボタン(仮).png", 19, TEX_SIZE_512);
+
+	//▼調べた所、現状どこにも使われていなかった為、一旦コメントアウト中。
+	//63番目に登録青色ポッド
+	//Draw::LoadImage(L"ポッド2.png", 63, TEX_SIZE_512);
 	
 
 	//出力させる文字のグラフィックを作成

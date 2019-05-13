@@ -142,9 +142,13 @@
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPreparation.cpp" />
     <ClCompile Include="ObjRocketButton.cpp" />
+    <ClCompile Include="ObjSpecialButton.cpp" />
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
+    <ClCompile Include="Pause.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="ScenePreparation.cpp" />
@@ -190,9 +194,13 @@
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPreparation.h" />
     <ClInclude Include="ObjRocketButton.h" />
+    <ClInclude Include="ObjSpecialButton.h" />
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="ObjTraining.h" />
+    <ClInclude Include="Pause.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneHome.h" />
     <ClInclude Include="ScenePreparation.h" />

@@ -110,6 +110,7 @@ void CObjRocket::Init()
 	m_vx = 0.0f;
 
 	m_a = 1.0f;
+	m_bom = 0.3f;
 
 }
 
@@ -130,7 +131,6 @@ void CObjRocket::Action()
 
 	if (m_mou_l == false && m_mou_f == false)
 	{
-
 		m_mou_f = true;
 	}
 	else
@@ -139,16 +139,16 @@ void CObjRocket::Action()
 	}
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
+	//m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);
 
 	//爆発エフェクト回数処理
 	if (m_del == true)
 	{
-		if (m_ani == 4)
+		/*if (m_ani == 4)
 		{
 			m_ani = 0;
 			m_ani_max++;
-		}
+		}*/
 	}
 	else//ポッド同士が当たると動きを止め勝敗を決める処理
 	{
@@ -191,27 +191,36 @@ void CObjRocket::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	////敵とプレイヤーのポッド当たっているとき処理
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 2);
+	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);
 
 	//ポッド消滅処理
 	if (m_del == true)
 	{
-
-		if (m_ani == 4)
+		if(m_bom != 5)	//５以外の場合
+			m_bom = Rand(0, 4);//ランダムな爆発を起こす
+		//m_ani_max == true;
+		if (m_ani == 4 && m_bom == 5)
 		{
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 		}
-
+		if (m_ani == 4)
+		{
+			m_ani = 0;
+			m_bom = 5;
+			//this->SetStatus(false);
+			//Hits::DeleteHitBox(this);
+		}
+		
 		return;
 	}
 
-	if (m_ani_max == 0)
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
+	//if (m_ani_max == 0)
+	//{
+	//	this->SetStatus(false);
+	//	Hits::DeleteHitBox(this);
+	//}
 
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
 		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
@@ -352,20 +361,64 @@ void CObjRocket::Draw()
 	}
 
 	//エフェクト
-	if (m_ani_max == 0) 
+	//左斜め上
+	if (m_bom== 0) 
 	{
 		dst.m_top = 0.0f + m_y;
 		dst.m_left = 0.0f + m_x;
 		dst.m_right = 32.0f + m_x;
 		dst.m_bottom = 29.0f + m_y;
 	}
-	//dst.m_top = 0.0f + m_y;
-	//dst.m_left = 0.0f + m_x;
-	//dst.m_right = 50.0f + m_x;
-	//dst.m_bottom = 50.0f + m_y;
 
+	//真ん中
+	else if (m_bom == 1)
+	{
+		dst.m_top = 0.0f + m_y+10;
+		dst.m_left = 0.0f + m_x+10;
+		dst.m_right = 42.0f + m_x;
+		dst.m_bottom = 39.0f + m_y;
+	}
+
+	//右斜め上
+	else if (m_bom == 2)
+	{
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 32.0f + m_x;
+		dst.m_right = 64.0f + m_x;
+		dst.m_bottom = 29.0f + m_y;
+	}
+
+	//左斜め下
+	if (m_bom == 3)
+	{
+		dst.m_top = 29.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + m_x;
+		dst.m_bottom = 58.0f + m_y;
+	}
+
+	//右斜め下
+	if (m_bom == 4)
+	{
+		dst.m_top = 29.0f + m_y;
+		dst.m_left = 32.0f + m_x;
+		dst.m_right = 64.0f + m_x;
+		dst.m_bottom = 58.0f + m_y;
+	}
+	//大きいやつ
+	if (m_bom == 5)
+	{
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 50.0f + m_x;
+		dst.m_bottom = 50.0f + m_y;
+	}
+
+	
 	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
+	
+
 
 
 }
