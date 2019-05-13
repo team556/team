@@ -40,6 +40,9 @@ void CSceneTitle::InitScene()
 
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+
+	//タイトルロゴ
+	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
 }
 
 //ゲームメイン実行中メソッド
