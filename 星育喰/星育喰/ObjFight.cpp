@@ -57,9 +57,15 @@ void CObjFight::Action()
 	if (battle_start == false)
 	{
 		//戦闘前演出オブジェクトから「戦闘開始カウント」開始フラグをtrueにした時に実行
-		//戦闘開始カウントを徐々に減らしていき、0になった時、戦闘開始フラグを立てる。
+		//戦闘開始カウントを徐々に減らしていき、0になった時、戦闘開始フラグ等を立てる。
 		if (m_start_count <= 60 * 0)
 		{
+			//ポーズ画面等で戦闘を一時停止する際、
+			//battle_startの[true / false]で一時停止を行うが、
+			//再度この戦闘開始カウントの処理が行われると厄介である為、
+			//[m_start_count_f = false]する事で、この処理が行われないようにする。
+			m_start_count_f = false;
+
 			battle_start = true;//戦闘開始フラグを立てる
 		}
 		else if (m_start_count_f == true)
