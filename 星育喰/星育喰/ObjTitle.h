@@ -24,6 +24,7 @@ private:
 	int	m_speed;		//敵惑星(背景)3つの移動速度変更用(デバッグ用 兼 隠し要素)
 
 	bool  m_flag;		//true=クリックした　false=クリックしてない
+	bool  m_key_f;		//キーフラグ
 	float m_alpha;		//透過度(アルファ値)
 
 	float m_mou_x;		//マウスの位置X

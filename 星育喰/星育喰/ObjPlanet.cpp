@@ -37,9 +37,12 @@ void CObjPlanet::Init()
 	m_get_hp = 0;	//取得HP
 
 	m_time = 0; //タイムカウント初期化
+	m_attackf = 0;
 
 	i = 0;
-	j = 0;
+
+	srand(time(NULL));
+	j = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
 
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
@@ -127,17 +130,15 @@ void CObjPlanet::Action()
 			if (m_type == 0) {
 				if (m_hp >= m_get_hp) {
 					m_eat_f = true;		//喰うフラグ有効
-					fit->SetEndF();
+					fit->SetEndF(1);
 				}
 			}
 			else {
 				if (m_hp > m_get_hp) {
 					m_eat_f = true;		//喰うフラグ有効
-					fit->SetEndF();
+					fit->SetEndF(-1);
 				}
 			}
-			
-			battle_end = true;	//戦闘終了フラグを立てる
 		}
 	}
 
@@ -206,7 +207,7 @@ void CObjPlanet::Action()
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 		m_create_x = -(obj->GetCount() / 10 + 100);
 
-		if (m_time == 0)
+		if (m_time <= 0)
 		{
 			int Enemy_Fight_type[5][6] =
 			{
@@ -222,28 +223,22 @@ void CObjPlanet::Action()
 				//{ 2,3,3,1,2,0 },
 			};
 
-			//列決め作業
-			if (j == 0)
+			m_attackf = Enemy_Fight_type[j][i];
+
+			if (m_attackf == 0)
 			{
+				i = 0;//配列一番左の状態に戻す
+					
 				srand(time(NULL));
-				j = rand() % 5;//列が決まる
-			}
+				j = rand() % 5;//行動パターンを決める
 
-			//列決まってる
-			if(j != 0)
-			{
 				m_attackf = Enemy_Fight_type[j][i];
-				if (i < 5)
-				{
-					i++;
-				}
-				if (m_attackf == 0)
-				{
-					j = 0;
-				}
+				i++;
 			}
-
-		
+			else // (i < 5)
+			{
+				i++;
+			}
 		}
 
 

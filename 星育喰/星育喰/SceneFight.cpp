@@ -95,7 +95,7 @@ void CSceneFight::InitScene()
 
 	//自星オブジェクト作成
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, 0);	//オブジェクト作成
-	Objs::InsertObj(obj1, OBJ_PLANET, 20);					//オブジェクト登録
+	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, 2);	//オブジェクト作成
