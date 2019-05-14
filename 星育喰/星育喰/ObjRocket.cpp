@@ -183,7 +183,6 @@ void CObjRocket::Action()
 	{
 		if(m_bom != 5)	//５以外の場合
 			m_bom = Rand(0, 4);//ランダムな爆発を起こす
-		//m_ani_max == true;
 		if (m_ani == 4 && m_bom == 5)
 		{
 			this->SetStatus(false);
@@ -193,18 +192,10 @@ void CObjRocket::Action()
 		{
 			m_ani = 0;
 			m_bom = 5;
-			//this->SetStatus(false);
-			//Hits::DeleteHitBox(this);
 		}
 		
 		return;
 	}
-
-	//if (m_ani_max == 0)
-	//{
-	//	this->SetStatus(false);
-	//	Hits::DeleteHitBox(this);
-	//}
 
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
 		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
