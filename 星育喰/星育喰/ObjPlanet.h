@@ -56,6 +56,6 @@ private:
 	int m_cntf;			//fight‚Ìm_cnt•Ï”‚Ì’l‚ğŠi”[‚·‚é—p
 	int m_mov_stop;		//
 
-	int i;
-	int j;
+	int Enemy_Attack_pattern_x;  //“GUŒ‚ƒpƒ^[ƒ“‚Ì‰¡²“Ç‚İ‚Ş—p
+	int Enemy_Attack_pattern_y;  //“GUŒ‚ƒpƒ^[ƒ“‚Ìc²“Ç‚İ‚Ş—p
 };
