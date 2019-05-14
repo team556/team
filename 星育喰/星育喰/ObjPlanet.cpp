@@ -36,7 +36,7 @@ void CObjPlanet::Init()
 
 	m_get_hp = 0;	//Žæ“¾HP
 
-	for (i = 0; i < 2; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		m_invincible_f[i] = false;
 	}
