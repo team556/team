@@ -39,10 +39,10 @@ void CObjPlanet::Init()
 	m_time = 0; //タイムカウント初期化
 	m_attackf = 0;
 
-	i = 0;
+	Enemy_Attack_pattern_x = 0;
 
 	srand(time(NULL));
-	j = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
+	Enemy_Attack_pattern_y = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
 
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
@@ -206,35 +206,38 @@ void CObjPlanet::Action()
 		//▼敵行動パターン決め
 		if (m_time <= 0)
 		{
-			int Enemy_Fight_type[5][6] =
+			int Enemy_Fight_type[5][6] =   //敵攻撃用の配列作成
 			{
 				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
-				{ 1,1,2,1,1,0 },
-				{ 2,2,3,2,2,0 },
-				{ 3,3,4,3,3,0 },
-				{ 4,4,5,4,4,0 },
-				{ 5,5,1,5,5,0 },
-				//{ 2,2,3,4,5,0 },
-				//{ 5,1,1,1,3,0 },
-				//{ 4,2,2,2,1,0 },
-				//{ 2,3,3,1,2,0 },
+				{ 1,1,2,1,1,0 }, //0番目
+				{ 2,2,3,2,2,0 }, //1番目
+				{ 3,3,4,3,3,0 }, //2番目
+				{ 4,4,5,4,4,0 }, //3番目
+				{ 5,5,1,5,5,0 }, //4番目
+				/*
+				　攻撃パターン追加する際は、上の配列の数字を変え
+				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
+				{,,,,,}, //5番目
+				{,,,,,}, //6番目
+				{,,,,,}, //7番目
+				{,,,,,}, //8番目
+				*/
 			};
 
-			m_attackf = Enemy_Fight_type[j][i];
-
-			if (m_attackf == 0)
+			m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+			if (m_attackf == 0)//--------配列が最後に行ったとき(0の時)
 			{
-				i = 0;//配列一番左の状態に戻す
-					
+				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
+				//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 				srand(time(NULL));
-				j = rand() % 5;//行動パターンを決める
-
-				m_attackf = Enemy_Fight_type[j][i];
-				i++;
+				Enemy_Attack_pattern_x = rand() % 5;
+				//↓m_attackに攻撃パターンを入れる処理
+				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+				Enemy_Attack_pattern_x++;
 			}
 			else
 			{
-				i++;
+				Enemy_Attack_pattern_x++;
 			}
 		}
 
@@ -243,31 +246,31 @@ void CObjPlanet::Action()
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 		m_create_x = -(obj->GetCount() / 10 + 100);
 		
-		if (m_attackf == 1 && m_time <= 0)
+		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
-		else if (m_attackf == 2 && m_time <= 0)
+		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
-		else if (m_attackf == 3 && m_time <= 0)
+		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
-		else if (m_attackf == 4 && m_time <= 0)
+		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
-		else if (m_attackf == 5 && m_time <= 0)
+		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
