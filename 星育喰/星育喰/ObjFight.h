@@ -5,6 +5,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define PLAYER (0)	//プレイヤー(スペシャル技で使用する配列を分かりやすくする用)
+#define ENEMY  (1)	//エネミー	(スペシャル技で使用する配列を分かりやすくする用)
+
 //オブジェクト：戦闘画面
 class CObjFight :public CObj
 {

@@ -36,6 +36,11 @@ void CObjPlanet::Init()
 
 	m_get_hp = 0;	//取得HP
 
+	for (i = 0; i < 2; i++)
+	{
+		m_invincible_f[i] = false;
+	}
+
 	m_time = 0; //タイムカウント初期化
 	m_attackf = 0;
 
@@ -184,15 +189,26 @@ void CObjPlanet::Action()
 				2 * m_siz_vec + m_size * 4);
 
 	//▼ダメージ処理
+	//▽プレイヤーのダメージ処理
 	if ((hit->CheckElementHit(ELEMENT_E_MIS) == true) && (m_type == 0) && (m_hp > 0))
-	{							//ミサイルに当たった場合
-		m_hp -= 1;				//HP-1
-		m_size -= m_size / 20;	//サイズ減少
+	{							
+		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
+		if (m_invincible_f[PLAYER] == false)
+		{
+			//ミサイルに当たった場合
+			m_hp -= 1;				//HP-1
+			m_size -= m_size / 20;	//サイズ減少
+		}
 	}
+	//▽エネミーのダメージ処理
 	else if ((hit->CheckElementHit(ELEMENT_P_MIS) == true) && (m_type != 0) && (m_hp > 0))
 	{
-		m_hp -= 1;				//HP-1
-		m_size -= m_size / 20;	//サイズ減少
+		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
+		if (m_invincible_f[ENEMY] == false)
+		{
+			m_hp -= 1;				//HP-1
+			m_size -= m_size / 20;	//サイズ減少
+		}
 	}
 
 	if (m_del_f == true) {				//消すフラグ判定＆処理

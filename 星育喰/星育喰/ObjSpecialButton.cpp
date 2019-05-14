@@ -9,10 +9,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//マクロ
-#define PLAYER (0)	//プレイヤー(配列分かりやすくする用)
-#define ENEMY  (1)	//エネミー	(配列分かりやすくする用)
-
 //コンストラクタ
 CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
 {
@@ -32,6 +28,10 @@ void CObjSpecialButton::Init()
 	m_mou_l = false;
 
 	m_a = 1.0f;	
+
+	//▼テスト用
+	//CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+	//m_invincible_f[PLAYER] = pla->GetInvincible_sp(PLAYER);
 }
 
 //アクション
@@ -64,6 +64,9 @@ void CObjSpecialButton::Action()
 		//そのスペシャル技の効果を実際に発動する
 
 
+		//▼テスト用
+		//*m_invincible_f[PLAYER] = true;
+
 
 
 		m_is_used_special[PLAYER] = true;	//スペシャル技使用済フラグ立て
@@ -71,11 +74,11 @@ void CObjSpecialButton::Action()
 	}
 
 	//▼敵惑星スペシャル技処理
-	if (m_enemy_special_button == true &&				//敵スペシャル技発動チェック
-		m_is_used_special[ENEMY] == false)				//スペシャル技未使用かチェック
-	{
-		m_is_used_special[ENEMY] == true;	//スペシャル技使用済フラグ立て
-	}
+	//if (*m_enemy_special_button == true &&				//敵スペシャル技発動チェック
+	//	m_is_used_special[ENEMY] == false)				//スペシャル技未使用かチェック
+	//{
+	//	m_is_used_special[ENEMY] == true;	//スペシャル技使用済フラグ立て
+	//}
 
 	//▼時間切れの時の処理
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);

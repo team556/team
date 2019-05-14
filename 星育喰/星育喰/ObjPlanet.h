@@ -18,9 +18,8 @@ public:
 	float GetX() { return m_px; }
 	//float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//カウント数を返す
-	//float GetSiz() { return (m_siz_vec + m_size); }
+	//float GetSiz() { return m_size; }
 	void SetEeatF() { m_eat_f = true; }//セット喰うフラグ
-
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
 private:
@@ -38,6 +37,8 @@ private:
 	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
 	int m_type;		//惑星タイプ(0=主人公)
+
+	bool m_invincible_f[2];	//無敵フラグ(true:無敵　false:無敵ではない)(0:プレイヤー惑星　1:敵惑星)[一定時間無敵用]
 
 	int m_time;
 	int m_attackf;		//敵の攻撃タイプ
