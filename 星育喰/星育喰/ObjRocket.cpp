@@ -27,6 +27,22 @@ CObjRocket::CObjRocket(float x, float y, bool type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
+	//敵の行動パターン
+	int Enemy_Fight_type[9][5]=
+	{
+		//1=赤,2=青,3=緑,4=灰色,5=ミサイル
+		{ 1,1,3,5,5 },
+		{ 2,1,3,1,4 },
+		{ 1,1,2,4,2 },
+		{ 2,2,1,3,1 },
+		{ 3,2,1,2,2 },
+		{ 2,2,3,4,5 },
+		{ 5,1,1,1,3 },
+		{ 4,2,2,2,1 },
+		{ 2,3,3,1,2 },
+	};
+
+
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
@@ -229,35 +245,38 @@ void CObjRocket::Draw()
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 
-	if (ButtonU >= 1 && ButtonU <= 4)
+	if (m_type == true) 
 	{
-		//ポッドの描画情報
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 70.0f;
-
-		dst.m_top = m_y;
-		dst.m_left = m_x;
-		dst.m_right = m_x + m_size;
-		dst.m_bottom = m_y + m_size;
-	}
-	else
-	{
-		//ミサイルの描画情報
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-		dst.m_top = m_y;
-		dst.m_left = m_x;
-		dst.m_right = m_x + m_size;
-		dst.m_bottom = m_y + m_size;
-	}
-
-	if (m_type == true) { //-----------ボタン赤・青・緑を分ける判定
 		m_r += 0.05 + m_mov_spd * 2;
+		if (ButtonU >= 1 && ButtonU <= 4)
+		{
+			//ポッドの描画情報
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 70.0f;
+
+			dst.m_top = m_y;
+			dst.m_left = m_x;
+			dst.m_right = m_x + m_size;
+			dst.m_bottom = m_y + m_size;
+		}
+		else
+		{
+			//ミサイルの描画情報
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = m_y;
+			dst.m_left = m_x;
+			dst.m_right = m_x + m_size;
+			dst.m_bottom = m_y + m_size;
+		}
+
+		 //-----------ボタン赤・青・緑を分ける判定
+		
 
 		switch (ButtonU) {
 		case 1:
@@ -275,59 +294,60 @@ void CObjRocket::Draw()
 		case 5:
 			Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
 			break;
-
 		}
 		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
 
-
-	//敵ポッドの1～4の番号(ポッド)の描画情報
-	if (Enemypod >= 1 && Enemypod <= 4)
+	if(m_type==false)
 	{
-		//ポッドの描画情報
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 70.0f;
+		//敵ポッドの1～4の番号(ポッド)の描画情報
+		if (ButtonU >= 1 && ButtonU <= 4)
+		{
+			//ポッドの描画情報
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 70.0f;
 
-		dst.m_top = m_y;
-		dst.m_left = m_x;
-		dst.m_right = m_x + m_size;
-		dst.m_bottom = m_y + m_size;
-	}
-	else  //------------敵ミサイルの描画用
-	{
-		//ミサイルの描画情報
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+			dst.m_top = m_y;
+			dst.m_left = m_x;
+			dst.m_right = m_x + m_size;
+			dst.m_bottom = m_y + m_size;
+		}
+		else  //------------敵ミサイルの描画用
+		{
+			//ミサイルの描画情報
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
 
-		dst.m_top = m_y;
-		dst.m_left = m_x;
-		dst.m_right = m_x + m_size;
-		dst.m_bottom = m_y + m_size;
-	}
+			dst.m_top = m_y;
+			dst.m_left = m_x;
+			dst.m_right = m_x + m_size;
+			dst.m_bottom = m_y + m_size;
+		}
 
-	if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
-		m_r += 0.05 + m_mov_spd * 2;
+		if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
+			m_r += 0.05 + m_mov_spd * 2;
 
-		switch (Enemypod) {
-		case 1://---------ランダムの情報が1なら
-			Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
-			break;
-		case 2://---------ランダムの情報が2なら
-			Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
-			break;
-		case 3://---------ランダムの情報が3なら
-			Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
-			break;
-		case 4://---------ランダムの情報が4なら
-			Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
-			break;
-		case 5://---------ランダムの情報が5なら
-			Draw::Draw(17, &src, &dst, d, m_r-145);   //ミサイル
-			break;
+			switch (ButtonU) {
+			case 1://---------ランダムの情報が1なら
+				Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
+				break;
+			case 2://---------ランダムの情報が2なら
+				Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
+				break;
+			case 3://---------ランダムの情報が3なら
+				Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
+				break;
+			case 4://---------ランダムの情報が4なら
+				Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
+				break;
+			case 5://---------ランダムの情報が5なら
+				Draw::Draw(17, &src, &dst, d, m_r-145);   //ミサイル
+				break;
+			}
 		}
 	}
 

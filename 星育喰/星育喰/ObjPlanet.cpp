@@ -36,6 +36,14 @@ void CObjPlanet::Init()
 
 	m_get_hp = 0;	//取得HP
 
+	m_time = 0; //タイムカウント初期化
+	m_attackf = 0;
+
+	i = 0;
+
+	srand(time(NULL));
+	j = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
+
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
 	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
@@ -122,17 +130,15 @@ void CObjPlanet::Action()
 			if (m_type == 0) {
 				if (m_hp >= m_get_hp) {
 					m_eat_f = true;		//喰うフラグ有効
-					fit->SetEndF();
+					fit->SetEndF(1);
 				}
 			}
 			else {
 				if (m_hp > m_get_hp) {
 					m_eat_f = true;		//喰うフラグ有効
-					fit->SetEndF();
+					fit->SetEndF(-1);
 				}
 			}
-			
-			battle_end = true;	//戦闘終了フラグを立てる
 		}
 	}
 
@@ -197,12 +203,45 @@ void CObjPlanet::Action()
 	//▼敵惑星攻撃パターン
 	if (m_type == 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 	{
+		//▼敵行動パターン決め
+		if (m_time <= 0)
+		{
+			int Enemy_Fight_type[5][6] =
+			{
+				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
+				{ 1,1,2,1,1,0 },
+				{ 2,2,3,2,2,0 },
+				{ 3,3,4,3,3,0 },
+				{ 4,4,5,4,4,0 },
+				{ 5,5,1,5,5,0 },
+				//{ 2,2,3,4,5,0 },
+				//{ 5,1,1,1,3,0 },
+				//{ 4,2,2,2,1,0 },
+				//{ 2,3,3,1,2,0 },
+			};
+
+			m_attackf = Enemy_Fight_type[j][i];
+
+			if (m_attackf == 0)
+			{
+				i = 0;//配列一番左の状態に戻す
+					
+				srand(time(NULL));
+				j = rand() % 5;//行動パターンを決める
+
+				m_attackf = Enemy_Fight_type[j][i];
+				i++;
+			}
+			else
+			{
+				i++;
+			}
+		}
+
+
 		//▼ミサイルポッド作成X位置を設定
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 		m_create_x = -(obj->GetCount() / 10 + 100);
-
-		srand(time(NULL));
-		m_attackf = rand() % 4 + 1;
 		
 		if (m_attackf == 1 && m_time <= 0)
 		{
@@ -212,19 +251,25 @@ void CObjPlanet::Action()
 		}
 		else if (m_attackf == 2 && m_time <= 0)
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 3 && m_time <= 0)
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}
 		else if (m_attackf == 4 && m_time <= 0)
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,4);//オブジェクト作成
+			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
+			m_time = 100;
+		}
+		else if (m_attackf == 5 && m_time <= 0)
+		{
+			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100;
 		}

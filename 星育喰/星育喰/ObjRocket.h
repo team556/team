@@ -51,5 +51,5 @@ private:
 	bool m_fight;		//ポッド同士の衝突時のエフェクト管理
 	int m_bom;			//爆発エフェクトのランダム(0～3)
 
-	//int m_get_line[9][3];	//敵選択ライン
+	int Enemy_Fight_type[9][3]; //敵の攻撃種類
 };

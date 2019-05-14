@@ -21,6 +21,7 @@ public:
 	//float GetSiz() { return (m_siz_vec + m_size); }
 	void SetEeatF() { m_eat_f = true; }//セット喰うフラグ
 
+
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
 private:
 
@@ -53,4 +54,7 @@ private:
 
 	int m_cntf;			//fightのm_cnt変数の値を格納する用
 	int m_mov_stop;		//
+
+	int i;
+	int j;
 };

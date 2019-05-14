@@ -95,7 +95,7 @@ void CSceneFight::InitScene()
 
 	//自星オブジェクト作成
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, 0);	//オブジェクト作成
-	Objs::InsertObj(obj1, OBJ_PLANET, 20);					//オブジェクト登録
+	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
 	//敵星オブジェクト作成
 	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, 2);	//オブジェクト作成
@@ -116,6 +116,10 @@ void CSceneFight::InitScene()
 
 	CObjRocketButton* obj6 = new CObjRocketButton(150, 600, 100, 200, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
+
+	//スペシャル技ボタン
+	CObjSpecialButton* special = new CObjSpecialButton(1000.0f, 20.0f, 114.0f, 175.0f);	//オブジェクト作成
+	Objs::InsertObj(special, OBJ_PLANET, 90);											//オブジェクト登録
 
 	//戦闘前演出オブジェクト
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
