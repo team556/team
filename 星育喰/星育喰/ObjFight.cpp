@@ -30,8 +30,6 @@ void CObjFight::Init()
 	m_cnt = 60 * 10;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
-	m_end_f = 0;
-
 	m_ex = 0;
 	m_ey = 0;
 
@@ -121,26 +119,6 @@ void CObjFight::Action()
 	}
 	else {};
 
-	//▼戦闘終了時処理
-	//プレイヤー惑星、敵惑星のHPをそれぞれ取得し、比べ、
-	//HPが多い方の惑星画像が手前に来るようにする
-	if (m_end_f != 0) 
-	{
-		if (m_end_f == -1) 
-		{
-			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-			if (ene != nullptr)
-				ene->SetDelF();
-		}
-		else 
-		{
-			CObjPlanet* ene2 = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY2);
-			if (ene2 != nullptr)
-				ene2->SetDelF();
-		}
-
-		m_end_f = 0;//再度この処理に入らないようにする
-	}
 }
 
 //ドロー

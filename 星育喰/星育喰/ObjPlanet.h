@@ -17,8 +17,14 @@ public:
 
 	float GetX() { return m_px; }
 	//float GetY() { return m_py; }
-	float GetHp() { return m_hp; }	//カウント数を返す
+	float GetHp() { return m_hp; }	//HP取得関数
 	//float GetSiz() { return m_size; }
+	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
+	void SetDamage() { m_hp -= 1; }//呼び出すとダメージ処理(HP)を行う[スペシャル技:敵に大ダメージ用]
+	void SetScale_down() { m_size -= m_size / 20; }////呼び出すとダメージ処理(SIZE)を行う[スペシャル技:敵に大ダメージ用]
+	void SetInvincible(bool is_Invincible) { m_invincible_f = is_Invincible; }//無敵フラグ設定用[スペシャル技:一定時間無敵用]
+	void SetRecastBuff(float buff) { m_enemy_recast_buff = buff; }//バフ倍率設定用[スペシャル技:生産性効率アップ用]
+	void SetDamageBuff(float buff) { m_damage_buff = buff; }//バフ倍率設定用[スペシャル技:住民の士気がアップ用]
 	void SetEeatF() { m_eat_f = true; }//セット喰うフラグ
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
@@ -38,7 +44,10 @@ private:
 	int m_cnt;			//カウント
 	int m_type;		//惑星タイプ(0=主人公)
 
-	bool m_invincible_f[2];	//無敵フラグ(true:無敵　false:無敵ではない)(0:プレイヤー惑星　1:敵惑星)[一定時間無敵用]
+	bool m_invincible_f;	//無敵フラグ(true:無敵　false:無敵ではない)[スペシャル技:一定時間無敵用]
+	float m_enemy_recast_buff;//エネミーミサイルポッドリキャストタイムのバフ倍率[スペシャル技:生産性効率アップ用]
+	float m_damage_buff;		//ダメージのバフ倍率[スペシャル技:住民の士気がアップ用]
+
 
 	int m_time;
 	int m_attackf;		//敵の攻撃タイプ

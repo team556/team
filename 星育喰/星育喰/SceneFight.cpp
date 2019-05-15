@@ -47,8 +47,14 @@ void CSceneFight::InitScene()
 	//5番に登録
 	//Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
 
-	//10番に登録赤色ポッド
-	Draw::LoadImage(L"ポッド1.png", 10, TEX_SIZE_512);
+	//ポッドLv.1を8番に登録
+	Draw::LoadImage(L"ポッド1.png", 8, TEX_SIZE_512);
+
+	//ポッドLv.2を9番に登録
+	Draw::LoadImage(L"ポッド2.png", 9, TEX_SIZE_512);
+
+	//ポッドLv.3を10番に登録
+	Draw::LoadImage(L"ポッド3.png", 10, TEX_SIZE_512);
 
 	//11番に登録
 	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
@@ -77,9 +83,8 @@ void CSceneFight::InitScene()
 	//スペシャル技ボタンを読み込み19番に登録
 	Draw::LoadImage(L"スペシャル技ボタン(仮).png", 19, TEX_SIZE_512);
 
-	//▼調べた所、現状どこにも使われていなかった為、一旦コメントアウト中。
-	//63番目に登録青色ポッド
-	//Draw::LoadImage(L"ポッド2.png", 63, TEX_SIZE_512);
+	//ポーズ画面背景を読み込み20番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 20, TEX_SIZE_512);
 	
 
 	//出力させる文字のグラフィックを作成
@@ -97,29 +102,25 @@ void CSceneFight::InitScene()
 	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, 0);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
-	//敵星オブジェクト作成
-	CObjPlanet* obj01 = new CObjPlanet(250, 350,10, 2);	//オブジェクト作成
-	Objs::InsertObj(obj01, OBJ_ENEMY2, 11);					//オブジェクト登録
-
 	//民発射ボタン
 	CObjRocketButton* obj2 = new CObjRocketButton(500, 600, 100, 100, 1);	//オブジェクト作成
-	Objs::InsertObj(obj2, OBJ_PLANET, 10);						//オブジェクト登録
+	Objs::InsertObj(obj2, OBJ_POD_BUTTON1, 10);						//オブジェクト登録
 
 	CObjRocketButton* obj3 = new CObjRocketButton(650, 600, 100, 100, 2);	//オブジェクト作成
-	Objs::InsertObj(obj3, OBJ_PLANET, 10);						//オブジェクト登録
+	Objs::InsertObj(obj3, OBJ_POD_BUTTON2, 10);						//オブジェクト登録
 
 	CObjRocketButton* obj4 = new CObjRocketButton(800, 600, 100, 100, 3);	//オブジェクト作成
-	Objs::InsertObj(obj4, OBJ_PLANET, 10);						//オブジェクト登録
+	Objs::InsertObj(obj4, OBJ_POD_BUTTON3, 10);						//オブジェクト登録
 
 	CObjRocketButton* obj5 = new CObjRocketButton(950, 600, 100, 100, 4);	//オブジェクト作成
-	Objs::InsertObj(obj5, OBJ_PLANET, 10);						//オブジェクト登録
+	Objs::InsertObj(obj5, OBJ_POD_BUTTON4, 10);						//オブジェクト登録
 
 	CObjRocketButton* obj6 = new CObjRocketButton(150, 600, 100, 200, 5);	//オブジェクト作成
-	Objs::InsertObj(obj6, OBJ_PLANET, 10);						//オブジェクト登録
+	Objs::InsertObj(obj6, OBJ_MISSILE_BUTTON, 10);						//オブジェクト登録
 
 	//スペシャル技ボタン
 	CObjSpecialButton* special = new CObjSpecialButton(1000.0f, 20.0f, 114.0f, 175.0f);	//オブジェクト作成
-	Objs::InsertObj(special, OBJ_PLANET, 90);											//オブジェクト登録
+	Objs::InsertObj(special, OBJ_SPECIAL, 90);											//オブジェクト登録
 
 	//戦闘前演出オブジェクト
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成

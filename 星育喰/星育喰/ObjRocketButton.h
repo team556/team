@@ -14,6 +14,8 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+
+	void SetRecastBuff(float buff) { m_player_recast_buff = buff; }//バフ倍率設定用[スペシャル技:生産性効率アップ用]
 private:
 	float m_x;		//座標X
 	float m_y;		//座標Y
@@ -27,6 +29,8 @@ private:
 	int Button_num; //パワーなどのボタン番号
 
 	float m_create_x;	//プレイヤー惑星ポッド作成X位置調整用
+
+	float m_player_recast_buff;	//プレイヤーミサイルポッドリキャストタイムのバフ倍率[スペシャル技:生産性効率アップ用]
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y

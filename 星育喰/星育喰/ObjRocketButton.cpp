@@ -34,6 +34,8 @@ void CObjRocketButton::Init()
 	m_a = 1.0f;		//透明度
 
 	m_cnt = 0;		//カウント
+
+	m_player_recast_buff = 1.0f;
 }
 
 //アクション
@@ -110,8 +112,8 @@ void CObjRocketButton::Action()
 
 	if (m_mou_f == true) {	//クリックした後の処理
 		m_cnt++;			//カウントする
-		if (m_cnt == 60 * 5) {	//5秒間数えたら
-			m_mou_f = false;	//クリックできるようにする。
+		if (m_cnt >= (60 * 5) * m_player_recast_buff) {	//5秒間数えたら
+			m_mou_f = false;							//クリックできるようにする。
 			m_cnt = 0;
 			m_a = 1.0f;		//不透明化
 		}
