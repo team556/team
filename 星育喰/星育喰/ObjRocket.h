@@ -56,8 +56,6 @@ private:
 	bool m_fight;		//ポッド同士の衝突時のエフェクト管理
 	int m_bom;			//爆発エフェクトのランダム(0～3)
 
-	int Enemy_Fight_type[9][3]; //敵の攻撃種類
-
 	int Enemy_Line_pattern_x;	////敵攻撃パターンの横軸読み込む用
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
 };
