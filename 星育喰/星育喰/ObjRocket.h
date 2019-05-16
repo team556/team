@@ -40,6 +40,9 @@ private:
 	int Enemypod;
 
 	bool m_type;		//生成時のタイプ(true主人公)
+	int m_podhp;
+	int m_hp_cnt;		//無敵タイム
+	bool m_hp_f;		//無敵フラグ
 
 	int  m_ani;			//着弾アニメーション
 	int m_ani_max;
@@ -52,4 +55,5 @@ private:
 	int m_bom;			//爆発エフェクトのランダム(0～3)
 
 	int Enemy_Fight_type[9][3]; //敵の攻撃種類
+	
 };

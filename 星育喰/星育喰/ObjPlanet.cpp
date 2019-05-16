@@ -247,31 +247,31 @@ void CObjPlanet::Action()
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
-			m_time = 100;
+			m_time = 200;
 		}
 		else if (m_attackf == 2 && m_time <= 0)
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
-			m_time = 100;
+			m_time = 200;
 		}
 		else if (m_attackf == 3 && m_time <= 0)
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
-			m_time = 100;
+			m_time = 200;
 		}
 		else if (m_attackf == 4 && m_time <= 0)
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
-			m_time = 100;
+			m_time = 200;
 		}
 		else if (m_attackf == 5 && m_time <= 0)
 		{
 			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
-			m_time = 100;
+			m_time = 200;
 		}
 
 		m_time--;
