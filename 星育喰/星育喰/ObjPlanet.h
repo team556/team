@@ -16,7 +16,7 @@ public:
 	void Draw();    //ƒhƒ[
 
 	float GetX() { return m_px; }
-	//float GetY() { return m_py; }
+	float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//HPæ“¾ŠÖ”
 	float GetSiz() { return m_size; }
 	int  GetType() { return m_type; }

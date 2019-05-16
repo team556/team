@@ -31,7 +31,7 @@ void CObjRocket::Init()
 	Enemy_Line_pattern_x = 0;
 
 	srand(time(NULL));
-	Enemy_Line_pattern_y = rand() % 3;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
+	Enemy_Line_pattern_y = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
 
 	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
@@ -55,14 +55,14 @@ void CObjRocket::Init()
 		//▼敵行動パターン決め
 		if (m_time <= 0)
 		{
-			int Enemy_Fight_line[5][4] =   //敵攻撃用の配列作成
+			int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
 			{
 				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
-				{ 1,1,2,0 }, //0番目
-				{ 2,3,1,0 }, //1番目
-				{ 3,2,3,0 }, //2番目
-				{ 1,2,3,0 }, //3番目
-				{ 2,2,1,0 }, //4番目
+				{ 3,2,1,1,2,0 }, //0番目
+				{ 3,3,2,3,1,0 }, //1番目
+				{ 1,2,3,2,3,0 }, //2番目
+				{ 2,1,1,2,3,0 }, //3番目
+				{ 1,3,2,2,1,0 }, //4番目
 
 				/*
 				攻撃パターン追加する際は、上の配列の数字を変え
@@ -80,7 +80,7 @@ void CObjRocket::Init()
 				Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
 										   //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 				srand(time(NULL));
-				Enemy_Line_pattern_x = rand() % 3;
+				Enemy_Line_pattern_x = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
 				m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
 				Enemy_Line_pattern_x++;
