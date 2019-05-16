@@ -183,11 +183,7 @@ void CObjRocket::Action()
 	//爆発エフェクト回数処理
 	if (m_del == true)
 	{
-		/*if (m_ani == 4)
-		{
-			m_ani = 0;
-			m_ani_max++;
-		}*/
+		;
 	}
 	else//ポッド同士が当たると動きを止め勝敗を決める処理
 	{
@@ -327,7 +323,7 @@ void CObjRocket::Action()
 		}
 		else if (ButtonU == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
 		{
-			;
+			m_podhp -= 10;
 		}
 	}
 
@@ -386,7 +382,7 @@ void CObjRocket::Action()
 		}
 		else if (ButtonU == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
 		{
-			;
+			m_podhp -= 10;
 		}
 	}
 	

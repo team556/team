@@ -194,7 +194,7 @@ void CObjPlanet::Action()
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
-	if ((hit->CheckElementHit(ELEMENT_E_MIS) == true) && (m_type == 0) && (m_hp > 0))
+	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_hp > 0))
 	{							
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
@@ -204,7 +204,7 @@ void CObjPlanet::Action()
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
-	else if ((hit->CheckElementHit(ELEMENT_P_MIS) == true) && (m_type != 0) && (m_hp > 0))
+	else if ((hit->CheckElementHit(ELEMENT_POD) == true) && (m_type != 0) && (m_hp > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
