@@ -18,7 +18,8 @@ public:
 	float GetX() { return m_px; }
 	//float GetY() { return m_py; }
 	float GetHp() { return m_hp; }	//HP取得関数
-	//float GetSiz() { return m_size; }
+	float GetSiz() { return m_size; }
+	int  GetType() { return m_type; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
 	void SetDamage() { m_hp -= 1; }//呼び出すとダメージ処理(HP)を行う[スペシャル技:敵に大ダメージ用]
 	void SetScale_down() { m_size -= m_size / 20; }////呼び出すとダメージ処理(SIZE)を行う[スペシャル技:敵に大ダメージ用]

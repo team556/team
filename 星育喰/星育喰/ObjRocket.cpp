@@ -27,7 +27,7 @@ CObjRocket::CObjRocket(float x, float y, bool type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
-
+	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -38,8 +38,9 @@ void CObjRocket::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_x += obj->GetCount() / 10;
-			m_mov_spd = 1.0f / obj->GetCount();
+			//m_x += obj->GetCount() / 10;
+			m_x += 0.0f;
+			m_mov_spd = 1.0f / pla->GetX();
 		}
 	}
 	else {
@@ -51,7 +52,7 @@ void CObjRocket::Init()
 		else if (m_get_line == 2) { m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_mov_spd = 1.0f / obj->GetCount();
+		m_mov_spd = 1.0f / pla->GetX();
 
 		srand(time(NULL));
 		//敵のポッドの番号をランダムにする処理
@@ -108,6 +109,8 @@ void CObjRocket::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
 	m_mov += m_mov_spd / 2;
 
 	//マウスの位置を取得
@@ -116,6 +119,9 @@ void CObjRocket::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	if (obj->GetCount() <= 60)
+		m_del = true;
 
 	if (m_mou_l == false && m_mou_f == false)
 	{
