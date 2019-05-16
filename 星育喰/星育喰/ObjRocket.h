@@ -54,4 +54,9 @@ private:
 	int m_bom;			//爆発エフェクトのランダム(0～3)
 
 	int Enemy_Fight_type[9][3]; //敵の攻撃種類
+
+	float m_P_px;			//プレイヤーのX座標
+	float m_E_px;			//エネミーのX座標
+
+	float m_sin_r;		//sinθ角度用
 };
