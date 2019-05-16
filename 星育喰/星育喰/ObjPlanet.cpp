@@ -7,7 +7,7 @@
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
-
+#include <stdlib.h>
 #include <time.h>
 
 //使用するネームスペース
@@ -53,9 +53,9 @@ void CObjPlanet::Init()
 	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
 
 	if (m_type == 0)
-		m_px += (fit->GetCount() / 30);
+		m_px += 0.0f;
 	else
-		m_px -= (fit->GetCount() / 30);
+		m_px -= 0.0f;
 
 	m_ani[0] = 0;//アニメーションデータの初期化
 	m_ani[1] = 1;
@@ -69,10 +69,18 @@ void CObjPlanet::Init()
 	m_del_f = false;	//消すフラグ(true = 消す)
 	
 	//当たり判定用HitBoxを作成
-	if(m_type == 0)
+	if (m_type == 0) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_PLAYER, OBJ_PLANET, 1);
-	else
+		m_img_nam = 3;
+	}
+	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 3;
+	}
+	else if (m_type == 2) {
+		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 3;
+	}
 }
 
 //アクション
@@ -103,8 +111,8 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
-			if (m_type == 0) {
-				CObjFightClear* crer = new CObjFightClear();	//主人公の場合
+			if (m_type == 0) {		//主人公の場合
+				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 			}
 			else {
@@ -194,22 +202,24 @@ void CObjPlanet::Action()
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
-	if ((hit->CheckElementHit(ELEMENT_E_MIS) == true) && (m_type == 0) && (m_hp > 0))
+	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_hp > 0))
 	{							
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
 			m_hp -= 1 * m_damage_buff;//HP-1
+			m_px -= m_size / 10;	//縮む分だけ左に移動
 			m_size -= m_size / 20;	//サイズ減少
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
-	else if ((hit->CheckElementHit(ELEMENT_P_MIS) == true) && (m_type != 0) && (m_hp > 0))
+	else if ((hit->CheckElementHit(ELEMENT_POD) == true) && (m_type != 0) && (m_hp > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
 			m_hp -= 1 * m_damage_buff;//HP-1
+			m_px += m_size / 10;	//縮む分だけ右に移動
 			m_size -= m_size / 20;	//サイズ減少
 		}
 	}
@@ -249,7 +259,7 @@ void CObjPlanet::Action()
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
 				//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 				srand(time(NULL));
-				Enemy_Attack_pattern_x = rand() % 5;
+				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
 				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
@@ -267,31 +277,31 @@ void CObjPlanet::Action()
 		
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,2);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,3);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,4);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false, 5);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
@@ -361,5 +371,5 @@ void CObjPlanet::Draw()
 	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
 }

@@ -38,4 +38,8 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
 	bool m_mou_f;		//マウスフラグ
+
+	float m_px;			//惑星のX座標代入用
+	float m_py;			//惑星のY座標代入用
+	float m_size;		//惑星のSize代入用
 };

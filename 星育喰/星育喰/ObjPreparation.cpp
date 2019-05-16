@@ -305,7 +305,7 @@ void CObjPreparation::Action()
 				destroy_progress[g_Challenge_enemy] = true;
 			}
 
-			Scene::SetScene(new CSceneFight());//戦闘画面へシーン移行
+			Scene::SetScene(new CSceneFight(1));//戦闘画面へシーン移行
 		}
 		else if (m_black_star_effect_size < 1400.0f)
 		{

@@ -22,12 +22,18 @@ CObjRocket::CObjRocket(float x, float y, bool type,int n)
 	m_y = y;
 	m_type = type;
 	ButtonU = n;
+
 }
 
 //イニシャライズ
 void CObjRocket::Init()
 {
+	Enemy_Line_pattern_x = 0;
 
+	srand(time(NULL));
+	Enemy_Line_pattern_y = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
+
+	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -38,25 +44,75 @@ void CObjRocket::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_x += obj->GetCount() / 10;
-			m_mov_spd = 1.0f / obj->GetCount();
+			//m_x += obj->GetCount() / 10;
+			m_x += 0.0f;
+			m_mov_spd = 1.0f / pla->GetX();
 		}
 	}
-	else {
-		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	//▼敵惑星攻撃パターン
+	else if (m_type == false && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
+	{
+		//▼敵行動パターン決め
+		if (m_time <= 0)
+		{
+			int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
+			{
+				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
+				{ 3,2,1,1,2,0 }, //0番目
+				{ 3,3,2,3,1,0 }, //1番目
+				{ 1,2,3,2,3,0 }, //2番目
+				{ 2,1,1,2,3,0 }, //3番目
+				{ 1,3,2,2,1,0 }, //4番目
 
-		srand(time(NULL));
-		m_get_line = rand() % 3 + 1;
-		if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
-		else if (m_get_line == 2) { m_y = 420; }
+				/*
+				攻撃パターン追加する際は、上の配列の数字を変え
+				下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
+				{,,,,,}, //5番目
+				{,,,,,}, //6番目
+				{,,,,,}, //7番目
+				{,,,,,}, //8番目
+				*/
+			};
 
-		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_mov_spd = 1.0f / obj->GetCount();
-
-		srand(time(NULL));
-		//敵のポッドの番号をランダムにする処理
-		Enemypod = rand() % 5 + 1;	
+			m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+			if (m_get_line == 0)//--------配列が最後に行ったとき(0の時)
+			{
+				Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
+										   //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
+				srand(time(NULL));
+				Enemy_Line_pattern_x = rand() % 5;
+				//↓m_attackに攻撃パターンを入れる処理
+				m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+				Enemy_Line_pattern_x++;
+			}
+			else
+			{
+				Enemy_Line_pattern_x++;
+			}
+		}
 	}
+	//else {
+	//	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
+	//	srand(time(NULL));
+	//	m_get_line = rand() % 3 + 1;
+	//	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
+	//	else if (m_get_line == 2) { m_y = 420; }
+
+	//	m_get_cnt = obj->GetCount();		//カウントを取得
+	//	m_mov_spd = 1.0f / pla->GetX();
+
+	//	srand(time(NULL));
+	//	//敵のポッドの番号をランダムにする処理
+	//	Enemypod = rand() % 5 + 1;	
+	//}
+
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
+	else if (m_get_line == 2) { m_y = 420; }
+
+	m_get_cnt = obj->GetCount();		//カウントを取得
+	m_mov_spd = 1.0f / pla->GetX();
 
 	m_size = 50.0f;//サイズ
 	
@@ -78,13 +134,55 @@ void CObjRocket::Init()
 	m_mou_f = false;//マウスフラグ
 
 	//当たり判定用HitBox作成
-	if (m_type == false) {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_E_MIS, OBJ_Rocket, 1);
-		m_x -= 100;
-	}
-	else {
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_P_MIS, OBJ_Rocket, 1);
+	if (m_type == true) 
+	{
 		m_x += 100;
+		if (ButtonU == 1)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODP, 1);
+		}
+		else if (ButtonU == 2)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
+		}
+		else if (ButtonU == 3)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
+		}
+		else if (ButtonU == 4)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODB, 1);
+		}
+		else if (ButtonU == 5)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_Rocket, 1);
+		}
+
+	}
+	else 
+	{
+		m_x -= 100;
+		if (ButtonU == 1)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
+		}
+		else if (ButtonU == 2)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+		}
+		else if (ButtonU == 3)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+		}
+		else if (ButtonU == 4)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
+		}
+		else if (ButtonU == 5)
+		{
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_Rocket, 1);
+		}
+
 	}
 
 	m_eff.m_top = 0;
@@ -100,6 +198,10 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
+	m_podhp = 10;
+
+	m_hp_cnt = 0;		//無敵タイム
+	m_hp_f = false;		//無敵フラグ
 }
 
 //アクション
@@ -114,6 +216,8 @@ void CObjRocket::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
 	m_mov += m_mov_spd / 2;
 
 	//マウスの位置を取得
@@ -122,6 +226,12 @@ void CObjRocket::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
+	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+
+	if (obj->GetCount() <= 60)
+		m_del = true;
 
 	if (m_mou_l == false && m_mou_f == false)
 	{
@@ -132,17 +242,10 @@ void CObjRocket::Action()
 		m_mou_f = false;
 	}
 
-	//爆発エフェクト
-	//m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);
-
 	//爆発エフェクト回数処理
 	if (m_del == true)
 	{
-		/*if (m_ani == 4)
-		{
-			m_ani = 0;
-			m_ani_max++;
-		}*/
+		;
 	}
 	else//ポッド同士が当たると動きを止め勝敗を決める処理
 	{
@@ -174,20 +277,17 @@ void CObjRocket::Action()
 	}
 	//-----------------------座標更新
 	if (m_type == true) {
-		m_x += m_vx - m_mov_spd * 200;
+		m_x += m_vx;
 		m_y += m_vy;
 	}
 	else {
-		m_x -= m_vx - m_mov_spd * 200;
+		m_x -= m_vx;
 		m_y += m_vy;
 	}
 
-	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
-	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
-
-	//敵とプレイヤーのポッド当たっているとき処理
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);
-
+	//爆発エフェクト
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);	//敵とプレイヤーのポッド当たっているとき処理
+	
 	//ポッド消滅処理
 	if (m_del == true)
 	{
@@ -204,7 +304,6 @@ void CObjRocket::Action()
 			m_bom = 5;
 		}
 		
-		return;
 	}
 	
 	//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
@@ -225,22 +324,142 @@ void CObjRocket::Action()
 		hit->SetInvincibility(true);//当たり判定を無効化(無敵)
 	}
 
-	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 
-		hit->CheckElementHit(ELEMENT_E_MIS) == true) && m_type == true)//敵の惑星かミサイルに当たった時かつ自弾
+
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == false)//惑星に当たった時かつ自弾
+	{
+		//位置を更新//惑星と接触しているかどうかを調べる
+		m_del = true;
+		hit->SetInvincibility(true);
+	}
+	else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == true)//敵の惑星に当たった時かつ自弾
 	{
 		//位置を更新//惑星と接触しているかどうかを調べる
 		m_del = true;
 		hit->SetInvincibility(true);
 	}
 
-	if ((hit->CheckElementHit(ELEMENT_PLAYER) == true ||
-		hit->CheckElementHit(ELEMENT_P_MIS) == true) && m_type == false)//プレイヤーの惑星かミサイルに当たった時かつ敵弾
+	//敵のポッドがプレイヤーのポッドにぶつかった時の判定
+	if (hit->CheckElementHit(ELEMENT_POD) == true)
+	{
+		if (ButtonU == 1)//敵の種類１(パワー)がプレイヤーのポッドと当たった場合
+		{
+			if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+			{
+				m_podhp -= 8;
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+			{
+				m_podhp -= 12;
+			}
+			else											//プレイヤーのパワーポッド、バランスポッド、ミサイル当たり時のHP
+			{
+				m_podhp -= 10;
+			}
+		}
+		else if (ButtonU == 2)//敵の種類２(スピード)がプレイヤーのポッドと当たった場合
+		{
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
+			{
+				m_podhp -= 8;
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+			{
+				m_podhp -= 12;
+			}
+			else											//プレイヤーのスピードポッド、バランスポッド、ミサイル当たり時のHP
+			{
+				m_podhp -= 10;
+			}
+		}
+		else if (ButtonU == 3)//敵の種類３(ディフェンス)がプレイヤーのポッドと当たった場合
+		{
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
+			{
+				m_podhp -= 12;
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+			{
+				m_podhp -= 8;
+			}
+			else											//プレイヤーのディフェンスポッド、バランスポッド、ミサイルに当たり時のHP
+			{
+				m_podhp -= 10;
+			}
+		}
+		else if (ButtonU == 4)//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
+		{
+			m_podhp -= 10;
+		}
+		else if (ButtonU == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
+		{
+			m_podhp -= 10;
+		}
+	}
+
+	//プレイヤーのポッドが敵のポッドとぶつかった時の判定
+	if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)
+	{
+		if (ButtonU == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
+		{
+			if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+			{
+				m_podhp -= 8;
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+			{
+				m_podhp -= 12;
+			}
+			else											//敵のパワーポッド、バランスポッド、ミサイル当たり時のHP
+			{
+				m_podhp -= 10;
+			}
+		}
+		else if (ButtonU == 2)//自分の種類２(スピード)が敵のポッドと当たった場合
+		{
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
+			{
+				m_podhp -= 8;
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+			{
+				m_podhp -= 12;
+			}
+			else											//敵のスピードポッド、バランスポッド、ミサイル当たり時のHP
+			{
+				m_podhp -= 10;
+			}
+		}
+		else if (ButtonU == 3)//自分の種類３(ディフェンス)が敵のポッドと当たった場合
+		{
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
+			{
+				m_podhp -= 12;
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+			{
+				m_podhp -= 8;
+			}
+			else											//敵のディフェンスポッド、バランスポッド、ミサイル当たり時のHP
+			{
+				m_podhp -= 10;
+			}
+
+		}
+		else if (ButtonU == 4)//自分の種類４(バランス)が敵のポッドとミサイルに当たった場合
+		{
+			m_podhp -= 10;
+		}
+		else if (ButtonU == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
+		{
+			m_podhp -= 10;
+		}
+	}
+	
+	if (m_podhp <= 0)//HP
 	{
 		m_del = true;
 		hit->SetInvincibility(true);
 	}
-
-
 }
 
 //ドロー
