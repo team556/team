@@ -7,7 +7,7 @@
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
-
+#include <stdlib.h>
 #include <time.h>
 
 //使用するネームスペース
@@ -52,22 +52,10 @@ void CObjPlanet::Init()
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
 	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
 
-	if (m_type == 0) {
-		m_px += (fit->GetCount() / 30);
-		m_img_nam = 3;
-	}
-	else if (m_type == 1) {
-		m_px -= (fit->GetCount() / 30);
-		m_img_nam = 33;
-	}
-	else if (m_type == 2) {
-		m_px -= (fit->GetCount() / 30);
-		m_img_nam = 3;
-	}
-	else if (m_type == 3) {
-		m_px -= (fit->GetCount() / 30);
-		m_img_nam = 4;
-	}
+	if (m_type == 0)
+		m_px += 0.0f;
+	else
+		m_px -= 0.0f;
 
 	m_ani[0] = 0;//アニメーションデータの初期化
 	m_ani[1] = 1;
@@ -261,7 +249,7 @@ void CObjPlanet::Action()
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
 				//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 				srand(time(NULL));
-				Enemy_Attack_pattern_x = rand() % 5;
+				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
 				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
@@ -279,31 +267,31 @@ void CObjPlanet::Action()
 		
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,2);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,3);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false,4);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
-			CObjRocket* M = new CObjRocket(575 + m_create_x, 200, false, 5);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
