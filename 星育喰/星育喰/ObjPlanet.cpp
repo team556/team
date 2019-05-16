@@ -69,10 +69,18 @@ void CObjPlanet::Init()
 	m_del_f = false;	//消すフラグ(true = 消す)
 	
 	//当たり判定用HitBoxを作成
-	if(m_type == 0)
+	if (m_type == 0) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_PLAYER, OBJ_PLANET, 1);
-	else
+		m_img_nam = 3;
+	}
+	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 3;
+	}
+	else if (m_type == 2) {
+		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 3;
+	}
 }
 
 //アクション
