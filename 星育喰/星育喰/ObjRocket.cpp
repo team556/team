@@ -221,6 +221,9 @@ void CObjRocket::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
+	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+
 	if (obj->GetCount() <= 60)
 		m_del = true;
 
@@ -232,7 +235,6 @@ void CObjRocket::Action()
 	{
 		m_mou_f = false;
 	}
-
 
 	//爆発エフェクト回数処理
 	if (m_del == true)
@@ -277,11 +279,6 @@ void CObjRocket::Action()
 		m_y += m_vy;
 	}
 
-	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
-	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
-
-	
-
 	//爆発エフェクト
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);	//敵とプレイヤーのポッド当たっているとき処理
 	
@@ -309,19 +306,13 @@ void CObjRocket::Action()
 		//位置を更新//惑星と接触しているかどうかを調べる
 		m_del = true;
 		hit->SetInvincibility(true);
-		
 	}
 	else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == true)//敵の惑星に当たった時かつ自弾
 	{
 		//位置を更新//惑星と接触しているかどうかを調べる
 		m_del = true;
 		hit->SetInvincibility(true);
-		
 	}
-
-	
-
-
 
 	//敵のポッドがプレイヤーのポッドにぶつかった時の判定
 	if (hit->CheckElementHit(ELEMENT_POD) == true)
