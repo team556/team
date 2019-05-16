@@ -28,21 +28,7 @@ CObjRocket::CObjRocket(float x, float y, bool type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
-	//敵の行動パターン
-	int Enemy_Fight_type[9][5]=
-	{
-		//1=赤,2=青,3=緑,4=灰色,5=ミサイル
-		{ 1,1,3,5,5 },
-		{ 2,1,3,1,4 },
-		{ 1,1,2,4,2 },
-		{ 2,2,1,3,1 },
-		{ 3,2,1,2,2 },
-		{ 2,2,3,4,5 },
-		{ 5,1,1,1,3 },
-		{ 4,2,2,2,1 },
-		{ 2,3,3,1,2 },
-	};
-
+	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 	if (m_type == true) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -53,8 +39,9 @@ void CObjRocket::Init()
 			else if (m_get_line == 2) { m_y = 420; }
 
 			m_get_cnt = obj->GetCount();		//カウントを取得
-			m_x += obj->GetCount() / 10;
-			m_mov_spd = 1.0f / obj->GetCount();
+			//m_x += obj->GetCount() / 10;
+			m_x += 0.0f;
+			m_mov_spd = 1.0f / pla->GetX();
 		}
 	}
 	else {
@@ -66,7 +53,7 @@ void CObjRocket::Init()
 		else if (m_get_line == 2) { m_y = 420; }
 
 		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_mov_spd = 1.0f / obj->GetCount();
+		m_mov_spd = 1.0f / pla->GetX();
 
 		srand(time(NULL));
 		//敵のポッドの番号をランダムにする処理
@@ -76,6 +63,8 @@ void CObjRocket::Init()
 	m_size = 50.0f;//サイズ
 	
 	m_time = 100;
+
+	m_Enemy_Pod_Level = 1;
 
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
@@ -167,6 +156,8 @@ void CObjRocket::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
 	m_mov += m_mov_spd / 2;
 
 	//マウスの位置を取得
@@ -175,6 +166,9 @@ void CObjRocket::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	if (obj->GetCount() <= 60)
+		m_del = true;
 
 	if (m_mou_l == false && m_mou_f == false)
 	{
@@ -425,8 +419,8 @@ void CObjRocket::Draw()
 			//ポッドの描画情報
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 100.0f;
-			src.m_bottom = 70.0f;
+			src.m_right = 128.0f;
+			src.m_bottom = 64.0f;
 
 			dst.m_top = m_y;
 			dst.m_left = m_x;
@@ -452,16 +446,16 @@ void CObjRocket::Draw()
 
 		switch (ButtonU) {
 		case 1:
-			Draw::Draw(10, &src, &dst, r, m_r + 180);  //赤ポッド
+			Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, r, m_r + 180);  //赤ポッド
 			break;
 		case 2:
-			Draw::Draw(10, &src, &dst, b, m_r + 180);  //青ポッド
+			Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, b, m_r + 180);  //青ポッド
 			break;
 		case 3:
-			Draw::Draw(10, &src, &dst, g, m_r + 180);   //緑ポッド
+			Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, g, m_r + 180);   //緑ポッド
 			break;
 		case 4:
-			Draw::Draw(10, &src, &dst, d, m_r + 180);   //灰色ポッド
+			Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r + 180);   //灰色ポッド
 			break;
 		case 5:
 			Draw::Draw(17, &src, &dst, d, m_r + 35);   //ミサイル
@@ -478,8 +472,8 @@ void CObjRocket::Draw()
 			//ポッドの描画情報
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 100.0f;
-			src.m_bottom = 70.0f;
+			src.m_right = 128.0f;
+			src.m_bottom = 64.0f;
 
 			dst.m_top = m_y;
 			dst.m_left = m_x;
@@ -505,16 +499,16 @@ void CObjRocket::Draw()
 
 			switch (ButtonU) {
 			case 1://---------ランダムの情報が1なら
-				Draw::Draw(10, &src, &dst, r, m_r);  //赤ポッド
+				Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, r, m_r);  //赤ポッド
 				break;
 			case 2://---------ランダムの情報が2なら
-				Draw::Draw(10, &src, &dst, b, m_r);  //青ポッド
+				Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, b, m_r);  //青ポッド
 				break;
 			case 3://---------ランダムの情報が3なら
-				Draw::Draw(10, &src, &dst, g, m_r);   //緑ポッド
+				Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, g, m_r);   //緑ポッド
 				break;
 			case 4://---------ランダムの情報が4なら
-				Draw::Draw(10, &src, &dst, d, m_r);   //灰色ポッド
+				Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r);   //灰色ポッド
 				break;
 			case 5://---------ランダムの情報が5なら
 				Draw::Draw(17, &src, &dst, d, m_r-145);   //ミサイル

@@ -34,6 +34,8 @@ void CObjRocketButton::Init()
 	m_a = 1.0f;		//透明度
 
 	m_cnt = 0;		//カウント
+
+	m_player_recast_buff = 1.0f;
 }
 
 //アクション
@@ -57,6 +59,13 @@ void CObjRocketButton::Action()
 		&& (m_y <= m_mou_y && m_mou_y <= (m_y + m_h))	//Y軸範囲
 		&& m_mou_l == true) {							//クリック
 		if (m_mou_f == false) {
+			//自惑星の位置とサイズを取る
+			CObjPlanet* objp = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+			if (objp->GetType() == 0)
+			{
+				m_px = objp->GetX();
+				m_size = objp->GetSiz();
+			}
 			//▼ポッド作成X位置を設定
 			CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 			m_create_x = obj->GetCount() / 10 + 100;
@@ -69,21 +78,21 @@ void CObjRocketButton::Action()
 			if (Button_num == 1 && g_Power_num != 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(575 + m_create_x, 200, true,1);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (m_size * 3), 200, true,1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 
 			}
 			else if (Button_num == 2 && g_Defense_num != 0)
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(575 + m_create_x, 200, true, 2);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (m_size * 3), 200, true, 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 
 			}
 			else if (Button_num == 3 && g_Speed_num != 0)
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(575 + m_create_x, 200, true, 3);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (m_size * 3), 200, true, 3);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 
 			}
@@ -91,13 +100,13 @@ void CObjRocketButton::Action()
 			else if (Button_num == 4 && g_Balance_num != 0)
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(575 + m_create_x , 200, true, 4);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (m_size * 3), 200, true, 4);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 5)
 			{
-				CObjRocket* M = new CObjRocket(575 + m_create_x , 200, true, 5);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (m_size * 3), 200, true, 5);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
 			}
 
@@ -110,8 +119,8 @@ void CObjRocketButton::Action()
 
 	if (m_mou_f == true) {	//クリックした後の処理
 		m_cnt++;			//カウントする
-		if (m_cnt == 60 * 5) {	//5秒間数えたら
-			m_mou_f = false;	//クリックできるようにする。
+		if (m_cnt >= (60 * 5) * m_player_recast_buff) {	//5秒間数えたら
+			m_mou_f = false;							//クリックできるようにする。
 			m_cnt = 0;
 			m_a = 1.0f;		//不透明化
 		}

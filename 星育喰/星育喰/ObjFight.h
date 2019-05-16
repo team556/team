@@ -17,7 +17,6 @@ public:
 
 	int GetLine() { return m_line_nam; }//選択ラインを返す
 	int GetCount() { return m_cnt; }	//カウント数を返す
-	void SetEndF(int win_lose) { m_end_f = win_lose; }	//勝敗結果をもらう
 	void SetStart_Count() { m_start_count_f = true; }//戦闘開始カウントを動作させる
 private:
 	float m_mou_x;		//マウスの位置X
@@ -31,8 +30,6 @@ private:
 	int m_line_nam;		//選択中ラインナンバー(上から0,1,2)
 
 	int m_cnt;			//カウント用
-
-	int m_end_f;		//勝敗確定フラグ(0:戦闘中　1:プレイヤー勝利確定　-1:エネミー勝利確定)
 
 	float m_ex;
 	float m_ey;
