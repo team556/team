@@ -37,7 +37,8 @@ private:
 	float m_hp;			//ヒットポイント
 	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
-	int m_type;		//惑星タイプ(0=主人公)
+	int m_type;		//惑星タイプ(主人公 == 0 != 敵)
+	int m_img_nam;	//画像(image)ナンバー
 
 	int m_time;
 	int m_attackf;		//敵の攻撃タイプ

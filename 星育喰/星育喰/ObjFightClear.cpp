@@ -10,13 +10,15 @@
 //使用するネームスペース
 using namespace GameL;
 
-////コンストラクタ
-//CObjTest::CObjTest(float x, float y)
-//{
-//	//作成時に渡された値を、座標の初期値に代入
-//	m_x = x;
-//	m_y = y;
-//}
+//コンストラクタ
+CObjFightClear::CObjFightClear(int p, int m, int s, int l)
+{
+	//作成時に渡された値を代入
+	m_people = p;
+	m_mrl = m;
+	m_skill = s;
+	m_large = l;
+}
 
 //イニシャライズ
 void CObjFightClear::Init()
@@ -29,10 +31,6 @@ void CObjFightClear::Init()
 	m_a = 0.0f;
 	m_a_vec = 0.0f;
 	m_a_f = false;
-
-	m_people = 0;	//住民
-	m_mrl = 0;		//マテリアルズ(資材)
-	m_skill = 0;	//スペシャル技
 
 	m_cnt = 3 * 60;	//3秒カウント
 }
@@ -104,6 +102,10 @@ void CObjFightClear::Draw()
 	swprintf_s(str, L"＋%d個", m_mrl);			//資材
 	Font::StrDraw(str, 900, 250, 50, c);
 
-	swprintf_s(str, L"Get %c", m_skill);		//スペシャル技
-	Font::StrDraw(str, 900, 400, 50, c);
+	switch (m_skill)						 //スペシャル技
+	{
+	case 0:Font::StrDraw(L"技", 700, 400, 50, c); break;
+	}		
+	
+	
 }

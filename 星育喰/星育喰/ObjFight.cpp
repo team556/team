@@ -16,6 +16,13 @@ using namespace GameL;
 bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
 
+//c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
+CObjFight::CObjFight(int c, int e_n)
+{
+	m_cnt = c * 60;
+	m_ene_nam = e_n;
+}
+
 //イニシャライズ
 void CObjFight::Init()
 {
@@ -27,8 +34,8 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 10;//戦闘時間(60 * X = X秒)
-	m_a = 1;		//初期値、不透明
+	//m_cnt = 60 * 10;//戦闘時間(60 * X = X秒)
+	m_a = 0.6f;		//初期値、不透明
 
 	m_end_f = 0;
 

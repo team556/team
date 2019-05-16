@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjFight :public CObj
 {
 public:
-	CObjFight() {};
+	CObjFight(int c = 0, int e_n = 0);	//c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
 	~CObjFight() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -31,6 +31,7 @@ private:
 	int m_line_nam;		//選択中ラインナンバー(上から0,1,2)
 
 	int m_cnt;			//カウント用
+	int m_ene_nam;		//敵ナンバー
 
 	int m_end_f;		//勝敗確定フラグ(0:戦闘中　1:プレイヤー勝利確定　-1:エネミー勝利確定)
 

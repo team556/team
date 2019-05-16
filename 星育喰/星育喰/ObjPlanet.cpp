@@ -48,10 +48,22 @@ void CObjPlanet::Init()
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
 	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
 
-	if (m_type == 0)
+	if (m_type == 0) {
 		m_px += (fit->GetCount() / 30);
-	else
+		m_img_nam = 3;
+	}
+	else if (m_type == 1) {
 		m_px -= (fit->GetCount() / 30);
+		m_img_nam = 33;
+	}
+	else if (m_type == 2) {
+		m_px -= (fit->GetCount() / 30);
+		m_img_nam = 3;
+	}
+	else if (m_type == 3) {
+		m_px -= (fit->GetCount() / 30);
+		m_img_nam = 4;
+	}
 
 	m_ani[0] = 0;//アニメーションデータの初期化
 	m_ani[1] = 1;
@@ -325,5 +337,5 @@ void CObjPlanet::Draw()
 	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
 }

@@ -144,7 +144,8 @@ extern bool g_key_fg;//
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START CSceneTitle
-#define SET_GAME_START CSceneFight
+//#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneTest
+#define SET_GAME_START CScenePreparation
 //-----------------------------------------------
