@@ -19,6 +19,8 @@ public:
 	void SetSpecial_Equip(int equip) { m_enemy_special_equipment = equip; }//敵の発動するスペシャル技を決める用
 	void SetSpecial_Start() { m_enemy_special_button = true; }	//敵のスペシャル技を発動させる用
 private:
+	void Special_staging_message(int Planet_id, int Special_equip);	//スペシャル技発動演出メッセージ設定関数
+
 	float m_x;		//スペシャル技ボタンの座標X
 	float m_y;		//スペシャル技ボタンの座標Y
 	float m_h;		//スペシャル技ボタンのheight(高さ)
@@ -30,11 +32,14 @@ private:
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
+	bool  m_special_staging_f;			//スペシャル技発動演出フラグ[true:演出中　false:演出してない]
+	wchar_t m_staging_message[2][13];	//スペシャル技発動演出フォント用([フォント行数][文字データ格納可能数])
+	float m_staging_font_color;			//スペシャル技発動演出フォントカラー変更用
 
 	//▼配列数字の意味は以下の通り
 	//0:プレイヤー惑星　1:敵惑星
-	int m_count[2];				//スペシャル技効果時間、効果回数管理用
-	bool m_is_used_special[2];	//スペシャル技が使用されたか(true:使用済　false:未使用)
+	int m_count[2];				//スペシャル技効果時間、効果回数、発動演出時間管理用
+	bool m_is_used_special[2];	//スペシャル技が使用されたか[スペシャル技発動演出終了時点で使用したとみなされる](true:使用済　false:未使用)
 	bool m_is_invocating[2];	//現在スペシャル技が発動中であるか(true:発動中　false:発動済 or 未発動)
 
 	//▼以下はObjPlanet(Enemy)から送られてくる情報を取得する

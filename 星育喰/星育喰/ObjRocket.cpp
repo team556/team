@@ -62,7 +62,7 @@ void CObjRocket::Init()
 	
 	m_time = 100;
 
-	m_Enemy_Pod_Level = 1;
+	m_Enemy_Pod_Level = g_Stage_progress;	//現状、現在のステージ進行度に合わせて敵のポットレベルを設定している
 
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
@@ -105,6 +105,12 @@ void CObjRocket::Init()
 //アクション
 void CObjRocket::Action()
 {
+	//▼ポーズ画面等による一時停止中にミサイルポッドが動かないようにする処理
+	if (battle_start == false)
+	{
+		return;
+	}
+
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 
@@ -199,6 +205,24 @@ void CObjRocket::Action()
 		}
 		
 		return;
+	}
+	
+	//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+	//HPの状態に関わらず消滅処理へと移行する
+	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
+		m_type == true)											//プレイヤーの射出したポッドである場合、実行
+	{
+		m_del = true;				//消滅処理フラグON
+		hit->SetInvincibility(true);//当たり判定を無効化(無敵)
+	}
+
+	//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+	//HPの状態に関わらず消滅処理へと移行する
+	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 0) != nullptr && //プレイヤーのスペシャル技にHITかつ、
+		m_type == false)										//エネミーの射出したポッドである場合、実行
+	{
+		m_del = true;				//消滅処理フラグON
+		hit->SetInvincibility(true);//当たり判定を無効化(無敵)
 	}
 
 	if ((hit->CheckElementHit(ELEMENT_ENEMY) == true || 

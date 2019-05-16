@@ -52,6 +52,4 @@ private:
 	float m_a;			//alpha(透明度)
 	bool m_fight;		//ポッド同士の衝突時のエフェクト管理
 	int m_bom;			//爆発エフェクトのランダム(0～3)
-
-	int Enemy_Fight_type[9][3]; //敵の攻撃種類
 };
