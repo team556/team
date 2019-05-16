@@ -7,7 +7,7 @@
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
-
+#include <stdlib.h>
 #include <time.h>
 
 //使用するネームスペース
@@ -249,7 +249,7 @@ void CObjPlanet::Action()
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
 				//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 				srand(time(NULL));
-				Enemy_Attack_pattern_x = rand() % 5;
+				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
 				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
