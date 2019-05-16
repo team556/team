@@ -10,13 +10,15 @@
 //使用するネームスペース
 using namespace GameL;
 
-////コンストラクタ
-//CObjTest::CObjTest(float x, float y)
-//{
-//	//作成時に渡された値を、座標の初期値に代入
-//	m_x = x;
-//	m_y = y;
-//}
+//コンストラクタ
+CObjFightClear::CObjFightClear(int p, int m, int s, int l)
+{
+	//作成時に渡された値を代入
+	m_people = p;
+	m_mrl = m;
+	m_skill = s;
+	m_large = l;
+}
 
 //イニシャライズ
 void CObjFightClear::Init()
@@ -29,10 +31,6 @@ void CObjFightClear::Init()
 	m_a = 0.0f;
 	m_a_vec = 0.0f;
 	m_a_f = false;
-
-	m_people = 0;	//住民
-	m_mrl = 0;		//マテリアルズ(資材)
-	m_skill = 0;	//スペシャル技
 
 	m_cnt = 3 * 60;	//3秒カウント
 }
@@ -91,19 +89,39 @@ void CObjFightClear::Draw()
 	float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
 	Font::StrDraw(L"住民", 700, 100, 50, c);
 
-	Font::StrDraw(L"資材", 700, 250, 50, c);
+	Font::StrDraw(L"資材", 700, 200, 50, c);
 
-	Font::StrDraw(L"技", 700, 400, 50, c);
+	Font::StrDraw(L"サイズ", 700, 300, 50, c);
 
+	if (m_skill != 0)
+	{
+		Font::StrDraw(L"技", 700, 400, 50, c);
+	}
+	else { ; }
 	//Font::StrDraw(L"大きさ", 0, 300, 32, c);
 
 	wchar_t str[256];
-	swprintf_s(str, L"＋%d人",m_people);		//住民
+	swprintf_s(str, L"＋ %d人",m_people);		//住民
 	Font::StrDraw(str, 900, 100, 50, c);
 
-	swprintf_s(str, L"＋%d個", m_mrl);			//資材
-	Font::StrDraw(str, 900, 250, 50, c);
+	switch (m_mrl)
+	{
+	case 0:Font::StrDraw(L"＋ 鉄40", 700, 400, 50, c); break;
+	case 1:break;
+	case 2:break;
+	}
+	
+	swprintf_s(str, L"＋ %d", m_large);		//大きさ
+	Font::StrDraw(str, 900, 300, 50, c);
 
-	swprintf_s(str, L"Get %c", m_skill);		//スペシャル技
-	Font::StrDraw(str, 900, 400, 50, c);
+	switch (m_skill)						 //スペシャル技
+	{
+	case 0: break;
+	case 1:Font::StrDraw(L"＋ Explosion", 700, 400, 50, c); break;
+	case 2:Font::StrDraw(L"＋ Fracture Ray", 700, 400, 50, c); break;
+	case 3:Font::StrDraw(L"＋ Immortality", 700, 400, 50, c); break;
+	case 4:Font::StrDraw(L"＋ リミットブレイク", 700, 400, 50, c); break;
+	case 5:Font::StrDraw(L"＋ ステロイド投与", 700, 400, 50, c); break;
+	}
+	
 }

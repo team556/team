@@ -69,10 +69,18 @@ void CObjPlanet::Init()
 	m_del_f = false;	//消すフラグ(true = 消す)
 	
 	//当たり判定用HitBoxを作成
-	if(m_type == 0)
+	if (m_type == 0) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_PLAYER, OBJ_PLANET, 1);
-	else
+		m_img_nam = 3;
+	}
+	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 3;
+	}
+	else if (m_type == 2) {
+		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 3;
+	}
 }
 
 //アクション
@@ -103,8 +111,8 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
-			if (m_type == 0) {
-				CObjFightClear* crer = new CObjFightClear();	//主人公の場合
+			if (m_type == 0) {		//主人公の場合
+				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 			}
 			else {
@@ -361,5 +369,5 @@ void CObjPlanet::Draw()
 	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
 }

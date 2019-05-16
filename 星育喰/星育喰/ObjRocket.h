@@ -58,8 +58,6 @@ private:
 
 	int Enemy_Fight_type[9][3]; //敵の攻撃種類
 
-	float m_P_px;			//プレイヤーのX座標
-	float m_E_px;			//エネミーのX座標
-
-	float m_sin_r;		//sinθ角度用
+	int Enemy_Line_pattern_x;	////敵攻撃パターンの横軸読み込む用
+	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
 };

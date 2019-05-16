@@ -28,6 +28,11 @@ CObjRocket::CObjRocket(float x, float y, bool type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
+	Enemy_Line_pattern_x = 0;
+
+	srand(time(NULL));
+	Enemy_Line_pattern_y = rand() % 3;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
+
 	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
 	if (m_type == true) {
@@ -44,21 +49,70 @@ void CObjRocket::Init()
 			m_mov_spd = 1.0f / pla->GetX();
 		}
 	}
-	else {
-		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	//▼敵惑星攻撃パターン
+	else if (m_type == false && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
+	{
+		//▼敵行動パターン決め
+		if (m_time <= 0)
+		{
+			int Enemy_Fight_line[5][4] =   //敵攻撃用の配列作成
+			{
+				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
+				{ 1,1,2,0 }, //0番目
+				{ 2,3,1,0 }, //1番目
+				{ 3,2,3,0 }, //2番目
+				{ 1,2,3,0 }, //3番目
+				{ 2,2,1,0 }, //4番目
 
-		srand(time(NULL));
-		m_get_line = rand() % 3 + 1;
-		if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
-		else if (m_get_line == 2) { m_y = 420; }
+				/*
+				攻撃パターン追加する際は、上の配列の数字を変え
+				下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
+				{,,,,,}, //5番目
+				{,,,,,}, //6番目
+				{,,,,,}, //7番目
+				{,,,,,}, //8番目
+				*/
+			};
 
-		m_get_cnt = obj->GetCount();		//カウントを取得
-		m_mov_spd = 1.0f / pla->GetX();
-
-		srand(time(NULL));
-		//敵のポッドの番号をランダムにする処理
-		Enemypod = rand() % 5 + 1;	
+			m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+			if (m_get_line == 0)//--------配列が最後に行ったとき(0の時)
+			{
+				Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
+										   //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
+				srand(time(NULL));
+				Enemy_Line_pattern_x = rand() % 3;
+				//↓m_attackに攻撃パターンを入れる処理
+				m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+				Enemy_Line_pattern_x++;
+			}
+			else
+			{
+				Enemy_Line_pattern_x++;
+			}
+		}
 	}
+	//else {
+	//	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+
+	//	srand(time(NULL));
+	//	m_get_line = rand() % 3 + 1;
+	//	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
+	//	else if (m_get_line == 2) { m_y = 420; }
+
+	//	m_get_cnt = obj->GetCount();		//カウントを取得
+	//	m_mov_spd = 1.0f / pla->GetX();
+
+	//	srand(time(NULL));
+	//	//敵のポッドの番号をランダムにする処理
+	//	Enemypod = rand() % 5 + 1;	
+	//}
+
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
+	else if (m_get_line == 2) { m_y = 420; }
+
+	m_get_cnt = obj->GetCount();		//カウントを取得
+	m_mov_spd = 1.0f / pla->GetX();
 
 	m_size = 50.0f;//サイズ
 	
