@@ -115,8 +115,8 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
-			if (m_type == 0) {
-				CObjFightClear* crer = new CObjFightClear();	//主人公の場合
+			if (m_type == 0) {		//主人公の場合
+				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 			}
 			else {

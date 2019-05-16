@@ -28,9 +28,9 @@ private:
 	bool m_a_f;		//不透明化フラグ
 
 	int m_people;	//住民
-	int m_mrl;		//マテリアルズ(資材)
+	int m_mrl;		//マテリアルズ
 	int m_skill;	//スペシャル技
-	int m_large;		//サイズ
+	int m_large;	//サイズ
 
 	int m_cnt;		//カウント
 };

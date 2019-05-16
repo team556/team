@@ -89,23 +89,39 @@ void CObjFightClear::Draw()
 	float c[4] = { 0.0f,0.0f,0.0f,1.0f };//char‚ÌF
 	Font::StrDraw(L"Z–¯", 700, 100, 50, c);
 
-	Font::StrDraw(L"‘Ş", 700, 250, 50, c);
+	Font::StrDraw(L"‘Ş", 700, 200, 50, c);
 
-	Font::StrDraw(L"‹Z", 700, 400, 50, c);
+	Font::StrDraw(L"ƒTƒCƒY", 700, 300, 50, c);
 
+	if (m_skill != 0)
+	{
+		Font::StrDraw(L"‹Z", 700, 400, 50, c);
+	}
+	else { ; }
 	//Font::StrDraw(L"‘å‚«‚³", 0, 300, 32, c);
 
 	wchar_t str[256];
-	swprintf_s(str, L"{%dl",m_people);		//Z–¯
+	swprintf_s(str, L"{ %dl",m_people);		//Z–¯
 	Font::StrDraw(str, 900, 100, 50, c);
 
-	swprintf_s(str, L"{%dŒÂ", m_mrl);			//‘Ş
-	Font::StrDraw(str, 900, 250, 50, c);
+	switch (m_mrl)
+	{
+	case 0:Font::StrDraw(L"{ “S40", 700, 400, 50, c); break;
+	case 1:break;
+	case 2:break;
+	}
+	
+	swprintf_s(str, L"{ %d", m_large);		//‘å‚«‚³
+	Font::StrDraw(str, 900, 300, 50, c);
 
 	switch (m_skill)						 //ƒXƒyƒVƒƒƒ‹‹Z
 	{
-	case 0:Font::StrDraw(L"‹Z", 700, 400, 50, c); break;
-	}		
-	
+	case 0: break;
+	case 1:Font::StrDraw(L"{ Explosion", 700, 400, 50, c); break;
+	case 2:Font::StrDraw(L"{ Fracture Ray", 700, 400, 50, c); break;
+	case 3:Font::StrDraw(L"{ Immortality", 700, 400, 50, c); break;
+	case 4:Font::StrDraw(L"{ ƒŠƒ~ƒbƒgƒuƒŒƒCƒN", 700, 400, 50, c); break;
+	case 5:Font::StrDraw(L"{ ƒXƒeƒƒCƒh“Š—^", 700, 400, 50, c); break;
+	}
 	
 }
