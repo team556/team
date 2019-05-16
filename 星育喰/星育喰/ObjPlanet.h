@@ -43,7 +43,8 @@ private:
 	float m_hp;			//ヒットポイント
 	float m_get_hp;		//ゲットHP
 	int m_cnt;			//カウント
-	int m_type;		//惑星タイプ(0=主人公)
+	int m_type;		//惑星タイプ(主人公 == 0 != 敵)
+	int m_img_nam;	//画像(image)ナンバー
 
 	bool m_invincible_f;	//無敵フラグ(true:無敵　false:無敵ではない)[スペシャル技:一定時間無敵用]
 	float m_enemy_recast_buff;//エネミーミサイルポッドリキャストタイムのバフ倍率[スペシャル技:生産性効率アップ用]

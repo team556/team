@@ -7,7 +7,7 @@
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
-
+#include <stdlib.h>
 #include <time.h>
 
 //使用するネームスペース
@@ -103,8 +103,8 @@ void CObjPlanet::Action()
 		if (m_ani_frame == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
-			if (m_type == 0) {
-				CObjFightClear* crer = new CObjFightClear();	//主人公の場合
+			if (m_type == 0) {		//主人公の場合
+				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 			}
 			else {
@@ -249,7 +249,7 @@ void CObjPlanet::Action()
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
 				//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 				srand(time(NULL));
-				Enemy_Attack_pattern_x = rand() % 5;
+				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
 				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
@@ -361,5 +361,5 @@ void CObjPlanet::Draw()
 	}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
 }

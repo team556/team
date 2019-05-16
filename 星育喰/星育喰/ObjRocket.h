@@ -42,6 +42,9 @@ private:
 	int m_Enemy_Pod_Level;	//敵のポットレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
 	bool m_type;		//生成時のタイプ(true主人公)
+	int m_podhp;
+	int m_hp_cnt;		//無敵タイム
+	bool m_hp_f;		//無敵フラグ
 
 	int  m_ani;			//着弾アニメーション
 	int m_ani_max;

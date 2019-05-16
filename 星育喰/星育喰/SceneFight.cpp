@@ -15,9 +15,9 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneFight::CSceneFight()
+CSceneFight::CSceneFight(int e_n)
 {
-
+	m_ene_nam = e_n;
 }
 
 //デストラクタ
@@ -42,7 +42,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
 
 	//4番に登録惑星
-	//Draw::LoadImage(L"プレイヤー口とじ.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
 	//5番に登録
 	//Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
@@ -91,11 +91,11 @@ void CSceneFight::InitScene()
 	//Font::SetStrTex(L"");
 
 	//戦闘画面オブジェクト作成
-	CObjFight* obj = new CObjFight();		//戦闘画面オブジェクト作成
+	CObjFight* obj = new CObjFight(10, m_ene_nam);		//(戦闘時間, 敵ナンバー)
 	Objs::InsertObj(obj, OBJ_FIGHT, 1);		//戦闘画面オブジェクト登録
 
 	//敵星オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, 1);	//オブジェクト作成
+	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, m_ene_nam);	//オブジェクト作成
 	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
 
 	//自星オブジェクト作成

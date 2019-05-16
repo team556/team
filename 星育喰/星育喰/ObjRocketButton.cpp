@@ -70,7 +70,7 @@ void CObjRocketButton::Action()
 			CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 			m_create_x = obj->GetCount() / 10 + 100;
 
-			g_Power_num;				//パワー住民数
+			g_Power_num = 0;				//パワー住民数
 			g_Defense_num;			//ディフェンス住民数
 			g_Speed_num;				//スピード住民数
 			g_Balance_num;			//バランス住民数

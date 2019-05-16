@@ -31,8 +31,10 @@ enum OBJ_NAME
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
 	OBJ_FIGHT_Rocket,
-	OBJ_POD,
-	OBJ_ENEMYPOD,
+	OBJ_PODP,
+	OBJ_PODS,
+	OBJ_PODD,
+	OBJ_PODB
 
 };
 //------------------------------------------------
@@ -57,8 +59,14 @@ enum HIT_ELEMENTS
 	ELEMENT_BUILD,
 	ELEMENT_POD,
 	ELEMENT_ENEMYPOD,
-	ELEMENT_P_MIS,			//プレイヤーと
-	ELEMENT_E_MIS,			//敵のミサイル
+	ELEMENT_P_MIS,		//プレイヤーと
+	ELEMENT_E_MIS,		//敵のミサイル
+	ELEMENT_PODP,		//パワー
+	ELEMENT_PODS,		//スピード
+	ELEMENT_PODD,		//ディフェンス
+	ELEMENT_PODB,		//バランス
+	
+
 
 };
 //------------------------------------------------
@@ -149,7 +157,8 @@ extern bool g_key_fg;//
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
 //#define SET_GAME_START CSceneTitle
-#define SET_GAME_START CSceneFight
+//#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneTest
+#define SET_GAME_START CScenePreparation
 //-----------------------------------------------
