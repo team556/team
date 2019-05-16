@@ -16,6 +16,9 @@ public:
 	void Draw();     //ドロー
 
 	bool GetEnemy_Used_Special() { return m_is_used_special[1]; }//敵がスペシャル技を使用したかどうかを返す
+	bool GetInvocating(int Planet_id) { return m_is_invocating[Planet_id]; }//[プレイヤー or 敵]が現在スペシャル技発動中であるかを返す
+	float GetDamage_buff(int Planet_id) { return m_damage_buff[Planet_id]; }//[プレイヤー or 敵]のダメージバフ倍率を返す[スペシャル技:住民の士気がアップ用]
+	void SetBuff_count(int Planet_id) { m_count[Planet_id] += 1; }//ポットの[スペシャル技:住民の士気がアップ用]
 	void SetSpecial_Equip(int equip) { m_enemy_special_equipment = equip; }//敵の発動するスペシャル技を決める用
 	void SetSpecial_Start() { m_enemy_special_button = true; }	//敵のスペシャル技を発動させる用
 private:
@@ -33,7 +36,7 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
 	bool  m_special_staging_f;			//スペシャル技発動演出フラグ[true:演出中　false:演出してない]
-	wchar_t m_staging_message[2][13];	//スペシャル技発動演出フォント用([フォント行数][文字データ格納可能数])
+	wchar_t m_staging_message[2][15];	//スペシャル技発動演出フォント用([フォント行数][文字データ格納可能数])
 	float m_staging_font_color;			//スペシャル技発動演出フォントカラー変更用
 
 	//▼配列数字の意味は以下の通り
@@ -42,7 +45,10 @@ private:
 	bool m_is_used_special[2];	//スペシャル技が使用されたか[スペシャル技発動演出終了時点で使用したとみなされる](true:使用済　false:未使用)
 	bool m_is_invocating[2];	//現在スペシャル技が発動中であるか(true:発動中　false:発動済 or 未発動)
 
-	//▼以下はObjPlanet(Enemy)から送られてくる情報を取得する
+	//▼以下はObjPlanet,ObjRocketに処理内容を送る用
+	float m_damage_buff[2];		//ダメージのバフ倍率[スペシャル技:住民の士気がアップ用]
+
+	//▼以下はObjPlanet(Enemy)から送られてくる情報を取得する用
 	int  m_enemy_special_equipment;//敵装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
 	bool m_enemy_special_button;//敵用スペシャル技発動ボタン(true:発動　false:発動してない)
 

@@ -14,8 +14,8 @@ using namespace GameL;
 #define PLAYER (0)	//プレイヤー(配列を分かりやすくする用)
 #define ENEMY  (1)	//エネミー	(配列を分かりやすくする用)
 #define RECAST_BUFF_MAGNIFICATION (0.5f)	//ミサイルポッドリキャストタイムのバフ倍率(リキャストタイムを0.5倍→リキャストタイムが半分で済む)
-
-#define INI_BUFF (1.0f) //上記2つのバフ倍率初期値(現状1つしかないが……)
+#define DAMAGE_BUFF_MAGNIFICATION (1.5f)	//与えるダメージのバフ倍率(与えるダメージが1.5倍になる)
+#define INI_BUFF (1.0f) //上記2つのバフ倍率初期値
 
 //コンストラクタ
 CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
@@ -45,6 +45,8 @@ void CObjSpecialButton::Init()
 		m_count[i] = 0;
 		m_is_used_special[i] = false;
 		m_is_invocating[i] = false;
+
+		m_damage_buff[i] = INI_BUFF;
 	}
 
 	m_enemy_special_equipment = 0;
@@ -210,7 +212,16 @@ void CObjSpecialButton::Action()
 		//▼[住民の士気がアップ]の処理
 		else if (g_Special_equipment == 5)
 		{
-			//Player->SetDamageBuff()
+			m_damage_buff[PLAYER] = DAMAGE_BUFF_MAGNIFICATION;	//ダメージバフ倍率を変更する
+
+			//ポッド射出毎にm_countが1ずつ増加するようにObjRocketButton(敵の場合はObjPlanet)で設定している
+
+			//ポッドを5回射出後、スペシャル技の効果を終了する
+			if (m_count[PLAYER] >= 5)
+			{
+				m_damage_buff[PLAYER] = INI_BUFF;	//ダメージバフ倍率を元に戻す
+				m_is_invocating[PLAYER] = false;	//発動中管理フラグOFF
+			}
 		}
 
 
@@ -289,10 +300,11 @@ void CObjSpecialButton::Draw()
 	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };	//画面全体やや暗転画像用
 
 	//スペシャル技発動演出フォント用
-	float staging_font[2][4] =
+	float staging_font[3][4] =
 	{
 		{ m_staging_font_color,0.0f,(1.0f - m_staging_font_color),1.0f },//1行目はプレイヤーなら青色、エネミーなら赤色
 		{ 1.0f,1.0f,0.0f,1.0f },//2行目は黄色
+		{ 1.0f,1.0f,1.0f,1.0f },//3行目は白色
 	};
 
 	RECT_F src;//描画元切り取り位置
@@ -333,8 +345,10 @@ void CObjSpecialButton::Draw()
 		//▼スペシャル技発動演出フォント表示
 		for (int i = 0; i < 2; i++)
 		{
-			Font::StrDraw(m_staging_message[i], 50.0f, 50.0f + i * 40.0f, 25.0f, staging_font[i]);
+			Font::StrDraw(m_staging_message[i], 320.0f, 150.0f + i * 150.0f, 80.0f, staging_font[i]);
 		}
+
+		Font::StrDraw(L"発動！", 490.0f, 450.0f, 80.0f, staging_font[2]);
 	}
 }
 
@@ -348,26 +362,26 @@ void CObjSpecialButton::Special_staging_message(int Planet_id, int Special_equip
 {
 	if (Planet_id == 0)
 	{
-		swprintf_s(m_staging_message[0], L"プレイヤー"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[0], L"　プレイヤー"); //文字配列に文字データを入れる
 		m_staging_font_color = 0.0f;	//フォントのカラーを青色に設定する
 	}
 	else
 	{
-		swprintf_s(m_staging_message[0], L"エネミー"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[0], L"　 エネミー"); //文字配列に文字データを入れる
 		m_staging_font_color = 1.0f;	//フォントのカラーを赤色に設定する
 	}
 
 	if (Special_equip == 1)
 	{
-		swprintf_s(m_staging_message[1], L"Explosion"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L"　Explosion"); //文字配列に文字データを入れる
 	}
 	else if (Special_equip == 2)
 	{
-		swprintf_s(m_staging_message[1], L"Fracture Ray"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L" Fracture Ray"); //文字配列に文字データを入れる
 	}
 	else if (Special_equip == 3)
 	{
-		swprintf_s(m_staging_message[1], L"Immortality"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L" Immortality"); //文字配列に文字データを入れる
 	}
 	else if (Special_equip == 4)
 	{

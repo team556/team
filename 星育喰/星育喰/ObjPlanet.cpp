@@ -37,7 +37,6 @@ void CObjPlanet::Init()
 	m_get_hp = 0;	//取得HP
 
 	m_invincible_f = false;
-	m_damage_buff = 1.0f;
 	m_enemy_recast_buff = 1.0f;
 
 	m_time = 0; //タイムカウント初期化
@@ -91,6 +90,9 @@ void CObjPlanet::Action()
 	{
 		return;
 	}
+
+	//▼エネミーのスペシャル技発動フラグを送ったり、スペシャル技によるダメージバフ倍率取得する為に必要
+	CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (fit->GetCount() != 0)		//対戦時間が0でない場合
@@ -207,9 +209,9 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * m_damage_buff;//HP-1
-			m_px -= m_size / 10;	//縮む分だけ左に移動
-			m_size -= m_size / 20;	//サイズ減少
+			m_hp -= 1 * Special->GetDamage_buff(1);//HP-1
+			m_px -= (m_size / 10) * Special->GetDamage_buff(1);		//縮む分だけ左に移動
+			m_size -= (m_size / 20) * Special->GetDamage_buff(1);	//サイズ減少
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
@@ -218,9 +220,9 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * m_damage_buff;//HP-1
-			m_px += m_size / 10;	//縮む分だけ右に移動
-			m_size -= m_size / 20;	//サイズ減少
+			m_hp -= 1 * Special->GetDamage_buff(0);//HP-1
+			m_px += (m_size / 10) * Special->GetDamage_buff(0);		//縮む分だけ右に移動
+			m_size -= (m_size / 20) * Special->GetDamage_buff(0);	//サイズ減少
 		}
 	}
 
@@ -307,8 +309,6 @@ void CObjPlanet::Action()
 		}
 		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
 		{
-			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
-
 			//敵がスペシャル技を使用済(true)である場合、
 			//リキャストタイムを元に戻さず、再度行動パターン決めを行う
 			//未使用(false)であれば、以下の処理を行う
