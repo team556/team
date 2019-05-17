@@ -91,7 +91,9 @@ void CObjPlanet::Action()
 		return;
 	}
 
-	//▼エネミーのスペシャル技発動フラグを送ったり、スペシャル技によるダメージバフ倍率取得する為に必要
+	//▼エネミーのスペシャル技発動フラグを送ったり、
+	//スペシャル技によるダメージバフ倍率取得したり、
+	//ポットの射出回数カウントする為に必要
 	CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
@@ -239,12 +241,12 @@ void CObjPlanet::Action()
 		{
 			int Enemy_Fight_type[5][6] =   //敵攻撃用の配列作成
 			{
-				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
-				{ 1,1,2,1,1,0 }, //0番目
-				{ 2,2,3,2,2,0 }, //1番目
-				{ 3,3,4,3,3,0 }, //2番目
-				{ 4,4,5,4,4,0 }, //3番目
-				{ 5,5,1,5,5,0 }, //4番目
+				//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+				{ 1,6,2,1,1,0 }, //0番目
+				{ 2,6,3,2,2,0 }, //1番目
+				{ 3,6,4,3,3,0 }, //2番目
+				{ 4,6,5,4,4,0 }, //3番目
+				{ 5,6,1,5,5,0 }, //4番目
 				/*
 				　攻撃パターン追加する際は、上の配列の数字を変え
 				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
@@ -279,24 +281,48 @@ void CObjPlanet::Action()
 		
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
+			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
+			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
+			{
+				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
+			}
+
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
+			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
+			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
+			{
+				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
+			}
+
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
+			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
+			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
+			{
+				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
+			}
+
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
+			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
+			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
+			{
+				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
+			}
+
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
@@ -314,7 +340,7 @@ void CObjPlanet::Action()
 			//未使用(false)であれば、以下の処理を行う
 			if (Special->GetEnemy_Used_Special() == false)
 			{
-				Special->SetSpecial_Equip(1);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+				Special->SetSpecial_Equip(2);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
 				Special->SetSpecial_Start();	//スペシャル技を発動させる
 				m_time = 100 * m_enemy_recast_buff;
 			}

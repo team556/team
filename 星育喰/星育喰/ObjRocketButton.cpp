@@ -78,28 +78,53 @@ void CObjRocketButton::Action()
 
 			if (Button_num == 1 && g_Power_num != 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
+				//プレイヤーが[スペシャル技:住民の士気がアップ]を発動中に実行する
+				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
+				if (Special->GetInvocating(0) == true && g_Special_equipment == 5)
+				{
+					Special->SetBuff_count(0);//ポッドの射出回数をカウントする
+				}
+
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true,1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
-
 			}
 			else if (Button_num == 2 && g_Defense_num != 0)
 			{
+				//プレイヤーが[スペシャル技:住民の士気がアップ]を発動中に実行する
+				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
+				if (Special->GetInvocating(0) == true && g_Special_equipment == 5)
+				{
+					Special->SetBuff_count(0);//ポッドの射出回数をカウントする
+				}
+
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
-
 			}
 			else if (Button_num == 3 && g_Speed_num != 0)
 			{
+				//プレイヤーが[スペシャル技:住民の士気がアップ]を発動中に実行する
+				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
+				if (Special->GetInvocating(0) == true && g_Special_equipment == 5)
+				{
+					Special->SetBuff_count(0);//ポッドの射出回数をカウントする
+				}
+
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 3);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
-
 			}
 
 			else if (Button_num == 4 && g_Balance_num != 0)
 			{
+				//プレイヤーが[スペシャル技:住民の士気がアップ]を発動中に実行する
+				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
+				if (Special->GetInvocating(0) == true && g_Special_equipment == 5)
+				{
+					Special->SetBuff_count(0);//ポッドの射出回数をカウントする
+				}
+
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 4);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録

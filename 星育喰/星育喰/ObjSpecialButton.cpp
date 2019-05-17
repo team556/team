@@ -37,7 +37,6 @@ void CObjSpecialButton::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 
-	m_special_staging_f = false;
 	m_staging_font_color = 0.0f;
 
 	for (int i = 0; i < 2; i++)
@@ -45,6 +44,7 @@ void CObjSpecialButton::Init()
 		m_count[i] = 0;
 		m_is_used_special[i] = false;
 		m_is_invocating[i] = false;
+		m_special_staging_f[i] = false;
 
 		m_damage_buff[i] = INI_BUFF;
 	}
@@ -68,7 +68,7 @@ void CObjSpecialButton::Action()
 {
 	//▼戦闘開始前は操作不能にする処理
 	//※スペシャル技発動演出中はこの影響を受けないようにする
-	if (battle_start == false && m_special_staging_f == false)
+	if (battle_start == false && m_special_staging_f[PLAYER] == false && m_special_staging_f[ENEMY] == false)
 	{
 		return;
 	}
@@ -81,7 +81,7 @@ void CObjSpecialButton::Action()
 	m_mou_l = Input::GetMouButtonL();
 
 
-	//▼プレイヤー惑星スペシャル技処理(↓の敵惑星verとほとんど被るようであれば後で関数化)
+	//▼プレイヤー惑星スペシャル技処理
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w)) && 	//X軸範囲
 		(m_y <= m_mou_y && m_mou_y <= (m_y + m_h)) &&	//Y軸範囲
 		(m_mou_l == true) &&							//左クリック
@@ -89,197 +89,28 @@ void CObjSpecialButton::Action()
 		(m_is_used_special[PLAYER] == false) ||			//スペシャル技が未使用であれば実行
 		(m_is_invocating[PLAYER] == true))				//また、現在スペシャル技発動中であっても実行
 	{
-		m_is_invocating[PLAYER] = true;		//発動中管理フラグON
-		Special_staging_message(PLAYER, g_Special_equipment);//スペシャル技発動演出メッセージを設定する
-
-
-		//▼スペシャル技発動演出(敵惑星でも使うので関数化必須)
-		if (m_is_used_special[PLAYER] == false)
+		//エネミーがスペシャル技発動演出中である場合、
+		//以下の処理を実行しないようにする。
+		if (m_special_staging_f[ENEMY] == false)
 		{
-			m_special_staging_f = true;		//スペシャル技発動演出フラグON
-			battle_start = false;			//戦闘開始フラグをfalseにする事で戦闘全体を一時停止させる
-
-			m_count[PLAYER]++;//演出時間計測
-
-			//2秒経過後、スペシャル技発動演出を終了する
-			if (m_count[PLAYER] > 60 * 2)
-			{
-				m_count[PLAYER] = 0;				//この後も使用するので0で初期化する
-				m_special_staging_f = false;		//スペシャル技発動演出フラグOFF
-				battle_start = true;				//戦闘開始フラグをtrueにする事で一時停止を解除する
-				m_is_used_special[PLAYER] = true;	//スペシャル技使用済フラグ立て
-			}
-
-			return;
+			Special_process(PLAYER, g_Special_equipment);	//スペシャル技処理関数を呼び出す
+			m_a = 0.3f;		//スペシャル技ボタンを透明化
 		}
-			
-		//現在装備中のスペシャル技を判別後、
-		//そのスペシャル技の効果を実際に発動する
-
-
-		//▼[敵に大ダメージ]の処理
-		if (g_Special_equipment == 1)
-		{
-			//エネミーが無敵ではない、かつエネミーのHPが0より上の時、
-			//0.5秒毎にエネミーのHPを減少させる。
-			if (m_count[PLAYER] % 30 == 0 && Enemy->GetInvincible() == false && (Enemy->GetHp() > 0))
-			{
-				Enemy->SetDamage();		//HP-1
-				Enemy->SetScale_down();	//サイズ減少
-			}
-
-			m_count[PLAYER]++;//効果時間計測
-
-			//2秒経過後、スペシャル技の効果を終了する
-			if (m_count[PLAYER] > 60 * 2)
-			{
-				m_is_invocating[PLAYER] = false;	//発動中管理フラグOFF
-			}
-		}
-		//▼[一列殺し]の処理
-		else if (g_Special_equipment == 2)
-		{
-			//▽スペシャル技(FRACTURE_RAY)の当たり判定を設置する
-			//この当たり判定にミサイルポッドがHITすると、消滅処理が実行される。
-			//攻撃判定時間は0.05秒。
-
-			//選択ラインが中ラインの時(この処理は一度のみ実行される)
-			if (FightScene->GetLine() == 1 && m_count[PLAYER] == 0)	
-			{
-				Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, PLAYER);	//中ラインの範囲に当たり判定を設置
-			}
-			//選択ラインが下ラインの時(この処理は一度のみ実行される)
-			else if (FightScene->GetLine() == 2 && m_count[PLAYER] == 0)
-			{
-				Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, PLAYER);	//下ラインの範囲に当たり判定を設置
-			}
-			//選択ラインが上ラインの時(この処理は一度のみ実行される)
-			else if (m_count[PLAYER] == 0)
-			{
-				Hits::SetHitBox(this, 0.0f, 0.0f, 1200.0f, 280.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, PLAYER);		//上ラインの範囲に当たり判定を設置
-			}
-
-			m_count[PLAYER]++;//効果時間計測
-
-			//0.05秒経過後、スペシャル技の効果を終了する
-			if (m_count[PLAYER] > 60 * 0.05)
-			{
-				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
-				m_is_invocating[PLAYER] = false;	//発動中管理フラグOFF
-			}
-		}
-		//▼[一定時間無敵]の処理
-		else if (g_Special_equipment == 3)
-		{
-			Player->SetInvincible(true);	//プレイヤー無敵フラグをON
-			
-			m_count[PLAYER]++;//効果時間計測
-
-			//10秒経過後、スペシャル技の効果を終了する
-			if (m_count[PLAYER] > 60 * 10)
-			{
-				Player->SetInvincible(false);	//プレイヤー無敵フラグをOFF
-				m_is_invocating[PLAYER] = false;//発動中管理フラグOFF
-			}
-		}
-		//▼[生産性効率アップ]の処理
-		else if (g_Special_equipment == 4)
-		{
-			//▽ミサイルポッドのリキャストタイムを0.5倍、
-			//つまり、リキャストタイムが半分の時間で済むように
-			//それぞれのボタンに設定。
-			Pod1->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
-			Pod2->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
-			Pod3->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
-			Pod4->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
-			Missile->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
-			
-			m_count[PLAYER]++;//効果時間計測
-
-			//20秒経過後、スペシャル技の効果を終了する
-			if (m_count[PLAYER] > 60 * 20)
-			{
-				//▽ミサイルポッドのリキャストタイムを元に戻す
-				Pod1->SetRecastBuff(INI_BUFF);
-				Pod2->SetRecastBuff(INI_BUFF);
-				Pod3->SetRecastBuff(INI_BUFF);
-				Pod4->SetRecastBuff(INI_BUFF);
-				Missile->SetRecastBuff(INI_BUFF);
-
-				m_is_invocating[PLAYER] = false;//発動中管理フラグOFF
-			}
-		}
-		//▼[住民の士気がアップ]の処理
-		else if (g_Special_equipment == 5)
-		{
-			m_damage_buff[PLAYER] = DAMAGE_BUFF_MAGNIFICATION;	//ダメージバフ倍率を変更する
-
-			//ポッド射出毎にm_countが1ずつ増加するようにObjRocketButton(敵の場合はObjPlanet)で設定している
-
-			//ポッドを5回射出後、スペシャル技の効果を終了する
-			if (m_count[PLAYER] >= 5)
-			{
-				m_damage_buff[PLAYER] = INI_BUFF;	//ダメージバフ倍率を元に戻す
-				m_is_invocating[PLAYER] = false;	//発動中管理フラグOFF
-			}
-		}
-
-
-		//▼テスト用
-		//Player->SetDamage();
-		//Player->SetScale_down();
-		//Enemy->SetDamage();
-		//Enemy->SetScale_down();
-
-
-
-		//if (m_count[0] == 0)
-		//{
-		//	Enemy->SetInvincible(true);
-		//	m_count[0] = 1;
-		//}
-		//else
-		//{
-		//	Player->SetInvincible(false);
-		//	m_count[0] = 0;
-		//}
-
-
-
-
-		////▽エネミーのダメージ処理
-		//if (m_special_1[ENEMY] == true && (m_hp > 0))
-		//{
-		//	m_special_count[ENEMY]++;
-
-		//	//無敵フラグがtrueの時は以下のダメージ処理を飛ばす+1秒毎に実行
-		//	if (m_special_count[ENEMY] % 60 && m_invincible_f[ENEMY] == false)
-		//	{
-		//		m_hp -= 1;				//HP-1
-		//		m_size -= m_size / 20;	//サイズ減少
-		//	}
-
-		//	if (m_special_count[ENEMY] >= 300)
-		//	{
-		//		m_special_1[ENEMY] = false;
-		//	}
-		//}
-
-
-
-
-
-		//m_is_invocating[PLAYER] = false;	//発動中管理フラグOFF
-		
-		m_a = 0.3f;		//透明化
 	}
 
 	//▼敵惑星スペシャル技処理
-	//if (*m_enemy_special_button == true &&				//敵スペシャル技発動チェック
-	//	m_is_used_special[ENEMY] == false)				//スペシャル技未使用かチェック
-	//{
-	//	m_is_used_special[ENEMY] == true;	//スペシャル技使用済フラグ立て
-	//}
+	if ((m_enemy_special_button == true) &&				//敵スペシャル技発動チェック
+		(m_enemy_special_equipment != 0) &&				//スペシャル技装備してるかチェック
+		(m_is_used_special[ENEMY] == false) ||			//スペシャル技が未使用であれば実行
+		(m_is_invocating[ENEMY] == true))				//また、現在スペシャル技発動中であっても実行
+	{
+		//プレイヤーがスペシャル技発動演出中である場合、
+		//以下の処理を実行しないようにする。
+		if (m_special_staging_f[PLAYER] == false)
+		{
+			Special_process(ENEMY, m_enemy_special_equipment);//スペシャル技処理関数を呼び出す
+		}
+	}
 
 	//▼時間切れの時の処理
 	if (FightScene->GetCount() <= 60)
@@ -328,7 +159,7 @@ void CObjSpecialButton::Draw()
 	}
 
 	//スペシャル技発動演出時、以下のものを描画する
-	if (m_special_staging_f == true)
+	if (m_special_staging_f[PLAYER] == true || m_special_staging_f[ENEMY] == true)
 	{
 		//▼スペシャル技発動演出時の背景(画面全体やや暗転)表示
 		src.m_top = 0.0f;
@@ -390,5 +221,206 @@ void CObjSpecialButton::Special_staging_message(int Planet_id, int Special_equip
 	else if (Special_equip == 5)
 	{
 		swprintf_s(m_staging_message[1], L"ステロイド投与"); //文字配列に文字データを入れる
+	}
+}
+
+//---Special_process関数
+//引数1　int Planet_id		:惑星識別番号(0:プレイヤー惑星　1:敵惑星)
+//引数2　int Special_equip	:装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+//▼内容
+//スペシャル技発動演出、スペシャル技効果処理といった、
+//スペシャル技処理を実行する。
+void CObjSpecialButton::Special_process(int Planet_id, int Special_equip)
+{
+	m_is_invocating[Planet_id] = true;		//発動中管理フラグON
+
+
+	//▼スペシャル技発動演出
+	if (m_is_used_special[Planet_id] == false)
+	{
+		Special_staging_message(Planet_id, Special_equip);//スペシャル技発動演出メッセージを設定する
+		m_special_staging_f[Planet_id] = true;	//スペシャル技発動演出フラグON
+		battle_start = false;			//戦闘開始フラグをfalseにする事で戦闘全体を一時停止させる
+
+		m_count[Planet_id]++;//演出時間計測
+
+		//2秒経過後、スペシャル技発動演出を終了する
+		if (m_count[Planet_id] > 60 * 2)
+		{
+			m_count[Planet_id] = 0;				//この後も使用するので0で初期化する
+			m_special_staging_f[Planet_id] = false;	//スペシャル技発動演出フラグOFF
+			battle_start = true;				//戦闘開始フラグをtrueにする事で一時停止を解除する
+			m_is_used_special[Planet_id] = true;//スペシャル技使用済フラグ立て
+		}
+
+		return;
+	}
+
+
+	//現在装備中のスペシャル技を判別し、
+	//そのスペシャル技の効果の処理を行う。
+
+	//▼[敵に大ダメージ]の処理
+	if (Special_equip == 1)
+	{
+		//相手が無敵ではない、かつ相手のHPが0より上の時、
+		//0.5秒毎に相手のHPを減少させる。
+		//▽プレイヤーの時の処理
+		if (Planet_id == PLAYER)
+		{
+			if (m_count[Planet_id] % 30 == 0 && Enemy->GetInvincible() == false && (Enemy->GetHp() > 0))
+			{
+				Enemy->SetDamage();		//HP-1
+				Enemy->SetScale_down();	//サイズ減少
+			}
+		}
+		//▽エネミーの時の処理
+		else //(Planet_id == ENEMY)
+		{
+			if (m_count[Planet_id] % 30 == 0 && Player->GetInvincible() == false && (Player->GetHp() > 0))
+			{
+				Player->SetDamage();		//HP-1
+				Player->SetScale_down();	//サイズ減少
+			}
+		}
+
+		m_count[Planet_id]++;//効果時間計測
+
+		//2秒経過後、スペシャル技の効果を終了する
+		if (m_count[Planet_id] > 60 * 2)
+		{
+			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
+		}
+	}
+	//▼[一列殺し]の処理
+	else if (Special_equip == 2)
+	{
+		//▽メモ
+		//現在敵選択ラインを決めるプログラムを作っていない。
+		//その為、現状プレイヤーが選択しているラインにFRACTURE_RAYを撃つようになっている。
+		//[5/18～5/19中に一番ポッド多い場所に撃つように変更予定]
+
+
+		//▽スペシャル技(FRACTURE_RAY)の当たり判定を設置する
+		//この当たり判定にミサイルポッドがHITすると、消滅処理が実行される。
+		//攻撃判定時間は0.05秒。
+
+		//選択ラインが中ラインの時(この処理は一度のみ実行される)
+		if (FightScene->GetLine() == 1 && m_count[Planet_id] == 0)
+		{
+			Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);	//中ラインの範囲に当たり判定を設置
+		}
+		//選択ラインが下ラインの時(この処理は一度のみ実行される)
+		else if (FightScene->GetLine() == 2 && m_count[Planet_id] == 0)
+		{
+			Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);	//下ラインの範囲に当たり判定を設置
+		}
+		//選択ラインが上ラインの時(この処理は一度のみ実行される)
+		else if (m_count[Planet_id] == 0)
+		{
+			Hits::SetHitBox(this, 0.0f, 0.0f, 1200.0f, 280.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);		//上ラインの範囲に当たり判定を設置
+		}
+
+		m_count[Planet_id]++;//効果時間計測
+
+		//0.05秒経過後、スペシャル技の効果を終了する
+		if (m_count[Planet_id] > 60 * 0.05)
+		{
+			Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
+			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
+		}
+	}
+	//▼[一定時間無敵]の処理
+	else if (Special_equip == 3)
+	{
+		//▽プレイヤーの時の処理
+		if (Planet_id == PLAYER)
+		{
+			Player->SetInvincible(true);	//プレイヤー無敵フラグをON
+		}
+		//▽エネミーの時の処理
+		else //(Planet_id == ENEMY)
+		{
+			Enemy->SetInvincible(true);		//エネミー無敵フラグをON
+		}
+
+		m_count[Planet_id]++;//効果時間計測
+
+		//10秒経過後、スペシャル技の効果を終了する
+		if (m_count[Planet_id] > 60 * 10)
+		{
+			//▽プレイヤーの時の処理
+			if (Planet_id == PLAYER)
+			{
+				Player->SetInvincible(false);	//プレイヤー無敵フラグをOFF
+			}
+			//▽エネミーの時の処理
+			else //(Planet_id == ENEMY)
+			{
+				Enemy->SetInvincible(false);	//エネミー無敵フラグをOFF
+			}
+
+			m_is_invocating[Planet_id] = false;//発動中管理フラグOFF
+		}
+	}
+	//▼[生産性効率アップ]の処理
+	else if (Special_equip == 4)
+	{
+		//ミサイルポッドリキャストタイムのバフ倍率を変更する
+		//▽プレイヤーの時の処理
+		if (Planet_id == PLAYER)
+		{
+			//それぞれのボタンを変更する
+			Pod1->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+			Pod2->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+			Pod3->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+			Pod4->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+			Missile->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+		}
+		//▽エネミーの時の処理
+		else //(Planet_id == ENEMY)
+		{
+			Enemy->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+		}
+
+		m_count[Planet_id]++;//効果時間計測
+
+		//20秒経過後、スペシャル技の効果を終了する
+		if (m_count[Planet_id] > 60 * 20)
+		{
+			//ミサイルポッドリキャストタイムのバフ倍率を元に戻す
+			//▽プレイヤーの時の処理
+			if (Planet_id == PLAYER)
+			{
+				//それぞれのボタンを変更する
+				Pod1->SetRecastBuff(INI_BUFF);
+				Pod2->SetRecastBuff(INI_BUFF);
+				Pod3->SetRecastBuff(INI_BUFF);
+				Pod4->SetRecastBuff(INI_BUFF);
+				Missile->SetRecastBuff(INI_BUFF);
+			}
+			//▽エネミーの時の処理
+			else //(Planet_id == ENEMY)
+			{
+				Enemy->SetRecastBuff(INI_BUFF);
+			}
+
+			m_is_invocating[Planet_id] = false;//発動中管理フラグOFF
+		}
+	}
+	//▼[住民の士気がアップ]の処理
+	else if (Special_equip == 5)
+	{
+		m_damage_buff[Planet_id] = DAMAGE_BUFF_MAGNIFICATION;	//ダメージバフ倍率を変更する
+
+		//ポッド射出毎にm_countが1ずつ増加するようにObjRocketButton(敵の場合はObjPlanet)で設定している
+
+		//スペシャル技発動してからポッドを5回射出後、スペシャル技の効果を終了する
+		//※正確に言えば6回目のポッドを射出した瞬間に以下の処理が実行される
+		if (m_count[Planet_id] > 5)
+		{
+			m_damage_buff[Planet_id] = INI_BUFF;//ダメージバフ倍率を元に戻す
+			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
+		}
 	}
 }
