@@ -176,7 +176,7 @@ void CObjSpecialButton::Draw()
 		//▼スペシャル技発動演出フォント表示
 		for (int i = 0; i < 2; i++)
 		{
-			Font::StrDraw(m_staging_message[i], 320.0f, 150.0f + i * 150.0f, 80.0f, staging_font[i]);
+			Font::StrDraw(m_staging_message[i], 280.0f, 150.0f + i * 150.0f, 80.0f, staging_font[i]);
 		}
 
 		Font::StrDraw(L"発動！", 490.0f, 450.0f, 80.0f, staging_font[2]);
@@ -193,26 +193,26 @@ void CObjSpecialButton::Special_staging_message(int Planet_id, int Special_equip
 {
 	if (Planet_id == 0)
 	{
-		swprintf_s(m_staging_message[0], L"　プレイヤー"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[0], L"   プレイヤー"); //文字配列に文字データを入れる
 		m_staging_font_color = 0.0f;	//フォントのカラーを青色に設定する
 	}
 	else
 	{
-		swprintf_s(m_staging_message[0], L"　 エネミー"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[0], L"　  エネミー"); //文字配列に文字データを入れる
 		m_staging_font_color = 1.0f;	//フォントのカラーを赤色に設定する
 	}
 
 	if (Special_equip == 1)
 	{
-		swprintf_s(m_staging_message[1], L"　Explosion"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L"   Explosion"); //文字配列に文字データを入れる
 	}
 	else if (Special_equip == 2)
 	{
-		swprintf_s(m_staging_message[1], L" Fracture Ray"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L"  Fracture Ray"); //文字配列に文字データを入れる
 	}
 	else if (Special_equip == 3)
 	{
-		swprintf_s(m_staging_message[1], L" Immortality"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L"  Immortality"); //文字配列に文字データを入れる
 	}
 	else if (Special_equip == 4)
 	{
@@ -220,7 +220,7 @@ void CObjSpecialButton::Special_staging_message(int Planet_id, int Special_equip
 	}
 	else if (Special_equip == 5)
 	{
-		swprintf_s(m_staging_message[1], L"ステロイド投与"); //文字配列に文字データを入れる
+		swprintf_s(m_staging_message[1], L" ステロイド投与"); //文字配列に文字データを入れる
 	}
 }
 
