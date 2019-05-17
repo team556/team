@@ -46,6 +46,9 @@ void CObjSpecialButton::Init()
 		m_is_invocating[i] = false;
 		m_special_staging_f[i] = false;
 
+		m_Explosion_size_x[i] = 100.0f;
+		m_Explosion_size_y[i] = 0.0f;
+
 		m_damage_buff[i] = INI_BUFF;
 	}
 
@@ -121,6 +124,12 @@ void CObjSpecialButton::Action()
 		if (m_a > 0.0f)
 			this->SetStatus(false);	//完全透明になった時点で消滅
 	}
+
+	////Zキー(デバッグ用)(後で消す)
+	//if (Input::GetVKey('Z') == true)
+	//{
+	//	test -= 10;
+	//}
 }
 
 //ドロー
@@ -137,6 +146,8 @@ void CObjSpecialButton::Draw()
 		{ 1.0f,1.0f,0.0f,1.0f },//2行目は黄色
 		{ 1.0f,1.0f,1.0f,1.0f },//3行目は白色
 	};
+
+	float d[4] = { 1.0f,1.0f,1.0f,1.0f };	//その他画像用(test用/後で名前変える)
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -181,6 +192,87 @@ void CObjSpecialButton::Draw()
 
 		Font::StrDraw(L"発動！", 490.0f, 450.0f, 80.0f, staging_font[2]);
 	}
+
+	//スペシャル技演出(エフェクト)
+	//▼[敵に大ダメージ]
+	//▽プレイヤーの時の処理
+	if ((g_Special_equipment == 1) &&			//スペシャル技[敵に大ダメージ]を装備中かつ
+		(m_is_invocating[PLAYER] == true) &&	//現在スペシャル技が発動中で、
+		(m_is_used_special[PLAYER] == true))	//スペシャル技発動演出終了済みであれば描画
+	{
+		//▼Explosion表示
+		//切り取り位置が64×64ではないのは故意である。
+		src.m_top = 27.0f;
+		src.m_left = 7.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 35.0f;
+
+		dst.m_top = Player->GetY() - 100.0f - m_Explosion_size_y[PLAYER];
+		dst.m_left = Player->GetX() - m_Explosion_size_x[PLAYER];
+		dst.m_right = Player->GetX() + m_Explosion_size_x[PLAYER];
+		dst.m_bottom = Player->GetY();
+		Draw::Draw(21, &src, &dst, d, 90.0f);
+	}
+
+	////▼Explosion表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 64.0f;
+	//src.m_bottom = 64.0f;
+
+	//dst.m_top = 300.0f;
+	//dst.m_left = 200.0f;
+	//dst.m_right = 400.0f;
+	//dst.m_bottom = 500.0f;
+	//Draw::Draw(21, &src, &dst, d, 0.0f);
+
+	////▼Fracture_Ray表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 64.0f;
+	//src.m_bottom = 32.0f;
+
+	//dst.m_top = 300.0f + test;
+	//dst.m_left = 800.0f;
+	//dst.m_right = 1000.0f;
+	//dst.m_bottom = 500.0f - test;
+	//Draw::Draw(22, &src, &dst, d, 0.0f);
+
+	////▼Immortality表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 64.0f;
+	//src.m_bottom = 64.0f;
+
+	//dst.m_top = 300.0f;
+	//dst.m_left = 400.0f;
+	//dst.m_right = 600.0f;
+	//dst.m_bottom = 500.0f;
+	//Draw::Draw(23, &src, &dst, d, 0.0f);
+
+	////▼リミットブレイク表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 64.0f;
+	//src.m_bottom = 64.0f;
+
+	//dst.m_top = 300.0f;
+	//dst.m_left = 500.0f;
+	//dst.m_right = 700.0f;
+	//dst.m_bottom = 500.0f;
+	//Draw::Draw(24, &src, &dst, d, 0.0f);
+
+	////▼ステロイド投与表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 64.0f;
+	//src.m_bottom = 64.0f;
+
+	//dst.m_top = 300.0f;
+	//dst.m_left = 600.0f;
+	//dst.m_right = 800.0f;
+	//dst.m_bottom = 500.0f;
+	//Draw::Draw(25, &src, &dst, d, 0.0f);
 }
 
 //---Special_staging_message関数
@@ -285,6 +377,8 @@ void CObjSpecialButton::Special_process(int Planet_id, int Special_equip)
 		}
 
 		m_count[Planet_id]++;//効果時間計測
+
+		m_Explosion_size_y[Planet_id] += 20.0f;//光線、上に伸ばす(TEST用/後でしっかりしたものに直す)
 
 		//2秒経過後、スペシャル技の効果を終了する
 		if (m_count[Planet_id] > 60 * 2)

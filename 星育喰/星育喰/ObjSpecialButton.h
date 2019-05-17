@@ -47,6 +47,9 @@ private:
 	bool m_is_invocating[2];	//現在スペシャル技が発動中であるか(true:発動中　false:発動済 or 未発動)
 	bool  m_special_staging_f[2];//スペシャル技発動演出フラグ[true:演出中　false:演出してない]
 
+	float m_Explosion_size_x[2];	//[スペシャル技:敵に大ダメージ]エフェクトのサイズX
+	float m_Explosion_size_y[2];	//[スペシャル技:敵に大ダメージ]エフェクトのサイズY
+
 	//▼以下はObjPlanet,ObjRocketに処理内容を送る用
 	float m_damage_buff[2];		//ダメージのバフ倍率[スペシャル技:住民の士気がアップ用]
 
