@@ -18,13 +18,12 @@ public:
 	bool GetEnemy_Used_Special() { return m_is_used_special[1]; }//敵がスペシャル技を使用したかどうかを返す
 	int  GetSpecial_equip() { return m_enemy_special_equipment; }//敵が装備中のスペシャル技を返す
 	bool GetInvocating(int Planet_id) { return m_is_invocating[Planet_id]; }//[プレイヤー or 敵]が現在スペシャル技発動中であるかを返す
-	float GetDamage_buff(int Planet_id) { return m_damage_buff[Planet_id]; }//[プレイヤー or 敵]のダメージバフ倍率を返す[スペシャル技:住民の士気がアップ用]
 	void SetBuff_count(int Planet_id) { m_count[Planet_id] += 1; }//ポットの射出回数カウント用[スペシャル技:住民の士気がアップ用]
 	void SetSpecial_Equip(int equip) { m_enemy_special_equipment = equip; }//敵の発動するスペシャル技を決める用
 	void SetSpecial_Start() { m_enemy_special_button = true; }	//敵のスペシャル技を発動させる用
 private:
 	void Special_staging_message(int Planet_id, int Special_equip);	//スペシャル技発動演出メッセージ設定関数
-	void Special_process(int Planet_id, int Special_equip);			//スペシャル技処理関数(スペシャル技発動演出、スペシャル技効果の処理等を行う)
+	void Special_process(int Planet_id, int Opponent_id, int Special_equip);			//スペシャル技処理関数(スペシャル技発動演出、スペシャル技効果の処理等を行う)
 
 	float m_x;		//スペシャル技ボタンの座標X
 	float m_y;		//スペシャル技ボタンの座標Y
@@ -47,11 +46,20 @@ private:
 	bool m_is_invocating[2];	//現在スペシャル技が発動中であるか(true:発動中　false:発動済 or 未発動)
 	bool  m_special_staging_f[2];//スペシャル技発動演出フラグ[true:演出中　false:演出してない]
 
-	float m_Explosion_size_x[2];	//[スペシャル技:敵に大ダメージ]エフェクトのサイズX
-	float m_Explosion_size_y[2];	//[スペシャル技:敵に大ダメージ]エフェクトのサイズY
+	float m_Explosion_size[2];	//[スペシャル技:敵に大ダメージ]エフェクト画像サイズ変更用
+	float m_Explosion_width[2];	//[スペシャル技:敵に大ダメージ]エフェクト画像の幅変更用
+	float m_Explosion_pos[2];	//[スペシャル技:敵に大ダメージ]エフェクト画像の位置変更用
+	int   m_Explosion_target[2];//[スペシャル技:敵に大ダメージ]エフェクト対象変更用
+	float m_Explosion_angle[2];	//[スペシャル技:敵に大ダメージ]エフェクト角度変更用
 
-	//▼以下はObjPlanet,ObjRocketに処理内容を送る用
-	float m_damage_buff[2];		//ダメージのバフ倍率[スペシャル技:住民の士気がアップ用]
+	float m_Fracture_Ray_pos[2];	//[スペシャル技:一列殺し]エフェクト画像の位置変更用
+	float m_Fracture_Ray_width[2];	//[スペシャル技:一列殺し]エフェクト画像の幅変更用
+
+	float m_Immortality_size[2];	//[スペシャル技:一定時間無敵]エフェクト画像サイズ変更用
+	
+
+	float m_Special_effect_alpha[2];	//スペシャル技エフェクト画像のalpha(透過度)
+	float m_Special_effect_alpha_vec[2];//スペシャル技エフェクト画像の透過度ベクトル
 
 	//▼以下はObjPlanet(Enemy)から送られてくる情報を取得する用
 	int  m_enemy_special_equipment;//敵装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
@@ -61,11 +69,6 @@ private:
 	//▼オブジェクト情報取得用のポインタをそれぞれ宣言
 	//※スペシャル技ボタンの処理を各オブジェクトに送ったり、逆に取得したりする為のもの。
 	CObjFight *FightScene;
-	CObjPlanet *Player;
-	CObjPlanet *Enemy;
-	CObjRocketButton *Pod1;
-	CObjRocketButton *Pod2;
-	CObjRocketButton *Pod3;
-	CObjRocketButton *Pod4;
-	CObjRocketButton *Missile;
+	CObjPlanet *Planet[2];
+	CObjRocketButton *PodMissile[5];
 };

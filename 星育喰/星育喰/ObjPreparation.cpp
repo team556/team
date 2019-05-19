@@ -25,8 +25,8 @@ bool CObjPreparation::destroy_progress[4] = { false,false,false,false };
 //グローバル変数の定義
 int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
-int g_Special_equipment = 1;//デバッグ用に1にしている。後で0に戻すように。
-bool g_Special_mastering[5] = { false,false,false,false,false };
+int g_Special_equipment = 5;//デバッグ用に5にしている。後で0に戻すように。
+bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
 
 //イニシャライズ
 void CObjPreparation::Init()
