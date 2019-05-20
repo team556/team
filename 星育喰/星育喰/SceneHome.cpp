@@ -5,6 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 
 //使用するネームスペース
@@ -46,6 +47,17 @@ void CSceneHome::InitScene()
 
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+
+	//バックミュージック
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((1.0 - v));
+
+	//音楽スタート
+	Audio::Start(0);
+
 }
 
 //ゲームメイン実行中メソッド

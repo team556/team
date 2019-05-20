@@ -120,12 +120,27 @@ void CObjPlanet::Action()
 			}
 		}
 	}
-				//2.5秒
+	//2.5秒
 	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
-		if (m_type == 0)				//(戦闘中)
-			m_px -= m_mov_spd;	//自星の動き
+		if (m_type == 0)//------(戦闘中)
+		{
+			if(hit->CheckElementHit(ELEMENT_LINE) != true)
+				m_px -= m_mov_spd;	//自星の動き
+			else
+			{
+
+			}
+		}
 		else
-			m_px += m_mov_spd;	//敵星の動き
+		{
+			if (m_type >= 1)
+			{
+				if(hit->CheckElementHit(ELEMENT_LINE) != true)
+				m_px += m_mov_spd;	//敵星の動き
+				else
+				{}
+			}
+		}
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			
