@@ -168,11 +168,11 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
 		}
 		else if (ButtonU == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
 		}
 		else if (ButtonU == 4)
 		{
@@ -300,14 +300,18 @@ void CObjRocket::Action()
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
 			//ポットが破壊される度にその数をカウントする
-			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
-			if (m_type == true && g_Special_equipment == 5 && Special->GetInvocating(0) == true && ButtonU != 5)
+			//※戦闘終了時は実行しない
+			if (battle_end == false)
 			{
-				Special->SetBuff_count(0);//破壊された強化ポッド数をカウントする
-			}
-			if (m_type == false && Special->GetSpecial_equip() == 5 && Special->GetInvocating(1) == true && ButtonU != 5)
-			{
-				Special->SetBuff_count(1);//破壊された強化ポッド数をカウントする
+				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
+				if (m_type == true && g_Special_equipment == 5 && Special->GetInvocating(0) == true && ButtonU != 5)
+				{
+					Special->SetBuff_count(0);//破壊された強化ポッド数をカウントする
+				}
+				if (m_type == false && Special->GetSpecial_equip() == 5 && Special->GetInvocating(1) == true && ButtonU != 5)
+				{
+					Special->SetBuff_count(1);//破壊された強化ポッド数をカウントする
+				}
 			}
 
 			this->SetStatus(false);
