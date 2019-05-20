@@ -15,6 +15,7 @@ using namespace GameL;
 //static変数の定義
 bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
+float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
 //c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
 CObjFight::CObjFight(int c, int e_n)
@@ -50,6 +51,10 @@ void CObjFight::Init()
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
 	battle_end = false;
+	for (int i = 0; i < 2; i++)
+	{
+		damage_buff[i] = 1.0f;
+	}
 }
 
 //アクション

@@ -91,11 +91,6 @@ void CObjPlanet::Action()
 		return;
 	}
 
-	//▼エネミーのスペシャル技発動フラグを送ったり、
-	//スペシャル技によるダメージバフ倍率取得したり、
-	//ポットの射出回数カウントする為に必要
-	CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
-
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (fit->GetCount() != 0)		//対戦時間が0でない場合
 		/*m_siz_vec += m_siz_spd*/; //拡大非をベクトルに加算
@@ -211,9 +206,9 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * Special->GetDamage_buff(1);//HP-1
-			m_px -= (m_size / 10) * Special->GetDamage_buff(1);		//縮む分だけ左に移動
-			m_size -= (m_size / 20) * Special->GetDamage_buff(1);	//サイズ減少
+			m_hp -= 1 * damage_buff[1];//HP-1
+			m_px -= (m_size / 10) * damage_buff[1];		//縮む分だけ左に移動
+			m_size -= (m_size / 20) * damage_buff[1];	//サイズ減少
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
@@ -222,9 +217,9 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * Special->GetDamage_buff(0);//HP-1
-			m_px += (m_size / 10) * Special->GetDamage_buff(0);		//縮む分だけ右に移動
-			m_size -= (m_size / 20) * Special->GetDamage_buff(0);	//サイズ減少
+			m_hp -= 1 * damage_buff[0];//HP-1
+			m_px += (m_size / 10) * damage_buff[0];		//縮む分だけ右に移動
+			m_size -= (m_size / 20) * damage_buff[0];	//サイズ減少
 		}
 	}
 
@@ -281,48 +276,24 @@ void CObjPlanet::Action()
 		
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
-			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
-			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
-			{
-				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
-			}
-
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
-			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
-			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
-			{
-				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
-			}
-
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
-			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
-			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
-			{
-				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
-			}
-
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
-			//敵が[スペシャル技:住民の士気がアップ]を発動中に実行する
-			if (Special->GetInvocating(1) == true && Special->GetSpecial_equip() == 5)
-			{
-				Special->SetBuff_count(1);//ポッドの射出回数をカウントする
-			}
-
 			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
@@ -338,9 +309,10 @@ void CObjPlanet::Action()
 			//敵がスペシャル技を使用済(true)である場合、
 			//リキャストタイムを元に戻さず、再度行動パターン決めを行う
 			//未使用(false)であれば、以下の処理を行う
+			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 			if (Special->GetEnemy_Used_Special() == false)
 			{
-				Special->SetSpecial_Equip(2);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+				Special->SetSpecial_Equip(1);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
 				Special->SetSpecial_Start();	//スペシャル技を発動させる
 				m_time = 100 * m_enemy_recast_buff;
 			}
