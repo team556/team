@@ -5,6 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 
 //使用するネームスペース
@@ -43,6 +44,17 @@ void CSceneTitle::InitScene()
 
 	//タイトルロゴ
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
+
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+
+	//バックミュージック
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((1.0 - v));
+
+	//音楽スタート
+	Audio::Start(0);
+
 }
 
 //ゲームメイン実行中メソッド

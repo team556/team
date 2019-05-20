@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -125,6 +126,24 @@ void CSceneFight::InitScene()
 	//戦闘前演出オブジェクト
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
+
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+	//Audio::LoadAudio(1, L"", BACK_MUSIC);
+	//Audio::LoadAudio(2, L"", BACK_MUSIC);
+
+	//SE読み込み
+	//Audio::LoadAudio(3, L"", EFFECT);
+	//Audio::LoadAudio(4, L"", EFFECT);
+	//Audio::LoadAudio(5, L"", EFFECT);
+
+	//バックミュージック
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((1.0 - v));
+
+	//音楽スタート
+	Audio::Start(0);	
+
 }
 
 //ゲームメイン実行中メソッド
