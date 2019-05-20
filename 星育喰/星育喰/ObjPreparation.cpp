@@ -1172,7 +1172,7 @@ void CObjPreparation::Special_message(int special_id)
 		else  //(special_id == 4)
 		{
 			swprintf_s(m_detail_message[0], L"ステロイド投与");		//文字配列に文字データを入れる
-			swprintf_s(m_detail_message[1], L"発動後出撃する");		//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[1], L"出撃する");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ポッド5機の攻撃力UP");//文字配列に文字データを入れる
 		}
 		
