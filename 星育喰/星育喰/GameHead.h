@@ -66,7 +66,7 @@ enum HIT_ELEMENTS
 	ELEMENT_PODS,		//スピード
 	ELEMENT_PODD,		//ディフェンス
 	ELEMENT_PODB,		//バランス
-	
+	ELEMENT_LINE,
 
 
 };
