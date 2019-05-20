@@ -511,7 +511,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			SetPrio(2);//オブジェクト優先順位を変更し、エフェクト画像が相手惑星の後ろにいくようにする
 			m_Explosion_width[Planet_id] += 10.0f;//幅を狭める
 		}
-		else if (m_Explosion_target[Planet_id] == Opponent_id)
+		else if (m_Explosion_pos[Planet_id] == -1000.0f)
 		{
 			SetPrio(2);//オブジェクト優先順位を変更し、エフェクト画像が相手惑星の後ろにいくようにする
 			m_Explosion_size[Planet_id] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす

@@ -312,7 +312,7 @@ void CObjPlanet::Action()
 			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 			if (Special->GetEnemy_Used_Special() == false)
 			{
-				Special->SetSpecial_Equip(1);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+				Special->SetSpecial_Equip(g_Special_equipment);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
 				Special->SetSpecial_Start();	//スペシャル技を発動させる
 				m_time = 100 * m_enemy_recast_buff;
 			}

@@ -5,7 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
-
+#include "GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -228,7 +228,22 @@ void CSceneTraining::InitScene()
 	//ポッドLv.3の画像を読み込み63番に登録
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
 
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
 
+	//SE読み込み
+	//Audio::LoadAudio(1, L"", EFFECT);
+	//Audio::LoadAudio(2, L"", EFFECT);
+	//Audio::LoadAudio(3, L"", EFFECT);
+	//Audio::LoadAudio(4, L"", EFFECT);
+	//Audio::LoadAudio(5, L"", EFFECT);
+
+	//バックミュージック
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((1.0 - v));
+
+	//音楽スタート
+	Audio::Start(0);	
 }
 
 //ゲームメイン実行中メソッド
