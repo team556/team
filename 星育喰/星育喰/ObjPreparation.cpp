@@ -25,8 +25,8 @@ bool CObjPreparation::destroy_progress[4] = { false,false,false,false };
 //グローバル変数の定義
 int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
-int g_Special_equipment = 1;//デバッグ用に1にしている。後で0に戻すように。
-bool g_Special_mastering[5] = { false,false,false,false,false };
+int g_Special_equipment = 5;//デバッグ用に5にしている。後で0に戻すように。
+bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -1172,7 +1172,7 @@ void CObjPreparation::Special_message(int special_id)
 		else  //(special_id == 4)
 		{
 			swprintf_s(m_detail_message[0], L"ステロイド投与");		//文字配列に文字データを入れる
-			swprintf_s(m_detail_message[1], L"発動後出撃する");		//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[1], L"出撃する");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ポッド5機の攻撃力UP");//文字配列に文字データを入れる
 		}
 		

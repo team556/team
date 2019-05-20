@@ -86,7 +86,21 @@ void CSceneFight::InitScene()
 
 	//ポーズ画面背景を読み込み20番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 20, TEX_SIZE_512);
-	
+
+	//スペシャル技[Explosion]画像を読み込み21番に登録
+	Draw::LoadImage(L"Explosion.png", 21, TEX_SIZE_512);
+
+	//スペシャル技[Fracture_Ray]画像を読み込み22番に登録
+	Draw::LoadImage(L"スペシャル技Fracture_Ray.png", 22, TEX_SIZE_512);
+
+	//スペシャル技[Immortality]画像を読み込み23番に登録
+	Draw::LoadImage(L"スペシャル技インモータリティ.png", 23, TEX_SIZE_512);
+
+	//スペシャル技[リミットブレイク]画像を読み込み24番に登録
+	Draw::LoadImage(L"攻撃力アップ.png", 24, TEX_SIZE_512);
+
+	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
+	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
