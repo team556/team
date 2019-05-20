@@ -55,6 +55,8 @@ void CObjFight::Init()
 	{
 		damage_buff[i] = 1.0f;
 	}
+
+	Hits::SetHitBox(this, 400, 310, 400, 60, ELEMENT_LINE, OBJ_FIGHT, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“

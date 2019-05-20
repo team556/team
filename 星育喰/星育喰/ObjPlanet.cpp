@@ -121,12 +121,27 @@ void CObjPlanet::Action()
 			}
 		}
 	}
-				//2.5秒
+	//2.5秒
 	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
-		if (m_type == 0)				//(戦闘中)
-			m_px -= m_mov_spd;	//自星の動き
+		if (m_type == 0)//------(戦闘中)
+		{
+			if(hit->CheckElementHit(ELEMENT_LINE) != true)
+				m_px -= m_mov_spd;	//自星の動き
+			else
+			{
+
+			}
+		}
 		else
-			m_px += m_mov_spd;	//敵星の動き
+		{
+			if (m_type >= 1)
+			{
+				if(hit->CheckElementHit(ELEMENT_LINE) != true)
+				m_px += m_mov_spd;	//敵星の動き
+				else
+				{}
+			}
+		}
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			
@@ -313,7 +328,7 @@ void CObjPlanet::Action()
 			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 			if (Special->GetEnemy_Used_Special() == false)
 			{
-				Special->SetSpecial_Equip(g_Special_equipment);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+				Special->SetSpecial_Equip(g_Special_equipment);	//敵の発動するスペシャル技を決める(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 				Special->SetSpecial_Start();	//スペシャル技を発動させる
 				m_time = 100 * m_enemy_recast_buff;
 			}

@@ -58,19 +58,19 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッド3.png", 10, TEX_SIZE_512);
 
 	//11番に登録
-	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"パワーボタン.png", 11, TEX_SIZE_512);
 
 	//12番に登録
-	Draw::LoadImage(L"ディフェンスボタン(仮).png", 12, TEX_SIZE_512);
+	Draw::LoadImage(L"ディフェンスボタン.png", 12, TEX_SIZE_512);
 
 	//13番に登録
-	Draw::LoadImage(L"スピードボタン(仮).png", 13, TEX_SIZE_512);
+	Draw::LoadImage(L"スピードボタン.png", 13, TEX_SIZE_512);
 
 	//14番に登録
-	Draw::LoadImage(L"バランスボタン(仮).png", 14, TEX_SIZE_512);
+	Draw::LoadImage(L"バランスボタン.png", 14, TEX_SIZE_512);
 
 	//15番に登録
-	Draw::LoadImage(L"ミサイルボタン(仮).png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイルボタン(新).png", 15, TEX_SIZE_512);
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
