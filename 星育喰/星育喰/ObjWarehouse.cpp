@@ -1056,6 +1056,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(45, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"メリット", 310.0f, 510.0f, 20.0f, black);
 		Font::StrDraw(L"住民のポッド5機攻撃が上がる", 310.0f, 540.0f, 20.0f, black);
+		Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 310.0f, 570.0f, 20.0f, black);
 		Font::StrDraw(L"デメリット", 810.0f, 510.0f, 20.0f, black);
 		//Font::StrDraw(L"効果終了後住民の攻撃ポッド3機の", 710.0f, 535.0f, 20.0f, black);
 		//Font::StrDraw(L"攻撃力が下がる", 710.0f, 560.0f, 20.0f, black);

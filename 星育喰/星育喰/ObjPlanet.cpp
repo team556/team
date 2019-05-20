@@ -113,6 +113,7 @@ void CObjPlanet::Action()
 			if (m_type == 0) {		//主人公の場合
 				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
+				
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
