@@ -1,7 +1,7 @@
 //使用するヘッダーファイル
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
-//#include "GameL\DrawTexture.h"
+#include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 
@@ -16,7 +16,7 @@ using namespace GameL;
 #define RECAST_BUFF_MAGNIFICATION (0.5f)	//ミサイルポッドリキャストタイムのバフ倍率(リキャストタイムを0.5倍→リキャストタイムが半分で済む)
 #define DAMAGE_BUFF_MAGNIFICATION (1.5f)	//与えるダメージのバフ倍率(与えるダメージが1.5倍になる)
 #define INI_BUFF (1.0f)						//上記2つのバフ倍率初期値
-#define INI_WIDTH (200.0f)					//[スペシャル技:敵に大ダメージ]エフェクト画像の初期幅
+#define INI_WIDTH (200.0f)					//[スペシャル技:Explosion / Fracture_Ray]エフェクト画像の初期幅
 #define INI_ALPHA (1.0f)					//スペシャル技エフェクト画像の初期透過度
 
 //コンストラクタ
@@ -55,7 +55,7 @@ void CObjSpecialButton::Init()
 		m_Explosion_angle[i] = 0.0f;
 
 		m_Fracture_Ray_pos[i] = 0.0f;
-		m_Fracture_Ray_width[i] = 0.0f;
+		m_Fracture_Ray_width[i] = INI_WIDTH;
 
 		m_Immortality_size[i] = 0.0f;
 		
@@ -129,10 +129,14 @@ void CObjSpecialButton::Action()
 	//▼時間切れの時の処理
 	if (FightScene->GetCount() <= 60)
 	{	
-		m_is_used_special[PLAYER] = true;	//時間切れでスペシャル技発動不可にする
+		//時間切れでスペシャル技発動不可にする
+		m_is_used_special[PLAYER] = true;	
 		m_is_invocating[PLAYER] = false;
-		m_is_used_special[ENEMY]  = true;	//同じく敵もスペシャル技発動不可にする
+
+		//同じく敵もスペシャル技発動不可にする
+		m_is_used_special[ENEMY]  = true;	
 		m_is_invocating[ENEMY] = false;
+
 		m_a -= 0.03f;				//徐々に透明化する
 		if (m_a > 0.0f)
 			this->SetStatus(false);	//完全透明になった時点で消滅
@@ -145,13 +149,6 @@ void CObjSpecialButton::Draw()
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float button[4] = { 1.0f,1.0f,1.0f,m_a };		//スペシャル技ボタン用
 	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };	//画面全体やや暗転画像用
-	
-	//スペシャル技エフェクト画像用
-	float special_effect[2][4] = 
-	{
-		{ 1.0f,1.0f,1.0f,m_Special_effect_alpha[PLAYER] },
-		{ 1.0f,1.0f,1.0f,m_Special_effect_alpha[ENEMY] },
-	};
 
 	//スペシャル技発動演出フォント用
 	float staging_font[3][4] =
@@ -162,10 +159,6 @@ void CObjSpecialButton::Draw()
 	};
 
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };	//その他画像用
-
-
-	//▽フォント準備
-	wchar_t power_up_pod_count[2][10];	//強化状態のポット数表示用
 
 
 	RECT_F src;//描画元切り取り位置
@@ -194,190 +187,14 @@ void CObjSpecialButton::Draw()
 	if ((m_is_invocating[PLAYER] == true) &&	//現在スペシャル技が発動中で、
 		(m_is_used_special[PLAYER] == true))	//スペシャル技発動演出終了済みであれば描画
 	{
-		//▼[敵に大ダメージ]
-		if (g_Special_equipment == 1)
-		{
-			//▼Explosion表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			//▽メモ1：
-			//画像を拡大縮小等と変形する際、
-			//均等にtopとleftとrightとbottomを伸ばさなければ、
-			//その誤差分、画像が引き伸ばされ、
-			//欲しい画像とならないので
-			//基本的にどんな状況でも均等に伸ばさないといけない。
-			//ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
-			//bottomを動かさない分、topを2倍動かす事でこれに対応している。
-			//▽メモ2:
-			//今回の画像は90度&270度回転させて使用している為、
-			//topとbottomの値の差を変動させる事で、
-			//欲しい画像である"左右から徐々に消えていく演出"を行っている。
-			dst.m_top = Planet[m_Explosion_target[PLAYER]]->GetY() - m_Explosion_size[PLAYER] * 2 - m_Explosion_width[PLAYER] + m_Explosion_pos[PLAYER];
-			dst.m_left = Planet[m_Explosion_target[PLAYER]]->GetX() - m_Explosion_size[PLAYER];
-			dst.m_right = Planet[m_Explosion_target[PLAYER]]->GetX() + m_Explosion_size[PLAYER];
-			dst.m_bottom = Planet[m_Explosion_target[PLAYER]]->GetY() + m_Explosion_width[PLAYER] + m_Explosion_pos[PLAYER];
-			Draw::Draw(21, &src, &dst, d, m_Explosion_angle[PLAYER]);
-		}
-
-		//▼[一列殺し]
-		else if (g_Special_equipment == 2)
-		{
-			//▼Fracture_Ray表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = -64.0f;
-			src.m_bottom = 32.0f;
-
-			dst.m_top = Planet[PLAYER]->GetY() - m_Fracture_Ray_width[PLAYER] + m_Fracture_Ray_pos[PLAYER];
-			dst.m_left = 0.0f;
-			dst.m_right = Planet[PLAYER]->GetX();
-			dst.m_bottom = Planet[PLAYER]->GetY() + m_Fracture_Ray_width[PLAYER] + m_Fracture_Ray_pos[PLAYER];
-			Draw::Draw(22, &src, &dst, d, 0.0f);
-		}
-
-		//▼[一定時間無敵]
-		else if (g_Special_equipment == 3)
-		{
-			//▼Immortality表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[PLAYER]->GetY() - m_Immortality_size[PLAYER];
-			dst.m_left = Planet[PLAYER]->GetX() - m_Immortality_size[PLAYER];
-			dst.m_right = Planet[PLAYER]->GetX() + m_Immortality_size[PLAYER];
-			dst.m_bottom = Planet[PLAYER]->GetY() + m_Immortality_size[PLAYER];
-			Draw::Draw(23, &src, &dst, special_effect[PLAYER], 0.0f);
-		}
-
-		//▼[リミットブレイク]
-		else if (g_Special_equipment == 4)
-		{
-			//▼リミットブレイク表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[PLAYER]->GetY() - 175.0f;
-			dst.m_left = Planet[PLAYER]->GetX() - 37.5f;
-			dst.m_right = Planet[PLAYER]->GetX() + 37.5f;
-			dst.m_bottom = Planet[PLAYER]->GetY() - 100.0f;
-			Draw::Draw(24, &src, &dst, special_effect[PLAYER], 0.0f);
-		}
-
-		//▼[ステロイド投与]
-		else if (g_Special_equipment == 5)
-		{
-			//▼ステロイド投与表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[PLAYER]->GetY() - 175.0f;
-			dst.m_left = Planet[PLAYER]->GetX() - 75.0f;
-			dst.m_right = Planet[PLAYER]->GetX();
-			dst.m_bottom = Planet[PLAYER]->GetY() - 100.0f;
-			Draw::Draw(25, &src, &dst, d, 0.0f);
-
-			//▼強化状態のポット数表示
-			swprintf_s(power_up_pod_count[PLAYER], L"%d", (5 - m_count[PLAYER]));
-			Font::StrDraw(power_up_pod_count[PLAYER], Planet[PLAYER]->GetX() + 5.0f, Planet[PLAYER]->GetY() - 175.0f, 75.0f, d);
-		}
+		Special_effect(PLAYER, g_Special_equipment);//スペシャル技エフェクト描画関数を呼び出す
 	}
 
 	//▽エネミーの時の処理
 	if ((m_is_invocating[ENEMY] == true) &&	//現在スペシャル技が発動中で、
 		(m_is_used_special[ENEMY] == true))	//スペシャル技発動演出終了済みであれば描画
 	{
-		//▼[敵に大ダメージ]
-		if (m_enemy_special_equipment == 1)
-		{
-			//▼Explosion表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[m_Explosion_target[ENEMY]]->GetY() - m_Explosion_size[ENEMY] * 2 - m_Explosion_width[ENEMY] + m_Explosion_pos[ENEMY];
-			dst.m_left = Planet[m_Explosion_target[ENEMY]]->GetX() - m_Explosion_size[ENEMY];
-			dst.m_right = Planet[m_Explosion_target[ENEMY]]->GetX() + m_Explosion_size[ENEMY];
-			dst.m_bottom = Planet[m_Explosion_target[ENEMY]]->GetY() + m_Explosion_width[ENEMY] + m_Explosion_pos[ENEMY];
-			Draw::Draw(21, &src, &dst, d, m_Explosion_angle[ENEMY]);
-		}
-
-		//▼[一列殺し]
-		else if (m_enemy_special_equipment == 2)
-		{
-			//▼Fracture_Ray表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 32.0f;
-
-			dst.m_top = Planet[ENEMY]->GetY() - m_Fracture_Ray_width[ENEMY] + m_Fracture_Ray_pos[ENEMY];
-			dst.m_left = Planet[ENEMY]->GetX();
-			dst.m_right = 1200.0f;
-			dst.m_bottom = Planet[ENEMY]->GetY() + m_Fracture_Ray_width[ENEMY] + m_Fracture_Ray_pos[ENEMY];
-			Draw::Draw(22, &src, &dst, d, 0.0f);
-		}
-
-		//▼[一定時間無敵]
-		else if (m_enemy_special_equipment == 3)
-		{
-			//▼Immortality表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[ENEMY]->GetY() - m_Immortality_size[ENEMY];
-			dst.m_left = Planet[ENEMY]->GetX() - m_Immortality_size[ENEMY];
-			dst.m_right = Planet[ENEMY]->GetX() + m_Immortality_size[ENEMY];
-			dst.m_bottom = Planet[ENEMY]->GetY() + m_Immortality_size[ENEMY];
-			Draw::Draw(23, &src, &dst, special_effect[ENEMY], 0.0f);
-		}
-
-		//▼[リミットブレイク]
-		else if (m_enemy_special_equipment == 4)
-		{
-			//▼リミットブレイク表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[ENEMY]->GetY() - 175.0f;
-			dst.m_left = Planet[ENEMY]->GetX() - 37.5f;
-			dst.m_right = Planet[ENEMY]->GetX() + 37.5f;
-			dst.m_bottom = Planet[ENEMY]->GetY() - 100.0f;
-			Draw::Draw(24, &src, &dst, special_effect[ENEMY], 0.0f);
-		}
-
-		//▼[ステロイド投与]
-		else if (m_enemy_special_equipment == 5)
-		{
-			//▼ステロイド投与表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = Planet[ENEMY]->GetY() - 175.0f;
-			dst.m_left = Planet[ENEMY]->GetX() - 75.0f;
-			dst.m_right = Planet[ENEMY]->GetX();
-			dst.m_bottom = Planet[ENEMY]->GetY() - 100.0f;
-			Draw::Draw(25, &src, &dst, d, 0.0f);
-
-			//▼強化状態のポット数表示
-			swprintf_s(power_up_pod_count[ENEMY], L"%d", (5 - m_count[ENEMY]));
-			Font::StrDraw(power_up_pod_count[ENEMY], Planet[ENEMY]->GetX() + 5.0f, Planet[ENEMY]->GetY() - 175.0f, 75.0f, d);
-		}
+		Special_effect(ENEMY, m_enemy_special_equipment);//スペシャル技エフェクト描画関数を呼び出す
 	}
 
 
@@ -408,7 +225,7 @@ void CObjSpecialButton::Draw()
 
 //---Special_staging_message関数
 //引数1　int Planet_id		:惑星識別番号(0:プレイヤー惑星　1:敵惑星)
-//引数2　int Special_equip	:装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+//引数2　int Special_equip	:装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 //▼内容
 //スペシャル技を発動した惑星、現在装備中のスペシャル技を考慮した
 //スペシャル技発動演出メッセージを設定する。
@@ -450,7 +267,7 @@ void CObjSpecialButton::Special_staging_message(int Planet_id, int Special_equip
 //---Special_process関数
 //引数1　int Planet_id		:自分の惑星識別番号(0:プレイヤー惑星　1:敵惑星)
 //引数2　int Opponent_id	:相手の惑星識別番号(0:プレイヤー惑星　1:敵惑星)
-//引数3　int Special_equip	:装備中のスペシャル技(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+//引数3　int Special_equip	:装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 //▼内容
 //スペシャル技発動演出、スペシャル技効果処理といった、
 //スペシャル技処理を実行する。
@@ -485,7 +302,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	//現在装備中のスペシャル技を判別し、
 	//そのスペシャル技の効果の処理を行う。
 
-	//▼[敵に大ダメージ]の処理
+	//▼[Explosion]の処理
 	if (Special_equip == 1)
 	{
 		//スペシャル技効果処理開始から約1.7秒後、
@@ -500,25 +317,32 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	
 		m_count[Planet_id]++;//効果時間計測
 
-		//[敵に大ダメージ]の演出処理(コメントしっかりする)
+		//[Explosion]の演出処理(下からの上の順番で徐々に実行される)
 		if (m_Explosion_width[Planet_id] >= 860.0f)
 		{
+			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
+			//オブジェクト優先順位を元に戻し、演出終了。
 			SetPrio(90);	//オブジェクト優先順位を元に戻す。
-			;//演出終了
 		}
 		else if (m_Explosion_size[Planet_id] <= -860.0f)
 		{
+			//▽エフェクト画像サイズが画面外(下)に到達すると実行。
+			//サイズ変更(下発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
 			SetPrio(2);//オブジェクト優先順位を変更し、エフェクト画像が相手惑星の後ろにいくようにする
-			m_Explosion_width[Planet_id] += 10.0f;//幅を狭める
+			m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
 		}
 		else if (m_Explosion_pos[Planet_id] == -1000.0f)
 		{
+			//▽演出準備終了後、実行。
+			//エフェクト画像が画面外(相手惑星の真上)を起点に下へと発射し、相手惑星を貫く。
 			SetPrio(2);//オブジェクト優先順位を変更し、エフェクト画像が相手惑星の後ろにいくようにする
 			m_Explosion_size[Planet_id] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす
-			m_Explosion_width[Planet_id] += 10.0f;//幅を狭める
+			m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
 		}
 		else if (m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] <= 0)
 		{
+			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
+			//次の演出の為の準備を行う
 			m_Explosion_size[Planet_id] = 0.0f;			//エフェクト画像サイズを初期値に戻す
 			m_Explosion_width[Planet_id] = INI_WIDTH;	//エフェクト画像幅を初期値に戻す
 			m_Explosion_pos[Planet_id] = -1000.0f;		//エフェクト画像位置を画面外(上)に移動させる
@@ -527,10 +351,14 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		}
 		else if (m_Explosion_size[Planet_id] > 200.0f && m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] > 0)
 		{
-			m_Explosion_width[Planet_id] -= 10.0f;//幅を狭める
+			//▽エフェクト画像サイズが画面外(上)に到達すると実行。
+			//サイズ変更(上発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
+			m_Explosion_width[Planet_id] -= 10.0f;//エフェクト画像の幅を狭める
 		}
 		else if (m_Explosion_size[Planet_id] <= 200.0f)
 		{
+			//▽最初に実行される。
+			//エフェクト画像がプレイヤーを起点に上へと発射される
 			m_Explosion_target[Planet_id] = Planet_id;//エフェクト対象を自分に設定
 			m_Explosion_angle[Planet_id] = 90.0f;//エフェクト角度を上に向くように設定
 			m_Explosion_size[Planet_id] += 20.0f;//エフェクト画像サイズを変更し、上方向に画像を伸ばす
@@ -542,7 +370,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
 		}
 	}
-	//▼[一列殺し]の処理
+	//▼[Fracture_Ray]の処理
 	else if (Special_equip == 2)
 	{
 		//▽メモ
@@ -574,18 +402,17 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_Fracture_Ray_pos[Planet_id] = -120.0f;//当たり判定設置ついでにエフェクト画像の位置を決める
 		}
 
-		//[一列殺し]の演出処理(コメントしっかりする)
-		if (m_Fracture_Ray_width[Planet_id] <= 0.0f && m_count[Planet_id] > 60 * 0)
+		//[Fracture_Ray]の演出処理(下からの上の順番で徐々に実行される)
+		if (m_Fracture_Ray_width[Planet_id] <= 0.0f)
 		{
-			;//演出終了
+			//▽エフェクト画像の幅が狭まり、画面から非表示になると演出終了
 		}
-		else if (m_count[Planet_id] > 60 * 0)
+		else
 		{
-			m_Fracture_Ray_width[Planet_id] -= 10.0f;//幅狭める
-		}
-		else //(m_count[Planet_id] == 0)
-		{
-			m_Fracture_Ray_width[Planet_id] = 200.0f;//幅設定し、表示させる
+			//▽最初に実行される。
+			//エフェクト画像が自分惑星から相手惑星に対して発射される
+			//その後、エフェクト画像の幅を徐々に狭めていく。
+			m_Fracture_Ray_width[Planet_id] -= 10.0f;//エフェクト画像の幅狭める
 		}
 
 		m_count[Planet_id]++;//効果時間計測
@@ -601,11 +428,10 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
 		}
 	}
-	//▼[一定時間無敵]の処理
+	//▼[Immortality]の処理
 	else if (Special_equip == 3)
 	{
-		//[一定時間無敵]の演出処理(コメントしっかりする)
-		//▽メモ
+		//▽エフェクト画像点滅処理
 		//初期透過度は1.0f、切り替えポイントは0.75f。
 		//1.0f→0.75fへ移動する際、0.003ずつベクトルが減算されていき、
 		//同時に透過度も減少していく。
@@ -628,25 +454,31 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 
 		m_count[Planet_id]++;//効果時間計測
 
+
+		//[Immortality]の演出処理(下からの上の順番で徐々に実行される)
+
+		//エフェクト画像が惑星中心に移動し、画面から非表示になると演出終了。
 		//演出終了後、発動中管理フラグをOFFにする
 		if (m_Immortality_size[Planet_id] <= 0.0f && m_count[Planet_id] > 60 * 10)
 		{
 			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
 		}
-		//10秒経過後、スペシャル技の効果を終了する
+		//10秒経過後、スペシャル技の効果を終了し、
+		//終了演出を行う。
 		else if (m_count[Planet_id] > 60 * 10)
 		{
 			Planet[Planet_id]->SetInvincible(false);	//プレイヤー無敵フラグをOFF
-			m_Immortality_size[Planet_id] -= 1.0f;		//エフェクト画像サイズを変更し、惑星中心に移動させる
+			m_Immortality_size[Planet_id] -= 1.0f;		//エフェクト画像サイズを変更し、惑星中心に徐々に移動させる
 		}
-		//スペシャル技効果が終了するまでプレイヤーの周りにエフェクト画像を出す
+		//スペシャル技効果終了まで自分惑星の周囲にエフェクト画像を出し、
+		//無敵フラグをONにする
 		else
 		{
+			m_Immortality_size[Planet_id] = 100.0f;	//エフェクト画像サイズを変更し、自分惑星の周囲にエフェクト画像を出す
 			Planet[Planet_id]->SetInvincible(true);	//プレイヤー無敵フラグをON
-			m_Immortality_size[Planet_id] = 100.0f;	//エフェクト画像サイズを変更し、プレイヤー周りにエフェクト画像を出す
 		}
 	}
-	//▼[生産性効率アップ]の処理
+	//▼[リミットブレイク]の処理
 	else if (Special_equip == 4)
 	{
 		//ミサイルポッドリキャストタイムのバフ倍率を変更する
@@ -656,13 +488,13 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			//それぞれのボタンを変更する
 			for (int i = 0; i < 5; i++)
 			{
-				PodMissile[i]->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+				PodMissile[i]->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);//バフ倍率変更
 			}
 		}
 		//▽エネミーの時の処理
 		else //(Planet_id == ENEMY)
 		{
-			Planet[Planet_id]->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);
+			Planet[Planet_id]->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);//バフ倍率変更
 		}
 
 		m_count[Planet_id]++;//効果時間計測
@@ -677,20 +509,24 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 				//それぞれのボタンを変更する
 				for (int i = 0; i < 5; i++)
 				{
-					PodMissile[i]->SetRecastBuff(INI_BUFF);
+					PodMissile[i]->SetRecastBuff(INI_BUFF);//バフ倍率元に戻す
 				}
 			}
 			//▽エネミーの時の処理
 			else //(Planet_id == ENEMY)
 			{
-				Planet[Planet_id]->SetRecastBuff(INI_BUFF);
+				Planet[Planet_id]->SetRecastBuff(INI_BUFF);//バフ倍率元に戻す
 			}
 
 			m_is_invocating[Planet_id] = false;//発動中管理フラグOFF
 		}
-		//15秒経過後、点滅処理
+		//15秒経過後、エフェクト画像点滅処理
+		//※点滅処理のプログラム内容は、
+		//上記のImmortalityの処理と同じなので、
+		//細かい説明は省略する。
 		else if (m_count[Planet_id] > 60 * 15)
 		{
+			//初期透過度は1.0f、切り替えポイントは0.5f。
 			if (m_Special_effect_alpha[Planet_id] >= 0.5)
 			{
 				m_Special_effect_alpha_vec[Planet_id] -= 0.003f;	//ベクトルに減算
@@ -703,7 +539,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_Special_effect_alpha[Planet_id] += m_Special_effect_alpha_vec[Planet_id];	//ベクトルを反映
 		}
 	}
-	//▼[住民の士気がアップ]の処理
+	//▼[ステロイド投与]の処理
 	else if (Special_equip == 5)
 	{
 		damage_buff[Planet_id] = DAMAGE_BUFF_MAGNIFICATION;	//ダメージバフ倍率を変更する
@@ -718,5 +554,141 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			damage_buff[Planet_id] = INI_BUFF;//ダメージバフ倍率を元に戻す
 			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
 		}
+	}
+}
+
+//---Special_effect関数
+//引数1　int Planet_id		:惑星識別番号(0:プレイヤー惑星　1:敵惑星)
+//引数2　int Special_equip	:装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
+//▼内容
+//スペシャル技発動中にエフェクトを描画する。
+void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
+{
+	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	//透過度変更が必要なスペシャル技エフェクト画像用
+	float special_effect[2][4] =
+	{
+		{ 1.0f,1.0f,1.0f,m_Special_effect_alpha[PLAYER] },
+		{ 1.0f,1.0f,1.0f,m_Special_effect_alpha[ENEMY] },
+	};
+
+	float d[4] = { 1.0f,1.0f,1.0f,1.0f };	//その他画像用
+
+
+	//▽フォント準備
+	wchar_t power_up_pod_count[2][2];	//強化状態のポット数表示用
+
+
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+
+
+	//▼[Explosion]の描画処理
+	if (Special_equip == 1)
+	{
+		//▼Explosion表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		//▽メモ1：
+		//画像を拡大縮小等と変形する際、
+		//均等にtopとleftとrightとbottomを伸ばさなければ、
+		//その誤差分、画像が引き伸ばされ、
+		//欲しい画像とならないので
+		//基本的にどんな状況でも均等に伸ばさないといけない。
+		//ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
+		//bottomを動かさない分、topを2倍動かす事でこれに対応している。
+		//▽メモ2:
+		//今回の画像は90度&270度回転させて使用している為、
+		//topとbottomの値の差を変動させる事で、
+		//欲しい画像である"左右から徐々に消えていく演出"を行っている。
+		dst.m_top = Planet[m_Explosion_target[Planet_id]]->GetY() - m_Explosion_size[Planet_id] * 2 - m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
+		dst.m_left = Planet[m_Explosion_target[Planet_id]]->GetX() - m_Explosion_size[Planet_id];
+		dst.m_right = Planet[m_Explosion_target[Planet_id]]->GetX() + m_Explosion_size[Planet_id];
+		dst.m_bottom = Planet[m_Explosion_target[Planet_id]]->GetY() + m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
+		Draw::Draw(21, &src, &dst, d, m_Explosion_angle[Planet_id]);
+	}
+
+	//▼[Fracture_Ray]の描画処理
+	else if (Special_equip == 2)
+	{
+		//▼Fracture_Ray表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = -64.0f + (Planet_id * 128.0f);//プレイヤーの時は左向き、エネミーの時は右向きになるように設定。
+		src.m_bottom = 32.0f;
+
+		dst.m_top = Planet[Planet_id]->GetY() - m_Fracture_Ray_width[Planet_id] + m_Fracture_Ray_pos[Planet_id];
+
+		//leftとrightの描画処理はプレイヤーとエネミーで大きく違う為、別々で処理を行う。
+		if (Planet_id == PLAYER)
+		{
+			dst.m_left = 0.0f;
+			dst.m_right = Planet[Planet_id]->GetX();
+		}
+		else //(Planet_id == ENEMY)
+		{
+			dst.m_left = Planet[Planet_id]->GetX();
+			dst.m_right = 1200.0f;
+		}
+
+		dst.m_bottom = Planet[Planet_id]->GetY() + m_Fracture_Ray_width[Planet_id] + m_Fracture_Ray_pos[Planet_id];
+		Draw::Draw(22, &src, &dst, d, 0.0f);
+	}
+
+	//▼[Immortality]の描画処理
+	else if (Special_equip == 3)
+	{
+		//▼Immortality表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = Planet[Planet_id]->GetY() - m_Immortality_size[Planet_id];
+		dst.m_left = Planet[Planet_id]->GetX() - m_Immortality_size[Planet_id];
+		dst.m_right = Planet[Planet_id]->GetX() + m_Immortality_size[Planet_id];
+		dst.m_bottom = Planet[Planet_id]->GetY() + m_Immortality_size[Planet_id];
+		Draw::Draw(23, &src, &dst, special_effect[Planet_id], 0.0f);
+	}
+
+	//▼[リミットブレイク]の描画処理
+	else if (Special_equip == 4)
+	{
+		//▼リミットブレイク表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		//▽自分惑星の上に描画するように設定している
+		dst.m_top = Planet[Planet_id]->GetY() - 175.0f;
+		dst.m_left = Planet[Planet_id]->GetX() - 37.5f;
+		dst.m_right = Planet[Planet_id]->GetX() + 37.5f;
+		dst.m_bottom = Planet[Planet_id]->GetY() - 100.0f;
+		Draw::Draw(24, &src, &dst, special_effect[Planet_id], 0.0f);
+	}
+
+	//▼[ステロイド投与]の描画処理
+	else if (Special_equip == 5)
+	{
+		//▼ステロイド投与表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		//▽自分惑星の上に描画するように設定している
+		dst.m_top = Planet[Planet_id]->GetY() - 175.0f;
+		dst.m_left = Planet[Planet_id]->GetX() - 60.0f;
+		dst.m_right = Planet[Planet_id]->GetX() + 15.0f;
+		dst.m_bottom = Planet[Planet_id]->GetY() - 100.0f;
+		Draw::Draw(25, &src, &dst, d, 0.0f);
+
+		//▼強化状態のポット数表示
+		swprintf_s(power_up_pod_count[Planet_id], L"%d", (5 - m_count[Planet_id]));
+		Font::StrDraw(power_up_pod_count[Planet_id], Planet[Planet_id]->GetX() + 15.0f, Planet[Planet_id]->GetY() - 175.0f, 75.0f, d);
 	}
 }

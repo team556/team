@@ -488,35 +488,35 @@ void CObjPreparation::Action()
 			Enemy_message(4);//敵惑星詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(敵に大ダメージ)
+		//スペシャル技(Explosion)
 		else if (377 < m_mou_x && m_mou_x < 455 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(0);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(一列殺し)
+		//スペシャル技(Fracture_Ray)
 		else if (471 < m_mou_x && m_mou_x < 549 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(1);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(一定時間無敵)
+		//スペシャル技(Immortality)
 		else if (565 < m_mou_x && m_mou_x < 643 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(2);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(生産性効率アップ)
+		//スペシャル技(リミットブレイク)
 		else if (660 < m_mou_x && m_mou_x < 737 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(3);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(住民の士気がアップ)
+		//スペシャル技(ステロイド投与)
 		else if (754 < m_mou_x && m_mou_x < 831 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
@@ -1115,7 +1115,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 }
 
 //---Special_message関数
-//引数1　int special_id	:スペシャル技アイコン識別番号(0:敵に大ダメージ　1:一列殺し　2:一定時間無敵　3:生産性効率アップ　4:住民の士気がアップ)
+//引数1　int special_id	:スペシャル技アイコン識別番号(0:Explosion　1:Fracture_Ray　2:Immortality　3:リミットブレイク　4:ステロイド投与)
 //▼内容
 //マウスで選択しているスペシャル技アイコンが何であるかを識別し、
 //それに対応するスペシャル技詳細説明を表示する。
