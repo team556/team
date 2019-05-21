@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjFightClear :public CObj
 {
 public:
-	CObjFightClear(int p, int m, int s, int l);
+	CObjFightClear(int p, int m, int l, int s);
 	~CObjFightClear() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション

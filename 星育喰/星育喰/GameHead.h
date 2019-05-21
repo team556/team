@@ -34,7 +34,9 @@ enum OBJ_NAME
 	OBJ_PODP,
 	OBJ_PODS,
 	OBJ_PODD,
-	OBJ_PODB
+	OBJ_PODB,
+	OBJ_TUTORIAL,
+
 
 };
 //------------------------------------------------
@@ -105,13 +107,16 @@ extern int g_Speed_num;				//スピード住民数
 extern int g_Balance_num;			//バランス住民数
 extern int g_Research_num;			//研究員住民数
 extern int g_Remain_num;			//残り住民数
+//--------------------------------------------------資源----
+extern int g_Iron_num;				//鉄の所持数
+extern int g_Wood_num;				//木の所持数
 
 extern int g_Material_num_test;		//TEST用所持素材数
 
 //▼セーブ必要性無し
 extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
 
-extern bool g_key_fg;//
+extern bool g_key_fg;				//
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------
@@ -141,6 +146,7 @@ extern bool g_key_fg;//
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
 #include "Pause.h"
+#include "ObjTutorial.h"
 
 //------------------------------------------------
 
