@@ -15,6 +15,7 @@ using namespace GameL;
 //static変数の定義
 bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
+float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
 //c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
 CObjFight::CObjFight(int c, int e_n)
@@ -34,7 +35,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 20;//戦闘時間(60 * X = X秒)
+	m_cnt = 60 * 90;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
 	m_ex = 0;
@@ -50,6 +51,12 @@ void CObjFight::Init()
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
 	battle_end = false;
+	for (int i = 0; i < 2; i++)
+	{
+		damage_buff[i] = 1.0f;
+	}
+
+	Hits::SetHitBox(this, 400, 310, 400, 60, ELEMENT_LINE, OBJ_FIGHT, 1);
 }
 
 //アクション
@@ -66,8 +73,10 @@ void CObjFight::Action()
 			//ポーズ画面等で戦闘を一時停止する際、
 			//battle_startの[true / false]で一時停止を行うが、
 			//再度この戦闘開始カウントの処理が行われると厄介である為、
-			//[m_start_count_f = false]する事で、この処理が行われないようにする。
+			//[m_start_count_f]をfalseに、[m_start_count]を初期値に戻す事で、
+			//この処理が行われないようにする。
 			m_start_count_f = false;
+			m_start_count = 60 * 3;
 
 			battle_start = true;//戦闘開始フラグを立てる
 		}
@@ -253,11 +262,6 @@ void CObjFight::Draw()
 	}
 
 
-	
-	//m_eff.m_top = 0;
-	//m_eff.m_left = 0;
-	//m_eff.m_right = 32;
-	//m_eff.m_bottom = 29;
 
 	//デバッグ用仮マウス位置表示
 	wchar_t test_mou[256];

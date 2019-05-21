@@ -5,6 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 
 //使用するネームスペース
@@ -46,6 +47,20 @@ void CSceneHome::InitScene()
 
 	//プレイヤー惑星を読み込み50番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+
+	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
+	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
+	//※コメントアウト後、正常動作を確認済み
+	////バックミュージック
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
+
+	////音楽スタート
+	//Audio::Start(0);
+
 }
 
 //ゲームメイン実行中メソッド

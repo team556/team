@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -57,19 +58,19 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッド3.png", 10, TEX_SIZE_512);
 
 	//11番に登録
-	Draw::LoadImage(L"パワーボタン(仮).png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"パワーボタン.png", 11, TEX_SIZE_512);
 
 	//12番に登録
-	Draw::LoadImage(L"ディフェンスボタン(仮).png", 12, TEX_SIZE_512);
+	Draw::LoadImage(L"ディフェンスボタン.png", 12, TEX_SIZE_512);
 
 	//13番に登録
-	Draw::LoadImage(L"スピードボタン(仮).png", 13, TEX_SIZE_512);
+	Draw::LoadImage(L"スピードボタン.png", 13, TEX_SIZE_512);
 
 	//14番に登録
-	Draw::LoadImage(L"バランスボタン(仮).png", 14, TEX_SIZE_512);
+	Draw::LoadImage(L"バランスボタン.png", 14, TEX_SIZE_512);
 
 	//15番に登録
-	Draw::LoadImage(L"ミサイルボタン(仮).png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイルボタン(新).png", 15, TEX_SIZE_512);
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
@@ -85,7 +86,21 @@ void CSceneFight::InitScene()
 
 	//ポーズ画面背景を読み込み20番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 20, TEX_SIZE_512);
-	
+
+	//スペシャル技[Explosion]画像を読み込み21番に登録
+	Draw::LoadImage(L"Explosion.png", 21, TEX_SIZE_512);
+
+	//スペシャル技[Fracture_Ray]画像を読み込み22番に登録
+	Draw::LoadImage(L"スペシャル技Fracture_Ray.png", 22, TEX_SIZE_512);
+
+	//スペシャル技[Immortality]画像を読み込み23番に登録
+	Draw::LoadImage(L"スペシャル技インモータリティ.png", 23, TEX_SIZE_512);
+
+	//スペシャル技[リミットブレイク]画像を読み込み24番に登録
+	Draw::LoadImage(L"攻撃力アップ.png", 24, TEX_SIZE_512);
+
+	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
+	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
@@ -125,6 +140,27 @@ void CSceneFight::InitScene()
 	//戦闘前演出オブジェクト
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
+
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+	//Audio::LoadAudio(1, L"", BACK_MUSIC);
+	//Audio::LoadAudio(2, L"", BACK_MUSIC);
+
+	//SE読み込み
+	//Audio::LoadAudio(3, L"", EFFECT);
+	//Audio::LoadAudio(4, L"", EFFECT);
+	//Audio::LoadAudio(5, L"", EFFECT);
+
+	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
+	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
+	//※コメントアウト後、正常動作を確認済み
+	////バックミュージック
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
+
+	////音楽スタート
+	//Audio::Start(0);	
+
 }
 
 //ゲームメイン実行中メソッド

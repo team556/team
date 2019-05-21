@@ -1,7 +1,7 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
-#include "GameL\DrawTexture.h"
+//#include "GameL\DrawTexture.h"
 //使用するネームスペース
 using namespace GameL;
 
@@ -48,4 +48,6 @@ private:
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
+
+	static float damage_buff[2];//ダメージのバフ倍率[スペシャル技:ステロイド投与用]
 };

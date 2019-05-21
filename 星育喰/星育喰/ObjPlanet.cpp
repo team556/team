@@ -37,7 +37,6 @@ void CObjPlanet::Init()
 	m_get_hp = 0;	//取得HP
 
 	m_invincible_f = false;
-	m_damage_buff = 1.0f;
 	m_enemy_recast_buff = 1.0f;
 
 	m_time = 0; //タイムカウント初期化
@@ -122,12 +121,27 @@ void CObjPlanet::Action()
 			}
 		}
 	}
-				//2.5秒
+	//2.5秒
 	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
-		if (m_type == 0)				//(戦闘中)
-			m_px -= m_mov_spd;	//自星の動き
+		if (m_type == 0)//------(戦闘中)
+		{
+			if(hit->CheckElementHit(ELEMENT_LINE) != true)
+				m_px -= m_mov_spd;	//自星の動き
+			else
+			{
+
+			}
+		}
 		else
-			m_px += m_mov_spd;	//敵星の動き
+		{
+			if (m_type >= 1)
+			{
+				if(hit->CheckElementHit(ELEMENT_LINE) != true)
+				m_px += m_mov_spd;	//敵星の動き
+				else
+				{}
+			}
+		}
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			
@@ -203,23 +217,25 @@ void CObjPlanet::Action()
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
-	if ((hit->CheckElementHit(ELEMENT_E_MIS) == true) && (m_type == 0) && (m_hp > 0))
+	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_hp > 0))
 	{							
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * m_damage_buff;//HP-1
-			m_size -= m_size / 20;	//サイズ減少
+			m_hp -= 1 * damage_buff[1];//HP-1
+			m_px -= (m_size / 10) * damage_buff[1];		//縮む分だけ左に移動
+			m_size -= (m_size / 20) * damage_buff[1];	//サイズ減少
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
-	else if ((hit->CheckElementHit(ELEMENT_P_MIS) == true) && (m_type != 0) && (m_hp > 0))
+	else if ((hit->CheckElementHit(ELEMENT_POD) == true) && (m_type != 0) && (m_hp > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * m_damage_buff;//HP-1
-			m_size -= m_size / 20;	//サイズ減少
+			m_hp -= 1 * damage_buff[0];//HP-1
+			m_px += (m_size / 10) * damage_buff[0];		//縮む分だけ右に移動
+			m_size -= (m_size / 20) * damage_buff[0];	//サイズ減少
 		}
 	}
 
@@ -236,12 +252,12 @@ void CObjPlanet::Action()
 		{
 			int Enemy_Fight_type[5][6] =   //敵攻撃用の配列作成
 			{
-				//1=赤,2=青,3=緑,4=灰色,5=ミサイル
-				{ 1,1,2,1,1,0 }, //0番目
-				{ 2,2,3,2,2,0 }, //1番目
-				{ 3,3,4,3,3,0 }, //2番目
-				{ 4,4,5,4,4,0 }, //3番目
-				{ 5,5,1,5,5,0 }, //4番目
+				//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+				{ 1,6,2,1,1,0 }, //0番目
+				{ 2,6,3,2,2,0 }, //1番目
+				{ 3,6,4,3,3,0 }, //2番目
+				{ 4,6,5,4,4,0 }, //3番目
+				{ 5,6,1,5,5,0 }, //4番目
 				/*
 				　攻撃パターン追加する際は、上の配列の数字を変え
 				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
@@ -276,44 +292,43 @@ void CObjPlanet::Action()
 		
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,2);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,3);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
-			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false,4);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
-			CObjRocket* M = new CObjRocket(m_px + (m_size * 2), 200, false, 5);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (m_size * 3), 225, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_Rocket, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
 		{
-			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
-
 			//敵がスペシャル技を使用済(true)である場合、
 			//リキャストタイムを元に戻さず、再度行動パターン決めを行う
 			//未使用(false)であれば、以下の処理を行う
+			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 			if (Special->GetEnemy_Used_Special() == false)
 			{
-				Special->SetSpecial_Equip(1);	//敵の発動するスペシャル技を決める(0:未装備　1:敵に大ダメージ　2:一列殺し　3:一定時間無敵　4:生産性効率アップ　5:住民の士気がアップ)
+				Special->SetSpecial_Equip(g_Special_equipment);	//敵の発動するスペシャル技を決める(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 				Special->SetSpecial_Start();	//スペシャル技を発動させる
 				m_time = 100 * m_enemy_recast_buff;
 			}

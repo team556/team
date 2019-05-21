@@ -5,7 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
-
+#include "GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -136,7 +136,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"住民選択ボタン.png", 29, TEX_SIZE_512);
 
 	//スペシャル技選択ボタン画像読み込み30番に登録
-	Draw::LoadImage(L"スペシャル技選択ボタン(仮).png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"スペシャル技選択ボタン.png", 30, TEX_SIZE_512);
 
 	//装備選択ボタン画像読み込み31番に登録
 	Draw::LoadImage(L"装備選択ボタン.png", 31, TEX_SIZE_512);
@@ -228,7 +228,25 @@ void CSceneTraining::InitScene()
 	//ポッドLv.3の画像を読み込み63番に登録
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
 
+	//音楽読み込み
+	//Audio::LoadAudio(0, L"", BACK_MUSIC);
 
+	//SE読み込み
+	//Audio::LoadAudio(1, L"", EFFECT);
+	//Audio::LoadAudio(2, L"", EFFECT);
+	//Audio::LoadAudio(3, L"", EFFECT);
+	//Audio::LoadAudio(4, L"", EFFECT);
+	//Audio::LoadAudio(5, L"", EFFECT);
+
+	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
+	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
+	//※コメントアウト後、正常動作を確認済み
+	////バックミュージック
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
+
+	////音楽スタート
+	//Audio::Start(0);	
 }
 
 //ゲームメイン実行中メソッド
