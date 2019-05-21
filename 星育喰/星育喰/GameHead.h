@@ -46,8 +46,8 @@ enum HIT_ELEMENTS
 	ELEMENT_NULL,//属性無し 全ての属性と当たり判定が実行される
 	//以下　同じ属性同士では当たり判定は実行されない
 	//属性は追加可能だが、デバック時の色は初期設定分しか無い
-	ELEMENT_PLAYER,
-	ELEMENT_ENEMY,
+	ELEMENT_PLAYER,		//プレイヤー惑星の当たり判定属性
+	ELEMENT_ENEMY,		//エネミー惑星の当たり判定属性
 	ELEMENT_ITEM,
 	ELEMENT_MAGIC,
 	ELEMENT_FIELD,
@@ -67,7 +67,6 @@ enum HIT_ELEMENTS
 	ELEMENT_PODD,		//ディフェンス
 	ELEMENT_PODB,		//バランス
 	ELEMENT_LINE,
-
 
 };
 //------------------------------------------------

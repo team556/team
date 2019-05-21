@@ -63,6 +63,13 @@ void CObjSpecialButton::Init()
 		m_Special_effect_alpha_vec[i] = 0.0f;
 	}
 
+	m_Enemy_line = 0;
+
+	for (int i = 0; i < 3; i++)
+	{
+		m_PodMissile_count[i] = 0;
+	}
+
 	m_enemy_special_equipment = 0;
 	m_enemy_special_button = false;
 
@@ -284,6 +291,83 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		m_special_staging_f[Planet_id] = true;	//スペシャル技発動演出フラグON
 		battle_start = false;			//戦闘開始フラグをfalseにする事で戦闘全体を一時停止させる
 
+		//敵ライン選択アルゴリズム(ここら関連のコメントしっかり出来てないのでちゃんとする)
+		//※スペシャル技発動演出中である為、OBJ_RocketにOBJ_FRACTURE_RAYがHITしても、処理が実行されないので爆破されない
+		//省略出来そうな所はとことん省略したい。DeleteBoxやらんで良かったらやりたくないし……。等々。
+		if (Planet_id == ENEMY && Special_equip == 2)
+		{
+			CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
+
+			if (m_count[ENEMY] == 0)
+			{
+				Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, Planet_id);	//中ラインの範囲に当たり判定を設置
+			}
+			else if (m_count[ENEMY] == 1)
+			{
+				m_PodMissile_count[1] = hit->GetCount();
+
+				if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+				{
+					m_PodMissile_count[1] -= 1;
+				}
+				if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+				{
+					m_PodMissile_count[1] -= 1;
+				}
+
+				m_PodMissile_count[1] -= 1;//中央のライン上にある当たり判定(惑星接近ラインまで行かない用)の分を引いておく
+
+				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
+				Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, Planet_id);	//下ラインの範囲に当たり判定を設置
+			}
+			else if (m_count[ENEMY] == 2)
+			{
+				m_PodMissile_count[2] = hit->GetCount();
+
+				if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+				{
+					m_PodMissile_count[2] -= 1;
+				}
+				if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+				{
+					m_PodMissile_count[2] -= 1;
+				}
+
+				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
+				Hits::SetHitBox(this, 0.0f, 0.0f, 1200.0f, 280.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, Planet_id);		//上ラインの範囲に当たり判定を設置
+			}
+			else if (m_count[ENEMY] == 3)
+			{
+				m_PodMissile_count[0] = hit->GetCount();
+
+				if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+				{
+					m_PodMissile_count[0] -= 1;
+				}
+				if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+				{
+					m_PodMissile_count[0] -= 1;
+				}
+
+				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
+			}
+			else if (m_count[ENEMY] == 4)
+			{
+				if (m_PodMissile_count[0] > m_PodMissile_count[1] && m_PodMissile_count[0] > m_PodMissile_count[2])
+				{
+					m_Enemy_line = 3;
+				}
+				else if (m_PodMissile_count[2] > m_PodMissile_count[0] && m_PodMissile_count[2] > m_PodMissile_count[1])
+				{
+					m_Enemy_line = 2;
+				}
+				else
+				{
+					m_Enemy_line = 1;
+				}
+			}
+		}
+
 		m_count[Planet_id]++;//演出時間計測
 
 		//2秒経過後、スペシャル技発動演出を終了する
@@ -377,20 +461,22 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		//現在敵選択ラインを決めるプログラムを作っていない。
 		//その為、現状プレイヤーが選択しているラインにFRACTURE_RAYを撃つようになっている。
 		//[5/18～5/19中に一番ポッド多い場所に撃つように変更予定]
-
+		
 
 		//▽スペシャル技(FRACTURE_RAY)の当たり判定を設置する
 		//この当たり判定にミサイルポッドがHITすると、消滅処理が実行される。
 		//攻撃判定時間は0.05秒。
 
 		//選択ラインが中ラインの時(この処理は一度のみ実行される)
-		if (FightScene->GetLine() == 1 && m_count[Planet_id] == 0)
+		if (FightScene->GetLine() == 1 && m_count[Planet_id] == 0 && Planet_id == PLAYER ||	//プレイヤーの時の条件式
+			m_Enemy_line == 1 && m_count[Planet_id] == 0 && Planet_id == ENEMY)				//エネミーの時の条件式
 		{
 			Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);	//中ラインの範囲に当たり判定を設置
 			m_Fracture_Ray_pos[Planet_id] = -5.0f;	//当たり判定設置ついでにエフェクト画像の位置を決める
 		}
 		//選択ラインが下ラインの時(この処理は一度のみ実行される)
-		else if (FightScene->GetLine() == 2 && m_count[Planet_id] == 0)
+		else if (FightScene->GetLine() == 2 && m_count[Planet_id] == 0 && Planet_id == PLAYER ||//プレイヤーの時の条件式
+				 m_Enemy_line == 2 && m_count[Planet_id] == 0 && Planet_id == ENEMY)			//エネミーの時の条件式
 		{
 			Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);	//下ラインの範囲に当たり判定を設置
 			m_Fracture_Ray_pos[Planet_id] = 100.0f;	//当たり判定設置ついでにエフェクト画像の位置を決める
@@ -544,7 +630,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	{
 		damage_buff[Planet_id] = DAMAGE_BUFF_MAGNIFICATION;	//ダメージバフ倍率を変更する
 
-		//射出したポットが破壊される度に
+		//射出したポッドが破壊される度に
 		//m_countが1ずつ増加するようにObjRocketで設定している
 
 		//スペシャル技発動してからポッド5機全て破壊された後、
@@ -576,7 +662,7 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 
 
 	//▽フォント準備
-	wchar_t power_up_pod_count[2][2];	//強化状態のポット数表示用
+	wchar_t power_up_pod_count[2][2];	//強化状態のポッド数表示用
 
 
 	RECT_F src;//描画元切り取り位置
@@ -687,7 +773,7 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		dst.m_bottom = Planet[Planet_id]->GetY() - 100.0f;
 		Draw::Draw(25, &src, &dst, d, 0.0f);
 
-		//▼強化状態のポット数表示
+		//▼強化状態のポッド数表示
 		swprintf_s(power_up_pod_count[Planet_id], L"%d", (5 - m_count[Planet_id]));
 		Font::StrDraw(power_up_pod_count[Planet_id], Planet[Planet_id]->GetX() + 15.0f, Planet[Planet_id]->GetY() - 175.0f, 75.0f, d);
 	}

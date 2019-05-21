@@ -39,7 +39,7 @@ private:
 	int m_time;
 	int Enemypod;
 
-	int m_Enemy_Pod_Level;	//敵のポットレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
+	int m_Enemy_Pod_Level;	//敵のポッドレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
 	bool m_type;		//生成時のタイプ(true主人公)
 	int m_podhp;
