@@ -291,79 +291,91 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		m_special_staging_f[Planet_id] = true;	//スペシャル技発動演出フラグON
 		battle_start = false;			//戦闘開始フラグをfalseにする事で戦闘全体を一時停止させる
 
-		//敵ライン選択アルゴリズム(ここら関連のコメントしっかり出来てないのでちゃんとする)
-		//※スペシャル技発動演出中である為、OBJ_RocketにOBJ_FRACTURE_RAYがHITしても、処理が実行されないので爆破されない
-		//省略出来そうな所はとことん省略したい。DeleteBoxやらんで良かったらやりたくないし……。等々。
-		if (Planet_id == ENEMY && Special_equip == 2)
+
+		//▽敵が[スペシャル技:Fracture_Ray]を発動時のみ実行
+		//戦闘が一時停止している発動演出中に、
+		//[スペシャル技:Fracture_Ray]を発射するラインを決定する処理を行う。
+		//※決定処理には約0.07秒の時間を要する。
+		//※発射するライン決定後は以下の処理は実行されない。
+		//※戦闘一時停止中(他オブジェクトの処理停止中)なので
+		//"ObjRocket"に[OBJ_FRACTURE_RAY]がHITしても、
+		//"ObjRocket"の消滅処理は実行されない。
+		if (Planet_id == ENEMY && Special_equip == 2 && m_Enemy_line == 0)
 		{
 			CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
 
+			//0秒時の処理
 			if (m_count[ENEMY] == 0)
 			{
-				Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, Planet_id);	//中ラインの範囲に当たり判定を設置
+				//中ラインの範囲にヒット相手数カウント用の当たり判定を設置
+				Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, ENEMY);
 			}
-			else if (m_count[ENEMY] == 1)
+			//0.01～0.05秒時の処理
+			else if (1 <= m_count[ENEMY] && m_count[ENEMY] <= 3)
 			{
-				m_PodMissile_count[1] = hit->GetCount();
+				//中ライン→下ライン→上ラインの順番で
+				//HitBoxに当たっているヒット相手の数をカウントし、
+				//その数を代入する。
+				m_PodMissile_count[m_count[ENEMY] - 1] = hit->GetCount();
 
-				if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-				{
-					m_PodMissile_count[1] -= 1;
-				}
+				//プレイヤー惑星、敵惑星が上記のカウント数に含まれていた場合、
+				//その分を以下の処理で減らしておく。
 				if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 				{
-					m_PodMissile_count[1] -= 1;
+					m_PodMissile_count[m_count[ENEMY] - 1] -= 1;
 				}
-
-				m_PodMissile_count[1] -= 1;//中央のライン上にある当たり判定(惑星接近ラインまで行かない用)の分を引いておく
-
-				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
-				Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, Planet_id);	//下ラインの範囲に当たり判定を設置
-			}
-			else if (m_count[ENEMY] == 2)
-			{
-				m_PodMissile_count[2] = hit->GetCount();
-
 				if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 				{
-					m_PodMissile_count[2] -= 1;
-				}
-				if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
-				{
-					m_PodMissile_count[2] -= 1;
+					m_PodMissile_count[m_count[ENEMY] - 1] -= 1;
 				}
 
-				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
-				Hits::SetHitBox(this, 0.0f, 0.0f, 1200.0f, 280.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, Planet_id);		//上ラインの範囲に当たり判定を設置
+				//発動演出終了後、ヒット相手数カウント用の当たり判定がそのまま存在していると、
+				//"ObjRocket"の消滅処理が実行されてしまうので、
+				//以下の処理で新しい当たり判定設置前に、現在の当たり判定を削除する。
+				Hits::DeleteHitBox(this);
+
+				//中ラインのヒット相手数カウント終了後、実行。
+				if (m_count[ENEMY] == 1)
+				{
+					//次の処理の為に、
+					//下ラインの範囲にヒット相手数カウント用の当たり判定を設置
+					Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, ENEMY);
+
+					//中ラインにのみ、
+					//各惑星がライン上を通過しないようにする当たり判定が存在しており、
+					//カウント数に含まれている為、その分を減らしておく。
+					m_PodMissile_count[m_count[ENEMY] - 1] -= 1;
+				}
+				else if (m_count[ENEMY] == 2)
+				{
+					//次の処理の為に、
+					//上ラインの範囲にヒット相手数カウント用の当たり判定を設置
+					Hits::SetHitBox(this, 0.0f, 0.0f, 1200.0f, 280.0f, ELEMENT_ENEMYPOD, OBJ_FRACTURE_RAY, ENEMY);
+				}
 			}
-			else if (m_count[ENEMY] == 3)
-			{
-				m_PodMissile_count[0] = hit->GetCount();
-
-				if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-				{
-					m_PodMissile_count[0] -= 1;
-				}
-				if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
-				{
-					m_PodMissile_count[0] -= 1;
-				}
-
-				Hits::DeleteHitBox(this);			//スペシャル技(FRACTURE_RAY)の当たり判定を削除
-			}
+			//0.06秒時の処理
 			else if (m_count[ENEMY] == 4)
 			{
-				if (m_PodMissile_count[0] > m_PodMissile_count[1] && m_PodMissile_count[0] > m_PodMissile_count[2])
+				//▼選択ライン決定処理
+				//上記の処理により、各ラインに存在する"プレイヤーのポッドミサイル数"が
+				//配列それぞれに代入された状態である為、それらの数を比較し、
+				//一番数が多いラインに[スペシャル技:Fracture_Ray]を発射するように設定する。
+				//※数が同値である場合、以下の優先順位で選択ラインが決定する。
+				//「中ライン＞下ライン＞上ライン」
+
+				//中ラインと他ラインとの数比較
+				if (m_PodMissile_count[0] >= m_PodMissile_count[1] && m_PodMissile_count[0] >= m_PodMissile_count[2])
 				{
-					m_Enemy_line = 3;
+					m_Enemy_line = 1;//中ラインに決定
 				}
-				else if (m_PodMissile_count[2] > m_PodMissile_count[0] && m_PodMissile_count[2] > m_PodMissile_count[1])
+				//下ラインと他ラインとの数比較
+				else if (m_PodMissile_count[1] >= m_PodMissile_count[0] && m_PodMissile_count[1] >= m_PodMissile_count[2])
 				{
-					m_Enemy_line = 2;
+					m_Enemy_line = 2;//下ラインに決定
 				}
 				else
 				{
-					m_Enemy_line = 1;
+					m_Enemy_line = 3;//上ラインに決定
 				}
 			}
 		}
@@ -457,15 +469,11 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	//▼[Fracture_Ray]の処理
 	else if (Special_equip == 2)
 	{
-		//▽メモ
-		//現在敵選択ラインを決めるプログラムを作っていない。
-		//その為、現状プレイヤーが選択しているラインにFRACTURE_RAYを撃つようになっている。
-		//[5/18～5/19中に一番ポッド多い場所に撃つように変更予定]
-		
-
 		//▽スペシャル技(FRACTURE_RAY)の当たり判定を設置する
 		//この当たり判定にミサイルポッドがHITすると、消滅処理が実行される。
 		//攻撃判定時間は0.05秒。
+		//※エネミーの選択ライン決定処理は発動演出中に行っている。
+		//決定方法：プレイヤーのミサイルポットが一番多い場所に発射する
 
 		//選択ラインが中ラインの時(この処理は一度のみ実行される)
 		if (FightScene->GetLine() == 1 && m_count[Planet_id] == 0 && Planet_id == PLAYER ||	//プレイヤーの時の条件式

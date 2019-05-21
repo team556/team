@@ -10,6 +10,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//グローバル変数の定義
+int g_Iron_num = 0;
+int g_Wood_num = 0;
+
 //コンストラクタ
 CObjFightClear::CObjFightClear(int p, int m, int l, int s)
 {

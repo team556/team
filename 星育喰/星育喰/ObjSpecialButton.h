@@ -65,7 +65,7 @@ private:
 	//▼以下は敵が[スペシャル技:Fracture_Ray]使用時、
 	//どのライン上に発射するか決定する為に必要な変数・配列
 	int	  m_Enemy_line;	//発射するライン(0:未決定状態　1:中ライン　2:下ライン　3:上ライン)
-	int   m_PodMissile_count[3];//当たり判定内に存在するプレイヤーのポッドミサイルカウント用
+	int   m_PodMissile_count[3];//当たり判定内に存在するプレイヤーのポッドミサイルカウント用[0:中ライン用　1:下ライン用　2:上ライン用]
 
 	//▼以下はObjPlanet(Enemy)から送られてくる情報を取得する用
 	int  m_enemy_special_equipment;//敵装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
