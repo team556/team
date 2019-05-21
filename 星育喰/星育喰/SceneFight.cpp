@@ -151,12 +151,15 @@ void CSceneFight::InitScene()
 	//Audio::LoadAudio(4, L"", EFFECT);
 	//Audio::LoadAudio(5, L"", EFFECT);
 
-	//バックミュージック
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((1.0 - v));
+	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
+	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
+	//※コメントアウト後、正常動作を確認済み
+	////バックミュージック
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
 
-	//音楽スタート
-	Audio::Start(0);	
+	////音楽スタート
+	//Audio::Start(0);	
 
 }
 
