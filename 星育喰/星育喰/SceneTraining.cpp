@@ -232,9 +232,9 @@ void CSceneTraining::InitScene()
 	//Audio::LoadAudio(0, L"", BACK_MUSIC);
 
 	//SE読み込み
-	//Audio::LoadAudio(1, L"", EFFECT);
-	//Audio::LoadAudio(2, L"", EFFECT);
-	//Audio::LoadAudio(3, L"", EFFECT);
+	//Audio::LoadAudio(1, L"選択ボタン音", EFFECT);
+	//Audio::LoadAudio(2, L"戻るボタン音", EFFECT);
+	//Audio::LoadAudio(3, L"施設レベルアップ音", EFFECT);
 	//Audio::LoadAudio(4, L"", EFFECT);
 	//Audio::LoadAudio(5, L"", EFFECT);
 

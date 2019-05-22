@@ -62,6 +62,9 @@ private:
 	float m_eat_spd;
 	bool m_del_f;		//消すフラグ(true = 消す)
 
+	bool m_win;			//敵惑星に勝利した時に流れる音楽のフラグ	
+	bool m_failed;		//敵惑星に敗北した時に流れる音楽のフラグ
+
 	int m_cntf;			//fightのm_cnt変数の値を格納する用
 	int m_mov_stop;		//
 

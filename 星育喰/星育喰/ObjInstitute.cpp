@@ -231,6 +231,8 @@ void CObjInstitute::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
+				//戻るボタン音
+				//Audio::Start(2);
 				//前シーン(ミサイルウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -247,6 +249,8 @@ void CObjInstitute::Action()
 			//左クリック入力時
 			else if (m_mou_l == true)
 			{
+				//戻るボタン音
+				//Audio::Start(2);
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -280,6 +284,8 @@ void CObjInstitute::Action()
 			//満たしていなければ、エラーメッセージを表示する。
 			if (m_mou_l == true)
 			{
+				//戻るボタン音
+				//Audio::Start(3);
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -309,6 +315,8 @@ void CObjInstitute::Action()
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
+				//振り分けボタン音
+				//Audio::Start();
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
