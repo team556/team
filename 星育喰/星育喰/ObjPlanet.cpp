@@ -14,27 +14,28 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjPlanet::CObjPlanet(float x, float y, float hp, int type, float siz)
+CObjPlanet::CObjPlanet(float x, float y, float size, int type/*, float siz*/)
 {
 	//作成時に渡された値を、各ステータスに代入
 	m_px = x;
 	m_py = y;
-	m_hp = hp;
+	m_size = size;
+	m_siz_max = size;
 	m_type = type;
-	m_get_siz = siz;
+	//m_get_siz = siz;
 }
 
 //イニシャライズ
 void CObjPlanet::Init()
 {
 	//各ステータス初期化
-	m_size	 = 50.0f;//サイズ
-	m_siz_max= 50.0f;
+	//m_size = 50.0f;//サイズ
+	//m_siz_max= 50.0f;
 	m_siz_vec=  0.0f;
 
 	m_cnt = 0;		//カウント
 
-	m_get_hp = 0;	//取得HP
+	//m_get_hp = 0;	//取得HP
 
 	m_invincible_f = false;
 	m_enemy_recast_buff = 1.0f;
@@ -151,20 +152,20 @@ void CObjPlanet::Action()
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				if(ene != nullptr)
-					m_get_hp = ene->GetHp();
+					m_get_siz = ene->GetSiz();
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				if (pla != nullptr)
-					m_get_hp = pla->GetHp();
+					m_get_siz = pla->GetSiz();
 			}
 			if (m_type == 0) {
-				if (m_hp >= m_get_hp) {
+				if (m_size >= m_get_siz) {
 					m_eat_f = true;		//喰うフラグ有効
 				}
 			}
 			else {
-				if (m_hp > m_get_hp) {
+				if (m_size > m_get_siz) {
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -217,25 +218,25 @@ void CObjPlanet::Action()
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
-	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_hp > 0))
+	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_size > MIN_SIZE))
 	{							
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * damage_buff[1];//HP-1
-			m_px -= (m_size / 10) * damage_buff[1];		//縮む分だけ左に移動
-			m_size -= (m_size / 20) * damage_buff[1];	//サイズ減少
+			//m_hp -= 1 * damage_buff[1];//HP-1
+			m_px -= (m_size / 10)/* * damage_buff[1]*/;		//縮む分だけ左に移動
+			m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
-	else if ((hit->CheckElementHit(ELEMENT_POD) == true) && (m_type != 0) && (m_hp > 0))
+	else if ((hit->CheckElementHit(ELEMENT_POD) == true) && (m_type != 0) && (m_size > MIN_SIZE))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_hp -= 1 * damage_buff[0];//HP-1
-			m_px += (m_size / 10) * damage_buff[0];		//縮む分だけ右に移動
-			m_size -= (m_size / 20) * damage_buff[0];	//サイズ減少
+			//m_hp -= 1 * damage_buff[0];//HP-1
+			m_px += (m_size / 10)/* * damage_buff[0]*/;		//縮む分だけ右に移動
+			m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
 		}
 	}
 
@@ -366,23 +367,28 @@ void CObjPlanet::Draw()
 	src.m_right = m_ani[m_ani_frame] * 64.0f + 64.0f;
 	src.m_bottom= 64.0f;
 	//表示位置
-	if(m_get_siz == 0){
-		//dst.m_top   = m_py - m_siz_vec - m_size;//300
-		//dst.m_left  = m_px - m_siz_vec - m_size;//800
-		//dst.m_right = m_px + m_siz_vec + m_size;
-		//dst.m_bottom= m_py + m_siz_vec + m_size;
+	dst.m_top = m_py - MIN_SIZE * ((m_size / m_siz_max) * 5);
+	dst.m_left = m_px - MIN_SIZE * ((m_size / m_siz_max) * 5);
+	dst.m_right = m_px + MIN_SIZE * ((m_size / m_siz_max) * 5);
+	dst.m_bottom = m_py + MIN_SIZE * ((m_size / m_siz_max) * 5);
 
-		dst.m_top = m_py - m_size * 2;//300
-		dst.m_left = m_px -m_size * 2;//800
-		dst.m_right = m_px +m_size * 2;
-		dst.m_bottom = m_py +m_size * 2;
-	}
-	else {
-		dst.m_top   = m_py;//300
-		dst.m_left  = m_px;//800
-		dst.m_right = m_px + (m_get_siz * 2);
-		dst.m_bottom= m_py + (m_get_siz * 2);
-	}
+	//if(m_get_siz == 0){
+	//	//dst.m_top   = m_py - m_siz_vec - m_size;//300
+	//	//dst.m_left  = m_px - m_siz_vec - m_size;//800
+	//	//dst.m_right = m_px + m_siz_vec + m_size;
+	//	//dst.m_bottom= m_py + m_siz_vec + m_size;
+
+	//	dst.m_top = m_py - m_size * 2;//300
+	//	dst.m_left = m_px -m_size * 2;//800
+	//	dst.m_right = m_px +m_size * 2;
+	//	dst.m_bottom = m_py +m_size * 2;
+	//}
+	//else {
+	//	dst.m_top   = m_py;//300
+	//	dst.m_left  = m_px;//800
+	//	dst.m_right = m_px + (m_get_siz * 2);
+	//	dst.m_bottom= m_py + (m_get_siz * 2);
+	//}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);

@@ -5,6 +5,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define MIN_SIZE (30.0f) //各惑星の最小サイズ(これ以上は小さくならない)
+
 //オブジェクト：戦闘画面
 class CObjFight :public CObj
 {
