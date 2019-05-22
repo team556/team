@@ -40,8 +40,8 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//3番にプレイヤー登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
-
+	//Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"p.png", 3, TEX_SIZE_512);
 	//4番に登録惑星
 	Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
@@ -101,6 +101,8 @@ void CSceneFight::InitScene()
 
 	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
 	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
+
+	Draw::LoadImage(L"Raid1.png", 26, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");

@@ -74,11 +74,11 @@ void CObjPlanet::Init()
 	}
 	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 3;
+		m_img_nam = 26;
 	}
 	else if (m_type == 2) {
 		Hits::SetHitBox(this, m_px, m_py, m_size, m_size, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 3;
+		m_img_nam = 26;
 	}
 }
 
@@ -362,9 +362,9 @@ void CObjPlanet::Draw()
 	RECT_F dst;
 	//êÿÇËéÊÇËà íu
 	src.m_top   =  0.0f;
-	src.m_left  = m_ani[m_ani_frame] * 64.0f;
-	src.m_right = m_ani[m_ani_frame] * 64.0f + 64.0f;
-	src.m_bottom= 64.0f;
+	src.m_left  = m_ani[m_ani_frame] * 128.0f;
+	src.m_right = m_ani[m_ani_frame] * 128.0f + 128.0f;
+	src.m_bottom= 128.0f;
 	//ï\é¶à íu
 	if(m_get_siz == 0){
 		//dst.m_top   = m_py - m_siz_vec - m_size;//300
