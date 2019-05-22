@@ -52,11 +52,11 @@ void CSceneHome::InitScene()
 	//Audio::LoadAudio(0, L"", BACK_MUSIC);
 
 	//バックミュージック
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((1.0 - v));
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
 
 	//音楽スタート
-	Audio::Start(0);
+	//Audio::Start(0);
 
 }
 

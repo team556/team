@@ -46,7 +46,7 @@ void CSceneTitle::InitScene()
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+	Audio::LoadAudio(0, L"タイトル音楽.wav", BACK_MUSIC);
 
 	//バックミュージック
 	float v = Audio::VolumeMaster(0);

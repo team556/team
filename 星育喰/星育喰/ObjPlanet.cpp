@@ -4,6 +4,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
@@ -66,6 +67,9 @@ void CObjPlanet::Init()
 	m_eat_f = false;	//喰うフラグ(true = 喰う)
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
+
+	m_win = false;
+	m_failed = false;
 	
 	//当たり判定用HitBoxを作成
 	if (m_type == 0) {
@@ -113,11 +117,20 @@ void CObjPlanet::Action()
 			if (m_type == 0) {		//主人公の場合
 				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
-				
+				m_win == true;
+				//if (m_win == true)
+				//{
+				//	Audio::Start(1);
+				//}
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
 				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+				m_failed == true;
+				//if (m_failed == true)
+				//{
+				//	Audio::Start(2);
+				//}
 			}
 		}
 	}

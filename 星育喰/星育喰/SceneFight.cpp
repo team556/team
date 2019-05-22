@@ -142,21 +142,22 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"戦闘中.wav", BACK_MUSIC);
+	//Audio::LoadAudio(1, L"勝利.wav", BACK_MUSIC);
+	//Audio::LoadAudio(2, L"敗北.wav", BACK_MUSIC);
 
 	//SE読み込み
-	//Audio::LoadAudio(3, L"", EFFECT);
-	//Audio::LoadAudio(4, L"", EFFECT);
-	//Audio::LoadAudio(5, L"", EFFECT);
+	//Audio::LoadAudio(3, L"発射ボタン音", EFFECT);
+	//Audio::LoadAudio(4, L"爆発音.wav", EFFECT);
+	//Audio::LoadAudio(5, L"スペシャル技発動音.wav", EFFECT);
+
 
 	//バックミュージック
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((1.0 - v));
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
 
 	//音楽スタート
-	Audio::Start(0);	
+	//Audio::Start(0);	
 
 }
 
