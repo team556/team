@@ -155,7 +155,7 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 5)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_Rocket, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
 		}
 
 	}
@@ -180,7 +180,7 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 5)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_Rocket, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
 		}
 
 	}

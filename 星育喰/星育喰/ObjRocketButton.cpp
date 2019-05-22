@@ -80,32 +80,32 @@ void CObjRocketButton::Action()
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true,1);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 			else if (Button_num == 2 && g_Defense_num != 0)
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 2);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 			else if (Button_num == 3 && g_Speed_num != 0)
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 3);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 4 && g_Balance_num != 0)
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 4);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 5)
 			{
 				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 5);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 
 			m_mou_f = true;
