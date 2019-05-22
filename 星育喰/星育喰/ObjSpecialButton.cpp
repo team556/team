@@ -405,9 +405,10 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		//相手が無敵ではない、かつ相手のHPが0より上の時、
 		//約0.1秒毎に相手のHPを減少させる。
 		//※現状、計5ダメージ与える設定となっている。
-		if (m_count[Planet_id] >= 100 && m_count[Planet_id] % 5 == 0 && Planet[Opponent_id]->GetInvincible() == false && Planet[Opponent_id]->GetSiz() > MIN_SIZE)
+		if (m_count[Planet_id] >= 100 && m_count[Planet_id] % 5 == 0 && Planet[Opponent_id]->GetInvincible() == false && Planet[Opponent_id]->GetSiz() > 0)
 		{
-			Planet[Opponent_id]->SetScale_down();	//サイズ(HP)減少
+			Planet[Opponent_id]->SetDamage();//サイズ(HP)減少
+			Planet[Opponent_id]->SetScale_down_move(Opponent_id);//縮む分だけ移動
 
 			//size30以下になる時のif文、ここにも用意。
 		}

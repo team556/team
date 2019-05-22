@@ -28,8 +28,6 @@ private:
 
 	int Button_num; //パワーなどのボタン番号
 
-	float m_create_x;	//プレイヤー惑星ポッド作成X位置調整用
-
 	float m_player_recast_buff;	//プレイヤーミサイルポッドリキャストタイムのバフ倍率[スペシャル技:リミットブレイク用]
 
 	float m_mou_x;		//マウスの位置X
