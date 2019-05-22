@@ -135,6 +135,15 @@ void CObjFight::Action()
 	}
 	else {};
 
+	if (m_end_f == true)
+	{
+		m_end_f = false;
+		if (m_ene_nam == 1)
+		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
+			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);	
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+	}
 }
 
 //ドロー

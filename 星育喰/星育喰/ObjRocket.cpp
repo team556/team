@@ -118,7 +118,7 @@ void CObjRocket::Init()
 	
 	m_time = 100;
 
-	m_Enemy_Pod_Level = g_Stage_progress;	//現状、現在のステージ進行度に合わせて敵のポットレベルを設定している
+	m_Enemy_Pod_Level = g_Stage_progress;	//現状、現在のステージ進行度に合わせて敵のポッドレベルを設定している
 
 	m_vx = 0.0f;//ベクトル
 	m_vy = 0.0f;
@@ -299,7 +299,7 @@ void CObjRocket::Action()
 		if (m_ani == 4 && m_bom == 5)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
-			//ポットが破壊される度にその数をカウントする
+			//ポッドが破壊される度にその数をカウントする
 			//※戦闘終了時は実行しない
 			if (battle_end == false)
 			{

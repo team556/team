@@ -35,7 +35,9 @@ enum OBJ_NAME
 	OBJ_PODP,
 	OBJ_PODS,
 	OBJ_PODD,
-	OBJ_PODB
+	OBJ_PODB,
+	OBJ_TUTORIAL,
+
 
 };
 //------------------------------------------------
@@ -46,8 +48,8 @@ enum HIT_ELEMENTS
 	ELEMENT_NULL,//属性無し 全ての属性と当たり判定が実行される
 	//以下　同じ属性同士では当たり判定は実行されない
 	//属性は追加可能だが、デバック時の色は初期設定分しか無い
-	ELEMENT_PLAYER,
-	ELEMENT_ENEMY,
+	ELEMENT_PLAYER,		//プレイヤー惑星の当たり判定属性
+	ELEMENT_ENEMY,		//エネミー惑星の当たり判定属性
 	ELEMENT_ITEM,
 	ELEMENT_MAGIC,
 	ELEMENT_FIELD,
@@ -67,7 +69,6 @@ enum HIT_ELEMENTS
 	ELEMENT_PODD,		//ディフェンス
 	ELEMENT_PODB,		//バランス
 	ELEMENT_LINE,
-
 
 };
 //------------------------------------------------
@@ -106,13 +107,16 @@ extern int g_Speed_num;				//スピード住民数
 extern int g_Balance_num;			//バランス住民数
 extern int g_Research_num;			//研究員住民数
 extern int g_Remain_num;			//残り住民数
+//--------------------------------------------------資源----
+extern int g_Iron_num;				//鉄の所持数
+extern int g_Wood_num;				//木の所持数
 
 extern int g_Material_num_test;		//TEST用所持素材数
 
 //▼セーブ必要性無し
 extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
 
-extern bool g_key_fg;//
+extern bool g_key_fg;				//
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------
@@ -142,6 +146,7 @@ extern bool g_key_fg;//
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
 #include "Pause.h"
+#include "ObjTutorial.h"
 
 //------------------------------------------------
 

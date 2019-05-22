@@ -18,7 +18,7 @@ public:
 	bool GetEnemy_Used_Special() { return m_is_used_special[1]; }//敵がスペシャル技を使用したかどうかを返す
 	int  GetSpecial_equip() { return m_enemy_special_equipment; }//敵が装備中のスペシャル技を返す
 	bool GetInvocating(int Planet_id) { return m_is_invocating[Planet_id]; }//[プレイヤー or 敵]が現在スペシャル技発動中であるかを返す
-	void SetBuff_count(int Planet_id) { m_count[Planet_id] += 1; }//ポットの射出回数カウント用[スペシャル技:ステロイド投与用]
+	void SetBuff_count(int Planet_id) { m_count[Planet_id] += 1; }//ポッドの射出回数カウント用[スペシャル技:ステロイド投与用]
 	void SetSpecial_Equip(int equip) { m_enemy_special_equipment = equip; }//敵の発動するスペシャル技を決める用
 	void SetSpecial_Start() { m_enemy_special_button = true; }	//敵のスペシャル技を発動させる用
 private:
@@ -61,6 +61,11 @@ private:
 
 	float m_Special_effect_alpha[2];	//スペシャル技エフェクト画像のalpha(透過度)
 	float m_Special_effect_alpha_vec[2];//スペシャル技エフェクト画像の透過度ベクトル
+
+	//▼以下は敵が[スペシャル技:Fracture_Ray]使用時、
+	//どのライン上に発射するか決定する為に必要な変数・配列
+	int	  m_Enemy_line;	//発射するライン(0:未決定状態　1:中ライン　2:下ライン　3:上ライン)
+	int   m_PodMissile_count[3];//当たり判定内に存在するプレイヤーのポッドミサイルカウント用[0:中ライン用　1:下ライン用　2:上ライン用]
 
 	//▼以下はObjPlanet(Enemy)から送られてくる情報を取得する用
 	int  m_enemy_special_equipment;//敵装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)

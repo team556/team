@@ -10,8 +10,12 @@
 //使用するネームスペース
 using namespace GameL;
 
+//グローバル変数の定義
+int g_Iron_num = 0;
+int g_Wood_num = 0;
+
 //コンストラクタ
-CObjFightClear::CObjFightClear(int p, int m, int s, int l)
+CObjFightClear::CObjFightClear(int p, int m, int l, int s)
 {
 	//作成時に渡された値を代入
 	m_people = p;
@@ -33,6 +37,28 @@ void CObjFightClear::Init()
 	m_a_f = false;
 
 	m_cnt = 3 * 60;	//3秒カウント
+
+	g_Stage_progress += 1;		//ステージ加算
+	g_Remain_num += m_people;	//取得住民を加算
+	if (m_skill != 0)				//スキル取得している場合
+	{							//その番号を取得する
+		g_Special_mastering[m_skill] = true;
+	}
+	else { ; }
+
+	if (m_mrl == 0)
+	{
+		g_Wood_num += 40;
+	}
+	else if (m_mrl == 1)
+	{
+		g_Wood_num += 80;
+	}
+	else if (m_mrl == 2)
+	{
+		g_Iron_num += 40;
+	}
+
 }
 
 //アクション
@@ -60,6 +86,9 @@ void CObjFightClear::Action()
 			m_a_vec -= 0.003f;	//ベクトルに減算
 
 	m_a += m_a_vec;	//ベクトルを反映
+
+	
+
 }
 
 //ドロー
@@ -106,9 +135,9 @@ void CObjFightClear::Draw()
 
 	switch (m_mrl)
 	{
-	case 0:Font::StrDraw(L"＋ 鉄40", 700, 400, 50, c); break;
-	case 1:break;
-	case 2:break;
+	case 0:Font::StrDraw(L"＋ 木40", 900, 200, 50, c); break;
+	case 1:Font::StrDraw(L"＋ 木80", 900, 200, 50, c); break;
+	case 2:Font::StrDraw(L"＋ 鉄40", 900, 200, 50, c); break;
 	}
 	
 	swprintf_s(str, L"＋ %d", m_large);		//大きさ
@@ -117,11 +146,11 @@ void CObjFightClear::Draw()
 	switch (m_skill)						 //スペシャル技
 	{
 	case 0: break;
-	case 1:Font::StrDraw(L"＋ Explosion", 700, 400, 50, c); break;
-	case 2:Font::StrDraw(L"＋ Fracture Ray", 700, 400, 50, c); break;
-	case 3:Font::StrDraw(L"＋ Immortality", 700, 400, 50, c); break;
-	case 4:Font::StrDraw(L"＋ リミットブレイク", 700, 400, 50, c); break;
-	case 5:Font::StrDraw(L"＋ ステロイド投与", 700, 400, 50, c); break;
+	case 1:Font::StrDraw(L"＋ Explosion", 800, 400, 30, c); break;
+	case 2:Font::StrDraw(L"＋ Fracture Ray", 800, 400, 30, c); break;
+	case 3:Font::StrDraw(L"＋ Immortality", 800, 400, 30, c); break;
+	case 4:Font::StrDraw(L"＋ リミットブレイク", 800, 400, 30, c); break;
+	case 5:Font::StrDraw(L"＋ ステロイド投与", 800, 400, 30, c); break;
 	}
 	
 }

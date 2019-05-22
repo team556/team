@@ -18,6 +18,7 @@ public:
 	int GetLine() { return m_line_nam; }//選択ラインを返す
 	int GetCount() { return m_cnt; }	//カウント数を返す
 	void SetStart_Count() { m_start_count_f = true; }//戦闘開始カウントを動作させる
+	void SetEnd() { m_end_f = true; }	//クリア画面作成
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -42,6 +43,8 @@ private:
 
 	int	  m_start_count;		//戦闘開始カウント用
 	bool  m_start_count_f;		//「戦闘開始カウント」開始フラグ(trueの時、動作を開始する)
+
+	bool m_end_f;		//クリア画面作成用
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)

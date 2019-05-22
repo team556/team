@@ -50,7 +50,7 @@ void CObjPlanet::Init()
 
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
-	///*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
+	//*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
 
 	if (m_type == 0)
 		m_px += 0.0f;
@@ -115,8 +115,9 @@ void CObjPlanet::Action()
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
 			if (m_type == 0) {		//主人公の場合
-				CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
-				Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
+				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
+				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
+				fit->SetEnd();
 				m_win == true;
 				//if (m_win == true)
 				//{

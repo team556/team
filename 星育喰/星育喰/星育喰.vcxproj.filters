@@ -56,6 +56,9 @@
     <Filter Include="ソース ファイル\対戦用\クリア＆オーバー">
       <UniqueIdentifier>{b66ac50a-e27f-45d4-a63e-b8134fc0364a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\チュートリアル">
+      <UniqueIdentifier>{5966d595-90db-4cf7-8ba7-9609949aab97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -183,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="Pause.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTutorial.cpp">
+      <Filter>ソース ファイル\チュートリアル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +323,9 @@
     </ClInclude>
     <ClInclude Include="Pause.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTutorial.h">
+      <Filter>ソース ファイル\チュートリアル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
