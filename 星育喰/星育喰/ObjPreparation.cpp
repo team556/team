@@ -19,8 +19,7 @@ using namespace GameL;
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
-//static変数の定義
-bool CObjPreparation::destroy_progress[4] = { false,false,false,false };
+
 
 //グローバル変数の定義
 int g_Stage_progress = 1;
@@ -28,6 +27,8 @@ int g_Challenge_enemy = 0;
 int g_Special_equipment = 2;//デバッグ用に2にしている。後で0に戻すように。
 bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
 int m_destroy_count = 0;	//敵の撃破数
+
+bool destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 
 //イニシャライズ
 void CObjPreparation::Init()

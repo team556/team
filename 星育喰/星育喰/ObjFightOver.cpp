@@ -31,6 +31,8 @@ void CObjFightOver::Init()
 	m_a_f = false;
 
 	m_cnt = 3 * 60;	//3秒カウント
+
+	destroy_progress[g_Challenge_enemy] = false;//チャレンジした敵の状態を、戻しておく
 }
 
 //アクション

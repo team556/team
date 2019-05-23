@@ -77,5 +77,5 @@ private:
 	float	m_detail_message_alpha;			//詳細説明(敵惑星、スペシャル技)の透過度(アルファ値)
 
 	//int	  m_destroy_count;			//現在ステージでの敵惑星撃破数
-	static bool destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)
+	//static bool destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)
 };
