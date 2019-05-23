@@ -18,6 +18,7 @@ using namespace GameL;
 #define INI_SPEED (50.0f)//各演出で移動する各オブジェクトの初期移動速度
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
+#define INI_PLANET (128.0f)
 
 //static変数の定義
 bool CObjPreparation::destroy_progress[4] = { false,false,false,false };
@@ -66,7 +67,8 @@ void CObjPreparation::Init()
 		m_Boss_vy[i] = 0.0f;
 	}
 
-	m_Boss_clip_pos = 0.0f;
+	m_Boss_clip_pos = -1.0f;
+	m_Boss_clip_pos_y = 0.0f;
 
 	m_speed = INI_SPEED;
 	m_save_speed = 0.0f;
@@ -90,16 +92,16 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 0;
+	m_destroy_count = 3;
 
-	//現在の撃破数をカウント
-	for (int i = 0; i < 4; i++)
-	{
-		if (destroy_progress[i] == true)
-		{
-			m_destroy_count++;
-		}
-	}
+	////現在の撃破数をカウント
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	if (destroy_progress[i] == true)
+	//	{
+	//		m_destroy_count++;
+	//	}
+	//}
 
 	//▼現在のスペシャル技習得状況、装備状況に応じて
 	//スペシャル技アイコンのカラー明度を以下のように設定していく。
@@ -573,16 +575,24 @@ void CObjPreparation::Action()
 			}
 
 			//ボス惑星描画元切り取り位置を徐々に変更し、最終的に口を閉じた状態にする
-			if (m_warning_message_alpha <= 0.4f)
+			if (m_warning_message_alpha <= 0.0f)
 			{
-				m_Boss_clip_pos = 0.0f;
+				if (g_Stage_progress == 1)
+				{
+					m_Boss_clip_pos_y = 128.0f;
+				}
+			}
+			else if (m_warning_message_alpha <= 0.4f)
+			{
+				m_Boss_clip_pos = 256.0f;
 			}
 			else if (m_warning_message_alpha <= 0.8f)
 			{
-				m_Boss_clip_pos = 64.0f;
+				m_Boss_clip_pos = 128.0f;
 			}
+			
 		}
-		else if (m_Boss_clip_pos == 128.0f)
+		else if (m_Boss_clip_pos == 0.0f)
 		{
 			//ボス惑星の準備完了後、
 			//ボス惑星が画面外(右下)から画面中央へと敵惑星の上を通りながら通過。
@@ -609,7 +619,7 @@ void CObjPreparation::Action()
 			m_Boss_vy[2] = 650.0f;
 
 			//ボス惑星描画元切り取り位置を適切な位置に設定し、口を開けた状態にする
-			m_Boss_clip_pos = 128.0f;
+			m_Boss_clip_pos = 0.0f;
 
 			//現在の移動速度を別変数に保存した後、移動速度を初期化する
 			m_save_speed = m_speed;
@@ -825,8 +835,8 @@ void CObjPreparation::Draw()
 		//▼敵惑星2(左から2番目の敵惑星)表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 384.0f;
-		src.m_bottom = 384.0f;
+		src.m_right = INI_PLANET;
+		src.m_bottom = INI_PLANET;
 
 		dst.m_top = INI_ENEMY_Y_POS - 30.0f;
 		dst.m_left = INI_ENEMY_X_POS + 300.0f + m_Evx;
@@ -837,9 +847,9 @@ void CObjPreparation::Draw()
 
 	//▼ボス惑星1表示(演出用)
 	src.m_top = 0.0f;
-	src.m_left = 128.0f;
-	src.m_right = 192.0f;
-	src.m_bottom = 64.0f;
+	src.m_left = 0.0f;
+	src.m_right = -128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = 360.0f + m_Boss_vy[0];
 	dst.m_left = 1260.0f + m_Boss_vx[0];
@@ -853,8 +863,8 @@ void CObjPreparation::Draw()
 		//▼敵惑星1(左から1番目の敵惑星)表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 384.0f;
-		src.m_bottom = 384.0f;
+		src.m_right = INI_PLANET;
+		src.m_bottom = INI_PLANET;
 
 		dst.m_top = INI_ENEMY_Y_POS;
 		dst.m_left = INI_ENEMY_X_POS + m_Evx;
@@ -869,8 +879,8 @@ void CObjPreparation::Draw()
 		//▼敵惑星3(左から3番目の敵惑星)表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 384.0f;
-		src.m_bottom = 384.0f;
+		src.m_right = INI_PLANET;
+		src.m_bottom = INI_PLANET;
 
 		dst.m_top = INI_ENEMY_Y_POS - 50.0f;
 		dst.m_left = INI_ENEMY_X_POS + 600.0f + m_Evx;
@@ -881,9 +891,9 @@ void CObjPreparation::Draw()
 
 	//▼ボス惑星2表示(演出用)
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = -64.0f;
-	src.m_bottom = 64.0f;
+	src.m_left = 256.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = 200.0f + m_Boss_vy[1];
 	dst.m_left = -310.0f + m_Boss_vx[1];
@@ -897,8 +907,8 @@ void CObjPreparation::Draw()
 		//▼敵惑星4(左から4番目の敵惑星)表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 384.0f;
-		src.m_bottom = 384.0f;
+		src.m_right = INI_PLANET;
+		src.m_bottom = INI_PLANET;
 
 		dst.m_top = INI_ENEMY_Y_POS + 250.0f;
 		dst.m_left = INI_ENEMY_X_POS + 750.0f + m_Evx;
@@ -908,10 +918,10 @@ void CObjPreparation::Draw()
 	}
 
 	//▼ボス惑星3表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f + m_Boss_clip_pos;
-	src.m_right = 64.0f + m_Boss_clip_pos;
-	src.m_bottom = 64.0f;
+	src.m_top = m_Boss_clip_pos_y;
+	src.m_left = 0.0f - m_Boss_clip_pos;
+	src.m_right = -(INI_PLANET) - m_Boss_clip_pos;
+	src.m_bottom = INI_PLANET + m_Boss_clip_pos_y;
 
 	dst.m_top = 100.0f + m_Boss_vy[2];
 	dst.m_left = 1400.0f + m_Boss_vx[2];

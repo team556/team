@@ -38,7 +38,7 @@ void CObjFightClear::Init()
 
 	m_cnt = 3 * 60;	//3秒カウント
 
-	g_Stage_progress += 1;		//ステージ加算
+	//g_Stage_progress += 1;		//ステージ加算
 	g_Remain_num += m_people;	//取得住民を加算
 	if (m_skill != 0)				//スキル取得している場合
 	{							//その番号を取得する

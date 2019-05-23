@@ -83,11 +83,11 @@ void CObjPlanet::Init()
 	}
 	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 26;
+		m_img_nam = 28;
 	}
 	else if (m_type == 2) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 26;
+		m_img_nam = 28;
 	}
 }
 
