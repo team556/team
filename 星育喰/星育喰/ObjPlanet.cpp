@@ -277,7 +277,7 @@ void CObjPlanet::Action()
 	}
 
 	//▼敵惑星攻撃パターン
-	if (m_type == 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
+	if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 	{
 		//▼敵行動パターン決め
 		if (m_time <= 0)
@@ -404,9 +404,9 @@ void CObjPlanet::Draw()
 	if (m_type != 0)//仮グラフィックの為、敵のみ切り取りサイズ変更
 	{
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 384.0f;
-		src.m_bottom = 384.0f;
+		src.m_left = m_ani[m_ani_frame] * 128.0f;
+		src.m_right = m_ani[m_ani_frame] * 128.0f + 128.0f;
+		src.m_bottom = 128.0f;
 	}
 
 

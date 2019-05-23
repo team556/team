@@ -1029,8 +1029,8 @@ void CObjPreparation::Draw()
 	//※移行演出まで描画先表示位置の設定上、非表示状態になる。
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
 
 	dst.m_top = 350.0f - m_black_star_effect_size;
 	dst.m_left = 600.0f - m_black_star_effect_size;
