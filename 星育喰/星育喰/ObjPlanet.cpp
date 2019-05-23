@@ -100,7 +100,8 @@ void CObjPlanet::Init()
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
 	}
-	else if (m_type == 5) {
+	else  //(m_type == 5) 
+	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
 	}

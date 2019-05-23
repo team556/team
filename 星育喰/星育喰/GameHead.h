@@ -86,8 +86,7 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 //▼セーブ必要性有り
 extern int g_Stage_progress;		//現在のステージ進行度(1ステージ:1　2ステージ:2　3ステージ:3)
-extern bool destroy_progress[4];	//0~3の敵の撃破状態(false 生存,true 撃破)
-extern int m_destroy_count;			//各ステージでの敵撃破数
+extern bool g_destroy_progress[4];	//0~3の敵(ボス惑星以外の敵惑星)の撃破状態(false:生存 , true:撃破)
 extern int g_Bar_Level;				//兵舎レベル
 extern int g_Ins_Level;				//研究所レベル
 extern int g_Mis_Recast_Level;		//ミサイルリキャストレベル
@@ -118,8 +117,6 @@ extern int g_Material_num_test;		//TEST用所持素材数
 
 //▼セーブ必要性無し
 extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
-
-extern bool g_key_fg;				//
 
 //------------------------------------------------
 //ゲーム内で使用するクラスヘッダ------------------

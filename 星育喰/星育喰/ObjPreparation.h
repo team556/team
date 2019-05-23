@@ -47,7 +47,7 @@ private:
 
 	float m_Boss_vx[3];		//ボス惑星(演出用も含む)の移動用ベクトルX
 	float m_Boss_vy[3];		//ボス惑星(演出用も含む)の移動用ベクトルY
-	float m_Boss_clip_pos;	//ボス惑星描画元切り取り位置変更用
+	float m_Boss_clip_pos_x;//ボス惑星描画元切り取り位置のX変更用
 	float m_Boss_clip_pos_y;//ボス惑星描画元切り取り位置のY変更用
 
 	float m_speed;		//各演出で移動する各オブジェクト(プレイヤー惑星、各敵惑星、ボス惑星等)の移動速度
@@ -77,6 +77,6 @@ private:
 	float	m_detail_message_font_y;		//詳細説明(敵惑星、スペシャル技)フォント位置Y
 	float	m_detail_message_alpha;			//詳細説明(敵惑星、スペシャル技)の透過度(アルファ値)
 
-	//int	  m_destroy_count;			//現在ステージでの敵惑星撃破数
-	//static bool destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)
+	int		m_destroy_count;			//現在ステージでの敵惑星撃破数
+	//static bool g_destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)
 };
