@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjPlanet :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjPlanet(float x, float y, float size, int type/*, float siz = 0*/);//座標+サイズ(HP)+タイプ
+	CObjPlanet(float x, float y, float size, int type = g_Challenge_enemy);//座標+サイズ(HP)+敵ナンバー
 	~CObjPlanet() {};
 	void Init();	//イニシャライズ
 	void Action();  //アクション

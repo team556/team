@@ -14,6 +14,8 @@ using namespace GameL;
 int g_Iron_num = 0;
 int g_Wood_num = 0;
 
+
+
 //コンストラクタ
 CObjFightClear::CObjFightClear(int p, int m, int l, int s)
 {
@@ -38,7 +40,11 @@ void CObjFightClear::Init()
 
 	m_cnt = 3 * 60;	//3秒カウント
 
-	g_Stage_progress += 1;		//ステージ加算
+	m_destroy_count += 1;		//撃破数、加算
+	if (m_destroy_count == 4)
+	{
+		g_Stage_progress += 1;
+	}
 	g_Remain_num += m_people;	//取得住民を加算
 	if (m_skill != 0)				//スキル取得している場合
 	{							//その番号を取得する

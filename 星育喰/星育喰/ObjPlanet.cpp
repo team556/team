@@ -18,14 +18,14 @@ using namespace GameL;
 #define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
 
 //コンストラクタ
-CObjPlanet::CObjPlanet(float x, float y, float size, int type/*, float siz*/)
+CObjPlanet::CObjPlanet(float x, float y, float size, int type)
 {
 	//作成時に渡された値を、各ステータスに代入
 	m_px = x;
 	m_py = y;
 	m_size = size;
 	m_siz_max = size;
-	m_type = type;
+	m_type = type + 1;
 	//m_get_siz = siz;
 }
 
@@ -75,6 +75,8 @@ void CObjPlanet::Init()
 
 	m_win = false;
 	m_failed = false;
+
+	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
 	if (m_type == 0) {
@@ -83,11 +85,19 @@ void CObjPlanet::Init()
 	}
 	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 3;
+		m_img_nam = 26;
 	}
 	else if (m_type == 2) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 3;
+		m_img_nam = 27;
+	}
+	else if (m_type == 3) {
+		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 28;
+	}
+	else if (m_type == 4) {
+		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 29;
 	}
 }
 
@@ -384,24 +394,15 @@ void CObjPlanet::Draw()
 	dst.m_left = m_px - MIN_SIZE - ((m_size / m_siz_max) * 60) + m_scale_down_move;
 	dst.m_right = m_px + MIN_SIZE + ((m_size / m_siz_max) * 60) + m_scale_down_move;
 	dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * 60);
+	
+	if (m_type != 0)//仮グラフィックの為、敵のみ切り取りサイズ変更
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 384.0f;
+		src.m_bottom = 384.0f;
+	}
 
-	//if(m_get_siz == 0){
-	//	//dst.m_top   = m_py - m_siz_vec - m_size;//300
-	//	//dst.m_left  = m_px - m_siz_vec - m_size;//800
-	//	//dst.m_right = m_px + m_siz_vec + m_size;
-	//	//dst.m_bottom= m_py + m_siz_vec + m_size;
-
-	//	dst.m_top = m_py - m_size * 2;//300
-	//	dst.m_left = m_px -m_size * 2;//800
-	//	dst.m_right = m_px +m_size * 2;
-	//	dst.m_bottom = m_py +m_size * 2;
-	//}
-	//else {
-	//	dst.m_top   = m_py;//300
-	//	dst.m_left  = m_px;//800
-	//	dst.m_right = m_px + (m_get_siz * 2);
-	//	dst.m_bottom= m_py + (m_get_siz * 2);
-	//}
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
