@@ -122,41 +122,42 @@ void CObjFightClear::Draw()
 	Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);
 
 	float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
-	Font::StrDraw(L"住民", 700, 100, 50, c);
+	Font::StrDraw(L"住民　＋", 700, 100, 50, c);
 
-	Font::StrDraw(L"資材", 700, 200, 50, c);
+	Font::StrDraw(L"資材　＋", 700, 200, 50, c);
 
-	Font::StrDraw(L"サイズ", 700, 300, 50, c);
+	Font::StrDraw(L"サイズ　＋", 700, 300, 50, c);
 
 	if (m_skill != 0)
 	{
-		Font::StrDraw(L"技", 700, 400, 50, c);
+		Font::StrDraw(L"技　＋", 700, 400, 50, c);
 	}
 	else { ; }
 	//Font::StrDraw(L"大きさ", 0, 300, 32, c);
 
 	wchar_t str[256];
-	swprintf_s(str, L"＋ %d人",m_people);		//住民
+	swprintf_s(str, L"　 %d人",m_people);		//住民
 	Font::StrDraw(str, 900, 100, 50, c);
 
 	switch (m_mrl)
 	{
-	case 0:Font::StrDraw(L"＋ 木40", 900, 200, 50, c); break;
-	case 1:Font::StrDraw(L"＋ 木80", 900, 200, 50, c); break;
-	case 2:Font::StrDraw(L"＋ 鉄40", 900, 200, 50, c); break;
+	case 0:Font::StrDraw(L"　 木40", 900, 200, 50, c); break;
+	case 1:Font::StrDraw(L"　 木80", 900, 200, 50, c); break;
+	case 2:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
+	case 3:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
 	}
 	
-	swprintf_s(str, L"＋ %d", m_large);		//大きさ
+	swprintf_s(str, L"　 %d", m_large);		//大きさ
 	Font::StrDraw(str, 900, 300, 50, c);
 
 	switch (m_skill)						 //スペシャル技
 	{
 	case 0: break;
-	case 1:Font::StrDraw(L"＋ Explosion", 800, 400, 30, c); break;
-	case 2:Font::StrDraw(L"＋ Fracture Ray", 800, 400, 30, c); break;
-	case 3:Font::StrDraw(L"＋ Immortality", 800, 400, 30, c); break;
-	case 4:Font::StrDraw(L"＋ リミットブレイク", 800, 400, 30, c); break;
-	case 5:Font::StrDraw(L"＋ ステロイド投与", 800, 400, 30, c); break;
+	case 1:Font::StrDraw(L"　 Explosion",			800, 410, 40, c); break;
+	case 2:Font::StrDraw(L"　 Fracture Ray",		800, 410, 40, c); break;
+	case 3:Font::StrDraw(L"　 Immortality",			800, 410, 40, c); break;
+	case 4:Font::StrDraw(L"　 リミットブレイク",	800, 410, 40, c); break;
+	case 5:Font::StrDraw(L"　 ステロイド投与",		800, 410, 40, c); break;
 	}
 	
 }
