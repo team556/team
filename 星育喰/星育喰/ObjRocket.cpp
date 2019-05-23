@@ -141,7 +141,7 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 5)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_Rocket, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
 		}
 
 	}
@@ -154,11 +154,11 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
 		}
 		else if (ButtonU == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
 		}
 		else if (ButtonU == 4)
 		{
@@ -166,7 +166,7 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 5)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_Rocket, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
 		}
 
 	}

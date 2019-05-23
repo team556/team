@@ -4,6 +4,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjWarehouse.h"
@@ -108,6 +109,8 @@ void CObjWarehouse::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
+				//戻るボタン音
+				//Audio::Start(2);
 				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -123,8 +126,10 @@ void CObjWarehouse::Action()
 			}
 
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
-			if (m_mou_l == true)
+			else if (m_mou_l == true)
 			{
+				//戻るボタン音
+				//Audio::Start(2);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -153,6 +158,8 @@ void CObjWarehouse::Action()
 			//左クリックされたらフラグを立て、資材ウインドウを開く
 			if (m_mou_l == true)
 			{
+				//選択音
+				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -178,10 +185,11 @@ void CObjWarehouse::Action()
 		if (680 < m_mou_x && m_mou_x < 1005 && 150 < m_mou_y && m_mou_y < 325)
 		{
 			m_object_re = 1.0f;
-
 			//左クリックされたらフラグを立て、住民ウインドウを開く
 			if (m_mou_l == true)
 			{
+				//選択音
+				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -206,10 +214,11 @@ void CObjWarehouse::Action()
 		if (245 < m_mou_x && m_mou_x < 560 && 390 < m_mou_y && m_mou_y < 570)
 		{
 			m_object_sp = 1.0f;
-
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
 			if (m_mou_l == true)
 			{
+				//選択音
+				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -234,10 +243,11 @@ void CObjWarehouse::Action()
 		if (680 < m_mou_x && m_mou_x < 1005 && 390 < m_mou_y && m_mou_y < 570)
 		{
 			m_object_eq = 1.0f;
-
 			//左クリックされたらフラグを立て、装備ウインドウを開く
 			if (m_mou_l == true)
 			{
+				//選択音
+				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -272,6 +282,8 @@ void CObjWarehouse::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
+				//戻るボタン音
+				//Audio::Start(2);
 				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -289,6 +301,8 @@ void CObjWarehouse::Action()
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 			if (m_mou_l == true)
 			{
+				//戻るボタン音
+				//Audio::Start(2);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -325,6 +339,8 @@ void CObjWarehouse::Action()
 		//左クリックされたらフラグを立て、倉庫ウインドウを開く
 		if (m_mou_l == true)
 		{
+			//選択音
+			//Audio::Start(1);
 			//クリック押したままの状態では入力出来ないようにしている
 			if (m_key_lf == true)
 			{

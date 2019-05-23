@@ -27,7 +27,7 @@ enum OBJ_NAME
 	OBJ_WAREHOUSE,
 	OBJ_INSTITUTE,
 	OBJ_BARRACKS,
-	OBJ_Rocket,
+	OBJ_ROCKET,
 	OBJ_FRACTURE_RAY,
 	OBJ_FIGHT_CLEAR,
 	OBJ_FIGHT_OVER,
@@ -99,6 +99,7 @@ extern int g_Bal_equip_Level;		//現在のバランス武器レベル
 extern int g_Bal_equip_Lv_achieve;	//バランス武器レベルの最大到達度
 extern int g_Pod_equip_Level;		//現在のポッドレベル
 extern int g_Pod_equip_Lv_achieve;	//ポッドレベルの最大到達度
+extern float g_Player_max_size;		//現在のプレイヤー惑星のサイズ(最大HP)
 extern int g_Special_equipment;		//現在装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 extern bool g_Special_mastering[5];	//習得済みのスペシャル技[true:習得済  false:未習得](0:Explosion　1:Fracture_Ray　2:Immortality　3:リミットブレイク　4:ステロイド投与)
 extern int g_Power_num;				//パワー住民数

@@ -32,6 +32,7 @@ int g_Bal_equip_Level = 1;
 int g_Bal_equip_Lv_achieve = 1;
 int g_Pod_equip_Level = 1;
 int g_Pod_equip_Lv_achieve = 1;
+float g_Player_max_size = 10;
 int g_Power_num = 10000;		//デバッグ用に10000。後で0に戻す。
 int g_Defense_num = 10000;		//デバッグ用に10000。後で0に戻す。
 int g_Speed_num = 10000;		//デバッグ用に10000。後で0に戻す。

@@ -40,8 +40,8 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//3番にプレイヤー登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
-
+	//Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"p.png", 3, TEX_SIZE_512);
 	//4番に登録惑星
 	Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
@@ -102,6 +102,8 @@ void CSceneFight::InitScene()
 	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
 	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
+	Draw::LoadImage(L"Raid1.png", 26, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
@@ -114,7 +116,7 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
 
 	//自星オブジェクト作成
-	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, 0);	//オブジェクト作成
+	CObjPlanet* obj1 = new CObjPlanet(950, 350, g_Player_max_size, 0);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
 	//民発射ボタン
@@ -142,14 +144,15 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"戦闘中.wav", BACK_MUSIC);
+	//Audio::LoadAudio(1, L"勝利.wav", BACK_MUSIC);
+	//Audio::LoadAudio(2, L"敗北.wav", BACK_MUSIC);
 
 	//SE読み込み
-	//Audio::LoadAudio(3, L"", EFFECT);
-	//Audio::LoadAudio(4, L"", EFFECT);
-	//Audio::LoadAudio(5, L"", EFFECT);
+	//Audio::LoadAudio(3, L"発射ボタン音", EFFECT);
+	//Audio::LoadAudio(4, L"爆発音.wav", EFFECT);
+	//Audio::LoadAudio(5, L"スペシャル技発動音.wav", EFFECT);
+
 
 	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
 	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
