@@ -400,15 +400,6 @@ void CObjPlanet::Draw()
 	dst.m_right = m_px + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
 	dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
 
-	//if(m_get_siz == 0){
-	//	//dst.m_top   = m_py - m_siz_vec - m_size;//300
-	//	//dst.m_left  = m_px - m_siz_vec - m_size;//800
-	//	//dst.m_right = m_px + m_siz_vec + m_size;
-	//	//dst.m_bottom= m_py + m_siz_vec + m_size;
-	dst.m_top = m_py - MIN_SIZE - ((m_size / m_siz_max) * 60);
-	dst.m_left = m_px - MIN_SIZE - ((m_size / m_siz_max) * 60) + m_scale_down_move;
-	dst.m_right = m_px + MIN_SIZE + ((m_size / m_siz_max) * 60) + m_scale_down_move;
-	dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * 60);
 	
 	if (m_type != 0)//仮グラフィックの為、敵のみ切り取りサイズ変更
 	{
