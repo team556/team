@@ -42,8 +42,8 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//3番にプレイヤー登録
-	//Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
-	Draw::LoadImage(L"p.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 3, TEX_SIZE_512);
+
 	//4番に登録惑星
 	Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
@@ -104,14 +104,12 @@ void CSceneFight::InitScene()
 	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
 	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
-	//敵惑星1(1ステージ)を読み込み26番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test.jpg", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"レイド1 128x.png", 26, TEX_SIZE_512);
 
-	//敵惑星2(1ステージ)を読み込み27番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 27, TEX_SIZE_512);
+	Draw::LoadImage(L"水惑星.png", 27, TEX_SIZE_512);
 
-	//敵惑星3(1ステージ)を読み込み28番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 28, TEX_SIZE_512);
+	Draw::LoadImage(L"パンダ戦闘.png", 28, TEX_SIZE_512);
+
 
 	//敵惑星4(1ステージ)を読み込み29番に登録
 	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 29, TEX_SIZE_512);

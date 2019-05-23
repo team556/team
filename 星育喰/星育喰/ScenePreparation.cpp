@@ -36,19 +36,19 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
 	//敵惑星1(1ステージ)を読み込み1番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test.jpg", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"水惑星.png", 1, TEX_SIZE_512);
 
 	//敵惑星2(1ステージ)を読み込み2番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"レイド1 128x.png", 2, TEX_SIZE_512);
 
 	//敵惑星3(1ステージ)を読み込み3番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"パンダ顔.png", 3, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み4番に登録
 	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 4, TEX_SIZE_512);
 
 	//ボス惑星(1ステージ)を読み込み5番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"パンダ戦闘.png", 5, TEX_SIZE_512);
 
 	//敵惑星1(2ステージ)を読み込み6番に登録
 	Draw::LoadImage(L"Enemy_Planet_Test.jpg", 6, TEX_SIZE_512);
@@ -78,7 +78,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 14, TEX_SIZE_512);
 
 	//ボス惑星(3ステージ)を読み込み15番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"パンダ顔.png", 15, TEX_SIZE_512);
 
 	//戦闘画面移行演出(黒星)を読み込み50番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 50, TEX_SIZE_512);
