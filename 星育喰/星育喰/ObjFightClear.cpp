@@ -40,12 +40,16 @@ void CObjFightClear::Init()
 
 	m_cnt = 3 * 60;	//3秒カウント
 
-	m_destroy_count += 1;		//撃破数、加算
-	if (m_destroy_count == 4)
+	//m_destroy_count += 1;		//撃破数、加算
+	if (m_destroy_count == 4)	//1ステージクリアした場合
 	{
-		g_Stage_progress += 1;
-	}
+		g_Stage_progress += 1;	//ステージを進める
+		for (int i = 0; i < 4; i++)	
+			destroy_progress[i] = false;
+	}		//敵の撃破状態をすべて戻す
+
 	g_Remain_num += m_people;	//取得住民を加算
+
 	if (m_skill != 0)				//スキル取得している場合
 	{							//その番号を取得する
 		g_Special_mastering[m_skill] = true;

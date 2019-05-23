@@ -86,6 +86,7 @@ struct UserData
 //ゲーム内で使用されるグローバル変数・定数・列挙--
 //▼セーブ必要性有り
 extern int g_Stage_progress;		//現在のステージ進行度(1ステージ:1　2ステージ:2　3ステージ:3)
+extern bool destroy_progress[4];	//0~3の敵の撃破状態(false 生存,true 撃破)
 extern int m_destroy_count;			//各ステージでの敵撃破数
 extern int g_Bar_Level;				//兵舎レベル
 extern int g_Ins_Level;				//研究所レベル
