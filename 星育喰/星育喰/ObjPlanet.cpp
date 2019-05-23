@@ -100,6 +100,10 @@ void CObjPlanet::Init()
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
 	}
+	else if (m_type == 5) {
+		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 29;
+	}
 }
 
 //アクション
@@ -277,7 +281,7 @@ void CObjPlanet::Action()
 	}
 
 	//▼敵惑星攻撃パターン
-	if (m_type == 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
+	if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 	{
 		//▼敵行動パターン決め
 		if (m_time <= 0)

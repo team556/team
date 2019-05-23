@@ -91,16 +91,16 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 0;
+	m_destroy_count_tmp = 3;
 
 	//現在の撃破数をカウント
-	for (int i = 0; i < 4; i++)
-	{
-		if (destroy_progress[i] == true)
-		{
-			m_destroy_count++;
-		}
-	}
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	if (destroy_progress[i] == true)
+	//	{
+	//		m_destroy_count_tmp++;
+	//	}
+	//}
 
 	//▼現在のスペシャル技習得状況、装備状況に応じて
 	//スペシャル技アイコンのカラー明度を以下のように設定していく。
@@ -271,7 +271,7 @@ void CObjPreparation::Action()
 			m_warning_message_y[1] -= m_speed * 0.1;
 
 			//ボス惑星出現時、以下の処理も行う
-			if (m_destroy_count == 4)
+			if (m_destroy_count_tmp == 4)
 			{
 				m_Boss_vx[2] += m_speed * 0.91;
 			}
@@ -294,7 +294,7 @@ void CObjPreparation::Action()
 			//その為、このタイミングで既に撃破フラグをtrueにしておく。
 			//※挑戦するのがボス惑星の場合、撃破すると次のステージに行く為、
 			//このタイミングで全ての撃破フラグをfalseに戻しておく。
-			if (m_destroy_count == 4)
+			if (m_destroy_count_tmp == 4)
 			{
 				for (int i = 0; i < 4; i++)
 				{
@@ -483,7 +483,7 @@ void CObjPreparation::Action()
 		}
 
 		//ボス惑星[ボス惑星出現時のみ選択可能]
-		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4)
+		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count_tmp == 4)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(4);//敵惑星詳細説明表示関数を呼び出す
@@ -541,7 +541,7 @@ void CObjPreparation::Action()
 	//ボス惑星出現カウントが0になった時、以下の処理を実行
 	if (m_boss_emerge_staging_f == true)
 	{
-		if (m_destroy_count == 4)
+		if (m_destroy_count_tmp == 4)
 		{
 			//メッセージ内容を変更した為、
 			//警告メッセージを徐々に表示させる
@@ -565,7 +565,7 @@ void CObjPreparation::Action()
 			//また、移動速度を保存していたものに戻す
 			if (m_warning_message_alpha <= 0.0f)
 			{
-				m_destroy_count = 4;
+				m_destroy_count_tmp = 4;
 				m_speed = m_save_speed;
 			}
 			else if (m_warning_message_alpha > 0.0f)
@@ -663,7 +663,7 @@ void CObjPreparation::Action()
 		//ボス惑星出現カウントが0であれば、ボス惑星出現演出に移行する。
 		//そうでなければ、操作可能な状態にする。
 		//※ボス演出を既に見ている場合も操作可能な状態にする。
-		if (3 - m_destroy_count == 0)
+		if (3 - m_destroy_count_tmp == 0)
 		{
 			m_boss_emerge_staging_f = true;
 		}
@@ -679,7 +679,7 @@ void CObjPreparation::Action()
 		//画面上部へと警告メッセージを移動させる
 
 		//ボス惑星出現時の処理
-		if (m_destroy_count == 4)
+		if (m_destroy_count_tmp == 4)
 		{
 			m_warning_message_x[0] += 7.35f;
 		}
@@ -716,7 +716,7 @@ void CObjPreparation::Action()
 		m_Bvy += m_speed * 0.065;
 
 		//ボス惑星出現時、以下の処理も行う
-		if (m_destroy_count == 4)
+		if (m_destroy_count_tmp == 4)
 		{
 			m_Boss_vx[2] -= m_speed * 0.91;
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
@@ -779,7 +779,7 @@ void CObjPreparation::Draw()
 	//▼ボス惑星出現カウント
 	wchar_t Until_fight_boss_count[2][14];									//14文字分格納可能な文字配列を2つ宣言
 	//ボス惑星出現時
-	if (m_destroy_count == 4)
+	if (m_destroy_count_tmp == 4)
 	{
 		swprintf_s(Until_fight_boss_count[0], L"　　　強大な惑星 出現中!");	//その文字配列に文字データを入れる
 		swprintf_s(Until_fight_boss_count[1], L"");							//文字データをクリアする
@@ -788,7 +788,7 @@ void CObjPreparation::Draw()
 	else
 	{
 		swprintf_s(Until_fight_boss_count[0], L"強大な惑星 接近まで");			 //その文字配列に文字データを入れる
-		swprintf_s(Until_fight_boss_count[1], L"あと %d体", 3 - m_destroy_count);//その文字配列に文字データを入れる
+		swprintf_s(Until_fight_boss_count[1], L"あと %d体", 3 - m_destroy_count_tmp);//その文字配列に文字データを入れる
 	}
 
 
