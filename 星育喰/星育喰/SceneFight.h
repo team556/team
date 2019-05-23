@@ -9,10 +9,9 @@ using namespace GameL;
 class CSceneFight :public CScene
 {
 public:
-	CSceneFight(int e_n);
+	CSceneFight();
 	~CSceneFight();
 	void InitScene();  //ゲームタイトルの初期化メソッド
 	void Scene();      //ゲームタイトルの実行中メソッド
 private:
-	int m_ene_nam;		//敵のナンバー
 };

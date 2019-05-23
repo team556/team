@@ -27,6 +27,7 @@ int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
 int g_Special_equipment = 2;//デバッグ用に2にしている。後で0に戻すように。
 bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
+int m_destroy_count = 0;	//敵の撃破数
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -305,7 +306,7 @@ void CObjPreparation::Action()
 				destroy_progress[g_Challenge_enemy] = true;
 			}
 
-			Scene::SetScene(new CSceneFight(1));//戦闘画面へシーン移行
+			Scene::SetScene(new CSceneFight());//戦闘画面へシーン移行
 		}
 		else if (m_black_star_effect_size < 1400.0f)
 		{

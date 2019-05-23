@@ -15,10 +15,12 @@ using namespace GameL;
 //#include "SceneMain.h"
 #include "GameHead.h"
 
+
+
 //コンストラクタ
-CSceneFight::CSceneFight(int e_n)
+CSceneFight::CSceneFight()
 {
-	m_ene_nam = e_n;
+	
 }
 
 //デストラクタ
@@ -33,15 +35,15 @@ void CSceneFight::InitScene()
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
-	//外部グラフィックを読み込み0番に登録(512×512ピクセル)
+	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
 
 	//2番にミサイル登録
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//3番にプレイヤー登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
-
+	//Draw::LoadImage(L"プレイヤー惑星Lv1.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"p.png", 3, TEX_SIZE_512);
 	//4番に登録惑星
 	Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
@@ -102,19 +104,31 @@ void CSceneFight::InitScene()
 	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
 	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
+	//敵惑星1(1ステージ)を読み込み26番に登録
+	Draw::LoadImage(L"Enemy_Planet_Test.jpg", 26, TEX_SIZE_512);
+
+	//敵惑星2(1ステージ)を読み込み27番に登録
+	Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 27, TEX_SIZE_512);
+
+	//敵惑星3(1ステージ)を読み込み28番に登録
+	Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 28, TEX_SIZE_512);
+
+	//敵惑星4(1ステージ)を読み込み29番に登録
+	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 29, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
 	//戦闘画面オブジェクト作成
-	CObjFight* obj = new CObjFight(10, m_ene_nam);		//(戦闘時間, 敵ナンバー)
+	CObjFight* obj = new CObjFight(10);		//(戦闘時間)
 	Objs::InsertObj(obj, OBJ_FIGHT, 1);		//戦闘画面オブジェクト登録
 
 	//敵星オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, m_ene_nam);	//オブジェクト作成
+	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10);	//オブジェクト作成
 	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
 
 	//自星オブジェクト作成
-	CObjPlanet* obj1 = new CObjPlanet(950, 350, 10, 0);	//オブジェクト作成
+	CObjPlanet* obj1 = new CObjPlanet(950, 350, g_Player_max_size, -1);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
 	//民発射ボタン

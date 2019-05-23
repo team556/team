@@ -63,14 +63,11 @@ void CObjRocketButton::Action()
 			CObjPlanet* objp = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 			if (objp->GetType() == 0)
 			{
-				m_px = objp->GetX();
-				m_py = objp->GetY();
+				m_px = objp->GetX() + objp->GetScale_down_move();
+				//m_py = objp->GetY();
 				m_size = objp->GetSiz();
 			}
 			//▼ポッド作成X位置を設定
-			CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-			m_create_x = obj->GetCount() / 10 + 100;
-
 			g_Power_num;				//パワー住民数
 			g_Defense_num;			//ディフェンス住民数
 			g_Speed_num;				//スピード住民数
@@ -79,33 +76,33 @@ void CObjRocketButton::Action()
 			if (Button_num == 1 && g_Power_num != 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true,1);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true,1);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 			else if (Button_num == 2 && g_Defense_num != 0)
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 2);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 2);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 			else if (Button_num == 3 && g_Speed_num != 0)
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 3);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 3);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 4 && g_Balance_num != 0)
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 4);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 4);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 
 			else if (Button_num == 5)
 			{
-				CObjRocket* M = new CObjRocket(m_px - (m_size * 4), 225, true, 5);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_Rocket, 15);		//オブジェクト登録
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 5);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 
 			m_mou_f = true;

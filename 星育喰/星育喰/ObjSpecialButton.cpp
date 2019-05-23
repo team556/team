@@ -405,10 +405,12 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		//相手が無敵ではない、かつ相手のHPが0より上の時、
 		//約0.1秒毎に相手のHPを減少させる。
 		//※現状、計5ダメージ与える設定となっている。
-		if (m_count[Planet_id] >= 100 && m_count[Planet_id] % 5 == 0 && Planet[Opponent_id]->GetInvincible() == false && Planet[Opponent_id]->GetHp() > 0)
+		if (m_count[Planet_id] >= 100 && m_count[Planet_id] % 5 == 0 && Planet[Opponent_id]->GetInvincible() == false && Planet[Opponent_id]->GetSiz() > 0)
 		{
-			Planet[Opponent_id]->SetDamage();		//HP-1
-			Planet[Opponent_id]->SetScale_down();	//サイズ減少
+			Planet[Opponent_id]->SetDamage();//サイズ(HP)減少
+			Planet[Opponent_id]->SetScale_down_move(Opponent_id);//縮む分だけ移動
+
+			//size30以下になる時のif文、ここにも用意。
 		}
 	
 		m_count[Planet_id]++;//効果時間計測
@@ -562,13 +564,13 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		else if (m_count[Planet_id] > 60 * 10)
 		{
 			Planet[Planet_id]->SetInvincible(false);	//プレイヤー無敵フラグをOFF
-			m_Immortality_size[Planet_id] -= 1.0f;		//エフェクト画像サイズを変更し、惑星中心に徐々に移動させる
+			m_Immortality_size[Planet_id] -= 1.5f;		//エフェクト画像サイズを変更し、惑星中心に徐々に移動させる
 		}
 		//スペシャル技効果終了まで自分惑星の周囲にエフェクト画像を出し、
 		//無敵フラグをONにする
 		else
 		{
-			m_Immortality_size[Planet_id] = 100.0f;	//エフェクト画像サイズを変更し、自分惑星の周囲にエフェクト画像を出す
+			m_Immortality_size[Planet_id] = 150.0f;	//エフェクト画像サイズを変更し、自分惑星の周囲にエフェクト画像を出す
 			Planet[Planet_id]->SetInvincible(true);	//プレイヤー無敵フラグをON
 		}
 	}
@@ -699,8 +701,8 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		//topとbottomの値の差を変動させる事で、
 		//欲しい画像である"左右から徐々に消えていく演出"を行っている。
 		dst.m_top = Planet[m_Explosion_target[Planet_id]]->GetY() - m_Explosion_size[Planet_id] * 2 - m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
-		dst.m_left = Planet[m_Explosion_target[Planet_id]]->GetX() - m_Explosion_size[Planet_id];
-		dst.m_right = Planet[m_Explosion_target[Planet_id]]->GetX() + m_Explosion_size[Planet_id];
+		dst.m_left = Planet[m_Explosion_target[Planet_id]]->GetX() - m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
+		dst.m_right = Planet[m_Explosion_target[Planet_id]]->GetX() + m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
 		dst.m_bottom = Planet[m_Explosion_target[Planet_id]]->GetY() + m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
 		Draw::Draw(21, &src, &dst, d, m_Explosion_angle[Planet_id]);
 	}
@@ -720,11 +722,11 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		if (Planet_id == PLAYER)
 		{
 			dst.m_left = 0.0f;
-			dst.m_right = Planet[Planet_id]->GetX();
+			dst.m_right = Planet[Planet_id]->GetX() + Planet[Planet_id]->GetScale_down_move();
 		}
 		else //(Planet_id == ENEMY)
 		{
-			dst.m_left = Planet[Planet_id]->GetX();
+			dst.m_left = Planet[Planet_id]->GetX() + Planet[Planet_id]->GetScale_down_move();
 			dst.m_right = 1200.0f;
 		}
 
@@ -742,8 +744,8 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		src.m_bottom = 64.0f;
 
 		dst.m_top = Planet[Planet_id]->GetY() - m_Immortality_size[Planet_id];
-		dst.m_left = Planet[Planet_id]->GetX() - m_Immortality_size[Planet_id];
-		dst.m_right = Planet[Planet_id]->GetX() + m_Immortality_size[Planet_id];
+		dst.m_left = Planet[Planet_id]->GetX() - m_Immortality_size[Planet_id] + Planet[Planet_id]->GetScale_down_move();
+		dst.m_right = Planet[Planet_id]->GetX() + m_Immortality_size[Planet_id] + Planet[Planet_id]->GetScale_down_move();
 		dst.m_bottom = Planet[Planet_id]->GetY() + m_Immortality_size[Planet_id];
 		Draw::Draw(23, &src, &dst, special_effect[Planet_id], 0.0f);
 	}
@@ -758,10 +760,10 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		src.m_bottom = 64.0f;
 
 		//▽自分惑星の上に描画するように設定している
-		dst.m_top = Planet[Planet_id]->GetY() - 175.0f;
-		dst.m_left = Planet[Planet_id]->GetX() - 37.5f;
-		dst.m_right = Planet[Planet_id]->GetX() + 37.5f;
-		dst.m_bottom = Planet[Planet_id]->GetY() - 100.0f;
+		dst.m_top = Planet[Planet_id]->GetY() - 190.0f;
+		dst.m_left = Planet[Planet_id]->GetX() - 37.5f + Planet[Planet_id]->GetScale_down_move();
+		dst.m_right = Planet[Planet_id]->GetX() + 37.5f + Planet[Planet_id]->GetScale_down_move();
+		dst.m_bottom = Planet[Planet_id]->GetY() - 115.0f;
 		Draw::Draw(24, &src, &dst, special_effect[Planet_id], 0.0f);
 	}
 
@@ -775,14 +777,14 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		src.m_bottom = 64.0f;
 
 		//▽自分惑星の上に描画するように設定している
-		dst.m_top = Planet[Planet_id]->GetY() - 175.0f;
-		dst.m_left = Planet[Planet_id]->GetX() - 60.0f;
-		dst.m_right = Planet[Planet_id]->GetX() + 15.0f;
-		dst.m_bottom = Planet[Planet_id]->GetY() - 100.0f;
+		dst.m_top = Planet[Planet_id]->GetY() - 190.0f;
+		dst.m_left = Planet[Planet_id]->GetX() - 60.0f + Planet[Planet_id]->GetScale_down_move();
+		dst.m_right = Planet[Planet_id]->GetX() + 15.0f + Planet[Planet_id]->GetScale_down_move();
+		dst.m_bottom = Planet[Planet_id]->GetY() - 115.0f;
 		Draw::Draw(25, &src, &dst, d, 0.0f);
 
 		//▼強化状態のポッド数表示
 		swprintf_s(power_up_pod_count[Planet_id], L"%d", (5 - m_count[Planet_id]));
-		Font::StrDraw(power_up_pod_count[Planet_id], Planet[Planet_id]->GetX() + 15.0f, Planet[Planet_id]->GetY() - 175.0f, 75.0f, d);
+		Font::StrDraw(power_up_pod_count[Planet_id], Planet[Planet_id]->GetX() + 15.0f + Planet[Planet_id]->GetScale_down_move(), Planet[Planet_id]->GetY() - 190.0f, 75.0f, d);
 	}
 }
