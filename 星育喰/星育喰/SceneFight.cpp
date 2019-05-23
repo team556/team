@@ -15,10 +15,12 @@ using namespace GameL;
 //#include "SceneMain.h"
 #include "GameHead.h"
 
+
+
 //コンストラクタ
-CSceneFight::CSceneFight(int e_n)
+CSceneFight::CSceneFight()
 {
-	m_ene_nam = e_n;
+	
 }
 
 //デストラクタ
@@ -33,7 +35,7 @@ void CSceneFight::InitScene()
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
-	//外部グラフィックを読み込み0番に登録(512×512ピクセル)
+	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
 
 	//2番にミサイル登録
@@ -108,19 +110,23 @@ void CSceneFight::InitScene()
 
 	Draw::LoadImage(L"パンダ戦闘.png", 28, TEX_SIZE_512);
 
+
+	//敵惑星4(1ステージ)を読み込み29番に登録
+	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 29, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
 	//戦闘画面オブジェクト作成
-	CObjFight* obj = new CObjFight(10, m_ene_nam);		//(戦闘時間, 敵ナンバー)
+	CObjFight* obj = new CObjFight(10);		//(戦闘時間)
 	Objs::InsertObj(obj, OBJ_FIGHT, 1);		//戦闘画面オブジェクト登録
 
 	//敵星オブジェクト作成
-	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10, m_ene_nam);	//オブジェクト作成
+	CObjPlanet* obj0 = new CObjPlanet(250, 350, 10);	//オブジェクト作成
 	Objs::InsertObj(obj0, OBJ_ENEMY,  5);					//オブジェクト登録
 
 	//自星オブジェクト作成
-	CObjPlanet* obj1 = new CObjPlanet(950, 350, g_Player_max_size, 0);	//オブジェクト作成
+	CObjPlanet* obj1 = new CObjPlanet(950, 350, g_Player_max_size, -1);	//オブジェクト作成
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
 	//民発射ボタン
@@ -148,9 +154,21 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"戦闘中.wav", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"勝利.wav", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"敗北.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"Aggression.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"Cyborg.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"Inorganic.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"華麗なる悪意.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
+
+	//勝利
+	//Audio::LoadAudio(1, L"Sunset.wav", BACK_MUSIC);
+	//Audio::LoadAudio(1, L"オアシス.wav", BACK_MUSIC);
+	//Audio::LoadAudio(1, L"春爛漫.wav", BACK_MUSIC);
+
+	//敗北
+	//Audio::LoadAudio(2, L"Tears.wav", BACK_MUSIC);
+	//Audio::LoadAudio(2, L"暗がりの中で.wav", BACK_MUSIC);
+	//Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
 
 	//SE読み込み
 	//Audio::LoadAudio(3, L"発射ボタン音", EFFECT);

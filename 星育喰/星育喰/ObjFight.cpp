@@ -17,11 +17,12 @@ bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
 float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
+
+
 //c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
-CObjFight::CObjFight(int c, int e_n)
+CObjFight::CObjFight(int c)
 {
 	m_cnt = c * 60;
-	m_ene_nam = e_n;
 }
 
 //イニシャライズ
@@ -47,6 +48,8 @@ void CObjFight::Init()
 
 	m_start_count = 60 * 3;	//3秒経過後、戦闘開始
 	m_start_count_f = false;
+
+	m_end_f = false;
 
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
@@ -138,9 +141,24 @@ void CObjFight::Action()
 	if (m_end_f == true)
 	{
 		m_end_f = false;
-		if (m_ene_nam == 1)
+		if (g_Challenge_enemy == 0)
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
 			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);	
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		if (g_Challenge_enemy == 1)
+		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
+			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		if (g_Challenge_enemy == 2)
+		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
+			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		if (g_Challenge_enemy == 3)
+		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
+			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}

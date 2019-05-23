@@ -91,21 +91,7 @@ void CObjRocket::Init()
 			}
 		}
 	}
-	//else {
-	//	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
-	//	srand(time(NULL));
-	//	m_get_line = rand() % 3 + 1;
-	//	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
-	//	else if (m_get_line == 2) { m_y = 420; }
-
-	//	m_get_cnt = obj->GetCount();		//カウントを取得
-	//	m_mov_spd = 1.0f / pla->GetX();
-
-	//	srand(time(NULL));
-	//	//敵のポッドの番号をランダムにする処理
-	//	Enemypod = rand() % 5 + 1;	
-	//}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
@@ -603,7 +589,7 @@ void CObjRocket::Draw()
 		}
 	}
 
-	//エフェクト
+	//爆発エフェクト
 	//左斜め上
 	if (m_bom== 0) 
 	{

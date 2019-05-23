@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjPlanet :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjPlanet(float x, float y, float size, int type/*, float siz = 0*/);//座標+サイズ(HP)+タイプ
+	CObjPlanet(float x, float y, float size, int type = g_Challenge_enemy);//座標+サイズ(HP)+敵ナンバー
 	~CObjPlanet() {};
 	void Init();	//イニシャライズ
 	void Action();  //アクション
@@ -17,8 +17,9 @@ public:
 
 	float GetX() { return m_px; }
 	float GetY() { return m_py; }
-	//float GetHp() { return m_hp; }	//HP取得関数
-	float GetSiz() { return m_size; }
+	//float GetHp() { return m_hp; }	
+	float GetSiz() { return m_size; }	//サイズ(HP)取得関数
+	float GetScale_down_move() { return m_scale_down_move; }//サイズ縮小分のX座標移動量を返す
 	int  GetType() { return m_type; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
 	void SetDamage() { m_size -= 1; }//呼び出すとダメージ処理を行う[スペシャル技:Explosion用]
@@ -38,6 +39,7 @@ private:
 	float m_py;			//星座標Y
 	float m_size;		//星サイズ(現在HP)
 	float m_siz_max;	//サイズマックス(最大HP)
+	float m_siz_change_range;	//星サイズの変更幅(最小サイズ＋この変数の値が最大サイズとなる)[例:最小サイズ:60,この変数:60 → 60～120のサイズで変動する惑星となる]
 	//float m_siz_vec;	//サイズ変更ベクトル
 	//float m_siz_spd;	//サイズ変更スピード
 	float m_get_siz;	//ゲットサイズ

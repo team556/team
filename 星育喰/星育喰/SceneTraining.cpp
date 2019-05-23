@@ -229,7 +229,9 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"リトル・ハピネス.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"洞窟の祠.wav", BACK_MUSIC);
 
 	//SE読み込み
 	//Audio::LoadAudio(1, L"選択ボタン音", EFFECT);
