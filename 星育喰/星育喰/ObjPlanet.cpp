@@ -36,6 +36,7 @@ void CObjPlanet::Init()
 	//m_size = 50.0f;//サイズ
 	//m_siz_max= 50.0f;
 	//m_siz_vec=  0.0f;
+	m_siz_change_range = 60.0f;
 	m_scale_down_move = 0.0f;
 
 	m_cnt = 0;		//カウント
@@ -206,7 +207,10 @@ void CObjPlanet::Action()
 	if (m_eat_f == true) {	//食べるフラグ★処理
 		m_ani_time++;		//ani_time 加算
 		if ((m_ani_frame == 3) && (m_ani_time == 1)) {//口閉じた瞬間
-			m_size = m_size*1.5f;					//サイズ変更(1.5倍)
+			//▼演出用サイズ変更処理
+			m_size = m_siz_max;//m_size(HP)を満タンに設定
+			m_siz_change_range *= 1.5f;//その後、1.5倍化する
+			
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
@@ -222,16 +226,17 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame == 2)		//喰うフレームの移動
 	{
+		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+
 		if (m_type == 0)
 		{
-			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-			if (m_px > ene->GetX())		//敵のX座標より自惑星が大きくなると移動を止める
+			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
 				m_px -= 4.0f;
 		}
 		else
 		{
-			CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-			if (m_px < pla->GetX())		//自分のX座標より敵惑星が小さくなると移動を止める
+			if (m_px < pla->GetX() + pla->GetScale_down_move() - ene->GetScale_down_move())		//自分のX座標より敵惑星が小さくなると移動を止める
 				m_px += 4.0f;
 		}
 	}
@@ -239,10 +244,10 @@ void CObjPlanet::Action()
 	//-------------------------------------------------------------
 
 	
-	hit->SetPos(m_px + m_scale_down_move - MIN_SIZE - ((m_size / m_siz_max) * 60),	//HitBox更新
-				m_py - MIN_SIZE - ((m_size / m_siz_max) * 60),
-				(MIN_SIZE + ((m_size / m_siz_max) * 60)) * 2,
-				(MIN_SIZE + ((m_size / m_siz_max) * 60)) * 2);
+	hit->SetPos(m_px + m_scale_down_move - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range),	//HitBox更新
+				m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range),
+				(MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range)) * 2,
+				(MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range)) * 2);
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
@@ -252,7 +257,7 @@ void CObjPlanet::Action()
 		if (m_invincible_f == false)
 		{
 			m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
-			m_scale_down_move = -((1 - (m_size / m_siz_max)) * 60);	//縮む分だけ左に移動
+			m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
@@ -262,7 +267,7 @@ void CObjPlanet::Action()
 		if (m_invincible_f == false)
 		{
 			m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
-			m_scale_down_move = ((1 - (m_size / m_siz_max)) * 60);//縮む分だけ右に移動
+			m_scale_down_move = ((1 - (m_size / m_siz_max)) * m_siz_change_range);//縮む分だけ右に移動
 		}
 	}
 
@@ -316,31 +321,31 @@ void CObjPlanet::Action()
 		//▼ミサイルポッド作成X位置を設定
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (160.0f + ((m_size / m_siz_max) * 60.0f)), 225, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (160.0f + ((m_size / m_siz_max) * 60.0f)), 225, false,2);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (160.0f + ((m_size / m_siz_max) * 60.0f)), 225, false,3);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
-			CObjRocket* M = new CObjRocket(m_px + (160.0f + ((m_size / m_siz_max) * 60.0f)), 225, false,4);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
-			CObjRocket* M = new CObjRocket(m_px + (160.0f + ((m_size / m_siz_max) * 60.0f)), 225, false, 5);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			m_time = 100 * m_enemy_recast_buff;
 		}
@@ -390,6 +395,16 @@ void CObjPlanet::Draw()
 	src.m_right = m_ani[m_ani_frame] * 128.0f + 128.0f;
 	src.m_bottom= 128.0f;
 	//表示位置
+	dst.m_top = m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range);
+	dst.m_left = m_px - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+	dst.m_right = m_px + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+	dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
+
+	//if(m_get_siz == 0){
+	//	//dst.m_top   = m_py - m_siz_vec - m_size;//300
+	//	//dst.m_left  = m_px - m_siz_vec - m_size;//800
+	//	//dst.m_right = m_px + m_siz_vec + m_size;
+	//	//dst.m_bottom= m_py + m_siz_vec + m_size;
 	dst.m_top = m_py - MIN_SIZE - ((m_size / m_siz_max) * 60);
 	dst.m_left = m_px - MIN_SIZE - ((m_size / m_siz_max) * 60) + m_scale_down_move;
 	dst.m_right = m_px + MIN_SIZE + ((m_size / m_siz_max) * 60) + m_scale_down_move;
