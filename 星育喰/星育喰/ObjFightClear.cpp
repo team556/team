@@ -199,7 +199,7 @@ void CObjFightClear::Draw()
 	}
 	else
 	{
-		if(m_page_nam == 0)
+		if(m_page_nam == 1)
 		{
 			dst.m_top    =  50.0f;
 			dst.m_left   = 200.0f;
@@ -213,7 +213,7 @@ void CObjFightClear::Draw()
 			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
 			//Font::StrDraw(L"この銀河のトップに君臨した", 250, 180, 50, c);
 		}
-		else if(m_page_nam == 1)
+		else if(m_page_nam == 2)
 		{
 			dst.m_top    =  50.0f;
 			dst.m_left   = 200.0f;
@@ -226,6 +226,10 @@ void CObjFightClear::Draw()
 			float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
 			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
 			Font::StrDraw(L"この銀河のトップに君臨した", 250, 180, 50, c);
+		}
+		else if(m_page_nam == 3)
+		{
+			Scene::SetScene(new CSceneGameClear());	//シーン移行
 		}
 
 		float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
