@@ -5,7 +5,7 @@
 #include "GameL\SceneManager.h"
 
 #include "GameHead.h"
-#include "ObjTutorial.h"
+#include "ObjGameClear.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -19,13 +19,13 @@ using namespace GameL;
 //}
 
 //イニシャライズ
-void CObjTutorial::Init()
+void CObjGameClear::Init()
 {
 	m_f = false;
 }
 
 //アクション
-void CObjTutorial::Action()
+void CObjGameClear::Action()
 {
 
 
@@ -37,18 +37,11 @@ void CObjTutorial::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	if (700 < m_mou_x && m_mou_x < 900 && 300 < m_mou_y && m_mou_y < 500)
-	{
-		
-	}
-	else
-	{
 
-	}
 }
 
 //ドロー
-void CObjTutorial::Draw()
+void CObjGameClear::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	Font::StrDraw(L"", 230, 250, 32, c);

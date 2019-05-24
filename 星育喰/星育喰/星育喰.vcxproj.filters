@@ -59,6 +59,9 @@
     <Filter Include="ソース ファイル\チュートリアル">
       <UniqueIdentifier>{5966d595-90db-4cf7-8ba7-9609949aab97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\シーン\クリア">
+      <UniqueIdentifier>{92f14c31-8262-4594-9f42-40586fe09e92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -187,8 +190,14 @@
     <ClCompile Include="Pause.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjTutorial.cpp">
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\シーン\クリア</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHelp.cpp">
       <Filter>ソース ファイル\チュートリアル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソース ファイル\シーン\クリア</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -324,8 +333,14 @@
     <ClInclude Include="Pause.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjTutorial.h">
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\シーン\クリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHelp.h">
       <Filter>ソース ファイル\チュートリアル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\シーン\クリア</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

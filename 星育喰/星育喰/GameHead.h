@@ -36,7 +36,8 @@ enum OBJ_NAME
 	OBJ_PODS,
 	OBJ_PODD,
 	OBJ_PODB,
-	OBJ_TUTORIAL,
+	OBJ_HELP,
+	OBJ_GAME_CLEAR,
 
 
 };
@@ -146,7 +147,8 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 #include "ObjFightClear.h"
 #include "ObjFightOver.h"
 #include "Pause.h"
-#include "ObjTutorial.h"
+#include "ObjHelp.h"
+#include "ObjGameClear.h"
 
 //------------------------------------------------
 
@@ -157,6 +159,7 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 #include "SceneTraining.h"
 #include "ScenePreparation.h"
 #include "SceneFight.h"
+#include "SceneGameClear.h"
 
 //-----------------------------------------------
 
@@ -165,6 +168,6 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 //#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
-//#define SET_GAME_START CSceneTest
-#define SET_GAME_START CScenePreparation
+#define SET_GAME_START CSceneTest
+//#define SET_GAME_START CScenePreparation
 //----------------------------------------------

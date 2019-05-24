@@ -117,6 +117,7 @@
     <ClCompile Include="ObjBefore_Fight_Effect.cpp" />
     <ClCompile Include="ObjFightClear.cpp" />
     <ClCompile Include="ObjFightOver.cpp" />
+    <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjInstitute.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -146,11 +147,12 @@
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
-    <ClCompile Include="ObjTutorial.cpp" />
+    <ClCompile Include="ObjHelp.cpp" />
     <ClCompile Include="Pause.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="SceneFight.cpp" />
+    <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="ScenePreparation.cpp" />
     <ClCompile Include="SceneTest.cpp" />
@@ -166,6 +168,7 @@
     <ClInclude Include="ObjBefore_Fight_Effect.h" />
     <ClInclude Include="ObjFightClear.h" />
     <ClInclude Include="ObjFightOver.h" />
+    <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjInstitute.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -199,11 +202,12 @@
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="ObjTraining.h" />
-    <ClInclude Include="ObjTutorial.h" />
+    <ClInclude Include="ObjHelp.h" />
     <ClInclude Include="Pause.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="SceneFight.h" />
+    <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneHome.h" />
     <ClInclude Include="ScenePreparation.h" />
     <ClInclude Include="SceneTest.h" />

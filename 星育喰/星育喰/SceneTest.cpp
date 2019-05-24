@@ -35,8 +35,8 @@ void CSceneTest::InitScene()
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"w.png", 1, TEX_SIZE_512);
 
-	//10番に登録
-	Draw::LoadImage(L"w.png", 10, TEX_SIZE_512);
+	////10番に登録
+	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
@@ -52,6 +52,10 @@ void CSceneTest::InitScene()
 	////オブジェクト作成
 	//CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
 	//Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
+
+	//オブジェクト作成
+	CObjHelp* obj = new CObjHelp();	//タイトルオブジェクト作成
+	Objs::InsertObj(obj, OBJ_HELP, 10);		//タイトルオブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
