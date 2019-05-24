@@ -108,11 +108,10 @@ void CSceneFight::InitScene()
 
 	Draw::LoadImage(L"水惑星.png", 27, TEX_SIZE_512);
 
-	Draw::LoadImage(L"パンダ戦闘.png", 28, TEX_SIZE_512);
-
+	Draw::LoadImage(L"悪☆.png", 28, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み29番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 29, TEX_SIZE_512);
+	Draw::LoadImage(L"ぼやけた星.png", 29, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");

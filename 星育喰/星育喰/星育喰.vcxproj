@@ -159,9 +159,7 @@
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="SceneTraining.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
-    <ClCompile Include="ObjWarehouse.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="ObjWarehouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjBarracks.h" />
@@ -214,9 +212,7 @@
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SceneTraining.h" />
     <ClInclude Include="UtilityModule.h" />
-    <ClInclude Include="ObjWarehouse.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="ObjWarehouse.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl" />
