@@ -25,7 +25,7 @@ int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
 int g_Special_equipment = 2;//デバッグ用に2にしている。後で0に戻すように。
 bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
-bool g_destroy_progress[4] = { true,true,true,false };//敵の撃破状態
+bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 
 //イニシャライズ
 void CObjPreparation::Init()
