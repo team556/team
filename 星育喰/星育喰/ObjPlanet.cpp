@@ -147,7 +147,7 @@ void CObjPlanet::Action()
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
-				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+				Objs::InsertObj(over, OBJ_FIGHT_OVER, 15);	//ゲームオーバー画面
 				m_failed == true;
 				//if (m_failed == true)
 				//{
