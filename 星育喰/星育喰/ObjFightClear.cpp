@@ -40,12 +40,15 @@ void CObjFightClear::Init()
 
 	m_cnt = 3 * 60;	//3秒カウント
 
-	//m_destroy_count += 1;		//撃破数、加算
-	if (m_destroy_count == 4)	//1ステージクリアした場合
+	if (g_Stage_progress == 1 &&		//1ステージクリアした場合
+		g_destroy_progress[0] == true &&	
+		g_destroy_progress[1] == true &&
+		g_destroy_progress[2] == true &&
+		g_destroy_progress[3] == true)	
 	{
 		g_Stage_progress += 1;	//ステージを進める
 		for (int i = 0; i < 4; i++)	
-			destroy_progress[i] = false;
+			g_destroy_progress[i] = false;
 	}		//敵の撃破状態をすべて戻す
 
 	g_Remain_num += m_people;	//取得住民を加算

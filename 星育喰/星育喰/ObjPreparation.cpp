@@ -20,16 +20,12 @@ using namespace GameL;
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 #define INI_PLANET (128.0f)
 
-
-
 //グローバル変数の定義
 int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
 int g_Special_equipment = 2;//デバッグ用に2にしている。後で0に戻すように。
 bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
-int m_destroy_count = 0;	//敵の撃破数
-
-bool destroy_progress[4] = { false,false,false,false };//敵の撃破状態
+bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -69,7 +65,7 @@ void CObjPreparation::Init()
 		m_Boss_vy[i] = 0.0f;
 	}
 
-	m_Boss_clip_pos = -1.0f;
+	m_Boss_clip_pos_x = -1.0f;//0.0fだと意図してないタイミングで条件文に入る為、初期値を-1.0fにする事で現状対応。
 	m_Boss_clip_pos_y = 0.0f;
 
 	m_speed = INI_SPEED;
@@ -94,16 +90,16 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count_tmp = 3;
+	m_destroy_count = 0;
 
 	//現在の撃破数をカウント
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	if (destroy_progress[i] == true)
-	//	{
-	//		m_destroy_count_tmp++;
-	//	}
-	//}
+	for (int i = 0; i < 4; i++)
+	{
+		if (g_destroy_progress[i] == true)
+		{
+			m_destroy_count++;
+		}
+	}
 
 	//▼現在のスペシャル技習得状況、装備状況に応じて
 	//スペシャル技アイコンのカラー明度を以下のように設定していく。
@@ -274,7 +270,7 @@ void CObjPreparation::Action()
 			m_warning_message_y[1] -= m_speed * 0.1;
 
 			//ボス惑星出現時、以下の処理も行う
-			if (m_destroy_count_tmp == 4)
+			if (m_destroy_count == 4)
 			{
 				m_Boss_vx[2] += m_speed * 0.91;
 			}
@@ -295,18 +291,12 @@ void CObjPreparation::Action()
 
 			//再度この戦闘準備画面に戻ってくる＝現在挑戦する敵惑星を撃破したという事。
 			//その為、このタイミングで既に撃破フラグをtrueにしておく。
-			//※挑戦するのがボス惑星の場合、撃破すると次のステージに行く為、
-			//このタイミングで全ての撃破フラグをfalseに戻しておく。
-			if (m_destroy_count_tmp == 4)
+			//※ただし挑戦するのがボス惑星の場合、以下の処理を飛ばす。
+			//ボス惑星撃破後、敵の撃破状態を元に戻したり、ステージを進める処理は
+			//ObjFightClearで行っている。
+			if (m_destroy_count != 4)
 			{
-				for (int i = 0; i < 4; i++)
-				{
-					destroy_progress[i] = false;
-				}
-			}
-			else
-			{
-				destroy_progress[g_Challenge_enemy] = true;
+				g_destroy_progress[g_Challenge_enemy] = true;
 			}
 
 			Scene::SetScene(new CSceneFight());//戦闘画面へシーン移行
@@ -458,35 +448,35 @@ void CObjPreparation::Action()
 
 
 		//敵惑星1(左から1番目の敵惑星)[未撃破時のみ選択可能]
-		if (147 < m_mou_x && m_mou_x < 346 && 187 < m_mou_y && m_mou_y < 383 && destroy_progress[0] == false)
+		if (147 < m_mou_x && m_mou_x < 346 && 187 < m_mou_y && m_mou_y < 383 && g_destroy_progress[0] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(0);//敵惑星詳細説明表示関数を呼び出す
 		}
 
 		//敵惑星2(左から2番目の敵惑星)[未撃破時のみ選択可能]
-		else if (446 < m_mou_x && m_mou_x < 544 && 158 < m_mou_y && m_mou_y < 255 && destroy_progress[1] == false)
+		else if (446 < m_mou_x && m_mou_x < 544 && 158 < m_mou_y && m_mou_y < 255 && g_destroy_progress[1] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(1);//敵惑星詳細説明表示関数を呼び出す
 		}
 
 		//敵惑星3(左から3番目の敵惑星)[未撃破時のみ選択可能]
-		else if (744 < m_mou_x && m_mou_x < 941 && 137 < m_mou_y && m_mou_y < 334 && destroy_progress[2] == false)
+		else if (744 < m_mou_x && m_mou_x < 941 && 137 < m_mou_y && m_mou_y < 334 && g_destroy_progress[2] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(2);//敵惑星詳細説明表示関数を呼び出す
 		}
 
 		//敵惑星4(左から4番目の敵惑星)[未撃破時のみ選択可能]
-		else if (892 < m_mou_x && m_mou_x < 1139 && 433 < m_mou_y && m_mou_y < 679 && destroy_progress[3] == false)
+		else if (892 < m_mou_x && m_mou_x < 1139 && 433 < m_mou_y && m_mou_y < 679 && g_destroy_progress[3] == false)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(3);//敵惑星詳細説明表示関数を呼び出す
 		}
 
 		//ボス惑星[ボス惑星出現時のみ選択可能]
-		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count_tmp == 4)
+		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(4);//敵惑星詳細説明表示関数を呼び出す
@@ -544,7 +534,7 @@ void CObjPreparation::Action()
 	//ボス惑星出現カウントが0になった時、以下の処理を実行
 	if (m_boss_emerge_staging_f == true)
 	{
-		if (m_destroy_count_tmp == 4)
+		if (m_destroy_count == 4)
 		{
 			//メッセージ内容を変更した為、
 			//警告メッセージを徐々に表示させる
@@ -568,7 +558,7 @@ void CObjPreparation::Action()
 			//また、移動速度を保存していたものに戻す
 			if (m_warning_message_alpha <= 0.0f)
 			{
-				m_destroy_count_tmp = 4;
+				m_destroy_count = 4;
 				m_speed = m_save_speed;
 			}
 			else if (m_warning_message_alpha > 0.0f)
@@ -579,22 +569,22 @@ void CObjPreparation::Action()
 			//ボス惑星描画元切り取り位置を徐々に変更し、最終的に口を閉じた状態にする
 			if (m_warning_message_alpha <= 0.0f)
 			{
-				if (g_Stage_progress == 1)
+				if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
 				{
-					m_Boss_clip_pos_y = 128.0f;
+					m_Boss_clip_pos_y = 128.0f;//正面を向かせる
 				}
 			}
 			else if (m_warning_message_alpha <= 0.4f)
 			{
-				m_Boss_clip_pos = 256.0f;
+				m_Boss_clip_pos_x = 256.0f;
 			}
 			else if (m_warning_message_alpha <= 0.8f)
 			{
-				m_Boss_clip_pos = 128.0f;
+				m_Boss_clip_pos_x = 128.0f;
 			}
 			
 		}
-		else if (m_Boss_clip_pos == 0.0f)
+		else if (m_Boss_clip_pos_x == 0.0f)
 		{
 			//ボス惑星の準備完了後、
 			//ボス惑星が画面外(右下)から画面中央へと敵惑星の上を通りながら通過。
@@ -604,7 +594,7 @@ void CObjPreparation::Action()
 			//隠したタイミングで撃破フラグを立てる
 			if (m_Boss_vy[2] <= 270.0f)
 			{
-				destroy_progress[3] = true;
+				g_destroy_progress[3] = true;
 			}
 
 			//ボス惑星3移動
@@ -621,7 +611,7 @@ void CObjPreparation::Action()
 			m_Boss_vy[2] = 650.0f;
 
 			//ボス惑星描画元切り取り位置を適切な位置に設定し、口を開けた状態にする
-			m_Boss_clip_pos = 0.0f;
+			m_Boss_clip_pos_x = 0.0f;
 
 			//現在の移動速度を別変数に保存した後、移動速度を初期化する
 			m_save_speed = m_speed;
@@ -637,11 +627,11 @@ void CObjPreparation::Action()
 			//隠したタイミングで撃破フラグを立てる
 			if (m_Boss_vx[1] >= 1010.0f)
 			{
-				destroy_progress[2] = true;
+				g_destroy_progress[2] = true;
 			}
 			else if (m_Boss_vx[1] >= 380.0f)
 			{
-				destroy_progress[0] = true;
+				g_destroy_progress[0] = true;
 			}
 
 			//ボス惑星2移動
@@ -657,7 +647,7 @@ void CObjPreparation::Action()
 			//隠したタイミングで撃破フラグを立てる
 			if (m_Boss_vx[0] <= -820.0f)
 			{
-				destroy_progress[1] = true;
+				g_destroy_progress[1] = true;
 			}
 
 			//ボス惑星1移動
@@ -674,7 +664,7 @@ void CObjPreparation::Action()
 		//ボス惑星出現カウントが0であれば、ボス惑星出現演出に移行する。
 		//そうでなければ、操作可能な状態にする。
 		//※ボス演出を既に見ている場合も操作可能な状態にする。
-		if (3 - m_destroy_count_tmp == 0)
+		if (3 - m_destroy_count == 0)
 		{
 			m_boss_emerge_staging_f = true;
 		}
@@ -690,7 +680,7 @@ void CObjPreparation::Action()
 		//画面上部へと警告メッセージを移動させる
 
 		//ボス惑星出現時の処理
-		if (m_destroy_count_tmp == 4)
+		if (m_destroy_count == 4)
 		{
 			m_warning_message_x[0] += 7.35f;
 		}
@@ -727,7 +717,7 @@ void CObjPreparation::Action()
 		m_Bvy += m_speed * 0.065;
 
 		//ボス惑星出現時、以下の処理も行う
-		if (m_destroy_count_tmp == 4)
+		if (m_destroy_count == 4)
 		{
 			m_Boss_vx[2] -= m_speed * 0.91;
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
@@ -790,7 +780,7 @@ void CObjPreparation::Draw()
 	//▼ボス惑星出現カウント
 	wchar_t Until_fight_boss_count[2][14];									//14文字分格納可能な文字配列を2つ宣言
 	//ボス惑星出現時
-	if (m_destroy_count_tmp == 4)
+	if (m_destroy_count == 4)
 	{
 		swprintf_s(Until_fight_boss_count[0], L"　　　強大な惑星 出現中!");	//その文字配列に文字データを入れる
 		swprintf_s(Until_fight_boss_count[1], L"");							//文字データをクリアする
@@ -799,7 +789,7 @@ void CObjPreparation::Draw()
 	else
 	{
 		swprintf_s(Until_fight_boss_count[0], L"強大な惑星 接近まで");			 //その文字配列に文字データを入れる
-		swprintf_s(Until_fight_boss_count[1], L"あと %d体", 3 - m_destroy_count_tmp);//その文字配列に文字データを入れる
+		swprintf_s(Until_fight_boss_count[1], L"あと %d体", 3 - m_destroy_count);//その文字配列に文字データを入れる
 	}
 
 
@@ -832,7 +822,7 @@ void CObjPreparation::Draw()
 	Draw::Draw(56, &src, &dst, back, 0.0f);
 
 	//未撃破時のみ表示
-	if (destroy_progress[1] == false)
+	if (g_destroy_progress[1] == false)
 	{
 		//▼敵惑星2(左から2番目の敵惑星)表示
 		src.m_top = 0.0f;
@@ -860,7 +850,7 @@ void CObjPreparation::Draw()
 	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
 	//未撃破時のみ表示
-	if (destroy_progress[0] == false)
+	if (g_destroy_progress[0] == false)
 	{
 		//▼敵惑星1(左から1番目の敵惑星)表示
 		src.m_top = 0.0f;
@@ -876,7 +866,7 @@ void CObjPreparation::Draw()
 	}
 
 	//未撃破時のみ表示
-	if (destroy_progress[2] == false)
+	if (g_destroy_progress[2] == false)
 	{
 		//▼敵惑星3(左から3番目の敵惑星)表示
 		src.m_top = 0.0f;
@@ -904,7 +894,7 @@ void CObjPreparation::Draw()
 	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
 	//未撃破時のみ表示
-	if (destroy_progress[3] == false)
+	if (g_destroy_progress[3] == false)
 	{
 		//▼敵惑星4(左から4番目の敵惑星)表示
 		src.m_top = 0.0f;
@@ -921,8 +911,8 @@ void CObjPreparation::Draw()
 
 	//▼ボス惑星3表示
 	src.m_top = m_Boss_clip_pos_y;
-	src.m_left = 0.0f - m_Boss_clip_pos;
-	src.m_right = -(INI_PLANET) - m_Boss_clip_pos;
+	src.m_left = 0.0f - m_Boss_clip_pos_x;
+	src.m_right = -(INI_PLANET) - m_Boss_clip_pos_x;
 	src.m_bottom = INI_PLANET + m_Boss_clip_pos_y;
 
 	dst.m_top = 100.0f + m_Boss_vy[2];

@@ -138,6 +138,9 @@ void CObjFight::Action()
 	}
 	else {};
 
+	//▼クリア処理
+	//エネミー毎に取得出来る資源等は違うため、
+	//以下でそれぞれ引数を設定し、ObjFightClearを作成する。
 	if (m_end_f == true)
 	{
 		m_end_f = false;

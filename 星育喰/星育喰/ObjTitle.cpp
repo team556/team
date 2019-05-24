@@ -13,8 +13,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-bool g_key_fg;
-
 //マクロ
 //▼開始時間をずらす事で惑星の出現タイミングを均等にする。
 #define ENEMY_PLANET1_START_TIME (1300) //敵惑星1(背景)の開始時間
