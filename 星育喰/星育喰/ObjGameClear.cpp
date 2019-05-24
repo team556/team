@@ -60,7 +60,7 @@ void CObjGameClear::Draw()
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	Font::StrDraw(L"‚ ‚¢‚¤‚¦‚¨", 250, m_cy[0], 32, c);
 
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c1[4] = { 1.0f,1.0f,1.0f,1.0f };
 	Font::StrDraw(L"‚©‚«‚­‚¯‚±", 250, m_cy[0], 32, c);
 	
 	//•`‰æƒJƒ‰[î•ñ  R=RED  G=Green  B=Blue A=alpha(“§‰ßî•ñ)
