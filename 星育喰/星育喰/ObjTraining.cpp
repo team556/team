@@ -284,3 +284,125 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 
 	return type_num;
 }
+
+//---Facility_message関数
+//引数1　int Facility_Level	:現在の施設(兵舎or研究所)レベル
+//▼内容
+//
+
+//マウスで選択している武器ポッドが何であるかを識別し、
+//それに対応する武器ポッド必要素材&人数メッセージを表示する。
+void CObjTraining::Facility_message(int Facility_Level)
+{
+	//▼施設レベルUP可能チェック処理
+	if (Facility_Level == FACILITY_MAX_LV)
+	{
+		//レベルMAX時の処理
+
+		swprintf_s(m_Facility_message[0], L"LvUP条件  所持/  必要");//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[1], L"最大レベル到達！");		//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[2], L"これ以上LVUP不可です。");//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[3], L"");//文字データをクリアする
+		swprintf_s(m_message_Mat_name, L"");//文字データをクリアする
+
+		//フォント位置Y設定
+		m_Facility_Font_y = 0.0f;
+	}
+	else
+	{
+		//共通処理
+		swprintf_s(m_Facility_message[0], L"LvUP条件  所持/  必要");																				 //文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[1], L"惑星ｻｲｽﾞ  %5.1f/%5.1f", g_Player_max_size, m_Facility_next_Size_num[Facility_Level - 1]);							 //文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[2], L"		  %6d/%6d", *m_Facility_next_Mat_type[Facility_Level - 1], m_Facility_next_Mat_num[Facility_Level - 1]);//文字配列に文字データを入れる
+		swprintf_s(m_message_Mat_name, L"%s", m_Facility_next_Mat_name[Facility_Level - 1]);									 //文字配列に文字データを入れる
+		
+		//フォント位置Y設定
+		m_Facility_Font_y = 0.0f;
+
+		//レベルUP可能の処理
+		if (g_Player_max_size >= m_Facility_next_Size_num[Facility_Level - 1] &&
+			*m_Facility_next_Mat_type[Facility_Level - 1] >= m_Facility_next_Mat_num[Facility_Level - 1])
+		{
+			//施設(兵舎、研究所)の必要素材&人数メッセージ設定
+
+			swprintf_s(m_Facility_message[3], L"　　　クリックでLvUP可");//文字配列に文字データを入れる
+
+			//カラー設定
+			m_Facility_Font_color = 1.0f;
+
+			
+			//▼ここの部分はLvUPの部分へ、それぞれコピペする
+			//左クリックされたらフラグを立て、最終確認ウインドウを開く
+			//if (m_mou_l == true)
+			//{
+			//	//左クリック押したままの状態では入力出来ないようにしている
+			//	if (m_key_lf == true)
+			//	{
+			//		m_key_lf = false;
+
+			//		//▼以下の変数、ポインタにマウス選択中の武器ポッドタイプ(パワー、スピード等)、
+			//		//現在のレベル、レベル最大到達度のアドレスをそれぞれ代入
+
+			//		//finalcheck_Lvup_type = ;
+			//		//finalcheck_Lvup_Level = &g_Pow_Facilityip_Level;
+			//		//finalcheck_Lvup_achieve = &g_Pow_Facilityip_Lv_achieve;
+
+			//		m_finalcheck_f = true;//最終確認ウインドウを表示する
+
+			//		return;
+			//	}
+			//}
+			//else
+			//{
+			//	m_key_lf = true;
+			//}
+		}
+		//レベルUP不可の処理
+		else
+		{
+			//施設(兵舎、研究所)の必要素材&人数メッセージ設定
+
+			swprintf_s(m_Facility_message[3], L"　　　　　LvUP不可");//文字配列に文字データを入れる
+			
+			//カラー設定
+			m_Facility_Font_color = 0.0f;
+
+
+			//左クリックされたら簡易メッセージでレベルUP不可を伝える
+			swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+
+			//簡易メッセージのカラーを赤色にする
+			m_message_red_color = 1.0f;
+			m_message_green_color = 0.0f;
+			m_message_blue_color = 0.0f;
+
+			//メッセージを表示
+			m_alpha = 1.0f;
+		}
+	}
+
+	//ドロー処理ここでやる。
+	//施設(兵舎、研究所)必要素材&サイズフォント用
+	float Facility_message_font[FACILITY_MES_MAX_FONT_LINE][4] =
+	{
+		{ 0.0f,0.0f,1.0f,1.0f },//1行目は青色
+		{ 0.0f,0.0f,0.0f,1.0f },//2行目は黒色
+		{ 0.0f,0.0f,0.0f,1.0f },//3行目は黒色
+		{ (1.0f - m_Facility_Font_color),0.0f,m_Facility_Font_color,1.0f },//4行目は赤色、または青色
+	};
+
+
+	//素材名を除いたフォント表示
+	for (int i = 0; i < FACILITY_MES_MAX_FONT_LINE; i++)
+	{
+		Font::StrDraw(m_Facility_message[i], 175.0f, 440.0f + m_Facility_Font_y + i * 30.0f, 25.0f, Facility_message_font[i]);
+	}
+
+	//素材名のフォント表示
+	Font::StrDraw(m_message_Mat_name, 175.0f, 500.0f, 17.5f, Facility_message_font[2]);
+
+
+	//Font::StrDraw(L"▼レベルUP条件", 175.0f, 440.0f, 25.0f, black);
+	//Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
+	//Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
+}

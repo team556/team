@@ -151,20 +151,20 @@ void CObjInstitute::Init()
 
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
-	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");		 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[0][1], L"ダイヤ");	 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[0][1], L"ダイヤ");		 //レベルが2の時の必要素材名
 	//▽ディフェンス武器
-	swprintf_s(m_Equ_next_Mat_name[1][0], L"鉄屑");		 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[1][1], L"パール");	 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][0], L"鉄屑");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][1], L"パール");		 //レベルが2の時の必要素材名
 	//▽スピード武器
-	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");		 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[2][1], L"黒曜石");	 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");			//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[2][1], L"黒曜石");		 //レベルが2の時の必要素材名
 	//▽バランス武器
-	swprintf_s(m_Equ_next_Mat_name[3][0], L"ルビー");	 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[3][1], L"サファイア");//レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][0], L"ルビー");		//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][1], L"アルミニウム");	//レベルが2の時の必要素材名
 	//▽ポッド武器
-	swprintf_s(m_Equ_next_Mat_name[4][0], L"エメラルド");//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[4][1], L"プラチナ");	 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][0], L"エメラルド");	//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][1], L"プラチナ");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
@@ -201,6 +201,24 @@ void CObjInstitute::Init()
 	//▽ポッド
 	m_Equ_next_Mat_num[4][0] = 200;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[4][1] = 100;  //レベルが2の時の必要素材数
+
+	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
+	m_Facility_next_Size_num[0] = 5.0f;  //レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 1000.0f; //レベルが2の時の必要サイズ(HP)
+
+	//▼研究所の次のLVUPに必要な素材の名前設定
+	swprintf_s(m_Facility_next_Mat_name[0], L"プラスチック");//レベルが1の時の必要素材名
+	swprintf_s(m_Facility_next_Mat_name[1], L"アルミニウム");//レベルが2の時の必要素材名
+
+	//▼研究所の次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
+	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
+	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
+	m_Facility_next_Mat_type[0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Facility_next_Mat_type[1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+
+	//▼研究所の次のLVUPに必要な素材数設定
+	m_Facility_next_Mat_num[0] = 0;		//レベルが1の時の必要素材数
+	m_Facility_next_Mat_num[1] = 100;	//レベルが2の時の必要素材数
 }
 
 //アクション
@@ -1112,9 +1130,7 @@ void CObjInstitute::Draw()
 
 		Font::StrDraw(L"研究員", 505.0f, 145.0f, 55.0f, blue2);
 
-		Font::StrDraw(L"▼レベルUP条件", 175.0f, 440.0f, 25.0f, black);
-		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
-		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
+		Facility_message(g_Ins_Level);//研究所の必要素材&サイズメッセージ描画関数呼び出す
 
 		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
 		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
@@ -1311,7 +1327,7 @@ void CObjInstitute::Draw()
 			}
 
 			//素材名のフォント表示
-			Font::StrDraw(m_Equ_message_Mat_name, m_mou_x - 135.0f, m_mou_y - 80.0f, 25.0f, Equ_message_font[2]);
+			Font::StrDraw(m_message_Mat_name, m_mou_x - 135.0f, m_mou_y - 76.0f, 17.5f, Equ_message_font[2]);
 
 			//最下部メッセージ表示(ウインドウ一番下にあるフォント)
 			Font::StrDraw(m_message, m_mou_x - 210.0f, m_mou_y - 40.0f, 30.0f, message);
@@ -1593,7 +1609,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		swprintf_s(m_Equ_message[0], L"LvUP条件  所持/  必要");																				 //文字配列に文字データを入れる
 		swprintf_s(m_Equ_message[1], L"研究員  %6d/%6d", g_Research_num, m_Equ_next_Hum_num[equip_id][Lv_id - 1]);							 //文字配列に文字データを入れる
 		swprintf_s(m_Equ_message[2], L"        %6d/%6d", *m_Equ_next_Mat_type[equip_id][Lv_id - 1], m_Equ_next_Mat_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
-		swprintf_s(m_Equ_message_Mat_name, L"%s", m_Equ_next_Mat_name[equip_id][Lv_id - 1]);												 //文字配列に文字データを入れる
+		swprintf_s(m_message_Mat_name, L"%s", m_Equ_next_Mat_name[equip_id][Lv_id - 1]);												 //文字配列に文字データを入れる
 
 		//最下部メッセージ設定
 		swprintf_s(m_message, L"　　　クリックでLvUP可");//文字配列に文字データを入れる
@@ -1666,7 +1682,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		swprintf_s(m_Equ_message[0], L"LvUP条件  所持/  必要");																				 //文字配列に文字データを入れる
 		swprintf_s(m_Equ_message[1], L"研究員  %6d/%6d", g_Research_num, m_Equ_next_Hum_num[equip_id][Lv_id - 1]);							 //文字配列に文字データを入れる
 		swprintf_s(m_Equ_message[2], L"        %6d/%6d", *m_Equ_next_Mat_type[equip_id][Lv_id - 1], m_Equ_next_Mat_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
-		swprintf_s(m_Equ_message_Mat_name, L"%s", m_Equ_next_Mat_name[equip_id][Lv_id - 1]);												 //文字配列に文字データを入れる
+		swprintf_s(m_message_Mat_name, L"%s", m_Equ_next_Mat_name[equip_id][Lv_id - 1]);												 //文字配列に文字データを入れる
 
 		//最下部メッセージ設定
 		swprintf_s(m_message, L"　　　　　LvUP不可");//文字配列に文字データを入れる
@@ -1689,7 +1705,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		swprintf_s(m_Equ_message[0], L"");//文字データをクリアする
 		swprintf_s(m_Equ_message[1], L"");//文字データをクリアする
 		swprintf_s(m_Equ_message[2], L"");//文字データをクリアする
-		swprintf_s(m_Equ_message_Mat_name, L"");//文字データをクリアする
+		swprintf_s(m_message_Mat_name, L"");//文字データをクリアする
 
 		//最下部メッセージ設定
 		swprintf_s(m_message, L"　　　　   装備中");//文字配列に文字データを入れる
@@ -1737,7 +1753,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		swprintf_s(m_Equ_message[0], L"");//文字データをクリアする
 		swprintf_s(m_Equ_message[1], L"");//文字データをクリアする
 		swprintf_s(m_Equ_message[2], L"");//文字データをクリアする
-		swprintf_s(m_Equ_message_Mat_name, L"");//文字データをクリアする
+		swprintf_s(m_message_Mat_name, L"");//文字データをクリアする
 
 		//最下部メッセージ設定
 		//マウス選択中の武器ポッドレベルがその武器の現在レベルより低かった場合

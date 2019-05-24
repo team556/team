@@ -33,6 +33,24 @@ void CObjBarracks::Init()
 	m_finalcheck_f = false;
 	m_key_lf = false;
 	m_alpha = INI_ALPHA;
+
+	//▼兵舎の次のLVUPに必要なサイズ(HP)の住民数設定
+	m_Facility_next_Size_num[0] = 5.0f;  //レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 1000.0f; //レベルが2の時の必要サイズ(HP)
+
+	//▼兵舎の次のLVUPに必要な素材の名前設定
+	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Facility_next_Mat_name[1], L"アルミニウム");//レベルが2の時の必要素材名
+
+	//▼兵舎の次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
+	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
+	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
+	m_Facility_next_Mat_type[0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Facility_next_Mat_type[1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+
+	//▼兵舎の次のLVUPに必要な素材数設定
+	m_Facility_next_Mat_num[0] = 0;		//レベルが1の時の必要素材数
+	m_Facility_next_Mat_num[1] = 100;	//レベルが2の時の必要素材数
 }
 
 //アクション
@@ -647,9 +665,7 @@ void CObjBarracks::Draw()
 
 		Font::StrDraw(L"バランス", 480.0f, 475.0f, 50.0f, white);
 
-		Font::StrDraw(L"▼レベルUP条件", 175.0f, 440.0f, 25.0f, black);
-		Font::StrDraw(L"α版では", 175.0f, 470.0f, 25.0f, red);
-		Font::StrDraw(L"レベルUP出来ません。", 175.0f, 500.0f, 25.0f, red);
+		Facility_message(g_Bar_Level);//兵舎の必要素材&サイズメッセージ描画関数呼び出す
 
 		//エラーメッセージ
 		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);

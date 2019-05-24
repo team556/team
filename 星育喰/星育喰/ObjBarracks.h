@@ -19,4 +19,6 @@ private:
 	float m_Bar_Lvup_color;		//兵舎レベルUPカラー明度
 	float m_Human_up_color[4];	//住民振り分けUPカラー明度
 	float m_Human_down_color[4];//住民振り分けDOWNカラー明度
+
+	int  *finalcheck_Lvup_Level;//最終確認ウインドウでLvUPさせる兵舎レベルを管理するポインタ
 };
