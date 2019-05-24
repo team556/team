@@ -46,7 +46,7 @@ void CSceneTitle::InitScene()
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"Blue.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"Blue.wav", BACK_MUSIC);
 	//Audio::LoadAudio(0, L"Growing.wav", BACK_MUSIC);
 	//Audio::LoadAudio(0, L"月夜の晩.wav", BACK_MUSIC);
 	//Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
@@ -59,7 +59,7 @@ void CSceneTitle::InitScene()
 	//v = Audio::VolumeMaster((1.0 - v));
 
 	////音楽スタート
-	//Audio::Start(0);
+	Audio::Start(0);
 
 }
 
