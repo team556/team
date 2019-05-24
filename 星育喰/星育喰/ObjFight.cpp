@@ -284,8 +284,8 @@ void CObjFight::Draw()
 
 
 
-	//デバッグ用仮マウス位置表示
-	wchar_t test_mou[256];
-	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+	////デバッグ用仮マウス位置表示
+	//wchar_t test_mou[256];
+	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }
