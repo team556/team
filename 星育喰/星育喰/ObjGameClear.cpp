@@ -21,7 +21,14 @@ using namespace GameL;
 //イニシャライズ
 void CObjGameClear::Init()
 {
+	m_mou_x = 0.0f;	//マウスX座標
+	m_mou_y = 0.0f; //マウスY座標
+	m_mou_r = false;//右クリック
+	m_mou_l = false;//左クリック
+
 	m_f = false;
+	m_y_vec = 0;
+
 }
 
 //アクション
