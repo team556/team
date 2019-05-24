@@ -28,7 +28,7 @@ void CObjHelp::Init()
 	m_x = 1140.0f;
 	m_y =   10.0f;
 
-	m_mou_f = false;
+	m_key_f = false;
 
 	CObjHome* Hom = (CObjHome*)Objs::GetObj(OBJ_HOME);				//各シーン情報を取得
 	CObjTraining* Tra = (CObjTraining*)Objs::GetObj(OBJ_TRAINING);
@@ -66,15 +66,15 @@ void CObjHelp::Action()
 			m_help_f = true;//ヘルプ表示する
 		}
 	}
-	else if(m_mou_l == true && m_mou_f == false)//ヘルプ表示中かつクリックした場合
+	else if(m_mou_l == true && m_key_f == false)//ヘルプ表示中かつクリックした場合
 	{								
 		m_page_nam++;		//ページ数を進める
-		m_mou_f = true;
+		m_key_f = true;
 	}
 
 	if (m_mou_l == false)						//クリック解除時
 	{
-		m_mou_f = false;	//マウスフラグ解除
+		m_key_f = false;	//マウスフラグ解除
 	}
 }
 
@@ -105,7 +105,7 @@ void CObjHelp::Draw()
 
 	if (m_help_f == true)
 	{
-		if(m_Scene_nam = 1)
+		if(m_Scene_nam = 1)				//ホーム画面でのヘルプ
 		{
 			if(m_page_nam == 0)
 			{
@@ -167,7 +167,12 @@ void CObjHelp::Draw()
 				//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 				Draw::Draw(1, &src, &dst, d, 0.0f);
 			}
+			else
+			{
+				m_help_f = false;//初期値に戻す
+				m_page_nam = 0;
 			}
+		}
 	}
 
 }
