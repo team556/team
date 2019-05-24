@@ -38,7 +38,13 @@ void CObjFightClear::Init()
 	m_a_vec = 0.0f;
 	m_a_f = false;
 
-	m_cnt = 3 * 60;	//3秒カウント
+	m_cnt_max = 2 * 60;	//2秒
+	m_cnt = m_cnt_max;	//最大値を入れておく
+
+	m_Stage_Clear_f = false;	//ステージクリアフラグ
+	m_Game_Clear_f = false;		//ゲーム　クリアフラグ
+
+	m_page_nam = 0;				//ページ数0
 
 	if (g_Stage_progress == 1 &&		//1ステージクリアした場合
 		g_destroy_progress[0] == true &&	
@@ -84,23 +90,42 @@ void CObjFightClear::Action()
 	//m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	if (m_cnt == 0) {							//カウント終了後
-		if (m_mou_l == true)					//クリックした場合
-			Scene::SetScene(new CSceneHome());	//シーン移行
+	if (m_cnt == 0) 
+	{											//カウント終了後
 		m_a_f = true;			//フラグ有効
+		if (m_mou_l == true)					//クリックした場合
+		{
+			if (m_Game_Clear_f == false)
+			{
+				
+				if(g_Stage_progress == 1)
+					Scene::SetScene(new CSceneHome());	//シーン移行
+				else
+					m_Game_Clear_f = true;
+			}
+			else
+			{
+				m_page_nam++;		//ページ数を進める
+				m_cnt = m_cnt_max;	//カウントをMAXにする
+				m_a_f = false;
+			}
+		}
 	}
 	else
 		m_cnt--;	//0でない場合カウントダウン
 
-	if (m_a_f == true)			//フラグ有効の場合
-		if (m_a <= 0.5)						//0.5で切り替え
+	if (m_a_f == true)				//フラグ有効の場合
+		if (m_a <= 0.5)					//0.5で切り替えて、クリック文字のalpha調整
 			m_a_vec += 0.003f;	//ベクトルに加算
 		else
 			m_a_vec -= 0.003f;	//ベクトルに減算
+	else
+	{								//フラグ無効の場合
+		m_a = 0;		//alpha = 0
+		m_a_vec = 0;	//	vec = 0
+	}
 
 	m_a += m_a_vec;	//ベクトルを反映
-
-	
 
 }
 
@@ -118,53 +143,97 @@ void CObjFightClear::Draw()
 	src.m_right =100.0f;
 	src.m_bottom=100.0f;
 	
-	dst.m_top   =  50.0f;
-	dst.m_left  = 650.0f;
-	dst.m_right =1100.0f;
-	dst.m_bottom= 600.0f;
-	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, d, 0.0f);
-
-	float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
-	Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);
-
-	float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
-	Font::StrDraw(L"住民　＋", 700, 100, 50, c);
-
-	Font::StrDraw(L"資材　＋", 700, 200, 50, c);
-
-	Font::StrDraw(L"サイズ　＋", 700, 300, 50, c);
-
-	if (m_skill != 0)
+	if (m_Game_Clear_f == false)
 	{
-		Font::StrDraw(L"技　＋", 700, 400, 50, c);
+		dst.m_top    =  50.0f;
+		dst.m_left   = 650.0f;
+		dst.m_right  =1100.0f;
+		dst.m_bottom = 600.0f;
+		//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(2, &src, &dst, d, 0.0f);
+
+		float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
+		Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);
+
+		float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
+		Font::StrDraw(L"住民　＋",	700, 100, 50, c);
+
+		Font::StrDraw(L"資材　＋",	700, 200, 50, c);
+
+		Font::StrDraw(L"サイズ　＋",700, 300, 50, c);
+
+		if (m_skill != 0)
+		{
+			Font::StrDraw(L"技　＋",700, 400, 50, c);
+		}
+		else { ; }
+		//Font::StrDraw(L"大きさ", 0, 300, 32, c);
+
+		wchar_t str[256];
+		swprintf_s(str, L"　 %d人", m_people);		//住民
+		Font::StrDraw(str, 900, 100, 50, c);
+
+		switch (m_mrl)
+		{
+		case 0:Font::StrDraw(L"　 木40", 900, 200, 50, c); break;
+		case 1:Font::StrDraw(L"　 木80", 900, 200, 50, c); break;
+		case 2:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
+		case 3:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
+		case 4:Font::StrDraw(L"   木60", 900, 175, 50, c);
+			Font::StrDraw(L"   鉄60", 900, 225, 50, c);
+			break;
+		}
+
+		swprintf_s(str, L"　 %d", m_large);		//大きさ
+		Font::StrDraw(str, 900, 300, 50, c);
+
+		switch (m_skill)						 //スペシャル技
+		{
+		case 0: break;
+		case 1:Font::StrDraw(L"　 Explosion",			800, 410, 40, c); break;
+		case 2:Font::StrDraw(L"　 Fracture Ray",		800, 410, 40, c); break;
+		case 3:Font::StrDraw(L"　 Immortality",			800, 410, 40, c); break;
+		case 4:Font::StrDraw(L"　 リミットブレイク",	800, 410, 40, c); break;
+		case 5:Font::StrDraw(L"　 ステロイド投与",		800, 410, 40, c); break;
+		}
 	}
-	else { ; }
-	//Font::StrDraw(L"大きさ", 0, 300, 32, c);
-
-	wchar_t str[256];
-	swprintf_s(str, L"　 %d人",m_people);		//住民
-	Font::StrDraw(str, 900, 100, 50, c);
-
-	switch (m_mrl)
+	else
 	{
-	case 0:Font::StrDraw(L"　 木40", 900, 200, 50, c); break;
-	case 1:Font::StrDraw(L"　 木80", 900, 200, 50, c); break;
-	case 2:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
-	case 3:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
-	}
-	
-	swprintf_s(str, L"　 %d", m_large);		//大きさ
-	Font::StrDraw(str, 900, 300, 50, c);
+		if(m_page_nam == 1)
+		{
+			dst.m_top    =  50.0f;
+			dst.m_left   = 200.0f;
+			dst.m_right  =1000.0f;
+			dst.m_bottom = 250.0f;
 
-	switch (m_skill)						 //スペシャル技
-	{
-	case 0: break;
-	case 1:Font::StrDraw(L"　 Explosion",			800, 410, 40, c); break;
-	case 2:Font::StrDraw(L"　 Fracture Ray",		800, 410, 40, c); break;
-	case 3:Font::StrDraw(L"　 Immortality",			800, 410, 40, c); break;
-	case 4:Font::StrDraw(L"　 リミットブレイク",	800, 410, 40, c); break;
-	case 5:Font::StrDraw(L"　 ステロイド投与",		800, 410, 40, c); break;
+			//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+			Draw::Draw(2, &src, &dst, d, 0.0f);
+
+			float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
+			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
+			//Font::StrDraw(L"この銀河のトップに君臨した", 250, 180, 50, c);
+		}
+		else if(m_page_nam == 2)
+		{
+			dst.m_top    =  50.0f;
+			dst.m_left   = 200.0f;
+			dst.m_right  =1000.0f;
+			dst.m_bottom = 250.0f;
+
+			//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+			Draw::Draw(2, &src, &dst, d, 0.0f);
+
+			float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
+			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
+			Font::StrDraw(L"この銀河のトップに君臨した", 250, 180, 50, c);
+		}
+		else if(m_page_nam == 3)
+		{
+			Scene::SetScene(new CSceneGameClear());	//シーン移行
+		}
+
+		float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
+		Font::StrDraw(L"クリックで進める", 350, 600, 50, c0);
 	}
 	
 }

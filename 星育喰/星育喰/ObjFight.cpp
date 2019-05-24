@@ -144,24 +144,29 @@ void CObjFight::Action()
 	if (m_end_f == true)
 	{
 		m_end_f = false;
-		if (g_Challenge_enemy == 0)
+		if (g_Challenge_enemy == 0)									//左から１番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);	
+			CObjFightClear* crer = new CObjFightClear(500, 0, 20, 1);	
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 1)
+		if (g_Challenge_enemy == 1)									//左から２番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			CObjFightClear* crer = new CObjFightClear(50, 1, 20, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 2)
+		if (g_Challenge_enemy == 2)									//左から３番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			CObjFightClear* crer = new CObjFightClear(100, 2, 20, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 3)
+		if (g_Challenge_enemy == 3)									//左から４番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			CObjFightClear* crer = new CObjFightClear(200, 3, 20, 0);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		if (g_Challenge_enemy == 4)									//ボス
+		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
+			CObjFightClear* crer = new CObjFightClear(1000, 4, 50, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
@@ -284,8 +289,8 @@ void CObjFight::Draw()
 
 
 
-	//デバッグ用仮マウス位置表示
-	wchar_t test_mou[256];
-	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+	////デバッグ用仮マウス位置表示
+	//wchar_t test_mou[256];
+	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }

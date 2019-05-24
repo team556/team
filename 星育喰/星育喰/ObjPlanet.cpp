@@ -103,7 +103,7 @@ void CObjPlanet::Init()
 	else  //(m_type == 5) 
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 29;
+		m_img_nam = 30;
 	}
 }
 
@@ -147,7 +147,7 @@ void CObjPlanet::Action()
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
-				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+				Objs::InsertObj(over, OBJ_FIGHT_OVER, 15);	//ゲームオーバー画面
 				m_failed == true;
 				//if (m_failed == true)
 				//{

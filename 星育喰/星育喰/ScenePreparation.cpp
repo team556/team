@@ -42,10 +42,10 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"レイド1 128x.png", 2, TEX_SIZE_512);
 
 	//敵惑星3(1ステージ)を読み込み3番に登録
-	Draw::LoadImage(L"パンダ顔.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"悪☆.png", 3, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み4番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"ぼやけた星.png", 4, TEX_SIZE_512);
 
 	//ボス惑星(1ステージ)を読み込み5番に登録
 	Draw::LoadImage(L"パンダ戦闘.png", 5, TEX_SIZE_512);
