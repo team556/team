@@ -39,6 +39,42 @@ void CObjRocketButton::Init()
 	m_cnt = 0;		//カウント
 
 	m_player_recast_buff = 1.0f;
+	m_is_empty = false;
+	m_empty_alpha = 1.0f;
+
+	//ユニット数が空(0以下)かチェック処理
+	if (Button_num == 1 && g_Power_num <= 0)
+	{
+		g_Power_num = 0;//0未満になっていた場合、0に戻す。
+		m_is_empty = true;//空フラグON
+
+		m_mou_f = true;
+		m_a = 0.3f;		//透明化
+	}
+	else if (Button_num == 2 && g_Defense_num <= 0)
+	{
+		g_Defense_num = 0;//0未満になっていた場合、0に戻す。
+		m_is_empty = true;//空フラグON
+
+		m_mou_f = true;
+		m_a = 0.3f;		//透明化
+	}
+	else if (Button_num == 3 && g_Speed_num <= 0)
+	{
+		g_Speed_num = 0;//0未満になっていた場合、0に戻す。
+		m_is_empty = true;//空フラグON
+	
+		m_mou_f = true;
+		m_a = 0.3f;		//透明化
+	}
+	else if (Button_num == 4 && g_Balance_num <= 0)
+	{
+		g_Balance_num = 0;//0未満になっていた場合、0に戻す。
+		m_is_empty = true;//空フラグON
+
+		m_mou_f = true;
+		m_a = 0.3f;		//透明化
+	}
 }
 
 //アクション
@@ -70,44 +106,67 @@ void CObjRocketButton::Action()
 				//m_py = objp->GetY();
 				m_size = objp->GetSiz();
 			}
-			//▼ポッド作成X位置を設定
-			g_Power_num;				//パワー住民数
-			g_Defense_num;			//ディフェンス住民数
-			g_Speed_num;				//スピード住民数
-			g_Balance_num;			//バランス住民数
 
-			if (Button_num == 1 && g_Power_num != 0)//パワーボタンかつ、パワーユニット数がある場合
+			if (Button_num == 1 && g_Power_num > 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true,1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Power_num -= UNIT_CONSUME_NUM;	//パワーユニット数消費
+
+				//ユニット数が空(0以下)かチェック処理
+				if (g_Power_num <= 0)
+				{
+					g_Power_num = 0;//0未満になっていた場合、0に戻す。
+					m_is_empty = true;//空フラグON
+				}
 			}
-			else if (Button_num == 2 && g_Defense_num != 0)//ディフェンスボタンかつ、ディフェンスユニット数がある場合
+			else if (Button_num == 2 && g_Defense_num > 0)//ディフェンスボタンかつ、ディフェンスユニット数がある場合
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Defense_num -= UNIT_CONSUME_NUM;	//ディフェンスユニット数消費
+
+				//ユニット数が空(0以下)かチェック処理
+				if (g_Defense_num <= 0)
+				{
+					g_Defense_num = 0;//0未満になっていた場合、0に戻す。
+					m_is_empty = true;//空フラグON
+				}
 			}
-			else if (Button_num == 3 && g_Speed_num != 0)//スピードボタンかつ、スピードユニット数がある場合
+			else if (Button_num == 3 && g_Speed_num > 0)//スピードボタンかつ、スピードユニット数がある場合
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 3);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Speed_num -= UNIT_CONSUME_NUM;	//スピードユニット数消費
+
+				//ユニット数が空(0以下)かチェック処理
+				if (g_Speed_num <= 0)
+				{
+					g_Speed_num = 0;//0未満になっていた場合、0に戻す。
+					m_is_empty = true;//空フラグON
+				}
 			}
 
-			else if (Button_num == 4 && g_Balance_num != 0)//バランスボタンかつ、バランスユニット数がある場合
+			else if (Button_num == 4 && g_Balance_num > 0)//バランスボタンかつ、バランスユニット数がある場合
 			{
 				//オブジェクト作成
 				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 4);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Balance_num -= UNIT_CONSUME_NUM;	//バランスユニット数消費
+
+				//ユニット数が空(0以下)かチェック処理
+				if (g_Balance_num <= 0)
+				{
+					g_Balance_num = 0;//0未満になっていた場合、0に戻す。
+					m_is_empty = true;//空フラグON
+				}
 			}
 
 			else if (Button_num == 5)//ミサイルボタンの場合
@@ -123,7 +182,7 @@ void CObjRocketButton::Action()
 
 	else{}
 
-	if (m_mou_f == true) {	//クリックした後の処理
+	if (m_mou_f == true && m_is_empty == false) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
 		m_cnt++;			//カウントする
 		if (m_cnt >= (60 * 5) * m_player_recast_buff) {	//5秒間数えたら
 			m_mou_f = false;							//クリックできるようにする。
@@ -136,7 +195,8 @@ void CObjRocketButton::Action()
 	if (obj->GetCount() <= 60) {	//時間切れで
 		m_mou_f = true;			//マウス無効
 		m_a -= 0.03f;				//透明化
-		if (m_a > 0.0f) 
+		m_empty_alpha -= 0.1f;		//透明化
+		if (m_a > 0.0f && m_empty_alpha > 0.0f)
 			this->SetStatus(false);	//消滅
 	}
 }
@@ -145,7 +205,8 @@ void CObjRocketButton::Action()
 void CObjRocketButton::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float c[4] = { 1.0f,1.0f, 1.0f, m_a };
+	float c[4] = { 1.0f,1.0f, 1.0f, m_a };//ポッドミサイル用
+	float e[4] = { 1.0f,1.0f, 1.0f, m_empty_alpha };//人数不足アイコン用
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
@@ -193,5 +254,20 @@ void CObjRocketButton::Draw()
 		//15番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(15, &src, &dst, c, 0.0f);
 		break;
+	}
+
+	//人数不足アイコン表示(ユニット数が空の時に表示される)
+	if (m_is_empty == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 398.0f;
+		src.m_bottom = 130.0f;
+
+		dst.m_top = m_y + 25.0f;
+		dst.m_left = m_x - 10.0f;
+		dst.m_right = m_x + m_w + 10.0f;
+		dst.m_bottom = m_y + m_h - 25.0f;
+		Draw::Draw(31, &src, &dst, e, 0.0f);
 	}
 }

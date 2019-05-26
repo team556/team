@@ -29,6 +29,8 @@ private:
 	int Button_num; //パワーなどのボタン番号
 
 	float m_player_recast_buff;	//プレイヤーミサイルポッドリキャストタイムのバフ倍率[スペシャル技:リミットブレイク用]
+	bool m_is_empty;	//ユニット数が空(0以下)か確認フラグ(true:空(0以下)　false:満(0より上))
+	float m_empty_alpha;//人数不足アイコンの透過度(alpha)
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
