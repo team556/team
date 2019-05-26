@@ -265,11 +265,11 @@ void CObjPlanet::Action()
 			{
 				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
 				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
 				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
 			}
@@ -296,11 +296,11 @@ void CObjPlanet::Action()
 			{
 				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
 				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
 				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
 			}
