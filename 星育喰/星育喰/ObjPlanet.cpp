@@ -261,7 +261,28 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
+			{
+				m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
+			}
+
+
 			m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
 		}
 	}
@@ -271,9 +292,38 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
+			{
+				m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
+			}
+
+
 			m_scale_down_move = ((1 - (m_size / m_siz_max)) * m_siz_change_range);//縮む分だけ右に移動
 		}
+	}
+
+	//どちらかの惑星がHP0以下に達した時、
+	//制限時間が余っていても戦闘終了処理を行う
+	if (m_size <= 0.0f && battle_end == false)
+	{
+		battle_end = true;	//戦闘終了フラグを立てる
+		fit->SetEndCount();	//戦闘時間を残り1秒に設定する
 	}
 
 	if (m_del_f == true) {				//消すフラグ判定＆処理

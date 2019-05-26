@@ -193,7 +193,7 @@ void CObjRocketButton::Action()
 	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-	if (obj->GetCount() <= 60) {	//ŠÔØ‚ê‚Å
+	if (battle_end == true) {	//ŠÔØ‚ê‚Å
 		m_mou_f = true;			//ƒ}ƒEƒX–³Œø
 		m_a -= 0.03f;				//“§–¾‰»
 		m_a2 -= 0.1f;		//“§–¾‰»

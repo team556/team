@@ -220,7 +220,7 @@ void CObjRocket::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBoxî•ñæ“¾
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBoxXV
 
-	if (obj->GetCount() <= 60)
+	if (battle_end == true)
 		m_del = true;
 
 	if (m_mou_l == false && m_mou_f == false)
