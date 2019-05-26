@@ -391,7 +391,8 @@ void CObjPlanet::Action()
 //ドロー
 void CObjPlanet::Draw()
 {
-	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
+	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };//惑星画像&HPゲージ(現在値)用
+	float b[4] = { 0.0f,0.0f, 0.0f, 1.0f };//HPゲージ(最大値)用
 	RECT_F src;
 	RECT_F dst;
 	//切り取り位置
@@ -417,4 +418,27 @@ void CObjPlanet::Draw()
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
+
+
+
+	//▽HPゲージ表示(戦闘終了後は表示しない)
+	if (battle_end == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 10.0f;
+
+		dst.m_top = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) - 5.0f;
+		dst.m_left = m_px - MIN_SIZE + m_scale_down_move;
+		dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
+
+		//▼最大値表示
+		dst.m_right = m_px - MIN_SIZE + m_scale_down_move + (MIN_SIZE * 2);
+		Draw::Draw(32, &src, &dst, b, 0.0f);
+
+		//▼現在値表示		
+		dst.m_right = m_px - MIN_SIZE + m_scale_down_move + ((MIN_SIZE * 2) * (m_size / m_siz_max));
+		Draw::Draw(32, &src, &dst, c, 0.0f);
+	}
 }

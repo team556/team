@@ -12,6 +12,7 @@ using namespace GameL;
 
 //マクロ
 #define UNIT_CONSUME_NUM (100)	//ユニット消費数
+#define RECAST_COMPLETE_TIME (60.0f * 5)//リキャスト完了タイム(5秒)
 
 //コンストラクタ
 CObjRocketButton::CObjRocketButton(float x, float y, float h, float w, int n)
@@ -35,13 +36,13 @@ void CObjRocketButton::Init()
 	m_mou_f = false;//マウスフラグ
 
 	m_a = 1.0f;		//透明度
+	m_a2 = 1.0f;	//透明度
 
 	m_cnt = 0;		//カウント
 
 	m_player_recast_buff = 1.0f;
 	m_is_empty = false;
-	m_empty_alpha = 1.0f;
-
+	
 	//ユニット数が空(0以下)かチェック処理
 	if (Button_num == 1 && g_Power_num <= 0)
 	{
@@ -184,7 +185,7 @@ void CObjRocketButton::Action()
 
 	if (m_mou_f == true && m_is_empty == false) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
 		m_cnt++;			//カウントする
-		if (m_cnt >= (60 * 5) * m_player_recast_buff) {	//5秒間数えたら
+		if (m_cnt >= RECAST_COMPLETE_TIME * m_player_recast_buff) {	//5秒間数えたら
 			m_mou_f = false;							//クリックできるようにする。
 			m_cnt = 0;
 			m_a = 1.0f;		//不透明化
@@ -195,8 +196,8 @@ void CObjRocketButton::Action()
 	if (obj->GetCount() <= 60) {	//時間切れで
 		m_mou_f = true;			//マウス無効
 		m_a -= 0.03f;				//透明化
-		m_empty_alpha -= 0.1f;		//透明化
-		if (m_a > 0.0f && m_empty_alpha > 0.0f)
+		m_a2 -= 0.1f;		//透明化
+		if (m_a > 0.0f && m_a2 > 0.0f)
 			this->SetStatus(false);	//消滅
 	}
 }
@@ -205,8 +206,9 @@ void CObjRocketButton::Action()
 void CObjRocketButton::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float c[4] = { 1.0f,1.0f, 1.0f, m_a };//ポッドミサイル用
-	float e[4] = { 1.0f,1.0f, 1.0f, m_empty_alpha };//人数不足アイコン用
+	float c[4] = { 1.0f,1.0f, 1.0f, m_a };//ポッドミサイルボタン用
+	float d[4] = { 1.0f,1.0f, 1.0f, m_a2 };//人数不足アイコン、リキャストゲージ(現在値)用
+	float b[4] = { 0.0f,0.0f, 0.0f, m_a2 };//リキャストゲージ(最大値)用
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
@@ -268,6 +270,28 @@ void CObjRocketButton::Draw()
 		dst.m_left = m_x - 10.0f;
 		dst.m_right = m_x + m_w + 10.0f;
 		dst.m_bottom = m_y + m_h - 25.0f;
-		Draw::Draw(31, &src, &dst, e, 0.0f);
+		Draw::Draw(31, &src, &dst, d, 0.0f);
+	}
+
+	//リキャストゲージ表示(満タンになる＝リキャスト完了)
+	//※リキャスト中のみ表示される
+	if (m_mou_f == true && m_is_empty == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 10.0f;
+
+		dst.m_top = m_y + m_h - 15.0f;
+		dst.m_left = m_x;
+		dst.m_bottom = m_y + m_h - 5.0f;
+
+		//▼最大値表示
+		dst.m_right = m_x + m_w;
+		Draw::Draw(32, &src, &dst, b, 0.0f);
+
+		//▼現在値表示		
+		dst.m_right = m_x + (m_w * (m_cnt / (RECAST_COMPLETE_TIME * m_player_recast_buff)));
+		Draw::Draw(32, &src, &dst, d, 0.0f);
 	}
 }

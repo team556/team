@@ -119,6 +119,9 @@ void CSceneFight::InitScene()
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"人数不足.png", 31, TEX_SIZE_512);
 
+	//HPゲージ(リキャストゲージにも使用)を読み込み32番に登録
+	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
