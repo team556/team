@@ -315,8 +315,8 @@ void CObjHome::Draw()
 	//“G˜f¯1(”wŒi)•\¦
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = m_Ey[0];
 	dst.m_left = 1200.0f - m_time[0];//+4‚¸‚Â‘‰Á‚µ‘±‚¯‚é•Ï”‚ğˆø‚­–‚ÅA
@@ -327,8 +327,8 @@ void CObjHome::Draw()
 	//“G˜f¯2(”wŒi)•\¦
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = m_Ey[1];
 	dst.m_left = 1200.0f - m_time[1];//+4‚¸‚Â‘‰Á‚µ‘±‚¯‚é•Ï”‚ğˆø‚­–‚ÅA
@@ -339,8 +339,8 @@ void CObjHome::Draw()
 	//“G˜f¯3(”wŒi)•\¦
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = m_Ey[2];
 	dst.m_left = 1200.0f - m_time[2];//+4‚¸‚Â‘‰Á‚µ‘±‚¯‚é•Ï”‚ğˆø‚­–‚ÅA
