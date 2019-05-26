@@ -203,8 +203,8 @@ void CObjInstitute::Init()
 	m_Equ_next_Mat_num[4][1] = 100;  //レベルが2の時の必要素材数
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
-	m_Facility_next_Size_num[0] = 5.0f;  //レベルが1の時の必要サイズ(HP)
-	m_Facility_next_Size_num[1] = 1000.0f; //レベルが2の時の必要サイズ(HP)
+	m_Facility_next_Size_num[0] = 5.0f;	//レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 3.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"プラスチック");//レベルが1の時の必要素材名
@@ -217,7 +217,7 @@ void CObjInstitute::Init()
 	m_Facility_next_Mat_type[1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
 
 	//▼研究所の次のLVUPに必要な素材数設定
-	m_Facility_next_Mat_num[0] = 0;		//レベルが1の時の必要素材数
+	m_Facility_next_Mat_num[0] = 10;	//レベルが1の時の必要素材数
 	m_Facility_next_Mat_num[1] = 100;	//レベルが2の時の必要素材数
 }
 
@@ -234,6 +234,99 @@ void CObjInstitute::Action()
 	//▼研究所ウインドウ表示時の処理
 	if (window_start_manage == Institute)
 	{
+		//▼(研究所)最終確認ウインドウ表示時の処理
+		if (m_finalcheck_f == true)
+		{
+			//最終確認[はい]ボタン
+			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
+			{
+				m_Yes_Button_color = 1.0f;
+
+				//▼クリックされたら研究所レベルUP処理を行い、このウインドウを閉じる
+				//左クリック入力時
+				if (m_mou_l == true)
+				{
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
+
+						//▽研究所レベルUP処理
+						//サイズ(HP)消費処理
+						g_Player_max_size -= m_Facility_next_Size_num[g_Ins_Level - 1];
+
+						//素材消費処理
+						*m_Facility_next_Mat_type[g_Ins_Level - 1] -= m_Facility_next_Mat_num[g_Ins_Level - 1];
+
+						//研究所のレベルUP処理
+						g_Ins_Level++;
+
+						//▼ミサイルリキャストレベルUPチェック
+						//レベルUP条件を満たしているかチェックし、
+						//満たしていればレベルUPさせる。
+						Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
+
+						m_Yes_Button_color = 0.0f;
+
+						//最終確認ウインドウを非表示にする
+						m_finalcheck_f = false;
+					}
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+			}
+			else
+			{
+				m_Yes_Button_color = 0.0f;
+			}
+
+			//最終確認[いいえ]ボタン
+			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
+			{
+				m_No_Button_color = 1.0f;
+
+				//▼クリックされたら、このウインドウを閉じる
+				//右クリック入力時
+				if (m_mou_r == true)
+				{
+					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+					m_key_rf = false;
+
+					m_No_Button_color = 0.0f;
+
+					//最終確認ウインドウを非表示にする
+					m_finalcheck_f = false;
+				}
+				//左クリック入力時
+				else if (m_mou_l == true)
+				{
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
+
+						m_No_Button_color = 0.0f;
+
+						//最終確認ウインドウを非表示にする
+						m_finalcheck_f = false;
+					}
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+			}
+			else
+			{
+				m_No_Button_color = 0.0f;
+			}
+
+
+			return;
+		}
+
 		//マウスカーソル上部に表示されるエラーメッセージを徐々に非表示にする
 		if (m_alpha > 0.0f)
 		{
@@ -311,8 +404,49 @@ void CObjInstitute::Action()
 
 					m_Ins_Lvup_color = 0.0f;
 
-					//ここで研究所LvUP処理を行う。
-					//しかし、現状未実装である。
+					//▼研究所レベルUP可能チェック処理
+					if (g_Ins_Level == FACILITY_MAX_LV)
+					{
+						//▽レベルMAX時の処理
+						//左クリックされたら簡易メッセージでレベルUP不可を伝える
+						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+
+						//簡易メッセージのカラーを赤色にする
+						m_message_red_color = 1.0f;
+						m_message_green_color = 0.0f;
+						m_message_blue_color = 0.0f;
+
+						//簡易メッセージを表示する
+						m_alpha = 1.0f;
+					}
+					else if (g_Player_max_size > m_Facility_next_Size_num[g_Ins_Level - 1] &&
+						*m_Facility_next_Mat_type[g_Ins_Level - 1] >= m_Facility_next_Mat_num[g_Ins_Level - 1])
+					{
+						//▽レベルUP可能時の処理
+						//左クリックされたらフラグを立て、最終確認ウインドウを開く
+						m_finalcheck_f = true;//最終確認ウインドウを表示する
+
+						//簡易メッセージを非表示にする
+						m_alpha = 0.0f;
+
+						m_Ins_Lvup_color = INI_COLOR;
+
+						return;
+					}
+					else
+					{
+						//▽レベルUP不可時の処理
+						//左クリックされたら簡易メッセージでレベルUP不可を伝える
+						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+
+						//簡易メッセージのカラーを赤色にする
+						m_message_red_color = 1.0f;
+						m_message_green_color = 0.0f;
+						m_message_blue_color = 0.0f;
+
+						//簡易メッセージを表示する
+						m_alpha = 1.0f;
+					}
 				}
 			}
 			else
@@ -956,7 +1090,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 10.0f;
 		dst.m_right = 390.0f;
 		dst.m_bottom = 690.0f;
-		Draw::Draw(3, &src, &dst, ins, 0.0f);
+		Draw::Draw(3 + (g_Ins_Level - 1) * 3, &src, &dst, ins, 0.0f);
 
 		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_introduce_f == true)
@@ -1016,7 +1150,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 100.0f;
 		dst.m_right = 400.0f;
 		dst.m_bottom = 350.0f;
-		Draw::Draw(3, &src, &dst, white, 0.0f);
+		Draw::Draw(3 + (g_Ins_Level - 1) * 3, &src, &dst, white, 0.0f);
 
 		//▼研究所LVUP表示
 		src.m_top = 0.0f;
@@ -1134,6 +1268,30 @@ void CObjInstitute::Draw()
 
 		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
 		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
+
+
+		//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
+		if (m_finalcheck_f == true)
+		{
+			//▼最終確認ウインドウ表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = 220.0f;
+			dst.m_left = 320.0f;
+			dst.m_right = 880.0f;
+			dst.m_bottom = 480.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼フォント表示
+			//最終確認メッセージ
+			Font::StrDraw(L"惑星HPと素材消費して", 347.0f, 250.0f, 30.0f, black);
+			Font::StrDraw(L"レベルアップしますか？", 527.0f, 300.0f, 30.0f, black);
+			Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
+			Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
+		}
 	}
 	
 	//ミサイルウインドウ、もしくは武器ポッドウインドウ開いている際に表示するグラフィック
@@ -1362,9 +1520,9 @@ void CObjInstitute::Draw()
 	
 
 	//デバッグ用仮マウス位置表示
-	wchar_t str[256];
-	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
+	//wchar_t str[256];
+	//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
 }
 
 
