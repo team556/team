@@ -181,25 +181,32 @@ void CObjPlanet::Action()
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			
 			//▼戦闘終了時処理
-			//プレイヤー惑星、敵惑星のサイズ(HP)をそれぞれ取得し、勝敗判定を行う
+			//プレイヤー惑星、敵惑星のサイズ(現在HPと最大HP)をそれぞれ取得し、勝敗判定を行う
+			//※惑星サイズが大きい方の勝利。
 			//また、サイズ(HP)が高い方の惑星画像が手前に来るようにする
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-				if(ene != nullptr)
+				if (ene != nullptr)
+				{
 					m_get_siz = ene->GetSiz();
+					m_get_max_siz = ene->GetMaxSiz();
+				}	
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				if (pla != nullptr)
+				{
 					m_get_siz = pla->GetSiz();
+					m_get_max_siz = pla->GetMaxSiz();
+				}
 			}
 			if (m_type == 0) {
-				if (m_size >= m_get_siz) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 				}
 			}
 			else {
-				if (m_size > m_get_siz) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);

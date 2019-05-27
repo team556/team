@@ -18,7 +18,8 @@ public:
 	float GetX() { return m_px; }
 	float GetY() { return m_py; }
 	//float GetHp() { return m_hp; }	
-	float GetSiz() { return m_size; }	//サイズ(HP)取得関数
+	float GetSiz() { return m_size; }		//現在サイズ(HP)取得関数
+	float GetMaxSiz() { return m_siz_max; }	//最大サイズ(HP)取得関数
 	float GetScale_down_move() { return m_scale_down_move; }//サイズ縮小分のX座標移動量を返す
 	int  GetType() { return m_type; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
@@ -42,7 +43,8 @@ private:
 	float m_siz_change_range;	//星サイズの変更幅(最小サイズ＋この変数の値が最大サイズとなる)[例:最小サイズ:60,この変数:60 → 60～120のサイズで変動する惑星となる]
 	//float m_siz_vec;	//サイズ変更ベクトル
 	//float m_siz_spd;	//サイズ変更スピード
-	float m_get_siz;	//ゲットサイズ
+	float m_get_siz;	//ゲット現在サイズ(HP)[敵の現在HP取得用]
+	float m_get_max_siz;//ゲット最大サイズ(HP)[敵の最大HP取得用]
 	float m_mov_spd;	//惑星移動スピード
 	float m_scale_down_move;	//サイズ縮小分、X座標移動用(プレイヤーなら左に、エネミーなら右に移動)
 
