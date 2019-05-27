@@ -30,10 +30,10 @@ void CObjHelp::Init()
 
 	m_key_f = false;
 
-	CObjHome* Hom = (CObjHome*)Objs::GetObj(OBJ_HOME);				//各シーン情報を取得
-	CObjTraining* Tra = (CObjTraining*)Objs::GetObj(OBJ_TRAINING);
-	CObjPreparation* Pre = (CObjPreparation*)Objs::GetObj(OBJ_PREPARATION);
-	CObjFight* Fig = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+	CObjHome* Hom = (CObjHome*)Objs::GetObj(OBJ_HOME);				//各シーン情報を取得	ホーム	1
+	CObjTraining* Tra = (CObjTraining*)Objs::GetObj(OBJ_TRAINING);						  //育成	2
+	CObjPreparation* Pre = (CObjPreparation*)Objs::GetObj(OBJ_PREPARATION);				  //準備	3
+	CObjFight* Fig = (CObjFight*)Objs::GetObj(OBJ_FIGHT);								  //戦闘	4
 	
 
 	if (Hom != nullptr)												//現在のシーンで数字を決める
