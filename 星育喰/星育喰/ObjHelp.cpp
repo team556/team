@@ -52,15 +52,15 @@ void CObjHelp::Init()
 	}
 	else if (Tra != nullptr)
 	{
-		m_Scene_nam = 2;
+		m_Scene_nam = 64;
 	}
-	else if (Tra != nullptr)
+	else if (Pre != nullptr)
 	{
-		m_Scene_nam = 3;
+		m_Scene_nam = 20;
 	}
-	else if (Tra != nullptr)
+	else if (Fig != nullptr)
 	{
-		m_Scene_nam = 4;
+		m_Scene_nam = 33;
 	}
 }
 
