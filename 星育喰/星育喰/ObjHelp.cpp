@@ -28,26 +28,40 @@ void CObjHelp::Init()
 	m_Scene_nam = 0;
 
 	m_x = 1120.0f;
-	m_y =   30.0f;
+	m_y = 30.0f;
 	m_a = INI_COLOR;
 	m_a2 = INI_COLOR;
 
 	m_key_f = false;
 
+	m_mou_x = 0.0f;
+	m_mou_y = 0.0f;
+	m_mou_r = false;
+	m_mou_l = false;
+
 	CObjHome* Hom = (CObjHome*)Objs::GetObj(OBJ_HOME);				//各シーン情報を取得	ホーム	1
 	CObjTraining* Tra = (CObjTraining*)Objs::GetObj(OBJ_TRAINING);						  //育成	2
 	CObjPreparation* Pre = (CObjPreparation*)Objs::GetObj(OBJ_PREPARATION);				  //準備	3
 	CObjFight* Fig = (CObjFight*)Objs::GetObj(OBJ_FIGHT);								  //戦闘	4
-	
+
 
 	if (Hom != nullptr)												//現在のシーンで数字を決める
+	{
 		m_Scene_nam = 1;
+		m_Img_nam = 3;
+	}
 	else if (Tra != nullptr)
+	{
 		m_Scene_nam = 2;
+	}
 	else if (Tra != nullptr)
+	{
 		m_Scene_nam = 3;
+	}
 	else if (Tra != nullptr)
+	{
 		m_Scene_nam = 4;
+	}
 }
 
 //アクション
@@ -119,16 +133,16 @@ void CObjHelp::Draw()
 	
 	src.m_top   =  0.0f;
 	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+	src.m_right =128.0f;
+	src.m_bottom=128.0f;
 	
 	dst.m_top   = m_y;
 	dst.m_left  = m_x;
 	dst.m_right = m_x + 50.0f;
 	dst.m_bottom= m_y + 50.0f;
 
-	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(1, &src, &dst, d2, 0.0f);
+	//m_Img_namに登録したグラフィックをsrc,dst,c情報をもとに描画
+	Draw::Draw(m_Img_nam, &src, &dst, d2, 0.0f);		//ヘルプボタンの表示
 
 	if (m_help_f == true)
 	{
@@ -136,10 +150,10 @@ void CObjHelp::Draw()
 
 		if(m_Scene_nam = 1)				//ホーム画面でのヘルプ
 		{
-			src.m_top   =  0.0f;
-			src.m_left  =  0.0f;
-			src.m_right =100.0f;
-			src.m_bottom=100.0f;
+			src.m_top   = 150.0f;
+			src.m_left  =   0.0f;
+			src.m_right =1280.0f;
+			src.m_bottom= 870.0f;
 			
 			dst.m_top   =  20.0f;
 			dst.m_left  =  20.0f;
@@ -149,24 +163,9 @@ void CObjHelp::Draw()
 			if(m_page_nam == 0)
 			{
 				//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-				Draw::Draw(1, &src, &dst, d, 0.0f);
+				Draw::Draw(m_Img_nam + 2, &src, &dst, d, 0.0f);
 			}
-			else if(m_page_nam == 1)
-			{
-				//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-				Draw::Draw(1, &src, &dst, d, 0.0f);
-			}
-			else if(m_page_nam == 2)
-			{
-				//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-				Draw::Draw(1, &src, &dst, d, 0.0f);
-			}
-			else if(m_page_nam == 3)
-			{
-				//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-				Draw::Draw(1, &src, &dst, d, 0.0f);
-			}
-			else if(m_page_nam >= 4)
+			else if(m_page_nam >= 1)
 			{
 				m_help_f = false;//初期値に戻す
 				m_page_nam = 0;
@@ -175,8 +174,8 @@ void CObjHelp::Draw()
 
 			src.m_top   =  0.0f;
 			src.m_left  =  0.0f;
-			src.m_right =100.0f;
-			src.m_bottom=100.0f;
+			src.m_right = 64.0f;
+			src.m_bottom= 64.0f;
 	
 			dst.m_top   = 30.0f;
 			dst.m_left  = 30.0f;
@@ -184,7 +183,7 @@ void CObjHelp::Draw()
 			dst.m_bottom= 80.0f;
 
 			//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-			Draw::Draw(1, &src, &dst, d3, 0.0f);
+			Draw::Draw(m_Img_nam + 1, &src, &dst, d3, 0.0f);			//戻るボタンの表示
 		}
 		else
 		{
