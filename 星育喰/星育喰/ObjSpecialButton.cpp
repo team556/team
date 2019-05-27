@@ -409,8 +409,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		{
 			Planet[Opponent_id]->SetDamage();//サイズ(HP)減少
 			Planet[Opponent_id]->SetScale_down_move(Opponent_id);//縮む分だけ移動
-
-			//size30以下になる時のif文、ここにも用意。
 		}
 	
 		m_count[Planet_id]++;//効果時間計測
