@@ -37,10 +37,10 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
 	//育アイコンを読み込み1番に登録
-	Draw::LoadImage(L"育TEST.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"育ボタン.png", 1, TEX_SIZE_512);
 
 	//喰アイコンを読み込み2番に登録
-	Draw::LoadImage(L"喰TEST.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"喰ボタン.png", 2, TEX_SIZE_512);
 
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);

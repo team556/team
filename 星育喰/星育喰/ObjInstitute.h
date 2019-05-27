@@ -35,11 +35,8 @@ private:
 	float m_Equ_pic_red_color[15];	//武器ポッド画像集カラー(Red)
 	float m_Equ_pic_green_color[15];//武器ポッド画像集カラー(Green)
 	float m_Equ_pic_blue_color[15];	//武器ポッド画像集カラー(Blue)
-	float m_Yes_Button_color;		//最終確認[はい]ボタンカラー(Red)調節用
-	float m_No_Button_color;		//最終確認[いいえ]ボタンカラー(Blue)調節用
 
 	wchar_t m_Equ_message[EQU_MES_MAX_FONT_LINE][22];	//武器ポッド必要素材&人数メッセージのフォント用(素材名除く)
-	wchar_t m_Equ_message_Mat_name[6];					//武器ポッド必要素材&人数メッセージの素材名フォント用(現在ウインドウサイズ的に全角5文字分しか入らないようにしている)
 	float	m_Equ_message_window_x_size;				//武器ポッド必要素材&人数ウインドウのサイズX
 	float	m_Equ_message_window_y_size;				//武器ポッド必要素材&人数ウインドウのサイズY
 
@@ -52,7 +49,7 @@ private:
 	int   m_Mis_recast_next_Hum_num[MIS_MAX_LV - 1];	//ミサイルリキャストの次のLVUPに必要な研究員の住民数管理用
 	
 	int  m_Equ_next_Hum_num[5][EQU_MAX_LV - 1];			//各武器、ポッドの次のLVUPに必要な研究員の住民数管理用
-	wchar_t m_Equ_next_Mat_name[5][EQU_MAX_LV - 1][6];	//各武器、ポッドの次のLVUPに必要な素材の名前管理用
+	wchar_t m_Equ_next_Mat_name[5][EQU_MAX_LV - 1][MAT_NAME_CHAR_DATA_STORE_NUM];//各武器、ポッドの次のLVUPに必要な素材の名前管理用
 	int *m_Equ_next_Mat_type[5][EQU_MAX_LV - 1];		//各武器、ポッドの次のLVUPに必要な素材種類とその素材の所持数を管理するポインタ
 	int  m_Equ_next_Mat_num[5][EQU_MAX_LV - 1];			//各武器、ポッドの次のLVUPに必要な素材数管理用(仮で必要素材1種類として考えている。2種類以上ならその分Mat_typeとMat_numを配列構造体に入れて増やす予定)
 };

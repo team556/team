@@ -117,8 +117,9 @@
     <ClCompile Include="ObjBefore_Fight_Effect.cpp" />
     <ClCompile Include="ObjFightClear.cpp" />
     <ClCompile Include="ObjFightOver.cpp" />
+    <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjInstitute.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -146,28 +147,28 @@
     <ClCompile Include="ObjTest.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
-    <ClCompile Include="ObjTutorial.cpp" />
+    <ClCompile Include="ObjHelp.cpp" />
     <ClCompile Include="Pause.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="SceneFight.cpp" />
+    <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneHome.cpp" />
     <ClCompile Include="ScenePreparation.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="SceneTraining.cpp" />
     <ClCompile Include="UtilityModule.cpp" />
-    <ClCompile Include="ObjWarehouse.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="ObjWarehouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjBarracks.h" />
     <ClInclude Include="ObjBefore_Fight_Effect.h" />
     <ClInclude Include="ObjFightClear.h" />
     <ClInclude Include="ObjFightOver.h" />
+    <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjInstitute.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Call_Planet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -199,20 +200,19 @@
     <ClInclude Include="ObjTest.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="ObjTraining.h" />
-    <ClInclude Include="ObjTutorial.h" />
+    <ClInclude Include="ObjHelp.h" />
     <ClInclude Include="Pause.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="SceneFight.h" />
+    <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneHome.h" />
     <ClInclude Include="ScenePreparation.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SceneTraining.h" />
     <ClInclude Include="UtilityModule.h" />
-    <ClInclude Include="ObjWarehouse.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="ObjWarehouse.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl" />

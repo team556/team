@@ -33,8 +33,10 @@ private:
 	int m_large;	//サイズ
 
 	int m_cnt;		//カウント
+	int m_cnt_max;	//カウントマックス
 
-	bool  m_flag;		//true=クリックした　false=クリックしてない
-	bool  m_key_f;		//キーフラグ
+	int m_page_nam;		//ページ数
 
+	bool m_Stage_Clear_f;	//ステージクリアフラグ
+	bool m_Game_Clear_f;	//ゲーム　クリアフラグ
 };

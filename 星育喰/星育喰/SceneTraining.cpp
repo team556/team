@@ -87,14 +87,26 @@ void CSceneTraining::InitScene()
 	//–ß‚éƒAƒCƒRƒ“‚ğ“Ç‚İ‚İ1”Ô‚É“o˜^
 	Draw::LoadImage(L"–ß‚é.png", 1, TEX_SIZE_512);
 
-	//•ºÉ‚ğ“Ç‚İ‚İ2”Ô‚É“o˜^
+	//•ºÉLv1‚ğ“Ç‚İ‚İ2”Ô‚É“o˜^
 	Draw::LoadImage(L"•ºÉLv1.png", 2, TEX_SIZE_512);
 
-	//Œ¤‹†Š‚ğ“Ç‚İ‚İ3”Ô‚É“o˜^
+	//Œ¤‹†ŠLv1‚ğ“Ç‚İ‚İ3”Ô‚É“o˜^
 	Draw::LoadImage(L"Œ¤‹†ŠLv1.png", 3, TEX_SIZE_512);
 
 	//ƒ~ƒTƒCƒ‹(‰¼)‚ğ“Ç‚İ‚İ4”Ô‚É“o˜^
 	Draw::LoadImage(L"ƒ~ƒTƒCƒ‹.png", 4, TEX_SIZE_512);
+
+	//•ºÉLv2‚ğ“Ç‚İ‚İ5”Ô‚É“o˜^
+	Draw::LoadImage(L"•ºÉLv2.png", 5, TEX_SIZE_512);
+
+	//Œ¤‹†ŠLv2‚ğ“Ç‚İ‚İ6”Ô‚É“o˜^
+	Draw::LoadImage(L"Œ¤‹†ŠLv2.png", 6, TEX_SIZE_512);
+
+	//•ºÉLv3‚ğ“Ç‚İ‚İ8”Ô‚É“o˜^
+	Draw::LoadImage(L"•ºÉLv3.png", 8, TEX_SIZE_512);
+
+	//Œ¤‹†ŠLv3‚ğ“Ç‚İ‚İ9”Ô‚É“o˜^
+	Draw::LoadImage(L"Œ¤‹†ŠLv3.png", 9, TEX_SIZE_512);
 
 	//Z–¯‚ğ“Ç‚İ‚İ10”Ô‚É“o˜^
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);

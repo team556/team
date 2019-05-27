@@ -24,7 +24,7 @@ using namespace GameL;
 //グローバル変数の定義
 int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
-int g_Special_equipment = 2;//デバッグ用に2にしている。後で0に戻すように。
+int g_Special_equipment = 1;//デバッグ用に1にしている。後で0に戻すように。
 bool g_Special_mastering[5] = { true,true,true,true,true };//デバッグ用に全てtrueにしている。後でfalseに戻すように。
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 
@@ -128,10 +128,10 @@ void CObjPreparation::Init()
 
 	//▼各敵惑星の詳細説明文設定
 	//▽1ステージ　敵惑星1(左から1番目の敵惑星)
-	swprintf_s(m_Enemy_detail_message[0][0][0], L"テスト");//1行目
-	swprintf_s(m_Enemy_detail_message[0][0][1], L"テスト");//2行目
-	swprintf_s(m_Enemy_detail_message[0][0][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][0][3], L"テスト");//4行目
+	swprintf_s(m_Enemy_detail_message[0][0][0], L"難易度　★");//1行目
+	swprintf_s(m_Enemy_detail_message[0][0][1], L"取得可能な資材・技");//2行目
+	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材30・鉄");//3行目
+	swprintf_s(m_Enemy_detail_message[0][0][3], L"スピード重視");//4行目
 	//▽1ステージ　敵惑星2(左から2番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][1][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][1][1], L"テスト");//2行目
@@ -1048,10 +1048,10 @@ void CObjPreparation::Draw()
 
 
 
-	//デバッグ用仮マウス位置表示
-	wchar_t str[256];
-	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
+	////デバッグ用仮マウス位置表示
+	//wchar_t str[256];
+	//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }
 
 //---Enemy_message関数

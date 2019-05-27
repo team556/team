@@ -139,7 +139,7 @@ void CObjSpecialButton::Action()
 	}
 
 	//▼時間切れの時の処理
-	if (FightScene->GetCount() <= 60)
+	if (battle_end == true)
 	{	
 		//時間切れでスペシャル技発動不可にする
 		m_is_used_special[PLAYER] = true;	
@@ -414,8 +414,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		{
 			Planet[Opponent_id]->SetDamage();//サイズ(HP)減少
 			Planet[Opponent_id]->SetScale_down_move(Opponent_id);//縮む分だけ移動
-
-			//size30以下になる時のif文、ここにも用意。
 		}
 	
 		m_count[Planet_id]++;//効果時間計測

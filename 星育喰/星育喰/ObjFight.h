@@ -17,6 +17,7 @@ public:
 
 	int GetLine() { return m_line_nam; }//選択ラインを返す
 	int GetCount() { return m_cnt; }	//カウント数を返す
+	void SetEndCount() { m_cnt = 60; }	//戦闘終了カウント数に設定する
 	void SetStart_Count() { m_start_count_f = true; }//戦闘開始カウントを動作させる
 	void SetEnd() { m_end_f = true; }	//クリア画面作成
 private:

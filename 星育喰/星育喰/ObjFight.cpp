@@ -17,7 +17,7 @@ bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
 float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
-
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
 CObjFight::CObjFight(int c)
@@ -36,7 +36,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 10;//戦闘時間(60 * X = X秒)
+	m_cnt = 60 * 90;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
 	m_ex = 0;
@@ -144,24 +144,29 @@ void CObjFight::Action()
 	if (m_end_f == true)
 	{
 		m_end_f = false;
-		if (g_Challenge_enemy == 0)
+		if (g_Challenge_enemy == 0)									//左から１番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);	
+			CObjFightClear* crer = new CObjFightClear(500, 0, 20, 1);	
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 1)
+		if (g_Challenge_enemy == 1)									//左から２番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			CObjFightClear* crer = new CObjFightClear(50, 1, 20, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 2)
+		if (g_Challenge_enemy == 2)									//左から３番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			CObjFightClear* crer = new CObjFightClear(100, 2, 20, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 3)
+		if (g_Challenge_enemy == 3)									//左から４番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 0, 20, 1);
+			CObjFightClear* crer = new CObjFightClear(200, 3, 20, 0);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		if (g_Challenge_enemy == 4)									//ボス
+		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
+			CObjFightClear* crer = new CObjFightClear(1000, 4, 50, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
@@ -205,9 +210,9 @@ void CObjFight::Draw()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d0[4] = { 1.0f,1.0f,1.0f,0.3f };
-	float d1[4] = { 1.0f,1.0f,1.0f,0.3f };
-	float d2[4] = { 1.0f,1.0f,1.0f,0.3f };
+	float d0[4] = { 1.0f,1.0f,1.0f,0.6f };
+	float d1[4] = { 1.0f,1.0f,1.0f,0.6f };
+	float d2[4] = { 1.0f,1.0f,1.0f,0.6f };
 
 	if (obj->GetCount() == 0) {//-------------------------時間切れの場合----
 		if (m_a > 0.0f) {
@@ -219,11 +224,11 @@ void CObjFight::Draw()
 	}
 	else {//------------------------------------------対戦時間中のみ動作-----
 		if (m_line == 0)		//選択時に各ラインを不透明化
-			d0[3] = 0.6f;
+			d0[3] = INI_COLOR;
 		else if (m_line == 1)
-			d1[3] = 0.6f;
+			d1[3] = INI_COLOR;
 		else if (m_line == 2)
-			d2[3] = 0.6f;
+			d2[3] = INI_COLOR;
 
 		if (m_line_nam == 0)	//カーソル時に半不透明化
 			d0[3] = 1.0f;
@@ -284,8 +289,8 @@ void CObjFight::Draw()
 
 
 
-	//デバッグ用仮マウス位置表示
-	wchar_t test_mou[256];
-	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+	////デバッグ用仮マウス位置表示
+	//wchar_t test_mou[256];
+	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }

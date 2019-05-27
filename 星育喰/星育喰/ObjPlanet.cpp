@@ -100,7 +100,7 @@ void CObjPlanet::Init()
 	else  //(m_type == 5) 
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
-		m_img_nam = 29;
+		m_img_nam = 30;
 	}
 }
 
@@ -145,7 +145,7 @@ void CObjPlanet::Action()
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
 				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
 
-				//戦闘音楽を破棄し勝利音楽再生
+				//戦闘音楽を破棄し敗北音楽再生
 				Audio::Stop(0);
 				Audio::Start(2);
 			}
@@ -260,7 +260,28 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
+			{
+				m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
+			}
+
+
 			m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
 		}
 	}
@@ -270,9 +291,38 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
+			{
+				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+			}
+			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
+			{
+				m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
+			}
+
+
 			m_scale_down_move = ((1 - (m_size / m_siz_max)) * m_siz_change_range);//縮む分だけ右に移動
 		}
+	}
+
+	//どちらかの惑星がHP0以下に達した時、
+	//制限時間が余っていても戦闘終了処理を行う
+	if (m_size <= 0.0f && battle_end == false)
+	{
+		battle_end = true;	//戦闘終了フラグを立てる
+		fit->SetEndCount();	//戦闘時間を残り1秒に設定する
 	}
 
 	if (m_del_f == true) {				//消すフラグ判定＆処理
@@ -327,31 +377,136 @@ void CObjPlanet::Action()
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+
+
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
+			//if (m_type = 1)
+			//{
+			//	m_time = 1000 * m_enemy_recast_buff;
+			//}
+			//else
+			//{
+			//	m_time = 3000 * m_enemy_recast_buff;
+			//}
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			/*m_time = 100 * m_enemy_recast_buff;*/
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+		/*	m_time = 100 * m_enemy_recast_buff;*/
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			//m_time = 100 * m_enemy_recast_buff;
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			//m_time = 100 * m_enemy_recast_buff;
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
+
 		}
 		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
 		{
@@ -390,7 +545,8 @@ void CObjPlanet::Action()
 //ドロー
 void CObjPlanet::Draw()
 {
-	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };
+	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };//惑星画像&HPゲージ(現在値)用
+	float b[4] = { 0.0f,0.0f, 0.0f, 1.0f };//HPゲージ(最大値)用
 	RECT_F src;
 	RECT_F dst;
 	//切り取り位置
@@ -416,4 +572,27 @@ void CObjPlanet::Draw()
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
+
+
+
+	//▽HPゲージ表示(戦闘終了後は表示しない)
+	if (battle_end == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 10.0f;
+
+		dst.m_top = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) - 5.0f;
+		dst.m_left = m_px - MIN_SIZE + m_scale_down_move;
+		dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
+
+		//▼最大値表示
+		dst.m_right = m_px - MIN_SIZE + m_scale_down_move + (MIN_SIZE * 2);
+		Draw::Draw(32, &src, &dst, b, 0.0f);
+
+		//▼現在値表示		
+		dst.m_right = m_px - MIN_SIZE + m_scale_down_move + ((MIN_SIZE * 2) * (m_size / m_siz_max));
+		Draw::Draw(32, &src, &dst, c, 0.0f);
+	}
 }

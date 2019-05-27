@@ -130,11 +130,11 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
 		}
 		else if (ButtonU == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
 		}
 		else if (ButtonU == 4)
 		{
@@ -155,11 +155,11 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
 		}
 		else if (ButtonU == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
 		}
 		else if (ButtonU == 4)
 		{
@@ -185,7 +185,8 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
-	m_podhp = 10;
+	m_pod_max_hp = 10;
+	m_podhp = m_pod_max_hp;
 
 	m_hp_cnt = 0;		//無敵タイム
 	m_hp_f = false;		//無敵フラグ
@@ -220,7 +221,7 @@ void CObjRocket::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (obj->GetCount() <= 60)
+	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
 		m_del = true;
 
 	if (m_mou_l == false && m_mou_f == false)
@@ -326,161 +327,166 @@ void CObjRocket::Action()
 
 	}
 	
-	//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
-	//HPの状態に関わらず消滅処理へと移行する
-	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
-		m_type == true)											//プレイヤーの射出したポッドである場合、実行
+	//▼ポッドのダメージ処理
+	//※戦闘終了後は以下のポッドのダメージ処理は行わない
+	if (battle_end == false)
 	{
-		m_del = true;				//消滅処理フラグON
-		hit->SetInvincibility(true);//当たり判定を無効化(無敵)
-	}
-
-	//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
-	//HPの状態に関わらず消滅処理へと移行する
-	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 0) != nullptr && //プレイヤーのスペシャル技にHITかつ、
-		m_type == false)										//エネミーの射出したポッドである場合、実行
-	{
-		m_del = true;				//消滅処理フラグON
-		hit->SetInvincibility(true);//当たり判定を無効化(無敵)
-	}
-
-
-	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == false)//惑星に当たった時かつ自弾
-	{
-		//位置を更新//惑星と接触しているかどうかを調べる
-		m_del = true;
-		hit->SetInvincibility(true);
-	}
-	else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == true)//敵の惑星に当たった時かつ自弾
-	{
-		//位置を更新//惑星と接触しているかどうかを調べる
-		m_del = true;
-		hit->SetInvincibility(true);
-	}
-
-	//敵のポッドがプレイヤーのポッドにぶつかった時の判定
-	//※エネミーがダメージを受ける時の処理
-	if (hit->CheckElementHit(ELEMENT_POD) == true)
-	{
-		if (ButtonU == 1)//敵の種類１(パワー)がプレイヤーのポッドと当たった場合
+		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+		//HPの状態に関わらず消滅処理へと移行する
+		if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
+			m_type == true)											//プレイヤーの射出したポッドである場合、実行
 		{
-			if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+			m_del = true;				//消滅処理フラグON
+			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
+		}
+
+		//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+		//HPの状態に関わらず消滅処理へと移行する
+		if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 0) != nullptr && //プレイヤーのスペシャル技にHITかつ、
+			m_type == false)										//エネミーの射出したポッドである場合、実行
+		{
+			m_del = true;				//消滅処理フラグON
+			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
+		}
+
+
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == false)//惑星に当たった時かつ自弾
+		{
+			//位置を更新//惑星と接触しているかどうかを調べる
+			m_del = true;
+			hit->SetInvincibility(true);
+		}
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == true)//敵の惑星に当たった時かつ自弾
+		{
+			//位置を更新//惑星と接触しているかどうかを調べる
+			m_del = true;
+			hit->SetInvincibility(true);
+		}
+
+		//敵のポッドがプレイヤーのポッドにぶつかった時の判定
+		//※エネミーがダメージを受ける時の処理
+		if (hit->CheckElementHit(ELEMENT_POD) == true)
+		{
+			if (ButtonU == 1)//敵の種類１(パワー)がプレイヤーのポッドと当たった場合
 			{
-				m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+				if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+				}
+				else											//プレイヤーのパワーポッド、バランスポッド、ミサイル当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0];
+				}
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+			else if (ButtonU == 2)//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
 			{
-				m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+				}
+				else											//プレイヤーのディフェンスポッド、バランスポッド、ミサイル当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0];
+				}
 			}
-			else											//プレイヤーのパワーポッド、バランスポッド、ミサイル当たり時のHP
+			else if (ButtonU == 3)//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
+			{
+				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+				}
+				else											//プレイヤーのスピードポッド、バランスポッド、ミサイルに当たり時のHP
+				{
+					m_podhp -= m_Enemy_damage * damage_buff[0];
+				}
+			}
+			else if (ButtonU == 4)//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0];
 			}
-		}
-		else if (ButtonU == 2)//敵の種類２(スピード)がプレイヤーのポッドと当たった場合
-		{
-			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
+			else if (ButtonU == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
 			{
-				m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
-			{
-				m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
-			}
-			else											//プレイヤーのスピードポッド、バランスポッド、ミサイル当たり時のHP
-			{
-				m_podhp -= m_Enemy_damage * damage_buff[0];
+				m_podhp -= m_Enemy_damage;
 			}
 		}
-		else if (ButtonU == 3)//敵の種類３(ディフェンス)がプレイヤーのポッドと当たった場合
-		{
-			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
-			{
-				m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
-			{
-				m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
-			}
-			else											//プレイヤーのディフェンスポッド、バランスポッド、ミサイルに当たり時のHP
-			{
-				m_podhp -= m_Enemy_damage * damage_buff[0];
-			}
-		}
-		else if (ButtonU == 4)//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
-		{
-			m_podhp -= m_Enemy_damage * damage_buff[0];
-		}
-		else if (ButtonU == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
-		{
-			m_podhp -= m_Enemy_damage;
-		}
-	}
 
-	//プレイヤーのポッドが敵のポッドとぶつかった時の判定
-	//※プレイヤーがダメージを受ける時の処理
-	if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)
-	{
-		if (ButtonU == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
+		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
+		//※プレイヤーがダメージを受ける時の処理
+		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)
 		{
-			if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+			if (ButtonU == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
 			{
-				m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+				if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+				}
+				else											//敵のパワーポッド、バランスポッド、ミサイル当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1];
+				}
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+			else if (ButtonU == 2)//自分の種類２(ディフェンス)が敵のポッドと当たった場合
 			{
-				m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+				}
+				else											//敵のディフェンスポッド、バランスポッド、ミサイル当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1];
+				}
 			}
-			else											//敵のパワーポッド、バランスポッド、ミサイル当たり時のHP
+			else if (ButtonU == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
 			{
-				m_podhp -= m_Player_damage * damage_buff[1];
-			}
-		}
-		else if (ButtonU == 2)//自分の種類２(スピード)が敵のポッドと当たった場合
-		{
-			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
-			{
-				m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
-			{
-				m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
-			}
-			else											//敵のスピードポッド、バランスポッド、ミサイル当たり時のHP
-			{
-				m_podhp -= m_Player_damage * damage_buff[1];
-			}
-		}
-		else if (ButtonU == 3)//自分の種類３(ディフェンス)が敵のポッドと当たった場合
-		{
-			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
-			{
-				m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
-			{
-				m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
-			}
-			else											//敵のディフェンスポッド、バランスポッド、ミサイル当たり時のHP
-			{
-				m_podhp -= m_Player_damage * damage_buff[1];
-			}
+				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+				}
+				else											//敵のスピードポッド、バランスポッド、ミサイル当たり時のHP
+				{
+					m_podhp -= m_Player_damage * damage_buff[1];
+				}
 
+			}
+			else if (ButtonU == 4)//自分の種類４(バランス)が敵のポッドとミサイルに当たった場合
+			{
+				m_podhp -= m_Player_damage * damage_buff[1];
+			}
+			else if (ButtonU == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
+			{
+				m_podhp -= m_Player_damage;
+			}
 		}
-		else if (ButtonU == 4)//自分の種類４(バランス)が敵のポッドとミサイルに当たった場合
+
+		if (m_podhp <= 0)//HP
 		{
-			m_podhp -= m_Player_damage * damage_buff[1];
+			m_del = true;
+			hit->SetInvincibility(true);
 		}
-		else if (ButtonU == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
-		{
-			m_podhp -= m_Player_damage;
-		}
-	}
-	
-	if (m_podhp <= 0)//HP
-	{
-		m_del = true;
-		hit->SetInvincibility(true);
 	}
 }
 
@@ -492,6 +498,7 @@ void CObjRocket::Draw()
 	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f }; //赤
 	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f }; //緑
 	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f }; //青
+	float black[4] = { 0.0f, 0.0f, 0.0f, 1.0f };//黒(HPゲージ最大値で使用)
 	float c[4] = { 1.0f,1.0f,1.0f,m_a };
 
 
@@ -603,6 +610,28 @@ void CObjRocket::Draw()
 			}
 		}
 	}
+
+	//HPゲージ表示(ミサイル以外かつ破壊されていない時に表示される)
+	if (ButtonU != 5 && m_del == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 10.0f;
+
+		dst.m_top = m_y + m_size;
+		dst.m_left = m_x;
+		dst.m_bottom = m_y + m_size + 5.0f;
+
+		//▼最大値表示
+		dst.m_right = m_x + m_size;
+		Draw::Draw(32, &src, &dst, black, 0.0f);
+
+		//▼現在値表示		
+		dst.m_right = m_x + (m_size * ((float)m_podhp / (float)m_pod_max_hp));
+		Draw::Draw(32, &src, &dst, d, 0.0f);
+	}
+	
 
 	//爆発エフェクト
 	//左斜め上

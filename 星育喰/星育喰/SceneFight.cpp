@@ -104,15 +104,26 @@ void CSceneFight::InitScene()
 	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
 	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
-	Draw::LoadImage(L"レイド1 128x.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"水惑星.png", 26, TEX_SIZE_512);
 
-	Draw::LoadImage(L"水惑星.png", 27, TEX_SIZE_512);
+	Draw::LoadImage(L"レイド1 128x.png", 27, TEX_SIZE_512);
 
-	Draw::LoadImage(L"パンダ戦闘.png", 28, TEX_SIZE_512);
-
+	Draw::LoadImage(L"悪☆.png", 28, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み29番に登録
-	Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 29, TEX_SIZE_512);
+	Draw::LoadImage(L"ぼやけた星.png", 29, TEX_SIZE_512);
+
+	//ボス星(1ステージ)を読み込み30番に登録
+	Draw::LoadImage(L"パンダ戦闘.png", 30, TEX_SIZE_512);
+
+	//人数不足アイコンを読み込み31番に登録
+	Draw::LoadImage(L"人数不足.png", 31, TEX_SIZE_512);
+
+	//HPゲージ(リキャストゲージにも使用)を読み込み32番に登録
+	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
+
+	//ヘルプボタン画像を読み込み33番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 33, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");

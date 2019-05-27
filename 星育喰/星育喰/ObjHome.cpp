@@ -322,8 +322,8 @@ void CObjHome::Draw()
 	//敵惑星1(背景)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = m_Ey[0];
 	dst.m_left = 1200.0f - m_time[0];//+4ずつ増加し続ける変数を引く事で、
@@ -334,8 +334,8 @@ void CObjHome::Draw()
 	//敵惑星2(背景)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = m_Ey[1];
 	dst.m_left = 1200.0f - m_time[1];//+4ずつ増加し続ける変数を引く事で、
@@ -346,8 +346,8 @@ void CObjHome::Draw()
 	//敵惑星3(背景)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
 
 	dst.m_top = m_Ey[2];
 	dst.m_left = 1200.0f - m_time[2];//+4ずつ増加し続ける変数を引く事で、
@@ -398,7 +398,7 @@ void CObjHome::Draw()
 
 
 	//デバッグ用仮マウス位置表示
-	wchar_t str[256];
-	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
+	//wchar_t str[256];
+	//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }
