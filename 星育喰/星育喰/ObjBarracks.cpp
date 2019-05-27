@@ -2,6 +2,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -71,6 +72,9 @@ void CObjBarracks::Action()
 
 				//"どのウインドウも開いていない状態"フラグを立てる
 				window_start_manage = Default;
+
+				//戻るボタン音
+				Audio::Start(2);
 			}
 			//左クリック入力時
 			else if (m_mou_l == true)
@@ -85,6 +89,9 @@ void CObjBarracks::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -116,6 +123,9 @@ void CObjBarracks::Action()
 
 					//ここで兵舎LvUP処理を行う。
 					//しかし、現状未実装である。
+
+					//レベルアップ音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -144,6 +154,9 @@ void CObjBarracks::Action()
 					m_Human_up_color[0] = 0.0f;
 			
 					g_Power_num = Allocation(g_Power_num, +1);//振り分け関数を呼び出す
+
+				    //振り分けボタン音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -172,6 +185,9 @@ void CObjBarracks::Action()
 					m_Human_up_color[1] = 0.0f;
 
 					g_Defense_num = Allocation(g_Defense_num, +1);//振り分け関数を呼び出す
+
+				    //振り分けボタン音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -200,6 +216,9 @@ void CObjBarracks::Action()
 					m_Human_up_color[2] = 0.0f;
 
 					g_Speed_num = Allocation(g_Speed_num, +1);//振り分け関数を呼び出す
+
+				    //振り分けボタン音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -228,6 +247,9 @@ void CObjBarracks::Action()
 					m_Human_up_color[3] = 0.0f;
 
 					g_Balance_num = Allocation(g_Balance_num, +1);//振り分け関数を呼び出す
+
+				    //振り分けボタン音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -256,6 +278,9 @@ void CObjBarracks::Action()
 					m_Human_down_color[0] = 0.0f;
 
 					g_Power_num = Allocation(g_Power_num, -1);//振り分け関数を呼び出す
+
+				    //振り分けダウン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -284,6 +309,9 @@ void CObjBarracks::Action()
 					m_Human_down_color[1] = 0.0f;
 
 					g_Defense_num = Allocation(g_Defense_num, -1);//振り分け関数を呼び出す
+
+        			//振り分けダウン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -312,6 +340,9 @@ void CObjBarracks::Action()
 					m_Human_down_color[2] = 0.0f;
 
 					g_Speed_num = Allocation(g_Speed_num, -1);//振り分け関数を呼び出す
+
+				    //振り分けダウン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -340,6 +371,9 @@ void CObjBarracks::Action()
 					m_Human_down_color[3] = 0.0f;
 
 					g_Balance_num = Allocation(g_Balance_num, -1);//振り分け関数を呼び出す
+
+					//振り分けダウン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -381,6 +415,9 @@ void CObjBarracks::Action()
 
 				//"兵舎ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Barracks;
+
+				//選択音
+				Audio::Start(1);
 			}
 		}
 		else

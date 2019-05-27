@@ -77,4 +77,7 @@ private:
 	CObjFight *FightScene;
 	CObjPlanet *Planet[2];
 	CObjRocketButton *PodMissile[5];
+
+	bool m_sptime[2];	//ステロイド投与SE鳴らすフラグ
+
 };

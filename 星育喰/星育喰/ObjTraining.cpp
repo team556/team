@@ -3,6 +3,7 @@
 #include "GameL\DrawFont.h"		//使用されているのはマウスデバッグの部分のみ
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -135,6 +136,9 @@ void CObjTraining::Action()
 
 				//移行フラグ立て
 				window_start_manage = BackButton;
+
+				//戻るボタン音
+				Audio::Start(2);
 			}
 		}
 		//左クリック入力時
@@ -151,6 +155,9 @@ void CObjTraining::Action()
 
 				//移行フラグ立て
 				window_start_manage = BackButton;
+
+				//戻るボタン音
+				Audio::Start(2);
 			}
 		}
 		else

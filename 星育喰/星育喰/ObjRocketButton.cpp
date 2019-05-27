@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjRocketButton.h"
@@ -107,6 +108,9 @@ void CObjRocketButton::Action()
 
 			m_mou_f = true;
 			m_a = 0.3f;		//透明化
+
+			//ポッド選択音
+			Audio::Start(3);
 		}
 	}
 

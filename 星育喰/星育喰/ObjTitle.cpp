@@ -3,6 +3,7 @@
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "Call_Planet.h"
@@ -64,7 +65,6 @@ void CObjTitle::Action()
 		{
 			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 		}
-
 		return;
 	}
 	else if (m_mou_l == true || m_mou_r == true)
@@ -72,6 +72,9 @@ void CObjTitle::Action()
 		if (m_key_f == true)
 		{
 			m_flag = true;
+
+			//選択音
+			Audio::Start(1);
 		}
 	}
 	//ゲームオーバー画面からタイトルに戻ってくる際、

@@ -33,4 +33,8 @@ private:
 	int m_large;	//サイズ
 
 	int m_cnt;		//カウント
+
+	bool  m_flag;		//true=クリックした　false=クリックしてない
+	bool  m_key_f;		//キーフラグ
+
 };

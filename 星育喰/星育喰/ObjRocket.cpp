@@ -4,6 +4,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 
 
 #include "GameHead.h"
@@ -275,13 +276,21 @@ void CObjRocket::Action()
 	}
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 5);	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 4);	//敵とプレイヤーのポッド当たっているとき処理
 	
 	//ポッド消滅処理
 	if (m_del == true)
 	{
 		if(m_bom != 5)	//５以外の場合
-			m_bom = Rand(0, 4);//ランダムな爆発を起こす
+			m_bom = rand()%5;//ランダムな爆発を起こす
+
+		//小さい爆発音を複数回鳴らす処理
+		if (m_bom <=0||m_bom==4)
+		{
+			//小さい爆発
+			Audio::Start(4);
+			Audio::Stop(5);
+		}
 		if (m_ani == 4 && m_bom == 5)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
@@ -308,7 +317,13 @@ void CObjRocket::Action()
 			m_ani = 0;
 			m_bom = 5;
 		}
-		
+		if (m_bom == 5)
+		{
+			//小さい爆発を破棄して、大きい爆発を出す
+			Audio::Stop(4);
+			Audio::Start(5);
+		}
+
 	}
 	
 	//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、

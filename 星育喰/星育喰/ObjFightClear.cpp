@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjFightClear.h"
@@ -71,12 +72,14 @@ void CObjFightClear::Init()
 	{
 		g_Iron_num += 40;
 	}
+	m_flag = false;
 
 }
 
 //アクション
 void CObjFightClear::Action()
 {
+
 	////マウスの位置を取得
 	//m_mou_x = (float)Input::GetPosX();
 	//m_mou_y = (float)Input::GetPosY();
@@ -84,11 +87,13 @@ void CObjFightClear::Action()
 	//m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+
 	if (m_cnt == 0) {							//カウント終了後
 		if (m_mou_l == true)					//クリックした場合
 			Scene::SetScene(new CSceneHome());	//シーン移行
-		m_a_f = true;			//フラグ有効
+			m_a_f = true;			//フラグ有効
 	}
+
 	else
 		m_cnt--;	//0でない場合カウントダウン
 
