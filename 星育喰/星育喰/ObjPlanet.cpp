@@ -378,31 +378,136 @@ void CObjPlanet::Action()
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+
+
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
+			//if (m_type = 1)
+			//{
+			//	m_time = 1000 * m_enemy_recast_buff;
+			//}
+			//else
+			//{
+			//	m_time = 3000 * m_enemy_recast_buff;
+			//}
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			/*m_time = 100 * m_enemy_recast_buff;*/
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+		/*	m_time = 100 * m_enemy_recast_buff;*/
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			//m_time = 100 * m_enemy_recast_buff;
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			//m_time = 100 * m_enemy_recast_buff;
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
+
 		}
 		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
 		{
