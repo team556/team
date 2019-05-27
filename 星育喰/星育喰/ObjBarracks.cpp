@@ -2,6 +2,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -183,7 +184,7 @@ void CObjBarracks::Action()
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
 				}
-			}
+
 				//戻るボタン音
 				Audio::Start(2);
 			}

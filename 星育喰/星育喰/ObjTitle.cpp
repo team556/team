@@ -3,6 +3,7 @@
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "Call_Planet.h"
