@@ -32,11 +32,11 @@ int g_Bal_equip_Level = 1;
 int g_Bal_equip_Lv_achieve = 1;
 int g_Pod_equip_Level = 1;
 int g_Pod_equip_Lv_achieve = 1;
-float g_Player_max_size = 10;
-int g_Power_num = 10000;		//デバッグ用に10000。後で0に戻す。
-int g_Defense_num = 10000;		//デバッグ用に10000。後で0に戻す。
-int g_Speed_num = 10000;		//デバッグ用に10000。後で0に戻す。
-int g_Balance_num = 10000;		//デバッグ用に10000。後で0に戻す。
+float g_Player_max_size = 10.0f;
+int g_Power_num = 500;		//デバッグ用に500。後で0に戻す。
+int g_Defense_num = 500;	//デバッグ用に500。後で0に戻す。
+int g_Speed_num = 500;		//デバッグ用に500。後で0に戻す。
+int g_Balance_num = 100;	//デバッグ用に100。後で0に戻す。
 int g_Research_num = 0;
 int g_Remain_num = 1000;
 
@@ -228,9 +228,9 @@ void CObjTraining::Draw()
 
 
 	//デバッグ用仮マウス位置表示
-	wchar_t str[256];
-	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
+	//wchar_t str[256];
+	//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(str, 20.0f, 20.0f, 12.0f, d);
 }
 
 //---Allocation関数
@@ -283,4 +283,93 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	}
 
 	return type_num;
+}
+
+//---Facility_message関数
+//引数1　int Facility_Level	:現在の施設(兵舎or研究所)レベル
+//▼内容
+//現在の施設(兵舎or研究所)レベルを考慮した
+//必要素材&サイズメッセージを描画する。
+void CObjTraining::Facility_message(int Facility_Level)
+{
+	//▼施設(兵舎、研究所)必要素材&サイズフォント用
+	float Facility_message_font[FACILITY_MES_MAX_FONT_LINE][4] =
+	{
+		{ 0.0f,0.0f,1.0f,1.0f },//1行目は青色
+		{ 0.0f,0.0f,0.0f,1.0f },//2行目は黒色
+		{ 0.0f,0.0f,0.0f,1.0f },//3行目は黒色
+		{ 0.0f,0.0f,0.0f,1.0f },//4行目は赤色、または青色(以下の処理で変更する)
+		{ 1.0f,0.0f,0.0f,1.0f },//5行目は赤色
+		{ 1.0f,0.0f,0.0f,1.0f },//6行目は赤色
+	};
+
+
+	//▼施設レベルMAX時の処理
+	if (Facility_Level == FACILITY_MAX_LV)
+	{
+		//施設必要素材&サイズメッセージ設定
+		swprintf_s(m_Facility_message[0], L"LvUP条件  所持/  必要");	//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[1], L"最大レベル到達！");			//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[2], L"これ以上LVUP不可です。");	//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[3], L"");							//文字データをクリアする
+		swprintf_s(m_message_Mat_name, L"");							//文字データをクリアする
+	}
+
+	//▼施設レベルMAXではない時の処理
+	else
+	{
+		//▽施設必要素材&サイズメッセージ設定(共通処理)
+		swprintf_s(m_Facility_message[0], L"LvUP条件  所持/  必要");																						//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[1], L"惑星HP  %6.0f/%6.0f", g_Player_max_size, m_Facility_next_Size_num[Facility_Level - 1]);							//文字配列に文字データを入れる
+		swprintf_s(m_Facility_message[2], L"        %6d/%6d", *m_Facility_next_Mat_type[Facility_Level - 1], m_Facility_next_Mat_num[Facility_Level - 1]);	//文字配列に文字データを入れる
+		swprintf_s(m_message_Mat_name, L"%s", m_Facility_next_Mat_name[Facility_Level - 1]);																//文字配列に文字データを入れる
+
+
+		//▽レベルUP可能時の処理
+		if (g_Player_max_size > m_Facility_next_Size_num[Facility_Level - 1] &&
+			*m_Facility_next_Mat_type[Facility_Level - 1] >= m_Facility_next_Mat_num[Facility_Level - 1])
+		{
+			//施設必要素材&サイズメッセージ設定
+			swprintf_s(m_Facility_message[3], L"      LvUP可能!");	//文字配列に文字データを入れる
+			swprintf_s(m_Facility_message[4], L"");					//文字データをクリアする
+			swprintf_s(m_Facility_message[5], L"");					//文字データをクリアする
+
+			//施設必要素材&サイズメッセージ4行目のカラーを青色に設定
+			Facility_message_font[3][0] = 0.0f;
+			Facility_message_font[3][2] = 1.0f;
+		}
+		//▽レベルUP不可時の処理
+		else
+		{
+			//施設必要素材&サイズメッセージ設定
+			swprintf_s(m_Facility_message[3], L"      LvUP不可");	//文字配列に文字データを入れる
+			
+			//以下のメッセージは現在のサイズ(HP)がレベルUPに必要なサイズ(HP)以下だった場合のみ表示する
+			if (g_Player_max_size <= m_Facility_next_Size_num[Facility_Level - 1])
+			{
+				swprintf_s(m_Facility_message[4], L"※惑星HPが0以下になる");	//文字配列に文字データを入れる
+				swprintf_s(m_Facility_message[5], L"場合LvUPは出来ません");		//文字配列に文字データを入れる
+			}
+			else
+			{
+				swprintf_s(m_Facility_message[4], L"");	//文字データをクリアする
+				swprintf_s(m_Facility_message[5], L"");	//文字データをクリアする
+			}
+		
+			//施設必要素材&サイズメッセージ4行目のカラーを赤色に設定
+			Facility_message_font[3][0] = 1.0f;
+			Facility_message_font[3][2] = 0.0f;
+		}
+	}
+
+
+	//▼描画処理
+	//素材名を除いたフォント表示
+	for (int i = 0; i < FACILITY_MES_MAX_FONT_LINE; i++)
+	{
+		Font::StrDraw(m_Facility_message[i], 167.5f, 440.0f + i * 35.0f, 25.0f, Facility_message_font[i]);
+	}
+
+	//素材名のフォント表示
+	Font::StrDraw(m_message_Mat_name, 167.5f, 514.0f, 17.5f, Facility_message_font[2]);
 }

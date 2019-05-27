@@ -84,7 +84,7 @@ void CObjGameClear::Draw()
 
 	Font::StrDraw(L"木村　巧",		800, m_cy[1], 32, c);
 
-	Font::StrDraw(L"五庵",			800, m_cy[2], 32, c);
+	Font::StrDraw(L"後庵　穣",		800, m_cy[2], 32, c);
 
 	Font::StrDraw(L"グラフィッカ",	400, m_cy[3], 32, c);
 

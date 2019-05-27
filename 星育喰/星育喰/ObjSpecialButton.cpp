@@ -134,7 +134,7 @@ void CObjSpecialButton::Action()
 	}
 
 	//▼時間切れの時の処理
-	if (FightScene->GetCount() <= 60)
+	if (battle_end == true)
 	{	
 		//時間切れでスペシャル技発動不可にする
 		m_is_used_special[PLAYER] = true;	

@@ -6,6 +6,7 @@ using namespace GameL;
 
 //マクロ
 #define DETAIL_MES_MAX_FONT_LINE (4) //詳細説明の最大フォント行数
+#define DETAIL_MES_CHAR_DATA_STORE_NUM (100) //詳細説明の文字データ格納可能数
 
 //オブジェクト：戦闘準備画面
 class CObjPreparation :public CObj
@@ -67,8 +68,8 @@ private:
 	bool  m_boss_emerge_staging_f;	//ボス惑星出現演出開始フラグ
 	bool  m_finalcheck_f;			//最終確認ウインドウ表示管理フラグ(true:表示 / false:非表示)
 
-	wchar_t m_detail_message[DETAIL_MES_MAX_FONT_LINE][100];	//詳細説明(敵惑星、スペシャル技)のフォント用
-	wchar_t m_Enemy_detail_message[3][5][DETAIL_MES_MAX_FONT_LINE][100];//各敵惑星の詳細説明文管理用([ステージ数][敵惑星ナンバー][最大フォント行数][文字データ格納可能数])
+	wchar_t m_detail_message[DETAIL_MES_MAX_FONT_LINE][DETAIL_MES_CHAR_DATA_STORE_NUM];	//詳細説明(敵惑星、スペシャル技)のフォント用
+	wchar_t m_Enemy_detail_message[3][5][DETAIL_MES_MAX_FONT_LINE][DETAIL_MES_CHAR_DATA_STORE_NUM];//各敵惑星の詳細説明文管理用([ステージ数][敵惑星ナンバー][最大フォント行数][文字データ格納可能数])
 	float	m_detail_message_window_top;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(top)
 	float	m_detail_message_window_left;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(left)
 	float	m_detail_message_window_right;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(right)

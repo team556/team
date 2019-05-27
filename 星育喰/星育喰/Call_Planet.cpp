@@ -19,22 +19,22 @@ void Call_Planet(int group, int select)
 		if (select == 1)
 		{
 			//“G˜f¯1‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test.jpg", 20, TEX_SIZE_512);	
+			Draw::LoadImage(L"…˜f¯.png", 20, TEX_SIZE_512);	
 		}
 		else if (select == 2)
 		{
 			//“G˜f¯2‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 20, TEX_SIZE_512);
+			Draw::LoadImage(L"…˜f¯.png", 20, TEX_SIZE_512);
 		}
 		else if (select == 3)
 		{
 			//“G˜f¯3‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 20, TEX_SIZE_512);
+			Draw::LoadImage(L"…˜f¯.png", 20, TEX_SIZE_512);
 		}
 		else  //(select == 4)
 		{
 			//“G˜f¯4‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 20, TEX_SIZE_512);
+			Draw::LoadImage(L"ˆ«™.png", 20, TEX_SIZE_512);
 		}
 	}
 
@@ -43,22 +43,22 @@ void Call_Planet(int group, int select)
 		if (select == 1)
 		{
 			//“G˜f¯1‚ğ“Ç‚İ‚İ22”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test.jpg", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ƒŒƒCƒh1 128x.png", 22, TEX_SIZE_512);
 		}
 		else if (select == 2)
 		{
 			//“G˜f¯2‚ğ“Ç‚İ‚İ22”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ƒŒƒCƒh1 128x.png", 22, TEX_SIZE_512);
 		}
 		else if (select == 3)
 		{
 			//“G˜f¯3‚ğ“Ç‚İ‚İ22”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ƒŒƒCƒh1 128x.png", 22, TEX_SIZE_512);
 		}
 		else  //(select == 4)
 		{
 			//“G˜f¯4‚ğ“Ç‚İ‚İ22”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ˆ«™.png", 22, TEX_SIZE_512);
 		}
 	}
 
@@ -67,22 +67,22 @@ void Call_Planet(int group, int select)
 		if (select == 1)
 		{
 			//“G˜f¯1‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test.jpg", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"‚Ú‚â‚¯‚½¯.png", 24, TEX_SIZE_512);
 		}
 		else if (select == 2)
 		{
 			//“G˜f¯2‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test2.jpg", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"‚Ú‚â‚¯‚½¯.png", 24, TEX_SIZE_512);
 		}
 		else if (select == 3)
 		{
 			//“G˜f¯3‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test3.jpg", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"‚Ú‚â‚¯‚½¯.png", 24, TEX_SIZE_512);
 		}
 		else  //(select == 4)
 		{
 			//“G˜f¯4‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"Enemy_Planet_Test4.jpg", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"ˆ«™.png", 24, TEX_SIZE_512);
 		}
 	}
 

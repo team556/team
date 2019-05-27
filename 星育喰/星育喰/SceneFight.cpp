@@ -113,8 +113,14 @@ void CSceneFight::InitScene()
 	//敵惑星4(1ステージ)を読み込み29番に登録
 	Draw::LoadImage(L"ぼやけた星.png", 29, TEX_SIZE_512);
 
-	//ボス星(1ステージ)を読み込み29番に登録
+	//ボス星(1ステージ)を読み込み30番に登録
 	Draw::LoadImage(L"パンダ戦闘.png", 30, TEX_SIZE_512);
+
+	//人数不足アイコンを読み込み31番に登録
+	Draw::LoadImage(L"人数不足.png", 31, TEX_SIZE_512);
+
+	//HPゲージ(リキャストゲージにも使用)を読み込み32番に登録
+	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");

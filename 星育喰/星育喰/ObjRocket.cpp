@@ -129,11 +129,11 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
 		}
 		else if (ButtonU == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
 		}
 		else if (ButtonU == 4)
 		{
@@ -154,11 +154,11 @@ void CObjRocket::Init()
 		}
 		else if (ButtonU == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
 		}
 		else if (ButtonU == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
 		}
 		else if (ButtonU == 4)
 		{
@@ -184,7 +184,8 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
-	m_podhp = 10;
+	m_pod_max_hp = 10;
+	m_podhp = m_pod_max_hp;
 
 	m_hp_cnt = 0;		//無敵タイム
 	m_hp_f = false;		//無敵フラグ
@@ -219,7 +220,7 @@ void CObjRocket::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (obj->GetCount() <= 60)
+	if (battle_end == true)
 		m_del = true;
 
 	if (m_mou_l == false && m_mou_f == false)
@@ -349,11 +350,11 @@ void CObjRocket::Action()
 	{
 		if (ButtonU == 1)//敵の種類１(パワー)がプレイヤーのポッドと当たった場合
 		{
-			if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+			if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
 			}
@@ -362,32 +363,32 @@ void CObjRocket::Action()
 				m_podhp -= m_Enemy_damage * damage_buff[0];
 			}
 		}
-		else if (ButtonU == 2)//敵の種類２(スピード)がプレイヤーのポッドと当たった場合
+		else if (ButtonU == 2)//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
 		{
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
 			}
-			else											//プレイヤーのスピードポッド、バランスポッド、ミサイル当たり時のHP
+			else											//プレイヤーのディフェンスポッド、バランスポッド、ミサイル当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0];
 			}
 		}
-		else if (ButtonU == 3)//敵の種類３(ディフェンス)がプレイヤーのポッドと当たった場合
+		else if (ButtonU == 3)//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
 		{
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//プレイヤーのディフェンスポッド当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
 			}
-			else											//プレイヤーのディフェンスポッド、バランスポッド、ミサイルに当たり時のHP
+			else											//プレイヤーのスピードポッド、バランスポッド、ミサイルに当たり時のHP
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0];
 			}
@@ -408,11 +409,11 @@ void CObjRocket::Action()
 	{
 		if (ButtonU == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
 		{
-			if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+			if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
 			}
@@ -421,32 +422,32 @@ void CObjRocket::Action()
 				m_podhp -= m_Player_damage * damage_buff[1];
 			}
 		}
-		else if (ButtonU == 2)//自分の種類２(スピード)が敵のポッドと当たった場合
+		else if (ButtonU == 2)//自分の種類２(ディフェンス)が敵のポッドと当たった場合
 		{
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
+			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
 			}
-			else											//敵のスピードポッド、バランスポッド、ミサイル当たり時のHP
+			else											//敵のディフェンスポッド、バランスポッド、ミサイル当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1];
 			}
 		}
-		else if (ButtonU == 3)//自分の種類３(ディフェンス)が敵のポッドと当たった場合
+		else if (ButtonU == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
 		{
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
 			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
+			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//敵のディフェンスポッド当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
 			}
-			else											//敵のディフェンスポッド、バランスポッド、ミサイル当たり時のHP
+			else											//敵のスピードポッド、バランスポッド、ミサイル当たり時のHP
 			{
 				m_podhp -= m_Player_damage * damage_buff[1];
 			}
@@ -477,6 +478,7 @@ void CObjRocket::Draw()
 	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f }; //赤
 	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f }; //緑
 	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f }; //青
+	float black[4] = { 0.0f, 0.0f, 0.0f, 1.0f };//黒(HPゲージ最大値で使用)
 	float c[4] = { 1.0f,1.0f,1.0f,m_a };
 
 
@@ -588,6 +590,28 @@ void CObjRocket::Draw()
 			}
 		}
 	}
+
+	//HPゲージ表示(ミサイル以外かつ破壊されていない時に表示される)
+	if (ButtonU != 5 && m_del == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 10.0f;
+
+		dst.m_top = m_y + m_size;
+		dst.m_left = m_x;
+		dst.m_bottom = m_y + m_size + 5.0f;
+
+		//▼最大値表示
+		dst.m_right = m_x + m_size;
+		Draw::Draw(32, &src, &dst, black, 0.0f);
+
+		//▼現在値表示		
+		dst.m_right = m_x + (m_size * ((float)m_podhp / (float)m_pod_max_hp));
+		Draw::Draw(32, &src, &dst, d, 0.0f);
+	}
+	
 
 	//爆発エフェクト
 	//左斜め上
