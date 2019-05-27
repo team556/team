@@ -2,7 +2,6 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
-#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -201,9 +200,6 @@ void CObjBarracks::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
-
-					//戻るボタン音
-					Audio::Start(2);
 				}
 			}
 			else
@@ -538,13 +534,17 @@ void CObjBarracks::Action()
 		{
 			m_Human_down_color[3] = INI_COLOR;
 		}
+
+
 		return;
+	}
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	 if (window_start_manage != Default)
+	else if (window_start_manage != Default)
 	{
 		return;
 	}
+
 
 	//兵舎選択範囲
 	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)

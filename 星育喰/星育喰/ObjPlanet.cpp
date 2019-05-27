@@ -196,6 +196,7 @@ void CObjPlanet::Action()
 			else {
 				if (m_size > m_get_siz) {
 					m_eat_f = true;		//喰うフラグ有効
+
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 					ene->SetPrio(11);	//オブジェクトの優先順位変更し、敵惑星が手前に来るようにする
 				}
@@ -213,15 +214,10 @@ void CObjPlanet::Action()
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
-				//Audio::Stop(0);
-				//Audio::Start(1);
-
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				pla->SetDelF();
-				//Audio::Stop(0);
-				//Audio::Start(2);
 			}	
 		}
 	}

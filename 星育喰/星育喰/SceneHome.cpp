@@ -49,11 +49,10 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
-
-	//SE読み込み
-	//選択
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	//Audio::LoadAudio(0, L"Blue.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"Growing.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"月夜の晩.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
 	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
 	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
@@ -63,8 +62,7 @@ void CSceneHome::InitScene()
 	//v = Audio::VolumeMaster((1.0 - v));
 
 	////音楽スタート
-	Audio::Start(0);
-
+	//Audio::Start(0);
 
 }
 

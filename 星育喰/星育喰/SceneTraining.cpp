@@ -241,14 +241,16 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"リトル・ハピネス.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"洞窟の祠.wav", BACK_MUSIC);
 
 	//SE読み込み
-	//選択
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
-
-	//戻る
-	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
+	//Audio::LoadAudio(1, L"選択ボタン音", EFFECT);
+	//Audio::LoadAudio(2, L"戻るボタン音", EFFECT);
+	//Audio::LoadAudio(3, L"施設レベルアップ音", EFFECT);
+	//Audio::LoadAudio(4, L"", EFFECT);
+	//Audio::LoadAudio(5, L"", EFFECT);
 
 	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
 	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
@@ -258,7 +260,7 @@ void CSceneTraining::InitScene()
 	//v = Audio::VolumeMaster((1.0 - v));
 
 	////音楽スタート
-	Audio::Start(0);	
+	//Audio::Start(0);	
 }
 
 //ゲームメイン実行中メソッド

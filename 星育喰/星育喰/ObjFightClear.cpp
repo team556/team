@@ -84,7 +84,6 @@ void CObjFightClear::Init()
 //アクション
 void CObjFightClear::Action()
 {
-
 	////マウスの位置を取得
 	//m_mou_x = (float)Input::GetPosX();
 	//m_mou_y = (float)Input::GetPosY();

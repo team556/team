@@ -4,7 +4,6 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
-#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -83,10 +82,6 @@ void CObjSpecialButton::Init()
 	PodMissile[2] = (CObjRocketButton*)Objs::GetObj(OBJ_POD_BUTTON3);
 	PodMissile[3] = (CObjRocketButton*)Objs::GetObj(OBJ_POD_BUTTON4);
 	PodMissile[4] = (CObjRocketButton*)Objs::GetObj(OBJ_MISSILE_BUTTON);
-
-	m_sptime[1] = false;	//ステロイド投与SE鳴らすフラグ(プレイヤー)
-	m_sptime[2] = false;	//ステロイド投与SE鳴らすフラグ(敵)
-
 }
 
 //アクション
@@ -463,9 +458,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_Explosion_target[Planet_id] = Planet_id;//エフェクト対象を自分に設定
 			m_Explosion_angle[Planet_id] = 90.0f;//エフェクト角度を上に向くように設定
 			m_Explosion_size[Planet_id] += 20.0f;//エフェクト画像サイズを変更し、上方向に画像を伸ばす
-
-			//ビーム音を出す
-			Audio::Start(6);
 		}
 		
 		//2秒経過後、スペシャル技の効果を終了する
@@ -473,7 +465,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		{
 			m_is_invocating[Planet_id] = false;	//発動中管理フラグOFF
 		}
-
 	}
 	//▼[Fracture_Ray]の処理
 	else if (Special_equip == 2)
@@ -490,9 +481,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		{
 			Hits::SetHitBox(this, 0.0f, 280.0f, 1200.0f, 110.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);	//中ラインの範囲に当たり判定を設置
 			m_Fracture_Ray_pos[Planet_id] = -5.0f;	//当たり判定設置ついでにエフェクト画像の位置を決める
-
-			//ビーム音を出す
-			Audio::Start(6);
 		}
 		//選択ラインが下ラインの時(この処理は一度のみ実行される)
 		else if (FightScene->GetLine() == 2 && m_count[Planet_id] == 0 && Planet_id == PLAYER ||//プレイヤーの時の条件式
@@ -500,18 +488,12 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		{
 			Hits::SetHitBox(this, 0.0f, 390.0f, 1200.0f, 310.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);	//下ラインの範囲に当たり判定を設置
 			m_Fracture_Ray_pos[Planet_id] = 100.0f;	//当たり判定設置ついでにエフェクト画像の位置を決める
-
-			//ビーム音を出す
-			Audio::Start(6);
 		}
 		//選択ラインが上ラインの時(この処理は一度のみ実行される)
 		else if (m_count[Planet_id] == 0)
 		{
 			Hits::SetHitBox(this, 0.0f, 0.0f, 1200.0f, 280.0f, ELEMENT_NULL, OBJ_FRACTURE_RAY, Planet_id);		//上ラインの範囲に当たり判定を設置
 			m_Fracture_Ray_pos[Planet_id] = -120.0f;//当たり判定設置ついでにエフェクト画像の位置を決める
-
-			//ビーム音を出す
-			Audio::Start(6);
 		}
 
 		//[Fracture_Ray]の演出処理(下からの上の順番で徐々に実行される)
@@ -588,14 +570,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		{
 			m_Immortality_size[Planet_id] = 150.0f;	//エフェクト画像サイズを変更し、自分惑星の周囲にエフェクト画像を出す
 			Planet[Planet_id]->SetInvincible(true);	//プレイヤー無敵フラグをON
-			if (m_sptime[Planet_id] == false)
-			{
-				//バリアの音を出す
-				Audio::Start(7);
-				m_sptime[Planet_id] = true;
-			}
 		}
-
 	}
 	//▼[リミットブレイク]の処理
 	else if (Special_equip == 4)
@@ -604,7 +579,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		//▽プレイヤーの時の処理
 		if (Planet_id == PLAYER)
 		{
-
 			//それぞれのボタンを変更する
 			for (int i = 0; i < 5; i++)
 			{
@@ -615,13 +589,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		else //(Planet_id == ENEMY)
 		{
 			Planet[Planet_id]->SetRecastBuff(RECAST_BUFF_MAGNIFICATION);//バフ倍率変更
-		}
-
-		//リミットブレイク音流す処理
-		if (m_count[Planet_id] == 0)
-		{
-			//リミットブレイクの音を出す
-			Audio::Start(8);
 		}
 
 		m_count[Planet_id]++;//効果時間計測
@@ -670,13 +637,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	else if (Special_equip == 5)
 	{
 		damage_buff[Planet_id] = DAMAGE_BUFF_MAGNIFICATION;	//ダメージバフ倍率を変更する
-
-		if (m_sptime[Planet_id] == false)
-		{
-			//ステロイド投与の音を出す
-			Audio::Start(8);
-			m_sptime[Planet_id] = true;
-		}
 
 		//射出したポッドが破壊される度に
 		//m_countが1ずつ増加するようにObjRocketで設定している

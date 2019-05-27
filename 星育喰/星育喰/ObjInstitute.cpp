@@ -790,8 +790,6 @@ void CObjInstitute::Action()
 			//左クリック入力時
 			else if (m_mou_l == true)
 			{
-				////戻るボタン音
-				Audio::Start(2);
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -934,6 +932,8 @@ void CObjInstitute::Action()
 				m_alpha = 0.0f;//武器必要素材&人数メッセージを非表示
 			}
 		}
+
+
 		return;
 	}
 	//ホーム画面に戻るボタンが押されたり、
