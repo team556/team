@@ -78,7 +78,6 @@ void CObjFightClear::Init()
 	{
 		g_Iron_num += 40;
 	}
-	m_flag = false;
 
 }
 

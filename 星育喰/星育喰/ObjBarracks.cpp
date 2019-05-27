@@ -538,17 +538,13 @@ void CObjBarracks::Action()
 		{
 			m_Human_down_color[3] = INI_COLOR;
 		}
-
-
 		return;
-	}
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	else if (window_start_manage != Default)
+	 if (window_start_manage != Default)
 	{
 		return;
 	}
-
 
 	//兵舎選択範囲
 	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)
