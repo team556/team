@@ -130,22 +130,22 @@ void CObjPreparation::Init()
 	swprintf_s(m_Enemy_detail_message[0][0][0], L"難易度　★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][0][1], L"取得可能な資材・技");//2行目
 	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材30・鉄");//3行目
-	swprintf_s(m_Enemy_detail_message[0][0][3], L"スピード重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][0][3], L"ディデンス重視");//4行目
 	//▽1ステージ　敵惑星2(左から2番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][1][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][1][1], L"テスト");//2行目
 	swprintf_s(m_Enemy_detail_message[0][1][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][1][3], L"テスト");//4行目
+	swprintf_s(m_Enemy_detail_message[0][1][3], L"パワー重視");//4行目
 	//▽1ステージ　敵惑星3(左から3番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][2][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][2][1], L"テスト");//2行目
 	swprintf_s(m_Enemy_detail_message[0][2][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][2][3], L"テスト");//4行目
+	swprintf_s(m_Enemy_detail_message[0][2][3], L"バランス重視");//4行目
 	//▽1ステージ　敵惑星4(左から4番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][3][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][3][1], L"テスト");//2行目
 	swprintf_s(m_Enemy_detail_message[0][3][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][3][3], L"テスト");//4行目
+	swprintf_s(m_Enemy_detail_message[0][3][3], L"ディフェンス重視");//4行目
 	//▽1ステージ　ボス惑星
 	swprintf_s(m_Enemy_detail_message[0][4][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][4][1], L"テスト");//2行目
