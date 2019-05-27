@@ -74,9 +74,6 @@ void CObjPlanet::Init()
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
 
-	m_win = false;
-	m_failed = false;
-
 	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
@@ -139,20 +136,18 @@ void CObjPlanet::Action()
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 				fit->SetEnd();
-				m_win == true;
-				//if (m_win == true)
-				//{
-				//	Audio::Start(1);
-				//}
+
+				//戦闘音楽を破棄し勝利音楽再生
+				Audio::Stop(0);
+				Audio::Start(1);
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
-				Objs::InsertObj(over, OBJ_FIGHT_OVER, 15);	//ゲームオーバー画面
-				m_failed == true;
-				//if (m_failed == true)
-				//{
-				//	Audio::Start(2);
-				//}
+				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+
+				//戦闘音楽を破棄し敗北音楽再生
+				Audio::Stop(0);
+				Audio::Start(2);
 			}
 		}
 	}
