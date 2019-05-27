@@ -28,6 +28,7 @@ void CObjTest::Init()
 void CObjTest::Action()
 {
 	//testA
+	//testB
 
 
 	////マウスの位置を取得
