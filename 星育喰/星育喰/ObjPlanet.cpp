@@ -74,9 +74,6 @@ void CObjPlanet::Init()
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
 
-	m_win = false;
-	m_failed = false;
-
 	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
@@ -139,20 +136,18 @@ void CObjPlanet::Action()
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 				fit->SetEnd();
-				m_win == true;
-				//if (m_win == true)
-				//{
-				//	Audio::Start(1);
-				//}
+
+				//戦闘音楽を破棄し勝利音楽再生
+				Audio::Stop(0);
+				Audio::Start(1);
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
-				Objs::InsertObj(over, OBJ_FIGHT_OVER, 15);	//ゲームオーバー画面
-				m_failed == true;
-				//if (m_failed == true)
-				//{
-				//	Audio::Start(2);
-				//}
+				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+
+				//戦闘音楽を破棄し敗北音楽再生
+				Audio::Stop(0);
+				Audio::Start(2);
 			}
 		}
 	}
@@ -344,14 +339,62 @@ void CObjPlanet::Action()
 		//▼敵行動パターン決め
 		if (m_time <= 0)
 		{
-			int Enemy_Fight_type[5][6] =   //敵攻撃用の配列作成
+			int Enemy_Fight_type[6][5][6] =   //敵攻撃用の配列作成
 			{
-				//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-				{ 1,6,2,1,1,0 }, //0番目
-				{ 2,6,3,2,2,0 }, //1番目
-				{ 3,6,4,3,3,0 }, //2番目
-				{ 4,6,5,4,4,0 }, //3番目
-				{ 5,6,1,5,5,0 }, //4番目
+				//m_type==0 これは呼び出されない
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 2,2,2,2,2,0 }, //0番目
+					{ 2,2,2,2,2,0 }, //1番目
+					{ 2,2,2,2,2,0 }, //2番目
+					{ 2,2,2,2,2,0 }, //3番目
+					{ 2,2,2,2,2,0 }, //4番目
+				},
+				//m_type==1
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 2,2,2,2,2,0 }, //0番目
+					{ 2,2,2,2,2,0 }, //1番目
+					{ 2,2,2,2,2,0 }, //2番目
+					{ 2,2,2,2,2,0 }, //3番目
+					{ 2,2,2,2,2,0 }, //4番目
+				},
+				//m_type==2
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,1,1,1,1,0 }, //0番目
+					{ 1,1,1,1,1,0 }, //1番目
+					{ 1,1,1,1,1,0 }, //2番目
+					{ 1,1,1,1,1,0 }, //3番目
+					{ 1,1,1,1,1,0 }, //4番目
+				},
+				//m_type==3
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 4,4,4,4,4,0 }, //0番目
+					{ 4,4,4,4,4,0 }, //1番目
+					{ 4,4,4,4,4,0 }, //2番目
+					{ 4,4,4,4,4,0 }, //3番目
+					{ 4,4,4,4,4,0 }, //4番目
+				},
+				//m_type==4
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 3,3,3,3,3,0 }, //0番目
+					{ 3,3,3,3,3,0 }, //1番目
+					{ 3,3,3,3,3,0 }, //2番目
+					{ 3,3,3,3,3,0 }, //3番目
+					{ 3,3,3,3,3,0 }, //4番目
+				},
+				//m_type==5
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,6,2,1,1,0 }, //0番目
+					{ 2,6,3,2,2,0 }, //1番目
+					{ 3,6,4,3,3,0 }, //2番目
+					{ 4,6,5,4,4,0 }, //3番目
+					{ 5,6,1,5,5,0 }, //4番目
+				},
 				/*
 				　攻撃パターン追加する際は、上の配列の数字を変え
 				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
@@ -362,7 +405,7 @@ void CObjPlanet::Action()
 				*/
 			};
 
-			m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+			m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 			if (m_attackf == 0)//--------配列が最後に行ったとき(0の時)
 			{
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
@@ -370,7 +413,7 @@ void CObjPlanet::Action()
 				srand(time(NULL));
 				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
-				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+				m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
 			}
 			else
@@ -385,31 +428,136 @@ void CObjPlanet::Action()
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+
+
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
+			//if (m_type = 1)
+			//{
+			//	m_time = 1000 * m_enemy_recast_buff;
+			//}
+			//else
+			//{
+			//	m_time = 3000 * m_enemy_recast_buff;
+			//}
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			/*m_time = 100 * m_enemy_recast_buff;*/
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+		/*	m_time = 100 * m_enemy_recast_buff;*/
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			//m_time = 100 * m_enemy_recast_buff;
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
 		}
 		else if (m_attackf == 5 && m_time <= 0)//ミサイル
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			m_time = 100 * m_enemy_recast_buff;
+			//m_time = 100 * m_enemy_recast_buff;
+			switch (m_type)
+			{
+
+			case 1:
+				m_time = 300 * m_enemy_recast_buff;
+				break;
+			case 2:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 3:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 4:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			case 5:
+				m_time = 1 * m_enemy_recast_buff;
+				break;
+			}
+
 		}
 		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
 		{
