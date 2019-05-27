@@ -20,8 +20,11 @@ private:
 	bool  m_help_f;		//ヘルプ表示フラグ
 	
 	int m_page_nam;		//ページ数
+	float m_a;			//alpha(透明度)
+	float m_a2;			//alpha2(戻るボタン)
 
 	int m_Scene_nam;	//現在表示中のシーン番号(1:ホーム ,2:育成 ,3:準備 ,4:戦闘)
+	int m_Img_nam;		//画像の登録番号
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y

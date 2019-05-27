@@ -33,6 +33,10 @@ void CSceneHome::InitScene()
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
+	//ヘルプブジェクト
+	CObjHelp* hlp = new CObjHelp();     //ヘルプブジェクト作成
+	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
+
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
@@ -42,6 +46,15 @@ void CSceneHome::InitScene()
 	//喰アイコンを読み込み2番に登録
 	Draw::LoadImage(L"喰ボタン.png", 2, TEX_SIZE_512);
 
+	//ヘルプボタンを読み込み3番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 3, TEX_SIZE_512);
+
+	//戻るを読み込み4番に登録
+	Draw::LoadImage(L"戻る.png", 4, TEX_SIZE_512);
+
+	//ヘルプ画像を読み込み5番に登録
+	Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
+
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
 
@@ -49,10 +62,11 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"Blue.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"Growing.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"月夜の晩.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
+
+	//SE読み込み
+	//選択
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
 
 	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
 	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
