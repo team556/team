@@ -91,10 +91,12 @@ void CObjRocket::Init()
 	//		}
 	//	}
 	//}
+	else if (m_type == false && battle_end == false)
+	{
+		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 
-	CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-
-	m_get_line = ene ->GetLine();
+		m_get_line = ene->GetLine();
+	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更

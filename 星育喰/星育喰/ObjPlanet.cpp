@@ -15,7 +15,11 @@
 using namespace GameL;
 
 //マクロ
-#define ONE_DELAY (120)
+#define ONE_DELAY (180)
+#define SEC_DELAY (150)
+#define THI_DELAY (120)
+#define FOU_DELAY (90)
+#define FIV_DELAY (75)
 #define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
 
 //コンストラクタ
@@ -485,16 +489,16 @@ void CObjPlanet::Action()
 				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = SEC_DELAY * m_enemy_recast_buff;
 				break;
 			case 3:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = THI_DELAY * m_enemy_recast_buff;
 				break;
 			case 4:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FOU_DELAY * m_enemy_recast_buff;
 				break;
 			case 5:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
 			}
 			//if (m_type = 1)
@@ -518,16 +522,16 @@ void CObjPlanet::Action()
 				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 100 * m_enemy_recast_buff;
+				m_time = SEC_DELAY * m_enemy_recast_buff;
 				break;
 			case 3:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = THI_DELAY * m_enemy_recast_buff;
 				break;
 			case 4:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FOU_DELAY * m_enemy_recast_buff;
 				break;
 			case 5:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
 			}
 		}
@@ -543,16 +547,16 @@ void CObjPlanet::Action()
 				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 100 * m_enemy_recast_buff;
+				m_time = SEC_DELAY * m_enemy_recast_buff;
 				break;
 			case 3:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = THI_DELAY * m_enemy_recast_buff;
 				break;
 			case 4:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FOU_DELAY * m_enemy_recast_buff;
 				break;
 			case 5:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
 			}
 		}
@@ -568,16 +572,16 @@ void CObjPlanet::Action()
 				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = SEC_DELAY * m_enemy_recast_buff;
 				break;
 			case 3:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = THI_DELAY * m_enemy_recast_buff;
 				break;
 			case 4:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FOU_DELAY * m_enemy_recast_buff;
 				break;
 			case 5:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
 			}
 		}
@@ -593,16 +597,16 @@ void CObjPlanet::Action()
 				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = SEC_DELAY * m_enemy_recast_buff;
 				break;
 			case 3:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = THI_DELAY * m_enemy_recast_buff;
 				break;
 			case 4:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FOU_DELAY * m_enemy_recast_buff;
 				break;
 			case 5:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
 			}
 
