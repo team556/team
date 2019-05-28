@@ -34,7 +34,7 @@ void CSceneHome::InitScene()
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
 	//ヘルプブジェクト
-	CObjHelp* hlp = new CObjHelp();     //ヘルプブジェクト作成
+	CObjHelp* hlp = new CObjHelp(1);     //ヘルプブジェクト作成
 	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
 
 	//背景を読み込み0番に登録

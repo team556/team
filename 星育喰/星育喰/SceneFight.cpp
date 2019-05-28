@@ -171,7 +171,7 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
 	//ヘルプブジェクト
-	CObjHelp* hlp = new CObjHelp();     //ヘルプブジェクト作成
+	CObjHelp* hlp = new CObjHelp(4);     //ヘルプブジェクト作成
 	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
 
 	//音楽読み込み

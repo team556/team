@@ -81,8 +81,8 @@ void CSceneTraining::InitScene()
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
 
 	//ヘルプブジェクト
-	CObjHelp* hlp = new CObjHelp();     //ヘルプブジェクト作成
-	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
+	CObjHelp* hlp = new CObjHelp(2);     //ヘルプブジェクト作成
+	Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプブジェクト登録
 
 
 	//背景を読み込み0番に登録
@@ -199,6 +199,15 @@ void CSceneTraining::InitScene()
 	//スペシャル技メッセージウィンドウ画像45番に登録
 	Draw::LoadImage(L"スペシャル技メッセージウィンドウ.png", 45, TEX_SIZE_512);
 
+	//ヘルプボタンを読み込み46番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 46, TEX_SIZE_512);
+
+	//戻るを読み込み47番に登録
+	Draw::LoadImage(L"戻る.png", 47, TEX_SIZE_512);
+
+	//ヘルプ画像を読み込み48番に登録
+	Draw::LoadImage(L"ヘルプ育成画面.png", 48, TEX_SIZE_512);
+
 	//パワー武器Lv.1の画像を読み込み49番に登録
 	Draw::LoadImage(L"パワーLv1.png", 49, TEX_SIZE_512);
 
@@ -243,15 +252,6 @@ void CSceneTraining::InitScene()
 
 	//ポッドLv.3の画像を読み込み63番に登録
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
-
-	////ヘルプボタンを読み込み64番に登録
-	//Draw::LoadImage(L"ヘルプボタン.png", 64, TEX_SIZE_512);
-
-	////戻るを読み込み65番に登録
-	//Draw::LoadImage(L"戻る.png", 65, TEX_SIZE_512);
-
-	////ヘルプ画像を読み込み66番に登録
-	//Draw::LoadImage(L"ヘルプ育成.png", 66, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
