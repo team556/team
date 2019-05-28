@@ -110,6 +110,7 @@ extern int g_Speed_num;				//ƒXƒs[ƒhZ–¯”
 extern int g_Balance_num;			//ƒoƒ‰ƒ“ƒXZ–¯”
 extern int g_Research_num;			//Œ¤‹†ˆõZ–¯”
 extern int g_Remain_num;			//c‚èZ–¯”
+extern int g_Recast_time;			//ƒ~ƒTƒCƒ‹‚ÌƒŠƒLƒƒƒXƒgƒ^ƒCƒ€—p
 //--------------------------------------------------‘Œ¹----
 extern int g_Iron_num;				//“S‚ÌŠ”
 extern int g_Wood_num;				//–Ø‚ÌŠ”
@@ -170,9 +171,10 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 
 //ƒV[ƒ“ƒXƒ^[ƒgƒNƒ‰ƒX---------------------------
 //ƒQ[ƒ€ŠJn‚ÌƒV[ƒ“ƒNƒ‰ƒX“o˜^
-#define SET_GAME_START CSceneHome
+//#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
 //#define SET_GAME_START CScenePreparation
+#define SET_GAME_START CSceneTitle
 //----------------------------------------------
