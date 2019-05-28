@@ -12,6 +12,15 @@ using namespace GameL;
 //マクロ
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
+#define LABO_LV_1 (1)//研究所レベルマクロ定義
+#define LABO_LV_2 (2)//研究所レベルマクロ定義
+#define LABO_LV_3 (3)//研究所レベルマクロ定義
+
+#define MIS_LV_1 (7)
+#define MIS_LV_2 (6)
+#define MIS_LV_3 (5)
+#define MIS_LV_4 (4)
+#define MIS_LV_5 (3)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -117,17 +126,17 @@ void CObjInstitute::Init()
 	//-----------------------------------------------------------------------------------------------------
 
 	//▼ミサイルリキャストタイム(RCT)設定
-	m_Mis_recast_time[0] = 10.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
-	m_Mis_recast_time[1] = 8.6f;//RCLvが1の時のRCT
-	m_Mis_recast_time[2] = 7.2f;//RCLvが2の時のRCT
-	m_Mis_recast_time[3] = 5.8f;//RCLvが3の時のRCT
-	m_Mis_recast_time[4] = 4.4f;//RCLvが4の時のRCT(最大レベル)
+	m_Mis_recast_time[0] = MIS_LV_1;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
+	m_Mis_recast_time[1] = MIS_LV_2;//RCLvが1の時のRCT
+	m_Mis_recast_time[2] = MIS_LV_3;//RCLvが2の時のRCT
+	m_Mis_recast_time[3] = MIS_LV_4;//RCLvが3の時のRCT
+	m_Mis_recast_time[4] = MIS_LV_5;//RCLvが4の時のRCT(最大レベル)
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究所レベル設定
-	m_Mis_recast_next_Ins_Lv[0] = 1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[1] = 2; //RCLvが1の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[2] = 3; //RCLvが2の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[3] = 3; //RCLvが3の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[0] = LABO_LV_1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[1] = LABO_LV_2; //RCLvが1の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[2] = LABO_LV_3; //RCLvが2の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[3] = LABO_LV_3; //RCLvが3の時の必要研究所レベル
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究員の住民数設定
 	m_Mis_recast_next_Hum_num[0] = 100;  //ミサイルリキャストレベル(RCLv)が0の時の必要研究員数
@@ -226,6 +235,9 @@ void CObjInstitute::Init()
 	//▼研究所の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 10;	//レベルが1の時の必要素材数
 	m_Facility_next_Mat_num[1] = 30;	//レベルが2の時の必要素材数
+
+
+
 }
 
 //アクション
@@ -992,6 +1004,7 @@ void CObjInstitute::Action()
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ins_color = INI_COLOR;
 	}
+
 }
 
 //ドロー
@@ -1598,7 +1611,17 @@ void CObjInstitute::Missile_Lvup_check()
 		m_message_blue_color = 0.0f;
 
 		m_alpha = 1.0f;		//リキャストレベルUPメッセージを表示するため、透過度を1.0fにする
+
+		//ミサイルのレベルがアップした際にグローバル変数にリキャストタイムを代入する
+		switch (g_Mis_Recast_Level)
+		{
+		case 1:g_Recast_time = MIS_LV_2;break;//6秒
+		case 2:g_Recast_time = MIS_LV_3;break;//5秒
+		case 3:g_Recast_time = MIS_LV_4;break;//4秒
+		case 4:g_Recast_time = MIS_LV_5;break;//3秒
+		}
 	}
+
 }
 
 //---Equip_Lvup_check関数
