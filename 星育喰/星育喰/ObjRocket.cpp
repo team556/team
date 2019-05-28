@@ -198,6 +198,8 @@ void CObjRocket::Init()
 
 	m_Enemy_damage = 10;
 	m_Player_damage = 10;
+
+	m_bomcount = 0;
 }
 
 //アクション
@@ -282,21 +284,29 @@ void CObjRocket::Action()
 	}
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 5);	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);	//敵とプレイヤーのポッド当たっているとき処理
 	
 	//ポッド消滅処理
 	if (m_del == true)
 	{
-		if(m_bom != 5)	//５以外の場合
-			m_bom = rand() % 5;//ランダムな爆発を起こす
-
-		//小さい爆発音を複数回鳴らす処理
-		if (m_bom <= 0 || m_bom == 4)
+		if (m_bom != 5)	//５以外の場合
 		{
-			//小さい爆発
-			Audio::Start(4);
-			Audio::Stop(5);
+			m_bom = rand() % 5;//ランダムな爆発を起こす
+			m_bomcount++;	//ボムカウントをプラス
+			if (m_bomcount > 2)	//ボムカウントが2より大きくなったら（3以上）
+			{
+				m_bom = 5;	//大きい爆発に変更
+				m_bomcount = 0;	//カウントを0に戻す
+			}
 		}
+		
+
+		////小さい爆発音を複数回鳴らす処理
+		//if (m_bom == 0 || m_bom <= 2)
+		//{
+		//	//小さい爆発
+		//	Audio::Start(4);
+		//}
 		if (m_ani == 4 && m_bom == 5)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行

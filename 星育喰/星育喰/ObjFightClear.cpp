@@ -88,10 +88,6 @@ void CObjFightClear::Init()
 //アクション
 void CObjFightClear::Action()
 {
-	//戦闘音楽を破棄し勝利音楽再生
-	Audio::Stop(0);
-	Audio::Start(1);
-
 	////マウスの位置を取得
 	//m_mou_x = (float)Input::GetPosX();
 	//m_mou_y = (float)Input::GetPosY();
@@ -111,6 +107,10 @@ void CObjFightClear::Action()
 					Scene::SetScene(new CSceneHome());	//シーン移行
 				else
 					m_Game_Clear_f = true;
+
+				//戦闘音楽を破棄し勝利音楽再生
+				Audio::Stop(0);
+				Audio::Start(1);
 			}
 			else
 			{

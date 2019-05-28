@@ -386,9 +386,14 @@ void CObjWarehouse::Draw()
 	swprintf_s(Ware, L"倉庫", g_Ware);
 
 	//資材(名前・持っている数)表示
-	wchar_t mrl[2][9];
+	wchar_t mrl[7][9];
 	swprintf_s(mrl[0], L"%d 個", g_Wood_num);
 	swprintf_s(mrl[1], L"%d 個", g_Iron_num);
+	swprintf_s(mrl[2], L"%d 個", g_Silver_num);
+	swprintf_s(mrl[3], L"%d 個", g_Plastic_num);
+	swprintf_s(mrl[4], L"%d 個", g_Aluminum_num);
+	swprintf_s(mrl[5], L"%d 個", g_gus_num);
+	swprintf_s(mrl[6], L"%d 個", g_Raremetal_num);
 
 	//住民数表示
 	//各タイプ(パワー、スピード等)の住民数用
@@ -659,7 +664,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 230.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"銀", 950.0f, 130.0f, 30.0f, black);
-		//Font::StrDraw(mrl, 950.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(mrl[2], 950.0f, 170.0f, 30.0f, black);
 
 		//▼プラスチック表示
 		src.m_top = 0.0f;
@@ -673,7 +678,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 390.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"プラスチック", 240.0f, 280.0f, 30.0f, black);
-		//Font::StrDraw(mrl, 240.0f, 330.0f, 30.0f, black);
+		Font::StrDraw(mrl[3], 240.0f, 330.0f, 30.0f, black);
 
 		//▼アルミニウム表示
 		src.m_top = 0.0f;
@@ -687,7 +692,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 380.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"アルミニウム", 580.0f, 280.0f, 30.0f, black);
-		//Font::StrDraw(mrl, 580.0f, 330.0f, 30.0f, black);
+		Font::StrDraw(mrl[4], 580.0f, 330.0f, 30.0f, black);
 
 		//▼ガス表示
 		src.m_top = 0.0f;
@@ -701,7 +706,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 390.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"ガス", 950.0f, 280.0f, 30.0f, black);
-		//Font::StrDraw(mrl, 950.0f, 330.0f, 30.0f, black);
+		Font::StrDraw(mrl[5], 950.0f, 330.0f, 30.0f, black);
 
 		//▼レアメタル表示
 		src.m_top = 0.0f;
@@ -715,7 +720,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 550.0f;
 		Draw::Draw(39, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
-		//Font::StrDraw(mrl, 580.0f, 500.0f, 30.0f, black);
+		Font::StrDraw(mrl[6], 580.0f, 500.0f, 30.0f, black);
 	}
 
 	//住民ボタンを押して描画する画像
