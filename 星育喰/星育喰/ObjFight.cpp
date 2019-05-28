@@ -37,7 +37,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 90;//戦闘時間(60 * X = X秒)
+	m_cnt = 60 * 300;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
 	m_ex = 0;
@@ -147,27 +147,27 @@ void CObjFight::Action()
 		m_end_f = false;
 		if (g_Challenge_enemy == 0)									//左から１番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(500, 0, 20, 1);	
+			CObjFightClear* crer = new CObjFightClear(2000, 0, 20, 1);	
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 1)									//左から２番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(50, 1, 20, 0);
+			CObjFightClear* crer = new CObjFightClear(10000, 1, 60, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 2)									//左から３番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(100, 2, 20, 0);
+			CObjFightClear* crer = new CObjFightClear(15000, 2, 80, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 3)									//左から４番目
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(200, 3, 20, 0);
+			CObjFightClear* crer = new CObjFightClear(3000, 3, 30, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 4)									//ボス
 		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(1000, 4, 50, 2);
+			CObjFightClear* crer = new CObjFightClear(1000, 4, 90, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}

@@ -190,7 +190,7 @@ void CSceneFight::InitScene()
 
 	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay
 
-	Audio::LoadAudio(7, L"バリア１.wav", EFFECT);//Immortality
+	Audio::LoadAudio(7, L"バリア２.wav", EFFECT);//Immortality
 
 	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
 

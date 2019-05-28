@@ -72,14 +72,16 @@ void CObjFightOver::Init()
 
 	g_Iron_num = 0;
 	g_Wood_num = 0;
+	g_Silver_num = 0;
+	g_Plastic_num = 0;
+	g_Aluminum_num = 0;
+	g_gus_num = 0;
+	g_Raremetal_num = 0;
 }
 
 //アクション
 void CObjFightOver::Action()
 {
-	//戦闘音楽を破棄し敗北音楽再生
-	Audio::Stop(0);
-	Audio::Start(1);
 
 	////マウスの位置を取得
 	//m_mou_x = (float)Input::GetPosX();
@@ -92,6 +94,10 @@ void CObjFightOver::Action()
 		if (m_mou_l == true)					//クリックした場合
 			Scene::SetScene(new CSceneTitle());	//シーン移行
 		m_a_f = true;			//フラグ有効
+
+								//戦闘音楽を破棄し敗北音楽再生
+		Audio::Stop(0);
+		Audio::Start(2);
 	}
 	else
 		m_cnt--;	//0でない場合カウントダウン

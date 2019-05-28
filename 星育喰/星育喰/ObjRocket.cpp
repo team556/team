@@ -4,6 +4,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 
 
 #include "GameHead.h"
@@ -287,7 +288,15 @@ void CObjRocket::Action()
 	if (m_del == true)
 	{
 		if(m_bom != 5)	//５以外の場合
-			m_bom = Rand(0, 4);//ランダムな爆発を起こす
+			m_bom = rand() % 5;//ランダムな爆発を起こす
+
+		//小さい爆発音を複数回鳴らす処理
+		if (m_bom <= 0 || m_bom == 4)
+		{
+			//小さい爆発
+			Audio::Start(4);
+			Audio::Stop(5);
+		}
 		if (m_ani == 4 && m_bom == 5)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
@@ -313,6 +322,12 @@ void CObjRocket::Action()
 		{
 			m_ani = 0;
 			m_bom = 5;
+		}
+		if (m_bom == 5)
+		{
+			//小さい爆発を破棄して、大きい爆発を出す
+			Audio::Stop(4);
+			Audio::Start(5);
 		}
 		
 	}
@@ -680,8 +695,4 @@ void CObjRocket::Draw()
 	
 	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
-	
-
-
-
 }
