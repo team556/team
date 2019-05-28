@@ -5,6 +5,7 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 
 //使用するネームスペース
@@ -31,6 +32,10 @@ void CScenePreparation::InitScene()
 	//ホームオブジェクト作成
 	CObjPreparation* obj = new CObjPreparation();	//戦闘準備画面オブジェクト作成
 	Objs::InsertObj(obj, OBJ_PREPARATION, 10);		//戦闘準備画面オブジェクト登録
+
+	//ヘルプブジェクト
+	CObjHelp* hlp = new CObjHelp(3);     //ヘルプブジェクト作成
+	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
@@ -80,6 +85,15 @@ void CScenePreparation::InitScene()
 	//ボス惑星(3ステージ)を読み込み15番に登録
 	Draw::LoadImage(L"パンダ顔.png", 15, TEX_SIZE_512);
 
+	//ヘルプボタンを読み込み20番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 20, TEX_SIZE_512);
+
+	//戻るを読み込み21番に登録
+	Draw::LoadImage(L"戻る.png", 21, TEX_SIZE_512);
+
+	//ヘルプ画像を読み込み22番に登録
+	Draw::LoadImage(L"ヘルプ戦闘準備.png", 22, TEX_SIZE_512);
+
 	//戦闘画面移行演出(黒星)を読み込み50番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 50, TEX_SIZE_512);
 
@@ -109,6 +123,28 @@ void CScenePreparation::InitScene()
 
 	//プレイヤー惑星を読み込み63番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 63, TEX_SIZE_512);
+
+	//音楽読み込み
+	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
+
+	//SE読み込み
+	//選択
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+
+	//戻る
+	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
+
+	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
+	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
+	//※コメントアウト後、正常動作を確認済み
+	////バックミュージック
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((1.0 - v));
+
+	////音楽スタート
+	Audio::Start(0);
+
+
 }
 
 //ゲームメイン実行中メソッド

@@ -2,6 +2,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -270,6 +271,9 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//選択音
+						Audio::Start(1);
 					}
 				}
 				else
@@ -298,6 +302,9 @@ void CObjInstitute::Action()
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 				//左クリック入力時
 				else if (m_mou_l == true)
@@ -311,6 +318,9 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//戻るボタン音
+						Audio::Start(2);
 					}
 				}
 				else
@@ -342,8 +352,6 @@ void CObjInstitute::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//戻るボタン音
-				//Audio::Start(2);
 				//前シーン(ミサイルウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -355,13 +363,14 @@ void CObjInstitute::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			//左クリック入力時
 			else if (m_mou_l == true)
 			{
-				//戻るボタン音
-				//Audio::Start(2);
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -372,6 +381,9 @@ void CObjInstitute::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -395,8 +407,6 @@ void CObjInstitute::Action()
 			//満たしていなければ、エラーメッセージを表示する。
 			if (m_mou_l == true)
 			{
-				//戻るボタン音
-				//Audio::Start(3);
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -447,6 +457,9 @@ void CObjInstitute::Action()
 						//簡易メッセージを表示する
 						m_alpha = 1.0f;
 					}
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -467,8 +480,6 @@ void CObjInstitute::Action()
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
 			if (m_mou_l == true)
 			{
-				//振り分けボタン音
-				//Audio::Start();
 				//左クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -492,6 +503,9 @@ void CObjInstitute::Action()
 					g_Spe_equip_Level = Equip_Lvup_check(2, g_Spe_equip_Level, g_Spe_equip_Lv_achieve);
 					g_Bal_equip_Level = Equip_Lvup_check(3, g_Bal_equip_Level, g_Bal_equip_Lv_achieve);
 					g_Pod_equip_Level = Equip_Lvup_check(4, g_Pod_equip_Level, g_Pod_equip_Lv_achieve);
+
+					//振り分けボタン音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -553,6 +567,9 @@ void CObjInstitute::Action()
 					g_Spe_equip_Level = Equip_Lvdown_check(2, g_Spe_equip_Level);
 					g_Bal_equip_Level = Equip_Lvdown_check(3, g_Bal_equip_Level);
 					g_Pod_equip_Level = Equip_Lvdown_check(4, g_Pod_equip_Level);
+
+					//振り分けダウン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -585,6 +602,9 @@ void CObjInstitute::Action()
 
 					//"ミサイルウインドウを開いている状態"フラグを立てる
 					window_start_manage = Missile;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -620,6 +640,9 @@ void CObjInstitute::Action()
 		
 					//"武器ポッドウインドウを開いている状態"フラグを立てる
 					window_start_manage = Equipment;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -682,6 +705,9 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//選択音
+						Audio::Start(1);
 					}
 				}
 				else
@@ -710,6 +736,9 @@ void CObjInstitute::Action()
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 				//左クリック入力時
 				else if (m_mou_l == true)
@@ -723,6 +752,9 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//戻るボタン音
+						Audio::Start(2);
 					}
 				}
 				else
@@ -759,6 +791,9 @@ void CObjInstitute::Action()
 
 					//"研究所ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Institute;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			//左クリック入力時
@@ -774,6 +809,9 @@ void CObjInstitute::Action()
 
 					//"研究所ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Institute;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -933,6 +971,9 @@ void CObjInstitute::Action()
 
 				//"研究所ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Institute;
+
+				//選択音
+				Audio::Start(1);
 			}
 		}
 		else
@@ -1823,6 +1864,9 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 
 				m_finalcheck_f = true;//最終確認ウインドウを表示する
 
+				 //選択音
+				Audio::Start(1);
+				
 				return;
 			}
 		}

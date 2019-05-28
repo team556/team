@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjFightClear.h"
@@ -81,6 +82,7 @@ void CObjFightOver::Init()
 //アクション
 void CObjFightOver::Action()
 {
+
 	////マウスの位置を取得
 	//m_mou_x = (float)Input::GetPosX();
 	//m_mou_y = (float)Input::GetPosY();
@@ -92,6 +94,10 @@ void CObjFightOver::Action()
 		if (m_mou_l == true)					//クリックした場合
 			Scene::SetScene(new CSceneTitle());	//シーン移行
 		m_a_f = true;			//フラグ有効
+
+								//戦闘音楽を破棄し敗北音楽再生
+		Audio::Stop(0);
+		Audio::Start(2);
 	}
 	else
 		m_cnt--;	//0でない場合カウントダウン

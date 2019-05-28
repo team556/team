@@ -1,8 +1,9 @@
 //使用するヘッダーファイル
 #include "GameL\DrawTexture.h"
-#include "GameL\DrawFont.h"		//使用されているのはマウスデバッグの部分のみ
+#include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "Call_Planet.h"
@@ -48,6 +49,7 @@ void CObjHome::Init()
 	m_alpha = INI_ALPHA;
 	m_Tra_flag = false;
 	m_Eat_flag = false;
+	m_status_flag = false;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -194,6 +196,9 @@ void CObjHome::Action()
 				m_key_f = false;
 
 				m_Tra_flag = true;
+
+				//選択音
+				Audio::Start(1);
 			}
 		}
 		else
@@ -220,6 +225,9 @@ void CObjHome::Action()
 				m_key_f = false;
 
 				m_Eat_flag = true;
+
+				//選択音
+				Audio::Start(1);
 			}
 		}
 		else
@@ -230,6 +238,18 @@ void CObjHome::Action()
 	else
 	{
 		m_Eat_color = INI_COLOR;
+	}
+
+	//プレイヤー惑星にマウスカーソルが合わさると、
+	//プレイヤー惑星のステータスを表示する
+	//※合わさっていない場合は非表示にする
+	if (450 < m_mou_x && m_mou_x < 750 && 250 < m_mou_y && m_mou_y < 550)
+	{
+		m_status_flag = true;	//ステータス表示フラグON
+	}
+	else
+	{
+		m_status_flag = false;	//ステータス表示フラグOFF
 	}
 
 	//Zキーを押している間、敵惑星(背景)の移動速度が速くなる(デバッグ用)
@@ -257,8 +277,46 @@ void CObjHome::Draw()
 	//喰アイコン用
 	float e[4] = { m_Eat_color,m_Eat_color,m_Eat_color,m_alpha };
 
+	//プレイヤー惑星ステータスのフォントカラー用
+	float status_font_color[3][4] =
+	{
+		{ 0.0f,0.0f,0.0f,1.0f },//1行目は黒色
+		{ 0.0f,0.0f,0.0f,1.0f },//2行目は黒色
+		{ 1.0f,0.0f,0.0f,1.0f },//3行目は赤色
+	};
+
 	//それ以外の画像用
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+
+	//▽フォント準備
+	//プレイヤー惑星ステータスのフォント用
+	wchar_t status_font[3][13];										//13文字分格納可能な文字配列を3つ宣言
+	swprintf_s(status_font[0], L"惑星HP：%.0f", g_Player_max_size);	//文字配列に文字データを入れる
+	swprintf_s(status_font[1], L"装備中のスペシャル技：");			//文字配列に文字データを入れる
+
+	//現在装備中のスペシャル技名を文字配列に入れる
+	switch (g_Special_equipment)
+	{
+	case 1:
+		swprintf_s(status_font[2], L"Explosion");//文字配列に文字データを入れる
+		break;
+	case 2:
+		swprintf_s(status_font[2], L"Fracture Ray");//文字配列に文字データを入れる
+		break;
+	case 3:
+		swprintf_s(status_font[2], L"Immortality");//文字配列に文字データを入れる
+		break;
+	case 4:
+		swprintf_s(status_font[2], L"リミットブレイク");//文字配列に文字データを入れる
+		break;
+	case 5:
+		swprintf_s(status_font[2], L"ステロイド投与");//文字配列に文字データを入れる
+		break;
+	default:
+		swprintf_s(status_font[2], L"未装備");//文字配列に文字データを入れる
+		break;
+	}
+
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -387,6 +445,28 @@ void CObjHome::Draw()
 	dst.m_bottom = 680.0f + m_Eat_move;
 	Draw::Draw(2, &src, &dst, e, 0.0f);
 
+
+	//プレイヤー惑星ステータス表示(フラグtrue時のみ描画)
+	if (m_status_flag == true)
+	{
+		//▽ウインドウ表示 
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = m_mou_y - 85.0f;
+		dst.m_left = m_mou_x + 20.0f;
+		dst.m_right = m_mou_x + 320.0f;
+		dst.m_bottom = m_mou_y + 40.0f;
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▽フォント表示
+		for (int i = 0; i < 3; i++)
+		{
+			Font::StrDraw(status_font[i], m_mou_x + 33.0f, m_mou_y + - 73.0f + i * 40.0f, 25.0f, status_font_color[i]);
+		}
+	}
 
 
 

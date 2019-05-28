@@ -15,6 +15,7 @@
 using namespace GameL;
 
 //マクロ
+#define ONE_DELAY (120)
 #define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
 
 //コンストラクタ
@@ -54,6 +55,11 @@ void CObjPlanet::Init()
 	srand(time(NULL));
 	Enemy_Attack_pattern_y = rand() % 5;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
 
+	Enemy_Line_pattern_x = 0;
+
+	srand(time(NULL));
+	Enemy_Line_pattern_y = rand() % 3;//初期行動パターンをランダムで決める(この処理ないと初期行動パターンが必ず0のものになる)
+
 	CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	m_mov_spd = 0.093f* 30 / (fit->GetCount() / 70);//動く速度
 	//*m_siz_spd*/ = 0.07f * 30 / (fit->GetCount() / 40);//拡大速度
@@ -73,9 +79,6 @@ void CObjPlanet::Init()
 	m_eat_f = false;	//喰うフラグ(true = 喰う)
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
-
-	m_win = false;
-	m_failed = false;
 
 	//m_img_nam = 0;
 	
@@ -150,20 +153,18 @@ void CObjPlanet::Action()
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 				fit->SetEnd();
-				m_win == true;
-				//if (m_win == true)
-				//{
-				//	Audio::Start(1);
-				//}
+
+				//戦闘音楽を破棄し勝利音楽再生
+				Audio::Stop(0);
+				Audio::Start(1);
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
-				Objs::InsertObj(over, OBJ_FIGHT_OVER, 15);	//ゲームオーバー画面
-				m_failed == true;
-				//if (m_failed == true)
-				//{
-				//	Audio::Start(2);
-				//}
+				Objs::InsertObj(over, OBJ_FIGHT_CLEAR, 15);	//ゲームオーバー画面
+
+				//戦闘音楽を破棄し敗北音楽再生
+				Audio::Stop(0);
+				Audio::Start(2);
 			}
 		}
 	}
@@ -192,25 +193,32 @@ void CObjPlanet::Action()
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			
 			//▼戦闘終了時処理
-			//プレイヤー惑星、敵惑星のサイズ(HP)をそれぞれ取得し、勝敗判定を行う
+			//プレイヤー惑星、敵惑星のサイズ(現在HPと最大HP)をそれぞれ取得し、勝敗判定を行う
+			//※惑星サイズが大きい方の勝利。
 			//また、サイズ(HP)が高い方の惑星画像が手前に来るようにする
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-				if(ene != nullptr)
+				if (ene != nullptr)
+				{
 					m_get_siz = ene->GetSiz();
+					m_get_max_siz = ene->GetMaxSiz();
+				}	
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				if (pla != nullptr)
+				{
 					m_get_siz = pla->GetSiz();
+					m_get_max_siz = pla->GetMaxSiz();
+				}
 			}
 			if (m_type == 0) {
-				if (m_size >= m_get_siz) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 				}
 			}
 			else {
-				if (m_size > m_get_siz) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -348,14 +356,62 @@ void CObjPlanet::Action()
 		//▼敵行動パターン決め
 		if (m_time <= 0)
 		{
-			int Enemy_Fight_type[5][6] =   //敵攻撃用の配列作成
+			int Enemy_Fight_type[6][5][6] =   //敵攻撃用の配列作成
 			{
-				//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-				{ 1,6,2,1,1,0 }, //0番目
-				{ 2,6,3,2,2,0 }, //1番目
-				{ 3,6,4,3,3,0 }, //2番目
-				{ 4,6,5,4,4,0 }, //3番目
-				{ 5,6,1,5,5,0 }, //4番目
+				//m_type==0 これは呼び出されない
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 2,3,2,2,5,0 }, //0番目
+					{ 2,2,2,4,2,0 }, //1番目
+					{ 2,5,3,2,4,0 }, //2番目
+					{ 5,2,3,2,2,0 }, //3番目
+					{ 2,1,2,5,6,0 }, //4番目
+				},
+				//m_type==1
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 2,3,2,2,5,0 }, //0番目
+					{ 2,2,2,4,2,0 }, //1番目
+					{ 2,5,3,2,4,0 }, //2番目
+					{ 5,2,3,2,2,0 }, //3番目
+					{ 2,1,2,5,6,0 }, //4番目
+				},
+				//m_type==2
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,1,1,1,1,0 }, //0番目
+					{ 1,1,1,1,1,0 }, //1番目
+					{ 1,1,1,1,1,0 }, //2番目
+					{ 1,1,1,1,1,0 }, //3番目
+					{ 1,1,1,1,1,0 }, //4番目
+				},
+				//m_type==3
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 4,4,4,4,4,0 }, //0番目
+					{ 4,4,4,4,4,0 }, //1番目
+					{ 4,4,4,4,4,0 }, //2番目
+					{ 4,4,4,4,4,0 }, //3番目
+					{ 4,4,4,4,4,0 }, //4番目
+				},
+				//m_type==4
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 3,3,3,3,3,0 }, //0番目
+					{ 3,3,3,3,3,0 }, //1番目
+					{ 3,3,3,3,3,0 }, //2番目
+					{ 3,3,3,3,3,0 }, //3番目
+					{ 3,3,3,3,3,0 }, //4番目
+				},
+				//m_type==5
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,6,2,1,1,0 }, //0番目
+					{ 2,6,3,2,2,0 }, //1番目
+					{ 3,6,4,3,3,0 }, //2番目
+					{ 4,6,5,4,4,0 }, //3番目
+					{ 5,6,1,5,5,0 }, //4番目
+				},
 				/*
 				　攻撃パターン追加する際は、上の配列の数字を変え
 				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
@@ -366,7 +422,7 @@ void CObjPlanet::Action()
 				*/
 			};
 
-			m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+			m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 			if (m_attackf == 0)//--------配列が最後に行ったとき(0の時)
 			{
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
@@ -374,7 +430,7 @@ void CObjPlanet::Action()
 				srand(time(NULL));
 				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
-				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+				m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
 			}
 			else
@@ -383,6 +439,48 @@ void CObjPlanet::Action()
 			}
 		}
 
+		//▼敵惑星攻撃パターン
+		if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
+		{
+			//▼敵行動パターン決め
+			if (m_time <= 0)
+			{
+				int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル
+					{ 3,2,1,1,2,0 }, //0番目
+					{ 2,3,2,3,1,0 }, //1番目
+					{ 1,2,3,2,2,0 }, //2番目
+					{ 2,1,1,2,3,0 }, //3番目
+					{ 1,3,2,2,1,0 }, //4番目
+
+									 /*
+									 攻撃パターン追加する際は、上の配列の数字を変え
+									 下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
+									 {,,,,,}, //5番目
+									 {,,,,,}, //6番目
+									 {,,,,,}, //7番目
+									 {,,,,,}, //8番目
+									 */
+				};
+
+				m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+				if (m_get_line == 0)//--------配列が最後に行ったとき(0の時)
+				{
+					Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
+											 //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
+					srand(time(NULL));
+					Enemy_Line_pattern_x = rand() % 5;
+					//↓m_attackに攻撃パターンを入れる処理
+					m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+					Enemy_Line_pattern_x++;
+				}
+				else
+				{
+					Enemy_Line_pattern_x++;
+				}
+			}
+		}
 
 		//▼ミサイルポッド作成X位置を設定
 		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
@@ -395,7 +493,7 @@ void CObjPlanet::Action()
 			{
 
 			case 1:
-				m_time = 300 * m_enemy_recast_buff;
+				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
 				m_time = 150 * m_enemy_recast_buff;
@@ -419,8 +517,8 @@ void CObjPlanet::Action()
 			switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
 			{
 
-			case 1://-----敵水惑星（一番左）
-				m_time = 300 * m_enemy_recast_buff;
+			case 1:
+				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2://-----敵赤色惑星（左から二番目）
 				m_time = 60 * m_enemy_recast_buff;
@@ -445,7 +543,7 @@ void CObjPlanet::Action()
 			{
 
 			case 1:
-				m_time = 300 * m_enemy_recast_buff;
+				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
 				m_time = 60 * m_enemy_recast_buff;
@@ -470,7 +568,7 @@ void CObjPlanet::Action()
 			{
 
 			case 1:
-				m_time = 300 * m_enemy_recast_buff;
+				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
 				m_time = 60 * m_enemy_recast_buff;
@@ -495,7 +593,7 @@ void CObjPlanet::Action()
 			{
 
 			case 1:
-				m_time = 300 * m_enemy_recast_buff;
+				m_time = ONE_DELAY * m_enemy_recast_buff;
 				break;
 			case 2:
 				m_time = 60 * m_enemy_recast_buff;

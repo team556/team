@@ -3,6 +3,7 @@
 #include "GameL\DrawFont.h"		//使用されているのはマウスデバッグの部分のみ
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -32,7 +33,7 @@ int g_Bal_equip_Level = 1;
 int g_Bal_equip_Lv_achieve = 1;
 int g_Pod_equip_Level = 1;
 int g_Pod_equip_Lv_achieve = 1;
-float g_Player_max_size = 10.0f;
+float g_Player_max_size = 10000.0f;
 int g_Power_num = 500;		//デバッグ用に500。後で0に戻す。
 int g_Defense_num = 500;	//デバッグ用に500。後で0に戻す。
 int g_Speed_num = 500;		//デバッグ用に500。後で0に戻す。
@@ -135,6 +136,9 @@ void CObjTraining::Action()
 
 				//移行フラグ立て
 				window_start_manage = BackButton;
+
+				//戻るボタン音
+				Audio::Start(2);
 			}
 		}
 		//左クリック入力時
@@ -151,6 +155,9 @@ void CObjTraining::Action()
 
 				//移行フラグ立て
 				window_start_manage = BackButton;
+
+				//戻るボタン音
+				Audio::Start(2);
 			}
 		}
 		else

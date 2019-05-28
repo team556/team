@@ -125,6 +125,12 @@ void CSceneFight::InitScene()
 	//ヘルプボタン画像を読み込み33番に登録
 	Draw::LoadImage(L"ヘルプボタン.png", 33, TEX_SIZE_512);
 
+	//戻るを読み込み34番に登録
+	Draw::LoadImage(L"戻る.png", 34, TEX_SIZE_512);
+
+	//ヘルプ画像を読み込み35番に登録
+	Draw::LoadImage(L"ヘルプ戦闘.png", 35, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
@@ -164,38 +170,33 @@ void CSceneFight::InitScene()
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
+	//ヘルプブジェクト
+	CObjHelp* hlp = new CObjHelp(4);     //ヘルプブジェクト作成
+	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
+
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"Aggression.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"Cyborg.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"Inorganic.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"華麗なる悪意.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
 
 	//勝利
-	//Audio::LoadAudio(1, L"Sunset.wav", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"オアシス.wav", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"春爛漫.wav", BACK_MUSIC);
+	Audio::LoadAudio(1, L"Sunset.wav", BACK_MUSIC);
 
 	//敗北
-	//Audio::LoadAudio(2, L"Tears.wav", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"暗がりの中で.wav", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
+	Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
 
 	//SE読み込み
-	//Audio::LoadAudio(3, L"発射ボタン音", EFFECT);
-	//Audio::LoadAudio(4, L"爆発音.wav", EFFECT);
-	//Audio::LoadAudio(5, L"スペシャル技発動音.wav", EFFECT);
+	Audio::LoadAudio(3, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(4, L"小さい爆発.wav", EFFECT);
+	Audio::LoadAudio(5, L"大きい爆発.wav", EFFECT);
 
+	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay
 
-	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
-	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
-	//※コメントアウト後、正常動作を確認済み
-	////バックミュージック
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((1.0 - v));
+	Audio::LoadAudio(7, L"バリア２.wav", EFFECT);//Immortality
+
+	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
+
 
 	////音楽スタート
-	//Audio::Start(0);	
+	Audio::Start(0);
 
 }
 
