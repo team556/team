@@ -87,23 +87,34 @@ void CObjPlanet::Init()
 	else if (m_type == 1) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 26;
+		m_size = 20;
+		m_siz_max = 20;
 	}
 	else if (m_type == 2) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 27;
+		m_size = 50;
+		m_siz_max = 50;
+
 	}
 	else if (m_type == 3) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 28;
+		m_size = 80;
+		m_siz_max = 80;
 	}
 	else if (m_type == 4) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
+		m_size = 35;
+		m_siz_max = 35;
 	}
 	else  //(m_type == 5) 
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;
+		m_size = 60;
+		m_siz_max = 60;
 	}
 }
 
@@ -261,7 +272,7 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
+			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
 			{
 				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
 			}
@@ -387,48 +398,40 @@ void CObjPlanet::Action()
 				m_time = 300 * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 150 * m_enemy_recast_buff;
 				break;
 			case 3:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 90 * m_enemy_recast_buff;
 				break;
 			case 4:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 270 * m_enemy_recast_buff;
 				break;
 			case 5:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 60 * m_enemy_recast_buff;
 				break;
 			}
-			//if (m_type = 1)
-			//{
-			//	m_time = 1000 * m_enemy_recast_buff;
-			//}
-			//else
-			//{
-			//	m_time = 3000 * m_enemy_recast_buff;
-			//}
 		}
 		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			/*m_time = 100 * m_enemy_recast_buff;*/
-			switch (m_type)
+			switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
 			{
 
-			case 1:
+			case 1://-----敵水惑星（一番左）
 				m_time = 300 * m_enemy_recast_buff;
 				break;
-			case 2:
+			case 2://-----敵赤色惑星（左から二番目）
+				m_time = 60 * m_enemy_recast_buff;
+				break;
+			case 3://-----敵顔惑星（左から三番目）
 				m_time = 1 * m_enemy_recast_buff;
 				break;
-			case 3:
+			case 4://-----敵青色もわもわ惑星（左から四番目）
 				m_time = 1 * m_enemy_recast_buff;
 				break;
-			case 4:
-				m_time = 1 * m_enemy_recast_buff;
-				break;
-			case 5:
+			case 5://-----敵パンダ（レイドボス）
 				m_time = 1 * m_enemy_recast_buff;
 				break;
 			}
@@ -445,7 +448,7 @@ void CObjPlanet::Action()
 				m_time = 300 * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 60 * m_enemy_recast_buff;
 				break;
 			case 3:
 				m_time = 1 * m_enemy_recast_buff;
@@ -470,7 +473,7 @@ void CObjPlanet::Action()
 				m_time = 300 * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 60 * m_enemy_recast_buff;
 				break;
 			case 3:
 				m_time = 1 * m_enemy_recast_buff;
@@ -495,7 +498,7 @@ void CObjPlanet::Action()
 				m_time = 300 * m_enemy_recast_buff;
 				break;
 			case 2:
-				m_time = 1 * m_enemy_recast_buff;
+				m_time = 60 * m_enemy_recast_buff;
 				break;
 			case 3:
 				m_time = 1 * m_enemy_recast_buff;

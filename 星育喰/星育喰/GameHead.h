@@ -113,6 +113,11 @@ extern int g_Remain_num;			//残り住民数
 //--------------------------------------------------資源----
 extern int g_Iron_num;				//鉄の所持数
 extern int g_Wood_num;				//木の所持数
+extern int g_Silver_num;        //銀
+extern int g_Plastic_num;		//プラスチック
+extern int g_Aluminum_num;		//アルミニウム
+extern int g_gus_num;			//ガス
+extern int g_Raremetal_num;		//レアメタル
 
 extern int g_Material_num_test;		//TEST用所持素材数
 

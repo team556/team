@@ -71,6 +71,11 @@ void CObjFightOver::Init()
 
 	g_Iron_num = 0;
 	g_Wood_num = 0;
+	g_Silver_num = 0;
+	g_Plastic_num = 0;
+	g_Aluminum_num = 0;
+	g_gus_num = 0;
+	g_Raremetal_num = 0;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
