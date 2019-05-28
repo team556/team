@@ -57,6 +57,8 @@ private:
 	float m_Fracture_Ray_width[2];	//[スペシャル技:Fracture_Ray]エフェクト画像の幅変更用
 
 	float m_Immortality_size[2];	//[スペシャル技:Immortality]エフェクト画像サイズ変更用
+
+	bool  m_sptime[2];	//Immortality & ステロイド投与SE鳴らすフラグ
 	
 
 	float m_Special_effect_alpha[2];	//スペシャル技エフェクト画像のalpha(透過度)
@@ -77,7 +79,4 @@ private:
 	CObjFight *FightScene;
 	CObjPlanet *Planet[2];
 	CObjRocketButton *PodMissile[5];
-
-	bool m_sptime[2];	//ステロイド投与SE鳴らすフラグ
-
 };

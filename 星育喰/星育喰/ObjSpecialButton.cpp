@@ -59,6 +59,8 @@ void CObjSpecialButton::Init()
 		m_Fracture_Ray_width[i] = INI_WIDTH;
 
 		m_Immortality_size[i] = 0.0f;
+
+		m_sptime[i] = false;
 		
 		m_Special_effect_alpha[i] = INI_ALPHA;
 		m_Special_effect_alpha_vec[i] = 0.0f;
@@ -83,10 +85,6 @@ void CObjSpecialButton::Init()
 	PodMissile[2] = (CObjRocketButton*)Objs::GetObj(OBJ_POD_BUTTON3);
 	PodMissile[3] = (CObjRocketButton*)Objs::GetObj(OBJ_POD_BUTTON4);
 	PodMissile[4] = (CObjRocketButton*)Objs::GetObj(OBJ_MISSILE_BUTTON);
-
-	m_sptime[1] = false;	//ステロイド投与SE鳴らすフラグ(プレイヤー)
-	m_sptime[2] = false;	//ステロイド投与SE鳴らすフラグ(敵)
-
 }
 
 //アクション
