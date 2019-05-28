@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjHelp :public CObj
 {
 public:
-	CObjHelp() {};
+	CObjHelp(int Scene_num) { m_Scene_nam = Scene_num; }//作成時に渡された値を、m_Scene_namに代入
 	~CObjHelp() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション

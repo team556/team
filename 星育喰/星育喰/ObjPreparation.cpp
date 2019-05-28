@@ -3,6 +3,7 @@
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -350,6 +351,9 @@ void CObjPreparation::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//選択音
+						Audio::Start(1);
 					}
 				}
 				else
@@ -378,6 +382,9 @@ void CObjPreparation::Action()
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 				//左クリック入力時
 				else if (m_mou_l == true)
@@ -391,6 +398,9 @@ void CObjPreparation::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//戻るボタン音
+						Audio::Start(2);
 					}
 				}
 				else
@@ -421,6 +431,9 @@ void CObjPreparation::Action()
 				{
 					//移行開始フラグ立て
 					m_Back_flag = true;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			//左クリック入力時
@@ -433,6 +446,9 @@ void CObjPreparation::Action()
 
 					//移行開始フラグ立て
 					m_Back_flag = true;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -1107,6 +1123,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			m_finalcheck_f = true;//最終確認ウインドウを表示する
 
+		    //選択音
+			Audio::Start(1);
 			return;
 		}
 	}
@@ -1214,6 +1232,9 @@ void CObjPreparation::Special_message(int special_id)
 
 					//マウス選択中のスペシャル技アイコンのカラーを白色にする
 					m_Special_icon_color[g_Special_equipment - 1] = 1.0f;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -1240,6 +1261,9 @@ void CObjPreparation::Special_message(int special_id)
 
 					//未装備状態にする
 					g_Special_equipment = 0;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else

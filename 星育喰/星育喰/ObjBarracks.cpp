@@ -100,6 +100,9 @@ void CObjBarracks::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//レベルアップ音
+						Audio::Start(1);
 					}
 				}
 				else
@@ -128,6 +131,9 @@ void CObjBarracks::Action()
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 				//左クリック入力時
 				else if (m_mou_l == true)
@@ -141,6 +147,9 @@ void CObjBarracks::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//戻るボタン音
+						Audio::Start(2);
 					}
 				}
 				else
@@ -183,10 +192,10 @@ void CObjBarracks::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
-				}
 
-				//戻るボタン音
-				Audio::Start(2);
+					//戻るボタン音
+					Audio::Start(2);
+				}
 			}
 			//左クリック入力時
 			else if (m_mou_l == true)
@@ -201,6 +210,9 @@ void CObjBarracks::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else

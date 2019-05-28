@@ -271,6 +271,9 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//選択音
+						Audio::Start(1);
 					}
 				}
 				else
@@ -299,6 +302,9 @@ void CObjInstitute::Action()
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 				//左クリック入力時
 				else if (m_mou_l == true)
@@ -312,6 +318,9 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//戻るボタン音
+						Audio::Start(2);
 					}
 				}
 				else

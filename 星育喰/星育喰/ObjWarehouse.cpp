@@ -32,59 +32,6 @@ void CObjWarehouse::Init()
 
 	m_key_lf = false;
 
-	k = 0; //資材の所持している数
-	//住民
-	p = 0;//住民パワーの値
-	s = 0;//住民スピードの値
-	d = 0;//住民ディフェンスの値
-	b = 0;//住民バランスの値
-	r = 0;//研究員の値
-
-	//住民補正値
-	crvp = 0;//補正値パワー
-	crp = 0;
-
-	crvs = 0;//補正値スピード
-	crs = 0;
-
-	crvd = 0;//補正値ディフェンス
-	crd = 0;
-
-	crvbh = 0;//補正値バランス	体力
-	crbh = 0;
-
-	crvbp = 0;//補正値バランス	パワー
-	crbp = 0;
-
-	crvbs = 0;//補正値バランス	スピード
-	crbs = 0;
-
-	crvr = 0;//補正値研究員
-	crr = 0;
-
-	//装備
-	eqpp = 0;	//装備補正値パワープラス
-	epp = 0;
-	eqpm = 0;	//装備補正値パワーマイナス
-	epm = 0;
-
-	eqsp = 0;	//装備補正値スピードプラス
-	esp = 0;
-	eqsm = 0;	//装備補正値スピードマイナス
-	esm = 0;
-
-	eqdp = 0;	//装備補正値ディフェンスプラス
-	edp = 0;
-	eqdm = 0;	//装備補正値ディフェンスマイナス
-	edm = 0;
-
-	eqbp = 0;	//装備補正値バランスプラス
-	ebp = 0;
-
-	epdp = 0;	//装備補正値ポッドプラス
-	edpp = 0;
-
-	m_time =5;
 }
 
 //アクション
@@ -109,8 +56,6 @@ void CObjWarehouse::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//戻るボタン音
-				//Audio::Start(2);
 				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -122,14 +67,15 @@ void CObjWarehouse::Action()
 
 					//"倉庫ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Default;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 
 			//左クリックされたらフラグを立て、倉庫ウインドウを閉じる
 			else if (m_mou_l == true)
 			{
-				//戻るボタン音
-				//Audio::Start(2);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -137,6 +83,9 @@ void CObjWarehouse::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -158,8 +107,6 @@ void CObjWarehouse::Action()
 			//左クリックされたらフラグを立て、資材ウインドウを開く
 			if (m_mou_l == true)
 			{
-				//選択音
-				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -167,6 +114,9 @@ void CObjWarehouse::Action()
 
 					//"資材ウィンドウを開いている状態"フラグを立てる
 					window_start_manage = Materials;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -188,8 +138,6 @@ void CObjWarehouse::Action()
 			//左クリックされたらフラグを立て、住民ウインドウを開く
 			if (m_mou_l == true)
 			{
-				//選択音
-				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -197,6 +145,9 @@ void CObjWarehouse::Action()
 
 					//"住民ウィンドウを開いている状態"フラグを立てる
 					window_start_manage = Residents;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -217,8 +168,6 @@ void CObjWarehouse::Action()
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
 			if (m_mou_l == true)
 			{
-				//選択音
-				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -226,6 +175,9 @@ void CObjWarehouse::Action()
 
 					//"スペシャル技ウィンドウを開いている状態"フラグを立てる
 					window_start_manage = Specialskill;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -246,8 +198,6 @@ void CObjWarehouse::Action()
 			//左クリックされたらフラグを立て、装備ウインドウを開く
 			if (m_mou_l == true)
 			{
-				//選択音
-				//Audio::Start(1);
 				//クリック押したままの状態では入力出来ないようにしている
 				if (m_key_lf == true)
 				{
@@ -255,6 +205,9 @@ void CObjWarehouse::Action()
 
 					//"装備ウィンドウを開いている状態"フラグを立てる
 					window_start_manage = Soubicheck;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -282,8 +235,6 @@ void CObjWarehouse::Action()
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//戻るボタン音
-				//Audio::Start(2);
 				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -295,6 +246,9 @@ void CObjWarehouse::Action()
 
 					//"研究所ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Warehouse;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 
@@ -310,6 +264,9 @@ void CObjWarehouse::Action()
 
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Warehouse;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
@@ -339,8 +296,6 @@ void CObjWarehouse::Action()
 		//左クリックされたらフラグを立て、倉庫ウインドウを開く
 		if (m_mou_l == true)
 		{
-			//選択音
-			//Audio::Start(1);
 			//クリック押したままの状態では入力出来ないようにしている
 			if (m_key_lf == true)
 			{
@@ -350,6 +305,9 @@ void CObjWarehouse::Action()
 
 				//倉庫をクリックすると、倉庫が開かれる
 				window_start_manage = Warehouse;
+
+				//選択音
+				Audio::Start(1);
 			}
 		}
 		else
@@ -410,96 +368,51 @@ void CObjWarehouse::Draw()
 	//フォントの色
 	float ware[4] = { 1.0f,1.0f,1.0f,1.0f };
 
+	//赤色
+	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
+
+	//青色
+	float blue[4] = { 0.0f,0.0f,1.0f,1.0f };
+
+	//緑色
+	float green[4] = { 0.0f,1.0f,0.0f,1.0f };
+
+	//黄色
+	float yellow[4] = { 1.0f,1.0f,0.0f,1.0f };
+
 	//▽フォント準備
 	//倉庫用
 	wchar_t Ware[5];
 	swprintf_s(Ware, L"倉庫", g_Ware);
 
 	//資材(名前・持っている数)表示
-	wchar_t mrl[256];
-	swprintf_s(mrl, L"%d 個", k);
+	wchar_t mrl[2][9];
+	swprintf_s(mrl[0], L"%d 個", g_Wood_num);
+	swprintf_s(mrl[1], L"%d 個", g_Iron_num);
 
-	//住民(各ステータス)表示
-	//パワー
-	wchar_t pow[256];
-	swprintf_s(pow, L"Lv%d", p);
-
-	//スピード
-	wchar_t spd[256];
-	swprintf_s(spd, L"Lv%d", s);
-
-	//ディフェンス
-	wchar_t dfs[256];
-	swprintf_s(dfs, L"Lv%d", d);
-
-	//バランス
-	wchar_t brs[256];
-	swprintf_s(brs, L"Lv%d", b);
-
-	//研究員
-	wchar_t rsc[256];
-	swprintf_s(rsc, L"Lv%d", r);
-
-	//補正値パワー
-	wchar_t crvp[256];
-	swprintf_s(crvp, L"攻撃力＋%d", crp);
-
-	//補正値スピード
-	wchar_t crvs[256];
-	swprintf_s(crvs, L"素早さ＋%d", crs);
-
-	//補正値ディフェンス
-	wchar_t crvd[256];
-	swprintf_s(crvd, L"体力  ＋%d", crd);
-
-	//補正値バランス	体力
-	wchar_t crvbh[256];
-	swprintf_s(crvbh, L"体力  ＋%d", crbh);
-
-	//補正値バランス	パワー
-	wchar_t crvbp[256];
-	swprintf_s(crvbp, L"攻撃力＋%d", crbp);
-
-	//補正値バランス	スピード
-	wchar_t crvbs[256];
-	swprintf_s(crvbs, L"素早さ＋%d", crbs);
-
-	//補正値研究員
-	wchar_t crvr[256];
-	swprintf_s(crvr, L"%d", crr);
-
+	//住民数表示
+	//各タイプ(パワー、スピード等)の住民数用
+	wchar_t human_num[4][9];						 //9文字分格納可能な文字配列を4つ宣言(それぞれ最大値は999999)
+	swprintf_s(human_num[0], L"%6d 人", g_Power_num);//▽それぞれの文字配列に対応する文字データを入れる
+	swprintf_s(human_num[1], L"%6d 人", g_Defense_num);
+	swprintf_s(human_num[2], L"%6d 人", g_Speed_num);
+	swprintf_s(human_num[3], L"%6d 人", g_Balance_num);
 	//装備
-	//補正値パワープラス
-	wchar_t eqpp[256];
-	swprintf_s(eqpp, L"攻撃力+%d", epp);
+	//各タイプ(パワー、スピード等)の現在のレベル表示
+	wchar_t type_num[5][9];						 //9文字分格納可能な文字配列を4つ宣言(それぞれ最大値は999999)
+	swprintf_s(type_num[0], L"Lv.%d ", g_Pow_equip_Level);//▽それぞれの文字配列に対応する文字データを入れる
+	swprintf_s(type_num[1], L"Lv.%d ", g_Def_equip_Level);
+	swprintf_s(type_num[2], L"Lv.%d ", g_Spe_equip_Level);
+	swprintf_s(type_num[3], L"Lv.%d ", g_Bal_equip_Level);
+	swprintf_s(type_num[4], L"Lv.%d ", g_Pod_equip_Level);
 
-	//補正値パワーマイナス
-	wchar_t eqpm[256];
-	swprintf_s(eqpm, L"体力-%d", epm);
+	//研究員の住民数用
+	wchar_t Research_num[9];						 //9文字分格納可能な文字配列を宣言(最大値は999999)
+	swprintf_s(Research_num, L"%6d 人", g_Research_num);//その文字配列に文字データを入れる
 
-	//補正値スピードプラス
-	wchar_t eqsp[256];
-	swprintf_s(eqsp, L"素早さ+%d", esp);
-
-	//補正値スピードマイナス
-	wchar_t eqsm[256];
-	swprintf_s(eqsm, L"攻撃力-%d", esm);
-
-	//補正値ディフェンスプラス
-	wchar_t eqdp[256];
-	swprintf_s(eqdp, L"体力+%d", edp);
-
-	//補正値ディフェンスマイナス
-	wchar_t eqdm[256];
-	swprintf_s(eqdm, L"素早さ-%d", edm);
-
-	//補正値バランスプラス
-	wchar_t eqbp[256];
-	swprintf_s(eqbp, L"+%d", ebp);
-
-	//補正値ポッドプラス
-	wchar_t epdp[256];
-	swprintf_s(epdp, L"防御力+%d", edpp);
+	//残り住民数用
+	wchar_t human_remain[12];						 //12文字分格納可能な文字配列を宣言(最大値は999999)
+	swprintf_s(human_remain, L"残り %6d 人", g_Remain_num);//その文字配列に文字データを入れる
 
 	RECT_F src;//描画先切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -718,7 +631,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 197.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"木材", 280.0f, 130.0f,30.0f, black);
-		Font::StrDraw(mrl, 280.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(mrl[0], 280.0f, 170.0f, 30.0f, black);
 
 		//▼鉄表示
 		src.m_top = 0.0f;
@@ -732,7 +645,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 230.0f;
 		Draw::Draw(34, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"鉄", 580.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(mrl, 580.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(mrl[1], 580.0f, 170.0f, 30.0f, black);
 
 		//▼銀表示
 		src.m_top = 0.0f;
@@ -746,7 +659,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 230.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"銀", 950.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(mrl, 950.0f, 170.0f, 30.0f, black);
+		//Font::StrDraw(mrl, 950.0f, 170.0f, 30.0f, black);
 
 		//▼プラスチック表示
 		src.m_top = 0.0f;
@@ -760,7 +673,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 390.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"プラスチック", 240.0f, 280.0f, 30.0f, black);
-		Font::StrDraw(mrl, 240.0f, 330.0f, 30.0f, black);
+		//Font::StrDraw(mrl, 240.0f, 330.0f, 30.0f, black);
 
 		//▼アルミニウム表示
 		src.m_top = 0.0f;
@@ -774,7 +687,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 380.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"アルミニウム", 580.0f, 280.0f, 30.0f, black);
-		Font::StrDraw(mrl, 580.0f, 330.0f, 30.0f, black);
+		//Font::StrDraw(mrl, 580.0f, 330.0f, 30.0f, black);
 
 		//▼ガス表示
 		src.m_top = 0.0f;
@@ -788,7 +701,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 390.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"ガス", 950.0f, 280.0f, 30.0f, black);
-		Font::StrDraw(mrl, 950.0f, 330.0f, 30.0f, black);
+		//Font::StrDraw(mrl, 950.0f, 330.0f, 30.0f, black);
 
 		//▼レアメタル表示
 		src.m_top = 0.0f;
@@ -802,7 +715,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 550.0f;
 		Draw::Draw(39, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
-		Font::StrDraw(mrl, 580.0f, 500.0f, 30.0f, black);
+		//Font::StrDraw(mrl, 580.0f, 500.0f, 30.0f, black);
 	}
 
 	//住民ボタンを押して描画する画像
@@ -858,38 +771,33 @@ void CObjWarehouse::Draw()
 		
 		//▼フォント表示
 		//住民ステータス
+
+		//住民数
+		Font::StrDraw(L"住民数", 500.0f, 110.0f, 50.0f, black);
+
 		//パワー
-		Font::StrDraw(L"パワー", 180.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(pow,300.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 180.0f, 200.0f, 30.0f, black);
-		Font::StrDraw(crvp, 300.0f, 200.0f, 30.0f, black);
-		
-		//スピード
-		Font::StrDraw(L"スピード", 180.0f, 300.0f, 30.0f, black);
-		Font::StrDraw(spd, 330.0f, 300.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 180.0f, 370.0f, 30.0f, black);
-		Font::StrDraw(crvs, 300.0f, 370.0f, 30.0f, black);
+		Font::StrDraw(L"パワー", 120.0f, 200.0f, 35.0f, red);
+		Font::StrDraw(human_num[0], 355.0f, 200.0f, 35.0f, black);
 
 		//ディフェンス
-		Font::StrDraw(L"ディフェンス", 180.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(dfs, 390.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 180.0f, 540.0f, 30.0f, black);
-		Font::StrDraw(crvd, 300.0f, 540.0f, 30.0f, black);
+		Font::StrDraw(L"ディフェンス", 120.0f, 470.0f, 35.0f, green);
+		Font::StrDraw(human_num[1], 355.0f, 470.0f, 35.0f, black);
+
+		//スピード
+		Font::StrDraw(L"スピード", 120.0f, 330.0f, 35.0f, blue);
+		Font::StrDraw(human_num[2], 355.0f, 330.0f, 35.0f, black);
 
 		//バランス
-		Font::StrDraw(L"バランス", 620.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(brs, 780.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 620.0f, 200.0f, 30.0f, black);
-		Font::StrDraw(crvbh, 780.0f, 200.0f, 30.0f, black);
-		Font::StrDraw(crvbp, 780.0f, 250.0f, 30.0f, black);
-		Font::StrDraw(crvbs, 780.0f, 300.0f, 30.0f, black);
+		Font::StrDraw(L"バランス", 540.0f, 200.0f, 35.0f, yellow);
+		Font::StrDraw(human_num[3], 865.0f, 200.0f, 35.0f, black);
 
 		//研究員
-		Font::StrDraw(L"研究員", 620.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(brs, 780.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 620.0f, 540.0f, 30.0f, black);
-		Font::StrDraw(crvbh, 780.0f, 540.0f, 30.0f, black);
+		Font::StrDraw(L"研究員", 540.0f, 330.0f, 35.0f, black);
+		Font::StrDraw(Research_num, 865.0f, 330.0f, 35.0f, black);
 
+		//残りの住民数
+		Font::StrDraw(L"残りの住民数", 540.0f, 470.0f, 35.0f, black);
+		Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 	}
 
@@ -944,139 +852,151 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 
-		//スペシャル技1選択ボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		//▼現在のスペシャル技習得状況、装備状況に応じて
+		//スペシャル技アイコンのカラー明度を以下のように設定していく。
+		//「未習得」……………………………0.0f(黒色)
+		//「クリックで装備可(習得済)」……0.4f(灰色)
+		//「装備中」……………………………1.0f(白色)
+		for (int i = 0; i < 5; i++)
+		{
+			//装備中の処理
+			if (g_Special_equipment == i + 1)
+			{
+				//スペシャル技1ボタン表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 100.0f;
+				src.m_bottom = 100.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 200.0f;
-		dst.m_bottom = 200.0f;
-		Draw::Draw(40, &src, &dst, it, 0.0f);
+				dst.m_top = 85.0f;
+				dst.m_left = 100.0f;
+				dst.m_right = 230.0f;
+				dst.m_bottom = 215.0f;
+				Draw::Draw(40, &src, &dst, it, 0.0f);
 
-		//スペシャル技2選択ボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+				//スペシャル技2ボタン表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 100.0f;
+				src.m_bottom = 100.0f;
 
-		dst.m_top = 200.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 200.0f;
-		dst.m_bottom = 300.0f;
-		Draw::Draw(41, &src, &dst, it, 0.0f);
+				dst.m_top = 185.0f;
+				dst.m_left = 100.0f;
+				dst.m_right = 230.0f;
+				dst.m_bottom = 315.0f;
+				Draw::Draw(41, &src, &dst, it, 0.0f);
 
-		//スペシャル技3選択ボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+				//スペシャル技3ボタン表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 100.0f;
+				src.m_bottom = 100.0f;
 
-		dst.m_top = 300.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 200.0f;
-		dst.m_bottom = 400.0f;
-		Draw::Draw(42, &src, &dst, it, 0.0f);
+				dst.m_top = 285.0f;
+				dst.m_left = 100.0f;
+				dst.m_right = 230.0f;
+				dst.m_bottom = 415.0f;
+				Draw::Draw(42, &src, &dst, it, 0.0f);
 
-		//スペシャル技4選択ボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+				//スペシャル技4ボタン表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 100.0f;
+				src.m_bottom = 100.0f;
 
-		dst.m_top = 400.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 200.0f;
-		dst.m_bottom = 500.0f;
-		Draw::Draw(43, &src, &dst, it, 0.0f);
+				dst.m_top = 385.0f;
+				dst.m_left = 100.0f;
+				dst.m_right = 230.0f;
+				dst.m_bottom = 515.0f;
+				Draw::Draw(43, &src, &dst, it, 0.0f);
 
-		//スペシャル技5選択ボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+				//スペシャル技5ボタン表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 100.0f;
+				src.m_bottom = 100.0f;
 
-		dst.m_top = 500.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 200.0f;
-		dst.m_bottom = 600.0f;
-		Draw::Draw(44, &src, &dst, it, 0.0f);
-
-		/*現在スペシャル技のデメリット効果を変更しています。
-		変更のままでいくなら、前の効果分を破棄します。	*/
-
-		//スペシャル技1メッセージウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 200.0f;
-		src.m_bottom = 100.0f;
-
-		dst.m_top = 100.0f;
-		dst.m_left = 300.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 200.0f;
-		Draw::Draw(45, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"メリット", 310.0f, 110.0f, 20.0f, black);
-		Font::StrDraw(L"相手の惑星に固定ダメージを与える", 310.0f, 140.0f, 20.0f, black);
-		Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 310.0f, 170.0f, 20.0f, black);
-		Font::StrDraw(L"デメリット", 810.0f, 110.0f, 20.0f, black);
-		//Font::StrDraw(L"自分のHPを7%減らす", 810.0f, 135.0f, 20.0f, black);
-		Font::StrDraw(L"一回しか使えない", 810.0f, 140.0f, 20.0f, black);
-
-		//スペシャル技2メッセージウィンドウ表示
-		dst.m_top = 200.0f;
-		dst.m_left = 300.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 300.0f;
-		Draw::Draw(45, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"メリット", 310.0f, 210.0f, 20.0f, black);
-		Font::StrDraw(L"相手の攻撃一列を破壊する", 310.0f, 240.0f, 20.0f, black);
-		Font::StrDraw(L"デメリット", 810.0f, 210.0f, 20.0f, black);
-		//Font::StrDraw(L"5秒間から10秒間攻撃力ダウン", 710.0f, 235.0f, 20.0f, black);
-		Font::StrDraw(L"一回しか使えない", 810.0f, 240.0f, 20.0f, black);
-
-		//スペシャル技3メッセージウィンドウ表示
-		dst.m_top = 300.0f;
-		dst.m_left = 300.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 400.0f;
-		Draw::Draw(45, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"メリット", 310.0f, 310.0f, 20.0f, black);
-		Font::StrDraw(L"約10秒間無敵になることができる", 310.0f, 340.0f, 20.0f, black);
-		Font::StrDraw(L"デメリット", 810.0f, 310.0f, 20.0f, black);
-		//Font::StrDraw(L"攻撃力を5秒間ダウン", 710.0f, 335.0f, 20.0f, black);
-		Font::StrDraw(L"一回しか使えない", 810.0f, 340.0f, 20.0f, black);
-
-		//スペシャル技4メッセージウィンドウ表示
-		dst.m_top = 400.0f;
-		dst.m_left = 300.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 500.0f;
-		Draw::Draw(45, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"メリット", 310.0f, 410.0f, 20.0f, black);
-		Font::StrDraw(L"20秒間攻撃スピードアップ", 310.0f, 440.0f, 20.0f, black);
-		Font::StrDraw(L"武器生産頻度アップ", 310.0f, 470.0f, 20.0f, black);
-		Font::StrDraw(L"デメリット", 810.0f, 410.0f, 20.0f, black);
-		//Font::StrDraw(L"効果が終わると5秒間", 710.0f, 435.0f, 20.0f, black);
-		//Font::StrDraw(L"生産性が10%ダウン", 710.0f, 460.0f, 20.0f, black);
-		Font::StrDraw(L"一回しか使えない", 810.0f, 440.0f, 20.0f, black);
+				dst.m_top = 485.0f;
+				dst.m_left = 100.0f;
+				dst.m_right = 230.0f;
+				dst.m_bottom = 615.0f;
+				Draw::Draw(44, &src, &dst, it, 0.0f);
 
 
-		//スペシャル技5メッセージウィンドウ表示
-		dst.m_top = 500.0f;
-		dst.m_left = 300.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 600.0f;
-		Draw::Draw(45, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"メリット", 310.0f, 510.0f, 20.0f, black);
-		Font::StrDraw(L"住民のポッド5機攻撃が上がる", 310.0f, 540.0f, 20.0f, black);
-		Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 310.0f, 570.0f, 20.0f, black);
-		Font::StrDraw(L"デメリット", 810.0f, 510.0f, 20.0f, black);
-		//Font::StrDraw(L"効果終了後住民の攻撃ポッド3機の", 710.0f, 535.0f, 20.0f, black);
-		//Font::StrDraw(L"攻撃力が下がる", 710.0f, 560.0f, 20.0f, black);
-		Font::StrDraw(L"一回しか使えない", 810.0f, 540.0f, 20.0f, black);
+				//スペシャル技1メッセージウィンドウ表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 200.0f;
+				src.m_bottom = 100.0f;
+
+				dst.m_top = 100.0f;
+				dst.m_left = 235.0f;
+				dst.m_right = 1100.0f;
+				dst.m_bottom = 200.0f;
+				Draw::Draw(45, &src, &dst, it, 0.0f);
+				Font::StrDraw(L"メリット", 245.0f, 110.0f, 20.0f, black);
+				Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 140.0f, 20.0f, black);
+				Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 245.0f, 170.0f, 20.0f, black);
+				Font::StrDraw(L"デメリット", 745.0f, 110.0f, 20.0f, black);
+				Font::StrDraw(L"一回しか使えない", 745.0f, 140.0f, 20.0f, black);
+
+				//スペシャル技2メッセージウィンドウ表示
+				dst.m_top = 200.0f;
+				dst.m_left = 235.0f;
+				dst.m_right = 1100.0f;
+				dst.m_bottom = 300.0f;
+				Draw::Draw(45, &src, &dst, it, 0.0f);
+				Font::StrDraw(L"メリット", 245.0f, 210.0f, 20.0f, black);
+				Font::StrDraw(L"相手の攻撃一列を破壊する", 245.0f, 240.0f, 20.0f, black);
+				Font::StrDraw(L"デメリット", 745.0f, 210.0f, 20.0f, black);
+				Font::StrDraw(L"一回しか使えない", 745.0f, 240.0f, 20.0f, black);
+
+				//スペシャル技3メッセージウィンドウ表示
+				dst.m_top = 300.0f;
+				dst.m_left = 235.0f;
+				dst.m_right = 1100.0f;
+				dst.m_bottom = 400.0f;
+				Draw::Draw(45, &src, &dst, it, 0.0f);
+				Font::StrDraw(L"メリット", 245.0f, 310.0f, 20.0f, black);
+				Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 340.0f, 20.0f, black);
+				Font::StrDraw(L"デメリット", 745.0f, 310.0f, 20.0f, black);
+				Font::StrDraw(L"一回しか使えない", 745.0f, 340.0f, 20.0f, black);
+
+				//スペシャル技4メッセージウィンドウ表示
+				dst.m_top = 400.0f;
+				dst.m_left = 235.0f;
+				dst.m_right = 1100.0f;
+				dst.m_bottom = 500.0f;
+				Draw::Draw(45, &src, &dst, it, 0.0f);
+				Font::StrDraw(L"メリット", 245.0f, 410.0f, 20.0f, black);
+				Font::StrDraw(L"20秒間攻撃スピードアップ", 245.0f, 440.0f, 20.0f, black);
+				Font::StrDraw(L"武器生産頻度アップ", 245.0f, 470.0f, 20.0f, black);
+				Font::StrDraw(L"デメリット", 745.0f, 410.0f, 20.0f, black);
+				Font::StrDraw(L"一回しか使えない", 745.0f, 440.0f, 20.0f, black);
+
+
+				//スペシャル技5メッセージウィンドウ表示
+				dst.m_top = 500.0f;
+				dst.m_left = 235.0f;
+				dst.m_right = 1100.0f;
+				dst.m_bottom = 600.0f;
+				Draw::Draw(45, &src, &dst, it, 0.0f);
+				Font::StrDraw(L"メリット", 245.0f, 510.0f, 20.0f, black);
+				Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 540.0f, 20.0f, black);
+				Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 570.0f, 20.0f, black);
+				Font::StrDraw(L"デメリット", 745.0f, 510.0f, 20.0f, black);
+				Font::StrDraw(L"一回しか使えない", 745.0f, 540.0f, 20.0f, black);
+
+
+				m_Special_icon_color[i] = 1.0f;
+			}
+			//未習得の処理
+			else
+			{
+				m_Special_icon_color[i] = 0.0f;
+			}
+		}
+
 	}
 
 	//装備ボタンを押して描画する画像
@@ -1131,39 +1051,27 @@ void CObjWarehouse::Draw()
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 
 		//▼装備
-		//▼パワー補正値
-		Font::StrDraw(L"パワー", 110.0f, 120.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 110.0f, 170.0f, 30.0f, black);
-		Font::StrDraw(eqpp, 310.0f, 170.0f, 30.0f, black);
-		Font::StrDraw(eqpm, 310.0f, 220.0f, 30.0f, black);
+		Font::StrDraw(L"装備", 500.0f, 110.0f, 50.0f, black);
 
-		//▼スピード補正値
-		Font::StrDraw(L"スピード", 110.0f, 270.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 110.0f, 320.0f, 30.0f, black);
-		Font::StrDraw(eqsp, 310.0f, 320.0f, 30.0f, black);
-		Font::StrDraw(eqsm, 310.0f, 370.0f, 30.0f, black);
+		//パワー
+		Font::StrDraw(L"パワー", 120.0f, 200.0f, 40.0f, red);
+		Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
 
-		//▼ディフェンス補正値
-		Font::StrDraw(L"ディフェンス", 110.0f, 420.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 110.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(eqdp, 300.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(eqdm, 300.0f, 520.0f, 30.0f, black);
+		//ディフェンス
+		Font::StrDraw(L"ディフェンス", 120.0f, 460.0f, 40.0f, green);
+		Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
 
+		//スピード
+		Font::StrDraw(L"スピード", 120.0f, 330.0f, 40.0f, blue);
+		Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
 
-		//▼バランス補正値
-		Font::StrDraw(L"バランス", 500.0f, 120.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 500.0f, 170.0f, 30.0f, black);
-		Font::StrDraw(L"体力", 690.0f, 170.0f, 30.0f, black);
-		Font::StrDraw(eqbp, 790.0f, 170.0f, 30.0f, black);
-		Font::StrDraw(L"素早さ", 690.0f, 220.0f, 30.0f, black);
-		Font::StrDraw(eqbp, 790.0f, 220.0f, 30.0f, black);
-		Font::StrDraw(L"攻撃力", 690.0f, 270.0f, 30.0f, black);
-		Font::StrDraw(eqbp, 790.0f, 270.0f, 30.0f, black);
+		//バランス
+		Font::StrDraw(L"バランス", 620.0f, 200.0f, 40.0f, yellow);
+		Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
 
-		//▼ポッド補正値
-		Font::StrDraw(L"ポッド", 500.0f, 420.0f, 30.0f, black);
-		Font::StrDraw(L"補正値", 500.0f, 470.0f, 30.0f, black);
-		Font::StrDraw(epdp, 690.0f, 470.0f, 30.0f, black);
+		//▼ポッド
+		Font::StrDraw(L"ポッド", 620.0f, 330.0f, 40.0f, black);
+		Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
 
 	}
 }

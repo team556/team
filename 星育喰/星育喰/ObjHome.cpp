@@ -3,6 +3,7 @@
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "Call_Planet.h"
@@ -195,6 +196,9 @@ void CObjHome::Action()
 				m_key_f = false;
 
 				m_Tra_flag = true;
+
+				//‘I‘ð‰¹
+				Audio::Start(1);
 			}
 		}
 		else
@@ -221,6 +225,9 @@ void CObjHome::Action()
 				m_key_f = false;
 
 				m_Eat_flag = true;
+
+				//‘I‘ð‰¹
+				Audio::Start(1);
 			}
 		}
 		else
