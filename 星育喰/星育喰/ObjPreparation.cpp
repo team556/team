@@ -81,6 +81,8 @@ void CObjPreparation::Init()
 	m_No_Button_color = INI_COLOR;
 
 	m_Back_flag = false;
+	m_Go_flag = false;
+	m_boss_emerge_staging_f = false;
 	m_finalcheck_f = false;
 
 	m_detail_message_window_top = 0.0f;
