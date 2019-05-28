@@ -12,13 +12,13 @@
 using namespace GameL;
 
 //グローバル変数の定義
-int g_Iron_num = 0;
-int g_Wood_num = 0;
-int g_Silver_num = 0;
-int g_Plastic_num = 0;
-int g_Aluminum_num = 0;
-int g_gus_num = 0;
-int g_Raremetal_num = 0;
+int g_Iron_num = 1000;
+int g_Wood_num = 1000;
+int g_Silver_num = 1000;
+int g_Plastic_num = 1000;
+int g_Aluminum_num = 1000;
+int g_gus_num = 1000;
+int g_Raremetal_num = 1000;
 
 
 //コンストラクタ
