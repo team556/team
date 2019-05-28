@@ -164,28 +164,15 @@ void CSceneFight::InitScene()
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
-	//音楽読み込み
-	//Audio::LoadAudio(0, L"Aggression.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"Cyborg.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"Inorganic.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"華麗なる悪意.wav", BACK_MUSIC);
-	//Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
-
-	//勝利
-	//Audio::LoadAudio(1, L"Sunset.wav", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"オアシス.wav", BACK_MUSIC);
-	//Audio::LoadAudio(1, L"春爛漫.wav", BACK_MUSIC);
-
-	//敗北
-	//Audio::LoadAudio(2, L"Tears.wav", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"暗がりの中で.wav", BACK_MUSIC);
-	//Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
+																					//音楽読み込み
+	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
 	//SE読み込み
-	//Audio::LoadAudio(3, L"発射ボタン音", EFFECT);
-	//Audio::LoadAudio(4, L"爆発音.wav", EFFECT);
-	//Audio::LoadAudio(5, L"スペシャル技発動音.wav", EFFECT);
+	//選択
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
 
+	//戻る
+	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
 
 	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
 	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
@@ -195,7 +182,7 @@ void CSceneFight::InitScene()
 	//v = Audio::VolumeMaster((1.0 - v));
 
 	////音楽スタート
-	//Audio::Start(0);	
+	Audio::Start(0);
 
 }
 

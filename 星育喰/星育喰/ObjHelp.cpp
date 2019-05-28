@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjHelp.h"
@@ -85,6 +86,9 @@ void CObjHelp::Action()
 			{
 				m_help_f = true;//ヘルプ表示する
 				m_key_f = true;	//連打制御
+
+				//選択音
+				Audio::Start(1);
 			}
 			else
 			{
@@ -105,6 +109,9 @@ void CObjHelp::Action()
 			if (m_mou_l == true)
 			{
 				m_help_f = false;
+
+				//戻るボタン音
+				Audio::Start(2);
 			}
 		}
 		else

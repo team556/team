@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjFightClear.h"
@@ -76,6 +77,10 @@ void CObjFightOver::Init()
 //アクション
 void CObjFightOver::Action()
 {
+	//戦闘音楽を破棄し敗北音楽再生
+	Audio::Stop(0);
+	Audio::Start(1);
+
 	////マウスの位置を取得
 	//m_mou_x = (float)Input::GetPosX();
 	//m_mou_y = (float)Input::GetPosY();
