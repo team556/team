@@ -244,14 +244,14 @@ void CSceneTraining::InitScene()
 	//ポッドLv.3の画像を読み込み63番に登録
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み64番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 64, TEX_SIZE_512);
+	////ヘルプボタンを読み込み64番に登録
+	//Draw::LoadImage(L"ヘルプボタン.png", 64, TEX_SIZE_512);
 
-	//戻るを読み込み65番に登録
-	Draw::LoadImage(L"戻る.png", 65, TEX_SIZE_512);
+	////戻るを読み込み65番に登録
+	//Draw::LoadImage(L"戻る.png", 65, TEX_SIZE_512);
 
-	//ヘルプ画像を読み込み66番に登録
-	Draw::LoadImage(L"ヘルプ育成.png", 66, TEX_SIZE_512);
+	////ヘルプ画像を読み込み66番に登録
+	//Draw::LoadImage(L"ヘルプ育成.png", 66, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);

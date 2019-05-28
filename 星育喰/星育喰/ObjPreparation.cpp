@@ -1123,6 +1123,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			m_finalcheck_f = true;//最終確認ウインドウを表示する
 
+		    //選択音
+			Audio::Start(1);
 			return;
 		}
 	}
@@ -1230,6 +1232,9 @@ void CObjPreparation::Special_message(int special_id)
 
 					//マウス選択中のスペシャル技アイコンのカラーを白色にする
 					m_Special_icon_color[g_Special_equipment - 1] = 1.0f;
+
+					//選択音
+					Audio::Start(1);
 				}
 			}
 			else
@@ -1256,6 +1261,9 @@ void CObjPreparation::Special_message(int special_id)
 
 					//未装備状態にする
 					g_Special_equipment = 0;
+
+					//戻るボタン音
+					Audio::Start(2);
 				}
 			}
 			else
