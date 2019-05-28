@@ -22,6 +22,7 @@ public:
 	float GetMaxSiz() { return m_siz_max; }	//最大サイズ(HP)取得関数
 	float GetScale_down_move() { return m_scale_down_move; }//サイズ縮小分のX座標移動量を返す
 	int  GetType() { return m_type; }
+	int  GetLine() { return m_get_line; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
 	void SetDamage() { m_size -= 1; }//呼び出すとダメージ処理を行う[スペシャル技:Explosion用]
 	void SetScale_down_move(int Planet_id) //呼び出すとサイズ縮小分、X座標の移動を行う(Planet_id:プレイヤー or エネミー判別用)[スペシャル技:Explosion用]
@@ -77,4 +78,9 @@ private:
 
 	int Enemy_Attack_pattern_x;  //敵攻撃パターンの横軸読み込む用
 	int Enemy_Attack_pattern_y;  //敵攻撃パターンの縦軸読み込む用
+
+	int Enemy_Line_pattern_x;	////敵攻撃パターンの横軸読み込む用
+	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
+
+	int m_get_line;				//取得したラインナンバー
 };
