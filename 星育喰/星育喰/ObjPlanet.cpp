@@ -176,25 +176,32 @@ void CObjPlanet::Action()
 		if (m_ani_time == 0) {					//timeでループ制御☆
 			
 			//▼戦闘終了時処理
-			//プレイヤー惑星、敵惑星のサイズ(HP)をそれぞれ取得し、勝敗判定を行う
+			//プレイヤー惑星、敵惑星のサイズ(現在HPと最大HP)をそれぞれ取得し、勝敗判定を行う
+			//※惑星サイズが大きい方の勝利。
 			//また、サイズ(HP)が高い方の惑星画像が手前に来るようにする
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-				if(ene != nullptr)
+				if (ene != nullptr)
+				{
 					m_get_siz = ene->GetSiz();
+					m_get_max_siz = ene->GetMaxSiz();
+				}	
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				if (pla != nullptr)
+				{
 					m_get_siz = pla->GetSiz();
+					m_get_max_siz = pla->GetMaxSiz();
+				}
 			}
 			if (m_type == 0) {
-				if (m_size >= m_get_siz) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 				}
 			}
 			else {
-				if (m_size > m_get_siz) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -332,14 +339,62 @@ void CObjPlanet::Action()
 		//▼敵行動パターン決め
 		if (m_time <= 0)
 		{
-			int Enemy_Fight_type[5][6] =   //敵攻撃用の配列作成
+			int Enemy_Fight_type[6][5][6] =   //敵攻撃用の配列作成
 			{
-				//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-				{ 1,6,2,1,1,0 }, //0番目
-				{ 2,6,3,2,2,0 }, //1番目
-				{ 3,6,4,3,3,0 }, //2番目
-				{ 4,6,5,4,4,0 }, //3番目
-				{ 5,6,1,5,5,0 }, //4番目
+				//m_type==0 これは呼び出されない
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 2,2,2,2,2,0 }, //0番目
+					{ 2,2,2,2,2,0 }, //1番目
+					{ 2,2,2,2,2,0 }, //2番目
+					{ 2,2,2,2,2,0 }, //3番目
+					{ 2,2,2,2,2,0 }, //4番目
+				},
+				//m_type==1
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 2,2,2,2,2,0 }, //0番目
+					{ 2,2,2,2,2,0 }, //1番目
+					{ 2,2,2,2,2,0 }, //2番目
+					{ 2,2,2,2,2,0 }, //3番目
+					{ 2,2,2,2,2,0 }, //4番目
+				},
+				//m_type==2
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,1,1,1,1,0 }, //0番目
+					{ 1,1,1,1,1,0 }, //1番目
+					{ 1,1,1,1,1,0 }, //2番目
+					{ 1,1,1,1,1,0 }, //3番目
+					{ 1,1,1,1,1,0 }, //4番目
+				},
+				//m_type==3
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 4,4,4,4,4,0 }, //0番目
+					{ 4,4,4,4,4,0 }, //1番目
+					{ 4,4,4,4,4,0 }, //2番目
+					{ 4,4,4,4,4,0 }, //3番目
+					{ 4,4,4,4,4,0 }, //4番目
+				},
+				//m_type==4
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 3,3,3,3,3,0 }, //0番目
+					{ 3,3,3,3,3,0 }, //1番目
+					{ 3,3,3,3,3,0 }, //2番目
+					{ 3,3,3,3,3,0 }, //3番目
+					{ 3,3,3,3,3,0 }, //4番目
+				},
+				//m_type==5
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,6,2,1,1,0 }, //0番目
+					{ 2,6,3,2,2,0 }, //1番目
+					{ 3,6,4,3,3,0 }, //2番目
+					{ 4,6,5,4,4,0 }, //3番目
+					{ 5,6,1,5,5,0 }, //4番目
+				},
 				/*
 				　攻撃パターン追加する際は、上の配列の数字を変え
 				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
@@ -350,7 +405,7 @@ void CObjPlanet::Action()
 				*/
 			};
 
-			m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+			m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 			if (m_attackf == 0)//--------配列が最後に行ったとき(0の時)
 			{
 				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
@@ -358,7 +413,7 @@ void CObjPlanet::Action()
 				srand(time(NULL));
 				Enemy_Attack_pattern_y = rand() % 5;
 				//↓m_attackに攻撃パターンを入れる処理
-				m_attackf = Enemy_Fight_type[Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+				m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
 				Enemy_Attack_pattern_x++;
 			}
 			else

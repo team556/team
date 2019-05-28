@@ -36,6 +36,7 @@ private:
 	float m_alpha;		//透過度(アルファ値)
 	bool  m_Tra_flag;	//育アイコンクリック時trueフラグ
 	bool  m_Eat_flag;	//喰アイコンクリック時trueフラグ
+	bool  m_status_flag;//プレイヤー惑星ステータス表示フラグ(true:表示　false:非表示)
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
