@@ -114,6 +114,8 @@ void CObjInstitute::Init()
 	m_message_blue_color = INI_COLOR;
 	m_alpha = INI_ALPHA;
 
+	//-----------------------------------------------------------------------------------------------------
+
 	//▼ミサイルリキャストタイム(RCT)設定
 	m_Mis_recast_time[0] = 10.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
 	m_Mis_recast_time[1] = 8.6f;//RCLvが1の時のRCT
@@ -123,15 +125,17 @@ void CObjInstitute::Init()
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究所レベル設定
 	m_Mis_recast_next_Ins_Lv[0] = 1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[1] = 3; //RCLvが1の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[2] = 6; //RCLvが2の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[3] = 10; //RCLvが3の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[1] = 2; //RCLvが1の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[2] = 3; //RCLvが2の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[3] = 3; //RCLvが3の時の必要研究所レベル
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究員の住民数設定
 	m_Mis_recast_next_Hum_num[0] = 100;  //ミサイルリキャストレベル(RCLv)が0の時の必要研究員数
-	m_Mis_recast_next_Hum_num[1] = 1000; //RCLvが1の時の必要研究員数
-	m_Mis_recast_next_Hum_num[2] = 5000; //RCLvが2の時の必要研究員数
-	m_Mis_recast_next_Hum_num[3] = 10000;//RCLvが3の時の必要研究員数
+	m_Mis_recast_next_Hum_num[1] = 600; //RCLvが1の時の必要研究員数
+	m_Mis_recast_next_Hum_num[2] = 2000; //RCLvが2の時の必要研究員数
+	m_Mis_recast_next_Hum_num[3] = 4500;//RCLvが3の時の必要研究員数
+
+	//-----------------------------------------------------------------------------------------------------
 
 	//▼各武器、ポッドの次のLVUPに必要な研究員の住民数設定
 	//▽パワー武器
@@ -153,38 +157,40 @@ void CObjInstitute::Init()
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
 	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[0][1], L"ダイヤ");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[0][1], L"レアメタル");		 //レベルが2の時の必要素材名
 	//▽ディフェンス武器
 	swprintf_s(m_Equ_next_Mat_name[1][0], L"鉄屑");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[1][1], L"パール");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][1], L"レアメタル");		 //レベルが2の時の必要素材名
 	//▽スピード武器
 	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");			//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[2][1], L"黒曜石");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[2][1], L"レアメタル");		 //レベルが2の時の必要素材名
 	//▽バランス武器
-	swprintf_s(m_Equ_next_Mat_name[3][0], L"ルビー");		//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[3][1], L"アルミニウム");	//レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][0], L"プラスチック");		//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][1], L"レアメタル");	//レベルが2の時の必要素材名
 	//▽ポッド武器
 	swprintf_s(m_Equ_next_Mat_name[4][0], L"エメラルド");	//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[4][1], L"プラチナ");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][1], L"レアメタル");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
 	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
 	//▽パワー武器
 	m_Equ_next_Mat_type[0][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[0][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
 	//▽ディフェンス武器
 	m_Equ_next_Mat_type[1][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[1][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
 	//▽スピード武器
 	m_Equ_next_Mat_type[2][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[2][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[2][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
 	//▽バランス武器
-	m_Equ_next_Mat_type[3][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[3][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[3][0] = &g_Plastic_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
 	//▽ポッド
 	m_Equ_next_Mat_type[4][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[4][1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[4][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+
+	//-----------------------------------------------------------------------------------------------------
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
@@ -208,18 +214,18 @@ void CObjInstitute::Init()
 	m_Facility_next_Size_num[1] = 3.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
-	swprintf_s(m_Facility_next_Mat_name[0], L"プラスチック");//レベルが1の時の必要素材名
+	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");//レベルが1の時の必要素材名
 	swprintf_s(m_Facility_next_Mat_name[1], L"アルミニウム");//レベルが2の時の必要素材名
 
 	//▼研究所の次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
 	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
-	m_Facility_next_Mat_type[0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Facility_next_Mat_type[1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Facility_next_Mat_type[0] = &g_Iron_num;	//レベルが1の時の必要素材種類
+	m_Facility_next_Mat_type[1] = &g_Aluminum_num;	//レベルが2の時の必要素材種類
 
 	//▼研究所の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 10;	//レベルが1の時の必要素材数
-	m_Facility_next_Mat_num[1] = 100;	//レベルが2の時の必要素材数
+	m_Facility_next_Mat_num[1] = 30;	//レベルが2の時の必要素材数
 }
 
 //アクション
