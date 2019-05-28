@@ -26,7 +26,7 @@ void CObjHelp::Init()
 {
 	m_help_f = false;
 	m_page_nam = 0;
-	m_Scene_nam = 0;
+	//m_Scene_nam = 0;//コンストラクタで値を代入している為、初期化しなくて良い
 
 	m_x = 1120.0f;
 	m_y = 30.0f;
@@ -40,28 +40,28 @@ void CObjHelp::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 
-	CObjHome* Hom = (CObjHome*)Objs::GetObj(OBJ_HOME);				//各シーン情報を取得	ホーム	1
-	CObjTraining* Tra = (CObjTraining*)Objs::GetObj(OBJ_TRAINING);						  //育成	2
-	CObjPreparation* Pre = (CObjPreparation*)Objs::GetObj(OBJ_PREPARATION);				  //準備	3
-	CObjFight* Fig = (CObjFight*)Objs::GetObj(OBJ_FIGHT);								  //戦闘	4
+	//コンストラクタで値を代入している為、以下の処理は不要
+	//CObjHome* Hom = (CObjHome*)Objs::GetObj(OBJ_HOME);				//各シーン情報を取得	ホーム	1
+	//CObjTraining* Tra = (CObjTraining*)Objs::GetObj(OBJ_TRAINING);						  //育成	2
+	//CObjPreparation* Pre = (CObjPreparation*)Objs::GetObj(OBJ_PREPARATION);				  //準備	3
+	//CObjFight* Fig = (CObjFight*)Objs::GetObj(OBJ_FIGHT);								  //戦闘	4
 
-
-	if (Hom != nullptr)												//現在のシーンで数字を決める
+	//現在のシーンで画像の登録番号を決める
+	if (m_Scene_nam == 1)//ホーム	1											
 	{
-		m_Scene_nam = 1;
 		m_Img_nam = 3;
 	}
-	else if (Tra != nullptr)
+	else if (m_Scene_nam == 2)//育成	2
 	{
-		m_Scene_nam = 64;
+		m_Img_nam = 46;
 	}
-	else if (Pre != nullptr)
+	else if (m_Scene_nam == 3)//準備	3
 	{
-		m_Scene_nam = 20;
+		m_Img_nam = 20;
 	}
-	else if (Fig != nullptr)
+	else if (m_Scene_nam == 4)//戦闘	4
 	{
-		m_Scene_nam = 33;
+		m_Img_nam = 33;
 	}
 }
 
@@ -155,7 +155,10 @@ void CObjHelp::Draw()
 	{
 		float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };
 
-		if(m_Scene_nam = 1)				//ホーム画面でのヘルプ
+		//一旦コメントアウト中
+		//if(m_Scene_nam == 1)				//ホーム画面でのヘルプ
+		//{
+		if(1)
 		{
 			src.m_top   = 150.0f;
 			src.m_left  =   0.0f;
