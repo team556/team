@@ -192,7 +192,26 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
-	m_pod_max_hp = 10;
+	//ポッドのHPを決める
+	if (m_type == 0) {
+		m_pod_max_hp = g_Pod_equip_Level * 10;
+	}
+	else if (m_type == 1) {
+		m_pod_max_hp = 10;
+	}
+	else if (m_type == 2) {
+		m_pod_max_hp = 20;
+	}
+	else if (m_type == 3) {
+		m_pod_max_hp = 20;
+	}
+	else if (m_type == 4) {
+		m_pod_max_hp = 10;
+	}
+	else {
+		m_pod_max_hp = 30;
+	}
+
 	m_podhp = m_pod_max_hp;
 
 	m_hp_cnt = 0;		//無敵タイム
