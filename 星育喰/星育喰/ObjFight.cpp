@@ -18,7 +18,7 @@ bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
 float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
-#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
+#define INI_COLOR (0.5f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
 CObjFight::CObjFight(int c)
