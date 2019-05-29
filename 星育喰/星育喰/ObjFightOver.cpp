@@ -95,7 +95,7 @@ void CObjFightOver::Action()
 			Scene::SetScene(new CSceneTitle());	//シーン移行
 		m_a_f = true;			//フラグ有効
 
-								//戦闘音楽を破棄し敗北音楽再生
+		//戦闘音楽を破棄し敗北音楽再生
 		Audio::Stop(0);
 		Audio::Start(2);
 	}

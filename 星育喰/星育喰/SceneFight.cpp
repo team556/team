@@ -131,6 +131,9 @@ void CSceneFight::InitScene()
 	//ヘルプ画像を読み込み35番に登録
 	Draw::LoadImage(L"ヘルプ戦闘.png", 35, TEX_SIZE_512);
 
+	//メッセージウインドウを読み込み36番に登録
+	Draw::LoadImage(L"メッセージウインドウ(仮).png", 36, TEX_SIZE_512);
+
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
 
@@ -185,7 +188,6 @@ void CSceneFight::InitScene()
 
 	//SE読み込み
 	Audio::LoadAudio(3, L"選択＆振り分けアップ３.wav", EFFECT);
-	Audio::LoadAudio(4, L"小さい爆発.wav", EFFECT);
 	Audio::LoadAudio(5, L"大きい爆発.wav", EFFECT);
 
 	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay
@@ -195,8 +197,11 @@ void CSceneFight::InitScene()
 	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
 
 
-	////音楽スタート
+	//音楽スタート
 	Audio::Start(0);
+
+	//タイム初期化
+	m_time == 0;
 
 }
 

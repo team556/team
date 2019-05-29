@@ -39,4 +39,8 @@ private:
 
 	bool m_Stage_Clear_f;	//ステージクリアフラグ
 	bool m_Game_Clear_f;	//ゲーム　クリアフラグ
+
+	bool m_key_lf;  //左クリック用キーフラグ
+	float m_alpha;		//最終的に全部消すための透過度(アルファ値)
+
 };

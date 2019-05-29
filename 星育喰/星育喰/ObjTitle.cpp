@@ -73,6 +73,8 @@ void CObjTitle::Action()
 		if (m_key_f == true)
 		{
 			m_flag = true;
+			//選択音
+			Audio::Start(1);
 		}
 	}
 	//ゲームオーバー画面からタイトルに戻ってくる際、

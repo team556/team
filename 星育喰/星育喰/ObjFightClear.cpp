@@ -20,6 +20,8 @@ int g_Aluminum_num = 1000;
 int g_gus_num = 1000;
 int g_Raremetal_num = 1000;
 
+//マクロ
+#define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
 
 //コンストラクタ
 CObjFightClear::CObjFightClear(int p, int m, int l, int s)
@@ -83,6 +85,9 @@ void CObjFightClear::Init()
 		g_Iron_num += 40;
 	}
 
+	m_key_lf = false;
+
+	m_alpha = INI_ALPHA;
 }
 
 //アクション
@@ -95,22 +100,34 @@ void CObjFightClear::Action()
 	//m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	if (m_cnt == 0) 
+	if (m_cnt == 0)
 	{											//カウント終了後
 		m_a_f = true;			//フラグ有効
-		if (m_mou_l == true)					//クリックした場合
+		if (m_mou_l == true || m_alpha < INI_ALPHA)					//クリックした場合
 		{
+			if (m_alpha == INI_ALPHA)
+			{
+				Audio::Start(3);
+			}
+				
+			m_alpha -= 0.01f;
+
 			if (m_Game_Clear_f == false)
 			{
-				
-				if(g_Stage_progress == 1)
-					Scene::SetScene(new CSceneHome());	//シーン移行
-				else
-					m_Game_Clear_f = true;
+				if (m_alpha <= 0.0f)
+				{
+					if (g_Stage_progress == 1)
+					{
+						Scene::SetScene(new CSceneHome());	//シーン移行
+					}
+					//仮に透過度0.0fになったら実行されるようにしているが、
+					//本来スムーズにする。
+					else
+					{
+						m_Game_Clear_f = true;
+					}
+				}
 
-				//戦闘音楽を破棄し勝利音楽再生
-				Audio::Stop(0);
-				Audio::Start(1);
 			}
 			else
 			{
@@ -136,21 +153,22 @@ void CObjFightClear::Action()
 
 	m_a += m_a_vec;	//ベクトルを反映
 
+
 }
 
 //ドロー
 void CObjFightClear::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };//画像の色
+	float d[4] = { 1.0f,1.0f, 1.0f, m_alpha };//画像の色
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 	
 	src.m_top   =  0.0f;
 	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+	src.m_right = 64.0f;
+	src.m_bottom= 64.0f;
 	
 	if (m_Game_Clear_f == false)
 	{
@@ -158,43 +176,43 @@ void CObjFightClear::Draw()
 		dst.m_left   = 650.0f;
 		dst.m_right  =1100.0f;
 		dst.m_bottom = 600.0f;
-		//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-		Draw::Draw(2, &src, &dst, d, 0.0f);
+		//36番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(36, &src, &dst, d, 0.0f);
 
-		float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
+		float c0[4] = { 1.0f,1.0f,1.0f,m_alpha };//charの色
 		Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);
 
-		float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
-		Font::StrDraw(L"住民　＋",	700, 100, 50, c);
+		float c[4] = { 0.0f,0.0f,0.0f,m_alpha };//charの色
+		Font::StrDraw(L"住民　 ＋",	670, 100, 50, c);
 
-		Font::StrDraw(L"資材　＋",	700, 200, 50, c);
+		Font::StrDraw(L"資材　 ＋",	670, 200, 50, c);
 
-		Font::StrDraw(L"サイズ　＋",700, 300, 50, c);
+		Font::StrDraw(L"サイズ ＋",670, 300, 50, c);
 
 		if (m_skill != 0)
 		{
-			Font::StrDraw(L"技　＋",700, 400, 50, c);
+			Font::StrDraw(L"技　＋",670, 400, 50, c);
 		}
 		else { ; }
 		//Font::StrDraw(L"大きさ", 0, 300, 32, c);
 
 		wchar_t str[256];
-		swprintf_s(str, L"　 %d人", m_people);		//住民
-		Font::StrDraw(str, 900, 100, 50, c);
+		swprintf_s(str, L"　  %d人", m_people);		//住民
+		Font::StrDraw(str, 800, 100, 50, c);
 
 		switch (m_mrl)
 		{
-		case 0:Font::StrDraw(L"　 木40", 900, 200, 50, c); break;
-		case 1:Font::StrDraw(L"　 木80", 900, 200, 50, c); break;
-		case 2:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
-		case 3:Font::StrDraw(L"　 鉄40", 900, 200, 50, c); break;
-		case 4:Font::StrDraw(L"   木60", 900, 175, 50, c);
-			Font::StrDraw(L"   鉄60", 900, 225, 50, c);
+		case 0:Font::StrDraw(L"　  木40", 800, 200, 50, c); break;
+		case 1:Font::StrDraw(L"　  木80", 800, 200, 50, c); break;
+		case 2:Font::StrDraw(L"　  鉄40", 800, 200, 50, c); break;
+		case 3:Font::StrDraw(L"　  鉄40", 800, 200, 50, c); break;
+		case 4:Font::StrDraw(L"    木60", 800, 175, 50, c);
+			Font::StrDraw(L"    鉄60", 800, 225, 50, c);
 			break;
 		}
 
-		swprintf_s(str, L"　 %d", m_large);		//大きさ
-		Font::StrDraw(str, 900, 300, 50, c);
+		swprintf_s(str, L"　  %d", m_large);		//大きさ
+		Font::StrDraw(str, 800, 300, 50, c);
 
 		switch (m_skill)						 //スペシャル技
 		{
@@ -215,8 +233,8 @@ void CObjFightClear::Draw()
 			dst.m_right  =1000.0f;
 			dst.m_bottom = 250.0f;
 
-			//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-			Draw::Draw(2, &src, &dst, d, 0.0f);
+			//36番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+			Draw::Draw(36, &src, &dst, d, 0.0f);
 
 			float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
 			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
@@ -229,8 +247,8 @@ void CObjFightClear::Draw()
 			dst.m_right  =1000.0f;
 			dst.m_bottom = 250.0f;
 
-			//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-			Draw::Draw(2, &src, &dst, d, 0.0f);
+			//36番目に登録したグラフィックをsrc,dst,c情報をもとに描画
+			Draw::Draw(36, &src, &dst, d, 0.0f);
 
 			float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
 			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
