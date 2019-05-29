@@ -85,8 +85,6 @@ void CObjFightClear::Init()
 		g_Iron_num += 40;
 	}
 
-	m_key_lf = false;
-
 	m_alpha = INI_ALPHA;
 }
 

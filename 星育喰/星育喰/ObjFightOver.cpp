@@ -11,6 +11,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
+
 ////コンストラクタ
 //CObjTest::CObjTest(float x, float y)
 //{
@@ -77,6 +80,8 @@ void CObjFightOver::Init()
 	g_Aluminum_num = 0;
 	g_gus_num = 0;
 	g_Raremetal_num = 0;
+
+	m_alpha = INI_ALPHA;
 }
 
 //アクション
@@ -90,14 +95,24 @@ void CObjFightOver::Action()
 	//m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	if (m_cnt == 0) {							//カウント終了後
-		if (m_mou_l == true)					//クリックした場合
-			Scene::SetScene(new CSceneTitle());	//シーン移行
-		m_a_f = true;			//フラグ有効
+	if (m_cnt == 0) 
+	{							//カウント終了後
+		if (m_mou_l == true || m_alpha< INI_ALPHA)					//クリックした場合
+		{
+			if (m_alpha == INI_ALPHA)
+			{
+				Audio::Start(3);
+			}
 
-		//戦闘音楽を破棄し敗北音楽再生
-		Audio::Stop(0);
-		Audio::Start(2);
+			m_alpha -= 0.01f;
+
+			if (m_alpha <= 0.0f)
+			{
+				Scene::SetScene(new CSceneTitle());	//シーン移行
+				m_a_f = true;			//フラグ有効
+			}
+		}
+
 	}
 	else
 		m_cnt--;	//0でない場合カウントダウン
@@ -115,7 +130,7 @@ void CObjFightOver::Action()
 void CObjFightOver::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };//画像の色
+	float d[4] = { 1.0f,1.0f, 1.0f, m_alpha };//画像の色
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
@@ -132,10 +147,10 @@ void CObjFightOver::Draw()
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(2, &src, &dst, d, 0.0f);
 
-	float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
+	float c0[4] = { 1.0f,1.0f,1.0f,m_alpha };//charの色
 	Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
 
-	float c[4] = { 0.7f,0.0f,0.0f,1.0f };//charの色
+	float c[4] = { 0.7f,0.0f,0.0f,m_alpha };//charの色
 	Font::StrDraw(L"ゲームオーバー", 350, 100, 50, c);
 
 	//wchar_t str[256];

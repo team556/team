@@ -122,15 +122,6 @@ void CSceneFight::InitScene()
 	//HPゲージ(リキャストゲージにも使用)を読み込み32番に登録
 	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
-	//ヘルプボタン画像を読み込み33番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 33, TEX_SIZE_512);
-
-	//戻るを読み込み34番に登録
-	Draw::LoadImage(L"戻る.png", 34, TEX_SIZE_512);
-
-	//ヘルプ画像を読み込み35番に登録
-	Draw::LoadImage(L"ヘルプ戦闘.png", 35, TEX_SIZE_512);
-
 	//メッセージウインドウを読み込み36番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 36, TEX_SIZE_512);
 
@@ -196,12 +187,8 @@ void CSceneFight::InitScene()
 
 	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
 
-
 	//音楽スタート
 	Audio::Start(0);
-
-	//タイム初期化
-	m_time == 0;
 
 }
 

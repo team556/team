@@ -28,4 +28,6 @@ private:
 	bool m_a_f;		//透明度フラグ
 
 	int m_cnt;		//カウント
+
+	float m_alpha;		//最終的に全部消すための透過度(アルファ値)
 };

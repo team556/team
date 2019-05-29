@@ -960,7 +960,6 @@ void CObjInstitute::Action()
 			}
 		}
 
-
 		return;
 	}
 	//ホーム画面に戻るボタンが押されたり、
