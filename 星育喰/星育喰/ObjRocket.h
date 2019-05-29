@@ -64,4 +64,6 @@ private:
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
 
 	int m_bomcount;	//爆発の回数カウント
+
+	int m_level_comp[4];	//装備武器レベルの比較用
 };

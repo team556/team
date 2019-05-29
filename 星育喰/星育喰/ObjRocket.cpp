@@ -16,6 +16,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+//float g_Missile_pow = 5.0f;
+
 //コンストラクタ
 CObjRocket::CObjRocket(float x, float y, bool type,int n)
 {
@@ -148,16 +150,84 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
-	m_pod_max_hp = 10;
+	//ポッドのHPを決める
+	if (m_type == 0) {
+		m_pod_max_hp = g_Pod_equip_Level * 10;
+	}
+	else if (m_type == 1) {
+		m_pod_max_hp = 10;
+	}
+	else if (m_type == 2) {
+		m_pod_max_hp = 20;
+	}
+	else if (m_type == 3) {
+		m_pod_max_hp = 20;
+	}
+	else if (m_type == 4) {
+		m_pod_max_hp = 10;
+	}
+	else {
+		m_pod_max_hp = 30;
+	}
+
 	m_podhp = m_pod_max_hp;
 
 	m_hp_cnt = 0;		//無敵タイム
 	m_hp_f = false;		//無敵フラグ
 
+	m_bomcount = 0;
+
+	////ミサイルの火力を決めるための準備
+	////（使わない可能性大）
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	switch (i) {
+	//	case 0:
+	//		m_level_comp[i] = g_Pow_equip_Level;
+	//		break;
+	//	case 1:
+	//		m_level_comp[i] = g_Def_equip_Level;
+	//		break;
+	//	case 2:
+	//		m_level_comp[i] = g_Spe_equip_Level;
+	//		break;
+	//	case 3:
+	//		m_level_comp[i] = g_Bal_equip_Level;
+	//		break;
+	//	}
+	//}
+
+	//for (int i = 1; i<4; ++i)
+	//{
+	//	if (m_level_comp[0] > m_level_comp[i])
+	//	{
+	//		g_Missile_pow = m_level_comp[i];
+	//	}
+	//}
+
+	//g_Missile_pow = g_Missile_pow * (10 / 2);
+
 	m_Enemy_damage = 10;
 	m_Player_damage = 10;
 
-	m_bomcount = 0;
+	//プレイヤーの火力を装備レベルによって変える
+	switch (ButtonU) {
+		case 1:
+			m_Enemy_damage = g_Pow_equip_Level * 10;
+			break;
+		case 2:
+			m_Enemy_damage = g_Def_equip_Level * 10;
+			break;
+		case 3:
+			m_Enemy_damage = g_Spe_equip_Level * 10;
+			break;
+		case 4:
+			m_Enemy_damage = g_Bal_equip_Level * 10;
+			break;
+		case 5:
+			m_Enemy_damage = g_Bal_equip_Level * 10;
+			break;
+		}
 }
 
 //アクション

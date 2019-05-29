@@ -127,6 +127,8 @@ void CObjPlanet::Init()
 //アクション
 void CObjPlanet::Action()
 {
+	CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
+
 	//▼戦闘開始前は戦闘処理(敵惑星の行動等)を実行しないようにする
 	if (battle_start == false)
 	{
@@ -221,7 +223,7 @@ void CObjPlanet::Action()
 				}
 			}
 			else {
-				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
+				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -353,6 +355,8 @@ void CObjPlanet::Action()
 		Hits::DeleteHitBox(this);//HitBox削除
 	}
 
+	
+
 	//▼敵惑星攻撃パターン
 	if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 	{
@@ -445,6 +449,25 @@ void CObjPlanet::Action()
 		//▼敵惑星攻撃パターン
 		if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 		{
+			//敵の発動するスペシャル技を決める(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
+			switch (m_type) {
+			case 1:
+				Special->SetSpecial_Equip(2);
+				break;
+			case 2:
+				Special->SetSpecial_Equip(1);
+				break;
+			case 3:
+				Special->SetSpecial_Equip(5);
+				break;
+			case 4:
+				Special->SetSpecial_Equip(3);
+				break;
+			case 5:
+				Special->SetSpecial_Equip(4);
+				break;
+			}
+
 			//▼敵行動パターン決め
 			if (m_time <= 0)
 			{
@@ -618,10 +641,8 @@ void CObjPlanet::Action()
 			//敵がスペシャル技を使用済(true)である場合、
 			//リキャストタイムを元に戻さず、再度行動パターン決めを行う
 			//未使用(false)であれば、以下の処理を行う
-			CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 			if (Special->GetEnemy_Used_Special() == false)
 			{
-				Special->SetSpecial_Equip(g_Special_equipment);	//敵の発動するスペシャル技を決める(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 				Special->SetSpecial_Start();	//スペシャル技を発動させる
 				m_time = 100 * m_enemy_recast_buff;
 			}
