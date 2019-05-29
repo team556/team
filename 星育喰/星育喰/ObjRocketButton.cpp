@@ -17,7 +17,7 @@ using namespace GameL;
 #define RECAST_COMPLETE_POD_TIME (60.0f * 6)//ポッドのリキャスト完了タイム
 
 //リキャストタイム用のグローバル変数定義
-int g_Recast_time;
+int g_Recast_time=5;
 
 //コンストラクタ
 CObjRocketButton::CObjRocketButton(float x, float y, float h, float w, int n)
@@ -80,11 +80,6 @@ void CObjRocketButton::Init()
 
 		m_mou_f = true;
 		m_a = 0.3f;		//透明化
-	}
-
-	if (g_Recast_time == 0)
-	{
-		g_Recast_time = 7;
 	}
 }
 
@@ -209,14 +204,6 @@ void CObjRocketButton::Action()
 	else if (m_mou_f == true && m_is_empty == false&&Button_num==5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
 		m_cnt++;			//カウントする
 		if (m_cnt >= RECAST_COMPLETE_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
-			m_mou_f = false;							//クリックできるようにする。
-			m_cnt = 0;
-			m_a = 1.0f;		//不透明化
-		}
-	}
-	else if (m_mou_f == true && m_is_empty == false && Button_num != 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
-		m_cnt++;			//カウントする
-		if (m_cnt >= RECAST_COMPLETE_POD_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
 			m_mou_f = false;							//クリックできるようにする。
 			m_cnt = 0;
 			m_a = 1.0f;		//不透明化
