@@ -16,7 +16,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-float g_Missile_pow = 5.0f;
+//float g_Missile_pow = 5.0f;
 
 //コンストラクタ
 CObjRocket::CObjRocket(float x, float y, bool type,int n)
@@ -200,39 +200,41 @@ void CObjRocket::Init()
 
 	m_bomcount = 0;
 
-	for (int i = 0; i < 4; i++)
-	{
-		switch (i) {
-		case 0:
-			m_level_comp[i] = g_Pow_equip_Level;
-			break;
-		case 1:
-			m_level_comp[i] = g_Def_equip_Level;
-			break;
-		case 2:
-			m_level_comp[i] = g_Spe_equip_Level;
-			break;
-		case 3:
-			m_level_comp[i] = g_Bal_equip_Level;
-			break;
-		}
-	}
+	////ミサイルの火力を決めるための準備
+	////（使わない可能性大）
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	switch (i) {
+	//	case 0:
+	//		m_level_comp[i] = g_Pow_equip_Level;
+	//		break;
+	//	case 1:
+	//		m_level_comp[i] = g_Def_equip_Level;
+	//		break;
+	//	case 2:
+	//		m_level_comp[i] = g_Spe_equip_Level;
+	//		break;
+	//	case 3:
+	//		m_level_comp[i] = g_Bal_equip_Level;
+	//		break;
+	//	}
+	//}
 
-	for (int i = 1; i<4; ++i)
-	{
-		if (m_level_comp[0] > m_level_comp[i])
-		{
-			g_Missile_pow = m_level_comp[i];
-		}
-	}
+	//for (int i = 1; i<4; ++i)
+	//{
+	//	if (m_level_comp[0] > m_level_comp[i])
+	//	{
+	//		g_Missile_pow = m_level_comp[i];
+	//	}
+	//}
 
-	g_Missile_pow = g_Missile_pow * (10 / 2);
+	//g_Missile_pow = g_Missile_pow * (10 / 2);
 
 	m_Enemy_damage = 10;
 	m_Player_damage = 10;
 
+	//プレイヤーの火力を装備レベルによって変える
 	switch (ButtonU) {
-
 		case 1:
 			m_Enemy_damage = g_Pow_equip_Level * 10;
 			break;
