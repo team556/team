@@ -34,7 +34,7 @@ private:
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
 
-	int ButtonU;		//プレイヤーが撃ったポッドの種類
+	int ButtonU;		//プレイヤーが撃ったポッドの種類 1:パワー　2:ディフェンス 3:スピード 4:バランス 5:ロケット
 
 	int m_time;
 	int Enemypod;
@@ -47,8 +47,8 @@ private:
 	int m_hp_cnt;		//無敵タイム
 	bool m_hp_f;		//無敵フラグ
 
-	int m_Player_damage;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
-	int m_Enemy_damage; //エネミーが受けるダメージ量(プレイヤーの攻撃力)
+	int m_Enemy_power; //プレイヤーの攻撃力
+	int m_Player_power;//エネミーの攻撃力
 
 	int  m_ani;			//着弾アニメーション
 	int m_ani_max;
@@ -64,4 +64,6 @@ private:
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
 
 	int m_bomcount;	//爆発の回数カウント
+
+	int m_level_comp[4];	//装備武器レベルの比較用
 };
