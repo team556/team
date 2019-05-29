@@ -211,9 +211,9 @@ void CObjFight::Draw()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 	//•`‰æƒJƒ‰[î•ñ  R=RED  G=Green  B=Blue A=alpha(“§‰ßî•ñ)
-	float d0[4] = { 1.0f,1.0f,1.0f,0.6f };
-	float d1[4] = { 1.0f,1.0f,1.0f,0.6f };
-	float d2[4] = { 1.0f,1.0f,1.0f,0.6f };
+	float d0[4] = { 1.0f,1.0f,1.0f,0.2f };
+	float d1[4] = { 1.0f,1.0f,1.0f,0.2f };
+	float d2[4] = { 1.0f,1.0f,1.0f,0.2f };
 
 	if (obj->GetCount() == 0) {//-------------------------ŽžŠÔØ‚ê‚Ìê‡----
 		if (m_a > 0.0f) {
