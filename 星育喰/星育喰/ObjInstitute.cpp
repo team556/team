@@ -16,11 +16,11 @@ using namespace GameL;
 #define LABO_LV_2 (2)//研究所レベルマクロ定義
 #define LABO_LV_3 (3)//研究所レベルマクロ定義
 
-#define MIS_LV_1 (5)
-#define MIS_LV_2 (4.5f)
-#define MIS_LV_3 (3.5)
-#define MIS_LV_4 (3)
-#define MIS_LV_5 (2.5)
+#define MIS_LV_1 (4.0f)
+#define MIS_LV_2 (3.0f)
+#define MIS_LV_3 (2.5f)
+#define MIS_LV_4 (2.0f)
+#define MIS_LV_5 (1.0f)
 
 //イニシャライズ
 void CObjInstitute::Init()
