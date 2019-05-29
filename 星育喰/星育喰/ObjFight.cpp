@@ -147,27 +147,27 @@ void CObjFight::Action()
 		m_end_f = false;
 		if (g_Challenge_enemy == 0)									//¶‚©‚ç‚P”Ô–Ú
 		{//							(Zl, ‘Ş, ‘å‚«‚³, ‹Z 1`5æ“¾ƒXƒLƒ‹)
-			CObjFightClear* crer = new CObjFightClear(2000, 0, 20, 1);	
+			CObjFightClear* crer = new CObjFightClear(2000, 0, 20, 2);	
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 1)									//¶‚©‚ç‚Q”Ô–Ú
 		{//							(Zl, ‘Ş, ‘å‚«‚³, ‹Z 1`5æ“¾ƒXƒLƒ‹)
-			CObjFightClear* crer = new CObjFightClear(10000, 1, 60, 0);
+			CObjFightClear* crer = new CObjFightClear(10000, 1, 60, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 2)									//¶‚©‚ç‚R”Ô–Ú
 		{//							(Zl, ‘Ş, ‘å‚«‚³, ‹Z 1`5æ“¾ƒXƒLƒ‹)
-			CObjFightClear* crer = new CObjFightClear(15000, 2, 80, 0);
+			CObjFightClear* crer = new CObjFightClear(15000, 2, 80, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 3)									//¶‚©‚ç‚S”Ô–Ú
 		{//							(Zl, ‘Ş, ‘å‚«‚³, ‹Z 1`5æ“¾ƒXƒLƒ‹)
-			CObjFightClear* crer = new CObjFightClear(3000, 3, 30, 0);
+			CObjFightClear* crer = new CObjFightClear(3000, 3, 30, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		if (g_Challenge_enemy == 4)									//ƒ{ƒX
 		{//							(Zl, ‘Ş, ‘å‚«‚³, ‹Z 1`5æ“¾ƒXƒLƒ‹)
-			CObjFightClear* crer = new CObjFightClear(1000, 4, 90, 2);
+			CObjFightClear* crer = new CObjFightClear(1000, 4, 90, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
