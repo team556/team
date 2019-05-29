@@ -459,6 +459,9 @@ void CObjInstitute::Action()
 
 						m_Ins_Lvup_color = INI_COLOR;
 
+						//レベルアップ音
+						Audio::Start(1);
+
 						return;
 					}
 					else
