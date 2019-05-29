@@ -42,17 +42,17 @@ void CObjBarracks::Init()
 	m_Facility_next_Size_num[1] = 4.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼兵舎の次のLVUPに必要な素材の名前設定
-	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Facility_next_Mat_name[1], L"アルミニウム");//レベルが2の時の必要素材名
+	swprintf_s(m_Facility_next_Mat_name[0], L"木材");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Facility_next_Mat_name[1], L"プラスチック");//レベルが2の時の必要素材名
 
 	//▼兵舎の次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
 	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
-	m_Facility_next_Mat_type[0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Facility_next_Mat_type[1] = &g_Material_num_test;	//レベルが2の時の必要素材種類
+	m_Facility_next_Mat_type[0] = &g_Wood_num;	//レベルが1の時の必要素材種類
+	m_Facility_next_Mat_type[1] = &g_Plastic_num;	//レベルが2の時の必要素材種類
 
 	//▼兵舎の次のLVUPに必要な素材数設定
-	m_Facility_next_Mat_num[0] = 0;		//レベルが1の時の必要素材数
+	m_Facility_next_Mat_num[0] = 50;		//レベルが1の時の必要素材数
 	m_Facility_next_Mat_num[1] = 300;	//レベルが2の時の必要素材数
 }
 
