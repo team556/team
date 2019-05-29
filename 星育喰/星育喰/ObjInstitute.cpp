@@ -12,6 +12,15 @@ using namespace GameL;
 //マクロ
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
+#define LABO_LV_1 (1)//研究所レベルマクロ定義
+#define LABO_LV_2 (2)//研究所レベルマクロ定義
+#define LABO_LV_3 (3)//研究所レベルマクロ定義
+
+#define MIS_LV_1 (5)
+#define MIS_LV_2 (4.5f)
+#define MIS_LV_3 (3.5)
+#define MIS_LV_4 (3)
+#define MIS_LV_5 (2.5)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -117,17 +126,17 @@ void CObjInstitute::Init()
 	//-----------------------------------------------------------------------------------------------------
 
 	//▼ミサイルリキャストタイム(RCT)設定
-	m_Mis_recast_time[0] = 10.0f;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
-	m_Mis_recast_time[1] = 8.6f;//RCLvが1の時のRCT
-	m_Mis_recast_time[2] = 7.2f;//RCLvが2の時のRCT
-	m_Mis_recast_time[3] = 5.8f;//RCLvが3の時のRCT
-	m_Mis_recast_time[4] = 4.4f;//RCLvが4の時のRCT(最大レベル)
+	m_Mis_recast_time[0] = MIS_LV_1;//ミサイルリキャストレベル(RCLv)が0の時のRCT(初期レベル)
+	m_Mis_recast_time[1] = MIS_LV_2;//RCLvが1の時のRCT
+	m_Mis_recast_time[2] = MIS_LV_3;//RCLvが2の時のRCT
+	m_Mis_recast_time[3] = MIS_LV_4;//RCLvが3の時のRCT
+	m_Mis_recast_time[4] = MIS_LV_5;//RCLvが4の時のRCT(最大レベル)
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究所レベル設定
-	m_Mis_recast_next_Ins_Lv[0] = 1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[1] = 2; //RCLvが1の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[2] = 3; //RCLvが2の時の必要研究所レベル
-	m_Mis_recast_next_Ins_Lv[3] = 3; //RCLvが3の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[0] = LABO_LV_1; //ミサイルリキャストレベル(RCLv)が0の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[1] = LABO_LV_2; //RCLvが1の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[2] = LABO_LV_3; //RCLvが2の時の必要研究所レベル
+	m_Mis_recast_next_Ins_Lv[3] = LABO_LV_3; //RCLvが3の時の必要研究所レベル
 
 	//▼ミサイルリキャストの次のLVUPに必要な研究員の住民数設定
 	m_Mis_recast_next_Hum_num[0] = 100;  //ミサイルリキャストレベル(RCLv)が0の時の必要研究員数
@@ -157,57 +166,57 @@ void CObjInstitute::Init()
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
 	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[0][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[0][1], L"鉄");		 //レベルが2の時の必要素材名
 	//▽ディフェンス武器
-	swprintf_s(m_Equ_next_Mat_name[1][0], L"鉄屑");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[1][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][0], L"銀");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][1], L"鉄");		 //レベルが2の時の必要素材名
 	//▽スピード武器
 	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");			//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[2][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[2][1], L"銀");		 //レベルが2の時の必要素材名
 	//▽バランス武器
-	swprintf_s(m_Equ_next_Mat_name[3][0], L"プラスチック");		//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[3][1], L"レアメタル");	//レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][0], L"アルミニウム");		//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][1], L"アルミニウム");	//レベルが2の時の必要素材名
 	//▽ポッド武器
-	swprintf_s(m_Equ_next_Mat_name[4][0], L"エメラルド");	//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][0], L"ガス");	//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[4][1], L"レアメタル");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
 	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
 	//▽パワー武器
-	m_Equ_next_Mat_type[0][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[0][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[0][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
 	//▽ディフェンス武器
-	m_Equ_next_Mat_type[1][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[1][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[1][0] = &g_Silver_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
 	//▽スピード武器
-	m_Equ_next_Mat_type[2][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[2][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[2][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[2][1] = &g_Silver_num;	//レベルが2の時の必要素材種類
 	//▽バランス武器
-	m_Equ_next_Mat_type[3][0] = &g_Plastic_num;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[3][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[3][0] = &g_Aluminum_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = &g_Aluminum_num;	//レベルが2の時の必要素材種類
 	//▽ポッド
-	m_Equ_next_Mat_type[4][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[4][0] = &g_gus_num;	//レベルが1の時の必要素材種類
 	m_Equ_next_Mat_type[4][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
-
-	//-----------------------------------------------------------------------------------------------------
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
-	m_Equ_next_Mat_num[0][0] = 0;	 //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[0][1] = 100;  //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[0][0] = 20;	 //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[0][1] = 40;  //レベルが2の時の必要素材数
 	//▽ディフェンス武器
-	m_Equ_next_Mat_num[1][0] = 100;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[1][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[1][0] = 40;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[1][1] = 20; //レベルが2の時の必要素材数
 	//▽スピード武器
-	m_Equ_next_Mat_num[2][0] = 300;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[2][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[2][0] = 10;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[2][1] = 50; //レベルが2の時の必要素材数
 	//▽バランス武器
-	m_Equ_next_Mat_num[3][0] = 500;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[3][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[3][0] = 30;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[3][1] = 30; //レベルが2の時の必要素材数
 	//▽ポッド
-	m_Equ_next_Mat_num[4][0] = 200;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[4][1] = 100;  //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[4][0] = 40;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[4][1] = 50;  //レベルが2の時の必要素材数
+
+//-----------------------------------------------------------------------------------------------------
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
 	m_Facility_next_Size_num[0] = 5.0f;	//レベルが1の時の必要サイズ(HP)
@@ -226,6 +235,9 @@ void CObjInstitute::Init()
 	//▼研究所の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 10;	//レベルが1の時の必要素材数
 	m_Facility_next_Mat_num[1] = 30;	//レベルが2の時の必要素材数
+
+
+
 }
 
 //アクション
@@ -992,6 +1004,7 @@ void CObjInstitute::Action()
 		m_introduce_f = false;//施設紹介ウインドウを非表示にする
 		m_Ins_color = INI_COLOR;
 	}
+
 }
 
 //ドロー
@@ -1598,7 +1611,17 @@ void CObjInstitute::Missile_Lvup_check()
 		m_message_blue_color = 0.0f;
 
 		m_alpha = 1.0f;		//リキャストレベルUPメッセージを表示するため、透過度を1.0fにする
+
+		//ミサイルのレベルがアップした際にグローバル変数にリキャストタイムを代入する
+		switch (g_Mis_Recast_Level)
+		{
+		case 1:g_Recast_time = MIS_LV_2;break;//6秒
+		case 2:g_Recast_time = MIS_LV_3;break;//5秒
+		case 3:g_Recast_time = MIS_LV_4;break;//4秒
+		case 4:g_Recast_time = MIS_LV_5;break;//3秒
+		}
 	}
+
 }
 
 //---Equip_Lvup_check関数

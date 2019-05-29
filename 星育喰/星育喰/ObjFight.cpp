@@ -18,7 +18,7 @@ bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
 float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
-#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
+#define INI_COLOR (0.5f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //c = cnt(戦闘時間),e_n = m_ene_nam(敵ナンバー)
 CObjFight::CObjFight(int c)
@@ -211,9 +211,9 @@ void CObjFight::Draw()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d0[4] = { 1.0f,1.0f,1.0f,0.6f };
-	float d1[4] = { 1.0f,1.0f,1.0f,0.6f };
-	float d2[4] = { 1.0f,1.0f,1.0f,0.6f };
+	float d0[4] = { 1.0f,1.0f,1.0f,0.2f };
+	float d1[4] = { 1.0f,1.0f,1.0f,0.2f };
+	float d2[4] = { 1.0f,1.0f,1.0f,0.2f };
 
 	if (obj->GetCount() == 0) {//-------------------------時間切れの場合----
 		if (m_a > 0.0f) {

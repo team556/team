@@ -150,19 +150,19 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(obj1, OBJ_PLANET, 10);					//オブジェクト登録
 
 	//民発射ボタン
-	CObjRocketButton* obj2 = new CObjRocketButton(500, 600, 100, 100, 1);	//オブジェクト作成
+	CObjRocketButton* obj2 = new CObjRocketButton(500, 550, 100, 100, 1);	//オブジェクト作成
 	Objs::InsertObj(obj2, OBJ_POD_BUTTON1, 10);						//オブジェクト登録
 
-	CObjRocketButton* obj3 = new CObjRocketButton(650, 600, 100, 100, 2);	//オブジェクト作成
+	CObjRocketButton* obj3 = new CObjRocketButton(650, 550, 100, 100, 2);	//オブジェクト作成
 	Objs::InsertObj(obj3, OBJ_POD_BUTTON2, 10);						//オブジェクト登録
 
-	CObjRocketButton* obj4 = new CObjRocketButton(800, 600, 100, 100, 3);	//オブジェクト作成
+	CObjRocketButton* obj4 = new CObjRocketButton(800, 550, 100, 100, 3);	//オブジェクト作成
 	Objs::InsertObj(obj4, OBJ_POD_BUTTON3, 10);						//オブジェクト登録
 
-	CObjRocketButton* obj5 = new CObjRocketButton(950, 600, 100, 100, 4);	//オブジェクト作成
+	CObjRocketButton* obj5 = new CObjRocketButton(950, 550, 100, 100, 4);	//オブジェクト作成
 	Objs::InsertObj(obj5, OBJ_POD_BUTTON4, 10);						//オブジェクト登録
 
-	CObjRocketButton* obj6 = new CObjRocketButton(150, 600, 100, 200, 5);	//オブジェクト作成
+	CObjRocketButton* obj6 = new CObjRocketButton(150, 550, 100, 200, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_MISSILE_BUTTON, 10);						//オブジェクト登録
 
 	//スペシャル技ボタン
