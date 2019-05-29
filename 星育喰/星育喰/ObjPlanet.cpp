@@ -222,7 +222,7 @@ void CObjPlanet::Action()
 				}
 			}
 			else {
-				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
+				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz)) {
 					m_eat_f = true;		//‹ò‚¤ƒtƒ‰ƒO—LŒø
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
