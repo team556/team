@@ -16,11 +16,11 @@ using namespace GameL;
 #define LABO_LV_2 (2)//研究所レベルマクロ定義
 #define LABO_LV_3 (3)//研究所レベルマクロ定義
 
-#define MIS_LV_1 (7)
-#define MIS_LV_2 (6)
-#define MIS_LV_3 (5)
-#define MIS_LV_4 (4)
-#define MIS_LV_5 (3)
+#define MIS_LV_1 (5)
+#define MIS_LV_2 (4.5f)
+#define MIS_LV_3 (3.5)
+#define MIS_LV_4 (3)
+#define MIS_LV_5 (2.5)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -166,57 +166,57 @@ void CObjInstitute::Init()
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
 	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[0][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[0][1], L"鉄");		 //レベルが2の時の必要素材名
 	//▽ディフェンス武器
-	swprintf_s(m_Equ_next_Mat_name[1][0], L"鉄屑");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[1][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][0], L"銀");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][1], L"鉄");		 //レベルが2の時の必要素材名
 	//▽スピード武器
 	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");			//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[2][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[2][1], L"銀");		 //レベルが2の時の必要素材名
 	//▽バランス武器
-	swprintf_s(m_Equ_next_Mat_name[3][0], L"プラスチック");		//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[3][1], L"レアメタル");	//レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][0], L"アルミニウム");		//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][1], L"アルミニウム");	//レベルが2の時の必要素材名
 	//▽ポッド武器
-	swprintf_s(m_Equ_next_Mat_name[4][0], L"エメラルド");	//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][0], L"ガス");	//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[4][1], L"レアメタル");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
 	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
 	//▽パワー武器
-	m_Equ_next_Mat_type[0][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[0][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[0][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
 	//▽ディフェンス武器
-	m_Equ_next_Mat_type[1][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[1][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[1][0] = &g_Silver_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
 	//▽スピード武器
-	m_Equ_next_Mat_type[2][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[2][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[2][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[2][1] = &g_Silver_num;	//レベルが2の時の必要素材種類
 	//▽バランス武器
-	m_Equ_next_Mat_type[3][0] = &g_Plastic_num;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[3][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[3][0] = &g_Aluminum_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = &g_Aluminum_num;	//レベルが2の時の必要素材種類
 	//▽ポッド
-	m_Equ_next_Mat_type[4][0] = &g_Material_num_test;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[4][0] = &g_gus_num;	//レベルが1の時の必要素材種類
 	m_Equ_next_Mat_type[4][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
-
-	//-----------------------------------------------------------------------------------------------------
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
-	m_Equ_next_Mat_num[0][0] = 0;	 //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[0][1] = 100;  //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[0][0] = 20;	 //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[0][1] = 40;  //レベルが2の時の必要素材数
 	//▽ディフェンス武器
-	m_Equ_next_Mat_num[1][0] = 100;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[1][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[1][0] = 40;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[1][1] = 20; //レベルが2の時の必要素材数
 	//▽スピード武器
-	m_Equ_next_Mat_num[2][0] = 300;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[2][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[2][0] = 10;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[2][1] = 50; //レベルが2の時の必要素材数
 	//▽バランス武器
-	m_Equ_next_Mat_num[3][0] = 500;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[3][1] = 1000; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[3][0] = 30;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[3][1] = 30; //レベルが2の時の必要素材数
 	//▽ポッド
-	m_Equ_next_Mat_num[4][0] = 200;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[4][1] = 100;  //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[4][0] = 40;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[4][1] = 50;  //レベルが2の時の必要素材数
+
+//-----------------------------------------------------------------------------------------------------
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
 	m_Facility_next_Size_num[0] = 5.0f;	//レベルが1の時の必要サイズ(HP)

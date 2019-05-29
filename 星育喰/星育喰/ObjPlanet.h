@@ -24,7 +24,7 @@ public:
 	int  GetType() { return m_type; }
 	int  GetLine() { return m_get_line; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
-	void SetDamage() { m_size -= 1; }//呼び出すとダメージ処理を行う[スペシャル技:Explosion用]
+	void SetDamage() { m_size -= m_siz_max * 0.04; }//呼び出すとダメージ処理を行う[スペシャル技:Explosion用]
 	void SetScale_down_move(int Planet_id) //呼び出すとサイズ縮小分、X座標の移動を行う(Planet_id:プレイヤー or エネミー判別用)[スペシャル技:Explosion用]
 	{
 		Planet_id = Planet_id == 0 ? -1 : 1;//Planet_idが0なら-1を、それ以外なら1をPlanet_idに代入する

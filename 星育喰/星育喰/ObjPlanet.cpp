@@ -102,7 +102,6 @@ void CObjPlanet::Init()
 		m_img_nam = 27;
 		m_size = 50;
 		m_siz_max = 50;
-
 	}
 	else if (m_type == 3) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
