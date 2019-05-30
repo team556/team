@@ -22,6 +22,8 @@ using namespace GameL;
 #define FIV_DELAY (75)
 #define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
 
+
+
 //コンストラクタ
 CObjPlanet::CObjPlanet(float x, float y, float size, int type)
 {
@@ -319,23 +321,23 @@ void CObjPlanet::Action()
 		{
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
 			{
-				m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= 3 * damage_buff[1];	//サイズ(HP)減少
 			}
 
 
@@ -350,23 +352,23 @@ void CObjPlanet::Action()
 		{
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Pow_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Spe_equip_Level*10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Def_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Bal_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
 			{
-				m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= 3 * damage_buff[0];	//サイズ(HP)減少
 			}
 
 

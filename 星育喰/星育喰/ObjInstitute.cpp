@@ -16,11 +16,11 @@ using namespace GameL;
 #define LABO_LV_2 (2)//研究所レベルマクロ定義
 #define LABO_LV_3 (3)//研究所レベルマクロ定義
 
-#define MIS_LV_1 (4.0f)
-#define MIS_LV_2 (3.0f)
-#define MIS_LV_3 (2.5f)
-#define MIS_LV_4 (2.0f)
-#define MIS_LV_5 (1.0f)
+#define MIS_LV_1 (3.0f)
+#define MIS_LV_2 (2.5f)
+#define MIS_LV_3 (2.0f)
+#define MIS_LV_4 (1.5f)
+#define MIS_LV_5 (0.7f)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -220,7 +220,7 @@ void CObjInstitute::Init()
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
 	m_Facility_next_Size_num[0] = 5.0f;	//レベルが1の時の必要サイズ(HP)
-	m_Facility_next_Size_num[1] = 3.0f;	//レベルが2の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 20.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");//レベルが1の時の必要素材名

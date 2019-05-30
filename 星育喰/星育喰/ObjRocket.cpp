@@ -17,6 +17,9 @@
 using namespace GameL;
 
 //float g_Missile_pow = 5.0f;
+int g_P_Planet_damage = 0;
+
+
 
 //コンストラクタ
 CObjRocket::CObjRocket(float x, float y, int type,int n)
@@ -250,29 +253,39 @@ void CObjRocket::Init()
 			//敵の火力を敵によって変える
 			switch (m_type) {
 			case 1:
+				m_Enemy_Pod_Level = 1;		//ポッドレベル設定
 				m_Player_damage = 3;		//いったんミサイルの攻撃力(3)を代入
 				if (ButtonUE != 5)			//ミサイル以外かどうか判定
 					m_Player_damage = 10;	//ミサイル以外なら本来のダメージを代入
+				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 2:
+				m_Enemy_Pod_Level = 2;		//ポッドレベル設定
 				m_Player_damage = 3;
 				if (ButtonUE != 5)
 					m_Player_damage = 20;
+				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 3:
+				m_Enemy_Pod_Level = 2;		//ポッドレベル設定
 				m_Player_damage = 3;
 				if (ButtonUE != 5)
 					m_Player_damage = 20;
+				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 4:
+				m_Enemy_Pod_Level = 1;		//ポッドレベル設定
 				m_Player_damage = 3;
 				if (ButtonUE != 5)
 					m_Player_damage = 10;
+				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 5:
+				m_Enemy_Pod_Level = 3;		//ポッドレベル設定
 				m_Player_damage = 3;
 				if (ButtonUE != 5)
 					m_Player_damage = 30;
+				g_P_Planet_damage = m_Player_damage;
 				break;
 			}
 	}
@@ -605,10 +618,10 @@ void CObjRocket::Draw()
 			src.m_right = 128.0f;
 			src.m_bottom = 64.0f;
 
-			dst.m_top = m_y;
+			dst.m_top = m_y + m_size;
 			dst.m_left = m_x;
 			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
+			dst.m_bottom = m_y;
 		}
 		else
 		{
