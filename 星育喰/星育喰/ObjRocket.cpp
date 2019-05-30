@@ -152,7 +152,10 @@ void CObjRocket::Init()
 
 	//ポッドのHPを決める
 	if (m_type == 0) {
-		m_pod_max_hp = g_Pod_equip_Level * 10;
+		if (ButtonU != 5)
+			m_pod_max_hp = g_Pod_equip_Level * 10;
+		else
+			m_pod_max_hp = 1;
 	}
 	else if (m_type == 1) {
 		m_pod_max_hp = 10;
@@ -207,10 +210,10 @@ void CObjRocket::Init()
 
 	//g_Missile_pow = g_Missile_pow * (10 / 2);
 
-	m_Enemy_damage = 10;//エネミーが受けるダメージ量(プレイヤーの攻撃力)
-	m_Player_damage = 10;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
+	//m_Enemy_damage = 10;//エネミーが受けるダメージ量(プレイヤーの攻撃力)
+	//m_Player_damage = 10;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
 
-	//プレイヤーの火力を装備レベルによって変える
+	//プレイヤーの火力を装備レベルによって変える(ポッドレベル * 10)
 	switch (ButtonU) {
 		case 1:
 			m_Enemy_damage = g_Pow_equip_Level * 10;
@@ -225,10 +228,11 @@ void CObjRocket::Init()
 			m_Enemy_damage = g_Bal_equip_Level * 10;
 			break;
 		case 5:
-			m_Enemy_damage = g_Bal_equip_Level * 10;
+			m_Enemy_damage = 3;
 			break;
 		}
 
+	//敵の火力を敵によって変える
 	switch (m_type) {
 	case 1:
 		m_Player_damage = 10;
