@@ -651,11 +651,15 @@ void CObjRocket::Draw()
 			dst.m_bottom = m_y + m_size;
 		}
 
-		if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
+		if (m_type !=0) { //-----------敵の赤・青・緑を分ける判定
 			if (m_get_line == 3)
+			{
 				m_r -= 0.02 + m_mov_spd * 2;
+			}
 			else
+			{
 				m_r += 0.05 + m_mov_spd * 2;
+			}
 
 			switch (ButtonU) {
 			case 1://---------ランダムの情報が1なら
