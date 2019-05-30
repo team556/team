@@ -91,31 +91,31 @@ void CObjPlanet::Init()
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
 		m_img_nam = 3;
 	}
-	else if (m_type == 1) {
+	else if (m_type == 1) {	//ç∂Ç©ÇÁ1î‘ñ⁄ÇÃìGòfêØ
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 26;
 		m_size = 20;
 		m_siz_max = 20;
 	}
-	else if (m_type == 2) {
+	else if (m_type == 2) {	//ç∂Ç©ÇÁ2î‘ñ⁄ÇÃìGòfêØ
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 27;
 		m_size = 50;
 		m_siz_max = 50;
 	}
-	else if (m_type == 3) {
+	else if (m_type == 3) { //ç∂Ç©ÇÁ3î‘ñ⁄ÇÃìGòfêØ
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 28;
 		m_size = 80;
 		m_siz_max = 80;
 	}
-	else if (m_type == 4) {
+	else if (m_type == 4) { //ç∂Ç©ÇÁ4î‘ñ⁄ÇÃìGòfêØ
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
 		m_size = 35;
 		m_siz_max = 35;
 	}
-	else  //(m_type == 5) 
+	else  //(m_type == 5)   //É{ÉXòfêØ
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;

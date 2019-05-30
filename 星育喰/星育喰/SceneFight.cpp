@@ -122,14 +122,8 @@ void CSceneFight::InitScene()
 	//HPゲージ(リキャストゲージにも使用)を読み込み32番に登録
 	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
-	//ヘルプボタン画像を読み込み33番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 33, TEX_SIZE_512);
-
-	//戻るを読み込み34番に登録
-	Draw::LoadImage(L"戻る.png", 34, TEX_SIZE_512);
-
-	//ヘルプ画像を読み込み35番に登録
-	Draw::LoadImage(L"ヘルプ戦闘.png", 35, TEX_SIZE_512);
+	//メッセージウインドウを読み込み36番に登録
+	Draw::LoadImage(L"メッセージウインドウ(仮).png", 36, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
@@ -170,10 +164,6 @@ void CSceneFight::InitScene()
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
-	//ヘルプブジェクト
-	CObjHelp* hlp = new CObjHelp(4);     //ヘルプブジェクト作成
-	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
-
 	//音楽読み込み
 	Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
 
@@ -185,7 +175,6 @@ void CSceneFight::InitScene()
 
 	//SE読み込み
 	Audio::LoadAudio(3, L"選択＆振り分けアップ３.wav", EFFECT);
-	Audio::LoadAudio(4, L"小さい爆発.wav", EFFECT);
 	Audio::LoadAudio(5, L"大きい爆発.wav", EFFECT);
 
 	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay
@@ -194,8 +183,7 @@ void CSceneFight::InitScene()
 
 	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
 
-
-	////音楽スタート
+	//音楽スタート
 	Audio::Start(0);
 
 }

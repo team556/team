@@ -11,6 +11,10 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
+
+
 ////コンストラクタ
 //CObjTest::CObjTest(float x, float y)
 //{
@@ -18,8 +22,6 @@ using namespace GameL;
 //	m_x = x;
 //	m_y = y;
 //}
-
-#define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //イニシャライズ
 void CObjHelp::Init()
@@ -54,22 +56,38 @@ void CObjHelp::Init()
 	else if (m_Scene_nam == 2)//育成	2
 	{
 		m_Img_nam = 46;
+
+		//if (60 < m_mou_x && m_mou_x < 325 && 505 < m_mou_y && m_mou_y < 637)
+		//{
+		//	if (1110 < m_mou_x && m_mou_x < 1160 &&
+		//		30 < m_mou_y && m_mou_y < 80)
+		//	{
+		//		m_Img_nam = 11;
+		//	}
+
+		//	//ホーム画面に戻るボタンが押されたり、
+		//	//他施設のウインドウを開いている時は操作を受け付けないようにする。
+		//	else if (window_start_manage != Default)
+		//	{
+		//		return;
+		//	}
+		//}
+
 	}
 	else if (m_Scene_nam == 3)//準備	3
 	{
 		m_Img_nam = 20;
 	}
-	else if (m_Scene_nam == 4)//戦闘	4
-	{
-		m_Img_nam = 33;
-	}
+	//else if (m_Scene_nam == 4)//戦闘	4
+	//{
+	//	m_Img_nam = 33;
+
+	//}
 }
 
 //アクション
 void CObjHelp::Action()
 {
-
-
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();

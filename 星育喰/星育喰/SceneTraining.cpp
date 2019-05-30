@@ -115,6 +115,15 @@ void CSceneTraining::InitScene()
 	//Z–¯‚ğ“Ç‚İ‚İ10”Ô‚É“o˜^
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
 
+	//ƒwƒ‹ƒv‰æ‘œ‚ğ“Ç‚İ‚İ11”Ô‚É“o˜^
+	Draw::LoadImage(L"ƒwƒ‹ƒvŒ¤‹†Š.png", 11, TEX_SIZE_512);
+
+	//ƒwƒ‹ƒv‰æ‘œ‚ğ“Ç‚İ‚İ12”Ô‚É“o˜^
+	Draw::LoadImage(L"ƒwƒ‹ƒv‘qŒÉ.png", 12, TEX_SIZE_512);
+
+	//ƒwƒ‹ƒv‰æ‘œ‚ğ“Ç‚İ‚İ13”Ô‚É“o˜^
+	Draw::LoadImage(L"ƒwƒ‹ƒv•ºÉ.png", 13, TEX_SIZE_512);
+	
 	//‰_‚ğ“Ç‚İ‚İ15”Ô‚É“o˜^
 	Draw::LoadImage(L"“§‰ß‰_.png", 15, TEX_SIZE_512);
 

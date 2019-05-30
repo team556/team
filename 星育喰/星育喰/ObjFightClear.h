@@ -8,7 +8,8 @@ using namespace GameL;
 class CObjFightClear :public CObj
 {
 public:
-	CObjFightClear(int p, int m, int l, int s);
+	CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int *Mat_typeA, int Mat_numA, int skill);
+	CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int *Mat_typeA, int Mat_numA, wchar_t Mat_nameB[20], int *Mat_typeB, int Mat_numB, int skill);
 	~CObjFightClear() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -39,4 +40,6 @@ private:
 
 	bool m_Stage_Clear_f;	//ステージクリアフラグ
 	bool m_Game_Clear_f;	//ゲーム　クリアフラグ
+
+	float m_alpha;		//最終的に全部消すための透過度(アルファ値)
 };

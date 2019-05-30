@@ -312,7 +312,7 @@ void CObjRocket::Action()
 	}
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 10);	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 5);	//敵とプレイヤーのポッド当たっているとき処理
 	
 	//ポッド消滅処理
 	if (m_del == true)
@@ -327,14 +327,7 @@ void CObjRocket::Action()
 				m_bomcount = 0;	//カウントを0に戻す
 			}
 		}
-		
 
-		////小さい爆発音を複数回鳴らす処理
-		//if (m_bom == 0 || m_bom <= 2)
-		//{
-		//	//小さい爆発
-		//	Audio::Start(4);
-		//}
 		if (m_ani == 4 && m_bom == 5)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
@@ -363,8 +356,7 @@ void CObjRocket::Action()
 		}
 		if (m_bom == 5)
 		{
-			//小さい爆発を破棄して、大きい爆発を出す
-			Audio::Stop(4);
+			//大きい爆発音を出す
 			Audio::Start(5);
 		}
 		
@@ -420,6 +412,10 @@ void CObjRocket::Action()
 				{
 					m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
 				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					m_podhp -= 3;
+				}
 				else											//プレイヤーのパワーポッド、バランスポッド、ミサイル当たり時のHP
 				{
 					m_podhp -= m_Enemy_damage * damage_buff[0];
@@ -434,6 +430,10 @@ void CObjRocket::Action()
 				else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
 				{
 					m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					m_podhp -= 3;
 				}
 				else											//プレイヤーのディフェンスポッド、バランスポッド、ミサイル当たり時のHP
 				{
@@ -450,6 +450,10 @@ void CObjRocket::Action()
 				{
 					m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
 				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					m_podhp -= 3;
+				}
 				else											//プレイヤーのスピードポッド、バランスポッド、ミサイルに当たり時のHP
 				{
 					m_podhp -= m_Enemy_damage * damage_buff[0];
@@ -461,7 +465,7 @@ void CObjRocket::Action()
 			}
 			else if (ButtonU == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
 			{
-				m_podhp -= 3;
+				m_podhp -= m_Enemy_damage;
 			}
 		}
 
@@ -479,6 +483,10 @@ void CObjRocket::Action()
 				{
 					m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
 				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					m_podhp -= 3;
+				}
 				else											//敵のパワーポッド、バランスポッド、ミサイル当たり時のHP
 				{
 					m_podhp -= m_Player_damage * damage_buff[1];
@@ -493,6 +501,10 @@ void CObjRocket::Action()
 				else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
 				{
 					m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					m_podhp -= 3;
 				}
 				else											//敵のディフェンスポッド、バランスポッド、ミサイル当たり時のHP
 				{
@@ -509,6 +521,10 @@ void CObjRocket::Action()
 				{
 					m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
 				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					m_podhp -= 3;
+				}
 				else											//敵のスピードポッド、バランスポッド、ミサイル当たり時のHP
 				{
 					m_podhp -= m_Player_damage * damage_buff[1];
@@ -521,7 +537,7 @@ void CObjRocket::Action()
 			}
 			else if (ButtonU == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
 			{
-				m_podhp -= 3;
+				m_podhp -= m_Player_damage;
 			}
 		}
 

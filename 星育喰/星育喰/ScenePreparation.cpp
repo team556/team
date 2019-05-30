@@ -94,6 +94,9 @@ void CScenePreparation::InitScene()
 	//ヘルプ画像を読み込み22番に登録
 	Draw::LoadImage(L"ヘルプ戦闘準備.png", 22, TEX_SIZE_512);
 
+	//ヘルプ画像を読み込み23番に登録
+	Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
+	
 	//戦闘画面移行演出(黒星)を読み込み50番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 50, TEX_SIZE_512);
 
