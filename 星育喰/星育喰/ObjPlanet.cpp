@@ -319,6 +319,7 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
+			//ポッドが与えれるダメージ量をRocket.cppからグローバル変数で引っ張ってきた
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
 			{
 				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
@@ -350,6 +351,7 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
+			//ダメージ量は武器のレベル×10
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
 			{
 				m_size -= (g_Pow_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
