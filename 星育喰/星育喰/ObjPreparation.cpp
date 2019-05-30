@@ -132,23 +132,27 @@ void CObjPreparation::Init()
 	//▽1ステージ　敵惑星1(左から1番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][0][0], L"難易度　★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][0][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材30・鉄");//3行目
-	swprintf_s(m_Enemy_detail_message[0][0][3], L"ディフェンス重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材10・鉄40");//3行目
+	swprintf_s(m_Enemy_detail_message[0][0][3], L"Fracture ray");//4行目
+	swprintf_s(m_Enemy_detail_message[0][0][4], L"ディフェンス重視");//5行目
 	//▽1ステージ　敵惑星2(左から2番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][1][0], L"難易度　★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][1][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][1][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][1][3], L"パワー重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][1][2], L"アルミ60・レアメタル50");//3行目
+	swprintf_s(m_Enemy_detail_message[0][1][3], L"Expiosion");//4行目
+	swprintf_s(m_Enemy_detail_message[0][1][4], L"パワー重視");//5行目
 	//▽1ステージ　敵惑星3(左から3番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][2][0], L"難易度　★★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][2][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][2][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][2][3], L"バランス重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][2][2], L"プラスチック40・ガス45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][2][3], L"ステロイド投与");//4行目
+	swprintf_s(m_Enemy_detail_message[0][2][4], L"バランス重視");//5行目
 	//▽1ステージ　敵惑星4(左から4番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][3][0], L"難易度　★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][3][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][3][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][3][3], L"スピード重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][3][2], L"鉄60・銀45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][3][3], L"Immotality");//4行目
+	swprintf_s(m_Enemy_detail_message[0][3][4], L"スピード重視");//5行目
 	//▽1ステージ　ボス惑星
 	swprintf_s(m_Enemy_detail_message[0][4][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][4][1], L"テスト");//2行目
@@ -781,7 +785,8 @@ void CObjPreparation::Draw()
 		{ 1.0f,0.0f,0.0f,m_detail_message_alpha },//1行目は赤色
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//2行目は黒色
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//3行目は黒色
-		{ 0.0f,0.0f,1.0f,m_detail_message_alpha },//4行目は青色
+		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//4行目は黒色
+		{ 0.0f,0.0f,1.0f,m_detail_message_alpha },//5行目は青色
 	};
 
 	//最終確認[はい]ボタン用
@@ -1070,7 +1075,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_top = -85.0f;
 		m_detail_message_window_left = 20.0f;
 		m_detail_message_window_right = 320.0f;
-		m_detail_message_window_bottom = 85.0f;
+		m_detail_message_window_bottom = 120.0f;
 
 		//敵惑星詳細説明フォントの位置を設定
 		m_detail_message_font_x = 33.0f;
@@ -1082,7 +1087,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_top = -85.0f;
 		m_detail_message_window_left = 0.0f;
 		m_detail_message_window_right = -300.0f;
-		m_detail_message_window_bottom = 85.0f;
+		m_detail_message_window_bottom = 120.0f;
 
 		//敵惑星詳細説明フォントの位置を設定
 		m_detail_message_font_x = -288.0f;
@@ -1094,7 +1099,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_top = 20.0f;
 		m_detail_message_window_left = -150.0f;
 		m_detail_message_window_right = 150.0f;
-		m_detail_message_window_bottom = 190.0f;
+		m_detail_message_window_bottom = 225.0f;
 
 		//敵惑星詳細説明フォントの位置を設定
 		m_detail_message_font_x = -138.0f;
@@ -1107,6 +1112,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
 	swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
 	swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
+	swprintf_s(m_detail_message[4], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][4]);//文字配列に文字データを入れる
 
 	m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
 
