@@ -164,10 +164,6 @@ void CSceneFight::InitScene()
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect();	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);				//戦闘前演出オブジェクト登録
 
-	//ヘルプブジェクト
-	CObjHelp* hlp = new CObjHelp(4);     //ヘルプブジェクト作成
-	Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
-
 	//音楽読み込み
 	Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
 
@@ -186,6 +182,10 @@ void CSceneFight::InitScene()
 	Audio::LoadAudio(7, L"バリア２.wav", EFFECT);//Immortality
 
 	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
+
+	Audio::LoadAudio(9, L"食べる音.wav", EFFECT);
+
+	Audio::LoadAudio(10, L"スぺシャル技発動音.wav", EFFECT);
 
 	//音楽スタート
 	Audio::Start(0);
