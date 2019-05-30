@@ -14,7 +14,6 @@ using namespace GameL;
 //マクロ
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
-
 ////コンストラクタ
 //CObjTest::CObjTest(float x, float y)
 //{
@@ -57,21 +56,28 @@ void CObjHelp::Init()
 	{
 		m_Img_nam = 46;
 
-		//if (60 < m_mou_x && m_mou_x < 325 && 505 < m_mou_y && m_mou_y < 637)
+		////ホーム画面に戻るボタンが押されたり、
+		////他施設のウインドウを開いている時は操作を受け付けないようにする。
+		//if (window_start_manage != Default)
 		//{
-		//	if (1110 < m_mou_x && m_mou_x < 1160 &&
-		//		30 < m_mou_y && m_mou_y < 80)
-		//	{
-		//		m_Img_nam = 11;
-		//	}
-
-		//	//ホーム画面に戻るボタンが押されたり、
-		//	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-		//	else if (window_start_manage != Default)
-		//	{
-		//		return;
-		//	}
+		//	return;
 		//}
+
+		if (60 < m_mou_x && m_mou_x < 325 && 505 < m_mou_y && m_mou_y < 637)
+		{
+			if (1110 < m_mou_x && m_mou_x < 1160 &&
+				30 < m_mou_y && m_mou_y < 80)
+			{
+				m_Img_nam = 11;
+			}
+
+			////ホーム画面に戻るボタンが押されたり、
+			////他施設のウインドウを開いている時は操作を受け付けないようにする。
+			//else if (window_start_manage != Default)
+			//{
+			//	return;
+			//}
+		}
 
 	}
 	else if (m_Scene_nam == 3)//準備	3

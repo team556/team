@@ -90,6 +90,7 @@ void CObjPlanet::Init()
 	if (m_type == 0) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
 		m_img_nam = 3;
+
 	}
 	else if (m_type == 1) {	//左から1番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
@@ -218,12 +219,15 @@ void CObjPlanet::Action()
 				}
 			}
 			if (m_type == 0) {
-				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) 
+				{
 					m_eat_f = true;		//喰うフラグ有効
 				}
 			}
+
 			else {
-				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz)) {
+				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz))
+				{
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -243,10 +247,14 @@ void CObjPlanet::Action()
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
+				Audio::Start(9);
+
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				pla->SetDelF();
+				Audio::Start(9);
+
 			}	
 		}
 	}
@@ -533,9 +541,9 @@ void CObjPlanet::Action()
 		}
 
 		//▼ミサイルポッド作成X位置を設定
-		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
+		if (m_attackf == 1 && m_time <= 0 && m_type != 0)//赤色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,1);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 
 
@@ -559,9 +567,9 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
+		else if (m_attackf == 2 && m_time <= 0 && m_type != 0)//青色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,2);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			/*m_time = 100 * m_enemy_recast_buff;*/
 			switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
@@ -584,9 +592,9 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
+		else if (m_attackf == 3 && m_time <= 0 && m_type != 0)//緑色ポッド
 		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,3);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 		/*	m_time = 100 * m_enemy_recast_buff;*/
 			switch (m_type)
@@ -609,9 +617,9 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
+		else if (m_attackf == 4 && m_time <= 0 && m_type != 0)//灰色ポッド(今は黄色)
 		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false,4);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			//m_time = 100 * m_enemy_recast_buff;
 			switch (m_type)
@@ -634,9 +642,9 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 5 && m_time <= 0)//ミサイル
+		else if (m_attackf == 5 && m_time <= 0 && m_type != 0)//ミサイル
 		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, false, 5);//オブジェクト作成
+			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 			//m_time = 100 * m_enemy_recast_buff;
 			switch (m_type)
@@ -660,7 +668,7 @@ void CObjPlanet::Action()
 			}
 
 		}
-		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
+		else if (m_attackf == 6 && m_time <= 0 && m_type != 0)//スペシャル技
 		{
 			//敵がスペシャル技を使用済(true)である場合、
 			//リキャストタイムを元に戻さず、再度行動パターン決めを行う

@@ -27,4 +27,7 @@ private:
 	float m_y_vec;	//y軸ベクトル
 	float m_cy[20];	//charのy軸
 	int m_c_nam;		//charのナンバー
+
+	int	m_speed;		//エンドロール速度をはやくする
+
 };

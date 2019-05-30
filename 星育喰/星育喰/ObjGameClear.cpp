@@ -3,9 +3,11 @@
 #include "GameL\WinInputs.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjGameClear.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -32,14 +34,13 @@ void CObjGameClear::Init()
 	for (int i = 0; i < 20; i++)//配列の初期化
 		m_cy[i] = i * 80 + 700;	//行間の間隔を空けるのと、画面より下にする
 	m_c_nam = 0;
+
+	m_speed = 0;
 }
 
 //アクション
 void CObjGameClear::Action()
 {
-
-
-
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -47,9 +48,18 @@ void CObjGameClear::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//Zキーを押している間、エンドロールの流れる速度が速くなる
+	if (Input::GetVKey('Z') == true)
+	{
+		m_speed = 10;
+	}
+	else
+	{
+		m_speed = 0;
+	}
+
 
 }
-
 //ドロー
 void CObjGameClear::Draw()
 {
@@ -78,25 +88,27 @@ void CObjGameClear::Draw()
 	}
 
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	Font::StrDraw(L"当プロジェクトメンバー", 500, m_cy[0], 32, c);
+	Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
 
-	Font::StrDraw(L"プログラマ",	400, m_cy[1], 32, c);
+	Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
+	Font::StrDraw(L"https://on-jin.com/",375, m_cy[3], 45, c);
 
-	Font::StrDraw(L"木村　巧",		800, m_cy[1], 32, c);
+	Font::StrDraw(L"魔王魂",525, m_cy[4], 45, c);
+	Font::StrDraw(L"https://maoudamashii.jokersounds.com/",	160, m_cy[5], 45, c);
 
-	Font::StrDraw(L"後庵　穣",		800, m_cy[2], 32, c);
+	Font::StrDraw(L"TAM　Music　Factory",800, m_cy[6], 32, c);
+	Font::StrDraw(L"https://www.tam-music.com/",800, m_cy[7], 32, c);
 
-	Font::StrDraw(L"グラフィッカ",	400, m_cy[3], 32, c);
+	Font::StrDraw(L"DOVA-SYNDROME", 600,m_cy[8], 32, c);
+	Font::StrDraw(L"https://dova-s.jp/",800, m_cy[9], 32, c);
 
-	Font::StrDraw(L"脇田",			800, m_cy[3], 32, c);
+	Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10], 32, c);
+	Font::StrDraw(L"https://taira-komori.jpn.org/index.html",	800, m_cy[11], 32, c);
 
-	Font::StrDraw(L"かしわん",		800, m_cy[4], 32, c);
+	Font::StrDraw(L"効果音ラボ",	800, m_cy[12], 32, c);
+	Font::StrDraw(L"https://soundeffect-lab.info/",	800, m_cy[13], 32, c);
 
-	Font::StrDraw(L"サウンド",		400, m_cy[5], 32, c);
+	Font::StrDraw(L"OtoLogic",	800, m_cy[14], 32, c);
+	Font::StrDraw(L"https://otologic.jp/",	800, m_cy[15], 32, c);
 
-	Font::StrDraw(L"池田",			800, m_cy[5], 32, c);
-
-	Font::StrDraw(L"プランナ",		400, m_cy[6], 32, c);
-
-	Font::StrDraw(L"メンバー全員",	800, m_cy[6], 32, c);
 }
