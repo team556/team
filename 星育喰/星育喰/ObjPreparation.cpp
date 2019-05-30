@@ -291,7 +291,7 @@ void CObjPreparation::Action()
 	//▼戦闘画面移行演出
 	else if (m_Go_flag == true)
 	{
-		if (m_black_star_effect_size >= 1400.0f)
+		if (m_black_star_effect_size >= 1500.0f)
 		{
 			//★画像が画面全体を覆いつくした後、下記の撃破フラグ処理を実行
 			//その後、戦闘画面へシーン移行する。
@@ -308,7 +308,7 @@ void CObjPreparation::Action()
 
 			Scene::SetScene(new CSceneFight());//戦闘画面へシーン移行
 		}
-		else if (m_black_star_effect_size < 1400.0f)
+		else if (m_black_star_effect_size < 1500.0f)
 		{
 			//画面中央を起点として、★の画像を徐々に拡大
 			//そのまま画面全体を覆いつくす。
@@ -743,6 +743,13 @@ void CObjPreparation::Action()
 		{
 			m_Boss_vx[2] -= m_speed * 0.91;
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
+
+			if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
+			{
+				//正面を向かせる
+				m_Boss_clip_pos_x = 256.0f;
+				m_Boss_clip_pos_y = 128.0f;
+			}
 		}
 
 		//徐々に上記オブジェクトの画面内移動速度を減少させる
@@ -1157,6 +1164,7 @@ void CObjPreparation::Special_message(int special_id)
 		swprintf_s(m_detail_message[1], L"未習得"); //文字配列に文字データを入れる
 		swprintf_s(m_detail_message[2], L"");		//文字データをクリアする
 		swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
+		swprintf_s(m_detail_message[4], L"");		//文字データをクリアする
 
 		//スペシャル技詳細説明ウインドウのサイズを設定
 		m_detail_message_window_top = -50.0f;
@@ -1178,47 +1186,52 @@ void CObjPreparation::Special_message(int special_id)
 			swprintf_s(m_detail_message[0], L"Explosion");				//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"相手の惑星に");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"固定ダメージを与える");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else if (special_id == 1)
 		{
 			swprintf_s(m_detail_message[0], L"Fracture Ray");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"選択ライン上の");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"相手ポッド等を破壊する");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else if (special_id == 2)
 		{
 			swprintf_s(m_detail_message[0], L"Immortality");//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"約10秒間");	//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"無敵となる");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else if (special_id == 3)
 		{
 			swprintf_s(m_detail_message[0], L"リミットブレイク");		//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"20秒間ポッド生産速度");	//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ミサイル生産速度UP");		//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else  //(special_id == 4)
 		{
 			swprintf_s(m_detail_message[0], L"ステロイド投与");		//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"出撃する");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ポッド5機の攻撃力UP");//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		
 		//スペシャル技詳細説明ウインドウのサイズを設定
-		m_detail_message_window_top = -170.0f;
+		m_detail_message_window_top = -205.0f;
 		m_detail_message_window_left = -150.0f;
 		m_detail_message_window_right = 150.0f;
 		m_detail_message_window_bottom = 0.0f;
 
 		//スペシャル技詳細説明フォントの位置を設定
 		m_detail_message_font_x = -138.0f;
-		m_detail_message_font_y = -158.0f;
+		m_detail_message_font_y = -195.0f;
 
 
 		//▽以下はスペシャル技アイコンが灰色(クリックで装備可)の時のみ行う処理
 		if (m_Special_icon_color[special_id] == 0.4f)
 		{
-			swprintf_s(m_detail_message[3], L"クリックで装備可");//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[4], L"クリックで装備可");//文字配列に文字データを入れる
 
 			//左クリックされたらマウスで選択中のスペシャル技を装備する
 			if (m_mou_l == true)
@@ -1254,7 +1267,7 @@ void CObjPreparation::Special_message(int special_id)
 		//▽以下はスペシャル技アイコンが白色(装備中)の時のみ行う処理
 		else  //(m_Special_icon_color[special_id] == 1.0f)
 		{
-			swprintf_s(m_detail_message[3], L"装備中");//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[4], L"装備中");//文字配列に文字データを入れる
 
 			//左クリックされたら現在装備中のスペシャル技を外し、未装備状態にする
 			if (m_mou_l == true)

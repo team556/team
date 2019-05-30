@@ -61,6 +61,7 @@ void CObjSpecialButton::Init()
 		m_Immortality_size[i] = 0.0f;
 
 		m_sptime[i] = false;
+		m_sp_invocation_SE[i] = false;
 		
 		m_Special_effect_alpha[i] = INI_ALPHA;
 		m_Special_effect_alpha_vec[i] = 0.0f;
@@ -285,11 +286,11 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	m_is_invocating[Planet_id] = true;		//発動中管理フラグON
 
 
-	if (m_sptime[Planet_id] == false)
+	if (m_sp_invocation_SE[Planet_id] == false)
 	{
 		//スペシャル技発動音
 		Audio::Start(10);
-		m_sptime[Planet_id] = true;
+		m_sp_invocation_SE[Planet_id] = true;
 	}
 
 	//▼スペシャル技発動演出

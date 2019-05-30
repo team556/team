@@ -28,7 +28,10 @@ private:
 	float m_click_a_vec;	//m_click_aベクトル
 	bool m_click_a_f;		//不透明化フラグ
 	float m_result_a;		//alpha(透過度)(戦闘結果フォント用)
-	float m_alpha;		//その他透過度(上記以外の透過度変更はコレで行う)
+	float m_black_out_a;	//画面暗転透過度
+	float m_clear_a;		//alpha(透過度)(クリアメッセージのフォント用)
+
+	bool  m_scene_migration_f;//シーン移行演出フラグ(true = ホーム画面にいる感じとなる。※実際にはこの時点ではまだ移行していない)
 
 	int		m_people;		//獲得住民数
 	int		m_large;		//獲得サイズ(HP)数
@@ -37,10 +40,10 @@ private:
 	int		m_mat_num[2];	//獲得資材数
 	int		m_skill;		//獲得スペシャル技
 
-	int m_cnt;		//カウント
-	int m_cnt_max;	//カウントマックス
+	//int m_cnt;		//カウント
+	//int m_cnt_max;	//カウントマックス
 
-	int m_page_nam;		//ページ数
+	//int m_page_nam;		//ページ数
 
 	bool m_Stage_Clear_f;	//ステージクリアフラグ
 	bool m_Game_Clear_f;	//ゲーム　クリアフラグ

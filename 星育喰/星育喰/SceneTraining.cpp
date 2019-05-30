@@ -81,8 +81,8 @@ void CSceneTraining::InitScene()
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
 
 	//ヘルプブジェクト
-	CObjHelp* hlp = new CObjHelp(2);     //ヘルプブジェクト作成
-	Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプブジェクト登録
+	//CObjHelp* hlp = new CObjHelp(2);     //ヘルプブジェクト作成
+	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプブジェクト登録
 
 
 	//背景を読み込み0番に登録
