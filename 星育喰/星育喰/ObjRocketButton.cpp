@@ -116,7 +116,7 @@ void CObjRocketButton::Action()
 			if (Button_num == 1 && g_Power_num > 0)//パワーボタンかつ、パワーユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true,1);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0 ,1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Power_num -= UNIT_CONSUME_NUM;	//パワーユニット数消費
@@ -131,7 +131,7 @@ void CObjRocketButton::Action()
 			else if (Button_num == 2 && g_Defense_num > 0)//ディフェンスボタンかつ、ディフェンスユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 2);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0 , 2);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Defense_num -= UNIT_CONSUME_NUM;	//ディフェンスユニット数消費
@@ -146,7 +146,7 @@ void CObjRocketButton::Action()
 			else if (Button_num == 3 && g_Speed_num > 0)//スピードボタンかつ、スピードユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 3);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 3);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Speed_num -= UNIT_CONSUME_NUM;	//スピードユニット数消費
@@ -162,7 +162,7 @@ void CObjRocketButton::Action()
 			else if (Button_num == 4 && g_Balance_num > 0)//バランスボタンかつ、バランスユニット数がある場合
 			{
 				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 4);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 4);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
 				g_Balance_num -= UNIT_CONSUME_NUM;	//バランスユニット数消費
@@ -177,7 +177,7 @@ void CObjRocketButton::Action()
 
 			else if (Button_num == 5)//ミサイルボタンの場合
 			{
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, true, 5);//オブジェクト作成
+				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 5);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 			}
 

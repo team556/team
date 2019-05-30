@@ -19,7 +19,7 @@ using namespace GameL;
 //float g_Missile_pow = 5.0f;
 
 //コンストラクタ
-CObjRocket::CObjRocket(float x, float y, bool type,int n)
+CObjRocket::CObjRocket(float x, float y, int type,int n)
 {
 	m_x = x;
 	m_y = y;
@@ -38,7 +38,7 @@ void CObjRocket::Init()
 
 	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
-	if (m_type == true) {
+	if (m_type == 0) {
 		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 		if (obj != nullptr) {					//情報が取得出来ていたら
@@ -52,7 +52,7 @@ void CObjRocket::Init()
 			m_mov_spd = 1.0f / pla->GetX();
 		}
 	}
-	else if (m_type == false && battle_end == false)
+	else if (m_type != 0 && battle_end == false)
 	{
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 
@@ -86,7 +86,7 @@ void CObjRocket::Init()
 	m_mou_f = false;//マウスフラグ
 
 	//当たり判定用HitBox作成
-	if (m_type == true) 
+	if (m_type == 0) 
 	{
 		m_x += 100;
 		if (ButtonU == 1)
@@ -152,7 +152,10 @@ void CObjRocket::Init()
 
 	//ポッドのHPを決める
 	if (m_type == 0) {
-		m_pod_max_hp = g_Pod_equip_Level * 10;
+		if (ButtonU != 5)
+			m_pod_max_hp = g_Pod_equip_Level * 10;
+		else
+			m_pod_max_hp = 1;
 	}
 	else if (m_type == 1) {
 		m_pod_max_hp = 10;
@@ -207,10 +210,10 @@ void CObjRocket::Init()
 
 	//g_Missile_pow = g_Missile_pow * (10 / 2);
 
-	m_Enemy_damage = 10;
-	m_Player_damage = 10;
+	//m_Enemy_damage = 10;//エネミーが受けるダメージ量(プレイヤーの攻撃力)
+	//m_Player_damage = 10;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
 
-	//プレイヤーの火力を装備レベルによって変える
+	//プレイヤーの火力を装備レベルによって変える(ポッドレベル * 10)
 	switch (ButtonU) {
 		case 1:
 			m_Enemy_damage = g_Pow_equip_Level * 10;
@@ -225,9 +228,28 @@ void CObjRocket::Init()
 			m_Enemy_damage = g_Bal_equip_Level * 10;
 			break;
 		case 5:
-			m_Enemy_damage = g_Bal_equip_Level * 10;
+			m_Enemy_damage = 3;
 			break;
 		}
+
+	//敵の火力を敵によって変える
+	switch (m_type) {
+	case 1:
+		m_Player_damage = 10;
+		break;
+	case 2:
+		m_Player_damage = 20;
+		break;
+	case 3:
+		m_Player_damage = 20;
+		break;
+	case 4:
+		m_Player_damage = 10;
+		break;
+	case 5:
+		m_Player_damage = 30;
+		break;
+	}
 }
 
 //アクション
@@ -292,7 +314,7 @@ void CObjRocket::Action()
 		}
 
 		//-----------------------座標更新
-		if (m_type == true) {
+		if (m_type == 0) {
 			m_x += m_vx - m_mov_spd * 200;
 			m_y += m_vy;
 		}
@@ -302,7 +324,7 @@ void CObjRocket::Action()
 		}
 	}
 	//-----------------------座標更新
-	if (m_type == true) {
+	if (m_type == 0) {
 		m_x += m_vx;
 		m_y += m_vy;
 	}
@@ -325,11 +347,11 @@ void CObjRocket::Action()
 			if (battle_end == false)
 			{
 				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
-				if (m_type == true && g_Special_equipment == 5 && Special->GetInvocating(0) == true && ButtonU != 5)
+				if (m_type == 0 && g_Special_equipment == 5 && Special->GetInvocating(0) == true && ButtonU != 5)
 				{
 					Special->SetBuff_count(0);//破壊された強化ポッド数をカウントする
 				}
-				if (m_type == false && Special->GetSpecial_equip() == 5 && Special->GetInvocating(1) == true && ButtonU != 5)
+				if (m_type != 0 && Special->GetSpecial_equip() == 5 && Special->GetInvocating(1) == true && ButtonU != 5)
 				{
 					Special->SetBuff_count(1);//破壊された強化ポッド数をカウントする
 				}
@@ -346,7 +368,7 @@ void CObjRocket::Action()
 		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
 		//HPの状態に関わらず消滅処理へと移行する
 		if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
-			m_type == true)											//プレイヤーの射出したポッドである場合、実行
+			m_type == 0)											//プレイヤーの射出したポッドである場合、実行
 		{
 			m_del = true;				//消滅処理フラグON
 			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
@@ -356,7 +378,7 @@ void CObjRocket::Action()
 		//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
 		//HPの状態に関わらず消滅処理へと移行する
 		if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 0) != nullptr && //プレイヤーのスペシャル技にHITかつ、
-			m_type == false)										//エネミーの射出したポッドである場合、実行
+			m_type != 0)										//エネミーの射出したポッドである場合、実行
 		{
 			m_del = true;				//消滅処理フラグON
 			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
@@ -364,14 +386,14 @@ void CObjRocket::Action()
 		}
 
 
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == false)//惑星に当たった時かつ自弾
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)//惑星に当たった時かつ自弾
 		{
 			//位置を更新//惑星と接触しているかどうかを調べる
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == true)//敵の惑星に当たった時かつ自弾
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)//敵の惑星に当たった時かつ自弾
 		{
 			//位置を更新//惑星と接触しているかどうかを調べる
 			m_del = true;
@@ -546,7 +568,7 @@ void CObjRocket::Draw()
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 
-	if (m_type == true) 
+	if (m_type == 0) 
 	{
 		m_r += 0.05 + m_mov_spd * 2;
 		if (ButtonU >= 1 && ButtonU <= 4)
@@ -599,7 +621,7 @@ void CObjRocket::Draw()
 		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
 
-	if(m_type==false)
+	if(m_type != 0)
 	{
 		//敵ポッドの1～4の番号(ポッド)の描画情報
 		if (ButtonU >= 1 && ButtonU <= 4)
@@ -629,7 +651,7 @@ void CObjRocket::Draw()
 			dst.m_bottom = m_y + m_size;
 		}
 
-		if (m_type == false) { //-----------敵の赤・青・緑を分ける判定
+		if (m_type != 0) { //-----------敵の赤・青・緑を分ける判定
 			m_r += 0.05 + m_mov_spd * 2;
 
 			switch (ButtonU) {
