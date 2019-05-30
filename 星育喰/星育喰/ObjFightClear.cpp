@@ -24,14 +24,24 @@ int g_Raremetal_num = 1000;
 #define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
 
 //コンストラクタ
-CObjFightClear::CObjFightClear(int p, int m, int l, int s)
+CObjFightClear::CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int * Mat_typeA, int Mat_numA, int skill)
 {
 	//作成時に渡された値を代入
-	m_people = p;
-	m_mrl = m;
-	m_skill = s;
-	m_large = l;
+	m_people = people;
+	m_large = large;
+	//m_mrl = m;(現在、渡された値代入出来ていない。5/30にやる。)
+	m_skill = skill;
 }
+
+CObjFightClear::CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int *Mat_typeA, int Mat_numA, wchar_t Mat_nameB[20], int *Mat_typeB, int Mat_numB, int skill)
+{
+	//作成時に渡された値を代入
+	m_people = people;
+	m_large = large;
+	//m_mrl = m;(現在、渡された値代入出来ていない。5/30にやる。)
+	m_skill = skill;
+}
+
 
 //イニシャライズ
 void CObjFightClear::Init()
@@ -64,11 +74,19 @@ void CObjFightClear::Init()
 			g_destroy_progress[i] = false;
 	}		//敵の撃破状態をすべて戻す
 
+	//1ステージクリア後、ゲームクリアフラグを立てる。
+	//※処理内容的にはステージを進めた後の値が、
+	//2ステージ以上であった場合という条件式にしている。
+	if (g_Stage_progress >= 2)
+	{
+		m_Game_Clear_f = true;
+	}
+
 	g_Remain_num += m_people;	//取得住民を加算
 
 	if (m_skill != 0)				//スキル取得している場合
 	{							//その番号を取得する
-		g_Special_mastering[m_skill] = true;
+		g_Special_mastering[m_skill - 1] = true;
 	}
 	else { ; }
 
@@ -98,60 +116,94 @@ void CObjFightClear::Action()
 	//m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//▼カウント終了後の処理
 	if (m_cnt == 0)
-	{											//カウント終了後
+	{											
 		m_a_f = true;			//フラグ有効
-		if (m_mou_l == true || m_alpha < INI_ALPHA)					//クリックした場合
+		
+		//左クリックした場合、実行(一度クリックすると以後、クリックせずともこの処理に入る)
+		//※ゲームクリアフラグON時は、何もしなくてもこの処理の中に入る。
+		if (m_mou_l == true || m_alpha < INI_ALPHA || m_Game_Clear_f == true)					
 		{
-			if (m_alpha == INI_ALPHA)
-			{
-				Audio::Start(3);
-			}
-				
-			m_alpha -= 0.01f;
-
+			//▽ゲーム未クリア時の処理
+			//完全に透過された後、ホーム画面へステージ移行する。
 			if (m_Game_Clear_f == false)
 			{
-				if (m_alpha <= 0.0f)
+				//クリック音を鳴らす(複数回実行されないように条件文でコントロールしている)
+				if (m_alpha == INI_ALPHA)
 				{
-					if (g_Stage_progress == 1)
-					{
-						Scene::SetScene(new CSceneHome());	//シーン移行
-					}
-					//仮に透過度0.0fになったら実行されるようにしているが、
-					//本来スムーズにする。
-					else
-					{
-						m_Game_Clear_f = true;
-					}
+					Audio::Start(3);
 				}
 
+				m_alpha -= 0.01f;	//透過度を徐々に減少する
+
+				//完全透過後の処理
+				if (m_alpha <= 0.0f)
+				{
+					Scene::SetScene(new CSceneHome());	//シーン移行
+				}
 			}
-			else
+			//▽ゲームクリア時の処理
+			//2秒毎にゲームクリアメッセージを見せていき、
+			//全てのクリアメッセージ表示後、クリックを促し
+			//ゲームクリア(エンディング)画面にシーン移行する。
+			else //(m_Game_Clear_f == true)
 			{
-				m_page_nam++;		//ページ数を進める
-				m_cnt = m_cnt_max;	//カウントをMAXにする
-				m_a_f = false;
+				//全てのクリアメッセージ表示後の処理
+				if (m_page_nam == 2)
+				{	
+					if (m_mou_l == true)//左クリック
+					{
+						//▼まだ作ってないが、ここでも透過処理行い、0.0fになったらシーン移行するようにする。
+
+						//クリック音を鳴らす(複数回実行されないように条件文でコントロールしている)
+						//if (m_alpha == INI_ALPHA)
+						//{
+						//	Audio::Start(3);
+						//}
+
+						Scene::SetScene(new CSceneGameClear());	//シーン移行
+					}
+				}
+				//全てのクリアメッセージ表示前の処理
+				else
+				{
+					m_page_nam++;		//ページ数を進める
+					m_cnt = m_cnt_max;	//カウントをMAXにする(元に戻す)
+				}
 			}
 		}
 	}
+	//▼カウント中の処理
 	else
+	{
 		m_cnt--;	//0でない場合カウントダウン
-
-	if (m_a_f == true)				//フラグ有効の場合
-		if (m_a <= 0.5)					//0.5で切り替えて、クリック文字のalpha調整
-			m_a_vec += 0.003f;	//ベクトルに加算
-		else
-			m_a_vec -= 0.003f;	//ベクトルに減算
-	else
-	{								//フラグ無効の場合
-		m_a = 0;		//alpha = 0
-		m_a_vec = 0;	//	vec = 0
 	}
 
-	m_a += m_a_vec;	//ベクトルを反映
+	
+	//▼「クリックでホーム画面」＆「クリックで進める」の文字点滅処理
+	//ゲームクリアフラグOFF時はカウント終了後実行されるが、
+	//一度でもクリックされるとその後実行されなくなる。
+	//ゲームクリアフラグON時はゲームクリアメッセージ全表示後のみ実行される。
+	if (m_Game_Clear_f == false && m_alpha == INI_ALPHA || m_page_nam == 2)
+	{
+		//フラグ有効の場合
+		if (m_a_f == true)
+		{
+			if (m_a <= 0.5)			//0.5で切り替えて、クリック文字のalpha調整
+				m_a_vec += 0.003f;	//ベクトルに加算
+			else
+				m_a_vec -= 0.003f;	//ベクトルに減算
+		}
+		//フラグ無効の場合
+		else
+		{
+			m_a = 0;		//alpha = 0
+			m_a_vec = 0;	//	vec = 0
+		}
 
-
+		m_a += m_a_vec;	//ベクトルを反映
+	}
 }
 
 //ドロー
@@ -168,6 +220,7 @@ void CObjFightClear::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom= 64.0f;
 	
+	//▽ゲーム未クリア時の処理
 	if (m_Game_Clear_f == false)
 	{
 		dst.m_top    =  50.0f;
@@ -177,7 +230,7 @@ void CObjFightClear::Draw()
 		//36番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(36, &src, &dst, d, 0.0f);
 
-		float c0[4] = { 1.0f,1.0f,1.0f,m_alpha };//charの色
+		float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
 		Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);
 
 		float c[4] = { 0.0f,0.0f,0.0f,m_alpha };//charの色
@@ -222,8 +275,10 @@ void CObjFightClear::Draw()
 		case 5:Font::StrDraw(L"　 ステロイド投与",		800, 410, 40, c); break;
 		}
 	}
+	//▽ゲームクリア時の処理
 	else
 	{
+		//▼ゲームクリアメッセージ表示
 		if(m_page_nam == 1)
 		{
 			dst.m_top    =  50.0f;
@@ -251,14 +306,9 @@ void CObjFightClear::Draw()
 			float c[4] = { 0.0f,0.0f,0.0f,1.0f };//charの色
 			Font::StrDraw(L"すべての惑星を捕食した",	 300,  80, 50, c);
 			Font::StrDraw(L"この銀河のトップに君臨した", 250, 180, 50, c);
-		}
-		else if(m_page_nam == 3)
-		{
-			Scene::SetScene(new CSceneGameClear());	//シーン移行
-		}
 
-		float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
-		Font::StrDraw(L"クリックで進める", 350, 600, 50, c0);
+			float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
+			Font::StrDraw(L"クリックで進む", 350, 600, 50, c0);
+		}
 	}
-	
 }

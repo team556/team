@@ -36,6 +36,8 @@ void CObjFightOver::Init()
 
 	m_cnt = 3 * 60;	//3秒カウント
 
+	m_alpha = INI_ALPHA;
+
 
 	//▼グローバル変数(全保存データ)リセット処理
 	g_Stage_progress = 1;
@@ -80,8 +82,6 @@ void CObjFightOver::Init()
 	g_Aluminum_num = 0;
 	g_gus_num = 0;
 	g_Raremetal_num = 0;
-
-	m_alpha = INI_ALPHA;
 }
 
 //アクション
@@ -97,6 +97,7 @@ void CObjFightOver::Action()
 
 	if (m_cnt == 0) 
 	{							//カウント終了後
+		m_a_f = true;			//フラグ有効
 		if (m_mou_l == true || m_alpha< INI_ALPHA)					//クリックした場合
 		{
 			if (m_alpha == INI_ALPHA)
@@ -109,7 +110,6 @@ void CObjFightOver::Action()
 			if (m_alpha <= 0.0f)
 			{
 				Scene::SetScene(new CSceneTitle());	//シーン移行
-				m_a_f = true;			//フラグ有効
 			}
 		}
 
@@ -147,7 +147,7 @@ void CObjFightOver::Draw()
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(2, &src, &dst, d, 0.0f);
 
-	float c0[4] = { 1.0f,1.0f,1.0f,m_alpha };//charの色
+	float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
 	Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
 
 	float c[4] = { 0.7f,0.0f,0.0f,m_alpha };//charの色

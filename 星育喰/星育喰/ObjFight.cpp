@@ -145,29 +145,50 @@ void CObjFight::Action()
 	if (m_end_f == true)
 	{
 		m_end_f = false;
-		if (g_Challenge_enemy == 0)									//左から１番目
-		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(2000, 0, 20, 1);	
+
+		//▽引数メモ
+		//以下の順番で引数を入れて下さい。
+		//(住人数, サイズ(HP), 資材A名前, 資材Aアドレス, 資材数A, 資材B名前, 資材Bアドレス, 資材数B, スペシャル技)
+		//▽詳細説明
+		// 住人数:		　獲得できる住人数。この値分、住人数が増加する。
+		// サイズ(HP):	  獲得できるサイズ(HP)。この値分、サイズ(HP)が上昇する。
+		// 資材A名前:	　獲得出来る資材(1つ目)の名前を入力してください。
+		// 資材Aアドレス: 獲得出来る資材(1つ目)のグローバル変数アドレスを入力してください。
+		// 資材数A:		  獲得出来る資材(1つ目)の数。この値分、資材数が増加する。
+		// 資材B名前:	　獲得出来る資材(2つ目)の名前。※2つ目がない場合、入力しないでください。
+		// 資材Bアドレス: 獲得出来る資材(2つ目)のアドレス。※2つ目がない場合、入力しないでください。
+		// 資材数B:		  獲得出来る資材(2つ目)の数。※2つ目がない場合、入力しないでください。
+		// スペシャル技:  獲得できるスペシャル技。以下の数字を入力すると、その値に対応するスペシャル技を取得出来ます。※獲得できない場合は0を入力してください。
+		//	(1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
+
+		//左から１番目
+		if (g_Challenge_enemy == 0)									
+		{					
+			CObjFightClear* crer = new CObjFightClear(2000, 20, L"木材", &g_Wood_num, 80, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 1)									//左から２番目
-		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(10000, 1, 60, 0);
+		//左から２番目
+		if (g_Challenge_enemy == 1)									
+		{				
+			CObjFightClear* crer = new CObjFightClear(10000, 60, L"銀", &g_Silver_num, 50, L"木材", &g_Wood_num, 60, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 2)									//左から３番目
-		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(15000, 2, 80, 0);
+		//左から３番目
+		if (g_Challenge_enemy == 2)									
+		{
+			CObjFightClear* crer = new CObjFightClear(15000, 80, L"木材", &g_Wood_num, 80, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 3)									//左から４番目
-		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(3000, 3, 30, 0);
+		//左から４番目
+		if (g_Challenge_enemy == 3)									
+		{
+			CObjFightClear* crer = new CObjFightClear(3000, 30, L"銀", &g_Silver_num, 50, L"木材", &g_Wood_num, 60, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		if (g_Challenge_enemy == 4)									//ボス
-		{//							(住人, 資材, 大きさ, 技 1～5取得スキル)
-			CObjFightClear* crer = new CObjFightClear(1000, 4, 90, 2);
+		//ボス
+		if (g_Challenge_enemy == 4)									
+		{
+			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 80, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
