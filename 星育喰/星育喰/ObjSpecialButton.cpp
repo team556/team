@@ -104,7 +104,6 @@ void CObjSpecialButton::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-
 	//▼プレイヤー惑星スペシャル技処理
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w)) && 	//X軸範囲
 		(m_y <= m_mou_y && m_mou_y <= (m_y + m_h)) &&	//Y軸範囲
@@ -285,6 +284,13 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 {
 	m_is_invocating[Planet_id] = true;		//発動中管理フラグON
 
+
+	if (m_sptime[Planet_id] == false)
+	{
+		//スペシャル技発動音
+		Audio::Start(10);
+		m_sptime[Planet_id] = true;
+	}
 
 	//▼スペシャル技発動演出
 	if (m_is_used_special[Planet_id] == false)
