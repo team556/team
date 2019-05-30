@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjRocket :public CObjFight //CObjFightを継承する
 {
 public:
-	CObjRocket(float x, float y,bool type,int n);
+	CObjRocket(float x, float y,int type,int n);
 	~CObjRocket() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -41,7 +41,7 @@ private:
 
 	int m_Enemy_Pod_Level;	//敵のポッドレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
-	bool m_type;		//生成時のタイプ(true主人公)
+	int m_type;		//生成時のタイプ(true主人公)
 	int m_podhp;		//ポッド現在HP
 	int m_pod_max_hp;	//ポッド最大HP
 	int m_hp_cnt;		//無敵タイム

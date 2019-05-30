@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\DrawTexture.h"
+#include "GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -35,6 +36,16 @@ void CSceneGameClear::InitScene()
 	//オブジェクト作成
 	CObjGameClear* obj = new CObjGameClear();	//オブジェクト作成
 	Objs::InsertObj(obj, OBJ_GAME_CLEAR, 10);	//オブジェクト登録
+
+	//音楽読み込み
+	Audio::LoadAudio(0, L"エンドロール.wav", BACK_MUSIC);
+
+	//クリック音
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+
+	//音楽スタート
+	Audio::Start(0);
+
 }
 
 //ゲームメイン実行中メソッド
