@@ -116,7 +116,7 @@ void CObjRocket::Init()
 		}
 
 	}
-	else if(m_type <= 1)
+	else if(m_type != 0)
 	{
 		m_x -= 100;
 		if (ButtonUE == 1)
