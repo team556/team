@@ -122,8 +122,8 @@ void CSceneFight::InitScene()
 	//HPゲージ(リキャストゲージにも使用)を読み込み32番に登録
 	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
-	//メッセージウインドウを読み込み36番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 36, TEX_SIZE_512);
+	//メッセージウインドウを読み込み33番に登録
+	Draw::LoadImage(L"メッセージウインドウ(仮).png", 33, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");

@@ -6,7 +6,6 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
-#include "ObjFightClear.h"
 
 //使用するネームスペース
 using namespace GameL;

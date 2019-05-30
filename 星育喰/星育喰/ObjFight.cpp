@@ -101,10 +101,14 @@ void CObjFight::Action()
 	if (m_cnt > 0)	//0より大きい時
 		m_cnt--;	//カウントダウン
 	
-	//背景縮小処理
-	m_scale_down_cnt += m_scale_down_speed;
-	if (m_scale_down_speed > 0)
-		m_scale_down_speed -= 0.00001f;
+	//背景拡大処理
+	//※戦闘終了後は実際されない。
+	if (battle_end == false)
+	{
+		m_scale_down_cnt += m_scale_down_speed;
+		if (m_scale_down_speed > 0)
+			m_scale_down_speed -= 0.00001f;
+	}
 
 	//戦闘開始時表示される"スタート"の文字を徐々に透明化
 	if (m_scale_down_cnt >= 0.5 && m_font_a >= 0) {

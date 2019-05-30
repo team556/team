@@ -24,14 +24,18 @@ private:
 	//bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
-	float m_a;		//alpha 透明度
-	float m_a_vec;	//m_aベクトル
-	bool m_a_f;		//不透明化フラグ
+	float m_click_a;		//alpha 透明度(クリック催促フォント用)
+	float m_click_a_vec;	//m_click_aベクトル
+	bool m_click_a_f;		//不透明化フラグ
+	float m_result_a;		//alpha(透過度)(戦闘結果フォント用)
+	float m_alpha;		//その他透過度(上記以外の透過度変更はコレで行う)
 
-	int m_people;	//住民
-	int m_mrl;		//マテリアルズ
-	int m_skill;	//スペシャル技
-	int m_large;	//サイズ
+	int		m_people;		//獲得住民数
+	int		m_large;		//獲得サイズ(HP)数
+	wchar_t m_mat_name[2][20];//獲得資材名
+	int		*m_mat_type[2];	//獲得資材種類 & 現在数
+	int		m_mat_num[2];	//獲得資材数
+	int		m_skill;		//獲得スペシャル技
 
 	int m_cnt;		//カウント
 	int m_cnt_max;	//カウントマックス
@@ -40,6 +44,4 @@ private:
 
 	bool m_Stage_Clear_f;	//ステージクリアフラグ
 	bool m_Game_Clear_f;	//ゲーム　クリアフラグ
-
-	float m_alpha;		//最終的に全部消すための透過度(アルファ値)
 };
