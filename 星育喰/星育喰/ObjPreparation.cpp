@@ -24,7 +24,7 @@ using namespace GameL;
 //グローバル変数の定義
 int g_Stage_progress = 1;
 int g_Challenge_enemy = 0;
-int g_Special_equipment = 1;//デバッグ用に1にしている。後で0に戻すように。
+int g_Special_equipment = 0;//装備中のスペシャル技
 bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 

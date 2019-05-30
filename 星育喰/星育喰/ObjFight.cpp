@@ -164,31 +164,31 @@ void CObjFight::Action()
 		//ç∂Ç©ÇÁÇPî‘ñ⁄
 		if (g_Challenge_enemy == 0)									
 		{					
-			CObjFightClear* crer = new CObjFightClear(2000, 20, L"ñÿçﬁ", &g_Wood_num, 80, 1);
+			CObjFightClear* crer = new CObjFightClear(2000, 20, L"ñÿçﬁ", &g_Wood_num, 80, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ç∂Ç©ÇÁÇQî‘ñ⁄
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(10000, 60, L"ã‚", &g_Silver_num, 50, L"ñÿçﬁ", &g_Wood_num, 60, 0);
+			CObjFightClear* crer = new CObjFightClear(10000, 60, L"ã‚", &g_Silver_num, 50, L"ñÿçﬁ", &g_Wood_num, 60, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ç∂Ç©ÇÁÇRî‘ñ⁄
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(15000, 80, L"ñÿçﬁ", &g_Wood_num, 80, 0);
+			CObjFightClear* crer = new CObjFightClear(15000, 80, L"ñÿçﬁ", &g_Wood_num, 80, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ç∂Ç©ÇÁÇSî‘ñ⁄
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(3000, 30, L"ã‚", &g_Silver_num, 50, L"ñÿçﬁ", &g_Wood_num, 60, 0);
+			CObjFightClear* crer = new CObjFightClear(3000, 30, L"ã‚", &g_Silver_num, 50, L"ñÿçﬁ", &g_Wood_num, 60, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//É{ÉX
 		if (g_Challenge_enemy == 4)									
 		{
-			CObjFightClear* crer = new CObjFightClear(1000, 20, L"ñÿçﬁ", &g_Wood_num, 80, 2);
+			CObjFightClear* crer = new CObjFightClear(1000, 20, L"ñÿçﬁ", &g_Wood_num, 80, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
