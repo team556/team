@@ -5,7 +5,7 @@
 using namespace GameL;
 
 //マクロ
-#define DETAIL_MES_MAX_FONT_LINE (4) //詳細説明の最大フォント行数
+#define DETAIL_MES_MAX_FONT_LINE (5) //詳細説明の最大フォント行数
 #define DETAIL_MES_CHAR_DATA_STORE_NUM (100) //詳細説明の文字データ格納可能数
 
 //オブジェクト：戦闘準備画面

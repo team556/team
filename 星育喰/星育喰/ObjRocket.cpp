@@ -648,7 +648,10 @@ void CObjRocket::Draw()
 		}
 
 		if (m_type == false) { //-----------“G‚ÌÔEÂE—Î‚ğ•ª‚¯‚é”»’è
-			m_r += 0.05 + m_mov_spd * 2;
+			if (m_get_line == 3)
+				m_r -= 0.02 + m_mov_spd * 2;
+			else
+				m_r += 0.05 + m_mov_spd * 2;
 
 			switch (ButtonU) {
 			case 1://---------ƒ‰ƒ“ƒ_ƒ€‚Ìî•ñ‚ª1‚È‚ç

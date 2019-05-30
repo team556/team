@@ -166,7 +166,7 @@ void CObjInstitute::Init()
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
 	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[0][1], L"鉄");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[0][1], L"ガス");		 //レベルが2の時の必要素材名
 	//▽ディフェンス武器
 	swprintf_s(m_Equ_next_Mat_name[1][0], L"銀");			 //レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[1][1], L"鉄");		 //レベルが2の時の必要素材名
@@ -185,7 +185,7 @@ void CObjInstitute::Init()
 	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
 	//▽パワー武器
 	m_Equ_next_Mat_type[0][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[0][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[0][1] = &g_gus_num;	//レベルが2の時の必要素材種類
 	//▽ディフェンス武器
 	m_Equ_next_Mat_type[1][0] = &g_Silver_num;	//レベルが1の時の必要素材種類
 	m_Equ_next_Mat_type[1][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
@@ -201,19 +201,19 @@ void CObjInstitute::Init()
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
-	m_Equ_next_Mat_num[0][0] = 20;	 //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[0][1] = 40;  //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[0][0] = 30;	 //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[0][1] = 20;  //レベルが2の時の必要素材数
 	//▽ディフェンス武器
 	m_Equ_next_Mat_num[1][0] = 40;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[1][1] = 20; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[1][1] = 30; //レベルが2の時の必要素材数
 	//▽スピード武器
-	m_Equ_next_Mat_num[2][0] = 10;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[2][1] = 50; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[2][0] = 30;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[2][1] = 25; //レベルが2の時の必要素材数
 	//▽バランス武器
 	m_Equ_next_Mat_num[3][0] = 30;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[3][1] = 30; //レベルが2の時の必要素材数
 	//▽ポッド
-	m_Equ_next_Mat_num[4][0] = 40;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[4][0] = 45;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[4][1] = 50;  //レベルが2の時の必要素材数
 
 //-----------------------------------------------------------------------------------------------------
@@ -234,7 +234,7 @@ void CObjInstitute::Init()
 
 	//▼研究所の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 10;	//レベルが1の時の必要素材数
-	m_Facility_next_Mat_num[1] = 30;	//レベルが2の時の必要素材数
+	m_Facility_next_Mat_num[1] = 60;	//レベルが2の時の必要素材数
 
 
 
