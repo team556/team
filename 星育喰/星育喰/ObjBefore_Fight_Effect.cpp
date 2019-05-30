@@ -8,7 +8,7 @@
 using namespace GameL;
 
 //マクロ
-#define INI_BLACK_STAR_EFFECT_SIZE (1400.0f) //黒星の初期サイズ
+#define INI_BLACK_STAR_EFFECT_SIZE (1500.0f) //黒星の初期サイズ
 
 //イニシャライズ
 void CObjBefore_Fight_Effect::Init()

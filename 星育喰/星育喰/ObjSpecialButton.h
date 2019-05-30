@@ -59,7 +59,7 @@ private:
 	float m_Immortality_size[2];	//[スペシャル技:Immortality]エフェクト画像サイズ変更用
 
 	bool  m_sptime[2];	//Immortality & ステロイド投与SE鳴らすフラグ
-	
+	bool  m_sp_invocation_SE[2];//スペシャル技発動SE用
 
 	float m_Special_effect_alpha[2];	//スペシャル技エフェクト画像のalpha(透過度)
 	float m_Special_effect_alpha_vec[2];//スペシャル技エフェクト画像の透過度ベクトル
