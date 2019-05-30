@@ -53,7 +53,7 @@ void CObjBarracks::Init()
 
 	//▼兵舎の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 50;		//レベルが1の時の必要素材数
-	m_Facility_next_Mat_num[1] = 300;	//レベルが2の時の必要素材数
+	m_Facility_next_Mat_num[1] = 100;	//レベルが2の時の必要素材数
 }
 
 //アクション
