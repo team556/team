@@ -85,52 +85,57 @@ void CObjRocket::Init()
 	
 	m_mou_f = false;//マウスフラグ
 
+	if (m_type == 0)
+		ButtonUP = ButtonU;
+	else
+		ButtonUE = ButtonU;
+
 	//当たり判定用HitBox作成
 	if (m_type == 0) 
 	{
 		m_x += 100;
-		if (ButtonU == 1)
+		if (ButtonUP == 1)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODP, 1);
 		}
-		else if (ButtonU == 2)
+		else if (ButtonUP == 2)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
 		}
-		else if (ButtonU == 3)
+		else if (ButtonUP == 3)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
 		}
-		else if (ButtonU == 4)
+		else if (ButtonUP == 4)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODB, 1);
 		}
-		else if (ButtonU == 5)
+		else if (ButtonUP == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
 		}
 
 	}
-	else 
+	else if(m_type <= 1)
 	{
 		m_x -= 100;
-		if (ButtonU == 1)
+		if (ButtonUE == 1)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
 		}
-		else if (ButtonU == 2)
+		else if (ButtonUE == 2)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
 		}
-		else if (ButtonU == 3)
+		else if (ButtonUE == 3)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
 		}
-		else if (ButtonU == 4)
+		else if (ButtonUE == 4)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
 		}
-		else if (ButtonU == 5)
+		else if (ButtonUE == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
 		}
@@ -156,7 +161,7 @@ void CObjRocket::Init()
 		m_pod_max_hp = 1;
 	}
 	else if (m_type == 0) {		//自惑星の時に(ポッドのLv*10)+(研究所のLv*5)をHPに代入する
-		m_pod_max_hp = (g_Pod_equip_Level * 10) + (g_Ins_Level * 5);
+		m_pod_max_hp = (g_Pod_equip_Level * 10)/* + (g_Ins_Level * 5)*/;
 	}
 	else if (m_type == 1) {		//敵惑星の時は固定値
 		m_pod_max_hp = 10;
@@ -211,11 +216,13 @@ void CObjRocket::Init()
 
 	//g_Missile_pow = g_Missile_pow * (10 / 2);
 
-	//m_Enemy_damage = 10;//エネミーが受けるダメージ量(プレイヤーの攻撃力)
-	//m_Player_damage = 10;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
+	m_Enemy_damage = 10;//エネミーが受けるダメージ量(プレイヤーの攻撃力)
+	m_Player_damage = 10;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
 
-	//プレイヤーの火力を装備レベルによって変える(ポッドレベル * 10)
-	switch (ButtonU) {
+	if (m_type == 0)
+	{
+		//プレイヤーの火力を装備レベルによって変える(ポッドレベル * 10)
+		switch (ButtonUP) {
 		case 1:
 			m_Enemy_damage = g_Pow_equip_Level * 10;
 			break;
@@ -232,36 +239,40 @@ void CObjRocket::Init()
 			m_Enemy_damage = 3;
 			break;
 		}
-	if (ButtonU != 5)						//ミサイルは火力固定のため省く
-		m_Enemy_damage += g_Bar_Level * 5;	//決まった火力+兵舎のLv*5する
+		//if (ButtonU != 5)						//ミサイルは火力固定のため省く
+		//	m_Enemy_damage += g_Bar_Level * 5;	//決まった火力+兵舎のLv*5する
+	}
 
-	//敵の火力を敵によって変える
-	switch (m_type) {
-		case 1:
-			m_Player_damage = 3;		//いったんミサイルの攻撃力(3)を代入
-			if (ButtonU != 5)			//ミサイル以外かどうか判定
-				m_Player_damage = 10;	//ミサイル以外なら本来のダメージを代入
-			break;
-		case 2:
-			m_Player_damage = 3;
-			if (ButtonU != 5)
-				m_Player_damage = 20;
-			break;
-		case 3:
-			m_Player_damage = 3;
-			if (ButtonU != 5)
-				m_Player_damage = 20;
-			break;
-		case 4:
-			m_Player_damage = 3;
-			if (ButtonU != 5)
-				m_Player_damage = 10;
-			break;
-		case 5:
-			m_Player_damage = 3;
-			if (ButtonU != 5)
-				m_Player_damage = 30;
-			break;
+	else if (m_type != 0)
+	{
+			//敵の火力を敵によって変える
+			switch (m_type) {
+			case 1:
+				m_Player_damage = 3;		//いったんミサイルの攻撃力(3)を代入
+				if (ButtonUE != 5)			//ミサイル以外かどうか判定
+					m_Player_damage = 10;	//ミサイル以外なら本来のダメージを代入
+				break;
+			case 2:
+				m_Player_damage = 3;
+				if (ButtonUE != 5)
+					m_Player_damage = 20;
+				break;
+			case 3:
+				m_Player_damage = 3;
+				if (ButtonUE != 5)
+					m_Player_damage = 20;
+				break;
+			case 4:
+				m_Player_damage = 3;
+				if (ButtonUE != 5)
+					m_Player_damage = 10;
+				break;
+			case 5:
+				m_Player_damage = 3;
+				if (ButtonUE != 5)
+					m_Player_damage = 30;
+				break;
+			}
 	}
 }
 
@@ -371,11 +382,11 @@ void CObjRocket::Action()
 			if (battle_end == false)
 			{
 				CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
-				if (m_type == 0 && g_Special_equipment == 5 && Special->GetInvocating(0) == true && ButtonU != 5)
+				if (m_type == 0 && g_Special_equipment == 5 && Special->GetInvocating(0) == true && ButtonUP != 5)
 				{
 					Special->SetBuff_count(0);//破壊された強化ポッド数をカウントする
 				}
-				if (m_type != 0 && Special->GetSpecial_equip() == 5 && Special->GetInvocating(1) == true && ButtonU != 5)
+				if (m_type != 0 && Special->GetSpecial_equip() == 5 && Special->GetInvocating(1) == true && ButtonUE != 5)
 				{
 					Special->SetBuff_count(1);//破壊された強化ポッド数をカウントする
 				}
@@ -437,7 +448,7 @@ void CObjRocket::Action()
 		//※エネミーがダメージを受ける時の処理
 		if (hit->CheckElementHit(ELEMENT_POD) == true)
 		{
-			if (ButtonU == 1)//敵の種類１(パワー)がプレイヤーのポッドと当たった場合
+			if (ButtonUE == 1)//敵の種類１(パワー)がプレイヤーのポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//プレイヤーのスピードポッド当たり時のHP
 				{
@@ -456,7 +467,7 @@ void CObjRocket::Action()
 					m_podhp -= m_Enemy_damage * damage_buff[0];
 				}
 			}
-			else if (ButtonU == 2)//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
+			else if (ButtonUE == 2)//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
 				{
@@ -475,7 +486,7 @@ void CObjRocket::Action()
 					m_podhp -= m_Enemy_damage * damage_buff[0];
 				}
 			}
-			else if (ButtonU == 3)//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
+			else if (ButtonUE == 3)//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//プレイヤーのパワーポッド当たり時のHP
 				{
@@ -494,11 +505,11 @@ void CObjRocket::Action()
 					m_podhp -= m_Enemy_damage * damage_buff[0];
 				}
 			}
-			else if (ButtonU == 4)//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
+			else if (ButtonUE == 4)//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
 			{
 				m_podhp -= m_Enemy_damage * damage_buff[0];
 			}
-			else if (ButtonU == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
+			else if (ButtonUE == 5)//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
 			{
 				m_podhp -= m_Enemy_damage;
 			}
@@ -508,7 +519,7 @@ void CObjRocket::Action()
 		//※プレイヤーがダメージを受ける時の処理
 		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)
 		{
-			if (ButtonU == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
+			if (ButtonUP == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
 				{
@@ -527,7 +538,7 @@ void CObjRocket::Action()
 					m_podhp -= m_Player_damage * damage_buff[1];
 				}
 			}
-			else if (ButtonU == 2)//自分の種類２(ディフェンス)が敵のポッドと当たった場合
+			else if (ButtonUP == 2)//自分の種類２(ディフェンス)が敵のポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
 				{
@@ -546,7 +557,7 @@ void CObjRocket::Action()
 					m_podhp -= m_Player_damage * damage_buff[1];
 				}
 			}
-			else if (ButtonU == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
+			else if (ButtonUP == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)	//敵のパワーポッド当たり時のHP
 				{
@@ -566,11 +577,11 @@ void CObjRocket::Action()
 				}
 
 			}
-			else if (ButtonU == 4)//自分の種類４(バランス)が敵のポッドとミサイルに当たった場合
+			else if (ButtonUP == 4)//自分の種類４(バランス)が敵のポッドとミサイルに当たった場合
 			{
 				m_podhp -= m_Player_damage * damage_buff[1];
 			}
-			else if (ButtonU == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
+			else if (ButtonUP == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
 			{
 				m_podhp -= m_Player_damage;
 			}
@@ -602,7 +613,7 @@ void CObjRocket::Draw()
 	if (m_type == 0) 
 	{
 		m_r += 0.05 + m_mov_spd * 2;
-		if (ButtonU >= 1 && ButtonU <= 4)
+		if (ButtonUP >= 1 && ButtonUP <= 4)
 		{
 			//ポッドの描画情報
 			src.m_top = 0.0f;
@@ -632,7 +643,7 @@ void CObjRocket::Draw()
 		 //-----------ボタン赤・青・緑を分ける判定
 		
 
-		switch (ButtonU) {
+		switch (ButtonUP) {
 		case 1:
 			Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, r, m_r + 180);  //赤ポッド
 			break;
@@ -655,7 +666,7 @@ void CObjRocket::Draw()
 	if(m_type != 0)
 	{
 		//敵ポッドの1～4の番号(ポッド)の描画情報
-		if (ButtonU >= 1 && ButtonU <= 4)
+		if (ButtonUE >= 1 && ButtonUE <= 4)
 		{
 			//ポッドの描画情報
 			src.m_top = 0.0f;
@@ -685,7 +696,7 @@ void CObjRocket::Draw()
 		if (m_type != 0) { //-----------敵の赤・青・緑を分ける判定
 			m_r += 0.05 + m_mov_spd * 2;
 
-			switch (ButtonU) {
+			switch (ButtonUE) {
 			case 1://---------ランダムの情報が1なら
 				Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, r, m_r);  //赤ポッド
 				break;
@@ -784,4 +795,6 @@ void CObjRocket::Draw()
 	
 	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
+
+
 }

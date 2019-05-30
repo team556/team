@@ -34,7 +34,10 @@ private:
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
 
-	int ButtonU;		//プレイヤーが撃ったポッドの種類
+	int ButtonU;		//ポッドの種類
+
+	int ButtonUE;		//エネミーが撃ったポッドの種類
+	int ButtonUP;		//プレイヤーが撃ったポッドの種類
 
 	int m_time;
 	int Enemypod;
