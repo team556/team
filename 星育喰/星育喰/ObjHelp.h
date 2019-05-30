@@ -6,7 +6,7 @@
 using namespace GameL;
 
 //オブジェクト：タイトル
-class CObjHelp :public CObj
+class CObjHelp :public CObjTraining //CObjTrainingを継承する
 {
 public:
 	CObjHelp(int Scene_num) { m_Scene_nam = Scene_num; }//作成時に渡された値を、m_Scene_namに代入

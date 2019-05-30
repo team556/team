@@ -90,6 +90,7 @@ void CObjPlanet::Init()
 	if (m_type == 0) {
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
 		m_img_nam = 3;
+
 	}
 	else if (m_type == 1) {	//左から1番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
@@ -218,12 +219,15 @@ void CObjPlanet::Action()
 				}
 			}
 			if (m_type == 0) {
-				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) {
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) 
+				{
 					m_eat_f = true;		//喰うフラグ有効
 				}
 			}
+
 			else {
-				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz)) {
+				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz))
+				{
 					m_eat_f = true;		//喰うフラグ有効
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -243,10 +247,14 @@ void CObjPlanet::Action()
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
+				Audio::Start(9);
+
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 				pla->SetDelF();
+				Audio::Start(9);
+
 			}	
 		}
 	}
