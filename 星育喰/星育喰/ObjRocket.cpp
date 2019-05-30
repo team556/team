@@ -317,18 +317,7 @@ void CObjRocket::Action()
 	//ポッド消滅処理
 	if (m_del == true)
 	{
-		if (m_bom != 5)	//５以外の場合
-		{
-			m_bom = rand() % 5;//ランダムな爆発を起こす
-			m_bomcount++;	//ボムカウントをプラス
-			if (m_bomcount > 2)	//ボムカウントが2より大きくなったら（3以上）
-			{
-				m_bom = 5;	//大きい爆発に変更
-				m_bomcount = 0;	//カウントを0に戻す
-			}
-		}
-
-		if (m_ani == 4 && m_bom == 5)
+		if (m_ani == 3 && m_bom == 0)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
 			//ポッドが破壊される度にその数をカウントする
@@ -345,21 +334,9 @@ void CObjRocket::Action()
 					Special->SetBuff_count(1);//破壊された強化ポッド数をカウントする
 				}
 			}
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
 		}
-		if (m_ani == 4)
-		{
-			m_ani = 0;
-			m_bom = 5;
-		}
-		if (m_bom == 5)
-		{
-			//大きい爆発音を出す
-			Audio::Start(5);
-		}
-		
 	}
 	
 	//▼ポッドのダメージ処理
@@ -373,6 +350,7 @@ void CObjRocket::Action()
 		{
 			m_del = true;				//消滅処理フラグON
 			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
+			Audio::Start(5);
 		}
 
 		//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
@@ -382,6 +360,7 @@ void CObjRocket::Action()
 		{
 			m_del = true;				//消滅処理フラグON
 			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
+			Audio::Start(5);
 		}
 
 
@@ -390,12 +369,14 @@ void CObjRocket::Action()
 			//位置を更新//惑星と接触しているかどうかを調べる
 			m_del = true;
 			hit->SetInvincibility(true);
+			Audio::Start(5);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == true)//敵の惑星に当たった時かつ自弾
 		{
 			//位置を更新//惑星と接触しているかどうかを調べる
 			m_del = true;
 			hit->SetInvincibility(true);
+			Audio::Start(5);
 		}
 
 		//敵のポッドがプレイヤーのポッドにぶつかった時の判定
@@ -473,6 +454,7 @@ void CObjRocket::Action()
 		//※プレイヤーがダメージを受ける時の処理
 		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)
 		{
+			Audio::Start(5);
 			if (ButtonU == 1)//自分の種類１(パワー)が敵のポッドと当たった場合
 			{
 				if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//敵のスピードポッド当たり時のHP
@@ -698,55 +680,10 @@ void CObjRocket::Draw()
 	{
 		dst.m_top = 0.0f + m_y;
 		dst.m_left = 0.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 29.0f + m_y;
-	}
-
-	//真ん中
-	else if (m_bom == 1)
-	{
-		dst.m_top = 0.0f + m_y+10;
-		dst.m_left = 0.0f + m_x+10;
-		dst.m_right = 42.0f + m_x;
-		dst.m_bottom = 39.0f + m_y;
-	}
-
-	//右斜め上
-	else if (m_bom == 2)
-	{
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 32.0f + m_x;
-		dst.m_right = 64.0f + m_x;
-		dst.m_bottom = 29.0f + m_y;
-	}
-
-	//左斜め下
-	else if (m_bom == 3)
-	{
-		dst.m_top = 29.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 58.0f + m_y;
-	}
-
-	//右斜め下
-	else if (m_bom == 4)
-	{
-		dst.m_top = 29.0f + m_y;
-		dst.m_left = 32.0f + m_x;
-		dst.m_right = 64.0f + m_x;
-		dst.m_bottom = 58.0f + m_y;
-	}
-	//大きいやつ
-	else if (m_bom == 5)
-	{
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
 		dst.m_right = 50.0f + m_x;
 		dst.m_bottom = 50.0f + m_y;
 	}
 
-	
 	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 }
