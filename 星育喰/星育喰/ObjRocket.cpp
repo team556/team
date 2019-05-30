@@ -151,13 +151,14 @@ void CObjRocket::Init()
 	m_bom = 0.3f;
 
 	//ポッドのHPを決める
-	if (m_type == 0) {
-		if (ButtonU != 5)
-			m_pod_max_hp = g_Pod_equip_Level * 10;
-		else
-			m_pod_max_hp = 1;
+	if (ButtonU == 5)			//ポッドがミサイルの時のみHPを1にする
+	{
+		m_pod_max_hp = 1;
 	}
-	else if (m_type == 1) {
+	else if (m_type == 0) {		//自惑星の時に(ポッドのLv*10)+(研究所のLv*5)をHPに代入する
+		m_pod_max_hp = (g_Pod_equip_Level * 10) + (g_Ins_Level * 5);
+	}
+	else if (m_type == 1) {		//敵惑星の時は固定値
 		m_pod_max_hp = 10;
 	}
 	else if (m_type == 2) {
@@ -169,7 +170,7 @@ void CObjRocket::Init()
 	else if (m_type == 4) {
 		m_pod_max_hp = 10;
 	}
-	else {
+	else if (m_type == 5) {
 		m_pod_max_hp = 30;
 	}
 
@@ -227,28 +228,40 @@ void CObjRocket::Init()
 		case 4:
 			m_Enemy_damage = g_Bal_equip_Level * 10;
 			break;
-		case 5:
+		case 5:					//ミサイルの時は火力3固定
 			m_Enemy_damage = 3;
 			break;
 		}
+	if (ButtonU != 5)						//ミサイルは火力固定のため省く
+		m_Enemy_damage += g_Bar_Level * 5;	//決まった火力+兵舎のLv*5する
 
 	//敵の火力を敵によって変える
 	switch (m_type) {
-	case 1:
-		m_Player_damage = 10;
-		break;
-	case 2:
-		m_Player_damage = 20;
-		break;
-	case 3:
-		m_Player_damage = 20;
-		break;
-	case 4:
-		m_Player_damage = 10;
-		break;
-	case 5:
-		m_Player_damage = 30;
-		break;
+		case 1:
+			m_Player_damage = 3;		//いったんミサイルの攻撃力(3)を代入
+			if (ButtonU != 5)			//ミサイル以外かどうか判定
+				m_Player_damage = 10;	//ミサイル以外なら本来のダメージを代入
+			break;
+		case 2:
+			m_Player_damage = 3;
+			if (ButtonU != 5)
+				m_Player_damage = 20;
+			break;
+		case 3:
+			m_Player_damage = 3;
+			if (ButtonU != 5)
+				m_Player_damage = 20;
+			break;
+		case 4:
+			m_Player_damage = 3;
+			if (ButtonU != 5)
+				m_Player_damage = 10;
+			break;
+		case 5:
+			m_Player_damage = 3;
+			if (ButtonU != 5)
+				m_Player_damage = 30;
+			break;
 	}
 }
 
@@ -438,7 +451,7 @@ void CObjRocket::Action()
 				{
 					m_podhp -= 3;
 				}
-				else											//プレイヤーのパワーポッド、バランスポッド、ミサイル当たり時のHP
+				else			//プレイヤーのパワーポッド、バランスポッド、ミサイル当たり時のHP
 				{
 					m_podhp -= m_Enemy_damage * damage_buff[0];
 				}
