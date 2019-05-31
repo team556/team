@@ -132,23 +132,27 @@ void CObjPreparation::Init()
 	//▽1ステージ　敵惑星1(左から1番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][0][0], L"難易度　★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][0][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材30・鉄");//3行目
-	swprintf_s(m_Enemy_detail_message[0][0][3], L"ディフェンス重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材10・鉄40");//3行目
+	swprintf_s(m_Enemy_detail_message[0][0][3], L"Fracture ray");//4行目
+	swprintf_s(m_Enemy_detail_message[0][0][4], L"ディフェンス重視");//5行目
 	//▽1ステージ　敵惑星2(左から2番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][1][0], L"難易度　★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][1][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][1][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][1][3], L"パワー重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][1][2], L"アルミ60・レアメタル50");//3行目
+	swprintf_s(m_Enemy_detail_message[0][1][3], L"Expiosion");//4行目
+	swprintf_s(m_Enemy_detail_message[0][1][4], L"パワー重視");//5行目
 	//▽1ステージ　敵惑星3(左から3番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][2][0], L"難易度　★★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][2][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][2][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][2][3], L"バランス重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][2][2], L"プラスチック40・ガス45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][2][3], L"ステロイド投与");//4行目
+	swprintf_s(m_Enemy_detail_message[0][2][4], L"バランス重視");//5行目
 	//▽1ステージ　敵惑星4(左から4番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][3][0], L"難易度　★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][3][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][3][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][3][3], L"スピード重視");//4行目
+	swprintf_s(m_Enemy_detail_message[0][3][2], L"鉄60・銀45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][3][3], L"Immotality");//4行目
+	swprintf_s(m_Enemy_detail_message[0][3][4], L"スピード重視");//5行目
 	//▽1ステージ　ボス惑星
 	swprintf_s(m_Enemy_detail_message[0][4][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[0][4][1], L"テスト");//2行目
@@ -287,7 +291,7 @@ void CObjPreparation::Action()
 	//▼戦闘画面移行演出
 	else if (m_Go_flag == true)
 	{
-		if (m_black_star_effect_size >= 1400.0f)
+		if (m_black_star_effect_size >= 1500.0f)
 		{
 			//★画像が画面全体を覆いつくした後、下記の撃破フラグ処理を実行
 			//その後、戦闘画面へシーン移行する。
@@ -304,7 +308,7 @@ void CObjPreparation::Action()
 
 			Scene::SetScene(new CSceneFight());//戦闘画面へシーン移行
 		}
-		else if (m_black_star_effect_size < 1400.0f)
+		else if (m_black_star_effect_size < 1500.0f)
 		{
 			//画面中央を起点として、★の画像を徐々に拡大
 			//そのまま画面全体を覆いつくす。
@@ -739,6 +743,13 @@ void CObjPreparation::Action()
 		{
 			m_Boss_vx[2] -= m_speed * 0.91;
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
+
+			if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
+			{
+				//正面を向かせる
+				m_Boss_clip_pos_x = 256.0f;
+				m_Boss_clip_pos_y = 128.0f;
+			}
 		}
 
 		//徐々に上記オブジェクトの画面内移動速度を減少させる
@@ -781,7 +792,8 @@ void CObjPreparation::Draw()
 		{ 1.0f,0.0f,0.0f,m_detail_message_alpha },//1行目は赤色
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//2行目は黒色
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//3行目は黒色
-		{ 0.0f,0.0f,1.0f,m_detail_message_alpha },//4行目は青色
+		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//4行目は黒色
+		{ 0.0f,0.0f,1.0f,m_detail_message_alpha },//5行目は青色
 	};
 
 	//最終確認[はい]ボタン用
@@ -1070,7 +1082,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_top = -85.0f;
 		m_detail_message_window_left = 20.0f;
 		m_detail_message_window_right = 320.0f;
-		m_detail_message_window_bottom = 85.0f;
+		m_detail_message_window_bottom = 120.0f;
 
 		//敵惑星詳細説明フォントの位置を設定
 		m_detail_message_font_x = 33.0f;
@@ -1082,7 +1094,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_top = -85.0f;
 		m_detail_message_window_left = 0.0f;
 		m_detail_message_window_right = -300.0f;
-		m_detail_message_window_bottom = 85.0f;
+		m_detail_message_window_bottom = 120.0f;
 
 		//敵惑星詳細説明フォントの位置を設定
 		m_detail_message_font_x = -288.0f;
@@ -1094,7 +1106,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_top = 20.0f;
 		m_detail_message_window_left = -150.0f;
 		m_detail_message_window_right = 150.0f;
-		m_detail_message_window_bottom = 190.0f;
+		m_detail_message_window_bottom = 225.0f;
 
 		//敵惑星詳細説明フォントの位置を設定
 		m_detail_message_font_x = -138.0f;
@@ -1107,6 +1119,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
 	swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
 	swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
+	swprintf_s(m_detail_message[4], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][4]);//文字配列に文字データを入れる
 
 	m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
 
@@ -1151,6 +1164,7 @@ void CObjPreparation::Special_message(int special_id)
 		swprintf_s(m_detail_message[1], L"未習得"); //文字配列に文字データを入れる
 		swprintf_s(m_detail_message[2], L"");		//文字データをクリアする
 		swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
+		swprintf_s(m_detail_message[4], L"");		//文字データをクリアする
 
 		//スペシャル技詳細説明ウインドウのサイズを設定
 		m_detail_message_window_top = -50.0f;
@@ -1172,47 +1186,52 @@ void CObjPreparation::Special_message(int special_id)
 			swprintf_s(m_detail_message[0], L"Explosion");				//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"相手の惑星に");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"固定ダメージを与える");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else if (special_id == 1)
 		{
 			swprintf_s(m_detail_message[0], L"Fracture Ray");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"選択ライン上の");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"相手ポッド等を破壊する");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else if (special_id == 2)
 		{
 			swprintf_s(m_detail_message[0], L"Immortality");//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"約10秒間");	//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"無敵となる");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else if (special_id == 3)
 		{
 			swprintf_s(m_detail_message[0], L"リミットブレイク");		//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"20秒間ポッド生産速度");	//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ミサイル生産速度UP");		//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		else  //(special_id == 4)
 		{
 			swprintf_s(m_detail_message[0], L"ステロイド投与");		//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[1], L"出撃する");			//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ポッド5機の攻撃力UP");//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}
 		
 		//スペシャル技詳細説明ウインドウのサイズを設定
-		m_detail_message_window_top = -170.0f;
+		m_detail_message_window_top = -205.0f;
 		m_detail_message_window_left = -150.0f;
 		m_detail_message_window_right = 150.0f;
 		m_detail_message_window_bottom = 0.0f;
 
 		//スペシャル技詳細説明フォントの位置を設定
 		m_detail_message_font_x = -138.0f;
-		m_detail_message_font_y = -158.0f;
+		m_detail_message_font_y = -195.0f;
 
 
 		//▽以下はスペシャル技アイコンが灰色(クリックで装備可)の時のみ行う処理
 		if (m_Special_icon_color[special_id] == 0.4f)
 		{
-			swprintf_s(m_detail_message[3], L"クリックで装備可");//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[4], L"クリックで装備可");//文字配列に文字データを入れる
 
 			//左クリックされたらマウスで選択中のスペシャル技を装備する
 			if (m_mou_l == true)
@@ -1248,7 +1267,7 @@ void CObjPreparation::Special_message(int special_id)
 		//▽以下はスペシャル技アイコンが白色(装備中)の時のみ行う処理
 		else  //(m_Special_icon_color[special_id] == 1.0f)
 		{
-			swprintf_s(m_detail_message[3], L"装備中");//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[4], L"装備中");//文字配列に文字データを入れる
 
 			//左クリックされたら現在装備中のスペシャル技を外し、未装備状態にする
 			if (m_mou_l == true)

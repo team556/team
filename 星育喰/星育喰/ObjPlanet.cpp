@@ -22,6 +22,8 @@ using namespace GameL;
 #define FIV_DELAY (75)
 #define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
 
+
+
 //コンストラクタ
 CObjPlanet::CObjPlanet(float x, float y, float size, int type)
 {
@@ -95,33 +97,33 @@ void CObjPlanet::Init()
 	else if (m_type == 1) {	//左から1番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 26;
-		m_size = 20;
-		m_siz_max = 20;
+		m_size = 100;
+		m_siz_max = 100;
 	}
 	else if (m_type == 2) {	//左から2番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 27;
-		m_size = 50;
-		m_siz_max = 50;
+		m_size = 270;
+		m_siz_max = 270;
 	}
 	else if (m_type == 3) { //左から3番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 28;
-		m_size = 80;
-		m_siz_max = 80;
+		m_size = 360;
+		m_siz_max = 360;
 	}
 	else if (m_type == 4) { //左から4番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
-		m_size = 35;
-		m_siz_max = 35;
+		m_size = 150;
+		m_siz_max = 150;
 	}
 	else  //(m_type == 5)   //ボス惑星
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;
-		m_size = 60;
-		m_siz_max = 60;
+		m_size = 500;
+		m_siz_max = 500;
 	}
 }
 
@@ -269,12 +271,36 @@ void CObjPlanet::Action()
 		if (m_type == 0)
 		{
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
+			{
 				m_px -= 4.0f;
+
+				//サイズ縮小分、X座標移動したのを元に戻していく。
+				if (m_scale_down_move < 0.0f)//移動量が0.0未満の場合
+				{
+					m_scale_down_move = 0.0f;//0.0f未満となれば0.0fとする
+				}
+				else if (m_scale_down_move > 0.0f)//移動量が0.0より上の場合
+				{
+					m_scale_down_move -= 0.1f;//徐々に戻していく
+				}
+			}
 		}
 		else
 		{
 			if (m_px < pla->GetX() + pla->GetScale_down_move() - ene->GetScale_down_move())		//自分のX座標より敵惑星が小さくなると移動を止める
+			{
 				m_px += 4.0f;
+				
+				//サイズ縮小分、X座標移動したのを元に戻していく。
+				if (m_scale_down_move < 0.0f)//移動量が0.0未満の場合
+				{
+					m_scale_down_move = 0.0f;//0.0f未満となれば0.0fとする
+				}
+				else if (m_scale_down_move > 0.0f)//移動量が0.0より上の場合
+				{
+					m_scale_down_move -= 0.1f;//徐々に戻していく
+				}
+			}
 		}
 	}
 
@@ -293,25 +319,26 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
+			//ポッドが与えれるダメージ量をRocket.cppからグローバル変数で引っ張ってきた
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
 			{
-				m_size -= 1 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= 3 * damage_buff[1];	//サイズ(HP)減少
 			}
 
 
@@ -324,25 +351,26 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
+			//ダメージ量は武器のレベル×10
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Pow_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Spe_equip_Level*10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Def_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
 			{
-				m_size -= 2 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (g_Bal_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
 			{
-				m_size -= 1 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= 3 * damage_buff[0];	//サイズ(HP)減少
 			}
 
 
@@ -517,7 +545,7 @@ void CObjPlanet::Action()
 		}
 
 		//▼ミサイルポッド作成X位置を設定
-		if (m_attackf == 1 && m_time <= 0)//赤色ポッド
+		if (m_attackf == 1 && m_time <= 0 && m_type != 0)//赤色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,1);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
@@ -543,7 +571,7 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 2 && m_time <= 0)//青色ポッド
+		else if (m_attackf == 2 && m_time <= 0 && m_type != 0)//青色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,2);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
@@ -568,7 +596,7 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 3 && m_time <= 0)//緑色ポッド
+		else if (m_attackf == 3 && m_time <= 0 && m_type != 0)//緑色ポッド
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,3);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
@@ -593,7 +621,7 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 4 && m_time <= 0)//灰色ポッド(今は黄色)
+		else if (m_attackf == 4 && m_time <= 0 && m_type != 0)//灰色ポッド(今は黄色)
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,4);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
@@ -618,7 +646,7 @@ void CObjPlanet::Action()
 				break;
 			}
 		}
-		else if (m_attackf == 5 && m_time <= 0)//ミサイル
+		else if (m_attackf == 5 && m_time <= 0 && m_type != 0)//ミサイル
 		{
 			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 5);//オブジェクト作成
 			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
@@ -644,7 +672,7 @@ void CObjPlanet::Action()
 			}
 
 		}
-		else if (m_attackf == 6 && m_time <= 0)//スペシャル技
+		else if (m_attackf == 6 && m_time <= 0 && m_type != 0)//スペシャル技
 		{
 			//敵がスペシャル技を使用済(true)である場合、
 			//リキャストタイムを元に戻さず、再度行動パターン決めを行う

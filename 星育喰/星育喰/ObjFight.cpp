@@ -101,10 +101,14 @@ void CObjFight::Action()
 	if (m_cnt > 0)	//0より大きい時
 		m_cnt--;	//カウントダウン
 	
-	//背景縮小処理
-	m_scale_down_cnt += m_scale_down_speed;
-	if (m_scale_down_speed > 0)
-		m_scale_down_speed -= 0.00001f;
+	//背景拡大処理
+	//※戦闘終了後は実際されない。
+	if (battle_end == false)
+	{
+		m_scale_down_cnt += m_scale_down_speed;
+		if (m_scale_down_speed > 0)
+			m_scale_down_speed -= 0.00001f;
+	}
 
 	//戦闘開始時表示される"スタート"の文字を徐々に透明化
 	if (m_scale_down_cnt >= 0.5 && m_font_a >= 0) {
@@ -164,25 +168,25 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{					
-			CObjFightClear* crer = new CObjFightClear(2000, 20, L"木材", &g_Wood_num, 80, 2);
+			CObjFightClear* crer = new CObjFightClear(2000, 20, L"木材", &g_Wood_num, 10, L"鉄", &g_Iron_num, 40, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(10000, 60, L"銀", &g_Silver_num, 50, L"木材", &g_Wood_num, 60, 1);
+			CObjFightClear* crer = new CObjFightClear(10000, 60, L"アルミニウム", &g_Aluminum_num, 60, L"レアメタル", &g_Raremetal_num, 50, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から３番目
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(15000, 80, L"木材", &g_Wood_num, 80, 5);
+			CObjFightClear* crer = new CObjFightClear(15000, 80, L"プラスチック", &g_Plastic_num, 40, L"ガス", &g_gus_num, 45, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(3000, 30, L"銀", &g_Silver_num, 50, L"木材", &g_Wood_num, 60, 3);
+			CObjFightClear* crer = new CObjFightClear(3000, 30, L"鉄", &g_Iron_num, 60, L"銀", &g_Silver_num, 45, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ボス

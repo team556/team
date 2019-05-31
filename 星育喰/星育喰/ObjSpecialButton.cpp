@@ -61,6 +61,7 @@ void CObjSpecialButton::Init()
 		m_Immortality_size[i] = 0.0f;
 
 		m_sptime[i] = false;
+		m_sp_invocation_SE[i] = false;
 		
 		m_Special_effect_alpha[i] = INI_ALPHA;
 		m_Special_effect_alpha_vec[i] = 0.0f;
@@ -285,11 +286,11 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	m_is_invocating[Planet_id] = true;		//発動中管理フラグON
 
 
-	if (m_sptime[Planet_id] == false)
+	if (m_sp_invocation_SE[Planet_id] == false)
 	{
 		//スペシャル技発動音
 		Audio::Start(10);
-		m_sptime[Planet_id] = true;
+		m_sp_invocation_SE[Planet_id] = true;
 	}
 
 	//▼スペシャル技発動演出
@@ -631,8 +632,8 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 
 		m_count[Planet_id]++;//効果時間計測
 
-		//20秒経過後、スペシャル技の効果を終了する
-		if (m_count[Planet_id] > 60 * 20)
+		//10秒経過後、スペシャル技の効果を終了する
+		if (m_count[Planet_id] > 60 * 10)
 		{
 			//ミサイルポッドリキャストタイムのバフ倍率を元に戻す
 			//▽プレイヤーの時の処理
@@ -652,11 +653,11 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 
 			m_is_invocating[Planet_id] = false;//発動中管理フラグOFF
 		}
-		//15秒経過後、エフェクト画像点滅処理
+		//5秒経過後、エフェクト画像点滅処理
 		//※点滅処理のプログラム内容は、
 		//上記のImmortalityの処理と同じなので、
 		//細かい説明は省略する。
-		else if (m_count[Planet_id] > 60 * 15)
+		else if (m_count[Planet_id] > 60 * 5)
 		{
 			//初期透過度は1.0f、切り替えポイントは0.5f。
 			if (m_Special_effect_alpha[Planet_id] >= 0.5)

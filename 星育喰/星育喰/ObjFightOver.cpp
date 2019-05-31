@@ -6,7 +6,6 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
-#include "ObjFightClear.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -117,43 +116,36 @@ void CObjFightOver::Action()
 	else
 		m_cnt--;	//0でない場合カウントダウン
 
-	if (m_a_f == true)			//フラグ有効の場合
-		if (m_a <= 0.5)						//0.5で切り替え
+	//▼「クリックでタイトル」の文字点滅処理
+	//フラグ有効の場合
+	if (m_a_f == true)
+	{
+		if (m_a <= 0.5)			//0.5で切り替えて、クリック文字のalpha調整
+		{
 			m_a_vec += 0.003f;	//ベクトルに加算
+		}
 		else
+		{
 			m_a_vec -= 0.003f;	//ベクトルに減算
+		}
 
-	m_a += m_a_vec;	//ベクトルを反映
+		m_a += m_a_vec;	//ベクトルを反映
+	}
 }
 
 //ドロー
 void CObjFightOver::Draw()
 {
-	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f,1.0f, 1.0f, m_alpha };//画像の色
-
 	RECT_F src;//切り取り位置
-	RECT_F dst;//表示位置
-	
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
-	
-	dst.m_top   =  75.0f;
-	dst.m_left  = 300.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom= 175.0f;
-	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(2, &src, &dst, d, 0.0f);
+	RECT_F dst;//表示位置	
 
+
+	//クリックでタイトル表示
 	float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
 	Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
 
+	//ゲームオーバーフォント表示
 	float c[4] = { 0.7f,0.0f,0.0f,m_alpha };//charの色
-	Font::StrDraw(L"ゲームオーバー", 350, 100, 50, c);
-
-	//wchar_t str[256];
-	//swprintf_s(str, L"＋%d人",m_x);		//住民
-	//Font::StrDraw(str, 900, 100, 50, c);
+	Font::StrDraw(L"G A M E", 350, 100, 100, c);
+	Font::StrDraw(L"O V E R", 350, 200, 100, c);
 }
