@@ -132,32 +132,33 @@ void CObjPreparation::Init()
 	//▽1ステージ　敵惑星1(左から1番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][0][0], L"難易度　★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][0][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材10・鉄40");//3行目
+	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材50・鉄40");//3行目
 	swprintf_s(m_Enemy_detail_message[0][0][3], L"Fracture ray");//4行目
 	swprintf_s(m_Enemy_detail_message[0][0][4], L"ディフェンス重視");//5行目
 	//▽1ステージ　敵惑星2(左から2番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][1][0], L"難易度　★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][1][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][1][2], L"アルミ60・レアメタル50");//3行目
+	swprintf_s(m_Enemy_detail_message[0][1][2], L"プラスチック40・ガス50");//3行目
 	swprintf_s(m_Enemy_detail_message[0][1][3], L"Expiosion");//4行目
 	swprintf_s(m_Enemy_detail_message[0][1][4], L"パワー重視");//5行目
 	//▽1ステージ　敵惑星3(左から3番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][2][0], L"難易度　★★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][2][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][2][2], L"プラスチック40・ガス45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][2][2], L"銀65・レアメタル50");//3行目
 	swprintf_s(m_Enemy_detail_message[0][2][3], L"ステロイド投与");//4行目
 	swprintf_s(m_Enemy_detail_message[0][2][4], L"バランス重視");//5行目
 	//▽1ステージ　敵惑星4(左から4番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][3][0], L"難易度　★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][3][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][3][2], L"鉄60・銀45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][3][2], L"鉄60・アルミ80");//3行目
 	swprintf_s(m_Enemy_detail_message[0][3][3], L"Immotality");//4行目
 	swprintf_s(m_Enemy_detail_message[0][3][4], L"スピード重視");//5行目
 	//▽1ステージ　ボス惑星
-	swprintf_s(m_Enemy_detail_message[0][4][0], L"テスト");//1行目
-	swprintf_s(m_Enemy_detail_message[0][4][1], L"テスト");//2行目
-	swprintf_s(m_Enemy_detail_message[0][4][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][4][3], L"テスト");//4行目
+	swprintf_s(m_Enemy_detail_message[0][4][0], L"難易度　測定不能");//1行目
+	swprintf_s(m_Enemy_detail_message[0][4][1], L"取得可能な資材・技");//2行目
+	swprintf_s(m_Enemy_detail_message[0][4][2], L"無し");//3行目
+	swprintf_s(m_Enemy_detail_message[0][4][3], L"攻撃傾向");//4行目
+	swprintf_s(m_Enemy_detail_message[0][4][4], L"不明");//4行目
 	//▽2ステージ　敵惑星1(左から1番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[1][0][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[1][0][1], L"テスト");//2行目
@@ -284,6 +285,9 @@ void CObjPreparation::Action()
 
 			//徐々に上記オブジェクトの画面外移動速度を増加させる
 			m_speed /= 0.956f;
+
+			//敵惑星詳細説明を非表示(右クリックでホーム画面に戻る際、詳細説明が残らないようにするため)
+			m_detail_message_alpha = 0.0f;
 		}
 
 		return;

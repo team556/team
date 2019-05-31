@@ -33,15 +33,23 @@ int g_Bal_equip_Level = 1;
 int g_Bal_equip_Lv_achieve = 1;
 int g_Pod_equip_Level = 1;
 int g_Pod_equip_Lv_achieve = 1;
-float g_Player_max_size = 1000.0f;//デバッグ用の値となっているので、正式な値に戻すように。
-int g_Power_num = 50000;		//デバッグ用に500。後で0に戻す。
-int g_Defense_num = 50000;	//デバッグ用に500。後で0に戻す。
-int g_Speed_num = 50000;		//デバッグ用に500。後で0に戻す。
-int g_Balance_num = 50000;	//デバッグ用に100。後で0に戻す。
+float g_Player_max_size = 100.0f;
+int g_Power_num = 1000;		
+int g_Defense_num = 1000;	
+int g_Speed_num = 1000;		
+int g_Balance_num = 1000;	
 int g_Research_num = 0;
-int g_Remain_num = 10000;
+int g_Remain_num = 6000;
 
 int g_Material_num_test = 400;
+
+int g_Iron_num = 0;
+int g_Wood_num = 0;
+int g_Silver_num = 0;
+int g_Plastic_num = 0;
+int g_Aluminum_num = 0;
+int g_gus_num = 0;
+int g_Raremetal_num = 0;
 
 //イニシャライズ
 void CObjTraining::Init()

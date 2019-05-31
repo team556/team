@@ -164,7 +164,7 @@ void CObjRocket::Init()
 		m_pod_max_hp = 1;
 	}
 	else if (m_type == 0) {		//自惑星の時に(ポッドのLv*10)+(研究所のLv*5)をHPに代入する
-		m_pod_max_hp = (g_Pod_equip_Level * 10) + (g_Ins_Level * 5);
+		m_pod_max_hp = (g_Pod_equip_Level * 10) + ((g_Ins_Level - 1)* 5);
 	}
 	else if (m_type == 1) {		//敵惑星の時は固定値
 		m_pod_max_hp = 10;
@@ -244,7 +244,7 @@ void CObjRocket::Init()
 		}
 		
 		if (ButtonU != 5)						//ミサイルは火力固定のため省く
-			m_Enemy_damage += g_Bar_Level * 5;	//決まった火力+兵舎のLv*5する
+			m_Enemy_damage += (g_Bar_Level - 1) * 5;	//決まった火力+兵舎のLv*5する
 
 	}
 
@@ -759,5 +759,17 @@ void CObjRocket::Draw()
 	if (m_del == true) 
 		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 
-
+	//敵PODの体力とHPを表示する(デバッグ用)
+	//wchar_t test_mou[256];
+	//if (m_type != 0)
+	//{
+	//	swprintf_s(test_mou, L"HP%d,攻撃%d", m_podhp, m_Player_damage);
+	//	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+	//}
+	//else
+	//{
+	//	swprintf_s(test_mou, L"HP%d,攻撃%d", m_podhp, m_Enemy_damage);
+	//	Font::StrDraw(test_mou, 1100.0f, 20.0f, 12.0f, d);
+	//}
+	
 }

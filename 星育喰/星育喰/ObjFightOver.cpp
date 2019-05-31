@@ -10,9 +10,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//マクロ
-#define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
-
 ////コンストラクタ
 //CObjTest::CObjTest(float x, float y)
 //{
@@ -32,10 +29,10 @@ void CObjFightOver::Init()
 	m_a = 0.0f;
 	m_a_vec = 0.0f;
 	m_a_f = false;
+	m_black_out_a = 0.0f;
+	m_gameover_a = 0.0f;
 
-	m_cnt = 3 * 60;	//3秒カウント
-
-	m_alpha = INI_ALPHA;
+	//m_cnt = 3 * 60;	//3秒カウント
 
 
 	//▼グローバル変数(全保存データ)リセット処理
@@ -62,17 +59,17 @@ void CObjFightOver::Init()
 	g_Player_max_size = 10;
 	g_Special_equipment = 0;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 5 && i != 3; i++)
 	{
 		g_Special_mastering[i] = false;
 	}
 
-	g_Power_num = 0;		
-	g_Defense_num = 0;		
-	g_Speed_num = 0;		
-	g_Balance_num = 0;		
+	g_Power_num = 1000;		
+	g_Defense_num = 1000;		
+	g_Speed_num = 1000;		
+	g_Balance_num = 1000;		
 	g_Research_num = 0;
-	g_Remain_num = 1000;
+	g_Remain_num = 6000;
 
 	g_Iron_num = 0;
 	g_Wood_num = 0;
@@ -86,35 +83,50 @@ void CObjFightOver::Init()
 //アクション
 void CObjFightOver::Action()
 {
+	//ゲームオーバーメッセージ表示後の処理
+	if (m_gameover_a >= 1.0f)
+	{
+		////マウスの位置を取得
+		//m_mou_x = (float)Input::GetPosX();
+		//m_mou_y = (float)Input::GetPosY();
+		////マウスのボタンの状態
+		//m_mou_r = Input::GetMouButtonR();
+		m_mou_l = Input::GetMouButtonL();
 
-	////マウスの位置を取得
-	//m_mou_x = (float)Input::GetPosX();
-	//m_mou_y = (float)Input::GetPosY();
-	////マウスのボタンの状態
-	//m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
-
-	if (m_cnt == 0) 
-	{							//カウント終了後
 		m_a_f = true;			//フラグ有効
-		if (m_mou_l == true || m_alpha< INI_ALPHA)					//クリックした場合
+
+		//左クリックした場合、実行(一度クリックすると以後、クリックせずともこの処理に入る)
+		if (m_mou_l == true || m_black_out_a != 0.0f)
 		{
-			if (m_alpha == INI_ALPHA)
+			//クリック音を鳴らす(1度のみしか実行されない)
+			if (m_black_out_a == 0.0f)
 			{
 				Audio::Start(3);
 			}
 
-			m_alpha -= 0.01f;
-
-			if (m_alpha <= 0.0f)
+			//画面暗転透過度を徐々に増加させ、画面全体を暗転させた後、
+			//フラグを立て、タイトル画面に移行する
+			if (m_black_out_a >= 1.0f)
 			{
 				Scene::SetScene(new CSceneTitle());	//シーン移行
 			}
-		}
+			else
+			{
+				m_black_out_a += 0.01f;	//画面暗転
+				m_a -= 0.03f;			//クリック催促フォントを徐々に非表示に。
+			}
 
+			m_a_f = false;//フラグ無効
+		}
 	}
+	//ゲームオーバーメッセージ表示前の処理
 	else
-		m_cnt--;	//0でない場合カウントダウン
+	{
+		//ゲームオーバーメッセージの透過度増加し、
+		//ゲームオーバーメッセージを表示していく。
+		//※表示後、このelse文を抜ける。
+		m_gameover_a += 0.01f;
+	}
 
 	//▼「クリックでタイトル」の文字点滅処理
 	//フラグ有効の場合
@@ -145,7 +157,22 @@ void CObjFightOver::Draw()
 	Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
 
 	//ゲームオーバーフォント表示
-	float c[4] = { 0.7f,0.0f,0.0f,m_alpha };//charの色
-	Font::StrDraw(L"G A M E", 350, 100, 100, c);
-	Font::StrDraw(L"O V E R", 350, 200, 100, c);
+	float c[4] = { 0.7f,0.0f,0.0f,m_gameover_a };//charの色
+	Font::StrDraw(L"G A M E", 220, 100, 200, c);
+	Font::StrDraw(L"O V E R", 220, 300, 200, c);
+
+
+	//▼画面全体暗転用画像表示
+	//※blackoutの透過度の値で「表示/非表示」が切り替えられる
+	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	//画面全体暗転画像用
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
+
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(20, &src, &dst, blackout, 0.0f);
 }
