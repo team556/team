@@ -40,31 +40,45 @@ void CObjGameClear::Init()
 
 	m_speed = 0;
 	m_alpha = INI_ALPHA;
+	m_right_alpha = 3.0f;
 
 	m_flag = false;
-
+	m_end_f = false;
 }
 
 //アクション
 void CObjGameClear::Action()
 {
-	//マウスの位置を取得
-	m_mou_x = (float)Input::GetPosX();
-	m_mou_y = (float)Input::GetPosY();
+	////マウスの位置を取得
+	//m_mou_x = (float)Input::GetPosX();
+	//m_mou_y = (float)Input::GetPosY();
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	//Zキーを押している間、エンドロールの流れる速度が速くなる
-	if (Input::GetVKey('Z') == true)
+	//下から上に移動させる処理
+	for (int i = 0; i < 100; i++)
+	{
+		m_cy[i] -= m_y_vec + m_speed;
+	}
+
+	if (m_right_alpha >= 0.0f)
+	{
+		m_right_alpha -= 0.01f;
+	}
+
+	//右クリックを押している間、エンドロールの流れる速度が速くなる
+	if (m_mou_r == true && m_end_f == false)
 	{
 		m_speed = 10;
+		m_right_alpha -= 0.1f;//右クリックを押すと透過速度が早くなる
 	}
 	else
 	{
 		m_speed = 0;
 	}
 
+	
 	//左クリックでタイトル画面へシーン移行
 	if (m_flag == true)
 	{
@@ -77,18 +91,21 @@ void CObjGameClear::Action()
 
 		return;
 	}
-	else if (m_mou_l == true)
+	//左クリックとエンドフラグがtrueになったら
+	else if (m_mou_l == true && m_end_f == true)
 	{
-		if (m_key_f == true)
-		{
-			m_flag = true;
-			//選択音
-			Audio::Start(1);
-		}
+		m_flag = true;
+
+		//選択音
+		Audio::Start(1);
 	}
 
-
-
+	//23番目スクロールに登録された画像が下から上に流れてきたら
+	if (m_cy[23] <= 0.0f)
+	{
+		m_y_vec = 0;	//スクロールを止める
+		m_end_f = true;
+	}
 }
 //ドロー
 void CObjGameClear::Draw()
@@ -96,8 +113,14 @@ void CObjGameClear::Draw()
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 0.0f,0.0f, 0.0f, 1.0f };
 
-	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードアウト]
-	float w[4] = { 1.0f,1.0f,1.0f,m_alpha };
+	//画像用[シーン移行時フェードアウト]
+	float w[4] = { 1.0f,1.0f, 1.0f, m_alpha };
+
+	//画像用[シーン移行時フェードアウト]
+	float w2[4] = { 1.0f,1.0f, 1.0f, m_right_alpha };
+
+	//文字の色(白)
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
@@ -113,14 +136,23 @@ void CObjGameClear::Draw()
 	dst.m_bottom= 700.0f;
 
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(1, &src, &dst, d, 0.0f);
+	Draw::Draw(0, &src, &dst, d, 0.0f);
 
-	for (int i = 0; i < 100; i++)
-	{
-		m_cy[i] -= m_y_vec + m_speed;
-	}
+	//タイトルロゴ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1557.0f;
+	src.m_bottom = 929.0f;
 
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	dst.m_top = 0.0f + m_cy[24];
+	dst.m_left = 300.0f;
+	dst.m_right = 851.0f;
+	dst.m_bottom = 350.0f + m_cy[24];
+	Draw::Draw(1, &src, &dst, w, m_alpha);
+
+	Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
+	Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
+
 	Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
 
 	Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
@@ -146,20 +178,9 @@ void CObjGameClear::Draw()
 
 	Font::StrDraw(L"End", 550, m_cy[20] , 60, c);
 
-	//タイトルロゴ描画
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1557.0f;
-	src.m_bottom = 929.0f;
-
-	dst.m_top = 200.0f + m_cy[24];
-	dst.m_left = 350.0f;
-	dst.m_right = 851.0f;
-	dst.m_bottom = 550.0f + m_cy[24];
-	Draw::Draw(2, &src, &dst, w, m_alpha);
-
-	if (m_cy[24] == true)
+	//エンドフラグがtrueになったら
+	if (m_end_f == true)
 	{
-		Font::StrDraw(L"クリックでタイトルに戻る", 350, 500, 60, c);
+		Font::StrDraw(L"クリックでタイトルに戻る", 250, 600, 60, w);
 	}
 }

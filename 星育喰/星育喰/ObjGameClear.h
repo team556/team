@@ -31,8 +31,8 @@ private:
 	int	m_speed;		//エンドロール速度をはやくする
 
 	float m_alpha;		//透過度(アルファ値)
+	float m_right_alpha;		//スクロール速度の説明文を透過する
 
 	bool  m_flag;		//true=クリックした　false=クリックしてない
-	bool  m_key_f;		//キーフラグ
-
+	bool  m_end_f;		//スクロール終了フラグ
 };

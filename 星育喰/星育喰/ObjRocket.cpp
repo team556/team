@@ -318,7 +318,11 @@ void CObjRocket::Action()
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
 	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
+	{
+		Audio::Start(5);
 		m_del = true;
+	}
+		
 
 	if (m_mou_l == false && m_mou_f == false)
 	{
