@@ -86,7 +86,7 @@ void CObjTitle::Init()
 	g_Bal_equip_Lv_achieve = 1;
 	g_Pod_equip_Level = 1;
 	g_Pod_equip_Lv_achieve = 1;
-	g_Player_max_size = 10;
+	g_Player_max_size = 100.0f;
 	g_Special_equipment = 0;
 
 	for (int i = 0; i < 5 && i != 3; i++)
