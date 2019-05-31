@@ -899,7 +899,7 @@ void CObjWarehouse::Draw()
 		{
 			Font::StrDraw(L"メリット", 245.0f, 110.0f, 20.0f, black);
 			Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 140.0f, 20.0f, black);
-			Font::StrDraw(L"相手の最大HPの20%削る", 245.0f, 170.0f, 20.0f, black);
+			Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 245.0f, 170.0f, 20.0f, black);
 			Font::StrDraw(L"デメリット", 745.0f, 110.0f, 20.0f, black);
 			Font::StrDraw(L"一回しか使えない", 745.0f, 140.0f, 20.0f, black);
 

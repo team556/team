@@ -180,5 +180,5 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
-//#define SET_GAME_START CScenePreparation
+#define SET_GAME_START CScenePreparation
 //----------------------------------------------
