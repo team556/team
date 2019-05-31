@@ -1,6 +1,6 @@
 //使用するヘッダーファイル
 #include "GameL\DrawTexture.h"
-#include "GameL\DrawFont.h"		//使用されているのはマウスデバッグの部分のみ
+#include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\Audio.h"
@@ -40,8 +40,6 @@ int g_Speed_num = 1000;
 int g_Balance_num = 1000;	
 int g_Research_num = 0;
 int g_Remain_num = 6000;
-
-int g_Material_num_test = 400;
 
 int g_Iron_num = 0;
 int g_Wood_num = 0;

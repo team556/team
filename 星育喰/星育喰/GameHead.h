@@ -114,7 +114,7 @@ extern int g_Recast_time;			//ミサイルのリキャストタイム用
 //extern float g_Missile_pow;			//ミサイルの火力用
 //extern int g_E_Planet_damage;					//
 extern int g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
-extern int g_Enemy_Pod_LV;			//テスト用敵ポッドレベル
+//extern int g_Enemy_Pod_LV;			//テスト用敵ポッドレベル
 //--------------------------------------------------資源----
 extern int g_Iron_num;				//鉄の所持数
 extern int g_Wood_num;				//木の所持数
@@ -123,8 +123,6 @@ extern int g_Plastic_num;		//プラスチック
 extern int g_Aluminum_num;		//アルミニウム
 extern int g_gus_num;			//ガス
 extern int g_Raremetal_num;		//レアメタル
-
-extern int g_Material_num_test;		//TEST用所持素材数
 
 //▼セーブ必要性無し
 extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
