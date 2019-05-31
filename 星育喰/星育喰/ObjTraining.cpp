@@ -39,7 +39,7 @@ int g_Defense_num = 0;	//デバッグ用に500。後で0に戻す。
 int g_Speed_num = 0;		//デバッグ用に500。後で0に戻す。
 int g_Balance_num = 0;	//デバッグ用に100。後で0に戻す。
 int g_Research_num = 0;
-int g_Remain_num = 5000;
+int g_Remain_num = 10000;
 
 int g_Material_num_test = 400;
 

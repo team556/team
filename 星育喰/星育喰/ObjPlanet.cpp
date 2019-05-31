@@ -16,10 +16,10 @@ using namespace GameL;
 
 //マクロ
 #define ONE_DELAY (150)
-#define SEC_DELAY (105)
-#define THI_DELAY (90)
+#define SEC_DELAY (120)
+#define THI_DELAY (105)
 #define FOU_DELAY (120)
-#define FIV_DELAY (75)
+#define FIV_DELAY (105)
 #define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
 
 
