@@ -1205,7 +1205,7 @@ void CObjPreparation::Special_message(int special_id)
 		else if (special_id == 3)
 		{
 			swprintf_s(m_detail_message[0], L"リミットブレイク");		//文字配列に文字データを入れる
-			swprintf_s(m_detail_message[1], L"20秒間ポッド生産速度");	//文字配列に文字データを入れる
+			swprintf_s(m_detail_message[1], L"10秒間ポッド生産速度");	//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[2], L"ミサイル生産速度UP");		//文字配列に文字データを入れる
 			swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
 		}

@@ -12,6 +12,9 @@
 //使用するネームスペース
 using namespace GameL;
 
+//マクロ
+#define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
+
 ////コンストラクタ
 //CObjTest::CObjTest(float x, float y)
 //{
@@ -29,13 +32,17 @@ void CObjGameClear::Init()
 	m_mou_l = false;//左クリック
 
 	m_f = false;
-	m_y_vec = 0.6;
+	m_y_vec = 1.0;
 
-	for (int i = 0; i < 20; i++)//配列の初期化
+	for (int i = 0; i < 100; i++)//配列の初期化
 		m_cy[i] = i * 80 + 700;	//行間の間隔を空けるのと、画面より下にする
 	m_c_nam = 0;
 
 	m_speed = 0;
+	m_alpha = INI_ALPHA;
+
+	m_flag = false;
+
 }
 
 //アクション
@@ -58,6 +65,29 @@ void CObjGameClear::Action()
 		m_speed = 0;
 	}
 
+	//左クリックでタイトル画面へシーン移行
+	if (m_flag == true)
+	{
+		m_alpha -= 0.01f;
+
+		if (m_alpha <= 0.0f)
+		{
+			Scene::SetScene(new CSceneTitle());//タイトル画面へシーン移行
+		}
+
+		return;
+	}
+	else if (m_mou_l == true)
+	{
+		if (m_key_f == true)
+		{
+			m_flag = true;
+			//選択音
+			Audio::Start(1);
+		}
+	}
+
+
 
 }
 //ドロー
@@ -65,6 +95,9 @@ void CObjGameClear::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 0.0f,0.0f, 0.0f, 1.0f };
+
+	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードアウト]
+	float w[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
@@ -82,33 +115,51 @@ void CObjGameClear::Draw()
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(1, &src, &dst, d, 0.0f);
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		m_cy[i] -= m_y_vec;
+		m_cy[i] -= m_y_vec + m_speed;
 	}
 
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
 
 	Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
-	Font::StrDraw(L"https://on-jin.com/",375, m_cy[3], 45, c);
+	Font::StrDraw(L"https://on-jin.com/",375, m_cy[3]-20, 45, c);
 
-	Font::StrDraw(L"魔王魂",525, m_cy[4], 45, c);
-	Font::StrDraw(L"https://maoudamashii.jokersounds.com/",	160, m_cy[5], 45, c);
+	Font::StrDraw(L"魔王魂",525, m_cy[4]+20, 45, c);
+	Font::StrDraw(L"https://m aoudam ashii.jokersounds.com/",	160, m_cy[5], 45, c);
 
-	Font::StrDraw(L"TAM　Music　Factory",800, m_cy[6], 32, c);
-	Font::StrDraw(L"https://www.tam-music.com/",800, m_cy[7], 32, c);
+	Font::StrDraw(L"TA M M usic Factory",380, m_cy[6] + 20, 45, c);
+	Font::StrDraw(L"https://w w w.tam - music.com/",300, m_cy[7], 45, c);
 
-	Font::StrDraw(L"DOVA-SYNDROME", 600,m_cy[8], 32, c);
-	Font::StrDraw(L"https://dova-s.jp/",800, m_cy[9], 32, c);
+	Font::StrDraw(L"DOVA-SYN DROME", 450,m_cy[8] + 20, 45, c);
+	Font::StrDraw(L"https://dova-s.jp/",400, m_cy[9], 45, c);
 
-	Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10], 32, c);
-	Font::StrDraw(L"https://taira-komori.jpn.org/index.html",	800, m_cy[11], 32, c);
+	Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10] + 20, 45, c);
+	Font::StrDraw(L"https://taira-ko m ori.jpn.org/in dex.htm l",160, m_cy[11], 45, c);
 
-	Font::StrDraw(L"効果音ラボ",	800, m_cy[12], 32, c);
-	Font::StrDraw(L"https://soundeffect-lab.info/",	800, m_cy[13], 32, c);
+	Font::StrDraw(L"効果音ラボ",480, m_cy[12] + 20, 45, c);
+	Font::StrDraw(L"https://soun deffect-lab.info/",300, m_cy[13], 45, c);
 
-	Font::StrDraw(L"OtoLogic",	800, m_cy[14], 32, c);
-	Font::StrDraw(L"https://otologic.jp/",	800, m_cy[15], 32, c);
+	Font::StrDraw(L"OtoLogic",500, m_cy[14] + 20, 45, c);
+	Font::StrDraw(L"https://otologic.jp/",380, m_cy[15], 45, c);
 
+	Font::StrDraw(L"End", 550, m_cy[20] , 60, c);
+
+	//タイトルロゴ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1557.0f;
+	src.m_bottom = 929.0f;
+
+	dst.m_top = 200.0f + m_cy[24];
+	dst.m_left = 350.0f;
+	dst.m_right = 851.0f;
+	dst.m_bottom = 550.0f + m_cy[24];
+	Draw::Draw(2, &src, &dst, w, m_alpha);
+
+	if (m_cy[24] == true)
+	{
+		Font::StrDraw(L"クリックでタイトルに戻る", 350, 500, 60, c);
+	}
 }

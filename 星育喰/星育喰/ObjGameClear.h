@@ -25,9 +25,14 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
 	float m_y_vec;	//y軸ベクトル
-	float m_cy[20];	//charのy軸
+	float m_cy[100];	//charのy軸
 	int m_c_nam;		//charのナンバー
 
 	int	m_speed;		//エンドロール速度をはやくする
+
+	float m_alpha;		//透過度(アルファ値)
+
+	bool  m_flag;		//true=クリックした　false=クリックしてない
+	bool  m_key_f;		//キーフラグ
 
 };

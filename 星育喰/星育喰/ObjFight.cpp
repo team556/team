@@ -37,7 +37,7 @@ void CObjFight::Init()
 	m_line = 3;		//初期値、
 	m_line_nam = 3; //初期値、無選択
 
-	m_cnt = 60 * 300;//戦闘時間(60 * X = X秒)
+	m_cnt = 60 * 150;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
 
 	m_ex = 0;
@@ -168,7 +168,7 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{					
-			CObjFightClear* crer = new CObjFightClear(2000, 20, L"木材", &g_Wood_num, 10, L"鉄", &g_Iron_num, 40, 2);
+			CObjFightClear* crer = new CObjFightClear(5000, 20, L"木材", &g_Wood_num, 10, L"鉄", &g_Iron_num, 40, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
@@ -186,7 +186,7 @@ void CObjFight::Action()
 		//左から４番目
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(3000, 30, L"鉄", &g_Iron_num, 60, L"銀", &g_Silver_num, 45, 3);
+			CObjFightClear* crer = new CObjFightClear(7000, 30, L"鉄", &g_Iron_num, 60, L"銀", &g_Silver_num, 45, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ボス
