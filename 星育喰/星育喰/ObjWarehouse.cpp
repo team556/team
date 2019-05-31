@@ -857,151 +857,153 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 
+
+
 		//▼現在のスペシャル技習得状況、装備状況に応じて
 		//スペシャル技アイコンのカラー明度を以下のように設定していく。
 		//「未習得」……………………………0.0f(黒色)
 		//「クリックで装備可(習得済)」……0.4f(灰色)
 		//「装備中」……………………………1.0f(白色)
-		for (int i = 0; i < 5; i++)
+
+		//装備中の処理
+		if (g_Special_mastering[0] == true)
 		{
-			//装備中の処理
-			if (g_Special_equipment == i + 1)
-			{
-				//スペシャル技1ボタン表示
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 100.0f;
-				src.m_bottom = 100.0f;
+			//スペシャル技1ボタン表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 100.0f;
 
-				dst.m_top = 85.0f;
-				dst.m_left = 100.0f;
-				dst.m_right = 230.0f;
-				dst.m_bottom = 215.0f;
-				Draw::Draw(40, &src, &dst, it, 0.0f);
+			dst.m_top = 85.0f;
+			dst.m_left = 100.0f;
+			dst.m_right = 230.0f;
+			dst.m_bottom = 215.0f;
+			Draw::Draw(40, &src, &dst, it, 0.0f);
 
-				//スペシャル技2ボタン表示
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 100.0f;
-				src.m_bottom = 100.0f;
+			//スペシャル技1メッセージウィンドウ表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 200.0f;
+			src.m_bottom = 100.0f;
 
-				dst.m_top = 185.0f;
-				dst.m_left = 100.0f;
-				dst.m_right = 230.0f;
-				dst.m_bottom = 315.0f;
-				Draw::Draw(41, &src, &dst, it, 0.0f);
-
-				//スペシャル技3ボタン表示
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 100.0f;
-				src.m_bottom = 100.0f;
-
-				dst.m_top = 285.0f;
-				dst.m_left = 100.0f;
-				dst.m_right = 230.0f;
-				dst.m_bottom = 415.0f;
-				Draw::Draw(42, &src, &dst, it, 0.0f);
-
-				//スペシャル技4ボタン表示
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 100.0f;
-				src.m_bottom = 100.0f;
-
-				dst.m_top = 385.0f;
-				dst.m_left = 100.0f;
-				dst.m_right = 230.0f;
-				dst.m_bottom = 515.0f;
-				Draw::Draw(43, &src, &dst, it, 0.0f);
-
-				//スペシャル技5ボタン表示
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 100.0f;
-				src.m_bottom = 100.0f;
-
-				dst.m_top = 485.0f;
-				dst.m_left = 100.0f;
-				dst.m_right = 230.0f;
-				dst.m_bottom = 615.0f;
-				Draw::Draw(44, &src, &dst, it, 0.0f);
-
-
-				//スペシャル技1メッセージウィンドウ表示
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 200.0f;
-				src.m_bottom = 100.0f;
-
-				dst.m_top = 100.0f;
-				dst.m_left = 235.0f;
-				dst.m_right = 1100.0f;
-				dst.m_bottom = 200.0f;
-				Draw::Draw(45, &src, &dst, it, 0.0f);
-				Font::StrDraw(L"メリット", 245.0f, 110.0f, 20.0f, black);
-				Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 140.0f, 20.0f, black);
-				Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 245.0f, 170.0f, 20.0f, black);
-				Font::StrDraw(L"デメリット", 745.0f, 110.0f, 20.0f, black);
-				Font::StrDraw(L"一回しか使えない", 745.0f, 140.0f, 20.0f, black);
-
-				//スペシャル技2メッセージウィンドウ表示
-				dst.m_top = 200.0f;
-				dst.m_left = 235.0f;
-				dst.m_right = 1100.0f;
-				dst.m_bottom = 300.0f;
-				Draw::Draw(45, &src, &dst, it, 0.0f);
-				Font::StrDraw(L"メリット", 245.0f, 210.0f, 20.0f, black);
-				Font::StrDraw(L"相手の攻撃一列を破壊する", 245.0f, 240.0f, 20.0f, black);
-				Font::StrDraw(L"デメリット", 745.0f, 210.0f, 20.0f, black);
-				Font::StrDraw(L"一回しか使えない", 745.0f, 240.0f, 20.0f, black);
-
-				//スペシャル技3メッセージウィンドウ表示
-				dst.m_top = 300.0f;
-				dst.m_left = 235.0f;
-				dst.m_right = 1100.0f;
-				dst.m_bottom = 400.0f;
-				Draw::Draw(45, &src, &dst, it, 0.0f);
-				Font::StrDraw(L"メリット", 245.0f, 310.0f, 20.0f, black);
-				Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 340.0f, 20.0f, black);
-				Font::StrDraw(L"デメリット", 745.0f, 310.0f, 20.0f, black);
-				Font::StrDraw(L"一回しか使えない", 745.0f, 340.0f, 20.0f, black);
-
-				//スペシャル技4メッセージウィンドウ表示
-				dst.m_top = 400.0f;
-				dst.m_left = 235.0f;
-				dst.m_right = 1100.0f;
-				dst.m_bottom = 500.0f;
-				Draw::Draw(45, &src, &dst, it, 0.0f);
-				Font::StrDraw(L"メリット", 245.0f, 410.0f, 20.0f, black);
-				Font::StrDraw(L"20秒間攻撃スピードアップ", 245.0f, 440.0f, 20.0f, black);
-				Font::StrDraw(L"武器生産頻度アップ", 245.0f, 470.0f, 20.0f, black);
-				Font::StrDraw(L"デメリット", 745.0f, 410.0f, 20.0f, black);
-				Font::StrDraw(L"一回しか使えない", 745.0f, 440.0f, 20.0f, black);
-
-
-				//スペシャル技5メッセージウィンドウ表示
-				dst.m_top = 500.0f;
-				dst.m_left = 235.0f;
-				dst.m_right = 1100.0f;
-				dst.m_bottom = 600.0f;
-				Draw::Draw(45, &src, &dst, it, 0.0f);
-				Font::StrDraw(L"メリット", 245.0f, 510.0f, 20.0f, black);
-				Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 540.0f, 20.0f, black);
-				Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 570.0f, 20.0f, black);
-				Font::StrDraw(L"デメリット", 745.0f, 510.0f, 20.0f, black);
-				Font::StrDraw(L"一回しか使えない", 745.0f, 540.0f, 20.0f, black);
-
-
-				m_Special_icon_color[i] = 1.0f;
-			}
-			//未習得の処理
-			else
-			{
-				m_Special_icon_color[i] = 0.0f;
-			}
+			dst.m_top = 100.0f;
+			dst.m_left = 235.0f;
+			dst.m_right = 1100.0f;
+			dst.m_bottom = 200.0f;
+			Draw::Draw(45, &src, &dst, it, 0.0f);
+			Font::StrDraw(L"メリット", 245.0f, 110.0f, 20.0f, black);
+			Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 140.0f, 20.0f, black);
+			Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 245.0f, 170.0f, 20.0f, black);
+			Font::StrDraw(L"デメリット", 745.0f, 110.0f, 20.0f, black);
+			Font::StrDraw(L"一回しか使えない", 745.0f, 140.0f, 20.0f, black);
 		}
 
+		if (g_Special_mastering[1] == true)
+		{
+			//スペシャル技2ボタン表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 100.0f;
+
+			dst.m_top = 185.0f;
+			dst.m_left = 100.0f;
+			dst.m_right = 230.0f;
+			dst.m_bottom = 315.0f;
+			Draw::Draw(41, &src, &dst, it, 0.0f);
+
+			//スペシャル技2メッセージウィンドウ表示
+			dst.m_top = 200.0f;
+			dst.m_left = 235.0f;
+			dst.m_right = 1100.0f;
+			dst.m_bottom = 300.0f;
+			Draw::Draw(45, &src, &dst, it, 0.0f);
+			Font::StrDraw(L"メリット", 245.0f, 210.0f, 20.0f, black);
+			Font::StrDraw(L"相手の攻撃一列を破壊する", 245.0f, 240.0f, 20.0f, black);
+			Font::StrDraw(L"デメリット", 745.0f, 210.0f, 20.0f, black);
+			Font::StrDraw(L"一回しか使えない", 745.0f, 240.0f, 20.0f, black);
+		}
+
+		if (g_Special_mastering[2] == true)
+		{
+			//スペシャル技3ボタン表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 100.0f;
+
+			dst.m_top = 285.0f;
+			dst.m_left = 100.0f;
+			dst.m_right = 230.0f;
+			dst.m_bottom = 415.0f;
+			Draw::Draw(42, &src, &dst, it, 0.0f);
+
+			//スペシャル技3メッセージウィンドウ表示
+			dst.m_top = 300.0f;
+			dst.m_left = 235.0f;
+			dst.m_right = 1100.0f;
+			dst.m_bottom = 400.0f;
+			Draw::Draw(45, &src, &dst, it, 0.0f);
+			Font::StrDraw(L"メリット", 245.0f, 310.0f, 20.0f, black);
+			Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 340.0f, 20.0f, black);
+			Font::StrDraw(L"デメリット", 745.0f, 310.0f, 20.0f, black);
+			Font::StrDraw(L"一回しか使えない", 745.0f, 340.0f, 20.0f, black);
+		}
+
+		if (g_Special_mastering[3] == true)
+		{
+			//スペシャル技4ボタン表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 100.0f;
+
+			dst.m_top = 385.0f;
+			dst.m_left = 100.0f;
+			dst.m_right = 230.0f;
+			dst.m_bottom = 515.0f;
+			Draw::Draw(43, &src, &dst, it, 0.0f);
+
+			//スペシャル技4メッセージウィンドウ表示
+			dst.m_top = 400.0f;
+			dst.m_left = 235.0f;
+			dst.m_right = 1100.0f;
+			dst.m_bottom = 500.0f;
+			Draw::Draw(45, &src, &dst, it, 0.0f);
+			Font::StrDraw(L"メリット", 245.0f, 410.0f, 20.0f, black);
+			Font::StrDraw(L"20秒間攻撃スピードアップ", 245.0f, 440.0f, 20.0f, black);
+			Font::StrDraw(L"武器生産頻度アップ", 245.0f, 470.0f, 20.0f, black);
+			Font::StrDraw(L"デメリット", 745.0f, 410.0f, 20.0f, black);
+			Font::StrDraw(L"一回しか使えない", 745.0f, 440.0f, 20.0f, black);
+
+		}
+
+		if (g_Special_mastering[4] == true)
+		{
+			//スペシャル技5ボタン表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 100.0f;
+			src.m_bottom = 100.0f;
+
+			dst.m_top = 485.0f;
+			dst.m_left = 100.0f;
+			dst.m_right = 230.0f;
+			dst.m_bottom = 615.0f;
+			Draw::Draw(44, &src, &dst, it, 0.0f);
+
+			//スペシャル技5メッセージウィンドウ表示
+			dst.m_top = 500.0f;
+			dst.m_left = 235.0f;
+			dst.m_right = 1100.0f;
+			dst.m_bottom = 600.0f;
+			Draw::Draw(45, &src, &dst, it, 0.0f);
+			Font::StrDraw(L"メリット", 245.0f, 510.0f, 20.0f, black);
+			Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 540.0f, 20.0f, black);
+			Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 570.0f, 20.0f, black);
+			Font::StrDraw(L"デメリット", 745.0f, 510.0f, 20.0f, black);
+			Font::StrDraw(L"一回しか使えない", 745.0f, 540.0f, 20.0f, black);
+		}
 	}
 
 	//装備ボタンを押して描画する画像
