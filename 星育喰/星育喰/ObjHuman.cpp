@@ -27,8 +27,9 @@ void CObjHuman::Init()
 	m_mov_spd = 4.0f;	//動く速さ
 	m_cnt = 0;			//カウント
 	m_turn = false;		//画面外処理
+	m_turn_count = 60;	//施設HIT時ターンカウント(1秒)
 
-						//当たり判定用HitBoxを作成
+	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_hx, m_hy, m_size, m_size, ELEMENT_PLAYER, OBJ_HUMAN, 1);
 }
 
@@ -58,7 +59,6 @@ void CObjHuman::Action()
 		m_turn = false;
 	}
 
-
 	if (m_move == true) {//動いてる時
 		switch (m_pos) {
 		case 0:m_hx -= m_mov_spd; break;//←
@@ -86,6 +86,24 @@ void CObjHuman::Action()
 
 	CHitBox* hit = Hits::GetHitBox(this);	//CHitBoxポインタ取得
 	hit->SetPos(m_hx, m_hy);				//位置を更新
+
+	//ターンカウントが0以上の時、
+	//ターンカウントを徐々に0に近づける。
+	if (m_turn_count >= 0)
+	{
+		m_turn_count--;
+	}
+
+	//施設に当たったら向き反転させる
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+	{
+		//ターンカウントが0の時のみ反転させる
+		if (m_turn_count <= 0) 
+		{
+			CObjHuman::Turn(&m_pos);//向き反転関数
+			m_turn_count= 60;//ターンカウントを60に戻す(1秒)
+		}
+	}
 }
 
 //ドロー

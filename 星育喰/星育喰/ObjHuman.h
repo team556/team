@@ -27,6 +27,7 @@ private:
 	int m_ani_frame;	//描画フレーム
 	int m_nam;			//住民ナンバー
 	int m_cnt;			//カウント
+	int m_turn_count;	//ターンカウント(0の時のみ向き反転する)[施設HIT時反転用]
 
 	bool m_move;		//true動いている,false動いてない
 	bool m_turn;		//ターンフラグ,ture領域外

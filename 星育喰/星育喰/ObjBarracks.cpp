@@ -2,6 +2,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
+#include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
@@ -54,6 +55,10 @@ void CObjBarracks::Init()
 	//▼兵舎の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 50;		//レベルが1の時の必要素材数
 	m_Facility_next_Mat_num[1] = 40;	//レベルが2の時の必要素材数
+
+
+	//当たり判定用HitBoxを作成(Objhuman用)
+	Hits::SetHitBox(this, 810, 460, 380, 230, ELEMENT_ENEMY, OBJ_BARRACKS, 1);
 }
 
 //アクション
