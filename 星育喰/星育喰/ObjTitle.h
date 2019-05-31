@@ -26,9 +26,12 @@ private:
 	bool  m_flag;		//true=クリックした　false=クリックしてない
 	bool  m_key_f;		//キーフラグ
 	float m_alpha;		//透過度(アルファ値)
+	float m_black_out_a;//画面暗転透過度
 
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
+
+	static bool after_once;	//タイトル画面→ホーム画面移行時にtrue(二回目以降訪れた時の演出用に使用)
 };

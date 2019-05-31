@@ -25,9 +25,9 @@ private:
 
 	float m_a;		//透明度
 	float m_a_vec;	//透明度ベクトル
-	bool m_a_f;		//透明度フラグ
+	bool  m_a_f;	//透明度フラグ
+	float m_black_out_a;	//画面暗転透過度
+	float m_gameover_a;	//ゲームオーバーフォント用透過度(アルファ値)
 
-	int m_cnt;		//カウント
-
-	float m_alpha;		//最終的に全部消すための透過度(アルファ値)
+	//int m_cnt;		//カウント
 };
