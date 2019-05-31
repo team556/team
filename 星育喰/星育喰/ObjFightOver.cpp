@@ -59,17 +59,17 @@ void CObjFightOver::Init()
 	g_Player_max_size = 10;
 	g_Special_equipment = 0;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 5 && i != 3; i++)
 	{
 		g_Special_mastering[i] = false;
 	}
 
-	g_Power_num = 0;		
-	g_Defense_num = 0;		
-	g_Speed_num = 0;		
-	g_Balance_num = 0;		
+	g_Power_num = 1000;		
+	g_Defense_num = 1000;		
+	g_Speed_num = 1000;		
+	g_Balance_num = 1000;		
 	g_Research_num = 0;
-	g_Remain_num = 1000;
+	g_Remain_num = 6000;
 
 	g_Iron_num = 0;
 	g_Wood_num = 0;
