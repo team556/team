@@ -132,25 +132,25 @@ void CObjPreparation::Init()
 	//▽1ステージ　敵惑星1(左から1番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][0][0], L"難易度　★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][0][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材10・鉄40");//3行目
+	swprintf_s(m_Enemy_detail_message[0][0][2], L"木材50・鉄40");//3行目
 	swprintf_s(m_Enemy_detail_message[0][0][3], L"Fracture ray");//4行目
 	swprintf_s(m_Enemy_detail_message[0][0][4], L"ディフェンス重視");//5行目
 	//▽1ステージ　敵惑星2(左から2番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][1][0], L"難易度　★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][1][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][1][2], L"アルミ60・レアメタル50");//3行目
+	swprintf_s(m_Enemy_detail_message[0][1][2], L"銀45・ガス45");//3行目
 	swprintf_s(m_Enemy_detail_message[0][1][3], L"Expiosion");//4行目
 	swprintf_s(m_Enemy_detail_message[0][1][4], L"パワー重視");//5行目
 	//▽1ステージ　敵惑星3(左から3番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][2][0], L"難易度　★★★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][2][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][2][2], L"プラスチック40・ガス45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][2][2], L"プラスチック40・レアメタル50");//3行目
 	swprintf_s(m_Enemy_detail_message[0][2][3], L"ステロイド投与");//4行目
 	swprintf_s(m_Enemy_detail_message[0][2][4], L"バランス重視");//5行目
 	//▽1ステージ　敵惑星4(左から4番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[0][3][0], L"難易度　★★");//1行目
 	swprintf_s(m_Enemy_detail_message[0][3][1], L"取得可能な資材・技");//2行目
-	swprintf_s(m_Enemy_detail_message[0][3][2], L"鉄60・銀45");//3行目
+	swprintf_s(m_Enemy_detail_message[0][3][2], L"鉄60・アルミ60");//3行目
 	swprintf_s(m_Enemy_detail_message[0][3][3], L"Immotality");//4行目
 	swprintf_s(m_Enemy_detail_message[0][3][4], L"スピード重視");//5行目
 	//▽1ステージ　ボス惑星
