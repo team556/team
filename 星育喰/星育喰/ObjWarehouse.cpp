@@ -636,11 +636,11 @@ void CObjWarehouse::Draw()
 
 		dst.m_top = 120.0f;
 		dst.m_left = 120.0f;
-		dst.m_right = 257.0f;
-		dst.m_bottom = 197.0f;
+		dst.m_right = 230.0f;
+		dst.m_bottom = 230.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"ñÿçﬁ", 280.0f, 130.0f,30.0f, black);
-		Font::StrDraw(mrl[0], 280.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(L"ñÿçﬁ", 240.0f, 130.0f,30.0f, black);
+		Font::StrDraw(mrl[0], 240.0f, 170.0f, 30.0f, black);
 
 		//Å•ìSï\é¶
 		src.m_top = 0.0f;
