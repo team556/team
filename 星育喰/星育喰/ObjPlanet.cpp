@@ -769,16 +769,4 @@ void CObjPlanet::Draw()
 		Draw::Draw(32, &src, &dst, c, 0.0f);
 	}
 
-	wchar_t test_mou[256];
-
-	if (m_type != 0)
-		{
-			swprintf_s(test_mou, L"HP%f", m_size);
-			Font::StrDraw(test_mou, 350.0f, 500.0f, 24.0f, c);
-		}
-		else
-		{
-			swprintf_s(test_mou, L"HP%f", m_size);
-			Font::StrDraw(test_mou, 800.0f, 500.0f, 24.0f, c);
-		}
 }
