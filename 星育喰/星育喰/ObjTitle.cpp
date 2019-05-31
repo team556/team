@@ -63,6 +63,51 @@ void CObjTitle::Init()
 	m_mou_l = false;
 
 	srand(time(NULL));//ランダム情報を初期化
+
+
+	//▼グローバル変数(全保存データ)リセット処理
+	g_Stage_progress = 1;
+
+	for (int i = 0; i < 4; i++)
+	{
+		g_destroy_progress[i] = false;
+	}
+
+	g_Bar_Level = 1;
+	g_Ins_Level = 1;
+	g_Mis_Recast_Level = 0;
+	g_Pow_equip_Level = 1;
+	g_Pow_equip_Lv_achieve = 1;
+	g_Def_equip_Level = 1;
+	g_Def_equip_Lv_achieve = 1;
+	g_Spe_equip_Level = 1;
+	g_Spe_equip_Lv_achieve = 1;
+	g_Bal_equip_Level = 1;
+	g_Bal_equip_Lv_achieve = 1;
+	g_Pod_equip_Level = 1;
+	g_Pod_equip_Lv_achieve = 1;
+	g_Player_max_size = 10;
+	g_Special_equipment = 0;
+
+	for (int i = 0; i < 5 && i != 3; i++)
+	{
+		g_Special_mastering[i] = false;
+	}
+
+	g_Power_num = 1000;
+	g_Defense_num = 1000;
+	g_Speed_num = 1000;
+	g_Balance_num = 1000;
+	g_Research_num = 0;
+	g_Remain_num = 6000;
+
+	g_Iron_num = 0;
+	g_Wood_num = 0;
+	g_Silver_num = 0;
+	g_Plastic_num = 0;
+	g_Aluminum_num = 0;
+	g_gus_num = 0;
+	g_Raremetal_num = 0;
 }
 
 //アクション
