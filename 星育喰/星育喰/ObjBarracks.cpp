@@ -53,7 +53,7 @@ void CObjBarracks::Init()
 
 	//▼兵舎の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 50;		//レベルが1の時の必要素材数
-	m_Facility_next_Mat_num[1] = 100;	//レベルが2の時の必要素材数
+	m_Facility_next_Mat_num[1] = 40;	//レベルが2の時の必要素材数
 }
 
 //アクション
@@ -558,6 +558,7 @@ void CObjBarracks::Action()
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
 	else if (window_start_manage != Default)
 	{
+		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
 	}
 

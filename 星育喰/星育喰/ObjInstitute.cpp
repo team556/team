@@ -168,16 +168,16 @@ void CObjInstitute::Init()
 	swprintf_s(m_Equ_next_Mat_name[0][0], L"鉄");			 //レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[0][1], L"ガス");		 //レベルが2の時の必要素材名
 	//▽ディフェンス武器
-	swprintf_s(m_Equ_next_Mat_name[1][0], L"銀");			 //レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[1][1], L"鉄");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][0], L"鉄");			 //レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[1][1], L"銀");		 //レベルが2の時の必要素材名
 	//▽スピード武器
 	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");			//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[2][1], L"銀");		 //レベルが2の時の必要素材名
 	//▽バランス武器
 	swprintf_s(m_Equ_next_Mat_name[3][0], L"アルミニウム");		//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[3][1], L"アルミニウム");	//レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][1], L"ガス");	//レベルが2の時の必要素材名
 	//▽ポッド武器
-	swprintf_s(m_Equ_next_Mat_name[4][0], L"ガス");	//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][0], L"アルミニウム");	//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[4][1], L"レアメタル");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
@@ -187,16 +187,16 @@ void CObjInstitute::Init()
 	m_Equ_next_Mat_type[0][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
 	m_Equ_next_Mat_type[0][1] = &g_gus_num;	//レベルが2の時の必要素材種類
 	//▽ディフェンス武器
-	m_Equ_next_Mat_type[1][0] = &g_Silver_num;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[1][1] = &g_Iron_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[1][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[1][1] = &g_Silver_num;	//レベルが2の時の必要素材種類
 	//▽スピード武器
 	m_Equ_next_Mat_type[2][0] = &g_Iron_num;	//レベルが1の時の必要素材種類
 	m_Equ_next_Mat_type[2][1] = &g_Silver_num;	//レベルが2の時の必要素材種類
 	//▽バランス武器
 	m_Equ_next_Mat_type[3][0] = &g_Aluminum_num;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[3][1] = &g_Aluminum_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[3][1] = &g_gus_num;	//レベルが2の時の必要素材種類
 	//▽ポッド
-	m_Equ_next_Mat_type[4][0] = &g_gus_num;	//レベルが1の時の必要素材種類
+	m_Equ_next_Mat_type[4][0] = &g_Aluminum_num;	//レベルが1の時の必要素材種類
 	m_Equ_next_Mat_type[4][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
@@ -204,8 +204,8 @@ void CObjInstitute::Init()
 	m_Equ_next_Mat_num[0][0] = 30;	 //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[0][1] = 20;  //レベルが2の時の必要素材数
 	//▽ディフェンス武器
-	m_Equ_next_Mat_num[1][0] = 40;  //レベルが1の時の必要素材数
-	m_Equ_next_Mat_num[1][1] = 30; //レベルが2の時の必要素材数
+	m_Equ_next_Mat_num[1][0] = 30;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[1][1] = 40; //レベルが2の時の必要素材数
 	//▽スピード武器
 	m_Equ_next_Mat_num[2][0] = 30;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[2][1] = 25; //レベルが2の時の必要素材数
@@ -213,7 +213,7 @@ void CObjInstitute::Init()
 	m_Equ_next_Mat_num[3][0] = 30;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[3][1] = 30; //レベルが2の時の必要素材数
 	//▽ポッド
-	m_Equ_next_Mat_num[4][0] = 45;  //レベルが1の時の必要素材数
+	m_Equ_next_Mat_num[4][0] = 30;  //レベルが1の時の必要素材数
 	m_Equ_next_Mat_num[4][1] = 50;  //レベルが2の時の必要素材数
 
 //-----------------------------------------------------------------------------------------------------
@@ -234,7 +234,7 @@ void CObjInstitute::Init()
 
 	//▼研究所の次のLVUPに必要な素材数設定
 	m_Facility_next_Mat_num[0] = 10;	//レベルが1の時の必要素材数
-	m_Facility_next_Mat_num[1] = 60;	//レベルが2の時の必要素材数
+	m_Facility_next_Mat_num[1] = 20;	//レベルが2の時の必要素材数
 
 
 
@@ -969,6 +969,7 @@ void CObjInstitute::Action()
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
 	else if (window_start_manage != Default)
 	{
+		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
 	}
 
