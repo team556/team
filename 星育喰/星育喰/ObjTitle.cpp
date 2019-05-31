@@ -21,11 +21,14 @@ using namespace GameL;
 #define ENEMY_PLANET3_START_TIME (300)  //敵惑星3(背景)の開始時間
 #define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
 
+//static変数の定義
+bool CObjTitle::after_once = false;
+
 //イニシャライズ
 void CObjTitle::Init()
 {
 	m_click_vy = 0.0f;	
-	m_r = 0.0f;			
+	m_r = 0.0f;
 
 	m_Ey[3] = {};//全ての要素の値を0で初期化している
 	m_time[0] = ENEMY_PLANET1_START_TIME;
@@ -38,6 +41,22 @@ void CObjTitle::Init()
 	m_flag  = false;
 	m_alpha = INI_ALPHA;
 
+	//▼二回目以降訪れた時の演出
+	//「画面暗転状態→明転する」
+	//二回目以降はこの演出をしたい為、
+	//初回かそうでないかで
+	//初期値を変更する。
+	//▽二回目以降
+	if (after_once == true)
+	{
+		m_black_out_a = INI_ALPHA;
+	}
+	//▽初回
+	else
+	{
+		m_black_out_a = 0.0f;
+	}
+
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
@@ -49,6 +68,12 @@ void CObjTitle::Init()
 //アクション
 void CObjTitle::Action()
 {
+	//画面暗転状態の場合、明転する処理
+	if (m_black_out_a >= 0.0f)
+	{
+		m_black_out_a -= 0.01f;
+	}
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -63,6 +88,7 @@ void CObjTitle::Action()
 		
 		if (m_alpha <= 0.0f)
 		{
+			after_once = true;//「一度タイトル画面を訪れた」と記憶
 			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 		}
 
@@ -110,6 +136,9 @@ void CObjTitle::Draw()
 
 	//黄色(☆育喰)[シーン移行時フェードアウト]
 	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
+	
+	//画面全体暗転画像用
+	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -238,6 +267,20 @@ void CObjTitle::Draw()
 	dst.m_right = 851.0f;
 	dst.m_bottom = 300.0f;
 	Draw::Draw(1, &src, &dst, w, m_alpha);
+
+
+	//▼画面全体暗転用画像表示
+	//※blackoutの透過度の値で「表示/非表示」が切り替えられる
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
+
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(2, &src, &dst, blackout, 0.0f);
 
 
 

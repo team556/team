@@ -39,11 +39,16 @@ void CSceneTitle::InitScene()
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
-	//プレイヤー惑星を読み込み50番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
-
 	//タイトルロゴ
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
+
+	//ポーズ画面背景を読み込み2番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 2, TEX_SIZE_512);
+
+	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
+
+	//プレイヤー惑星を読み込み50番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);

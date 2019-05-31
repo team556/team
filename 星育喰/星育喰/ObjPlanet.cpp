@@ -382,6 +382,17 @@ void CObjPlanet::Action()
 	//制限時間が余っていても戦闘終了処理を行う
 	if (m_size <= 0.0f && battle_end == false)
 	{
+		m_size = 0.0f;		//0未満の値になっている場合、0に設定する
+
+		if (m_type == 0)//プレイヤーの時
+		{
+			m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
+		}
+		else if (m_type != 0)//敵惑星の時
+		{
+			m_scale_down_move = ((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ右に移動
+		}
+
 		battle_end = true;	//戦闘終了フラグを立てる
 		fit->SetEndCount();	//戦闘時間を残り1秒に設定する
 	}
