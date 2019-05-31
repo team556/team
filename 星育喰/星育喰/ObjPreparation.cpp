@@ -284,6 +284,9 @@ void CObjPreparation::Action()
 
 			//徐々に上記オブジェクトの画面外移動速度を増加させる
 			m_speed /= 0.956f;
+
+			//敵惑星詳細説明を非表示(右クリックでホーム画面に戻る際、詳細説明が残らないようにするため)
+			m_detail_message_alpha = 0.0f;
 		}
 
 		return;

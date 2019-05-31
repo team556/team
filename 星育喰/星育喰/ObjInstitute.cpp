@@ -969,6 +969,7 @@ void CObjInstitute::Action()
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
 	else if (window_start_manage != Default)
 	{
+		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
 	}
 
