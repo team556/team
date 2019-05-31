@@ -154,10 +154,11 @@ void CObjPreparation::Init()
 	swprintf_s(m_Enemy_detail_message[0][3][3], L"Immotality");//4行目
 	swprintf_s(m_Enemy_detail_message[0][3][4], L"スピード重視");//5行目
 	//▽1ステージ　ボス惑星
-	swprintf_s(m_Enemy_detail_message[0][4][0], L"テスト");//1行目
-	swprintf_s(m_Enemy_detail_message[0][4][1], L"テスト");//2行目
-	swprintf_s(m_Enemy_detail_message[0][4][2], L"テスト");//3行目
-	swprintf_s(m_Enemy_detail_message[0][4][3], L"テスト");//4行目
+	swprintf_s(m_Enemy_detail_message[0][4][0], L"難易度　測定不能");//1行目
+	swprintf_s(m_Enemy_detail_message[0][4][1], L"取得可能な資材・技");//2行目
+	swprintf_s(m_Enemy_detail_message[0][4][2], L"無し");//3行目
+	swprintf_s(m_Enemy_detail_message[0][4][3], L"攻撃傾向");//4行目
+	swprintf_s(m_Enemy_detail_message[0][4][4], L"不明");//4行目
 	//▽2ステージ　敵惑星1(左から1番目の敵惑星)
 	swprintf_s(m_Enemy_detail_message[1][0][0], L"テスト");//1行目
 	swprintf_s(m_Enemy_detail_message[1][0][1], L"テスト");//2行目

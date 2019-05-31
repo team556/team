@@ -168,25 +168,25 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{					
-			CObjFightClear* crer = new CObjFightClear(5000, 50, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 40, 2);
+			CObjFightClear* crer = new CObjFightClear(5000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 40, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(10000, 100, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
+			CObjFightClear* crer = new CObjFightClear(10000, 200, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から３番目
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(15000, 140, L"銀", &g_Silver_num, 65, L"レアメタル", &g_Raremetal_num, 50, 5);
+			CObjFightClear* crer = new CObjFightClear(15000, 250, L"銀", &g_Silver_num, 65, L"レアメタル", &g_Raremetal_num, 50, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(7000, 50, L"鉄", &g_Iron_num, 60, L"アルミ", &g_Aluminum_num, 80, 3);
+			CObjFightClear* crer = new CObjFightClear(7000, 150, L"鉄", &g_Iron_num, 60, L"アルミ", &g_Aluminum_num, 80, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ボス
