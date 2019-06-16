@@ -5,32 +5,44 @@
 using namespace GameL;
 
 //マクロ
-#define STR_MAX (50) //文字最大数
-#define STR_SIZE (64.0f)//一文字の大きさ
+#define MES_MAX (10)			//メッセージ最大格納数
+#define FONT_MAX (50)			//フォントデータ格納最大数
+#define FONT_CLIP_SIZE (64.0f)	//フォント切り取りサイズ
+#define FONT_DRAW_SIZE (32.0f)	//フォント描画サイズ
 
-//オブジェクト：メッセージ表示
+//オブジェクト：メッセージ
 class CObjMessage :public CObj
 {
 public:
-	CObjMessage() {};
+	CObjMessage(int id) { Scene_id = id; }
 	~CObjMessage() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
-	wchar_t str[10][STR_MAX]; //文字管理配列[メッセージ数][文字]
-	int str_column[STR_MAX];//フォント読み込み位置(列)
-	int str_line[STR_MAX];//フォント読み込み位置(行)
-	int str_draw_x[STR_MAX];//フォント表示位置X
-	int str_draw_y[STR_MAX];//フォント表示位置Y
-	int time;				//時間管理
-	int text_count;			//現在何文字目か管理
-	int page;				//ページ数管理
-	int now_max;//文字列長さ管理
-
-
+	wchar_t m_font[MES_MAX][FONT_MAX];	//フォント情報管理配列[メッセージ格納数][フォントデータ格納数]
+	int m_font_column[FONT_MAX];		//フォント切り取り位置(列)
+	int m_font_line[FONT_MAX];			//フォント切り取り位置(行)
+	int m_font_draw_x[FONT_MAX];		//フォント描画位置X
+	int m_font_draw_y[FONT_MAX];		//フォント描画位置Y
+	
+	int m_time;			//次のフォント描画までの時間管理
+	int m_font_count;	//現在何文字目を描画中であるか管理
+	int m_progress;		//メッセージ進行度の管理
+	int m_length;		//文字列の長さを管理
+	bool m_fast_f;		//メッセージ描画速度高速化フラグ[true:描画速度高速化　false:描画速度通常]
+	bool m_skip_f;		//メッセージスキップフラグ[true:スキップ処理実行　false:未実行状態]
+	
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
+	bool  m_key_f;		//キーフラグ
+
+	
+	//▼基本的にはtrue。メッセージ終了 or メッセージ途中にプレイヤーに何か操作させたい時にfalseにする。
+	bool m_run_switch;	//メッセージ表示機能ON/OFF管理フラグ[true:動作させる　false:停止させる]
+	
+	//▼シーンID管理用
+	int	Scene_id;//現状テストで割り振っているものを除き、何も割り振っていない。
 };
