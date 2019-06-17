@@ -53,17 +53,17 @@ void CObjMessage::Init()
 	//何か操作させたい時にこの全角文字を書いて下さい。
 
 	//テスト
-	if (Scene_id == 0)
+	if (m_Scene_id == 0)
 	{
 		swprintf_s(m_font[0], L"あかあかきくきく＿かうい￥１２３２１３２３１２１３１２１３２；");//メッセージ１
-		swprintf_s(m_font[1], L"あいうかきく１２３；");//メッセージ２
-		swprintf_s(m_font[2], L"うか１２２２３；");//メッセージ３
-		swprintf_s(m_font[3], L"|");//メッセージ４
-		swprintf_s(m_font[4], L"うか１２２２３；");//メッセージ５
-		swprintf_s(m_font[5], L"|");//メッセージ４
+		swprintf_s(m_font[1], L"あいうかきく１２３；");	//メッセージ２
+		swprintf_s(m_font[2], L"うか１２２２３；");		//メッセージ３
+		swprintf_s(m_font[3], L"|");					//メッセージ４
+		swprintf_s(m_font[4], L"うか１２２２３；");		//メッセージ５
+		swprintf_s(m_font[5], L"|");					//メッセージ６
 	}
 	//テスト
-	if (Scene_id == 1)
+	else if (m_Scene_id == 1)
 	{
 
 	}
@@ -79,11 +79,18 @@ void CObjMessage::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
-	//※再度起動させる場合、ページ増やしてm_run_switchをtrueにする
-	//停止設定
+	//▼メッセージ表示機能が停止した時の処理
+	//※メッセージ表示機能停止時はこの処理の中に入り、
+	//この処理以降の処理は実行されない。
+	//特にこの処理の中に何か書き込まなければ、
+	//メッセージ表示機能が再び動作状態になる事はない。
+	//再び動作状態にしたい場合、条件を満たした時に
+	//「m_progress++」「m_run_switch = true」する事で動作させる事が出来る。
+	//※「m_progress++」する意味は、メッセージ進行度を次に進めないと、
+	//また「｜」が読み込まれてしまうため。
 	if (m_run_switch == false)
 	{
-		if (m_progress == 3)
+		if (m_Scene_id == 0 && m_progress == 3)
 		{
 			if (Input::GetVKey('A') == true)
 			{
@@ -91,17 +98,28 @@ void CObjMessage::Action()
 				m_run_switch = true;
 			}
 		}
+		else if (m_Scene_id == 1 && m_progress == 0)
+		{
+
+		}
 
 		return;
 	}
-	if (m_font[m_progress][m_font_count] == L'|')
+
+	//▼メッセージ表示機能停止処理
+	//※「｜(メッセージ表示機能停止)」が書かれていれば、
+	//この処理が実行される。
+	else if (m_font[m_progress][m_font_count] == L'|')
 	{
 		m_run_switch = false;
-		m_skip_f = false;
+		m_skip_f = false;//スキップフラグOFF(再び動作状態となった時、スキップされるのを防ぐため)
+
 		return;
 	}
 
-	//文字列長さ測定
+
+	//▼現在メッセージの文字列の長さを取得
+	//※新たなメッセージ取得毎に１回だけ実行される。
 	if (m_length == 0)
 	{
 		for (int i = 0; m_font[m_progress][i] != L'；'; i++)
@@ -110,18 +128,26 @@ void CObjMessage::Action()
 		}
 	}
 
-	//キーフラグ
+	//▼キーフラグ
+	//※左クリックPush状態→左クリック未Push状態になるまで、
+	//再度左クリックする事は出来ない処理。
 	if (m_mou_l == false)
 	{
 		m_key_f = false;
 	}
 
 	
+	//▼メッセージ表示＆終了処理
 	if (m_font[m_progress][m_font_count] == L'；' || m_skip_f == true)
 	{
-		//クリックで次の文章へ。
+		//▽メッセージ終了の処理
+		//現在のメッセージが最後まで表示されると、この処理が実行される。
+		//この状態の時に、左クリックする事で次のメッセージへと移行する。
+		//※スキップフラグON時はメッセージ終了してなくてもこの処理に入る。
 		if (m_mou_l == true && m_key_f == false || m_skip_f == true)
 		{
+			//次のメッセージへ移行する前に、
+			//メッセージ表示に必要な変数等を元に戻す
 			for (int i = 0; i < FONT_MAX; i++)
 			{
 				m_font_column[i] = 0;
@@ -132,21 +158,25 @@ void CObjMessage::Action()
 
 			m_time = 0;
 			m_font_count = 0;
-			m_progress++;
 			m_length = 0;
 			m_fast_f = false;
 
-			m_key_f = true;
+			m_key_f = true;//キーフラグを立てる
+			m_progress++;//メッセージ進行度を増加させ、次のメッセージへと移行。
 		}
 	}
 	else if (m_time <= 0 || m_fast_f == true)
 	{
-		//登録された文字から現在の文字に当てはまるものを探し、
-		//見つかれば、適切な切り取り位置を返す。
+		//▽メッセージ表示処理
+		//現在のメッセージが最後まで表示されていない場合、
+		//m_timeにより、0.08秒毎にこの処理が実行される。
+		//登録された文字から現在表示しようとしている文字に
+		//当てはまるものを探し、見つかれば、適切な切り取り位置を返す。
 		//※見つからなければ空白を返す。
 		//※新たに文字を登録したい場合、
 		//以下のようにif文で文字を登録し、適切な切り取り位置を設定すべし。
 		//ちなみに、余裕があればこの部分は関数化する予定。
+		//※描画速度高速化フラグON時はm_time関係なしにこの処理に入る。
 		if (m_font[m_progress][m_font_count] == L'あ')
 		{
 			m_font_column[m_font_count] = 3;
@@ -192,19 +222,22 @@ void CObjMessage::Action()
 			m_font_column[m_font_count] = 1;
 			m_font_line[m_font_count] = 3;
 		}
+		//空白の処理
 		else if (m_font[m_progress][m_font_count] == L'＿')
 		{
 			m_font_column[m_font_count] = 0;
 			m_font_line[m_font_count] = 0;
 		}
+		//改行の処理
 		else if (m_font[m_progress][m_font_count] == L'￥')
 		{
 			m_font_column[m_font_count] = 0;
 			m_font_line[m_font_count] = 0;
 
-			m_font_draw_x[m_font_count + 1] = 0;
-			m_font_count++;
+			m_font_draw_x[m_font_count + 1] = 0;//フォント描画位置Xを初期地点に戻す
+			m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
 
+			//改行以降のフォント描画位置Yを下にずらす
 			for (int i = m_font_count; i <= m_length; i++)
 			{
 				m_font_draw_y[i]++;
@@ -213,23 +246,28 @@ void CObjMessage::Action()
 			return;
 		}
 
+		//次のフォント描画位置Xを現在のフォント描画位置Xを基に右にずらす
 		m_font_draw_x[m_font_count + 1] = m_font_draw_x[m_font_count] + 1;
-		m_font_count++;
-		m_time = 5;
+
+		m_font_count++;//表示しようとしている文字を次のフォント情報へ変更する
+		m_time = 5;//次のフォント描画までの時間を0.08秒に設定
 	}
 	else
 	{
+		//▽次のフォント描画までの時間減少処理
 		m_time--;
 	}
 
 
-	//左クリックされたらフォント高速表示
+	//メッセージ表示中に左クリックされたら
+	//メッセージ描画速度を高速化するフラグを立てる
 	if (m_mou_l == true && m_key_f == false)
 	{
 		m_fast_f = true;
-		m_key_f = true;
+		m_key_f = true;//キーフラグを立てる
 	}
-	//Zキーが入力されたらメッセージを全て飛ばす
+	//メッセージ表示中にZキーが入力されたら
+	//メッセージ表示機能停止までのメッセージを全て飛ばすフラグを立てる
 	else if (Input::GetVKey('Z') == true)
 	{
 		m_skip_f = true;
@@ -246,10 +284,12 @@ void CObjMessage::Draw()
 	}
 
 
-	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
+	float d[4] = { 1.0f,1.0f,1.0f,1.0f };//フォント画像用
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
+
 
 	//▼メッセージウインドウ表示
 	src.m_top = 0.0f;
@@ -263,8 +303,11 @@ void CObjMessage::Draw()
 	dst.m_bottom = 680.0f;
 	Draw::Draw(2, &src, &dst, d, 0.0f);
 
+	//現在メッセージの文字列の長さが取得出来てなければ実行されない
 	if (m_length != 0)
 	{
+		//文字列の長さ(文字の数)分、フォント表示処理を行う
+		//※フォント１つ１つをfor文で文字の総数分回して、表示している。
 		for (int i = 0; i <= m_length; i++)
 		{
 			//▼フォント表示

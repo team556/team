@@ -14,7 +14,7 @@ using namespace GameL;
 class CObjMessage :public CObj
 {
 public:
-	CObjMessage(int id) { Scene_id = id; }
+	CObjMessage(int id) { m_Scene_id = id; }
 	~CObjMessage() {};
 	void Init();     //イニシャライズ
 	void Action();   //アクション
@@ -44,5 +44,5 @@ private:
 	bool m_run_switch;	//メッセージ表示機能ON/OFF管理フラグ[true:動作させる　false:停止させる]
 	
 	//▼シーンID管理用
-	int	Scene_id;//現状テストで割り振っているものを除き、何も割り振っていない。
+	int	m_Scene_id;//現状テストで割り振っているものを除き、何も割り振っていない。
 };

@@ -35,11 +35,11 @@ void CSceneTest::InitScene()
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"w.png", 1, TEX_SIZE_512);
 
-	//メッセージウインドウを読み込み2番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 2, TEX_SIZE_512);
+	////メッセージウインドウを読み込み2番に登録
+	//Draw::LoadImage(L"メッセージウインドウ(仮).png", 2, TEX_SIZE_512);
 
-	//自作フォントテスト用を読み込み3番に登録
-	Draw::LoadImage(L"自作フォントテスト用.png", 3, TEX_SIZE_512);
+	////自作フォントテスト用を読み込み3番に登録
+	//Draw::LoadImage(L"自作フォントテスト用.png", 3, TEX_SIZE_512);
 
 	////10番に登録
 	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);
@@ -63,9 +63,9 @@ void CSceneTest::InitScene()
 	//CObjHelp* obj = new CObjHelp(1);	//タイトルオブジェクト作成
 	//Objs::InsertObj(obj, OBJ_HELP, 10);		//タイトルオブジェクト登録
 
-	//メッセージ表示オブジェクト作成
-	CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
-	Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
+	////メッセージ表示オブジェクト作成
+	//CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
+	//Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド
