@@ -715,19 +715,19 @@ void CObjWarehouse::Draw()
 		Font::StrDraw(L"ガス", 950.0f, 280.0f, 30.0f, black);
 		Font::StrDraw(mrl[5], 950.0f, 330.0f, 30.0f, black);
 
-		//▼レアメタル表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 160.0f;
-		src.m_bottom = 160.0f;
+		////▼レアメタル表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 160.0f;
+		//src.m_bottom = 160.0f;
 
-		dst.m_top = 440.0f;
-		dst.m_left = 450.0f;
-		dst.m_right = 560.0f;
-		dst.m_bottom = 550.0f;
-		Draw::Draw(39, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
-		Font::StrDraw(mrl[6], 580.0f, 500.0f, 30.0f, black);
+		//dst.m_top = 440.0f;
+		//dst.m_left = 450.0f;
+		//dst.m_right = 560.0f;
+		//dst.m_bottom = 550.0f;
+		//Draw::Draw(39, &src, &dst, it, 0.0f);
+		//Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
+		//Font::StrDraw(mrl[6], 580.0f, 500.0f, 30.0f, black);
 	}
 
 	//住民ボタンを押して描画する画像

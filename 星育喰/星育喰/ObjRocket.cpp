@@ -329,7 +329,7 @@ void CObjRocket::Action()
 	}
 
 	//爆発エフェクト回数処理
-	if (m_del == true)
+	if (hit->CheckObjNameHit(ELEMENT_POD) && hit->CheckElementHit(ELEMENT_ENEMYPOD))
 	{
 		;
 	}
