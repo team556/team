@@ -52,6 +52,13 @@ void CObjFight::Init()
 
 	m_end_f = false;
 
+	m_line_dis = false;
+
+	m_key_U_f = false;
+	m_key_D_f = false;
+
+	m_line_choice = 0;
+
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
 	battle_end = false;
@@ -88,8 +95,15 @@ void CObjFight::Action()
 		{
 			m_start_count--;//戦闘開始カウントダウン
 		}
-
+		
 		return;
+	}
+
+	//戦闘開始のカウントが終わった時にラインを表示させる
+	//※一度しか動かない
+	if (m_line_dis == false) {
+		m_line_nam = 1;
+		m_line_dis = true;
 	}
 
 	//▼戦闘終了間際(残り1秒)のタイミングで戦闘終了フラグを立てる
@@ -100,7 +114,7 @@ void CObjFight::Action()
 
 	if (m_cnt > 0)	//0より大きい時
 		m_cnt--;	//カウントダウン
-	
+
 	//背景拡大処理
 	//※戦闘終了後は実際されない。
 	if (battle_end == false)
@@ -121,27 +135,78 @@ void CObjFight::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
-	
 
 	m_line = 6;//常に選択前ラインを初期化
 
-	if (400 <= m_mou_x && m_mou_x <= 800) 
-	{
-		if (200 <= m_mou_y && m_mou_y <= 260) {					
+	//ラインを矢印キーで選択するときの処理
+	if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
+
+		//選択中のラインが一番上に来た時に下に移動させる
+		if (m_line_choice <= 0) {
+			m_line_choice = 2;
+		}
+		else {
+			m_line_choice--;
+		}
+		m_key_U_f = true;
+	}
+
+	if (m_key_D_f == false && Input::GetVKey(VK_DOWN) == true) {
+
+		//選択中のラインが一番下に来た時に上に移動させる
+		if (m_line_choice >= 2) {
+			m_line_choice = 0;
+		}
+		else {
+			m_line_choice++;
+		}
+		m_key_D_f = true;
+	}
+
+	//選択ラインのX軸幅内にマウスカーソルがある且つ、上下のキーが入力されていないとき
+	if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
+
+		if (200 <= m_mou_y && m_mou_y <= 260 ) {
 			if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
 			else { m_line = 0; }
 		}
-		else if (310 <= m_mou_y && m_mou_y <= 370) {			
+		else if (310 <= m_mou_y && m_mou_y <= 370) {
 			if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
 			else { m_line = 1; }
 		}
-		else if (420 <= m_mou_y && m_mou_y <= 480) {			
+		else if (420 <= m_mou_y && m_mou_y <= 480 ) {
 			if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
 			else { m_line = 2; }
 		}
 		else {};//ライン外何もしない
+
 	}
-	else {};
+	else if(m_key_U_f == true || m_key_D_f == true){
+		if (m_line_choice == 0) {
+			m_line_nam = 0;
+		}
+		else if (m_line_choice == 1) {
+			m_line_nam = 1;
+		}
+		else if (m_line_choice == 2) {
+			m_line_nam = 2;
+		}
+	}
+
+
+	//キーフラグ制御---------------
+	if (Input::GetVKey(VK_UP) == false) {
+
+		m_key_U_f = false;
+
+	}
+	
+	if (Input::GetVKey(VK_DOWN) == false) {
+
+		m_key_D_f = false;
+
+	}
+	
 
 	//▼クリア処理
 	//エネミー毎に取得出来る資源等は違うため、
