@@ -276,8 +276,8 @@ void CSceneTraining::InitScene()
 	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
 	//※コメントアウト後、正常動作を確認済み
 	////バックミュージック
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((1.0 - v));
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((1.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
