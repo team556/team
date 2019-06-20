@@ -38,6 +38,7 @@ enum OBJ_NAME
 	OBJ_PODB,
 	//OBJ_HELP,
 	OBJ_GAME_CLEAR,
+	OBJ_MESSAGE,
 
 
 };
@@ -157,6 +158,7 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 #include "Pause.h"
 //#include "ObjHelp.h"
 #include "ObjGameClear.h"
+#include "ObjMessage.h"
 
 //------------------------------------------------
 

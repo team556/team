@@ -199,6 +199,9 @@
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\シーン\クリア</Filter>
     </ClCompile>
+    <ClCompile Include="ObjMessage.cpp">
+      <Filter>ソース ファイル\関数/演出</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -341,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\シーン\クリア</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMessage.h">
+      <Filter>ソース ファイル\関数/演出</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

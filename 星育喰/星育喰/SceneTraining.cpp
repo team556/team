@@ -85,7 +85,7 @@ void CSceneTraining::InitScene()
 	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプブジェクト登録
 
 
-	//背景を読み込み0番に登録
+	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
 	Draw::LoadImage(L"地面TEST.gif", 0, TEX_SIZE_512);
 
 	//戻るアイコンを読み込み1番に登録
@@ -106,6 +106,9 @@ void CSceneTraining::InitScene()
 	//研究所Lv2を読み込み6番に登録
 	Draw::LoadImage(L"研究所Lv2.png", 6, TEX_SIZE_512);
 
+	//背景Lv2(背景レベル＝プレイヤー惑星レベル)を読み込み7番に登録
+	Draw::LoadImage(L"地面TEST.gif", 7, TEX_SIZE_512);
+
 	//兵舎Lv3を読み込み8番に登録
 	Draw::LoadImage(L"兵舎Lv3.png", 8, TEX_SIZE_512);
 
@@ -123,12 +126,21 @@ void CSceneTraining::InitScene()
 
 	//ヘルプ画像を読み込み13番に登録
 	Draw::LoadImage(L"ヘルプ兵舎.png", 13, TEX_SIZE_512);
+
+	//背景Lv3(背景レベル＝プレイヤー惑星レベル)を読み込み14番に登録
+	Draw::LoadImage(L"地面TEST.gif", 14, TEX_SIZE_512);
 	
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
 
-	//プレイヤー惑星を読み込み16番に登録
+	//プレイヤー惑星Lv1を読み込み16番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 16, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv2を読み込み17番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 17, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv3を読み込み18番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 18, TEX_SIZE_512);
 
 	//灰色ウインドウ(仮)を読み込み20番に登録
 	Draw::LoadImage(L"灰色ウインドウ(仮).png", 20, TEX_SIZE_512);

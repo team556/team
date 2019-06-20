@@ -17,7 +17,7 @@ using namespace GameL;
 #define INI_COLOR (0.9f) //全カラー明度の初期値
 
 //グローバル変数の定義
-int g_Ware = 1;
+//int g_Ware = 1;
 
 
 //イニシャライズ
@@ -390,7 +390,7 @@ void CObjWarehouse::Draw()
 	//▽フォント準備
 	//倉庫用
 	wchar_t Ware[5];
-	swprintf_s(Ware, L"倉庫", g_Ware);
+	swprintf_s(Ware, L"倉庫");
 
 	//資材(名前・持っている数)表示
 	wchar_t mrl[7][9];

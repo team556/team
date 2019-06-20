@@ -24,6 +24,44 @@ using namespace GameL;
 //static変数の定義
 bool CObjTitle::after_once = false;
 
+//全てのグローバル変数の定義
+int g_Stage_progress = 1;
+bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
+int g_Bar_Level = 1;
+int g_Ins_Level = 1;
+int g_Mis_Recast_Level = 0;
+int g_Pow_equip_Level = 1;
+int g_Pow_equip_Lv_achieve = 1;
+int g_Def_equip_Level = 1;
+int g_Def_equip_Lv_achieve = 1;
+int g_Spe_equip_Level = 1;
+int g_Spe_equip_Lv_achieve = 1;
+int g_Bal_equip_Level = 1;
+int g_Bal_equip_Lv_achieve = 1;
+int g_Pod_equip_Level = 1;
+int g_Pod_equip_Lv_achieve = 1;
+float g_Player_max_size = 100.0f;
+int g_Special_equipment = 0;//装備中のスペシャル技
+bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
+int g_Power_num = 1000;
+int g_Defense_num = 1000;
+int g_Speed_num = 1000;
+int g_Balance_num = 1000;
+int g_Research_num = 0;
+int g_Remain_num = 6000;
+int g_Recast_time = 3;
+int g_P_Planet_damage = 0;
+
+int g_Iron_num = 0;
+int g_Wood_num = 0;
+int g_Silver_num = 0;
+int g_Plastic_num = 0;
+int g_Aluminum_num = 0;
+int g_gus_num = 0;
+int g_Raremetal_num = 0;
+
+int g_Challenge_enemy = 0;
+
 //イニシャライズ
 void CObjTitle::Init()
 {
