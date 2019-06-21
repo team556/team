@@ -19,36 +19,6 @@ bool CObjTraining::m_key_rf = false;
 bool CObjTraining::scene_change_start = false;
 int  CObjTraining::window_start_manage = Default;
 
-//グローバル変数の定義
-int g_Bar_Level = 1;
-int g_Ins_Level = 1;
-int g_Mis_Recast_Level = 0;
-int g_Pow_equip_Level = 1;	
-int g_Pow_equip_Lv_achieve = 1;
-int g_Def_equip_Level = 1;		
-int g_Def_equip_Lv_achieve = 1;	
-int g_Spe_equip_Level = 1;		
-int g_Spe_equip_Lv_achieve = 1;	
-int g_Bal_equip_Level = 1;
-int g_Bal_equip_Lv_achieve = 1;
-int g_Pod_equip_Level = 1;
-int g_Pod_equip_Lv_achieve = 1;
-float g_Player_max_size = 100.0f;
-int g_Power_num = 1000;		
-int g_Defense_num = 1000;	
-int g_Speed_num = 1000;		
-int g_Balance_num = 1000;	
-int g_Research_num = 0;
-int g_Remain_num = 6000;
-
-int g_Iron_num = 0;
-int g_Wood_num = 0;
-int g_Silver_num = 0;
-int g_Plastic_num = 0;
-int g_Aluminum_num = 0;
-int g_gus_num = 0;
-int g_Raremetal_num = 0;
-
 //イニシャライズ
 void CObjTraining::Init()
 {

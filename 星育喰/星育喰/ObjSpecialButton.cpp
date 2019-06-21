@@ -469,8 +469,12 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_Explosion_angle[Planet_id] = 90.0f;//エフェクト角度を上に向くように設定
 			m_Explosion_size[Planet_id] += 20.0f;//エフェクト画像サイズを変更し、上方向に画像を伸ばす
 
-			//ビーム音を出す
-			Audio::Start(6);
+			if (m_sptime[Planet_id] == false)
+			{
+				//ビーム音を出す
+				Audio::Start(6);
+				m_sptime[Planet_id] = true;
+			}
 		}
 		
 		//2秒経過後、スペシャル技の効果を終了する

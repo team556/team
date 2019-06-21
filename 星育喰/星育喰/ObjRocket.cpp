@@ -16,11 +16,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//float g_Missile_pow = 5.0f;
-int g_P_Planet_damage = 0;
-
-
-
 //コンストラクタ
 CObjRocket::CObjRocket(float x, float y, int type,int n)
 {
@@ -334,7 +329,7 @@ void CObjRocket::Action()
 	}
 
 	//爆発エフェクト回数処理
-	if (m_del == true)
+	if (hit->CheckObjNameHit(ELEMENT_POD) && hit->CheckElementHit(ELEMENT_ENEMYPOD))
 	{
 		;
 	}

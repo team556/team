@@ -16,9 +16,6 @@ using namespace GameL;
 #define RECAST_COMPLETE_TIME (60.0f * g_Recast_time)//ミサイルのリキャスト完了タイム
 #define RECAST_COMPLETE_POD_TIME (60.0f * 6)//ポッドのリキャスト完了タイム
 
-//リキャストタイム用のグローバル変数定義
-int g_Recast_time=3;
-
 //コンストラクタ
 CObjRocketButton::CObjRocketButton(float x, float y, float h, float w, int n)
 {

@@ -44,7 +44,13 @@ private:
 	int	  m_start_count;		//戦闘開始カウント用
 	bool  m_start_count_f;		//「戦闘開始カウント」開始フラグ(trueの時、動作を開始する)
 
+	bool m_line_dis;	//初期ライン選択表示用
+
 	bool m_end_f;		//クリア画面作成用
+	bool m_key_U_f;		//UP用キーフラグ
+	bool m_key_D_f;		//DOWN用キーフラグ
+
+	int m_line_choice;	//ライン選択用
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
