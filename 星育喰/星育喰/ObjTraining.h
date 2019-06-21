@@ -58,6 +58,7 @@ protected:
 
 
 	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
+	static int  player_level;		//プレイヤー惑星レベル(ホワイトアウト処理判定で使う)
 	static int  window_start_manage;//施設ウインドウの起動管理フラグ
 
 	//▼各施設ウインドウ(戻るボタン含む)に列挙型で識別番号を割り振る
