@@ -181,8 +181,9 @@ void CObjFightClear::Action()
 			m_result_a += 0.03f;
 
 			//プレイヤー惑星X座標(m_px)を徐々に200.0fに近づける(画面左の方に移動)
+			//※以下のif文はサイズ縮小分、X座標移動しているのも考慮済。
 			CObjPlanet* Planet = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-			if (Planet->GetX() >= 200.0f)
+			if (Planet->GetX() >= 200.0f - Planet->GetScale_down_move())
 			{
 				Planet->SetVX(-4.0f);
 			}

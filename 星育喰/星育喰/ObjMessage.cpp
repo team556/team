@@ -266,9 +266,9 @@ void CObjMessage::Action()
 		m_fast_f = true;
 		m_key_f = true;//キーフラグを立てる
 	}
-	//メッセージ表示中にZキーが入力されたら
+	//メッセージ表示中にCTRLキーが入力されたら
 	//メッセージ表示機能停止までのメッセージを全て飛ばすフラグを立てる
-	else if (Input::GetVKey('Z') == true)
+	else if (Input::GetVKey(VK_CONTROL) == true)
 	{
 		m_skip_f = true;
 	}

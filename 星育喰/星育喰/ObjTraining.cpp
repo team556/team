@@ -82,6 +82,11 @@ void CObjTraining::Action()
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
 	else if (window_start_manage != Default)
 	{
+		//他施設ウインドウの戻るボタンを左クリック時、
+		//ホーム画面に戻るボタンも同時にクリックされないように、
+		//以下のようにキーフラグをfalseにする事で制御している。
+		m_key_lf = false;
+
 		return;
 	}
 
