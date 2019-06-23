@@ -404,7 +404,7 @@ void CObjFightClear::Draw()
 			dst.m_left = 450.0f;
 			dst.m_right = 750.0f;
 			dst.m_bottom = 550.0f;
-			Draw::Draw(34, &src, &dst, d, 0.0f);
+			Draw::Draw(3 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 		}
 	}
 	//¤ƒQ[ƒ€ƒNƒŠƒA‚Ìˆ—

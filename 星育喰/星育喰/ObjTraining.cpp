@@ -17,6 +17,8 @@ using namespace GameL;
 //static変数の定義
 bool CObjTraining::m_key_rf = false;
 bool CObjTraining::scene_change_start = false;
+bool CObjTraining::white_out_f = false;
+int  CObjTraining::player_level = 0;
 int  CObjTraining::window_start_manage = Default;
 
 //イニシャライズ
@@ -36,6 +38,8 @@ void CObjTraining::Init()
 	//▼以下のstatic変数は他シーンから育成画面に入る度に初期化を行う
 	m_key_rf = false;
 	scene_change_start = false;
+	white_out_f = false;
+	player_level = (int)((g_Bar_Level + g_Ins_Level) / 2);
 	window_start_manage = Default;
 }
 
@@ -179,8 +183,7 @@ void CObjTraining::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 1200.0f;
 	dst.m_bottom = 700.0f;
-	Draw::Draw(0, &src, &dst, d, 0.0f);
-
+	Draw::Draw(7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), &src, &dst, d, 0.0f);
 
 	//▼シーン切り替え演出前に表示するグラフィック
 	if (scene_change_start == false)
@@ -210,7 +213,7 @@ void CObjTraining::Draw()
 		dst.m_left = 450.0f - m_size;
 		dst.m_right = 750.0f + m_size;
 		dst.m_bottom = 550.0f + m_size;
-		Draw::Draw(16, &src, &dst, d, 0.0f);
+		Draw::Draw(16 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 	}
 
 

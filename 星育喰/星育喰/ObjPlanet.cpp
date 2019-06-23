@@ -89,10 +89,10 @@ void CObjPlanet::Init()
 	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
-	if (m_type == 0) {
+	//それに加え各惑星のHP、画像番号等も設定している。
+	if (m_type == 0) {		//プレイヤー惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
-		m_img_nam = 3;
-
+		m_img_nam = 3 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1;
 	}
 	else if (m_type == 1) {	//左から1番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
