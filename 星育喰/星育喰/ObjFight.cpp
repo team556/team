@@ -57,7 +57,7 @@ void CObjFight::Init()
 	m_key_U_f = false;
 	m_key_D_f = false;
 
-	m_line_choice = 0;
+	m_line_choice = 1;
 
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
