@@ -122,6 +122,21 @@ void CObjSpecialButton::Action()
 		}
 	}
 
+	//▼プレイヤー惑星スペシャル技処理(Sキー)
+	if( (Input::GetVKey('S')) &&
+		(g_Special_equipment != 0) &&					//スペシャル技装備してるかチェック
+		(m_is_used_special[PLAYER] == false) ||			//スペシャル技が未使用であれば実行
+		(m_is_invocating[PLAYER] == true))				//また、現在スペシャル技発動中であっても実行
+	{
+	//エネミーがスペシャル技発動演出中である場合、
+	//以下の処理を実行しないようにする。
+	if (m_special_staging_f[ENEMY] == false)
+	{
+		Special_process(PLAYER, ENEMY, g_Special_equipment);	//スペシャル技処理関数を呼び出す
+		m_a = 0.3f;		//スペシャル技ボタンを透明化
+	}
+	}
+
 	//▼敵惑星スペシャル技処理
 	if ((m_enemy_special_button == true) &&				//敵スペシャル技発動チェック
 		(m_enemy_special_equipment != 0) &&				//スペシャル技装備してるかチェック
