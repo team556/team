@@ -42,4 +42,13 @@ private:
 	float m_px;			//惑星のX座標代入用
 	float m_py;			//惑星のY座標代入用
 	float m_size;		//惑星のSize代入用
+
+	bool m_pow_f;		//powボタンのフラグ
+	bool m_def_f;		//defボタンのフラグ
+	bool m_spe_f;		//speボタンのフラグ
+	bool m_bal_f;		//balボタンのフラグ
+	bool m_mis_f;		//misボタンのフラグ
+
+	int m_key_push;		//押されたボタンのナンバーと自分のButton_num比較用変数
+	bool m_key_push_f;	//1～5のどれかのボタンを押しているかどうかのフラグ
 };
