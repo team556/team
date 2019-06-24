@@ -69,8 +69,8 @@ void CObjTraining::Action()
 		}
 		else if (m_Mig_time >= 120)
 		{
-			//ホーム画面の背景を読み込み0番に登録
-			Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
+			//ホーム画面の背景をプレイヤー惑星のレベルに合わせた読み込み番号部分に登録
+			Draw::LoadImage(L"TitleBackgroundTest.jpg", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
 
 			//雲演出OUTを行う
 			CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
