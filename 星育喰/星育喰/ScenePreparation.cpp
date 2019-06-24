@@ -97,6 +97,15 @@ void CScenePreparation::InitScene()
 	//ヘルプ画像を読み込み23番に登録
 	Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
 	
+	//プレイヤー惑星Lv1を読み込み47番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 47, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv2を読み込み48番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 48, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv3を読み込み49番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 49, TEX_SIZE_512);
+
 	//戦闘画面移行演出(黒星)を読み込み50番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 50, TEX_SIZE_512);
 
@@ -123,9 +132,6 @@ void CScenePreparation::InitScene()
 
 	//スペシャル技選択ウインドウを読み込み62番に登録
 	Draw::LoadImage(L"スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);
-
-	//プレイヤー惑星を読み込み63番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 63, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);

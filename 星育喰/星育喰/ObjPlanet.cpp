@@ -89,10 +89,10 @@ void CObjPlanet::Init()
 	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
-	if (m_type == 0) {
+	//それに加え各惑星のHP、画像番号等も設定している。
+	if (m_type == 0) {		//プレイヤー惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
-		m_img_nam = 3;
-
+		m_img_nam = 3 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1;
 	}
 	else if (m_type == 1) {	//左から1番目の敵惑星
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
@@ -273,16 +273,6 @@ void CObjPlanet::Action()
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
 			{
 				m_px -= 4.0f;
-
-				//サイズ縮小分、X座標移動したのを元に戻していく。
-				if (m_scale_down_move < 0.0f)//移動量が0.0未満の場合
-				{
-					m_scale_down_move = 0.0f;//0.0f未満となれば0.0fとする
-				}
-				else if (m_scale_down_move > 0.0f)//移動量が0.0より上の場合
-				{
-					m_scale_down_move -= 0.1f;//徐々に戻していく
-				}
 			}
 		}
 		else
@@ -290,16 +280,6 @@ void CObjPlanet::Action()
 			if (m_px < pla->GetX() + pla->GetScale_down_move() - ene->GetScale_down_move())		//自分のX座標より敵惑星が小さくなると移動を止める
 			{
 				m_px += 4.0f;
-				
-				//サイズ縮小分、X座標移動したのを元に戻していく。
-				if (m_scale_down_move < 0.0f)//移動量が0.0未満の場合
-				{
-					m_scale_down_move = 0.0f;//0.0f未満となれば0.0fとする
-				}
-				else if (m_scale_down_move > 0.0f)//移動量が0.0より上の場合
-				{
-					m_scale_down_move -= 0.1f;//徐々に戻していく
-				}
 			}
 		}
 	}

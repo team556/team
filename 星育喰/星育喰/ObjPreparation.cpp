@@ -958,7 +958,7 @@ void CObjPreparation::Draw()
 	dst.m_left = -500.0f + m_Pvx;
 	dst.m_right = -50.0f + m_Pvx + m_Psize;
 	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
-	Draw::Draw(63, &src, &dst, d, 0.0f);
+	Draw::Draw(47 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
 	//▼スペシャル技選択ウインドウ表示
 	src.m_top = 0.0f;

@@ -23,6 +23,8 @@ CObjCloud_Effect::CObjCloud_Effect(bool check)
 void CObjCloud_Effect::Init()
 {
 	m_Cloud_move = INI_CLOUD_POS;
+	m_white_out_a = 0.0f;
+	m_white_out_a_vec = 0.0f;
 }
 
 //アクション
@@ -47,6 +49,46 @@ void CObjCloud_Effect::Action()
 			m_Cloud_move -= 10.0f;
 		}
 	}
+
+	//▼ホワイトアウト演出の処理(育成画面背景変更時に実行される)
+	if (white_out_f == true)
+	{
+		if (m_white_out_a <= 0.6)			//0.6で切り替えて、ホワイトアウト演出のalpha調整
+		{
+			m_white_out_a_vec += 0.002f;	//ベクトルに加算
+		}
+		else
+		{
+			m_white_out_a_vec -= 0.002f;	//ベクトルに減算
+		}
+
+		m_white_out_a += m_white_out_a_vec;	//ベクトルを反映
+
+
+		//完全にホワイトアウトした時点で実際に施設レベルを1UPさせる
+		if (m_white_out_a >= 1.0f)
+		{
+			//研究所の場合
+			if (window_start_manage == Institute && player_level != ((int)((g_Bar_Level + g_Ins_Level) / 2)))
+			{
+				g_Ins_Level++;
+			}
+			//兵舎の場合
+			else if(window_start_manage == Barracks && player_level != ((int)((g_Bar_Level + g_Ins_Level) / 2)))
+			{
+				g_Bar_Level++;
+			}
+		}
+		//ホワイトアウト演出処理終了時点(画面が見える)でこの演出処理から抜ける
+		else if (m_white_out_a <= 0.0f)
+		{
+			//次回のホワイトアウト演出の為に以下の変数を初期化しておく
+			m_white_out_a = 0.0f;
+			m_white_out_a_vec = 0.0f;
+
+			white_out_f = false;//ホワイトアウト演出フラグをOFF
+		}
+	}
 }
 
 //ドロー
@@ -55,6 +97,8 @@ void CObjCloud_Effect::Draw()
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	//雲画像用
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//ホワイトアウト演出画像用
+	float c[4] = { 1.0f,1.0f,1.0f,m_white_out_a };
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -96,4 +140,17 @@ void CObjCloud_Effect::Draw()
 	//dst.m_left = -100.0f;
 	//dst.m_right = 1500.0f;
 	//dst.m_bottom = 800.0f;
+
+
+	//▼ホワイトアウト演出画像表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
+
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(19, &src, &dst, c, 0.0f);
 }

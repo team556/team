@@ -1,11 +1,12 @@
 #pragma once
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
+#include "ObjTraining.h"	//基底クラスとして定義するため読み込む
 //使用するネームスペース
 using namespace GameL;
 
 //オブジェクト：雲演出
-class CObjCloud_Effect :public CObj
+class CObjCloud_Effect :public CObjTraining	//CObjTrainingを継承する
 {
 public:
 	CObjCloud_Effect(bool check);
@@ -17,4 +18,6 @@ public:
 private:
 	bool m_In_Out_Check;	//雲演出IN / OUTチェック(true=雲演出IN / false=雲演出OUT)
 	float m_Cloud_move;		//雲の移動用ベクトル
+	float m_white_out_a;	//ホワイトアウト演出画像透過度
+	float m_white_out_a_vec;//ホワイトアウト演出画像透過度ベクトル
 };

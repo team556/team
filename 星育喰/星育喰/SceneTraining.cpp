@@ -142,6 +142,9 @@ void CSceneTraining::InitScene()
 	//プレイヤー惑星Lv3を読み込み18番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 18, TEX_SIZE_512);
 
+	//ホワイトアウト演出画像を読み込み19番に登録
+	Draw::LoadImage(L"ホワイトアウト演出画像.png", 19, TEX_SIZE_512);
+
 	//灰色ウインドウ(仮)を読み込み20番に登録
 	Draw::LoadImage(L"灰色ウインドウ(仮).png", 20, TEX_SIZE_512);
 

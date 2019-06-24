@@ -41,8 +41,14 @@ void CSceneFight::InitScene()
 	//2番にミサイル登録
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
-	//3番にプレイヤー登録
+	//プレイヤー惑星Lv1を読み込み3番に登録
 	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 3, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv2を読み込み4番に登録
+	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 4, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv3を読み込み5番に登録
+	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 5, TEX_SIZE_512);
 
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
@@ -125,8 +131,8 @@ void CSceneFight::InitScene()
 	//メッセージウインドウを読み込み33番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 33, TEX_SIZE_512);
 
-	//プレイヤー惑星(クリア画面用)を読み込み34番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
+	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
+	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 
 	//出力させる文字のグラフィックを作成
 	//Font::SetStrTex(L"");
