@@ -249,6 +249,12 @@ void CObjInstitute::Init()
 //アクション
 void CObjInstitute::Action()
 {
+	//ホワイトアウト演出中は操作不能にする処理
+	if (white_out_f == true)
+	{
+		return;
+	}
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -283,8 +289,28 @@ void CObjInstitute::Action()
 						//素材消費処理
 						*m_Facility_next_Mat_type[g_Ins_Level - 1] -= m_Facility_next_Mat_num[g_Ins_Level - 1];
 
-						//研究所のレベルUP処理
-						g_Ins_Level++;
+
+						//研究所レベルUPにより、プレイヤー惑星がレベルUPするかチェック処理
+						//※if文処理内に入る＝レベルUPする
+						if (player_level != (int)((g_Bar_Level + g_Ins_Level + 1) / 2))
+						{
+							//プレイヤー惑星がレベルUPする場合、
+							//育成画面背景の変更を行わないといけない為、
+							//ホワイトアウト処理を挟み、背景変更を行う。
+							//※ホワイトアウト処理はオブジェクト優先順位的にObjCloud_Effectにて行う。
+
+							//プレイヤー惑星レベルを更新する(次のレベルUPチェック判定の為)
+							player_level = (int)((g_Bar_Level + g_Ins_Level + 1) / 2);
+
+							//ホワイトアウト演出フラグをON
+							white_out_f = true;
+						}
+						//プレイヤー惑星がレベルUPしない場合、普通に研究所のレベルUP処理を行う
+						else
+						{
+							//研究所のレベルUP処理
+							g_Ins_Level++;
+						}
 
 						//▼ミサイルリキャストレベルUPチェック
 						//レベルUP条件を満たしているかチェックし、

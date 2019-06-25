@@ -57,7 +57,7 @@ void CObjFight::Init()
 	m_key_U_f = false;
 	m_key_D_f = false;
 
-	m_line_choice = 0;
+	m_line_choice = 1;
 
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
@@ -164,6 +164,7 @@ void CObjFight::Action()
 	}
 
 	//選択ラインのX軸幅内にマウスカーソルがある且つ、上下のキーが入力されていないとき
+	//※キーを押してる間はマウスに反応させないため
 	if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
 
 		if (200 <= m_mou_y && m_mou_y <= 260 ) {

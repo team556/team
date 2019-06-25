@@ -44,7 +44,7 @@ private:
 
 	int m_Enemy_Pod_Level;	//敵のポッドレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
-	int m_type;		//生成時のタイプ(true主人公)
+	int m_type;		//生成時のタイプ(0主人公)
 	int m_podhp;		//ポッド現在HP
 	int m_pod_max_hp;	//ポッド最大HP
 	int m_hp_cnt;		//無敵タイム

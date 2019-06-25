@@ -175,7 +175,7 @@ extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 
 //ƒV[ƒ“ƒXƒ^[ƒgƒNƒ‰ƒX---------------------------
 //ƒQ[ƒ€ŠJn‚ÌƒV[ƒ“ƒNƒ‰ƒX“o˜^
-//#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
 #define SET_GAME_START CSceneTraining

@@ -61,8 +61,14 @@ void CSceneHome::InitScene()
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
 
-	//プレイヤー惑星を読み込み50番に登録
+	//プレイヤー惑星Lv1を読み込み50番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv2を読み込み51番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 51, TEX_SIZE_512);
+
+	//プレイヤー惑星Lv3を読み込み52番に登録
+	Draw::LoadImage(L"プレイヤー惑星.png", 52, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);

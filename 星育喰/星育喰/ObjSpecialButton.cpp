@@ -105,6 +105,14 @@ void CObjSpecialButton::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//▼プレイヤー惑星スペシャル技処理(Sキー)
+	if ((Input::GetVKey('S')) &&						//Sキー
+		(g_Special_equipment != 0) &&					//スペシャル技装備してるかチェック
+		(m_is_used_special[PLAYER] == false))			//スペシャル技が未使用であれば実行
+	{
+		m_is_invocating[PLAYER] = true;		//発動中管理フラグON
+	}
+
 	//▼プレイヤー惑星スペシャル技処理
 	if ((m_x <= m_mou_x && m_mou_x <= (m_x + m_w)) && 	//X軸範囲
 		(m_y <= m_mou_y && m_mou_y <= (m_y + m_h)) &&	//Y軸範囲
