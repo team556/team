@@ -99,8 +99,8 @@ void CObjCloud_Effect::Draw()
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
 	//ホワイトアウト演出画像用
 	float c[4] = { 1.0f,1.0f,1.0f,m_white_out_a };
-	//ホワイトアウト中に表示する画像用
-	float w[4] = { 1.0f,1.0f,1.0f,m_white_out_a - 1.0f };
+	//ホワイトアウト中に表示するフォント画像用
+	float f[4] = { 1.0f,1.0f,1.0f,m_white_out_a - 1.0f };
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -160,7 +160,7 @@ void CObjCloud_Effect::Draw()
 	//※以下のプログラムはグラフィックがまだない為、
 	//いつでも画像を表示出来るようにプログラムだけ組んでいる状態。(デバッグ状態)
 	//グラフィック用意完了後、切り取り位置、描画位置、描画番号を適切なものに変更すべし。
-	//▼ホワイトアウト中のフォント画像(プレイヤー惑星レベルUP！)表示
+	//▼ホワイトアウト中のフォント画像(惑星発展度UP！)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 100.0f;
@@ -170,73 +170,5 @@ void CObjCloud_Effect::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 100.0f;
 	dst.m_bottom = 100.0f;
-	Draw::Draw(0, &src, &dst, w, 0.0f);
-
-	//▼ホワイトアウト中の矢印画像表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 100.0f;
-	src.m_bottom = 100.0f;
-
-	dst.m_top = 100.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 100.0f;
-	dst.m_bottom = 200.0f;
-	Draw::Draw(1, &src, &dst, w, 0.0f);
-
-	//▼ホワイトアウト中の数字(レベル)画像表示
-	//プレイヤー惑星レベル2になった時の処理
-	if (((int)((g_Bar_Level + g_Ins_Level) / 2)) == 2)
-	{
-		//数字「１」を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
-
-		dst.m_top = 200.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 300.0f;
-		Draw::Draw(2, &src, &dst, w, 0.0f);
-
-		//数字「２」を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
-
-		dst.m_top = 300.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 400.0f;
-		Draw::Draw(3, &src, &dst, w, 0.0f);
-	}
-	//プレイヤー惑星レベル3になった時の処理
-	else if (((int)((g_Bar_Level + g_Ins_Level) / 2)) == 3)
-	{
-		//数字「２」を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
-
-		dst.m_top = 400.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 500.0f;
-		Draw::Draw(4, &src, &dst, w, 0.0f);
-
-		//数字「３」を表示
-		src.m_top = 500.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 600.0f;
-
-		dst.m_top = 600.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 700.0f;
-		Draw::Draw(5, &src, &dst, w, 0.0f);
-	}
+	Draw::Draw(0, &src, &dst, f, 0.0f);
 }
