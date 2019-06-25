@@ -62,7 +62,7 @@ void CSceneTitle::InitScene()
 	//※コメントアウト後、正常動作を確認済み
 	////バックミュージック
 	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((1.0 - v));
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
