@@ -643,7 +643,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 270.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
 		Font::StrDraw(L"–ØŞ", 170.0f, 250.0f,40.0f, black);
-		Font::StrDraw(mrl[0], 210.0f, 290.0f, 40.0f, black);
+		Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
 		//¥“S•\¦
 		src.m_top = 0.0f;
@@ -712,8 +712,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 950.0f;
 		dst.m_bottom = 500.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"ƒKƒX", 840.0f, 500.0f, 40.0f, black);
-		Font::StrDraw(mrl[5], 880.0f, 540.0f, 40.0f, black);
+		Font::StrDraw(L"ƒKƒX", 910.0f, 500.0f, 40.0f, black);
+		Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
 
 	//Z–¯ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä•`‰æ‚·‚é‰æ‘œ
