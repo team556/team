@@ -287,8 +287,8 @@ void CSceneTraining::InitScene()
 	//戻る
 	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
 
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 
 	////音楽スタート

@@ -104,7 +104,7 @@ void CObjWarehouse::Action()
 		}
 
 		//資材ボタン選択
-		if (245 < m_mou_x && m_mou_x < 560 && 150 < m_mou_y && m_mou_y < 325)
+		if (90 < m_mou_x && m_mou_x < 600 && 80 < m_mou_y && m_mou_y < 350)
 		{
 			m_object_ma = 1.0f;
 			//左クリックされたらフラグを立て、資材ウインドウを開く
@@ -135,7 +135,7 @@ void CObjWarehouse::Action()
 		}
 
 		//住民ボタン選択
-		if (680 < m_mou_x && m_mou_x < 1005 && 150 < m_mou_y && m_mou_y < 325)
+		if (610 < m_mou_x && m_mou_x < 1120 && 80 < m_mou_y && m_mou_y < 350)
 		{
 			m_object_re = 1.0f;
 			//左クリックされたらフラグを立て、住民ウインドウを開く
@@ -165,7 +165,7 @@ void CObjWarehouse::Action()
 		}
 
 		//スペシャル技ボタン選択
-		if (245 < m_mou_x && m_mou_x < 560 && 390 < m_mou_y && m_mou_y < 570)
+		if (90 < m_mou_x && m_mou_x < 600 && 360 < m_mou_y && m_mou_y < 630)
 		{
 			m_object_sp = 1.0f;
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
@@ -195,7 +195,7 @@ void CObjWarehouse::Action()
 		}
 
 		//装備ボタン選択
-		if (680 < m_mou_x && m_mou_x < 1005 && 390 < m_mou_y && m_mou_y < 570)
+		if (610 < m_mou_x && m_mou_x < 1120 && 360 < m_mou_y && m_mou_y < 630)
 		{
 			m_object_eq = 1.0f;
 			//左クリックされたらフラグを立て、装備ウインドウを開く
@@ -499,10 +499,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 150.0f;
-		dst.m_left   = 250.0f;
-		dst.m_right  = 560.0f;
-		dst.m_bottom = 325.0f;
+		dst.m_top    = 80.0f;
+		dst.m_left   = 90.0f;
+		dst.m_right  = 600.0f;
+		dst.m_bottom = 350.0f;
 		Draw::Draw(28, &src, &dst, ma, 0.0f);
 
 		//▼住民選択ボタン表示
@@ -511,10 +511,10 @@ void CObjWarehouse::Draw()
 		src.m_right	 = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 150.0f;
-		dst.m_left   = 700.0f;
-		dst.m_right  = 1005.0f;
-		dst.m_bottom = 325.0f;
+		dst.m_top    = 80.0f;
+		dst.m_left   = 610.0f;
+		dst.m_right  = 1120.0f;
+		dst.m_bottom = 350.0f;
 		Draw::Draw(29, &src, &dst, re, 0.0f);
 
 		//▼スペシャル技選択ボタン表示
@@ -523,10 +523,10 @@ void CObjWarehouse::Draw()
 		src.m_right	 = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 400.0f;
-		dst.m_left   = 250.0f;
-		dst.m_right  = 560.0f;
-		dst.m_bottom = 570.0f;
+		dst.m_top    = 360.0f;
+		dst.m_left   = 90.0f;
+		dst.m_right  = 600.0f;
+		dst.m_bottom = 630.0f;
 		Draw::Draw(30, &src, &dst, sp, 0.0f);
 
 		//▼装備選択ボタン表示
@@ -535,10 +535,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 400.0f;
-		dst.m_left   = 700.0f;
-		dst.m_right  = 1005.0f;
-		dst.m_bottom = 570.0f;
+		dst.m_top    = 360.0f;
+		dst.m_left   = 610.0f;
+		dst.m_right  = 1120.0f;
+		dst.m_bottom = 630.0f;
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
