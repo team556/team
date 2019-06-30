@@ -119,6 +119,8 @@ void CObjInstitute::Init()
 	m_introduce_f = false;
 	m_finalcheck_f = false;
 	m_key_lf = false;
+	m_next_time = 0;
+	m_con_alo_f = false;
 	m_message_red_color = INI_COLOR;
 	m_message_green_color = INI_COLOR;
 	m_message_blue_color = INI_COLOR;
@@ -525,20 +527,36 @@ void CObjInstitute::Action()
 			m_Ins_Lvup_color = INI_COLOR;
 		}
 
+
+		//▼住民振り分け
+
+		//住民振り分けアイコンカラー明度を毎回初期化する
+		m_Human_up_color = INI_COLOR;
+		m_Human_down_color = INI_COLOR;
+
 		//研究員住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
 		{
 			m_Human_up_color = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_up_color = 0.0f;
+					m_Human_up_color = 0.5f;
 
 					g_Research_num = Allocation(g_Research_num, +1);//振り分け関数を呼び出す
 
@@ -560,31 +578,42 @@ void CObjInstitute::Action()
 					//振り分けボタン音
 					Audio::Start(1);
 				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
+				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_up_color = INI_COLOR;
 		}
 
 		//研究員住民振り分けDOWN
-		if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
+		else if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 		{
 			m_Human_down_color = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_down_color = 0.0f;
+					m_Human_down_color = 0.5f;
 
 					g_Research_num = Allocation(g_Research_num, -1);//振り分け関数を呼び出す
 
@@ -624,16 +653,31 @@ void CObjInstitute::Action()
 					//振り分けダウン音
 					Audio::Start(2);
 				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
+				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
 		}
+
+		//上記の範囲外にマウスカーソルがある場合の処理
 		else
 		{
-			m_Human_down_color = INI_COLOR;
+			//範囲外にマウスカーソルがいっても左クリックを離さなければ、
+			//連続振り分け状態を解除しないように設定している。
+			if (m_mou_l == false)
+			{
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
+			}
 		}
+
 
 		//ミサイルボタン
 		if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473)

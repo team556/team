@@ -45,6 +45,7 @@ private:
 	float m_warning_message_y[2];	//ボス出現警告メッセージ移動用ベクトルY
 	float m_warning_message_size;	//ボス出現警告メッセージサイズ
 	float m_warning_message_alpha;	//ボス出現警告メッセージ透過度(アルファ値)
+	bool  m_warning_message_skip_f; //ボス出現警告メッセージスキップフラグ(true:スキップ処理　false:通常処理)
 
 	float m_Boss_vx[3];		//ボス惑星(演出用も含む)の移動用ベクトルX
 	float m_Boss_vy[3];		//ボス惑星(演出用も含む)の移動用ベクトルY

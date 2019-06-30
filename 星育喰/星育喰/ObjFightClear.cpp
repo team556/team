@@ -51,12 +51,14 @@ void CObjFightClear::Init()
 	//m_mou_y = 0.0f; //マウスY座標
 	//m_mou_r = false;//右クリック
 	m_mou_l = false;//左クリック
+	m_key_f = false;
 
 	m_click_a = 0.0f;
 	m_click_a_vec = 0.0f;
 	m_click_a_f = false;
 	m_result_a = 0.0f;
 	m_black_out_a = 0.0f;
+	m_clear_a = 0.0f;
 
 	m_scene_migration_f = false;
 
@@ -137,10 +139,18 @@ void CObjFightClear::Action()
 			//m_mou_r = Input::GetMouButtonR();
 			m_mou_l = Input::GetMouButtonL();
 
+			//▼キーフラグ
+			//※左クリック押しっぱなしの状態で、この処理に入った時、
+			//そのままホーム画面移行処理に入らないようにする処理。
+			if (m_mou_l == false)
+			{
+				m_key_f = true;
+			}
+
 			m_click_a_f = true;			//フラグ有効
 
 			//左クリックした場合、実行(一度クリックすると以後、クリックせずともこの処理に入る)
-			if (m_mou_l == true || m_black_out_a != 0.0f || m_scene_migration_f == true)
+			if (m_mou_l == true && m_key_f == true || m_black_out_a != 0.0f || m_scene_migration_f == true)
 			{
 				//クリック音を鳴らす(1度のみしか実行されない)
 				if (m_black_out_a == 0.0f && m_scene_migration_f == false)
@@ -207,10 +217,18 @@ void CObjFightClear::Action()
 			//m_mou_r = Input::GetMouButtonR();
 			m_mou_l = Input::GetMouButtonL();
 
+			//▼キーフラグ
+			//※左クリック押しっぱなしの状態で、この処理に入った時、
+			//そのままホーム画面移行処理に入らないようにする処理。
+			if (m_mou_l == false)
+			{
+				m_key_f = true;
+			}
+
 			m_click_a_f = true;			//フラグ有効
 
 			//左クリックした場合、実行(一度クリックすると以後、クリックせずともこの処理に入る)
-			if (m_mou_l == true || m_black_out_a != 0.0f)
+			if (m_mou_l == true && m_key_f == true || m_black_out_a != 0.0f)
 			{
 				//クリック音を鳴らす(1度のみしか実行されない)
 				if (m_black_out_a == 0.0f)
