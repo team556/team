@@ -187,9 +187,6 @@
     <ClCompile Include="ObjSpecialButton.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
     </ClCompile>
-    <ClCompile Include="Pause.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
       <Filter>ソース ファイル\シーン\クリア</Filter>
     </ClCompile>
@@ -332,9 +329,6 @@
     </ClInclude>
     <ClInclude Include="ObjSpecialButton.h">
       <Filter>ソース ファイル\対戦用</Filter>
-    </ClInclude>
-    <ClInclude Include="Pause.h">
-      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjGameClear.h">
       <Filter>ソース ファイル\シーン\クリア</Filter>
