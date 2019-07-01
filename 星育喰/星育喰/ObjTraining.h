@@ -8,6 +8,8 @@ using namespace GameL;
 #define FACILITY_MES_MAX_FONT_LINE (6) //施設(兵舎、研究所)の必要素材&サイズメッセージの最大フォント行数
 #define FACILITY_MAX_LV (3) //施設(兵舎、研究所)のMAXレベル
 #define MAT_NAME_CHAR_DATA_STORE_NUM (7) //素材名の文字データ格納可能数
+#define CON_PRE_TIME (30)	//連続振り分け前の次住民振り分け時間(0.5秒)
+#define CON_MID_TIME (5)	//連続振り分け中の次住民振り分け時間(0.08秒)
 
 //オブジェクト：育成画面
 class CObjTraining :public CObj
@@ -35,6 +37,9 @@ protected:
 	//bool  m_help_f;		 //ヘルプウインドウ表示管理フラグ  (true:表示/false:非表示)
 	bool  m_key_lf;		 //左クリック用キーフラグ
 	static bool m_key_rf;//右クリック用キーフラグ
+
+	int   m_next_time;	//次の住民振り分けまでの時間管理変数
+	bool  m_con_alo_f;	//住民連続振り分けフラグ[true:連続振り分け中(二回目以降)　false:連続振り分け前(初回)]
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 

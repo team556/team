@@ -23,6 +23,7 @@ private:
 	//float m_mou_y;		//マウスの位置Y
 	//bool  m_mou_r;		//マウスプッシュ確認(右クリック)
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
+	bool  m_key_f;		//キーフラグ
 
 	float m_click_a;		//alpha 透明度(クリック催促フォント用)
 	float m_click_a_vec;	//m_click_aベクトル

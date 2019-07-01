@@ -52,6 +52,7 @@ void CObjPreparation::Init()
 
 	m_warning_message_size = INI_WARNING_MESSAGE_SIZE;
 	m_warning_message_alpha = INI_ALPHA;
+	m_warning_message_skip_f = false;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -548,6 +549,81 @@ void CObjPreparation::Action()
 	}
 
 
+
+	//▼警告メッセージスキップ処理
+	if (m_warning_message_alpha != 0.0f && m_boss_emerge_staging_f == false || m_warning_message_skip_f == true)
+	{
+		//このスキップ処理は、警告メッセージ表示演出中に左クリックされると実行される。
+		//スキップ処理という名の通り、実行されると警告メッセージの演出が素早く終了する。
+		//※処理の流れは「if ～ else if」を駆使している為、基本的に下から上に実行されていく。
+
+		//マウス左クリック状態を取得
+		m_mou_l = Input::GetMouButtonL();
+
+		if (m_warning_message_skip_f == true)
+		{
+			//警告メッセージ表示演出中に一度でも左クリックされるとこの処理に入る。
+
+			if (m_warning_message_alpha >= 1.2f && m_warning_message_size == 55.0f)
+			{
+				//警告メッセージ完全表示後、
+				//ボス惑星出現カウントが0であれば、ボス惑星出現演出に移行する。
+				//そうでなければ、操作可能な状態にする。
+				//※ボス演出を既に見ている場合も操作可能な状態にする。
+				if (3 - m_destroy_count == 0)
+				{
+					m_boss_emerge_staging_f = true;
+				}
+				else
+				{
+					m_is_operatable = true;
+				}
+
+				m_warning_message_skip_f = false;//警告メッセージスキップフラグOFF(スキップ処理が終了した為)
+			}
+			else if (m_warning_message_alpha < 1.2f && m_warning_message_size == 55.0f)
+			{
+				//変更後、警告メッセージ透過度を素早く上げ、表示状態にする。
+				m_warning_message_alpha += 0.1f;
+			}
+			else if (m_warning_message_alpha <= 0.0f)
+			{
+				//警告メッセージ完全非表示後、
+				//警告メッセージサイズ、位置を
+				//演出終了後のものに即座に変更する。
+				
+				//ボス惑星出現時の処理
+				if (m_destroy_count == 4)
+				{
+					m_warning_message_x[0] = 200.7f;
+				}
+				//それ以外の時の処理
+				else
+				{
+					m_warning_message_x[0] = 192.5f;
+				}
+
+				m_warning_message_y[0] = 25.0f;
+				m_warning_message_x[1] = 507.5f;
+				m_warning_message_y[1] = -105.4f;
+				m_warning_message_size = 55.0f;
+				m_warning_message_alpha = 0.0f;
+			}
+			else if (m_warning_message_alpha > 0.0f)
+			{
+				//警告メッセージ透過度を素早く下げ、非表示状態にする。
+				m_warning_message_alpha -= 0.1f;
+			}
+
+			return;//ここでreturnする事で、通常処理に入らないようにする。
+		}
+		//警告メッセージ表示演出中に左クリックされたら、
+		//警告メッセージスキップフラグを立てる。
+		else if (m_mou_l == true)
+		{
+			m_warning_message_skip_f = true;//警告メッセージスキップフラグON
+		}
+	}
 
 	//▼ボス惑星出現演出
 	//ボス惑星出現カウントが0になった時、以下の処理を実行

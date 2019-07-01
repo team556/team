@@ -36,6 +36,8 @@ void CObjBarracks::Init()
 	m_introduce_f = false;
 	m_finalcheck_f = false;
 	m_key_lf = false;
+	m_next_time = 0;
+	m_con_alo_f = false;
 	m_alpha = INI_ALPHA;
 
 	//▼兵舎の次のLVUPに必要なサイズ(HP)の住民数設定
@@ -333,252 +335,366 @@ void CObjBarracks::Action()
 			m_Bar_Lvup_color = INI_COLOR;
 		}
 
+
+		//▼住民振り分け
+		//※以下は各住民振り分け部分だが、同じ処理が多く関数化可能である。
+		//（選択範囲部分も含めて、戦闘準備画面のように関数化するのが理想）
+		//しかし現在、時間の余裕が無い為、関数化は見送っている。
+		//余裕があれば関数化させたい。
+
+		//住民振り分けアイコンカラー明度を毎回初期化する
+		for (int i = 0; i < 4; i++)
+		{
+			m_Human_up_color[i] = INI_COLOR;
+			m_Human_down_color[i] = INI_COLOR;
+		}
+
 		//パワー住民振り分けUP
 		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
 		{
 			m_Human_up_color[0] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_up_color[0] = 0.0f;
-			
+					m_Human_up_color[0] = 0.5f;
+
 					g_Power_num = Allocation(g_Power_num, +1);//振り分け関数を呼び出す
 
-				    //振り分けボタン音
+					//振り分けボタン音
 					Audio::Start(1);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_up_color[0] = INI_COLOR;
 		}
 
 		//ディフェンス住民振り分けUP
-		if (695 < m_mou_x && m_mou_x < 793 && 228 < m_mou_y && m_mou_y < 328)
+		else if (695 < m_mou_x && m_mou_x < 793 && 228 < m_mou_y && m_mou_y < 328)
 		{
 			m_Human_up_color[1] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_up_color[1] = 0.0f;
+					m_Human_up_color[1] = 0.5f;
 
 					g_Defense_num = Allocation(g_Defense_num, +1);//振り分け関数を呼び出す
 
-				    //振り分けボタン音
+					//振り分けボタン音
 					Audio::Start(1);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
 		}
-		else
-		{
-			m_Human_up_color[1] = INI_COLOR;
-		}
-
+	
 		//スピード住民振り分けUP
-		if (695 < m_mou_x && m_mou_x < 793 && 338 < m_mou_y && m_mou_y < 438)
+		else if (695 < m_mou_x && m_mou_x < 793 && 338 < m_mou_y && m_mou_y < 438)
 		{
 			m_Human_up_color[2] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_up_color[2] = 0.0f;
+					m_Human_up_color[2] = 0.5f;
 
 					g_Speed_num = Allocation(g_Speed_num, +1);//振り分け関数を呼び出す
 
-				    //振り分けボタン音
+					//振り分けボタン音
 					Audio::Start(1);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_up_color[2] = INI_COLOR;
 		}
 
 		//バランス住民振り分けUP
-		if (695 < m_mou_x && m_mou_x < 793 && 448 < m_mou_y && m_mou_y < 548)
+		else if (695 < m_mou_x && m_mou_x < 793 && 448 < m_mou_y && m_mou_y < 548)
 		{
 			m_Human_up_color[3] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_up_color[3] = 0.0f;
+					m_Human_up_color[3] = 0.5f;
 
 					g_Balance_num = Allocation(g_Balance_num, +1);//振り分け関数を呼び出す
 
-				    //振り分けボタン音
+					//振り分けボタン音
 					Audio::Start(1);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_up_color[3] = INI_COLOR;
 		}
 		
 		//パワー住民振り分けDOWN
-		if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
+		else if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 		{
 			m_Human_down_color[0] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_down_color[0] = 0.0f;
+					m_Human_down_color[0] = 0.5f;
 
 					g_Power_num = Allocation(g_Power_num, -1);//振り分け関数を呼び出す
 
-				    //振り分けダウン音
+					//振り分けダウン音
 					Audio::Start(2);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_down_color[0] = INI_COLOR;
 		}
 
 		//ディフェンス住民振り分けDOWN
-		if (802 < m_mou_x && m_mou_x < 902 && 228 < m_mou_y && m_mou_y < 328)
+		else if (802 < m_mou_x && m_mou_x < 902 && 228 < m_mou_y && m_mou_y < 328)
 		{
 			m_Human_down_color[1] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_down_color[1] = 0.0f;
+					m_Human_down_color[1] = 0.5f;
 
 					g_Defense_num = Allocation(g_Defense_num, -1);//振り分け関数を呼び出す
 
-        			//振り分けダウン音
+					//振り分けダウン音
 					Audio::Start(2);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_down_color[1] = INI_COLOR;
 		}
 
 		//スピード住民振り分けDOWN
-		if (802 < m_mou_x && m_mou_x < 902 && 338 < m_mou_y && m_mou_y < 438)
+		else if (802 < m_mou_x && m_mou_x < 902 && 338 < m_mou_y && m_mou_y < 438)
 		{
 			m_Human_down_color[2] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_down_color[2] = 0.0f;
+					m_Human_down_color[2] = 0.5f;
 
 					g_Speed_num = Allocation(g_Speed_num, -1);//振り分け関数を呼び出す
-
-				    //振り分けダウン音
+					
+					//振り分けダウン音
 					Audio::Start(2);
+				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
-		}
-		else
-		{
-			m_Human_down_color[2] = INI_COLOR;
 		}
 
 		//バランス住民振り分けDOWN
-		if (802 < m_mou_x && m_mou_x < 902 && 448 < m_mou_y && m_mou_y < 548)
+		else if (802 < m_mou_x && m_mou_x < 902 && 448 < m_mou_y && m_mou_y < 548)
 		{
 			m_Human_down_color[3] = 1.0f;
 
 			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+			//※左クリックを押し続けると、自動で連続振り分け可能。
 			if (m_mou_l == true)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_next_time <= 0)
 				{
-					m_key_lf = false;
+					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+					if (m_con_alo_f == false)
+					{
+						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+					}
+					//二回目以降はこの処理に入る
+					else
+					{
+						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+					}
 
-					m_Human_down_color[3] = 0.0f;
+					m_Human_down_color[3] = 0.5f;
 
 					g_Balance_num = Allocation(g_Balance_num, -1);//振り分け関数を呼び出す
 
 					//振り分けダウン音
 					Audio::Start(2);
 				}
+				else
+				{
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
+				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
 			}
 		}
+
+		//上記の範囲外にマウスカーソルがある場合の処理
 		else
 		{
-			m_Human_down_color[3] = INI_COLOR;
+			//範囲外にマウスカーソルがいっても左クリックを離さなければ、
+			//連続振り分け状態を解除しないように設定している。
+			if (m_mou_l == false)
+			{
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
+			}
 		}
 
 
