@@ -63,13 +63,6 @@ void CSceneTitle::InitScene()
 	//選択
 	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
 
-	//▼5/20に起きた柏崎のパソコンがAudioの読み取り違反で動かなくなるバグ、
-	//俺(後庵)のパソコンでも起きたので、以下の処理を一旦コメントアウトしました。
-	//※コメントアウト後、正常動作を確認済み
-	////バックミュージック
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((1.0 - v));
-
 	////音楽スタート
 	Audio::Start(0);
 

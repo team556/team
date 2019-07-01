@@ -104,7 +104,7 @@ void CObjWarehouse::Action()
 		}
 
 		//資材ボタン選択
-		if (245 < m_mou_x && m_mou_x < 560 && 150 < m_mou_y && m_mou_y < 325)
+		if (90 < m_mou_x && m_mou_x < 600 && 80 < m_mou_y && m_mou_y < 350)
 		{
 			m_object_ma = 1.0f;
 			//左クリックされたらフラグを立て、資材ウインドウを開く
@@ -135,7 +135,7 @@ void CObjWarehouse::Action()
 		}
 
 		//住民ボタン選択
-		if (680 < m_mou_x && m_mou_x < 1005 && 150 < m_mou_y && m_mou_y < 325)
+		if (610 < m_mou_x && m_mou_x < 1120 && 80 < m_mou_y && m_mou_y < 350)
 		{
 			m_object_re = 1.0f;
 			//左クリックされたらフラグを立て、住民ウインドウを開く
@@ -165,7 +165,7 @@ void CObjWarehouse::Action()
 		}
 
 		//スペシャル技ボタン選択
-		if (245 < m_mou_x && m_mou_x < 560 && 390 < m_mou_y && m_mou_y < 570)
+		if (90 < m_mou_x && m_mou_x < 600 && 360 < m_mou_y && m_mou_y < 630)
 		{
 			m_object_sp = 1.0f;
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
@@ -195,7 +195,7 @@ void CObjWarehouse::Action()
 		}
 
 		//装備ボタン選択
-		if (680 < m_mou_x && m_mou_x < 1005 && 390 < m_mou_y && m_mou_y < 570)
+		if (610 < m_mou_x && m_mou_x < 1120 && 360 < m_mou_y && m_mou_y < 630)
 		{
 			m_object_eq = 1.0f;
 			//左クリックされたらフラグを立て、装備ウインドウを開く
@@ -499,10 +499,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 150.0f;
-		dst.m_left   = 250.0f;
-		dst.m_right  = 560.0f;
-		dst.m_bottom = 325.0f;
+		dst.m_top    = 80.0f;
+		dst.m_left   = 90.0f;
+		dst.m_right  = 600.0f;
+		dst.m_bottom = 350.0f;
 		Draw::Draw(28, &src, &dst, ma, 0.0f);
 
 		//▼住民選択ボタン表示
@@ -511,10 +511,10 @@ void CObjWarehouse::Draw()
 		src.m_right	 = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 150.0f;
-		dst.m_left   = 700.0f;
-		dst.m_right  = 1005.0f;
-		dst.m_bottom = 325.0f;
+		dst.m_top    = 80.0f;
+		dst.m_left   = 610.0f;
+		dst.m_right  = 1120.0f;
+		dst.m_bottom = 350.0f;
 		Draw::Draw(29, &src, &dst, re, 0.0f);
 
 		//▼スペシャル技選択ボタン表示
@@ -523,10 +523,10 @@ void CObjWarehouse::Draw()
 		src.m_right	 = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 400.0f;
-		dst.m_left   = 250.0f;
-		dst.m_right  = 560.0f;
-		dst.m_bottom = 570.0f;
+		dst.m_top    = 360.0f;
+		dst.m_left   = 90.0f;
+		dst.m_right  = 600.0f;
+		dst.m_bottom = 630.0f;
 		Draw::Draw(30, &src, &dst, sp, 0.0f);
 
 		//▼装備選択ボタン表示
@@ -535,10 +535,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 307.0f;
 		src.m_bottom = 175.0f;
 
-		dst.m_top    = 400.0f;
-		dst.m_left   = 700.0f;
-		dst.m_right  = 1005.0f;
-		dst.m_bottom = 570.0f;
+		dst.m_top    = 360.0f;
+		dst.m_left   = 610.0f;
+		dst.m_right  = 1120.0f;
+		dst.m_bottom = 630.0f;
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
@@ -638,12 +638,12 @@ void CObjWarehouse::Draw()
 		src.m_bottom = 627.0f;
 
 		dst.m_top = 120.0f;
-		dst.m_left = 120.0f;
-		dst.m_right = 230.0f;
-		dst.m_bottom = 230.0f;
+		dst.m_left = 150.0f;
+		dst.m_right = 300.0f;
+		dst.m_bottom = 270.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"木材", 240.0f, 130.0f,30.0f, black);
-		Font::StrDraw(mrl[0], 240.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(L"木材", 170.0f, 250.0f,40.0f, black);
+		Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
 		//▼鉄表示
 		src.m_top = 0.0f;
@@ -653,11 +653,11 @@ void CObjWarehouse::Draw()
 
 		dst.m_top = 120.0f;
 		dst.m_left = 450.0f;
-		dst.m_right = 560.0f;
-		dst.m_bottom = 230.0f;
+		dst.m_right = 600.0f;
+		dst.m_bottom = 270.0f;
 		Draw::Draw(34, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"鉄", 580.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(mrl[1], 580.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(L"鉄", 540.0f, 250.0f, 40.0f, black);
+		Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
 		//▼銀表示
 		src.m_top = 0.0f;
@@ -667,11 +667,11 @@ void CObjWarehouse::Draw()
 
 		dst.m_top = 120.0f;
 		dst.m_left = 800.0f;
-		dst.m_right = 910.0f;
-		dst.m_bottom = 230.0f;
+		dst.m_right = 950.0f;
+		dst.m_bottom = 270.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"銀", 950.0f, 130.0f, 30.0f, black);
-		Font::StrDraw(mrl[2], 950.0f, 170.0f, 30.0f, black);
+		Font::StrDraw(L"銀", 910.0f, 250.0f, 40.0f, black);
+		Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
 		//▼プラスチック表示
 		src.m_top = 0.0f;
@@ -679,13 +679,13 @@ void CObjWarehouse::Draw()
 		src.m_right = 135.0f;
 		src.m_bottom = 245.0f;
 
-		dst.m_top = 240.0f;
+		dst.m_top = 350.0f;
 		dst.m_left = 110.0f;
-		dst.m_right = 245.0f;
-		dst.m_bottom = 390.0f;
+		dst.m_right = 260.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"プラスチック", 240.0f, 280.0f, 30.0f, black);
-		Font::StrDraw(mrl[3], 240.0f, 330.0f, 30.0f, black);
+		Font::StrDraw(L"プラスチック", 130.0f, 500.0f, 40.0f, black);
+		Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
 		//▼アルミニウム表示
 		src.m_top = 0.0f;
@@ -693,13 +693,13 @@ void CObjWarehouse::Draw()
 		src.m_right = 160.0f;
 		src.m_bottom = 160.0f;
 
-		dst.m_top = 270.0f;
+		dst.m_top = 350.0f;
 		dst.m_left = 450.0f;
-		dst.m_right = 560.0f;
-		dst.m_bottom = 380.0f;
+		dst.m_right = 600.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"アルミニウム", 580.0f, 280.0f, 30.0f, black);
-		Font::StrDraw(mrl[4], 580.0f, 330.0f, 30.0f, black);
+		Font::StrDraw(L"アルミニウム", 500.0f, 500.0f, 40.0f, black);
+		Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
 
 		//▼ガス表示
 		src.m_top = 0.0f;
@@ -707,27 +707,13 @@ void CObjWarehouse::Draw()
 		src.m_right = 300.0f;
 		src.m_bottom = 300.0f;
 
-		dst.m_top = 240.0f;
-		dst.m_left = 780.0f;
-		dst.m_right = 930.0f;
-		dst.m_bottom = 390.0f;
+		dst.m_top = 350.0f;
+		dst.m_left = 800.0f;
+		dst.m_right = 950.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
-		Font::StrDraw(L"ガス", 950.0f, 280.0f, 30.0f, black);
-		Font::StrDraw(mrl[5], 950.0f, 330.0f, 30.0f, black);
-
-		////▼レアメタル表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 160.0f;
-		//src.m_bottom = 160.0f;
-
-		//dst.m_top = 440.0f;
-		//dst.m_left = 450.0f;
-		//dst.m_right = 560.0f;
-		//dst.m_bottom = 550.0f;
-		//Draw::Draw(39, &src, &dst, it, 0.0f);
-		//Font::StrDraw(L"レアメタル", 580.0f, 450.0f, 30.0f, black);
-		//Font::StrDraw(mrl[6], 580.0f, 500.0f, 30.0f, black);
+		Font::StrDraw(L"ガス", 910.0f, 500.0f, 40.0f, black);
+		Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
 
 	//住民ボタンを押して描画する画像
@@ -901,11 +887,8 @@ void CObjWarehouse::Draw()
 		//Explosionを覚えているならば
 		if (g_Special_mastering[0] == true)
 		{
-			Font::StrDraw(L"メリット", 245.0f, 110.0f, 20.0f, black);
-			Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 140.0f, 20.0f, black);
-			Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 245.0f, 170.0f, 20.0f, black);
-			Font::StrDraw(L"デメリット", 745.0f, 110.0f, 20.0f, black);
-			Font::StrDraw(L"一回しか使えない", 745.0f, 140.0f, 20.0f, black);
+			Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 110.0f, 35.0f, black);
+			Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 240.0f, 160.0f, 35.0f, black);
 
 			if(g_Special_equipment == 1)
 				Draw::Draw(40, &src, &dst, it, 0.0f);
@@ -927,11 +910,8 @@ void CObjWarehouse::Draw()
 		//Fracture Rayを覚えているならば
 		if (g_Special_mastering[1] == true)
 		{
-			Font::StrDraw(L"メリット", 245.0f, 210.0f, 20.0f, black);
-			Font::StrDraw(L"相手の攻撃一列を破壊する", 245.0f, 240.0f, 20.0f, black);
-			Font::StrDraw(L"デメリット", 745.0f, 210.0f, 20.0f, black);
-			Font::StrDraw(L"一回しか使えない", 745.0f, 240.0f, 20.0f, black);
-
+			Font::StrDraw(L"選択ライン上の", 245.0f, 210.0f, 35.0f, black);
+			Font::StrDraw(L"相手ポッド等を破壊する", 240.0f, 260.0f, 35.0f, black);
 			if (g_Special_equipment == 2)
 				Draw::Draw(41, &src, &dst, it, 0.0f);
 			else
@@ -952,10 +932,7 @@ void CObjWarehouse::Draw()
 		//Immotalityを覚えているならば
 		if (g_Special_mastering[2] == true)
 		{
-			Font::StrDraw(L"メリット", 245.0f, 310.0f, 20.0f, black);
-			Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 340.0f, 20.0f, black);
-			Font::StrDraw(L"デメリット", 745.0f, 310.0f, 20.0f, black);
-			Font::StrDraw(L"一回しか使えない", 745.0f, 340.0f, 20.0f, black);
+			Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 335.0f, 35.0f, black);
 
 			if (g_Special_equipment == 3)
 				Draw::Draw(42, &src, &dst, it, 0.0f);
@@ -977,11 +954,8 @@ void CObjWarehouse::Draw()
 		//リミットブレイクを覚えているならば
 		if (g_Special_mastering[3] == true)
 		{
-			Font::StrDraw(L"メリット", 245.0f, 410.0f, 20.0f, black);
-			Font::StrDraw(L"10秒間攻撃スピードアップ", 245.0f, 440.0f, 20.0f, black);
-			Font::StrDraw(L"武器生産頻度アップ", 245.0f, 470.0f, 20.0f, black);
-			Font::StrDraw(L"デメリット", 745.0f, 410.0f, 20.0f, black);
-			Font::StrDraw(L"一回しか使えない", 745.0f, 440.0f, 20.0f, black);
+			Font::StrDraw(L"10秒間攻撃スピードアップ", 240.0f, 410.0f, 35.0f, black);
+			Font::StrDraw(L"武器生産頻度アップ", 245.0f, 460.0f, 35.0f, black);
 
 			if (g_Special_equipment == 4)
 				Draw::Draw(43, &src, &dst, it, 0.0f);
@@ -1003,11 +977,8 @@ void CObjWarehouse::Draw()
 		//ステロイド投与を覚えているならば
 		if (g_Special_mastering[4] == true)
 		{
-			Font::StrDraw(L"メリット", 245.0f, 510.0f, 20.0f, black);
-			Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 540.0f, 20.0f, black);
-			Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 570.0f, 20.0f, black);
-			Font::StrDraw(L"デメリット", 745.0f, 510.0f, 20.0f, black);
-			Font::StrDraw(L"一回しか使えない", 745.0f, 540.0f, 20.0f, black);
+			Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 510.0f, 35.0f, black);
+			Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 560.0f, 35.0f, black);
 
 			if (g_Special_equipment == 6)
 				Draw::Draw(44, &src, &dst, it, 0.0f);
