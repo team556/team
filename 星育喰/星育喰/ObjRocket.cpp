@@ -687,6 +687,7 @@ void CObjRocket::Draw()
 			switch (m_get_line) {
 			case 0:m_r -= 0.05 + m_mov_spd * 2; break;
 			case 2:m_r += 0.05 + m_mov_spd * 2; break;
+			case 3:m_r -= 0.05 + m_mov_spd * 2; break;
 			}
 			//ミサイルの描画情報
 			src.m_top = 0.0f;
@@ -714,9 +715,9 @@ void CObjRocket::Draw()
 			Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r);   //灰色ポッド
 			break;
 		case 5://---------ランダムの情報が5なら
-			if (m_get_line == 0) { Draw::Draw(17, &src, &dst, d, m_r - 125); }//ミサイル
-			else if (m_get_line == 2) { Draw::Draw(17, &src, &dst, d, m_r - 145); }//各ラインの角度調整
-			else { Draw::Draw(17, &src, &dst, d, m_r - 135); }
+			if (m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//ミサイル
+			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 145); }//各ラインの角度調整
+			else						{ Draw::Draw(17, &src, &dst, d, m_r - 125); }
 			break;
 		}
 	}
