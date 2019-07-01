@@ -290,7 +290,6 @@ void CSceneTraining::InitScene()
 	//float v = Audio::VolumeMaster(0);
 	//v = Audio::VolumeMaster((0.0 - v));
 
-
 	////音楽スタート
 	Audio::Start(0);
 }

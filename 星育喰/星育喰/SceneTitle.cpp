@@ -56,6 +56,9 @@ void CSceneTitle::InitScene()
 	////プレイヤー惑星Lv3を読み込み52番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 52, TEX_SIZE_512);
 
+	//クリックでスタート文字画像を53番に登録
+	Draw::LoadImage(L"クリックでスタート.png", 53, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 

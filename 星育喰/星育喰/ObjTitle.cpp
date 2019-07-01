@@ -338,7 +338,20 @@ void CObjTitle::Draw()
 	//速度付ける。
 	m_click_vy *= 10.0f;
 
-	Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, w);
+	//クリックでスタート文字画像を表示
+	src.m_top    =   0.0f;
+	src.m_left   =   0.0f;
+	src.m_right  = 373.0f;
+	src.m_bottom =  41.0f;
+
+	dst.m_top    = 600.0f + m_click_vy;
+	dst.m_left   = 450.0f;
+	dst.m_right  = 823.0f;
+	dst.m_bottom = 641.0f + m_click_vy;
+	Draw::Draw(53, &src, &dst, w, 1.0f);
+
+
+	//Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, w);
 
 	//タイトルロゴ描画
 	src.m_top = 0.0f;
