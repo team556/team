@@ -57,16 +57,16 @@ private:
 	int m_ani_max;
 	int  m_ani_time;	//着弾アニメーション間隔タイム
 	bool m_del;			//削除チェック
-	RECT_F m_eff;	   //着弾エフェクト描画用
+	RECT_F m_eff;		//着弾エフェクト描画用
 
 	float m_a;			//alpha(透明度)
-	bool m_fight;		//ポッド同士の衝突時のエフェクト管理
 	int m_bom;			//爆発エフェクトのランダム(0～3)
+	bool m_fight;		//ポッド同士の衝突中フラグ
 
 	int Enemy_Line_pattern_x;	////敵攻撃パターンの横軸読み込む用
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
 
-	int m_bomcount;	//爆発の回数カウント
+	int m_bomcount;		//爆発の回数カウント
 
 	int m_level_comp[4];	//装備武器レベルの比較用
 };
