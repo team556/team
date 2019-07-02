@@ -756,7 +756,7 @@ void CObjRocket::Draw()
 
 		//Å•åªç›ílï\é¶		
 		dst.m_right = m_x + (m_size * ((float)m_podhp / (float)m_pod_max_hp));
-		Draw::Draw(32, &src, &dst, d, 0.0f);
+		Draw::Draw(32, &src, &dst, g, 0.0f);
 	}
 	
 

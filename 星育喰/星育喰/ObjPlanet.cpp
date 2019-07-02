@@ -86,6 +86,12 @@ void CObjPlanet::Init()
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
 
+	m_r = 0.0f;		
+
+	m_sweat_vy = 0.0f;
+
+	m_subsize = 0.0f;
+
 	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
@@ -693,12 +699,19 @@ void CObjPlanet::Action()
 		}
 	}
 
+	if (m_size >= 60.0f) {
+		m_subsize = m_size;
+		if (m_subsize >= MIN_SIZE)
+			m_subsize = MIN_SIZE;
+	}
 }
 
 //ドロー
 void CObjPlanet::Draw()
 {
 	float c[4] = { 1.0f,1.0f, 1.0f, 1.0f };//惑星画像&HPゲージ(現在値)用
+	float g[4] = { 0.0f,1.0f, 0.0f, 1.0f };//緑HPゲージ(現在値)用
+	float r[4] = { 1.0f,0.0f, 0.0f, 1.0f };//赤HPゲージ(現在値)用
 	float b[4] = { 0.0f,0.0f, 0.0f, 1.0f };//HPゲージ(最大値)用
 	RECT_F src;
 	RECT_F dst;
@@ -746,7 +759,47 @@ void CObjPlanet::Draw()
 
 		//▼現在値表示		
 		dst.m_right = m_px - MIN_SIZE + m_scale_down_move + ((MIN_SIZE * 2) * (m_size / m_siz_max));
-		Draw::Draw(32, &src, &dst, c, 0.0f);
+
+		
+		if(m_size/m_siz_max >= 0.20f)				//HPが20%以上の時HPバーを緑色にする
+			Draw::Draw(32, &src, &dst, g, 0.0f);
+		else {										//HPが20%以下の時汗を出してHPバーを赤くする
+			Draw::Draw(32, &src, &dst, r, 0.0f);
+
+			//▼上下する"汗"を表示
+			//角度加算
+			m_r += 10.0f;
+
+			//360°で初期値に戻す
+			if (m_r > 360.0f)
+				m_r = 0.0f;
+
+			//移動方向
+			m_sweat_vy = sin(3.14f / 90 * m_r);
+
+			//速度付ける。
+			m_sweat_vy *= 10.0f;
+
+			//クリックでスタート文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = m_py - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
+			dst.m_left = m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
+			dst.m_right = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
+			dst.m_bottom = m_py + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
+
+			if (m_type != 0)//惑星がプレイヤー以外の時、汗の位置を左上に表示して反転させる
+			{
+				dst.m_left = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
+				dst.m_right = m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
+			}
+			
+			//汗
+			Draw::Draw(34, &src, &dst, c, 1.0f);
+		}
 	}
 
 }

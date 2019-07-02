@@ -131,6 +131,9 @@ void CSceneFight::InitScene()
 	//メッセージウインドウを読み込み33番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 33, TEX_SIZE_512);
 
+	//汗を読み込み34番に登録
+	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 
