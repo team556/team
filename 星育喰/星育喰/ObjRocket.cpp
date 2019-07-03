@@ -353,12 +353,12 @@ void CObjRocket::Action()
 
 		//-----------------------------座標更新
 		if (m_type == 0) {
-			m_x += m_vx - m_mov_spd * 200;
-			m_y += m_vy;
+			m_x += m_vx * 2 - m_mov_spd * 200;
+			m_y += m_vy * 2;
 		}
 		else {
-			m_x -= m_vx - m_mov_spd * 200;
-			m_y += m_vy;
+			m_x -= m_vx * 2 - m_mov_spd * 200;
+			m_y += m_vy * 2;
 		}
 	}
 	////---------------------------------座標更新
