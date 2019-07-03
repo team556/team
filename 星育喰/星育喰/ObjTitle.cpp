@@ -25,6 +25,11 @@ using namespace GameL;
 bool CObjTitle::after_once = false;
 
 //全てのグローバル変数の定義
+//※ObjTitleでは、グローバル変数の定義と同時に
+//イニシャライズでリセット処理も行っている為、
+//初期値を変更等する際は、
+//こことリセット処理の2つを変更しないといけないので注意。
+//※余裕あれば、値の部分をマクロ化(出来る部分は)して便利にすべし。
 int g_Stage_progress = 1;
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 int g_Bar_Level = 1;
