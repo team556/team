@@ -22,7 +22,7 @@ private:
 	float m_size;	//ミサイルのサイズ
 	bool  m_mou_f;	//マウスフラッグ
 
-	float m_r;		//ミサイル角度
+	float m_r;		//角度変更用(+で左回転)
 	float m_mov;	//
 	float m_mov_spd;//動く速さ
 
