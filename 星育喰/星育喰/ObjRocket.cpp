@@ -362,16 +362,7 @@ void CObjRocket::Action()
 		}
 	}
 	////---------------------------------座標更新
-	//if (m_fight == false) {//戦闘フラグＯＦＦ時
-	//	if (m_type == 0) {
-	//		m_x += m_vx;
-	//		m_y += m_vy;
-	//	}
-	//	else {
-	//		m_x -= m_vx;
-	//		m_y += m_vy;
-	//	}
-	//}
+	
 
 	//爆発エフェクト
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 5);	//敵とプレイヤーのポッド当たっているとき処理
@@ -610,12 +601,12 @@ void CObjRocket::Action()
 void CObjRocket::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
-	float r[4] = { 1.0f, 0.0f, 0.0f, 1.0f }; //赤
-	float g[4] = { 0.0f, 1.0f, 0.0f, 1.0f }; //緑
-	float b[4] = { 0.0f, 0.2f, 2.0f, 1.0f }; //青
-	float black[4] = { 0.0f, 0.0f, 0.0f, 1.0f };//黒(HPゲージ最大値で使用)
-	float c[4] = { 1.0f,1.0f,1.0f,m_a };
+	float d[4] =	{ 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
+	float r[4] =	{ 1.0f, 0.0f, 0.0f, 1.0f }; //赤
+	float g[4] =	{ 0.0f, 1.0f, 0.0f, 1.0f }; //緑
+	float b[4] =	{ 0.0f, 0.2f, 2.0f, 1.0f }; //青
+	float black[4]=	{ 0.0f, 0.0f, 0.0f, 1.0f };//黒(HPゲージ最大値で使用)
+	float c[4] =	{ 1.0f,1.0f,1.0f,m_a };
 
 
 	RECT_F src;//切り取り位置
@@ -624,8 +615,8 @@ void CObjRocket::Draw()
 	if (m_type == 0)
 	{
 		switch (m_get_line) {
-		case 0:m_r += 0.05 + m_mov_spd * 2; break;//ミサイル角度加算
-		case 2:m_r -= 0.05 + m_mov_spd * 2; break;
+		case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
+		case 2:m_r -= 0.08 + m_mov_spd * 2; break;
 		}
 		
 		if (ButtonUP >= 1 && ButtonUP <= 4)
@@ -672,8 +663,8 @@ void CObjRocket::Draw()
 			Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r + 180);   //灰色ポッド
 			break;
 		case 5:
-			if (m_get_line == 0)		{ Draw::Draw(17, &src, &dst, d, m_r + 35); }//ミサイルの
-			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r + 55); }//各ラインの角度調整
+			if (m_get_line == 0)		{ Draw::Draw(17, &src, &dst, d, m_r + 25); }//ミサイルの
+			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r + 65); }//各ラインの角度調整
 			else						{ Draw::Draw(17, &src, &dst, d, m_r + 45); }
 			//else if ();
 			break;
@@ -700,9 +691,9 @@ void CObjRocket::Draw()
 		else  //------------敵ミサイルの描画用
 		{
 			switch (m_get_line) {
-			case 0:m_r -= 0.05 + m_mov_spd * 2; break;//ミサイル角度加算
-			case 2:m_r += 0.05 + m_mov_spd * 2; break;
-			case 3:m_r -= 0.05 + m_mov_spd * 2; break;
+			case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
+			case 2:m_r += 0.08 + m_mov_spd * 2; break;
+			case 3:m_r -= 0.08 + m_mov_spd * 2; break;
 			}
 
 			//ミサイルの描画情報
@@ -732,8 +723,8 @@ void CObjRocket::Draw()
 			break;
 		case 5://---------ランダムの情報が5なら
 			if (m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//ミサイルの
-			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 145); }//各ラインの角度調整
-			else						{ Draw::Draw(17, &src, &dst, d, m_r - 125); }
+			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }//各ラインの角度調整
+			else						{ Draw::Draw(17, &src, &dst, d, m_r - 115); }
 			break;
 		}
 	}
