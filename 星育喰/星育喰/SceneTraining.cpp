@@ -80,9 +80,9 @@ void CSceneTraining::InitScene()
 	CObjWarehouse* warehouse = new CObjWarehouse();
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
 
-	//ヘルプブジェクト
-	//CObjHelp* hlp = new CObjHelp(2);     //ヘルプブジェクト作成
-	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプブジェクト登録
+	//ヘルプオブジェクト
+	//CObjHelp* hlp = new CObjHelp(2);     //ヘルプオブジェクト作成
+	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプオブジェクト登録
 
 
 	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
