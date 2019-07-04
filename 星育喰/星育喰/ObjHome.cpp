@@ -462,9 +462,47 @@ void CObjHome::Draw()
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
 		//▽フォント表示
+		//フォント画像表示
+		/*仮の文字画像を置いています	変更などは加えやすいようにしておきます*/
 		for (int i = 0; i < 3; i++)
 		{
-			Font::StrDraw(status_font[i], m_mou_x + 33.0f, m_mou_y + - 73.0f + i * 40.0f, 25.0f, status_font_color[i]);
+			//惑星HP文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 412.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = m_mou_y - 70.0f;
+			dst.m_left = m_mou_x + 35.0f;
+			dst.m_right = m_mou_x + 135.0f;
+			dst.m_bottom = m_mou_y  -45.0f;
+			Draw::Draw(53, &src, &dst, d, 0.0f);
+
+			//装備中のスペシャル技文字画像
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1134.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = m_mou_y - 35.0f;
+			dst.m_left = m_mou_x + 30.0f;
+			dst.m_right = m_mou_x + 255.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(54, &src, &dst, d, 0.0f);
+
+			//未装備文字画像
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = m_mou_y - 0.0f;
+			dst.m_left = m_mou_x + 30.0f;
+			dst.m_right = m_mou_x + 130.0f;
+			dst.m_bottom = m_mou_y +25.0f;
+			Draw::Draw(55, &src, &dst, d, 0.0f);
+
+			//Font::StrDraw(status_font[i], m_mou_x + 33.0f, m_mou_y + - 73.0f + i * 40.0f, 25.0f, status_font_color[i]);
 		}
 	}
 

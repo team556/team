@@ -1246,6 +1246,19 @@ void CObjInstitute::Draw()
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
+			////▼研究所 LV.文字画像表示
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 607.0f;
+			//src.m_bottom = 112.0f;
+
+			//dst.m_top = m_mou_y - 43.0f;
+			//dst.m_left = m_mou_x - 90.0f;
+			//dst.m_right = m_mou_x + 40.0f;
+			//dst.m_bottom = m_mou_y - 18.0f;
+			//Draw::Draw(64, &src, &dst, white, 0.0f);
+
+
 			//▼フォント表示
 			//研究所レベル
 			Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
@@ -1386,6 +1399,42 @@ void CObjInstitute::Draw()
 		dst.m_right = 1130.0f;
 		dst.m_bottom = 650.0f;
 		Draw::Draw(26, &src, &dst, equip, 0.0f);
+
+		////▼研究所 LV.文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 607.0f;
+		//src.m_bottom = 112.0f;
+
+		//dst.m_top = 95.0f;
+		//dst.m_left = 105.0f;
+		//dst.m_right = 355.0f;
+		//dst.m_bottom = 145.0f;
+		//Draw::Draw(64, &src, &dst, white, 0.0f);
+
+		////▼研究員文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 352.0f;
+		//src.m_bottom = 112.0f;
+
+		//dst.m_top = 145.0f;
+		//dst.m_left = 505.0f;
+		//dst.m_right = 670.0f;
+		//dst.m_bottom = 200.0f;
+		//Draw::Draw(67, &src, &dst, equip, 0.0f);
+
+		////▼住民振り分け文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 352.0f;
+		//src.m_bottom = 112.0f;
+
+		//dst.m_top = 145.0f;
+		//dst.m_left = 505.0f;
+		//dst.m_right = 670.0f;
+		//dst.m_bottom = 200.0f;
+		//Draw::Draw(67, &src, &dst, equip, 0.0f);
 
 		//▼フォント表示
 		//研究所レベル
