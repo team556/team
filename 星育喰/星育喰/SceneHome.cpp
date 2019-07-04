@@ -70,6 +70,16 @@ void CSceneHome::InitScene()
 	//プレイヤー惑星Lv3を読み込み52番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 52, TEX_SIZE_512);
 
+	//惑星HP文字画像を読み込み53番に登録
+	Draw::LoadImage(L"惑星HP.png", 53, TEX_SIZE_512);
+
+	//装備中のスペシャル技文字画像を読み込み54番に登録
+	Draw::LoadImage(L"ミサイル生産速度UP.png", 54, TEX_SIZE_512);//名前を変更してください
+
+	//未装備文字画像を読み込み55番に登録
+	Draw::LoadImage(L"装備中.png", 55, TEX_SIZE_512);//名前を変更してください
+
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
