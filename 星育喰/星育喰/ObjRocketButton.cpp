@@ -105,6 +105,7 @@ void CObjRocketButton::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	m_key_push_f = false;//二回連続でリキャストに入らないためにfalseに変更する。
 
 	//各押された時のボタンナンバーを設定と1～5が押されたフラグをtrueにする
 	if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true) {
@@ -263,7 +264,8 @@ void CObjRocketButton::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float c[4] = { 1.0f,1.0f, 1.0f, m_a };//ポッドミサイルボタン用
-	float d[4] = { 1.0f,1.0f, 1.0f, m_a2 };//人数不足アイコン、リキャストゲージ(現在値)用
+	float d[4] = { 1.0f,1.0f, 1.0f, m_a2 };//人数不足アイコン用
+	float g[4] = { 0.0f,1.0f, 0.0f, m_a2 };//リキャストゲージ(現在値)用
 	float b[4] = { 0.0f,0.0f, 0.0f, m_a2 };//リキャストゲージ(最大値)用
 
 	RECT_F src;//切り取り位置
@@ -349,7 +351,7 @@ void CObjRocketButton::Draw()
 
 		//▼現在値表示		
 		dst.m_right = m_x + (m_w * (m_cnt / (RECAST_COMPLETE_POD_TIME * m_player_recast_buff)));
-		Draw::Draw(32, &src, &dst, d, 0.0f);
+		Draw::Draw(32, &src, &dst, g, 0.0f);
 	}
 	//ミサイルの処理
 	else if (m_mou_f == true && m_is_empty == false &&Button_num==5)
@@ -369,7 +371,7 @@ void CObjRocketButton::Draw()
 
 		//▼現在値表示		
 		dst.m_right = m_x + (m_w * (m_cnt / (RECAST_COMPLETE_TIME * m_player_recast_buff)));
-		Draw::Draw(32, &src, &dst, d, 0.0f);
+		Draw::Draw(32, &src, &dst, g, 0.0f);
 	}
 
 }
