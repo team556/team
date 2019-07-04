@@ -22,7 +22,7 @@ private:
 	float m_size;	//ミサイルのサイズ
 	bool  m_mou_f;	//マウスフラッグ
 
-	float m_r;		//ミサイル角度
+	float m_r;		//角度変更用(+で左回転)
 	float m_mov;	//
 	float m_mov_spd;//動く速さ
 
@@ -39,8 +39,8 @@ private:
 	int ButtonUE;		//エネミーが撃ったポッドの種類
 	int ButtonUP;		//プレイヤーが撃ったポッドの種類
 
-	int m_time;
-	int Enemypod;
+	int m_atk_cnt;
+	int m_atk_cnt_max;
 
 	int m_Enemy_Pod_Level;	//敵のポッドレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
@@ -53,9 +53,9 @@ private:
 	int m_Player_damage;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
 	int m_Enemy_damage; //エネミーが受けるダメージ量(プレイヤーの攻撃力)
 
-	int  m_ani;			//着弾アニメーション
+	int m_ani;			//着弾アニメーション
 	int m_ani_max;
-	int  m_ani_time;	//着弾アニメーション間隔タイム
+	int m_ani_time;		//着弾アニメーション間隔タイム
 	bool m_del;			//削除チェック
 	RECT_F m_eff;		//着弾エフェクト描画用
 
