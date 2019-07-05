@@ -149,7 +149,7 @@
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="ObjTraining.cpp" />
     <ClCompile Include="ObjHelp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
@@ -202,7 +202,7 @@
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="ObjTraining.h" />
     <ClInclude Include="ObjHelp.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneGameClear.h" />

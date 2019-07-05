@@ -59,9 +59,9 @@ void CSceneTest::InitScene()
 	//CObjFightClear* obj = new CObjFightClear();	//タイトルオブジェクト作成
 	//Objs::InsertObj(obj, OBJ_FIGHT_CLEAR, 10);		//タイトルオブジェクト登録
 
-	////オブジェクト作成
-	//CObjHelp* obj = new CObjHelp(1);	//タイトルオブジェクト作成
-	//Objs::InsertObj(obj, OBJ_HELP, 10);		//タイトルオブジェクト登録
+	////ヘルプオブジェクト作成
+	//CObjHelp* help = new CObjHelp(1);		//ヘルプオブジェクト作成
+	//Objs::InsertObj(help, OBJ_HELP, 10);	//ヘルプオブジェクト登録
 
 	////メッセージ表示オブジェクト作成
 	//CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
