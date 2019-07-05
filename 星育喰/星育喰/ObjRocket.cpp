@@ -782,8 +782,7 @@ void CObjRocket::Draw()
 		case 5://---------ランダムの情報が5なら
 			if (m_get_line == 0)		{ Draw::Draw(17, &src, &dst, d, m_r - 115); }//ミサイルの
 			else if(m_get_line == 1)	{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
-			else if(m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }
-			else						{ Draw::Draw(17, &src, &dst, d, m_r); }
+			else if(m_get_line >= 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }
 			break;
 		}
 	}
