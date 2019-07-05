@@ -81,8 +81,8 @@ void CSceneTraining::InitScene()
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
 
 	//ヘルプオブジェクト
-	//CObjHelp* hlp = new CObjHelp(2);     //ヘルプオブジェクト作成
-	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプオブジェクト登録
+	//CObjHelp* help = new CObjHelp(2);     //ヘルプオブジェクト作成
+	//Objs::InsertObj(help, OBJ_HELP, 90);  //ヘルプオブジェクト登録
 
 
 	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
@@ -223,11 +223,11 @@ void CSceneTraining::InitScene()
 	//スペシャル技メッセージウィンドウ画像45番に登録
 	Draw::LoadImage(L"スペシャル技メッセージウィンドウ.png", 45, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み46番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 46, TEX_SIZE_512);
+	//ページを進めるボタンを読み込み46番に登録
+	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
 
-	//戻るを読み込み47番に登録
-	Draw::LoadImage(L"戻る.png", 47, TEX_SIZE_512);
+	//ヘルプボタンを読み込み47番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 47, TEX_SIZE_512);
 
 	//ヘルプ画像を読み込み48番に登録
 	Draw::LoadImage(L"ヘルプ育成画面.png", 48, TEX_SIZE_512);

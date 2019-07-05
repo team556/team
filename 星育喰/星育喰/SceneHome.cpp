@@ -33,9 +33,9 @@ void CSceneHome::InitScene()
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
-	////ヘルプオブジェクト
-	//CObjHelp* hlp = new CObjHelp(1);     //ヘルプオブジェクト作成
-	//Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプオブジェクト登録
+	//ヘルプオブジェクト
+	CObjHelp* help = new CObjHelp(1);     //ヘルプオブジェクト作成
+	Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
@@ -46,11 +46,11 @@ void CSceneHome::InitScene()
 	//喰アイコンを読み込み2番に登録
 	Draw::LoadImage(L"喰ボタン.png", 2, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み3番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 3, TEX_SIZE_512);
+	//戻るを読み込み3番に登録
+	Draw::LoadImage(L"戻る.png", 3, TEX_SIZE_512);
 
-	//戻るを読み込み4番に登録
-	Draw::LoadImage(L"戻る.png", 4, TEX_SIZE_512);
+	//ヘルプボタンを読み込み4番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 4, TEX_SIZE_512);
 
 	//ヘルプ画像を読み込み5番に登録
 	Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
@@ -60,6 +60,11 @@ void CSceneHome::InitScene()
 
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
+
+	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
+
+	//ページを進めるボタンを読み込み46番に登録
+	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み50番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
