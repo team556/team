@@ -138,18 +138,8 @@ void CObjGameClear::Draw()
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
-	//タイトルロゴ描画
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1557.0f;
-	src.m_bottom = 929.0f;
 
-	dst.m_top = 0.0f + m_cy[24];
-	dst.m_left = 300.0f;
-	dst.m_right = 851.0f;
-	dst.m_bottom = 350.0f + m_cy[24];
-	Draw::Draw(1, &src, &dst, w, m_alpha);
-
+	//ここから下がスクロールするテキスト（画像）の描画
 	//音人描画
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -247,38 +237,76 @@ void CObjGameClear::Draw()
 	Draw::Draw(9, &src, &dst, w, m_alpha);
 
 
+	//タイトルロゴ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1557.0f;
+	src.m_bottom = 929.0f;
+
+	dst.m_top = 0.0f + m_cy[24];
+	dst.m_left = 300.0f;
+	dst.m_right = 851.0f;
+	dst.m_bottom = 350.0f + m_cy[24];
+	Draw::Draw(1, &src, &dst, w, m_alpha);
+
+	//END描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 274.0f;
+	src.m_bottom = 117.0f;
+
+	dst.m_top = 0.0f + m_cy[20];
+	dst.m_left = 400.0f;
+	dst.m_right = 574.0f;
+	dst.m_bottom = 217.0f + m_cy[20];
+	Draw::Draw(10, &src, &dst, w, m_alpha);
+
+	//END描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 269.0f;
+	src.m_bottom = 117.0f;
+
+	dst.m_top = 0.0f + m_cy[20];
+	dst.m_left = 400.0f;
+	dst.m_right = 574.0f;
+	dst.m_bottom = 217.0f + m_cy[20];
+	Draw::Draw(10, &src, &dst, w, m_alpha);
+
+	//右クリックをすると描画
+	src.m_top = 3.0f;
+	src.m_left = 3.0f;
+	src.m_right = 1481.0f;
+	src.m_bottom = 114.0f;
+
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 200.0f;
+	dst.m_bottom = 32.0f;
+	Draw::Draw(12, &src, &dst, w2, m_alpha);
+
+	//エンドロールが早く流れます描画
+	src.m_top = 3.0f;
+	src.m_left = 3.0f;
+	src.m_right = 1663.0f;
+	src.m_bottom = 116.0f;
+
+	dst.m_top = 40.0f;
+	dst.m_left = 50.0f;
+	dst.m_right = 300.0f;
+	dst.m_bottom = 72.0f;
+	Draw::Draw(13, &src, &dst, w2, m_alpha);
 
 
 
 
-
-	Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
-	Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
+	//Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
+	//Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
 
 	Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
 
-	//Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
-	//Font::StrDraw(L"https://on-jin.com/",375, m_cy[3]-20, 45, c);
 
-	/*Font::StrDraw(L"魔王魂",525, m_cy[4]+20, 45, c);
-	Font::StrDraw(L"https://m aoudam ashii.jokersounds.com/",	160, m_cy[5], 45, c);*/
-
-	//Font::StrDraw(L"TA M M usic Factory",380, m_cy[6] + 20, 45, c);
-	//Font::StrDraw(L"https://w w w.tam - music.com/",300, m_cy[7], 45, c);
-
-	//Font::StrDraw(L"DOVA-SYN DROME", 450,m_cy[8] + 20, 45, c);
-	//Font::StrDraw(L"https://dova-s.jp/",400, m_cy[9], 45, c);
-
-	//Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10] + 20, 45, c);
-	//Font::StrDraw(L"https://taira-ko m ori.jpn.org/in dex.htm l",160, m_cy[11], 45, c);
-
-	//Font::StrDraw(L"効果音ラボ",480, m_cy[12] + 20, 45, c);
-	//Font::StrDraw(L"https://soun deffect-lab.info/",300, m_cy[13], 45, c);
-
-	//Font::StrDraw(L"OtoLogic",500, m_cy[14] + 20, 45, c);
-	//Font::StrDraw(L"https://otologic.jp/",380, m_cy[15], 45, c);
-
-	Font::StrDraw(L"End", 550, m_cy[20] , 60, c);
+	/*Font::StrDraw(L"End", 550, m_cy[20] , 60, c);*/
 
 	//エンドフラグがtrueになったら
 	if (m_end_f == true)
