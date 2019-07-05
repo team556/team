@@ -35,7 +35,7 @@ void CObjGameClear::Init()
 	m_y_vec = 1.0;
 
 	for (int i = 0; i < 100; i++)//配列の初期化
-		m_cy[i] = i * 80 + 700;	//行間の間隔を空けるのと、画面より下にする
+		m_cy[i] = i * 60 + 700;	//行間の間隔を空けるのと、画面より下にする
 	m_c_nam = 0;
 
 	m_speed = 0;
@@ -101,7 +101,7 @@ void CObjGameClear::Action()
 	}
 
 	//23番目スクロールに登録された画像が下から上に流れてきたら
-	if (m_cy[23] <= 0.0f)
+	if (m_cy[28] <= 0.0f)
 	{
 		m_y_vec = 0;	//スクロールを止める
 		m_end_f = true;
@@ -138,49 +138,266 @@ void CObjGameClear::Draw()
 	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
+	//使用した音楽、効果音サイト描画
+	src.m_top = 3.0f;
+	src.m_left = 3.0f;
+	src.m_right = 1606.0f;
+	src.m_bottom = 114.0f;
+
+	dst.m_top = 0.0f + m_cy[0];
+	dst.m_left = 250.0f;
+	dst.m_right = 950.0f;
+	dst.m_bottom = 0.0f + m_cy[1];
+	Draw::Draw(3, &src, &dst, w, m_alpha);
+
+	//音人描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 185.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 0.0f + m_cy[2];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 0.0f + m_cy[3];
+	Draw::Draw(7, &src, &dst, w, m_alpha);
+
+	//音人URL描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 870.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[3];
+	dst.m_left = 300.0f;
+	dst.m_right = 900.0f;
+	dst.m_bottom = 10.0f + m_cy[4];
+	Draw::Draw(8, &src, &dst, w, m_alpha);
+
+	//魔王魂描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 282.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 0.0f + m_cy[5];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 0.0f + m_cy[6];
+	Draw::Draw(9, &src, &dst, w, m_alpha);
+
+	//魔王魂URL1描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1060.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[6];
+	dst.m_left = 250.0f;
+	dst.m_right = 950.0f;
+	dst.m_bottom = 10.0f + m_cy[7];
+	Draw::Draw(10, &src, &dst, w, m_alpha);
+
+	//魔王魂URL2描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 876.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[7];
+	dst.m_left = 250.0f;
+	dst.m_right = 950.0f;
+	dst.m_bottom = 10.0f + m_cy[8];
+	Draw::Draw(11, &src, &dst, w, m_alpha);
+
+	//TAMM描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1005.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 0.0f + m_cy[9];
+	dst.m_left = 300.0f;
+	dst.m_right = 900.0f;
+	dst.m_bottom = 00.0f + m_cy[10];
+	Draw::Draw(12, &src, &dst, w, m_alpha);
+
+	//TAMMURL描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1341.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[10];
+	dst.m_left = 200.0f;
+	dst.m_right = 1000.0f;
+	dst.m_bottom = 10.0f + m_cy[11];
+	Draw::Draw(13, &src, &dst, w, m_alpha);
+
+	//DOVA-SYN_DROME描画
+	src.m_top = 2.0f;
+	src.m_left = 0.0f;
+	src.m_right = 945.0f;
+	src.m_bottom = 77.0f;
+
+	dst.m_top = 0.0f + m_cy[12];
+	dst.m_left = 200.0f;
+	dst.m_right = 1000.0f;
+	dst.m_bottom = 0.0f + m_cy[13];
+	Draw::Draw(14, &src, &dst, w, m_alpha);
+
+	//DOVA-SYN_DROMEURL描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 819.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[13];
+	dst.m_left = 300.0f;
+	dst.m_right = 900.0f;
+	dst.m_bottom = 10.0f + m_cy[14];
+	Draw::Draw(15, &src, &dst, w, m_alpha);
+
+	//無料効果音で遊ぼう描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 852.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 0.0f + m_cy[15];
+	dst.m_left = 400.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 0.0f + m_cy[16];
+	Draw::Draw(16, &src, &dst, w, m_alpha);
+
+	//無料効果音で遊ぼうURL描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1842.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[16];
+	dst.m_left = 200.0f;
+	dst.m_right = 1000.0f;
+	dst.m_bottom = 10.0f + m_cy[17];
+	Draw::Draw(17, &src, &dst, w, m_alpha);
+
+	//効果音ラボ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 474.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 0.0f + m_cy[18];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 0.0f + m_cy[19];
+	Draw::Draw(18, &src, &dst, w, m_alpha);
+
+	//効果音ラボ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1364.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[19];
+	dst.m_left = 200.0f;
+	dst.m_right = 1000.0f;
+	dst.m_bottom = 10.0f + m_cy[20];
+	Draw::Draw(19, &src, &dst, w, m_alpha);
+
+	//OtoLogic描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 444.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 0.0f + m_cy[21];
+	dst.m_left = 450.0f;
+	dst.m_right = 750.0f;
+	dst.m_bottom = 0.0f + m_cy[22];
+	Draw::Draw(20, &src, &dst, w, m_alpha);
+
+	//OtoLogic描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 882.0f;
+	src.m_bottom = 84.0f;
+
+	dst.m_top = 10.0f + m_cy[22];
+	dst.m_left = 300.0f;
+	dst.m_right = 900.0f;
+	dst.m_bottom = 10.0f + m_cy[23];
+	Draw::Draw(21, &src, &dst, w, m_alpha);
+
+	//END描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 269.0f;
+	src.m_bottom = 117.0f;
+
+	dst.m_top = 0.0f + m_cy[25];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 75.0f + m_cy[25];
+	Draw::Draw(2, &src, &dst, w, m_alpha);
+
 	//タイトルロゴ描画
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 0.0f + m_cy[24];
+	dst.m_top = 0.0f + m_cy[28];
 	dst.m_left = 300.0f;
 	dst.m_right = 851.0f;
-	dst.m_bottom = 350.0f + m_cy[24];
+	dst.m_bottom = 350.0f + m_cy[28];
 	Draw::Draw(1, &src, &dst, w, m_alpha);
 
-	Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
-	Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
+	//右クリックをすると描画
+	src.m_top = 3.0f;
+	src.m_left = 3.0f;
+	src.m_right = 1481.0f;
+	src.m_bottom = 114.0f;
 
-	Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 200.0f;
+	dst.m_bottom = 32.0f;
+	Draw::Draw(4, &src, &dst, w2, m_alpha);
 
-	Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
-	Font::StrDraw(L"https://on-jin.com/",375, m_cy[3]-20, 45, c);
+	//エンドロールが早く流れます描画
+	src.m_top = 3.0f;
+	src.m_left = 3.0f;
+	src.m_right = 1663.0f;
+	src.m_bottom = 116.0f;
 
-	Font::StrDraw(L"魔王魂",525, m_cy[4]+20, 45, c);
-	Font::StrDraw(L"https://m aoudam ashii.jokersounds.com/",	160, m_cy[5], 45, c);
+	dst.m_top = 40.0f;
+	dst.m_left = 50.0f;
+	dst.m_right = 300.0f;
+	dst.m_bottom = 72.0f;
+	Draw::Draw(5, &src, &dst, w2, m_alpha);
 
-	Font::StrDraw(L"TA M M usic Factory",380, m_cy[6] + 20, 45, c);
-	Font::StrDraw(L"https://w w w.tam - music.com/",300, m_cy[7], 45, c);
+	//Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
+	//Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
 
-	Font::StrDraw(L"DOVA-SYN DROME", 450,m_cy[8] + 20, 45, c);
-	Font::StrDraw(L"https://dova-s.jp/",400, m_cy[9], 45, c);
+	//Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
 
-	Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10] + 20, 45, c);
-	Font::StrDraw(L"https://taira-ko m ori.jpn.org/in dex.htm l",160, m_cy[11], 45, c);
 
-	Font::StrDraw(L"効果音ラボ",480, m_cy[12] + 20, 45, c);
-	Font::StrDraw(L"https://soun deffect-lab.info/",300, m_cy[13], 45, c);
-
-	Font::StrDraw(L"OtoLogic",500, m_cy[14] + 20, 45, c);
-	Font::StrDraw(L"https://otologic.jp/",380, m_cy[15], 45, c);
-
-	Font::StrDraw(L"End", 550, m_cy[20] , 60, c);
+	/*Font::StrDraw(L"End", 550, m_cy[20] , 60, c);*/
 
 	//エンドフラグがtrueになったら
 	if (m_end_f == true)
 	{
-		Font::StrDraw(L"クリックでタイトルに戻る", 250, 600, 60, w);
+		src.m_top = 3.0f;
+		src.m_left = 3.0f;
+		src.m_right = 1483.0f;
+		src.m_bottom = 116.0f;
+
+		dst.m_top = 620.0f;
+		dst.m_left = 300.0f;
+		dst.m_right = 900.0f;
+		dst.m_bottom = 670.0f;
+		Draw::Draw(6, &src, &dst, w, m_alpha);
 	}
 }

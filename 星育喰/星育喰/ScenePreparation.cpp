@@ -33,9 +33,9 @@ void CScenePreparation::InitScene()
 	CObjPreparation* obj = new CObjPreparation();	//戦闘準備画面オブジェクト作成
 	Objs::InsertObj(obj, OBJ_PREPARATION, 10);		//戦闘準備画面オブジェクト登録
 
-	////ヘルプオブジェクト
-	//CObjHelp* hlp = new CObjHelp(3);     //ヘルプオブジェクト作成
-	//Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプオブジェクト登録
+	//ヘルプオブジェクト
+	CObjHelp* help = new CObjHelp(3);     //ヘルプオブジェクト作成
+	Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
@@ -85,11 +85,8 @@ void CScenePreparation::InitScene()
 	//ボス惑星(3ステージ)を読み込み15番に登録
 	Draw::LoadImage(L"パンダ顔.png", 15, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み20番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 20, TEX_SIZE_512);
-
-	//戻るを読み込み21番に登録
-	Draw::LoadImage(L"戻る.png", 21, TEX_SIZE_512);
+	//ヘルプボタンを読み込み21番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 21, TEX_SIZE_512);
 
 	//ヘルプ画像を読み込み22番に登録
 	Draw::LoadImage(L"ヘルプ戦闘準備.png", 22, TEX_SIZE_512);
@@ -97,6 +94,9 @@ void CScenePreparation::InitScene()
 	//ヘルプ画像を読み込み23番に登録
 	Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
 	
+	//ページを進めるボタンを読み込み46番に登録
+	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
+
 	//プレイヤー惑星Lv1を読み込み47番に登録
 	Draw::LoadImage(L"プレイヤー惑星.png", 47, TEX_SIZE_512);
 
