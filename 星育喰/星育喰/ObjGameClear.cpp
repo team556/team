@@ -150,31 +150,133 @@ void CObjGameClear::Draw()
 	dst.m_bottom = 350.0f + m_cy[24];
 	Draw::Draw(1, &src, &dst, w, m_alpha);
 
+	//音人描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 893.0f;
+	src.m_bottom = 193.0f;
+
+	dst.m_top = 0.0f + m_cy[2];
+	dst.m_left = 200.0f;
+	dst.m_right = 900.0f;
+	dst.m_bottom = 163.0f + m_cy[2];
+	Draw::Draw(2, &src, &dst, w, m_alpha);
+
+	//魔王魂描画
+	src.m_top = 20.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1065.0f;
+	src.m_bottom = 200.0f;
+
+	dst.m_top = 100.0f + m_cy[3];
+	dst.m_left = 200.0f;
+	dst.m_right = 900.0f;
+	dst.m_bottom = 163.0f + m_cy[4];
+	Draw::Draw(3, &src, &dst, w, m_alpha);
+
+	//魔王魂2描画
+	src.m_top = 15.0f;
+	src.m_left = 0.0f;
+	src.m_right = 893.0f;
+	src.m_bottom = 95.0f;
+
+	dst.m_top = 90.0f + m_cy[5];
+	dst.m_left = 250.0f;
+	dst.m_right = 843.0f;
+	dst.m_bottom = 163.0f + m_cy[5];
+	Draw::Draw(4, &src, &dst, w, m_alpha);
+
+	//TAMM描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1364.0f;
+	src.m_bottom = 202.0f;
+
+	dst.m_top = 90.0f + m_cy[6];
+	dst.m_left = 200.0f;
+	dst.m_right = 893.0f;
+	dst.m_bottom = 163.0f + m_cy[7];
+	Draw::Draw(5, &src, &dst, w, m_alpha);
+
+	//DOVA-SYN_DROME描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 995.0f;
+	src.m_bottom = 196.0f;
+
+	dst.m_top = 100.0f + m_cy[8];
+	dst.m_left = 200.0f;
+	dst.m_right = 893.0f;
+	dst.m_bottom = 163.0f + m_cy[9];
+	Draw::Draw(6, &src, &dst, w, m_alpha);
+
+	//無料効果音で遊ぼう描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1866.0f;
+	src.m_bottom = 212.0f;
+
+	dst.m_top = 100.0f + m_cy[10];
+	dst.m_left = 200.0f;
+	dst.m_right = 893.0f;
+	dst.m_bottom = 163.0f + m_cy[11];
+	Draw::Draw(7, &src, &dst, w, m_alpha);
+
+	//効果音ラボ描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1384.0f;
+	src.m_bottom = 204.0f;
+
+	dst.m_top = 100.0f + m_cy[12];
+	dst.m_left = 200.0f;
+	dst.m_right = 893.0f;
+	dst.m_bottom = 163.0f + m_cy[13];
+	Draw::Draw(8, &src, &dst, w, m_alpha);
+
+	//OtoLogic描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 892.0f;
+	src.m_bottom = 194.0f;
+
+	dst.m_top = 100.0f + m_cy[14];
+	dst.m_left = 200.0f;
+	dst.m_right = 893.0f;
+	dst.m_bottom = 163.0f + m_cy[15];
+	Draw::Draw(9, &src, &dst, w, m_alpha);
+
+
+
+
+
+
+
 	Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
 	Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
 
 	Font::StrDraw(L"使用した音楽、効果音サイト", 260, m_cy[0], 50, c);
 
-	Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
-	Font::StrDraw(L"https://on-jin.com/",375, m_cy[3]-20, 45, c);
+	//Font::StrDraw(L"音人",	550, m_cy[2], 45, c);
+	//Font::StrDraw(L"https://on-jin.com/",375, m_cy[3]-20, 45, c);
 
-	Font::StrDraw(L"魔王魂",525, m_cy[4]+20, 45, c);
-	Font::StrDraw(L"https://m aoudam ashii.jokersounds.com/",	160, m_cy[5], 45, c);
+	/*Font::StrDraw(L"魔王魂",525, m_cy[4]+20, 45, c);
+	Font::StrDraw(L"https://m aoudam ashii.jokersounds.com/",	160, m_cy[5], 45, c);*/
 
-	Font::StrDraw(L"TA M M usic Factory",380, m_cy[6] + 20, 45, c);
-	Font::StrDraw(L"https://w w w.tam - music.com/",300, m_cy[7], 45, c);
+	//Font::StrDraw(L"TA M M usic Factory",380, m_cy[6] + 20, 45, c);
+	//Font::StrDraw(L"https://w w w.tam - music.com/",300, m_cy[7], 45, c);
 
-	Font::StrDraw(L"DOVA-SYN DROME", 450,m_cy[8] + 20, 45, c);
-	Font::StrDraw(L"https://dova-s.jp/",400, m_cy[9], 45, c);
+	//Font::StrDraw(L"DOVA-SYN DROME", 450,m_cy[8] + 20, 45, c);
+	//Font::StrDraw(L"https://dova-s.jp/",400, m_cy[9], 45, c);
 
-	Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10] + 20, 45, c);
-	Font::StrDraw(L"https://taira-ko m ori.jpn.org/in dex.htm l",160, m_cy[11], 45, c);
+	//Font::StrDraw(L"無料効果音で遊ぼう",400, m_cy[10] + 20, 45, c);
+	//Font::StrDraw(L"https://taira-ko m ori.jpn.org/in dex.htm l",160, m_cy[11], 45, c);
 
-	Font::StrDraw(L"効果音ラボ",480, m_cy[12] + 20, 45, c);
-	Font::StrDraw(L"https://soun deffect-lab.info/",300, m_cy[13], 45, c);
+	//Font::StrDraw(L"効果音ラボ",480, m_cy[12] + 20, 45, c);
+	//Font::StrDraw(L"https://soun deffect-lab.info/",300, m_cy[13], 45, c);
 
-	Font::StrDraw(L"OtoLogic",500, m_cy[14] + 20, 45, c);
-	Font::StrDraw(L"https://otologic.jp/",380, m_cy[15], 45, c);
+	//Font::StrDraw(L"OtoLogic",500, m_cy[14] + 20, 45, c);
+	//Font::StrDraw(L"https://otologic.jp/",380, m_cy[15], 45, c);
 
 	Font::StrDraw(L"End", 550, m_cy[20] , 60, c);
 

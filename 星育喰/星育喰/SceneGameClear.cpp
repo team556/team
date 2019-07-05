@@ -36,6 +36,29 @@ void CSceneGameClear::InitScene()
 	//タイトルロゴ
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
 
+	//↓エンディングのテキスト用
+	//音人URL
+	Draw::LoadImage(L"音人.png", 2,TEX_SIZE_512);
+
+	//魔王魂URL
+	Draw::LoadImage(L"魔王魂半分.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"魔王魂半分２.png", 4, TEX_SIZE_512);
+
+	//TAMMURL
+	Draw::LoadImage(L"TAM_Music_Factory.png", 5, TEX_SIZE_512);
+
+	//DOVA-SYN DROME
+	Draw::LoadImage(L"DOVA-SYN_DROME.png", 6, TEX_SIZE_512);
+
+	//無料効果音で遊ぼう
+	Draw::LoadImage(L"無料効果音で遊ぼう.png", 7, TEX_SIZE_512);
+
+	//効果音ラボ
+	Draw::LoadImage(L"効果音ラボ.png", 8, TEX_SIZE_512);
+
+	//OtoLogic
+	Draw::LoadImage(L"OtoLogic.png", 9, TEX_SIZE_512);
+
 	//オブジェクト作成
 	CObjGameClear* obj = new CObjGameClear();	//オブジェクト作成
 	Objs::InsertObj(obj, OBJ_GAME_CLEAR, 10);	//オブジェクト登録
