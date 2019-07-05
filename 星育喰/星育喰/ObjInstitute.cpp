@@ -1430,8 +1430,8 @@ void CObjInstitute::Draw()
 		//src.m_right = 352.0f;
 		//src.m_bottom = 112.0f;
 
-		//dst.m_top = 145.0f;
-		//dst.m_left = 505.0f;
+		//dst.m_top = 45.0f;
+		//dst.m_left = 620.0f;
 		//dst.m_right = 670.0f;
 		//dst.m_bottom = 200.0f;
 		//Draw::Draw(67, &src, &dst, equip, 0.0f);
