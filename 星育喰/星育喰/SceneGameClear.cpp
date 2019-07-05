@@ -37,39 +37,51 @@ void CSceneGameClear::InitScene()
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
 
 	//↓エンディングのテキスト用
-	//音人URL
-	Draw::LoadImage(L"音人.png", 2,TEX_SIZE_512);
-
-	//魔王魂URL描画登録
-	Draw::LoadImage(L"魔王魂半分.png", 3, TEX_SIZE_512);
-	Draw::LoadImage(L"魔王魂半分２.png", 4, TEX_SIZE_512);
-
-	//TAMMURL描画登録
-	Draw::LoadImage(L"TAM_Music_Factory.png", 5, TEX_SIZE_512);
-
-	//DOVA-SYN DROME描画登録
-	Draw::LoadImage(L"DOVA-SYN_DROME.png", 6, TEX_SIZE_512);
-
-	//無料効果音で遊ぼう描画登録
-	Draw::LoadImage(L"無料効果音で遊ぼう.png", 7, TEX_SIZE_512);
-
-	//効果音ラボ描画登録
-	Draw::LoadImage(L"効果音ラボ.png", 8, TEX_SIZE_512);
-
-	//OtoLogic
-	Draw::LoadImage(L"OtoLogic.png", 9, TEX_SIZE_512);
-
 	//END描画登録
-	Draw::LoadImage(L"END.png", 10, TEX_SIZE_512);
+	Draw::LoadImage(L"END.png", 2, TEX_SIZE_512);
 
 	//使用した音楽描画登録
-	Draw::LoadImage(L"使用した音楽・効果音サイト.png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"使用した音楽・効果音サイト.png", 3, TEX_SIZE_512);
 
 	//エンドロールが早く流れます。描画登録
-	Draw::LoadImage(L"右クリックを押し続けると.png", 12, TEX_SIZE_512);
+	Draw::LoadImage(L"右クリックを押し続けると.png", 4, TEX_SIZE_512);
 
 	//右クリックを押し続けると
-	Draw::LoadImage(L"エンドロールが早く流れます。.png", 13, TEX_SIZE_512);
+	Draw::LoadImage(L"エンドロールが早く流れます。.png", 5, TEX_SIZE_512);
+
+	//クリックでタイトルに戻る
+	Draw::LoadImage(L"クリックでタイトルに戻る.png", 6, TEX_SIZE_512);
+
+	//音人
+	Draw::LoadImage(L"音人.png", 7,TEX_SIZE_512);
+	Draw::LoadImage(L"音人_URL.png", 8, TEX_SIZE_512);
+
+	//魔王魂描画登録
+	Draw::LoadImage(L"魔王魂.png", 9, TEX_SIZE_512);
+	Draw::LoadImage(L"魔王魂_URL_1.png", 10, TEX_SIZE_512);
+	Draw::LoadImage(L"魔王魂_URL_2.png", 11, TEX_SIZE_512);
+
+	//TAMM描画登録
+	Draw::LoadImage(L"TAM_Music_Factory.png", 12, TEX_SIZE_512);
+	Draw::LoadImage(L"TAM_Music_Factory_URL.png", 13, TEX_SIZE_512);
+
+	//DOVA-SYN DROME描画登録
+	Draw::LoadImage(L"DOVA-SYN_DROME.png", 14, TEX_SIZE_512);
+	Draw::LoadImage(L"DOVA-SYN_DROME_URL.png", 15, TEX_SIZE_512);
+
+	//無料効果音で遊ぼう描画登録
+	Draw::LoadImage(L"無料効果音で遊ぼう.png", 16, TEX_SIZE_512);
+	Draw::LoadImage(L"無料効果音で遊ぼう_URL.png", 17, TEX_SIZE_512);
+
+	//効果音ラボ描画登録
+	Draw::LoadImage(L"効果音ラボ.png", 18, TEX_SIZE_512);
+	Draw::LoadImage(L"効果音ラボ_URL.png", 19, TEX_SIZE_512);
+
+	//OtoLogic
+	Draw::LoadImage(L"OtoLogic.png", 20, TEX_SIZE_512);
+	Draw::LoadImage(L"OtoLogic_URL.png", 21, TEX_SIZE_512);
+
+	
 
 	//オブジェクト作成
 	CObjGameClear* obj = new CObjGameClear();	//オブジェクト作成
