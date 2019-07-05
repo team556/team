@@ -126,15 +126,15 @@ void CObjBarracks::Action()
 						{
 							//兵舎のレベルUP処理
 							g_Bar_Level++;
+
+							//レベルアップ音
+							Audio::Start(3);
 						}
 						
 						m_Yes_Button_color = 0.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
-
-						//レベルアップ音
-						Audio::Start(1);
 					}
 				}
 				else

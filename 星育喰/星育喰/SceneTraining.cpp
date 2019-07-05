@@ -289,6 +289,19 @@ void CSceneTraining::InitScene()
 	//研究員文字画像を読み込み67番に登録
 	Draw::LoadImage(L"研究員.png",67,TEX_SIZE_512);
 
+	//住民振り分け文字画像読み込み68番に登録
+	Draw::LoadImage(L"住民振り分け.png", 68, TEX_SIZE_512);
+
+	//人文字画像読み込み69番に登録
+	Draw::LoadImage(L"人.png", 69, TEX_SIZE_512);
+
+	//残り　　　人文字画像読み込み70番に登録
+	Draw::LoadImage(L"残り　　　人.png", 70, TEX_SIZE_512);
+
+	//LvUP条件　所持必要文字画像読み込み71番に登録
+	Draw::LoadImage(L"LvUP条件　所持必要.png", 71, TEX_SIZE_512);
+
+
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
@@ -300,8 +313,14 @@ void CSceneTraining::InitScene()
 	//戻る
 	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
 
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
+	//施設レベルアップの音
+	Audio::LoadAudio(3, L"施設レベルアップ音.wav", EFFECT);
+
+	//ホワイトアウトの音
+	Audio::LoadAudio(4, L"ホワイトアウト音.wav", EFFECT);
+
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);

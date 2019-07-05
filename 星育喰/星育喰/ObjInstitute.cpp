@@ -312,6 +312,9 @@ void CObjInstitute::Action()
 						{
 							//研究所のレベルUP処理
 							g_Ins_Level++;
+
+							//レベルアップ音
+							Audio::Start(3);
 						}
 
 						//▼ミサイルリキャストレベルUPチェック
@@ -323,9 +326,6 @@ void CObjInstitute::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
-
-						//選択音
-						Audio::Start(1);
 					}
 				}
 				else
@@ -1422,19 +1422,44 @@ void CObjInstitute::Draw()
 		//dst.m_left = 505.0f;
 		//dst.m_right = 670.0f;
 		//dst.m_bottom = 200.0f;
-		//Draw::Draw(67, &src, &dst, equip, 0.0f);
+		//Draw::Draw(67, &src, &dst, blue2, 0.0f);
 
 		////▼住民振り分け文字画像表示
 		//src.m_top = 0.0f;
 		//src.m_left = 0.0f;
-		//src.m_right = 352.0f;
+		//src.m_right = 742.0f;
+		//src.m_bottom = 117.0f;
+
+		//dst.m_top = 50.0f;
+		//dst.m_left = 620.0f;
+		//dst.m_right = 980.0f;
+		//dst.m_bottom = 110.0f;
+		//Draw::Draw(68, &src, &dst, white, 0.0f);
+
+		////▼人文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 112.0f;
 		//src.m_bottom = 112.0f;
 
-		//dst.m_top = 45.0f;
-		//dst.m_left = 620.0f;
-		//dst.m_right = 670.0f;
-		//dst.m_bottom = 200.0f;
-		//Draw::Draw(67, &src, &dst, equip, 0.0f);
+		//dst.m_top = 145.0f;
+		//dst.m_left = 1090.0f;
+		//dst.m_right = 1140.0f;
+		//dst.m_bottom = 195.0f;
+		//Draw::Draw(69, &src, &dst, black, 0.0f);
+
+		////▼残り　　　人文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 712.0f;
+		//src.m_bottom = 112.0f;
+
+		//dst.m_top = 245.0f;
+		//dst.m_left = 770.0f;
+		//dst.m_right = 1130.0f;
+		//dst.m_bottom = 295.0f;
+		//Draw::Draw(70, &src, &dst, black, 0.0f);
+
 
 		//▼フォント表示
 		//研究所レベル
