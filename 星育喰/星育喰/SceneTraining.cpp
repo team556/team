@@ -80,9 +80,9 @@ void CSceneTraining::InitScene()
 	CObjWarehouse* warehouse = new CObjWarehouse();
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
 
-	//ヘルプブジェクト
-	//CObjHelp* hlp = new CObjHelp(2);     //ヘルプブジェクト作成
-	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプブジェクト登録
+	//ヘルプオブジェクト
+	//CObjHelp* hlp = new CObjHelp(2);     //ヘルプオブジェクト作成
+	//Objs::InsertObj(hlp, OBJ_HELP, 90);  //ヘルプオブジェクト登録
 
 
 	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
@@ -276,6 +276,19 @@ void CSceneTraining::InitScene()
 
 	//ポッドLv.3の画像を読み込み63番に登録
 	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
+
+	//研究所 LV.文字画像を読み込み64番に登録
+	Draw::LoadImage(L"研究所 Lv.png",64,TEX_SIZE_512);
+
+	////兵舎文字画像を読み込み65番に登録
+	//Draw::LoadImage(L"",65,TEX_SIZE_512);
+
+	////倉庫文字画像を読み込み66番に登録
+	//Draw::LoadImage(L"",66,TEX_SIZE_512);
+
+	//研究員文字画像を読み込み67番に登録
+	Draw::LoadImage(L"研究員.png",67,TEX_SIZE_512);
+
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);

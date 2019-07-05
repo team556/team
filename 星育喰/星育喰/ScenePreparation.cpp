@@ -33,9 +33,9 @@ void CScenePreparation::InitScene()
 	CObjPreparation* obj = new CObjPreparation();	//戦闘準備画面オブジェクト作成
 	Objs::InsertObj(obj, OBJ_PREPARATION, 10);		//戦闘準備画面オブジェクト登録
 
-	////ヘルプブジェクト
-	//CObjHelp* hlp = new CObjHelp(3);     //ヘルプブジェクト作成
-	//Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプブジェクト登録
+	////ヘルプオブジェクト
+	//CObjHelp* hlp = new CObjHelp(3);     //ヘルプオブジェクト作成
+	//Objs::InsertObj(hlp, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
