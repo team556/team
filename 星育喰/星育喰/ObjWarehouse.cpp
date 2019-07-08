@@ -31,7 +31,7 @@ void CObjWarehouse::Init()
 	m_object_eq = INI_COLOR;			//装備確認ボタンカラー
 
 	m_key_lf = false;
-
+	m_key_rf = false;
 
 	//当たり判定用HitBoxを作成(Objhuman用)
 	Hits::SetHitBox(this, 95, 170, 225, 110, ELEMENT_ENEMY, OBJ_WAREHOUSE, 1);
@@ -47,6 +47,14 @@ void CObjWarehouse::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//▼キーフラグ
+	//※右クリックPush状態→右クリック未Push状態になるまで、
+	//再度右クリックする事は出来ない処理。
+	if (m_mou_r == false)	//右クリックOFF
+	{
+		m_key_rf = true;
+	}
 
 	//▼倉庫ウィンドウ表示の処理
 	if (window_start_manage == Warehouse)
@@ -70,6 +78,11 @@ void CObjWarehouse::Action()
 
 					//"倉庫ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Default;
+
+					//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(true);
+					help->SetAlpha(1.0f);
 
 					//戻るボタン音
 					Audio::Start(2);
@@ -98,7 +111,6 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_key_rf = true;
 			m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 			m_Back_Button_color = INI_COLOR;
 		}
@@ -280,13 +292,12 @@ void CObjWarehouse::Action()
 		else
 		{
 			m_Back_Button_color = INI_COLOR;
-			m_key_rf = true;
 		}
 	}
 
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	if (window_start_manage != Default)
+	if (window_start_manage != Default || g_help_f == true)
 	{
 		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
@@ -309,6 +320,11 @@ void CObjWarehouse::Action()
 
 				//倉庫をクリックすると、倉庫が開かれる
 				window_start_manage = Warehouse;
+
+				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetOperatable(false);
+				help->SetAlpha(0.0f);
 
 				//選択音
 				Audio::Start(1);
@@ -459,21 +475,21 @@ void CObjWarehouse::Draw()
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
 
-		 //   //▼倉庫文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 242.0f;
-			//src.m_bottom = 117.0f;
+		    //▼倉庫文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 242.0f;
+			src.m_bottom = 117.0f;
 
-			//dst.m_top = m_mou_y - 43.0f;
-			//dst.m_left = m_mou_x - 50.0f;
-			//dst.m_right = m_mou_x + 30.0f;
-			//dst.m_bottom = m_mou_y - 18.0f;
-			//Draw::Draw(88, &src, &dst, black, 0.0f);
+			dst.m_top = m_mou_y - 43.0f;
+			dst.m_left = m_mou_x - 50.0f;
+			dst.m_right = m_mou_x + 30.0f;
+			dst.m_bottom = m_mou_y - 15.0f;
+			Draw::Draw(88, &src, &dst, black, 0.0f);
 
 		    //▼フォント表示
 		    //倉庫
-			Font::StrDraw(Ware, m_mou_x - 40.0f, m_mou_y - 45.0f, 30.0f, black);
+			//Font::StrDraw(Ware, m_mou_x - 40.0f, m_mou_y - 45.0f, 30.0f, black);
 
 		}
 }
@@ -585,21 +601,21 @@ void CObjWarehouse::Draw()
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
 
-			////▼倉庫文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 242.0f;
-			//src.m_bottom = 117.0f;
+			//▼倉庫文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 242.0f;
+			src.m_bottom = 117.0f;
 
-			//dst.m_top = m_mou_y - 43.0f;
-			//dst.m_left = m_mou_x - 900.0f;
-			//dst.m_right = m_mou_x + 40.0f;
-			//dst.m_bottom = m_mou_y - 18.0f;
-			//Draw::Draw(88, &src, &dst, black, 0.0f);
+			dst.m_top = m_mou_y - 43.0f;
+			dst.m_left = m_mou_x - 900.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 18.0f;
+			Draw::Draw(88, &src, &dst, black, 0.0f);
 
 		    //▼フォント表示
 			//倉庫
-			Font::StrDraw(Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
+			//Font::StrDraw(Ware, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
 
 		}
 	}
@@ -667,19 +683,19 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 270.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
 
-		////▼木材文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 232.0f;
-		//src.m_bottom = 112.0f;
+		//▼木材文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 232.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 250.0f;
-		//dst.m_left = 170.0f;
-		//dst.m_right = 250.0f;
-		//dst.m_bottom = 290.0f;
-		//Draw::Draw(89, &src, &dst, it, 0.0f);
+		dst.m_top = 250.0f;
+		dst.m_left = 170.0f;
+		dst.m_right = 250.0f;
+		dst.m_bottom = 290.0f;
+		Draw::Draw(89, &src, &dst, it, 0.0f);
 
-		Font::StrDraw(L"木材", 170.0f, 250.0f,40.0f, black);
+		//Font::StrDraw(L"木材", 170.0f, 250.0f,40.0f, black);
 		Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
 		//▼鉄表示
@@ -694,19 +710,19 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 270.0f;
 		Draw::Draw(34, &src, &dst, it, 0.0f);
 
-		////▼鉄文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 112.0f;
-		//src.m_bottom = 112.0f;
+		//▼鉄文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 250.0f;
-		//dst.m_left = 540.0f;
-		//dst.m_right = 580.0f;
-		//dst.m_bottom = 290.0f;
-		//Draw::Draw(69, &src, &dst, it, 0.0f);
+		dst.m_top = 250.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 580.0f;
+		dst.m_bottom = 290.0f;
+		Draw::Draw(69, &src, &dst, it, 0.0f);
 
-		Font::StrDraw(L"鉄", 540.0f, 250.0f, 40.0f, black);
+		//Font::StrDraw(L"鉄", 540.0f, 250.0f, 40.0f, black);
 		Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
 		//▼銀表示
@@ -721,19 +737,19 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 270.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
 
-		////▼銀文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 112.0f;
-		//src.m_bottom = 112.0f;
+		//▼銀文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 250.0f;
-		//dst.m_left = 910.0f;
-		//dst.m_right = 950.0f;
-		//dst.m_bottom = 290.0f;
-		//Draw::Draw(90, &src, &dst, it, 0.0f);
+		dst.m_top = 250.0f;
+		dst.m_left = 910.0f;
+		dst.m_right = 950.0f;
+		dst.m_bottom = 290.0f;
+		Draw::Draw(90, &src, &dst, it, 0.0f);
 
-		Font::StrDraw(L"銀", 910.0f, 250.0f, 40.0f, black);
+		//Font::StrDraw(L"銀", 910.0f, 250.0f, 40.0f, black);
 		Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
 		//▼プラスチック表示
@@ -748,19 +764,19 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 500.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
 
-		////▼プラスチック文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 712.0f;
-		//src.m_bottom = 112.0f;
+		//▼プラスチック文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 712.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 500.0f;
-		//dst.m_left = 140.0f;
-		//dst.m_right = 380.0f;
-		//dst.m_bottom = 540.0f;
-		//Draw::Draw(91, &src, &dst, it, 0.0f);
+		dst.m_top = 500.0f;
+		dst.m_left = 140.0f;
+		dst.m_right = 380.0f;
+		dst.m_bottom = 540.0f;
+		Draw::Draw(91, &src, &dst, it, 0.0f);
 
-		Font::StrDraw(L"プラスチック", 130.0f, 500.0f, 40.0f, black);
+		//Font::StrDraw(L"プラスチック", 130.0f, 500.0f, 40.0f, black);
 		Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
 		//▼アルミニウム画像表示
@@ -775,19 +791,19 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 500.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 
-		////▼アルミニウム文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 712.0f;
-		//src.m_bottom = 112.0f;
+		//▼アルミニウム文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 712.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 500.0f;
-		//dst.m_left = 500.0f;
-		//dst.m_right = 740.0f;
-		//dst.m_bottom = 540.0f;
-		//Draw::Draw(91, &src, &dst, it, 0.0f);
+		dst.m_top = 500.0f;
+		dst.m_left = 500.0f;
+		dst.m_right = 740.0f;
+		dst.m_bottom = 540.0f;
+		Draw::Draw(91, &src, &dst, it, 0.0f);
 
-		Font::StrDraw(L"アルミニウム", 500.0f, 500.0f, 40.0f, black);
+		//Font::StrDraw(L"アルミニウム", 500.0f, 500.0f, 40.0f, black);
 		Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
 
 		//▼ガス表示
@@ -802,19 +818,19 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 500.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
 
-		////▼ガス文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 232.0f;
-		//src.m_bottom = 116.0f;
+		//▼ガス文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 232.0f;
+		src.m_bottom = 116.0f;
 
-		//dst.m_top = 500.0f;
-		//dst.m_left = 910.0f;
-		//dst.m_right = 990.0f;
-		//dst.m_bottom = 540.0f;
-		//Draw::Draw(93, &src, &dst, it, 0.0f);
+		dst.m_top = 500.0f;
+		dst.m_left = 910.0f;
+		dst.m_right = 990.0f;
+		dst.m_bottom = 540.0f;
+		Draw::Draw(93, &src, &dst, it, 0.0f);
 
-		Font::StrDraw(L"ガス", 910.0f, 500.0f, 40.0f, black);
+		//Font::StrDraw(L"ガス", 910.0f, 500.0f, 40.0f, black);
 		Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
 
@@ -869,142 +885,142 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 600.0f;
 		Draw::Draw(32, &src, &dst, it, 0.0f);
 		
-		////▼残り住民数がいません(住民数だけ)文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 230.0f;
-		//src.m_right = 600.0f;
-		//src.m_bottom = 112.0f;
+		//▼残り住民数がいません(住民数だけ)文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 230.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 110.0f;
-		//dst.m_left = 500.0f;
-		//dst.m_right = 650.0f;
-		//dst.m_bottom = 160.0f;
-		//Draw::Draw(94, &src, &dst, black, 0.0f);
+		dst.m_top = 110.0f;
+		dst.m_left = 500.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 160.0f;
+		Draw::Draw(94, &src, &dst, black, 0.0f);
 
-		////▼レッド文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 336.0f;
-		//src.m_bottom = 112.0f;
+		//▼レッド文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 336.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 200.0f;
-		//dst.m_left = 120.0f;
-		//dst.m_right = 225.0f;
-		//dst.m_bottom = 235.0f;
-		//Draw::Draw(82, &src, &dst, red, 0.0f);
+		dst.m_top = 200.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 225.0f;
+		dst.m_bottom = 235.0f;
+		Draw::Draw(82, &src, &dst, red, 0.0f);
 
-		////▼ブルー文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 352.0f;
-		//src.m_bottom = 112.0f;
+		//▼ブルー文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 330.0f;
-		//dst.m_left = 120.0f;
-		//dst.m_right = 225.0f;
-		//dst.m_bottom = 365.0f;
-		//Draw::Draw(83, &src, &dst, blue, 0.0f);
+		dst.m_top = 330.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 225.0f;
+		dst.m_bottom = 365.0f;
+		Draw::Draw(83, &src, &dst, blue, 0.0f);
 
-		////▼グリーン文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 472.0f;
-		//src.m_bottom = 112.0f;
+		//▼グリーン文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 472.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 120.0f;
-		//dst.m_right = 330.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(84, &src, &dst, green, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 330.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(84, &src, &dst, green, 0.0f);
 
-		////▼ホワイト文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 464.0f;
-		//src.m_bottom = 112.0f;
+		//▼ホワイト文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 464.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 200.0f;
-		//dst.m_left = 540.0f;
-		//dst.m_right = 680.0f;
-		//dst.m_bottom = 235.0f;
-		//Draw::Draw(85, &src, &dst, black, 0.0f);
+		dst.m_top = 200.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 680.0f;
+		dst.m_bottom = 235.0f;
+		Draw::Draw(85, &src, &dst, black, 0.0f);
 
-		////▼研究員文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 352.0f;
-		//src.m_bottom = 112.0f;
+		//▼研究員文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 330.0f;
-		//dst.m_left = 540.0f;
-		//dst.m_right = 645.0f;
-		//dst.m_bottom = 365.0f;
-		//Draw::Draw(75, &src, &dst, black, 0.0f);
+		dst.m_top = 330.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 645.0f;
+		dst.m_bottom = 365.0f;
+		Draw::Draw(75, &src, &dst, black, 0.0f);
 
-		////▼残り住民数がいません(残り住民数だけ)文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 600.0f;
-		//src.m_bottom = 112.0f;
+		//▼残り住民数がいません(残り住民数だけ)文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 540.0f;
-		//dst.m_right = 750.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(94, &src, &dst, black, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 750.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(94, &src, &dst, black, 0.0f);
 
-		////▼残り　　　人(残り)だけ文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 592.0f;
-		//src.m_bottom = 112.0f;
+		//▼残り　　　人(残り)だけ文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 592.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 780.0f;
-		//dst.m_right = 990.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(78, &src, &dst, red, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 780.0f;
+		dst.m_right = 990.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(78, &src, &dst, red, 0.0f);
 
-		////▼人文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 112.0f;
-		//src.m_bottom = 112.0f;
+		//▼人文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 995.0f;
-		//dst.m_right = 1030.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(77, &src, &dst, red, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 995.0f;
+		dst.m_right = 1030.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(77, &src, &dst, red, 0.0f);
 
 		//▼フォント表示
 		//住民ステータス
 
-		//住民数
-		Font::StrDraw(L"住民数", 500.0f, 110.0f, 50.0f, black);
+		////住民数
+		//Font::StrDraw(L"住民数", 500.0f, 110.0f, 50.0f, black);
 
-		//パワー
-		Font::StrDraw(L"パワー", 120.0f, 200.0f, 35.0f, red);
+		////パワー
+		//Font::StrDraw(L"パワー", 120.0f, 200.0f, 35.0f, red);
 		Font::StrDraw(human_num[0], 355.0f, 200.0f, 35.0f, black);
 
-		//スピード
-		Font::StrDraw(L"スピード", 120.0f, 330.0f, 35.0f, green);
+		////スピード
+		//Font::StrDraw(L"スピード", 120.0f, 330.0f, 35.0f, green);
 		Font::StrDraw(human_num[1], 355.0f, 330.0f, 35.0f, black);
 
-		//ディフェンス
-		Font::StrDraw(L"ディフェンス", 120.0f, 470.0f, 35.0f, blue);
+		////ディフェンス
+		//Font::StrDraw(L"ディフェンス", 120.0f, 470.0f, 35.0f, blue);
 		Font::StrDraw(human_num[2], 355.0f, 470.0f, 35.0f, black);
 
-		//バランス
-		Font::StrDraw(L"バランス", 540.0f, 200.0f, 35.0f, yellow);
+		////バランス
+		//Font::StrDraw(L"バランス", 540.0f, 200.0f, 35.0f, yellow);
 		Font::StrDraw(human_num[3], 865.0f, 200.0f, 35.0f, black);
 
-		//研究員
-		Font::StrDraw(L"研究員", 540.0f, 330.0f, 35.0f, black);
+		////研究員
+		//Font::StrDraw(L"研究員", 540.0f, 330.0f, 35.0f, black);
 		Font::StrDraw(Research_num, 865.0f, 330.0f, 35.0f, black);
 
-		//残りの住民数
-		Font::StrDraw(L"残りの住民数", 540.0f, 470.0f, 35.0f, black);
+		////残りの住民数
+		//Font::StrDraw(L"残りの住民数", 540.0f, 470.0f, 35.0f, black);
 		Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 	}
@@ -1098,37 +1114,37 @@ void CObjWarehouse::Draw()
 		if (g_Special_mastering[0] == true)
 		{
 
-			Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 110.0f, 35.0f, black);
-			Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 240.0f, 160.0f, 35.0f, black);
+			//Font::StrDraw(L"相手の惑星に固定ダメージを与える", 245.0f, 110.0f, 35.0f, black);
+			//Font::StrDraw(L"ダメージ量は惑星の削るHPの1.2倍のダメージを与える", 240.0f, 160.0f, 35.0f, black);
 
 			if(g_Special_equipment == 1)
 				Draw::Draw(40, &src, &dst, it, 0.0f);
 			else
 				Draw::Draw(40, &src, &dst, gray, 0.0f);
 
-			////▼相手の惑星に文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 713.0f;
-			//src.m_bottom = 112.0f;
+			//▼相手の惑星に文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 713.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 110.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 455.0f;
-			//dst.m_bottom = 145.0f;
-			//Draw::Draw(95, &src, &dst, black, 0.0f);
+			dst.m_top = 135.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 455.0f;
+			dst.m_bottom = 170.0f;
+			Draw::Draw(95, &src, &dst, black, 0.0f);
 
-			////▼固定ダメージを与える文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1182.0f;
-			//src.m_bottom = 112.0f;
+			//▼固定ダメージを与える文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1182.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 110.0f;
-			//dst.m_left = 456.0f;
-			//dst.m_right = 806.0f;
-			//dst.m_bottom = 145.0f;
-			//Draw::Draw(96, &src, &dst, black, 0.0f);
+			dst.m_top = 135.0f;
+			dst.m_left = 456.0f;
+			dst.m_right = 806.0f;
+			dst.m_bottom = 170.0f;
+			Draw::Draw(96, &src, &dst, black, 0.0f);
 		}
 		else
 		{
@@ -1151,36 +1167,36 @@ void CObjWarehouse::Draw()
 		//Fracture Rayを覚えているならば
 		if (g_Special_mastering[1] == true)
 		{
-			Font::StrDraw(L"選択ライン上の", 245.0f, 210.0f, 35.0f, black);
-			Font::StrDraw(L"相手ポッド等を破壊する", 240.0f, 260.0f, 35.0f, black);
+			//Font::StrDraw(L"選択ライン上の", 245.0f, 210.0f, 35.0f, black);
+			//Font::StrDraw(L"相手ポッド等を破壊する", 240.0f, 260.0f, 35.0f, black);
 			if (g_Special_equipment == 2)
 				Draw::Draw(41, &src, &dst, it, 0.0f);
 			else
 				Draw::Draw(41, &src, &dst, gray, 0.0f);
 
-			////▼選択ライン上の文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 832.0f;
-			//src.m_bottom = 112.0f;
+			//▼選択ライン上の文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 832.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 210.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 490.0f;
-			//dst.m_bottom = 245.0f;
-			//Draw::Draw(97, &src, &dst, black, 0.0f);
+			dst.m_top = 210.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 490.0f;
+			dst.m_bottom = 245.0f;
+			Draw::Draw(97, &src, &dst, black, 0.0f);
 
-			////▼相手ポッド等を破壊する文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1304.0f;
-			//src.m_bottom = 112.0f;
+			//▼相手ポッド等を破壊する文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1304.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 260.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 630.0f;
-			//dst.m_bottom = 295.0f;
-			//Draw::Draw(98, &src, &dst, black, 0.0f);
+			dst.m_top = 260.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 630.0f;
+			dst.m_bottom = 295.0f;
+			Draw::Draw(98, &src, &dst, black, 0.0f);
 
 
 		}
@@ -1205,36 +1221,36 @@ void CObjWarehouse::Draw()
 		//Immotalityを覚えているならば
 		if (g_Special_mastering[2] == true)
 		{
-			Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 335.0f, 35.0f, black);
+			//Font::StrDraw(L"約10秒間無敵になることができる", 245.0f, 335.0f, 35.0f, black);
 
 			if (g_Special_equipment == 3)
 				Draw::Draw(42, &src, &dst, it, 0.0f);
 			else
 				Draw::Draw(42, &src, &dst, gray, 0.0f);
 
-			////▼約10秒間の文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 532.0f;
-			//src.m_bottom = 112.0f;
+			//▼約10秒間の文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 532.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 335.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 420.0f;
-			//dst.m_bottom = 370.0f;
-			//Draw::Draw(99, &src, &dst, black, 0.0f);
+			dst.m_top = 335.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 420.0f;
+			dst.m_bottom = 370.0f;
+			Draw::Draw(99, &src, &dst, black, 0.0f);
 
-			////▼無敵となるの文字画像を表示584*112
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 584.0f;
-			//src.m_bottom = 112.0f;
+			//▼無敵となるの文字画像を表示584*112
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 584.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 335.0f;
-			//dst.m_left = 425.0f;
-			//dst.m_right = 600.0f;
-			//dst.m_bottom = 370.0f;
-			//Draw::Draw(100, &src, &dst, black, 0.0f);
+			dst.m_top = 335.0f;
+			dst.m_left = 425.0f;
+			dst.m_right = 600.0f;
+			dst.m_bottom = 370.0f;
+			Draw::Draw(100, &src, &dst, black, 0.0f);
 
 		}
 		else
@@ -1258,37 +1274,37 @@ void CObjWarehouse::Draw()
 		//リミットブレイクを覚えているならば
 		if (g_Special_mastering[3] == true)
 		{
-			Font::StrDraw(L"10秒間攻撃スピードアップ", 240.0f, 410.0f, 35.0f, black);
-			Font::StrDraw(L"武器生産頻度アップ", 245.0f, 460.0f, 35.0f, black);
+			//Font::StrDraw(L"10秒間攻撃スピードアップ", 240.0f, 410.0f, 35.0f, black);
+			//Font::StrDraw(L"武器生産頻度アップ", 245.0f, 460.0f, 35.0f, black);
 
 			if (g_Special_equipment == 4)
 				Draw::Draw(43, &src, &dst, it, 0.0f);
 			else
 				Draw::Draw(43, &src, &dst, gray, 0.0f);
 
-			////▼10秒間ポッド生産速度の文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1252.0f;
-			//src.m_bottom = 112.0f;
+			//▼10秒間ポッド生産速度の文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1252.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 240.0f;
-			//dst.m_right = 625.0f;
-			//dst.m_bottom = 445.0f;
-			//Draw::Draw(101, &src, &dst, black, 0.0f);
+			dst.m_top = 410.0f;
+			dst.m_left = 240.0f;
+			dst.m_right = 625.0f;
+			dst.m_bottom = 445.0f;
+			Draw::Draw(101, &src, &dst, black, 0.0f);
 
-			////▼ミサイル生産速度UPの文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1134.0f;
-			//src.m_bottom = 112.0f;
+			//▼ミサイル生産速度UPの文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1134.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 460.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 595.0f;
-			//dst.m_bottom = 495.0f;
-			//Draw::Draw(102, &src, &dst, black, 0.0f);
+			dst.m_top = 460.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 595.0f;
+			dst.m_bottom = 495.0f;
+			Draw::Draw(102, &src, &dst, black, 0.0f);
 
 
 		}
@@ -1313,37 +1329,37 @@ void CObjWarehouse::Draw()
 		//ステロイド投与を覚えているならば
 		if (g_Special_mastering[4] == true)
 		{
-			Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 510.0f, 35.0f, black);
-			Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 560.0f, 35.0f, black);
+			//Font::StrDraw(L"住民のポッド5機攻撃が上がる", 245.0f, 510.0f, 35.0f, black);
+			//Font::StrDraw(L"(現在ライン上に出ているポッドを含めて)", 245.0f, 560.0f, 35.0f, black);
 
 			if (g_Special_equipment == 6)
 				Draw::Draw(44, &src, &dst, it, 0.0f);
 			else
 				Draw::Draw(44, &src, &dst, gray, 0.0f);
 
-			////▼出撃するの文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 464.0f;
-			//src.m_bottom = 112.0f;
+			//▼出撃するの文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 464.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 510.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 385.0f;
-			//dst.m_bottom = 545.0f;
-			//Draw::Draw(103, &src, &dst, black, 0.0f);
+			dst.m_top = 510.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 385.0f;
+			dst.m_bottom = 545.0f;
+			Draw::Draw(103, &src, &dst, black, 0.0f);
 
-			////▼ポッド5機の攻撃力UPの文字画像を表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1222.0f;
-			//src.m_bottom = 112.0f;
+			//▼ポッド5機の攻撃力UPの文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1222.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 560.0f;
-			//dst.m_left = 245.0f;
-			//dst.m_right = 630.0f;
-			//dst.m_bottom = 595.0f;
-			//Draw::Draw(104, &src, &dst, black, 0.0f);
+			dst.m_top = 560.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 630.0f;
+			dst.m_bottom = 595.0f;
+			Draw::Draw(104, &src, &dst, black, 0.0f);
 
 
 		}
@@ -1416,124 +1432,124 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 160.0f;
 		Draw::Draw(105, &src, &dst, black, 0.0f);
 
-		////▼レッド文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 336.0f;
-		//src.m_bottom = 112.0f;
+		//▼レッド文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 336.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 200.0f;
-		//dst.m_left = 120.0f;
-		//dst.m_right = 240.0f;
-		//dst.m_bottom = 240.0f;
-		//Draw::Draw(82, &src, &dst, red, 0.0f);
+		dst.m_top = 200.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 240.0f;
+		dst.m_bottom = 240.0f;
+		Draw::Draw(82, &src, &dst, red, 0.0f);
 
-		////▼ブルー文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 352.0f;
-		//src.m_bottom = 112.0f;
+		//▼ブルー文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 330.0f;
-		//dst.m_left = 120.0f;
-		//dst.m_right = 240.0f;
-		//dst.m_bottom = 370.0f;
-		//Draw::Draw(83, &src, &dst, blue, 0.0f);
+		dst.m_top = 330.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 240.0f;
+		dst.m_bottom = 370.0f;
+		Draw::Draw(83, &src, &dst, blue, 0.0f);
 
-		////▼グリーン文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 472.0f;
-		//src.m_bottom = 112.0f;
+		//▼グリーン文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 472.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 460.0f;
-		//dst.m_left = 120.0f;
-		//dst.m_right = 280.0f;
-		//dst.m_bottom = 500.0f;
-		//Draw::Draw(84, &src, &dst, green, 0.0f);
+		dst.m_top = 460.0f;
+		dst.m_left = 120.0f;
+		dst.m_right = 280.0f;
+		dst.m_bottom = 500.0f;
+		Draw::Draw(84, &src, &dst, green, 0.0f);
 
-		////▼ホワイト文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 464.0f;
-		//src.m_bottom = 112.0f;
+		//▼ホワイト文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 464.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 200.0f;
-		//dst.m_left = 620.0f;
-		//dst.m_right = 780.0f;
-		//dst.m_bottom = 240.0f;
-		//Draw::Draw(85, &src, &dst, black, 0.0f);
+		dst.m_top = 200.0f;
+		dst.m_left = 620.0f;
+		dst.m_right = 780.0f;
+		dst.m_bottom = 240.0f;
+		Draw::Draw(85, &src, &dst, black, 0.0f);
 
-		////▼ポッド文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 344.0f;
-		//src.m_bottom = 112.0f;
+		//▼ポッド文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 344.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 330.0f;
-		//dst.m_left = 620.0f;
-		//dst.m_right = 740.0f;
-		//dst.m_bottom = 370.0f;
-		//Draw::Draw(86, &src, &dst, black, 0.0f);
+		dst.m_top = 330.0f;
+		dst.m_left = 620.0f;
+		dst.m_right = 740.0f;
+		dst.m_bottom = 370.0f;
+		Draw::Draw(86, &src, &dst, black, 0.0f);
 
-		////▼残り住民数がいません(残り住民数だけ)文字画像を表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 600.0f;
-		//src.m_bottom = 112.0f;
+		//▼残り住民数がいません(残り住民数だけ)文字画像を表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 600.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 540.0f;
-		//dst.m_right = 750.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(94, &src, &dst, black, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 750.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(94, &src, &dst, black, 0.0f);
 
-		////▼残り　　　人(残り)だけ文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 592.0f;
-		//src.m_bottom = 112.0f;
+		//▼残り　　　人(残り)だけ文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 592.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 780.0f;
-		//dst.m_right = 990.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(78, &src, &dst, red, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 780.0f;
+		dst.m_right = 990.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(78, &src, &dst, red, 0.0f);
 
-		////▼人文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 112.0f;
-		//src.m_bottom = 112.0f;
+		//▼人文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 470.0f;
-		//dst.m_left = 995.0f;
-		//dst.m_right = 1030.0f;
-		//dst.m_bottom = 505.0f;
-		//Draw::Draw(77, &src, &dst, red, 0.0f);
+		dst.m_top = 470.0f;
+		dst.m_left = 995.0f;
+		dst.m_right = 1030.0f;
+		dst.m_bottom = 505.0f;
+		Draw::Draw(77, &src, &dst, red, 0.0f);
 
 
 		//▼装備
-		Font::StrDraw(L"装備", 500.0f, 110.0f, 50.0f, black);
+		//Font::StrDraw(L"装備", 500.0f, 110.0f, 50.0f, black);
 
-		//パワー
-		Font::StrDraw(L"パワー", 120.0f, 200.0f, 40.0f, red);
+		////パワー
+		//Font::StrDraw(L"パワー", 120.0f, 200.0f, 40.0f, red);
 		Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
 
-		//ディフェンス
-		Font::StrDraw(L"ディフェンス", 120.0f, 460.0f, 40.0f, green);
+		////ディフェンス
+		//Font::StrDraw(L"ディフェンス", 120.0f, 460.0f, 40.0f, green);
 		Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
 
-		//スピード
-		Font::StrDraw(L"スピード", 120.0f, 330.0f, 40.0f, blue);
+		////スピード
+		//Font::StrDraw(L"スピード", 120.0f, 330.0f, 40.0f, blue);
 		Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
 
-		//バランス
-		Font::StrDraw(L"バランス", 620.0f, 200.0f, 40.0f, yellow);
+		////バランス
+		//Font::StrDraw(L"バランス", 620.0f, 200.0f, 40.0f, yellow);
 		Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
 
-		//▼ポッド
-		Font::StrDraw(L"ポッド", 620.0f, 330.0f, 40.0f, black);
+		////▼ポッド
+		//Font::StrDraw(L"ポッド", 620.0f, 330.0f, 40.0f, black);
 		Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
 
 	}
