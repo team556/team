@@ -1246,22 +1246,22 @@ void CObjInstitute::Draw()
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
-			////▼研究所 LV.文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 607.0f;
-			//src.m_bottom = 112.0f;
+			//▼研究所 LV.文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 607.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = m_mou_y - 43.0f;
-			//dst.m_left = m_mou_x - 90.0f;
-			//dst.m_right = m_mou_x + 40.0f;
-			//dst.m_bottom = m_mou_y - 18.0f;
-			//Draw::Draw(64, &src, &dst, white, 0.0f);
+			dst.m_top = m_mou_y - 43.0f;
+			dst.m_left = m_mou_x - 90.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 18.0f;
+			Draw::Draw(64, &src, &dst, black, 0.0f);
 
 
 			//▼フォント表示
 			//研究所レベル
-			Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
+			//Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, black);
 		}
 	}
 	
@@ -1400,29 +1400,29 @@ void CObjInstitute::Draw()
 		dst.m_bottom = 650.0f;
 		Draw::Draw(26, &src, &dst, equip, 0.0f);
 
-		////▼研究所 LV.文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 607.0f;
-		//src.m_bottom = 112.0f;
+		//▼研究所 LV.文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 607.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 95.0f;
-		//dst.m_left = 105.0f;
-		//dst.m_right = 355.0f;
-		//dst.m_bottom = 145.0f;
-		//Draw::Draw(64, &src, &dst, white, 0.0f);
+		dst.m_top = 95.0f;
+		dst.m_left = 105.0f;
+		dst.m_right = 355.0f;
+		dst.m_bottom = 145.0f;
+		Draw::Draw(64, &src, &dst, white, 0.0f);
 
-		////▼研究所レベルUP文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 930.0f;
-		//src.m_bottom = 117.0f;
+		//▼研究所レベルUP文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 930.0f;
+		src.m_bottom = 117.0f;
 
-		//dst.m_top = 365.0f;
-		//dst.m_left = 40.0f;
-		//dst.m_right = 440.0f;
-		//dst.m_bottom = 415.0f;
-		//Draw::Draw(65, &src, &dst, white, 0.0f);
+		dst.m_top = 365.0f;
+		dst.m_left = 40.0f;
+		dst.m_right = 440.0f;
+		dst.m_bottom = 415.0f;
+		Draw::Draw(65, &src, &dst, white, 0.0f);
 
 		////▼LvUP条件　所持必要文字画像表示
 		//src.m_top = 0.0f;
@@ -1499,29 +1499,29 @@ void CObjInstitute::Draw()
 		//dst.m_bottom = 570.0f;
 		//Draw::Draw(71, &src, &dst, red, 0.0f);
 
-		////▼研究員文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 352.0f;
-		//src.m_bottom = 112.0f;
+		//▼研究員文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
 
-		//dst.m_top = 145.0f;
-		//dst.m_left = 505.0f;
-		//dst.m_right = 670.0f;
-		//dst.m_bottom = 200.0f;
-		//Draw::Draw(75, &src, &dst, blue2, 0.0f);
+		dst.m_top = 145.0f;
+		dst.m_left = 505.0f;
+		dst.m_right = 670.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(75, &src, &dst, blue2, 0.0f);
 
-		////▼住民振り分け文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 742.0f;
-		//src.m_bottom = 117.0f;
+		//▼住民振り分け文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 742.0f;
+		src.m_bottom = 117.0f;
 
-		//dst.m_top = 50.0f;
-		//dst.m_left = 620.0f;
-		//dst.m_right = 980.0f;
-		//dst.m_bottom = 110.0f;
-		//Draw::Draw(76, &src, &dst, white, 0.0f);
+		dst.m_top = 50.0f;
+		dst.m_left = 620.0f;
+		dst.m_right = 980.0f;
+		dst.m_bottom = 110.0f;
+		Draw::Draw(76, &src, &dst, white, 0.0f);
 
 		////▼人文字画像表示
 		//src.m_top = 0.0f;
@@ -1550,7 +1550,7 @@ void CObjInstitute::Draw()
 
 		//▼フォント表示
 		//研究所レベル
-		Font::StrDraw(Ins, 105.0f, 95.0f, 50.0f, white);
+		//Font::StrDraw(Ins, 105.0f, 95.0f, 50.0f, white);
 
 		//残り住民数
 		Font::StrDraw(human_remain, 780.0f, 245.0f, 50.0f, black);
@@ -1558,11 +1558,11 @@ void CObjInstitute::Draw()
 		//研究員の住民数
 		Font::StrDraw(Research_num, 950.0f, 150.0f, 40.0f, black);
 
-		Font::StrDraw(L"研究所レベルＵＰ", 40.0f, 370.0f, 50.0f, white);
+		//Font::StrDraw(L"研究所レベルＵＰ", 40.0f, 370.0f, 50.0f, white);
 
-		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
+		//Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
 
-		Font::StrDraw(L"研究員", 505.0f, 145.0f, 55.0f, blue2);
+		//Font::StrDraw(L"研究員", 505.0f, 145.0f, 55.0f, blue2);
 
 		Facility_message(g_Ins_Level);//研究所の必要素材&サイズメッセージ描画関数呼び出す
 
@@ -1610,61 +1610,61 @@ void CObjInstitute::Draw()
 			//Draw::Draw(77, &src, &dst, black, 0.0f);
 
 
-			////▼素材消費して文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 717.0f;
-			//src.m_bottom = 112.0f;
+			//▼素材消費して文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 717.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 250.0f;
-			//dst.m_left = 497.0f;
-			//dst.m_right = 677.0f;//180
-			//dst.m_bottom = 280.0f;
-			//Draw::Draw(72, &src, &dst, black, 0.0f);
+			dst.m_top = 250.0f;
+			dst.m_left = 497.0f;
+			dst.m_right = 677.0f;
+			dst.m_bottom = 280.0f;
+			Draw::Draw(72, &src, &dst, black, 0.0f);
 
-			////▼レベルアップしますか？文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 717.0f;
-			//src.m_right = 2017.0f;
-			//src.m_bottom = 112.0f;
+			//▼レベルアップしますか？文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 717.0f;
+			src.m_right = 2017.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 300.0f;
-			//dst.m_left = 520.0f;
-			//dst.m_right = 850.0f;
-			//dst.m_bottom = 330.0f;
-			//Draw::Draw(72, &src, &dst, black, 0.0f);
+			dst.m_top = 300.0f;
+			dst.m_left = 520.0f;
+			dst.m_right = 850.0f;
+			dst.m_bottom = 330.0f;
+			Draw::Draw(72, &src, &dst, black, 0.0f);
 
-			////▼はい文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 232.0f;
-			//src.m_bottom = 112.0f;
+			//▼はい文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 232.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 410.0f;
-			//dst.m_right = 510.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(73, &src, &dst, Yes, 0.0f);
+			dst.m_top = 410.0f;
+			dst.m_left = 410.0f;
+			dst.m_right = 510.0f;
+			dst.m_bottom = 460.0f;
+			Draw::Draw(73, &src, &dst, Yes, 0.0f);
 
-			////▼いいえ文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 352.0f;
-			//src.m_bottom = 112.0f;
+			//▼いいえ文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(74, &src, &dst, No, 0.0f);
+			dst.m_top = 410.0f;
+			dst.m_left = 650.0f;
+			dst.m_right = 800.0f;
+			dst.m_bottom = 460.0f;
+			Draw::Draw(74, &src, &dst, No, 0.0f);
 
 
 			//▼フォント表示
 			//最終確認メッセージ
-			Font::StrDraw(L"惑星HPと素材消費して", 347.0f, 250.0f, 30.0f, black);
-			Font::StrDraw(L"レベルアップしますか？", 527.0f, 300.0f, 30.0f, black);
-			Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
-			Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
+			//Font::StrDraw(L"惑星HPと素材消費して", 347.0f, 250.0f, 30.0f, black);
+			//Font::StrDraw(L"レベルアップしますか？", 527.0f, 300.0f, 30.0f, black);
+			//Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
+			//Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
 		}
 	}
 	
@@ -1780,29 +1780,29 @@ void CObjInstitute::Draw()
 				Draw::Draw(21, &src, &dst, white, 0.0f);
 			}
 
-			////▼研究所 LV.文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 607.0f;
-			//src.m_bottom = 112.0f;
+			//▼研究所 LV.文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 607.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 95.0f;
-			//dst.m_left = 545.0f;
-			//dst.m_right = 905.0f;
-			//dst.m_bottom = 155.0f;
-			//Draw::Draw(64, &src, &dst, black, 0.0f);
+			dst.m_top = 95.0f;
+			dst.m_left = 545.0f;
+			dst.m_right = 905.0f;
+			dst.m_bottom = 155.0f;
+			Draw::Draw(64, &src, &dst, black, 0.0f);
 
-			////▼研究員文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 352.0f;
-			//src.m_bottom = 112.0f;
+			//▼研究員文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 175.0f;
-			//dst.m_left = 510.0f;
-			//dst.m_right = 705.0f;
-			//dst.m_bottom = 240.0f;
-			//Draw::Draw(75, &src, &dst, black, 0.0f);
+			dst.m_top = 175.0f;
+			dst.m_left = 510.0f;
+			dst.m_right = 705.0f;
+			dst.m_bottom = 240.0f;
+			Draw::Draw(75, &src, &dst, black, 0.0f);
 
 			////▼人文字画像表示
 			//src.m_top = 0.0f;
@@ -1816,17 +1816,17 @@ void CObjInstitute::Draw()
 			//dst.m_bottom = 240.0f;
 			//Draw::Draw(77, &src, &dst, black, 0.0f);
 
-			////▼再生産スピード(リキャスト)文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1522.0f;
-			//src.m_bottom = 112.0f;
+			//▼再生産スピード(リキャスト)文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1522.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 285.0f;
-			//dst.m_left = 455.0f;
-			//dst.m_right = 1085.0f;
-			//dst.m_bottom = 335.0f;
-			//Draw::Draw(79, &src, &dst, black, 0.0f);
+			dst.m_top = 285.0f;
+			dst.m_left = 455.0f;
+			dst.m_right = 1085.0f;
+			dst.m_bottom = 335.0f;
+			Draw::Draw(79, &src, &dst, black, 0.0f);
 
 			////▼50音(s)文字画像表示(仮)に人文字画像を表示しています
 			//src.m_top = 0.0f;
@@ -1840,17 +1840,17 @@ void CObjInstitute::Draw()
 			//dst.m_bottom = 420.0f;
 			//Draw::Draw(77, &src, &dst, black, 0.0f);
 
-			////▼NEXT LV UP文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 832.0f;
-			//src.m_bottom = 112.0f;
+			//▼NEXT LV UP文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 832.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 475.0f;
-			//dst.m_left = 740.0f;
-			//dst.m_right = 1070.0f;
-			//dst.m_bottom = 540.0f;
-			//Draw::Draw(80, &src, &dst, black, 0.0f);
+			dst.m_top = 475.0f;
+			dst.m_left = 740.0f;
+			dst.m_right = 1070.0f;
+			dst.m_bottom = 540.0f;
+			Draw::Draw(80, &src, &dst, black, 0.0f);
 
 			////▼LV 文字画像表示
 			//src.m_top = 0.0f;
@@ -1926,18 +1926,18 @@ void CObjInstitute::Draw()
 
 			//▼フォント表示
 			//研究所レベル
-			Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
+			//Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
 
 			//研究員の住民数
-			Font::StrDraw(L"研究員", 510.0f, 175.0f, 65.0f, black);
+			//Font::StrDraw(L"研究員", 510.0f, 175.0f, 65.0f, black);
 			Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
 
 			//ミサイルリキャストタイム
-			Font::StrDraw(L"再生産スピード(リキャスト)", 455.0f, 285.0f, 50.0f, black);
+			//Font::StrDraw(L"再生産スピード(リキャスト)", 455.0f, 285.0f, 50.0f, black);
 			Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
 
 			//ミサイルリキャスト次のLVUPに関する情報
-			Font::StrDraw(L"NEXT LV UP", 740.0f, 475.0f, 65.0f, black);
+			//Font::StrDraw(L"NEXT LV UP", 740.0f, 475.0f, 65.0f, black);
 			Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 		}
 
@@ -1971,76 +1971,76 @@ void CObjInstitute::Draw()
 				Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
 			}
 
-			////▼レッド文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 336.0f;
-			//src.m_bottom = 112.0f;
+			//▼レッド文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 336.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 98.0f;
-			//dst.m_left = 285.0f;
-			//dst.m_right = 405.0f;
-			//dst.m_bottom = 138.0f;
-			//Draw::Draw(82, &src, &dst, red, 0.0f);
+			dst.m_top = 98.0f;
+			dst.m_left = 285.0f;
+			dst.m_right = 405.0f;
+			dst.m_bottom = 138.0f;
+			Draw::Draw(82, &src, &dst, red, 0.0f);
 
-			////▼ブルー文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 352.0f;
-			//src.m_bottom = 112.0f;
+			//▼ブルー文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 98.0f;
-			//dst.m_left = 460.0f;
-			//dst.m_right = 585.0f;
-			//dst.m_bottom = 138.0f;
-			//Draw::Draw(83, &src, &dst, blue, 0.0f);
+			dst.m_top = 98.0f;
+			dst.m_left = 460.0f;
+			dst.m_right = 585.0f;
+			dst.m_bottom = 138.0f;
+			Draw::Draw(83, &src, &dst, blue, 0.0f);
 
-			////▼グリーン文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 472.0f;
-			//src.m_bottom = 112.0f;
+			//▼グリーン文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 472.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 98.0f;
-			//dst.m_left = 605.0f;
-			//dst.m_right = 765.0f;
-			//dst.m_bottom = 138.0f;
-			//Draw::Draw(84, &src, &dst, green, 0.0f);
+			dst.m_top = 98.0f;
+			dst.m_left = 605.0f;
+			dst.m_right = 765.0f;
+			dst.m_bottom = 138.0f;
+			Draw::Draw(84, &src, &dst, green, 0.0f);
 
-			////▼ホワイト文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 464.0f;
-			//src.m_bottom = 112.0f;
+			//▼ホワイト文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 464.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 98.0f;
-			//dst.m_left = 785.0f;
-			//dst.m_right = 945.0f;
-			//dst.m_bottom = 138.0f;
-			//Draw::Draw(85, &src, &dst, white, 0.0f);
+			dst.m_top = 98.0f;
+			dst.m_left = 785.0f;
+			dst.m_right = 945.0f;
+			dst.m_bottom = 138.0f;
+			Draw::Draw(85, &src, &dst, white, 0.0f);
 
-			////▼ポッド文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 344.0f;
-			//src.m_bottom = 112.0f;
+			//▼ポッド文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 344.0f;
+			src.m_bottom = 112.0f;
 
-			//dst.m_top = 98.0f;
-			//dst.m_left = 965.0f;
-			//dst.m_right = 1085.0f;
-			//dst.m_bottom = 138.0f;
-			//Draw::Draw(86, &src, &dst, yellow, 0.0f);
+			dst.m_top = 98.0f;
+			dst.m_left = 965.0f;
+			dst.m_right = 1085.0f;
+			dst.m_bottom = 138.0f;
+			Draw::Draw(86, &src, &dst, yellow, 0.0f);
 
 			//各タイプ(パワー、スピード等)、ポッドのフォント
-			Font::StrDraw(L"パワー", 285.0f, 98.0f, 40.0f, red);
+			//Font::StrDraw(L"パワー", 285.0f, 98.0f, 40.0f, red);
 
-			Font::StrDraw(L"ディフェンス", 440.0f, 105.0f, 25.0f, blue);
+			//Font::StrDraw(L"ディフェンス", 440.0f, 105.0f, 25.0f, blue);
 
-			Font::StrDraw(L"スピード", 615.0f, 100.0f, 35.0f, green);
+			//Font::StrDraw(L"スピード", 615.0f, 100.0f, 35.0f, green);
 
-			Font::StrDraw(L"バランス", 785.0f, 100.0f, 35.0f, white);
+			//Font::StrDraw(L"バランス", 785.0f, 100.0f, 35.0f, white);
 
-			Font::StrDraw(L"ポッド", 965.0f, 97.0f, 40.0f, yellow);
+			//Font::StrDraw(L"ポッド", 965.0f, 97.0f, 40.0f, yellow);
 
 			//▼武器必要素材&人数メッセージ表示
 			//▽ウインドウ表示 
