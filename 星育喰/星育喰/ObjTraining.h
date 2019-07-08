@@ -34,9 +34,8 @@ protected:
 	bool  m_mou_l;		 //マウスプッシュ確認(左クリック)
 	bool  m_introduce_f; //施設紹介ウインドウ表示管理フラグ(true:表示 / false:非表示)
 	bool  m_finalcheck_f;//最終確認ウインドウ表示管理フラグ(true:表示 / false:非表示)
-	//bool  m_help_f;		 //ヘルプウインドウ表示管理フラグ  (true:表示/false:非表示)
 	bool  m_key_lf;		 //左クリック用キーフラグ
-	static bool m_key_rf;//右クリック用キーフラグ
+	bool  m_key_rf;		 //右クリック用キーフラグ
 
 	int   m_next_time;	//次の住民振り分けまでの時間管理変数
 	bool  m_con_alo_f;	//住民連続振り分けフラグ[true:連続振り分け中(二回目以降)　false:連続振り分け前(初回)]
@@ -81,6 +80,5 @@ protected:
 		Residents,	//住民ウィンドウを開いている状態。
 		Specialskill,//スペシャル技ウィンドウを開いている状態。
 		Soubicheck,	//装備ウィンドウを開いている状態。
-		//Help,		//ヘルプウィンドウを開いている状態。
 	};
 };

@@ -31,7 +31,7 @@ void CObjWarehouse::Init()
 	m_object_eq = INI_COLOR;			//装備確認ボタンカラー
 
 	m_key_lf = false;
-
+	m_key_rf = false;
 
 	//当たり判定用HitBoxを作成(Objhuman用)
 	Hits::SetHitBox(this, 95, 170, 225, 110, ELEMENT_ENEMY, OBJ_WAREHOUSE, 1);
@@ -47,6 +47,14 @@ void CObjWarehouse::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//▼キーフラグ
+	//※右クリックPush状態→右クリック未Push状態になるまで、
+	//再度右クリックする事は出来ない処理。
+	if (m_mou_r == false)	//右クリックOFF
+	{
+		m_key_rf = true;
+	}
 
 	//▼倉庫ウィンドウ表示の処理
 	if (window_start_manage == Warehouse)
@@ -70,6 +78,11 @@ void CObjWarehouse::Action()
 
 					//"倉庫ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Default;
+
+					//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(true);
+					help->SetAlpha(1.0f);
 
 					//戻るボタン音
 					Audio::Start(2);
@@ -98,7 +111,6 @@ void CObjWarehouse::Action()
 		}
 		else
 		{
-			m_key_rf = true;
 			m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 			m_Back_Button_color = INI_COLOR;
 		}
@@ -280,13 +292,12 @@ void CObjWarehouse::Action()
 		else
 		{
 			m_Back_Button_color = INI_COLOR;
-			m_key_rf = true;
 		}
 	}
 
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	if (window_start_manage != Default)
+	if (window_start_manage != Default || g_help_f == true)
 	{
 		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
@@ -309,6 +320,11 @@ void CObjWarehouse::Action()
 
 				//倉庫をクリックすると、倉庫が開かれる
 				window_start_manage = Warehouse;
+
+				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetOperatable(false);
+				help->SetAlpha(0.0f);
 
 				//選択音
 				Audio::Start(1);
