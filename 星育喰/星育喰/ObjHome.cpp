@@ -64,6 +64,12 @@ void CObjHome::Init()
 //アクション
 void CObjHome::Action()
 {
+	//ヘルプ画面が表示されている時は操作を受け付けないようにする。
+	if (g_help_f == true)
+	{
+		return;
+	}
+
 	//育アイコン、もしくは喰アイコンクリック時実行
 	if (m_Tra_flag == true || m_Eat_flag == true)
 	{
@@ -197,6 +203,11 @@ void CObjHome::Action()
 
 				m_Tra_flag = true;
 
+				//ObjHelpにシーン移行演出を伝える
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetMig_stageF();
+				help->SetTra_EatF(true);
+
 				//選択音
 				Audio::Start(1);
 			}
@@ -225,6 +236,11 @@ void CObjHome::Action()
 				m_key_f = false;
 
 				m_Eat_flag = true;
+
+				//ObjHelpにシーン移行演出を伝える
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetMig_stageF();
+				help->SetTra_EatF(false);
 
 				//選択音
 				Audio::Start(1);

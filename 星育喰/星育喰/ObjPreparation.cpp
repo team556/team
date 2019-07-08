@@ -208,6 +208,28 @@ void CObjPreparation::Init()
 //アクション
 void CObjPreparation::Action()
 {
+	//ヘルプ画面が表示されている時は操作を受け付けないようにする。
+	if (g_help_f == true)
+	{
+		//m_key_lf = false;
+		//m_key_rf = false;
+
+		return;
+	}
+
+	//▼キーフラグ
+	//※クリックPush状態→クリック未Push状態になるまで、
+	//再度クリックする事は出来ない処理。
+	//if (m_mou_l == false)	//左クリックOFF
+	//{
+	//	m_key_lf = true;	//キーフラグOFF
+	//}
+
+	//if (m_mou_r == false)	//右クリックOFF
+	//{
+	//	m_key_rf = true;	//キーフラグOFF
+	//}
+
 	//▼ホーム画面移行演出
 	if (m_Back_flag == true)
 	{
@@ -282,6 +304,10 @@ void CObjPreparation::Action()
 
 			//敵惑星詳細説明を非表示(右クリックでホーム画面に戻る際、詳細説明が残らないようにするため)
 			m_detail_message_alpha = 0.0f;
+
+			//ObjHelpにシーン移行演出を伝える
+			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+			help->SetMig_stageF();
 		}
 
 		return;
@@ -577,6 +603,10 @@ void CObjPreparation::Action()
 				else
 				{
 					m_is_operatable = true;
+
+					//ObjHelpに操作可能を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable();
 				}
 
 				m_warning_message_skip_f = false;//警告メッセージスキップフラグOFF(スキップ処理が終了した為)
@@ -637,6 +667,10 @@ void CObjPreparation::Action()
 			if (m_warning_message_alpha >= 1.0f)
 			{
 				m_is_operatable = true;
+
+				//ObjHelpに操作可能を伝える
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetOperatable();
 			}
 			else if (m_warning_message_alpha < 1.0f)
 			{
@@ -766,6 +800,10 @@ void CObjPreparation::Action()
 		else
 		{
 			m_is_operatable = true;
+
+			//ObjHelpに操作可能を伝える
+			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+			help->SetOperatable();
 		}
 	}
 	else if (m_warning_message_alpha >= 1.2f)

@@ -66,6 +66,7 @@ int g_gus_num = 0;
 int g_Raremetal_num = 0;
 
 int g_Challenge_enemy = 0;
+bool g_help_f = false;
 
 //イニシャライズ
 void CObjTitle::Init()

@@ -72,6 +72,10 @@ void CObjTraining::Action()
 			//ƒz[ƒ€‰æ–Ê‚Ì”wŒi‚ðƒvƒŒƒCƒ„[˜f¯‚ÌƒŒƒxƒ‹‚É‡‚í‚¹‚½“Ç‚Ýž‚Ý”Ô†•”•ª‚É“o˜^
 			Draw::LoadImage(L"TitleBackgroundTest.jpg", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
 
+			//ObjHelp‚ÉƒV[ƒ“ˆÚs‰‰o‚ð“`‚¦‚é
+			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+			help->SetMig_stageF();
+
 			//‰_‰‰oOUT‚ðs‚¤
 			CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
 			obj_cloud->SetCheck(false);

@@ -81,8 +81,8 @@ void CSceneTraining::InitScene()
 	Objs::InsertObj(warehouse, OBJ_WAREHOUSE, 20);
 
 	//ヘルプオブジェクト
-	//CObjHelp* help = new CObjHelp(2);     //ヘルプオブジェクト作成
-	//Objs::InsertObj(help, OBJ_HELP, 90);  //ヘルプオブジェクト登録
+	CObjHelp* help = new CObjHelp(2);     //ヘルプオブジェクト作成
+	Objs::InsertObj(help, OBJ_HELP, 90);  //ヘルプオブジェクト登録
 
 
 	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
@@ -422,8 +422,10 @@ void CSceneTraining::InitScene()
 	//ホワイトアウトの音
 	Audio::LoadAudio(4, L"ホワイトアウト音.wav", EFFECT);
 
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((0.0 - v));
+	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
+	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
