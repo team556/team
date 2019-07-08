@@ -305,7 +305,7 @@ void CObjFight::Draw()
 	dst.m_left = 525.0f;
 	dst.m_right = 550.0f;
 	dst.m_bottom = 100.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+	Draw::Draw(41, &src, &dst, d, 0.0f);
 
 	//▼残り時間表示(一の位の分数)
 	//している動作は残り分数の1の位をとるために
@@ -320,7 +320,7 @@ void CObjFight::Draw()
 	dst.m_left = 550.0f;
 	dst.m_right = 575.0f;
 	dst.m_bottom = 100.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+	Draw::Draw(41, &src, &dst, d, 0.0f);
 
 	//▼残り時間表示(コロン)
 	src.m_top = 1254.0f;
@@ -332,7 +332,7 @@ void CObjFight::Draw()
 	dst.m_left = 575.0f;
 	dst.m_right = 600.0f;
 	dst.m_bottom = 100.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+	Draw::Draw(41, &src, &dst, d, 0.0f);
 
 	//▼残り時間表示(十の位の秒数)
 	//している動作は残り秒数の10の位をとるために
@@ -347,7 +347,7 @@ void CObjFight::Draw()
 	dst.m_left = 600.0f;
 	dst.m_right = 625.0f;
 	dst.m_bottom = 100.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+	Draw::Draw(41, &src, &dst, d, 0.0f);
 
 	//▼残り時間表示(一の位の秒数)
 	//している動作は残り秒数の1の位をとるために
@@ -362,7 +362,7 @@ void CObjFight::Draw()
 	dst.m_left = 625.0f;
 	dst.m_right = 650.0f;
 	dst.m_bottom = 100.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+	Draw::Draw(41, &src, &dst, d, 0.0f);
 
 
 	//wchar_t str[256];
@@ -471,7 +471,7 @@ void CObjFight::Draw()
 		dst.m_left = 400.0f;
 		dst.m_right = 800.0f;
 		dst.m_bottom = 325.0f;
-		Draw::Draw(36, &src, &dst, start_font, 0.0f);
+		Draw::Draw(42, &src, &dst, start_font, 0.0f);
 	}
 	else if (m_start_count <= 60 * 1)
 	{
@@ -484,7 +484,7 @@ void CObjFight::Draw()
 		dst.m_left = 550.0f;
 		dst.m_right = 650.0f;
 		dst.m_bottom = 350.0f;
-		Draw::Draw(35, &src, &dst, start_font, 0.0f);
+		Draw::Draw(41, &src, &dst, start_font, 0.0f);
 	}
 	else if (m_start_count <= 60 * 2)
 	{
@@ -497,7 +497,7 @@ void CObjFight::Draw()
 		dst.m_left = 550.0f;
 		dst.m_right = 650.0f;
 		dst.m_bottom = 350.0f;
-		Draw::Draw(35, &src, &dst, start_font, 0.0f);
+		Draw::Draw(41, &src, &dst, start_font, 0.0f);
 	}
 	else if (m_start_count_f == true)
 	{
@@ -510,7 +510,7 @@ void CObjFight::Draw()
 		dst.m_left = 550.0f;
 		dst.m_right = 650.0f;
 		dst.m_bottom = 350.0f;
-		Draw::Draw(35, &src, &dst, start_font, 0.0f);
+		Draw::Draw(41, &src, &dst, start_font, 0.0f);
 	}
 
 	//if (battle_start == true)

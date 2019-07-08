@@ -152,12 +152,38 @@ void CSceneFight::InitScene()
 	//スペシャル技キーボード用画像
 	Draw::LoadImage(L"s選択アイコン.png", 40, TEX_SIZE_512);
 
-	//白文字のフォントを35番に登録
-	Draw::LoadImage(L"白文字集.png", 35, TEX_SIZE_512);
+	//白文字のフォントを41番に登録
+	Draw::LoadImage(L"白文字集.png", 41, TEX_SIZE_512);
 
-	//白文字のフォントを35番に登録
-	Draw::LoadImage(L"スタート！.png", 36, TEX_SIZE_512);
+	//スタート！を42番に登録
+	Draw::LoadImage(L"スタート！.png", 42, TEX_SIZE_512);
 
+	//プレイヤーを43番に登録
+	Draw::LoadImage(L"プレイヤー.png", 43, TEX_SIZE_512);
+
+	//エネミーを44番に登録
+	Draw::LoadImage(L"エネミー.png", 44, TEX_SIZE_512);
+
+	//エクスプロージョンを45番に登録
+	Draw::LoadImage(L"エクスプロージョン.png", 45, TEX_SIZE_512);
+
+	//フラクチャーレイを46番に登録
+	Draw::LoadImage(L"フラクチャーレイ.png", 46, TEX_SIZE_512);
+
+	//イモータリティを47番に登録
+	Draw::LoadImage(L"イモータリティ.png", 47, TEX_SIZE_512);
+
+	//オーバーワークを48番に登録
+	Draw::LoadImage(L"オーバーワーク.png", 48, TEX_SIZE_512);
+
+	//リミットブレイクを49番に登録
+	Draw::LoadImage(L"リミットブレイク.png", 49, TEX_SIZE_512);
+
+	//発動！を50番に登録
+	Draw::LoadImage(L"発動！.png", 50, TEX_SIZE_512);
+
+	//クリックでタイトルに戻るを５１番に登録
+	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
