@@ -2102,60 +2102,60 @@ void CObjInstitute::Draw()
 				dst.m_bottom = 480.0f;
 				Draw::Draw(21, &src, &dst, white, 0.0f);
 
-				////▼素材消費してレベルアップしますか？文字画像表示
-				//src.m_top = 0.0f;
-				//src.m_left = 0.0f;
-				//src.m_right = 2017.0f;
-				//src.m_bottom = 112.0f;
+				//▼素材消費してレベルアップしますか？文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 2017.0f;
+				src.m_bottom = 112.0f;
 
-				//dst.m_top = 250.0f;
-				//dst.m_left = 345.0f;
-				//dst.m_right = 855.0f;
-				//dst.m_bottom = 280.0f;
-				//Draw::Draw(72, &src, &dst, black, 0.0f);
+				dst.m_top = 250.0f;
+				dst.m_left = 345.0f;
+				dst.m_right = 855.0f;
+				dst.m_bottom = 280.0f;
+				Draw::Draw(72, &src, &dst, black, 0.0f);
 
-				////▼※研究員は失われません文字画像表示
-				//src.m_top = 0.0f;
-				//src.m_left = 0.0f;
-				//src.m_right = 1304.0f;
-				//src.m_bottom = 112.0f;
+				//▼※研究員は失われません文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 1304.0f;
+				src.m_bottom = 112.0f;
 
-				//dst.m_top = 300.0f;
-				//dst.m_left = 347.0f;
-				//dst.m_right = 707.0f;
-				//dst.m_bottom = 330.0f;
-				//Draw::Draw(87, &src, &dst, black, 0.0f);
+				dst.m_top = 300.0f;
+				dst.m_left = 347.0f;
+				dst.m_right = 707.0f;
+				dst.m_bottom = 330.0f;
+				Draw::Draw(87, &src, &dst, black, 0.0f);
 
-				////▼はい文字画像表示
-				//src.m_top = 0.0f;
-				//src.m_left = 0.0f;
-				//src.m_right = 232.0f;
-				//src.m_bottom = 112.0f;
+				//▼はい文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
 
-				//dst.m_top = 410.0f;
-				//dst.m_left = 410.0f;
-				//dst.m_right = 510.0f;
-				//dst.m_bottom = 460.0f;
-				//Draw::Draw(73, &src, &dst, Yes, 0.0f);
+				dst.m_top = 410.0f;
+				dst.m_left = 410.0f;
+				dst.m_right = 510.0f;
+				dst.m_bottom = 460.0f;
+				Draw::Draw(73, &src, &dst, Yes, 0.0f);
 
-				////▼いいえ文字画像表示
-				//src.m_top = 0.0f;
-				//src.m_left = 0.0f;
-				//src.m_right = 352.0f;
-				//src.m_bottom = 112.0f;
+				//▼いいえ文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 352.0f;
+				src.m_bottom = 112.0f;
 
-				//dst.m_top = 410.0f;
-				//dst.m_left = 650.0f;
-				//dst.m_right = 800.0f;
-				//dst.m_bottom = 460.0f;
-				//Draw::Draw(74, &src, &dst, No, 0.0f);
+				dst.m_top = 410.0f;
+				dst.m_left = 650.0f;
+				dst.m_right = 800.0f;
+				dst.m_bottom = 460.0f;
+				Draw::Draw(74, &src, &dst, No, 0.0f);
 
 				//▼フォント表示
 				//最終確認メッセージ
-				Font::StrDraw(L"素材消費してレベルアップしますか？", 347.0f, 250.0f, 30.0f, black);
-				Font::StrDraw(L"※研究員は失われません。", 347.0f, 300.0f, 30.0f, black);
-				Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
-				Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
+				//Font::StrDraw(L"素材消費してレベルアップしますか？", 347.0f, 250.0f, 30.0f, black);
+				//Font::StrDraw(L"※研究員は失われません。", 347.0f, 300.0f, 30.0f, black);
+				//Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
+				//Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
 			}
 		}
 	}

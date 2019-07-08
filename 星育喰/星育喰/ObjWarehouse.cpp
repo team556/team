@@ -801,7 +801,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 500.0f;
 		dst.m_right = 740.0f;
 		dst.m_bottom = 540.0f;
-		Draw::Draw(91, &src, &dst, it, 0.0f);
+		Draw::Draw(92, &src, &dst, black, 0.0f);
 
 		//Font::StrDraw(L"アルミニウム", 500.0f, 500.0f, 40.0f, black);
 		Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);

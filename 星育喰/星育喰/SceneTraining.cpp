@@ -361,8 +361,8 @@ void CSceneTraining::InitScene()
 	//プラスチック文字画像を読み込み91番に登録
 	Draw::LoadImage(L"プラスチック文字.png", 91, TEX_SIZE_512);
 
-	////アルミニウム文字画像を読み込み92番に登録
-	//Draw::LoadImage(L"アルミニウム文字.png", 91, TEX_SIZE_512);
+	//アルミニウム文字画像を読み込み92番に登録
+	Draw::LoadImage(L"アルミニウム文字.png", 92, TEX_SIZE_512);
 
 	//ガス文字画像を読み込み93番に登録
 	Draw::LoadImage(L"ガス文字.png", 93, TEX_SIZE_512);
