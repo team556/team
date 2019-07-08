@@ -202,8 +202,8 @@ void CSceneTraining::InitScene()
 	//資材(ガス)画像38番に登録
 	Draw::LoadImage(L"ガス.png", 38, TEX_SIZE_512);
 
-	//資材(レアメタル)画像39番に登録
-	Draw::LoadImage(L"レアメタル.png", 39, TEX_SIZE_512);
+	////資材(レアメタル)画像39番に登録
+	//Draw::LoadImage(L"レアメタル.png", 39, TEX_SIZE_512);
 
 	//スペシャル技1画像40番に登録
 	Draw::LoadImage(L"スペシャル技1.png", 40, TEX_SIZE_512);
@@ -280,28 +280,131 @@ void CSceneTraining::InitScene()
 	//研究所 LV.文字画像を読み込み64番に登録
 	Draw::LoadImage(L"研究所 Lv.png",64,TEX_SIZE_512);
 
-	////兵舎文字画像を読み込み65番に登録
-	//Draw::LoadImage(L"",65,TEX_SIZE_512);
+	//研究所レベルUP文字画像読み込み65番に登録
+	Draw::LoadImage(L"研究所レベルUP.png", 65, TEX_SIZE_512);
 
-	////倉庫文字画像を読み込み66番に登録
-	//Draw::LoadImage(L"",66,TEX_SIZE_512);
+	//LvUP条件　所持必要文字画像読み込み66番に登録
+	Draw::LoadImage(L"LvUP条件　所持必要.png", 66, TEX_SIZE_512);
 
-	//研究員文字画像を読み込み67番に登録
-	Draw::LoadImage(L"研究員.png",67,TEX_SIZE_512);
+	//惑星HP文字画像を読み込み67番に登録
+	Draw::LoadImage(L"惑星HP.png", 67, TEX_SIZE_512);
 
-	//住民振り分け文字画像読み込み68番に登録
-	Draw::LoadImage(L"住民振り分け.png", 68, TEX_SIZE_512);
+	////50音文字画像読み込み68番に登録
+	//Draw::LoadImage(L"", 68, TEX_SIZE_512);
 
-	//人文字画像読み込み69番に登録
-	Draw::LoadImage(L"人.png", 69, TEX_SIZE_512);
+	//鉄文字画像読み込み69番に登録
+	Draw::LoadImage(L"鉄文字.png", 69, TEX_SIZE_512);
 
-	//残り　　　人文字画像読み込み70番に登録
-	Draw::LoadImage(L"残り　　　人.png", 70, TEX_SIZE_512);
+	//LvUP可能!文字画像読み込み70番に登録
+	Draw::LoadImage(L"LvUP可能!.png", 70, TEX_SIZE_512);
 
-	//LvUP条件　所持必要文字画像読み込み71番に登録
-	Draw::LoadImage(L"LvUP条件　所持必要.png", 71, TEX_SIZE_512);
+	//LvUP不可文字画像読み込み71番に登録
+	Draw::LoadImage(L"LvUP不可.png", 71, TEX_SIZE_512);
 
+	//素材消費してレベルアップしますか？文字画像読み込み72番に登録
+	Draw::LoadImage(L"素材消費してレベルアップしますか？.png", 72, TEX_SIZE_512);
 
+	//はい文字画像読み込み73番に登録
+	Draw::LoadImage(L"はい.png", 73, TEX_SIZE_512);
+
+	//いいえ文字画像読み込み74番に登録
+	Draw::LoadImage(L"いいえ.png", 74, TEX_SIZE_512);
+
+	//研究員文字画像を読み込み75番に登録
+	Draw::LoadImage(L"研究員.png", 75, TEX_SIZE_512);
+
+	//住民振り分け文字画像読み込み76番に登録
+	Draw::LoadImage(L"住民振り分け.png", 76, TEX_SIZE_512);
+
+	//人文字画像読み込み77番に登録
+	Draw::LoadImage(L"人.png", 77, TEX_SIZE_512);
+
+	//残り　　　人文字画像読み込み78番に登録
+	Draw::LoadImage(L"残り　　　人.png", 78, TEX_SIZE_512);
+
+	//再生産スピード(リキャスト)文字画像読み込み79番に登録
+	Draw::LoadImage(L"再生産スピード(リキャスト).png", 79, TEX_SIZE_512);
+
+	//NEXT LV UP文字画像読み込み80番に登録
+	Draw::LoadImage(L"NEXT LV UP.png", 80, TEX_SIZE_512);
+
+	//LV. 文字画像読み込み81番に登録
+	Draw::LoadImage(L"LV.png", 81, TEX_SIZE_512);
+
+	//レッド文字画像読み込み82番に登録
+	Draw::LoadImage(L"レッド.png", 82, TEX_SIZE_512);
+
+	//ブルー文字画像読み込み83番に登録
+	Draw::LoadImage(L"ブルー.png", 83, TEX_SIZE_512);
+
+	//グリーン文字画像読み込み84番に登録
+	Draw::LoadImage(L"グリーン.png", 84, TEX_SIZE_512);
+
+	//ホワイト文字画像読み込み85番に登録
+	Draw::LoadImage(L"ホワイト.png", 85, TEX_SIZE_512);
+
+	//ポッド文字画像読み込み86番に登録
+	Draw::LoadImage(L"ポッド.png", 86, TEX_SIZE_512);
+
+	//※研究員は失われません文字画像読み込み87番に登録
+	Draw::LoadImage(L"※研究員は失われません.png", 87, TEX_SIZE_512);
+
+	//倉庫文字画像を読み込み88番に登録
+	Draw::LoadImage(L"倉庫文字.png", 88, TEX_SIZE_512);
+
+	//木材文字画像を読み込み89番に登録
+	Draw::LoadImage(L"木材文字.png", 89, TEX_SIZE_512);
+
+	//銀文字画像を読み込み90番に登録
+	Draw::LoadImage(L"銀文字.png", 90, TEX_SIZE_512);
+
+	//プラスチック文字画像を読み込み91番に登録
+	Draw::LoadImage(L"プラスチック文字.png", 91, TEX_SIZE_512);
+
+	////アルミニウム文字画像を読み込み92番に登録
+	//Draw::LoadImage(L"アルミニウム文字.png", 91, TEX_SIZE_512);
+
+	//ガス文字画像を読み込み93番に登録
+	Draw::LoadImage(L"ガス文字.png", 93, TEX_SIZE_512);
+
+	//残り住民数がいません文字画像を読み込み94番に登録
+	Draw::LoadImage(L"残り住民数がいません.png", 94, TEX_SIZE_512);
+
+	//相手の惑星に文字画像を読み込み95番に登録
+	Draw::LoadImage(L"相手の惑星に.png", 95, TEX_SIZE_512);
+
+	//固定ダメージを与える文字画像を読み込み96番に登録
+	Draw::LoadImage(L"固定ダメージを与える.png", 96, TEX_SIZE_512);
+
+	//選択ライン上の文字画像を読み込み96番に登録
+	Draw::LoadImage(L"選択ライン上の.png", 97, TEX_SIZE_512);
+
+	//相手ポッド等を破壊する文字画像を読み込み98番に登録
+	Draw::LoadImage(L"相手ポッド等を破壊する.png", 98, TEX_SIZE_512);
+
+	//約10秒間文字画像を読み込み99番に登録
+	Draw::LoadImage(L"約10秒間.png", 99, TEX_SIZE_512);
+
+	//無敵となる文字画像を読み込み100番に登録10秒間ポッド生産速度
+	Draw::LoadImage(L"無敵となる.png", 100, TEX_SIZE_512);
+
+	//10秒間ポッド生産速度文字画像を読み込み101番に登録
+	Draw::LoadImage(L"10秒間ポッド生産速度.png", 101, TEX_SIZE_512);
+
+	//ミサイル生産速度UP文字画像を読み込み102番に登録出撃する
+	Draw::LoadImage(L"ミサイル生産速度UP.png", 102, TEX_SIZE_512);
+
+	//出撃する文字画像を読み込み103番に登録
+	Draw::LoadImage(L"出撃する.png", 103, TEX_SIZE_512);
+
+	//ポッド5機の攻撃力UP文字画像を読み込み104番に登録
+	Draw::LoadImage(L"ポッド5機の攻撃力UP.png", 104, TEX_SIZE_512);
+
+	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
+	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
+
+	////兵舎文字画像を読み込み80番に登録
+	//Draw::LoadImage(L"",80,TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
