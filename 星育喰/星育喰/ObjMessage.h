@@ -20,6 +20,7 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
+	wchar_t m_font_data[22][30];		//フォントデータ(画像のどの位置にどの文字があるのか管理している)
 	wchar_t m_font[MES_MAX][FONT_MAX];	//フォント情報管理配列[メッセージ格納数][フォントデータ格納数]
 	int m_font_column[FONT_MAX];		//フォント切り取り位置(列)
 	int m_font_line[FONT_MAX];			//フォント切り取り位置(行)
