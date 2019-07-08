@@ -55,6 +55,9 @@ void CObjHelp::Init()
 		m_page_max = 1;
 		m_help_reg_num = 47;
 		m_Back_reg_num = 1;
+
+		//ついでにヘルプボタン表示処理を1回のみ行うように準備しておく
+		m_Help_Button_alpha = -0.1f;
 	}
 	else  //(m_Scene_num == 3)//準備	3
 	{
@@ -135,8 +138,11 @@ void CObjHelp::Action()
 		}
 		else if (m_Scene_num == 2)//育成	2
 		{
-			//即座に表示する
-			m_Help_Button_alpha = 1.0f;
+			//即座に表示する(1回のみ行われる)
+			if (m_Help_Button_alpha == -0.1f)
+			{
+				m_Help_Button_alpha = 1.0f;
+			}
 		}
 		else  //(m_Scene_num == 3)//準備	3
 		{

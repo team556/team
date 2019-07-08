@@ -208,27 +208,17 @@ void CObjPreparation::Init()
 //アクション
 void CObjPreparation::Action()
 {
-	//ヘルプ画面が表示されている時は操作を受け付けないようにする。
+	//ヘルプ画面表示中は操作不能にする処理
 	if (g_help_f == true)
 	{
-		//m_key_lf = false;
-		//m_key_rf = false;
+		//ヘルプ画面非表示時、
+		//戦闘準備画面の各ボタンが同時にクリックされないように、
+		//以下のようにキーフラグをfalseにする事で制御している。
+		m_key_lf = false;
+		m_key_rf = false;
 
 		return;
 	}
-
-	//▼キーフラグ
-	//※クリックPush状態→クリック未Push状態になるまで、
-	//再度クリックする事は出来ない処理。
-	//if (m_mou_l == false)	//左クリックOFF
-	//{
-	//	m_key_lf = true;	//キーフラグOFF
-	//}
-
-	//if (m_mou_r == false)	//右クリックOFF
-	//{
-	//	m_key_rf = true;	//キーフラグOFF
-	//}
 
 	//▼ホーム画面移行演出
 	if (m_Back_flag == true)
@@ -355,6 +345,13 @@ void CObjPreparation::Action()
 		m_mou_r = Input::GetMouButtonR();
 		m_mou_l = Input::GetMouButtonL();
 
+		//▼キーフラグ
+		//※右クリックPush状態→右クリック未Push状態になるまで、
+		//再度右クリックする事は出来ない処理。
+		if (m_mou_r == false)	//右クリックOFF
+		{
+			m_key_rf = true;
+		}
 
 		//▼最終確認ウインドウ表示時の処理
 		if (m_finalcheck_f == true)
@@ -488,7 +485,6 @@ void CObjPreparation::Action()
 		}
 		else
 		{
-			m_key_rf = true;
 			m_Back_Button_color = INI_COLOR;
 		}
 
@@ -606,7 +602,7 @@ void CObjPreparation::Action()
 
 					//ObjHelpに操作可能を伝える
 					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-					help->SetOperatable();
+					help->SetOperatable(true);
 				}
 
 				m_warning_message_skip_f = false;//警告メッセージスキップフラグOFF(スキップ処理が終了した為)
@@ -670,7 +666,7 @@ void CObjPreparation::Action()
 
 				//ObjHelpに操作可能を伝える
 				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetOperatable();
+				help->SetOperatable(true);
 			}
 			else if (m_warning_message_alpha < 1.0f)
 			{
@@ -803,7 +799,7 @@ void CObjPreparation::Action()
 
 			//ObjHelpに操作可能を伝える
 			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-			help->SetOperatable();
+			help->SetOperatable(true);
 		}
 	}
 	else if (m_warning_message_alpha >= 1.2f)

@@ -119,6 +119,7 @@ void CObjInstitute::Init()
 	m_introduce_f = false;
 	m_finalcheck_f = false;
 	m_key_lf = false;
+	m_key_rf = false;
 	m_next_time = 0;
 	m_con_alo_f = false;
 	m_message_red_color = INI_COLOR;
@@ -263,6 +264,14 @@ void CObjInstitute::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//▼キーフラグ
+	//※右クリックPush状態→右クリック未Push状態になるまで、
+	//再度右クリックする事は出来ない処理。
+	if (m_mou_r == false)	//右クリックOFF
+	{
+		m_key_rf = true;
+	}
 
 	//▼研究所ウインドウ表示時の処理
 	if (window_start_manage == Institute)
@@ -416,6 +425,11 @@ void CObjInstitute::Action()
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
 
+					//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(true);
+					help->SetAlpha(1.0f);
+
 					//戻るボタン音
 					Audio::Start(2);
 				}
@@ -445,7 +459,6 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_key_rf = true;
 			m_Back_Button_color = INI_COLOR;
 		}
 
@@ -918,7 +931,6 @@ void CObjInstitute::Action()
 		}
 		else
 		{
-			m_key_rf = true;
 			m_Back_Button_color = INI_COLOR;
 		}
 
@@ -1043,7 +1055,7 @@ void CObjInstitute::Action()
 	}
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	else if (window_start_manage != Default)
+	else if (window_start_manage != Default || g_help_f == true)
 	{
 		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
@@ -1068,6 +1080,11 @@ void CObjInstitute::Action()
 
 				//"研究所ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Institute;
+
+				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetOperatable(false);
+				help->SetAlpha(0.0f);
 
 				//選択音
 				Audio::Start(1);

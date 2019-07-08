@@ -16,7 +16,8 @@ public:
 
 	void SetMig_stageF() { m_mig_staging_f = true; }//シーン移行演出フラグON用
 	void SetTra_EatF(bool staging) { m_Tra_Eat_f = staging; }//育成or戦闘判断フラグ設定用
-	void SetOperatable() { m_is_operatable = true; }//ヘルプボタン操作可能設定用
+	void SetOperatable(bool operatable) { m_is_operatable = operatable; }//ヘルプボタン操作可否設定用
+	void SetAlpha(float alpha) { m_Help_Button_alpha = alpha; }//ヘルプボタン透過度設定用
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y

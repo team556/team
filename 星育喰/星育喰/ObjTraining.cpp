@@ -15,7 +15,6 @@ using namespace GameL;
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
 //static変数の定義
-bool CObjTraining::m_key_rf = false;
 bool CObjTraining::scene_change_start = false;
 bool CObjTraining::white_out_f = false;
 int  CObjTraining::player_level = 0;
@@ -32,11 +31,11 @@ void CObjTraining::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 	m_key_lf = false;
+	m_key_rf = false;
 
 	m_Back_Button_color = INI_COLOR;
 
 	//▼以下のstatic変数は他シーンから育成画面に入る度に初期化を行う
-	m_key_rf = false;
 	scene_change_start = false;
 	white_out_f = false;
 	player_level = (int)((g_Bar_Level + g_Ins_Level) / 2);
@@ -88,12 +87,13 @@ void CObjTraining::Action()
 		return;
 	}
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	else if (window_start_manage != Default)
+	else if (window_start_manage != Default || g_help_f == true)
 	{
-		//他施設ウインドウの戻るボタンを左クリック時、
+		//他施設ウインドウ(ヘルプ画面も含む)の戻るボタンを左クリック(もしくは右クリック)時、
 		//ホーム画面に戻るボタンも同時にクリックされないように、
 		//以下のようにキーフラグをfalseにする事で制御している。
 		m_key_lf = false;
+		m_key_rf = false;
 
 		return;
 	}
@@ -106,6 +106,13 @@ void CObjTraining::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//▼キーフラグ
+	//※右クリックPush状態→右クリック未Push状態になるまで、
+	//再度右クリックする事は出来ない処理。
+	if (m_mou_r == false)	//右クリックOFF
+	{
+		m_key_rf = true;
+	}
 
 	//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
 	if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
@@ -156,7 +163,6 @@ void CObjTraining::Action()
 	}
 	else
 	{
-		m_key_rf = true;
 		m_Back_Button_color = INI_COLOR;
 	}
 }
