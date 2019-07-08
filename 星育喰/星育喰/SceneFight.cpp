@@ -134,6 +134,13 @@ void CSceneFight::InitScene()
 	//汗を読み込み34番に登録
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
 
+	//白文字のフォントを35番に登録
+	Draw::LoadImage(L"白文字集.png", 35, TEX_SIZE_512);
+
+	//白文字のフォントを35番に登録
+	Draw::LoadImage(L"スタート！.png", 36, TEX_SIZE_512);
+
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 
