@@ -426,6 +426,32 @@ void CObjFight::Draw()
 	dst.m_bottom=480.0f;
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
 
+	//ポッドやミサイルのキーボード選択用画像
+
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
+	src.m_bottom = 64.0f;
+
+	dst.m_top = 600.0f;
+	dst.m_left = 400.0f;
+	dst.m_right = 464.0f;
+	dst.m_bottom = 664.0f;
+	Draw::Draw(35, &src, &dst, d, 0.0f);
+
+	//dst.m_top = 945.0f;
+	//dst.m_left = 400.0f;
+	//dst.m_right = 464.0f;
+	//dst.m_bottom = 1000.0f;
+	//Draw::Draw(36, &src, &dst, d, 0.0f);
+
+	//dst.m_top = 1000.0f;
+	//dst.m_left = 400.0f;
+	//dst.m_right = 464.0f;
+	//dst.m_bottom = 1064.0f;
+	//Draw::Draw(37, &src, &dst, d, 0.0f);
+
+
 	//▼戦闘開始カウント
 	//戦闘開始カウントの値に合わせて、
 	//３→２→１と徐々にカウントダウンしていき、

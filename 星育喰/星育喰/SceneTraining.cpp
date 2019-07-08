@@ -428,13 +428,16 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ホワイト武器レベルDOWN….png", 113, TEX_SIZE_512);
 
 	//ポッドレベルUP!文字画像を読み込み114番に登録967*112
-	Draw::LoadImage(L"ポッドレベルUP!.png", 112, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドレベルUP!.png", 114, TEX_SIZE_512);
 
 	//ポッドレベルUP!文字画像を読み込み115番に登録1199*112
-	Draw::LoadImage(L"ポッドレベルDOWN….png", 113, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドレベルDOWN….png", 115, TEX_SIZE_512);
 
-	////兵舎文字画像を読み込み80番に登録
-	//Draw::LoadImage(L"",80,TEX_SIZE_512);
+	//兵舎 Lv文字画像を読み込み116番に登録
+	Draw::LoadImage(L"兵舎 Lv.png",116,TEX_SIZE_512);
+
+	//兵舎レベルUP文字画像を読み込み117番に登録
+	Draw::LoadImage(L"兵舎レベルUP.png", 117, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
