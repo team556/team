@@ -874,6 +874,18 @@ void CObjBarracks::Draw()
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
+			////▼兵舎 Lv文字画像表示
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 508.0f;
+			//src.m_bottom = 117.0f;
+
+			//dst.m_top = m_mou_y - 45.0f;
+			//dst.m_left = m_mou_x - 75.0f;
+			//dst.m_right = m_mou_x + 40.0f;
+			//dst.m_bottom = m_mou_y - 15.0f;
+			//Draw::Draw(116, &src, &dst, black, 0.0f);
+
 			//▼フォント表示
 			//兵舎レベル
 			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
@@ -994,6 +1006,90 @@ void CObjBarracks::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 		}
 
+		////▼兵舎 Lv文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 508.0f;
+		//src.m_bottom = 117.0f;
+
+		//dst.m_top = 95.0f;
+		//dst.m_left = 125.0f;
+		//dst.m_right = 325.0f;
+		//dst.m_bottom = 145.0f;
+		//Draw::Draw(116, &src, &dst, white, 0.0f);
+
+		////▼兵舎レベルUP文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 805.0f;
+		//src.m_bottom = 117.0f;
+
+		//dst.m_top = 370.0f;
+		//dst.m_left = 60.0f;
+		//dst.m_right = 410.0f;
+		//dst.m_bottom = 420.0f;
+		//Draw::Draw(117, &src, &dst, white, 0.0f);
+
+		////▼住民振り分け文字画像表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 742.0f;
+		//src.m_bottom = 117.0f;
+
+		//dst.m_top = 45.0f;
+		//dst.m_left = 620.0f;
+		//dst.m_right = 980.0f;
+		//dst.m_bottom = 105.0f;
+		//Draw::Draw(76, &src, &dst, white, 0.0f);
+
+		//▼レッド文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 336.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 145.0f;
+		dst.m_left = 505.0f;
+		dst.m_right = 670.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(82, &src, &dst, red, 0.0f);
+
+		//▼ブルー文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 260.0f;
+		dst.m_left = 505.0f;
+		dst.m_right = 670.0f;
+		dst.m_bottom = 310.0f;
+		Draw::Draw(83, &src, &dst, blue, 0.0f);
+
+		//▼グリーン文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 472.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 365.0f;
+		dst.m_left = 480.0f;
+		dst.m_right = 680.0f;
+		dst.m_bottom = 415.0f;
+		Draw::Draw(84, &src, &dst, green, 0.0f);
+
+		//▼ホワイト文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 464.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 475.0f;
+		dst.m_left = 480.0f;
+		dst.m_right = 680.0f;
+		dst.m_bottom = 525.0f;
+		Draw::Draw(85, &src, &dst, white, 0.0f);
+
 		//▼フォント表示
 		//兵舎レベル
 		Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);
@@ -1008,17 +1104,17 @@ void CObjBarracks::Draw()
 		}
 
 		//その他フォント
-		Font::StrDraw(L"兵舎レベルＵＰ", 60.0f, 370.0f, 50.0f, white);
+		//Font::StrDraw(L"兵舎レベルＵＰ", 60.0f, 370.0f, 50.0f, white);
 
-		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
+		//Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
 
-		Font::StrDraw(L"パワー", 505.0f, 145.0f, 55.0f, red);
+		//Font::StrDraw(L"パワー", 505.0f, 145.0f, 55.0f, red);
 
-		Font::StrDraw(L"ディフェンス", 450.0f, 260.0f, 40.0f, blue);
+		//Font::StrDraw(L"ディフェンス", 450.0f, 260.0f, 40.0f, blue);
 
-		Font::StrDraw(L"スピード", 480.0f, 365.0f, 50.0f, green);
+		//Font::StrDraw(L"スピード", 480.0f, 365.0f, 50.0f, green);
 
-		Font::StrDraw(L"バランス", 480.0f, 475.0f, 50.0f, white);
+		//Font::StrDraw(L"バランス", 480.0f, 475.0f, 50.0f, white);
 
 		Facility_message(g_Bar_Level);//兵舎の必要素材&サイズメッセージ描画関数呼び出す
 
