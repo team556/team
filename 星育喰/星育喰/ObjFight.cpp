@@ -433,23 +433,52 @@ void CObjFight::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
-	dst.m_top = 600.0f;
-	dst.m_left = 400.0f;
-	dst.m_right = 464.0f;
-	dst.m_bottom = 664.0f;
+	//ミサイルキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 240.0f;
+	dst.m_right = 272.0f;
+	dst.m_bottom = 679.0f;
 	Draw::Draw(35, &src, &dst, d, 0.0f);
 
-	//dst.m_top = 945.0f;
-	//dst.m_left = 400.0f;
-	//dst.m_right = 464.0f;
-	//dst.m_bottom = 1000.0f;
-	//Draw::Draw(36, &src, &dst, d, 0.0f);
+	//赤ポッドキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 531.0f;
+	dst.m_right = 563.0f;
+	dst.m_bottom = 679.0f;
+	Draw::Draw(36, &src, &dst, d, 0.0f);
 
-	//dst.m_top = 1000.0f;
-	//dst.m_left = 400.0f;
-	//dst.m_right = 464.0f;
-	//dst.m_bottom = 1064.0f;
-	//Draw::Draw(37, &src, &dst, d, 0.0f);
+	//青ポッドキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 681.0f;
+	dst.m_right = 713.0f;
+	dst.m_bottom = 679.0f;
+	Draw::Draw(37, &src, &dst, d, 0.0f);
+
+	//緑ポッドキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 838.0f;
+	dst.m_right = 870.0f;
+	dst.m_bottom = 679.0f;
+	Draw::Draw(38, &src, &dst, d, 0.0f);
+
+	//灰ポッドキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 979.0f;
+	dst.m_right = 1011.0f;
+	dst.m_bottom = 679.0f;
+	Draw::Draw(39, &src, &dst, d, 0.0f);
+
+	//スペシャル技を装備しているときはアイコンを出す
+	if (g_Special_equipment != 0)
+	{
+		dst.m_top = 64.0f;
+		dst.m_left = 979.0f;
+		dst.m_right = 1011.0f;
+		dst.m_bottom = 92.0f;
+		Draw::Draw(40, &src, &dst, d, 0.0f);
+	}
+
+
 
 
 	//▼戦闘開始カウント
@@ -532,8 +561,8 @@ void CObjFight::Draw()
 
 
 
-	////デバッグ用仮マウス位置表示
-	//wchar_t test_mou[256];
-	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	//Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+	//デバッグ用仮マウス位置表示
+	wchar_t test_mou[256];
+	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }
