@@ -435,8 +435,8 @@ void CObjFight::Draw()
 
 	//ミサイルキー描画
 	dst.m_top = 647.0f;
-	dst.m_left = 240.0f;
-	dst.m_right = 272.0f;
+	dst.m_left = 230.0f;
+	dst.m_right = 262.0f;
 	dst.m_bottom = 679.0f;
 	Draw::Draw(35, &src, &dst, d, 0.0f);
 
