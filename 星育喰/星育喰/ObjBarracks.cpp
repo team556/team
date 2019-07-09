@@ -979,7 +979,7 @@ void CObjBarracks::Draw()
 			dst.m_left = 700.0f;
 			dst.m_right = 800.0f;
 			dst.m_bottom = 220.0f + i * 110.0f;
-			Draw::Draw(120, &src, &dst, up[i], 0.0f);
+			Draw::Draw(23, &src, &dst, up[i], 0.0f);
 
 			//▼兵舎振り分けDOWN表示
 			src.m_top = 0.0f;
@@ -991,7 +991,7 @@ void CObjBarracks::Draw()
 			dst.m_left = 810.0f;
 			dst.m_right = 910.0f;
 			dst.m_bottom = 220.0f + i * 110.0f;
-			Draw::Draw(121, &src, &dst, down[i], 0.0f);
+			Draw::Draw(24, &src, &dst, down[i], 0.0f);
 
 			//▼各タイプ(パワー、スピード等)の住民数ウインドウ表示
 			src.m_top = 0.0f;

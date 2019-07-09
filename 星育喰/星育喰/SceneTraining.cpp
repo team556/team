@@ -155,10 +155,10 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"{İLVUP.png", 22, TEX_SIZE_512);
 
 	//Z–¯U‚è•ª‚¯UP‚ğ“Ç‚İ‚İ23”Ô‚É“o˜^
-	Draw::LoadImage(L"•ºÉU‚è•ª‚¯UP.png", 23, TEX_SIZE_512);
+	Draw::LoadImage(L"íã01.png", 23, TEX_SIZE_512);
 
 	//Z–¯U‚è•ª‚¯DOWN‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-	Draw::LoadImage(L"•ºÉU‚è•ª‚¯DOWN.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"í‰º.png", 24, TEX_SIZE_512);
 
 	//ƒ~ƒTƒCƒ‹ƒ{ƒ^ƒ“(‰¼)‚ğ“Ç‚İ‚İ25”Ô‚É“o˜^
 	Draw::LoadImage(L"ƒ~ƒTƒCƒ‹ƒ{ƒ^ƒ“.png", 25, TEX_SIZE_512);
@@ -439,17 +439,12 @@ void CSceneTraining::InitScene()
 	//•ºÉƒŒƒxƒ‹UP•¶š‰æ‘œ‚ğ“Ç‚İ‚İ117”Ô‚É“o˜^
 	Draw::LoadImage(L"•ºÉƒŒƒxƒ‹UP.png", 117, TEX_SIZE_512);
 
-	//Œ¤‰º‰æ‘œ‚ğ“Ç‚İ‚İ117”Ô‚É“o˜^
+	//Œ¤‹†ŠZlUP•¶š‰æ‘œ‚ğ“Ç‚İ‚İ118”Ô‚É“o˜^
 	Draw::LoadImage(L"Œ¤‰º.png", 118, TEX_SIZE_512);
 
-	//Œ¤ã‰æ‘œ‚ğ“Ç‚İ‚İ117”Ô‚É“o˜^
-	Draw::LoadImage(L"Œ¤ã.png", 119, TEX_SIZE_512);
+	//Œ¤‹†ŠZlUP•¶š‰æ‘œ‚ğ“Ç‚İ‚İ119”Ô‚É“o˜^
+	Draw::LoadImage(L"Œ¤ã01.png", 119, TEX_SIZE_512);
 
-	//íã‰æ‘œ‚ğ“Ç‚İ‚İ117”Ô‚É“o˜^
-	Draw::LoadImage(L"íã.png", 120, TEX_SIZE_512);
-
-	//í‰º‰æ‘œ‚ğ“Ç‚İ‚İ117”Ô‚É“o˜^
-	Draw::LoadImage(L"í‰º.png", 121, TEX_SIZE_512);
 
 	//‰¹Šy“Ç‚İ‚İ
 	Audio::LoadAudio(0, L"‚«‚Á‚Æ‚¢‚¢“ú.wav", BACK_MUSIC);
