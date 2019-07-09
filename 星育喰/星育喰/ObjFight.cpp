@@ -434,12 +434,12 @@ void CObjFight::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		//ミサイルキー描画
-		dst.m_top = 647.0f;
-		dst.m_left = 240.0f;
-		dst.m_right = 272.0f;
-		dst.m_bottom = 679.0f;
-		Draw::Draw(35, &src, &dst, d, 0.0f);
+	//ミサイルキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 230.0f;
+	dst.m_right = 262.0f;
+	dst.m_bottom = 679.0f;
+	Draw::Draw(35, &src, &dst, d, 0.0f);
 
 		//赤ポッドキー描画
 		dst.m_top = 647.0f;
