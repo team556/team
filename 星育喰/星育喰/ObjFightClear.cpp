@@ -342,59 +342,350 @@ void CObjFightClear::Draw()
 
 			//▼戦闘結果フォント表示
 			//捕食成功フォント
-			Font::StrDraw(L"捕食成功！", 370, 50, 100, c[0]);
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 547.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 50.0f;
+			dst.m_left = 370.0f;
+			dst.m_right = 830.0f;
+			dst.m_bottom = 150.0f;
+			Draw::Draw(53, &src, &dst, c[0], 0.0f);
+
+			//Font::StrDraw(L"捕食成功！", 370, 50, 100, c[0]);
 
 
 			//住民
-			Font::StrDraw(L"住民：", FONT_X, FONT_Y, 40, c[2]);
+			src.m_top = 5.0f;
+			src.m_left = 5.0f;
+			src.m_right = 232.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X;
+			dst.m_right = FONT_X + 80;
+			dst.m_bottom = FONT_Y + 40.0f;
+			Draw::Draw(56, &src, &dst, c[2], 0.0f);
+
+			src.m_top = 1250.0f;
+			src.m_left = 250.0f;
+			src.m_right = 375.0f;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X + 80;
+			dst.m_right = FONT_X + 120;
+			dst.m_bottom = FONT_Y + 40.0f;
+			Draw::Draw(41, &src, &dst, c[2], 0.0f);
+			//Font::StrDraw(L"住民：", FONT_X, FONT_Y, 40, c[2]);
 			
 			swprintf_s(str, L"＋%d人", m_people);
 			Font::StrDraw(str, FONT_X + 300, FONT_Y, 40, c[2]);
 
 
 			//サイズ(HP)
-			Font::StrDraw(L"惑星HP：", FONT_X, FONT_Y + 50, 40, c[3]);
-			
-			swprintf_s(str, L"＋%d", m_large);
-			Font::StrDraw(str, FONT_X + 300, FONT_Y + 50, 40, c[3]);
+			src.m_top = 5.0f;
+			src.m_left = 5.0f;
+			src.m_right = 412.0f;
+			src.m_bottom = 112.0f;
 
+			dst.m_top = FONT_Y + 50.0f;
+			dst.m_left = FONT_X;
+			dst.m_right = FONT_X + 160;
+			dst.m_bottom = FONT_Y + 90.0f;
+			Draw::Draw(55, &src, &dst, c[3], 0.0f);
+
+			src.m_top = 1250.0f;
+			src.m_left = 250.0f;
+			src.m_right = 375.0f;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 50.0f;
+			dst.m_left = FONT_X + 160;
+			dst.m_right = FONT_X + 200;
+			dst.m_bottom = FONT_Y + 90.0f;
+			Draw::Draw(41, &src, &dst, c[3], 0.0f);
+			//Font::StrDraw(L"惑星HP：", FONT_X, FONT_Y + 50, 40, c[3]);
+			
+			//惑星取得HP表示------------------------------------------------------------------
+			//+
+			src.m_top = 1250.0f;
+			src.m_left = 375.0f;
+			src.m_right = 500.0f;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 50.0f;
+			dst.m_left = FONT_X + 300.0f;
+			dst.m_right = FONT_X + 340.0f;
+			dst.m_bottom = FONT_Y + 90.0f;
+			Draw::Draw(41, &src, &dst, c[3], 0.0f);
+
+			//百の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + (floor(m_large / 100) * 125);
+			src.m_right = 1375.0f + (floor(m_large / 100) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 50.0f;
+			dst.m_left = FONT_X + 340.0f;
+			dst.m_right = FONT_X + 360.0f;
+			dst.m_bottom = FONT_Y + 90.0f;
+			Draw::Draw(41, &src, &dst, c[3], 0.0f);
+
+			//十の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + (((m_large / 10) % 10) * 125);
+			src.m_right = 1375.0f + (((m_large / 10) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 50.0f;
+			dst.m_left = FONT_X + 360.0f;
+			dst.m_right = FONT_X + 380.0f;
+			dst.m_bottom = FONT_Y + 90.0f;
+			Draw::Draw(41, &src, &dst, c[3], 0.0f);
+
+			//一の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + ((m_large % 10) * 125);
+			src.m_right = 1375.0f + ((m_large % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 50.0f;
+			dst.m_left = FONT_X + 380.0f;
+			dst.m_right = FONT_X + 400.0f;
+			dst.m_bottom = FONT_Y + 90.0f;
+			Draw::Draw(41, &src, &dst, c[3], 0.0f);
+			//swprintf_s(str, L"＋%d", m_large);
+			//Font::StrDraw(str, FONT_X + 300, FONT_Y + 50, 40, c[3]);
+			//--------------------------------------------------------------------------------
 
 			//資材
-			Font::StrDraw(L"資材：", FONT_X, FONT_Y + 100, 40, c[4]);
+			src.m_top = 5.0f;
+			src.m_left = 5.0f;
+			src.m_right = 232.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = FONT_Y + 100.0f;
+			dst.m_left = FONT_X;
+			dst.m_right = FONT_X + 80;
+			dst.m_bottom = FONT_Y + 140.0f;
+			Draw::Draw(57, &src, &dst, c[4], 0.0f);
+
+			src.m_top = 1250.0f;
+			src.m_left = 250.0f;
+			src.m_right = 375.0f;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 100.0f;
+			dst.m_left = FONT_X + 80;
+			dst.m_right = FONT_X + 120;
+			dst.m_bottom = FONT_Y + 140.0f;
+			Draw::Draw(41, &src, &dst, c[4], 0.0f);
+			//Font::StrDraw(L"資材：", FONT_X, FONT_Y + 100, 40, c[4]);
 
 			Font::StrDraw(m_mat_name[0], FONT_X, FONT_Y + 150, 40, c[4]);	//資材名A表示
 
-			swprintf_s(str, L"＋%d個", m_mat_num[0]);
-			Font::StrDraw(str, FONT_X + 300, FONT_Y + 150, 40, c[4]);		//資材数A表示
-			
+			//一つ目の資材の個数表示--------------------------
+			//+
+			src.m_top = 1250.0f;
+			src.m_left = 375.0f;
+			src.m_right = 500.0f;
+			src.m_bottom = 1375.0f;
 
+			dst.m_top = FONT_Y + 150.0f;
+			dst.m_left = FONT_X + 300.0f;
+			dst.m_right = FONT_X + 340.0f;
+			dst.m_bottom = FONT_Y + 190.0f;
+			Draw::Draw(41, &src, &dst, c[4], 0.0f);
+
+			//十の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + (floor(m_mat_num[0] / 10) * 125);
+			src.m_right = 1375.0f + (floor(m_mat_num[0] / 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 150.0f;
+			dst.m_left = FONT_X + 340.0f;
+			dst.m_right = FONT_X + 360.0f;
+			dst.m_bottom = FONT_Y + 190.0f;
+			Draw::Draw(41, &src, &dst, c[4], 0.0f);
+
+			//一の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + ((m_mat_num[0] % 10) * 125);
+			src.m_right = 1375.0f + ((m_mat_num[0] % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y + 150.0f;
+			dst.m_left = FONT_X + 360.0f;
+			dst.m_right = FONT_X + 380.0f;
+			dst.m_bottom = FONT_Y + 190.0f;
+			Draw::Draw(41, &src, &dst, c[4], 0.0f);
+			//swprintf_s(str, L"＋%d個", m_mat_num[0]);
+			//Font::StrDraw(str, FONT_X + 300, FONT_Y + 150, 40, c[4]);		//資材数A表示
+			//^------------------------------------------------------------------------
+			
 			Font::StrDraw(m_mat_name[1], FONT_X, FONT_Y + 200, 40, c[4]);	//資材名B表示
 			
 			if (m_mat_num[1] != NULL)//資材数BがNULL(0)の時は描画しない
 			{
-				swprintf_s(str, L"＋%d個", m_mat_num[1]);
-				Font::StrDraw(str, FONT_X + 300, FONT_Y + 200, 40, c[4]);	//資材数B表示
+				//+
+				src.m_top = 1250.0f;
+				src.m_left = 375.0f;
+				src.m_right = 500.0f;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = FONT_Y + 200.0f;
+				dst.m_left = FONT_X + 300.0f;
+				dst.m_right = FONT_X + 340.0f;
+				dst.m_bottom = FONT_Y + 240.0f;
+				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+
+				//十の位
+				src.m_top = 1250.0f;
+				src.m_left = 1250.0f + (floor(m_mat_num[1] / 10) * 125);
+				src.m_right = 1375.0f + (floor(m_mat_num[1] / 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = FONT_Y + 200.0f;
+				dst.m_left = FONT_X + 340.0f;
+				dst.m_right = FONT_X + 360.0f;
+				dst.m_bottom = FONT_Y + 240.0f;
+				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+
+				//一の位
+				src.m_top = 1250.0f;
+				src.m_left = 1250.0f + ((m_mat_num[1] % 10) * 125);
+				src.m_right = 1375.0f + ((m_mat_num[1] % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = FONT_Y + 200.0f;
+				dst.m_left = FONT_X + 360.0f;
+				dst.m_right = FONT_X + 380.0f;
+				dst.m_bottom = FONT_Y + 240.0f;
+				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+				//swprintf_s(str, L"＋%d個", m_mat_num[1]);
+				//Font::StrDraw(str, FONT_X + 300, FONT_Y + 200, 40, c[4]);	//資材数B表示
 			}
 
 
 			//スペシャル技
 			if (m_skill != 0)
 			{
-				Font::StrDraw(L"スペシャル技：", FONT_X, FONT_Y + 250, 40, c[5]);
+				//スペシャル技
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 712.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 250.0f;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X+ (6 * 40.0f);
+				dst.m_bottom = FONT_Y + 288.0f;
+				Draw::Draw(54, &src, &dst, c[5], 0.0f);
+
+				//コロン
+				src.m_top = 1250.0f;
+				src.m_left = 250.0f;
+				src.m_right = 375.0f;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = FONT_Y + 250.0f;
+				dst.m_left = FONT_X + (6 * 40.0f);
+				dst.m_right = FONT_X + (7 * 40.0f);
+				dst.m_bottom = FONT_Y + 288.0f;
+				Draw::Draw(41, &src, &dst, c[5], 0.0f);
+			//	Font::StrDraw(L"スペシャル技：", FONT_X, FONT_Y + 250, 40, c[5]);
 
 				switch (m_skill)
 				{
-				case 1:Font::StrDraw(L"Explosion GET!",			FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
-				case 2:Font::StrDraw(L"Fracture Ray GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
-				case 3:Font::StrDraw(L"Immortality GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
-				case 4:Font::StrDraw(L"リミットブレイク GET!",	FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
-				case 5:Font::StrDraw(L"ステロイド投与 GET!",	FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
-				default: break;
+				case 1:
+					//エクスプロージョン
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 1072.0f;
+					src.m_bottom = 112.0f;
+
+					dst.m_top = FONT_Y + 250.0f;
+					dst.m_left = FONT_X + 300.0f;
+					dst.m_right = FONT_X + 300.0f + (9 * 40.0f);
+					dst.m_bottom = FONT_Y + 288.0f;
+					Draw::Draw(45, &src, &dst, c[5], 0.0f);
+					break;
+					//Font::StrDraw(L"Explosion GET!",			FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
+				case 2:
+					//フラクチャーレイ
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 952.0f;
+					src.m_bottom = 112.0f;
+
+					dst.m_top = FONT_Y + 250.0f;
+					dst.m_left = FONT_X + 300.0f;
+					dst.m_right = FONT_X + 300.0f + (8 * 40.0f);
+					dst.m_bottom = FONT_Y + 288.0f;
+					Draw::Draw(46, &src, &dst, c[5], 0.0f);
+					break;
+					//Font::StrDraw(L"Fracture Ray GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
+				case 3:
+					//イモータリティ
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 817.0f;
+					src.m_bottom = 112.0f;
+
+					dst.m_top = FONT_Y + 250.0f;
+					dst.m_left = FONT_X + 300.0f;
+					dst.m_right = FONT_X + 300.0f + (7 * 40.0f);
+					dst.m_bottom = FONT_Y + 288.0f;
+					Draw::Draw(47, &src, &dst, c[5], 0.0f);
+					break;
+					//Font::StrDraw(L"Immortality GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
+				case 4:
+					//オーバーワーク
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 832.0f;
+					src.m_bottom = 112.0f;
+
+					dst.m_top = FONT_Y + 250.0f;
+					dst.m_left = FONT_X + 300.0f;
+					dst.m_right = FONT_X + 300.0f + (7 * 40.0f);
+					dst.m_bottom = FONT_Y + 288.0f;
+					Draw::Draw(48, &src, &dst, c[5], 0.0f);
+					break;
+					//Font::StrDraw(L"リミットブレイク GET!",	FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
+				case 5:
+					//リミットブレイク
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 952.0f;
+					src.m_bottom = 112.0f;
+
+					dst.m_top = FONT_Y + 250.0f;
+					dst.m_left = FONT_X + 300.0f;
+					dst.m_right = FONT_X + 300.0f + (8 * 40.0f);
+					dst.m_bottom = FONT_Y + 288.0f;
+					Draw::Draw(49, &src, &dst, c[5], 0.0f);
+					break;
+					//Font::StrDraw(L"ステロイド投与 GET!",	FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
+				default: 
+					break;
 				}
 			}
 
 			//▼クリック催促フォント表示
-			Font::StrDraw(L"クリックでホーム画面", 350, 600, 50, c0);
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1192.0f;
+			src.m_bottom = 117.0f;
+
+			dst.m_top = 600.0f;
+			dst.m_left = 375.0f;
+			dst.m_right = 875.0f;
+			dst.m_bottom = 650.0f;
+			Draw::Draw(52, &src, &dst, c0, 0.0f);
 		}
 		//シーン移行演出後に表示するグラフィック
 		//※ホーム画面に移行したように見せるグラフィック
@@ -452,3 +743,5 @@ void CObjFightClear::Draw()
 	dst.m_bottom = 700.0f;
 	Draw::Draw(20, &src, &dst, blackout, 0.0f);
 }
+
+
