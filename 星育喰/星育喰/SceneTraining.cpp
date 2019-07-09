@@ -439,16 +439,16 @@ void CSceneTraining::InitScene()
 	//•ºŽÉƒŒƒxƒ‹UP•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
 	Draw::LoadImage(L"•ºŽÉƒŒƒxƒ‹UP.png", 117, TEX_SIZE_512);
 
-	//•ºŽÉƒŒƒxƒ‹UP•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
+	//Œ¤‰º‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
 	Draw::LoadImage(L"Œ¤‰º.png", 118, TEX_SIZE_512);
 
-	//•ºŽÉƒŒƒxƒ‹UP•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
+	//Œ¤ã‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
 	Draw::LoadImage(L"Œ¤ã.png", 119, TEX_SIZE_512);
 
-	//•ºŽÉƒŒƒxƒ‹UP•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
+	//íã‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
 	Draw::LoadImage(L"íã.png", 120, TEX_SIZE_512);
 
-	//•ºŽÉƒŒƒxƒ‹UP•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
+	//í‰º‰æ‘œ‚ð“Ç‚Ýž‚Ý117”Ô‚É“o˜^
 	Draw::LoadImage(L"í‰º.png", 121, TEX_SIZE_512);
 
 	//‰¹Šy“Ç‚Ýž‚Ý

@@ -2217,6 +2217,12 @@ void CObjInstitute::Missile_Lvup_check()
 //装備可能な研究員数に達していれば、レベルUPさせる。
 int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_achieve)
 {
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+	//黄色
+	float yellow[4] = { 1.0f,1.0f,0.0f,1.0f };
+
+
 	//▼武器ポッドレベルUPチェック処理
 	if (equip_Level == equip_Lv_achieve)
 	{
@@ -2243,6 +2249,19 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		if (equip_id == 0)
 		{
 			swprintf_s(m_message, L"パワー武器レベルUP！");//文字配列に文字データを入れる
+
+			////▼レッド武器レベルUP!文字画像表示
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 1200.0f;
+			//src.m_bottom = 112.0f;
+
+			//dst.m_top = 410.0f;
+			//dst.m_left = 650.0f;
+			//dst.m_right = 800.0f;
+			//dst.m_bottom = 460.0f;
+			//Draw::Draw(106, &src, &dst, yellow, 1.0f);
+
 		}
 		else if (equip_id == 1)
 		{
@@ -2281,6 +2300,12 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 //装備不可な研究員数に達していれば、レベルDOWNさせる。
 int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 {
+
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+	//水色
+	float lightblue[4] = { 0.0f,1.0f,1.0f,1.0f };
+
 	//▼武器ポッドレベルDOWNチェック処理
 	if (equip_Level == 1)
 	{
