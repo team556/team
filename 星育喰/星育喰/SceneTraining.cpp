@@ -439,6 +439,18 @@ void CSceneTraining::InitScene()
 	//兵舎レベルUP文字画像を読み込み117番に登録
 	Draw::LoadImage(L"兵舎レベルUP.png", 117, TEX_SIZE_512);
 
+	//兵舎レベルUP文字画像を読み込み117番に登録
+	Draw::LoadImage(L"研下.png", 118, TEX_SIZE_512);
+
+	//兵舎レベルUP文字画像を読み込み117番に登録
+	Draw::LoadImage(L"研上.png", 119, TEX_SIZE_512);
+
+	//兵舎レベルUP文字画像を読み込み117番に登録
+	Draw::LoadImage(L"戦上.png", 120, TEX_SIZE_512);
+
+	//兵舎レベルUP文字画像を読み込み117番に登録
+	Draw::LoadImage(L"戦下.png", 121, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
 

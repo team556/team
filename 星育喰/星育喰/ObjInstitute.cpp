@@ -1367,7 +1367,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 700.0f;
 		dst.m_right = 800.0f;
 		dst.m_bottom = 220.0f;
-		Draw::Draw(23, &src, &dst, up, 0.0f);
+		Draw::Draw(118, &src, &dst, up, 0.0f);
 
 		//▼研究所振り分けDOWN表示
 		src.m_top = 0.0f;
@@ -1379,7 +1379,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 810.0f;
 		dst.m_right = 910.0f;
 		dst.m_bottom = 220.0f;
-		Draw::Draw(24, &src, &dst, down, 0.0f);
+		Draw::Draw(119, &src, &dst, down, 0.0f);
 
 		//▼研究員の住民数ウインドウ表示
 		src.m_top = 0.0f;

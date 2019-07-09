@@ -109,7 +109,19 @@ void CObjFightOver::Draw()
 
 	//クリックでタイトル表示
 	float c0[4] = { 1.0f,1.0f,1.0f,m_a };//charの色
-	Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
+
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1484.0f;
+	src.m_bottom = 117.0f;
+
+	dst.m_top = 600.0f;
+	dst.m_left = 275.0f;
+	dst.m_right = 975.0f;
+	dst.m_bottom = 650.0f;
+	Draw::Draw(51, &src, &dst, c0, 0.0f);
+
+	//Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
 
 	//ゲームオーバーフォント表示
 	float c[4] = { 0.7f,0.0f,0.0f,m_gameover_a };//charの色
