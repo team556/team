@@ -19,6 +19,7 @@ using namespace GameL;
 #define INI_BUFF (1.0f)						//上記2つのバフ倍率初期値
 #define INI_WIDTH (200.0f)					//[スペシャル技:Explosion / Fracture_Ray]エフェクト画像の初期幅
 #define INI_ALPHA (1.0f)					//スペシャル技エフェクト画像の初期透過度
+#define INI_COLOR (0.9f) //スペシャルボタン初期カラー明度(ボタン未選択中のカラー)
 
 //コンストラクタ
 CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
@@ -34,6 +35,8 @@ CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
 void CObjSpecialButton::Init()
 {
 	m_a = 1.0f;
+
+	m_button_color = INI_COLOR;
 
 	m_mou_x = 0.0f;	
 	m_mou_y = 0.0f;
@@ -105,6 +108,18 @@ void CObjSpecialButton::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//マウスでボタン選択中、カラー明度変更し、選択出来ているか分かり易くする処理
+	//※スペシャル技が使用済の場合は実行されない。
+	if (m_x <= m_mou_x && m_mou_x <= (m_x + m_w) && m_y <= m_mou_y && m_mou_y <= (m_y + m_h) && //選択範囲
+	   (m_is_used_special[PLAYER] == false))//スペシャル技が未使用かチェック
+	{
+		m_button_color = 1.0f;
+	}
+	else if (m_is_used_special[PLAYER] == false)//スペシャル技が未使用かチェック
+	{
+		m_button_color = INI_COLOR;
+	}
+
 	//▼プレイヤー惑星スペシャル技処理(Sキー)
 	if ((Input::GetVKey('S')) &&						//Sキー
 		(g_Special_equipment != 0) &&					//スペシャル技装備してるかチェック
@@ -165,7 +180,7 @@ void CObjSpecialButton::Action()
 void CObjSpecialButton::Draw()
 {
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float button[4] = { 1.0f,1.0f,1.0f,m_a };		//スペシャル技ボタン用
+	float button[4] = { m_button_color,m_button_color,m_button_color,m_a };		//スペシャル技ボタン用
 	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };	//画面全体やや暗転画像用
 	float b[4] = { 0.0f,0.0f,1.0f,1.0f };			//青色用
 	float r[4] = { 1.0f,0.0f,0.0f,1.0f };			//赤色用

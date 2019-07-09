@@ -121,12 +121,26 @@ void CObjFightOver::Draw()
 	dst.m_bottom = 650.0f;
 	Draw::Draw(51, &src, &dst, c0, 0.0f);
 
+
+
+
 	//Font::StrDraw(L"クリックでタイトル", 350, 600, 50, c0);
 
 	//ゲームオーバーフォント表示
 	float c[4] = { 0.7f,0.0f,0.0f,m_gameover_a };//charの色
-	Font::StrDraw(L"G A M E", 220, 100, 200, c);
-	Font::StrDraw(L"O V E R", 220, 300, 200, c);
+	//Font::StrDraw(L"G A M E", 220, 100, 200, c);
+	//Font::StrDraw(L"O V E R", 220, 300, 200, c);
+
+	src.m_top = 60.0f;
+	src.m_left = 0.0f;
+	src.m_right = 900.0f;
+	src.m_bottom = 400.0f;
+
+	dst.m_top = 150.0f;
+	dst.m_left = 220.0f;
+	dst.m_right = 975.0f;
+	dst.m_bottom = 495.0f;
+	Draw::Draw(52, &src, &dst, c, 0.0f);
 
 
 	//▼画面全体暗転用画像表示
