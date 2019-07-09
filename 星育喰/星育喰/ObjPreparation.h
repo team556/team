@@ -18,6 +18,8 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 
+	void SetEffectF() { m_black_star_effect_f = true; }
+
 	void Enemy_message(int enemy_id);		//敵惑星詳細説明表示関数
 	void Special_message(int special_id);	//スペシャル技詳細説明表示関数
 private:
@@ -55,7 +57,7 @@ private:
 	float m_speed;		//各演出で移動する各オブジェクト(プレイヤー惑星、各敵惑星、ボス惑星等)の移動速度
 	float m_save_speed;	//移動速度保存用変数
 
-	float m_black_star_effect_size;	//戦闘画面移行演出(黒星)のサイズ
+	bool  m_black_star_effect_f;	//戦闘画面移行演出(黒星)のフラグ(true=演出終了→戦闘シーンへ移行)
 	int	  m_staging_time;			//演出時間管理変数
 	bool  m_is_operatable;			//操作可能か確認フラグ(true:操作可能　false;操作不可)
 

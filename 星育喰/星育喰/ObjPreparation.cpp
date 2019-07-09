@@ -66,7 +66,7 @@ void CObjPreparation::Init()
 	m_speed = INI_SPEED;
 	m_save_speed = 0.0f;
 
-	m_black_star_effect_size = 0.0f;
+	m_black_star_effect_f = false;
 	m_staging_time = 0;
 	m_is_operatable = false;
 
@@ -305,7 +305,7 @@ void CObjPreparation::Action()
 	//▼戦闘画面移行演出
 	else if (m_Go_flag == true)
 	{
-		if (m_black_star_effect_size >= 1500.0f)
+		if (m_black_star_effect_f == true)
 		{
 			//★画像が画面全体を覆いつくした後、下記の撃破フラグ処理を実行
 			//その後、戦闘画面へシーン移行する。
@@ -322,14 +322,7 @@ void CObjPreparation::Action()
 
 			Scene::SetScene(new CSceneFight());//戦闘画面へシーン移行
 		}
-		else if (m_black_star_effect_size < 1500.0f)
-		{
-			//画面中央を起点として、★の画像を徐々に拡大
-			//そのまま画面全体を覆いつくす。
-			m_black_star_effect_size += 20.0f;
-		}
-
-
+		
 		return;
 	}
 
@@ -378,6 +371,10 @@ void CObjPreparation::Action()
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
+
+						//戦闘前演出を行うオブジェクトを生成する
+						CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect(true);
+						Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);
 
 						//選択音
 						Audio::Start(1);
@@ -1150,22 +1147,6 @@ void CObjPreparation::Draw()
 		Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
 		Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
 	}
-
-
-
-	//▼戦闘画面移行演出(黒星)表示
-	//※移行演出まで描画先表示位置の設定上、非表示状態になる。
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 256.0f;
-	src.m_bottom = 256.0f;
-
-	dst.m_top = 350.0f - m_black_star_effect_size;
-	dst.m_left = 600.0f - m_black_star_effect_size;
-	dst.m_right = 600.0f + m_black_star_effect_size;
-	dst.m_bottom = 350.0f + m_black_star_effect_size;
-	Draw::Draw(50, &src, &dst, d, 0.0f);
-
 
 
 

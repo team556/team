@@ -32,6 +32,8 @@ private:
 	float m_w;		//スペシャル技ボタンのwidth(幅)
 	float m_a;		//スペシャル技ボタンのalpha(透過度)
 
+	float m_button_color;//スペシャルボタンのカラー明度
+
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)

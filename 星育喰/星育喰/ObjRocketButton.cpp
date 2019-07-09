@@ -15,6 +15,7 @@ using namespace GameL;
 #define UNIT_CONSUME_NUM (100)	//ユニット消費数
 #define RECAST_COMPLETE_TIME (60.0f * g_Recast_time)//ミサイルのリキャスト完了タイム
 #define RECAST_COMPLETE_POD_TIME (60.0f * 6)//ポッドのリキャスト完了タイム
+#define INI_COLOR (0.9f) //ポッドミサイルボタン初期カラー明度(ボタン未選択中のカラー)
 
 //コンストラクタ
 CObjRocketButton::CObjRocketButton(float x, float y, float h, float w, int n)
@@ -39,6 +40,8 @@ void CObjRocketButton::Init()
 
 	m_a = 1.0f;		//透明度
 	m_a2 = 1.0f;	//透明度
+
+	m_button_color = INI_COLOR;
 
 	m_cnt = 0;		//カウント
 
@@ -137,6 +140,18 @@ void CObjRocketButton::Action()
 		//misボタン
 		m_key_push = 5;
 		m_key_push_f = true;
+	}
+
+	//マウスでボタン選択中、カラー明度変更し、選択出来ているか分かり易くする処理
+	//※リキャスト中、人数不足等の場合は実行されない。
+	if (m_x <= m_mou_x && m_mou_x <= (m_x + m_w) && m_y <= m_mou_y && m_mou_y <= (m_y + m_h) && //選択範囲
+		m_mou_f == false)//リキャスト中、人数不足等でないかチェック
+	{
+		m_button_color = 1.0f;
+	}
+	else if(m_mou_f == false)//リキャスト中、人数不足等でないかチェック
+	{
+		m_button_color = INI_COLOR;
 	}
 
 	//マウス座標がボタンの上かつ、クリックされているとき
@@ -263,7 +278,7 @@ void CObjRocketButton::Action()
 void CObjRocketButton::Draw()
 {
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float c[4] = { 1.0f,1.0f, 1.0f, m_a };//ポッドミサイルボタン用
+	float c[4] = { m_button_color,m_button_color,m_button_color, m_a };//ポッドミサイルボタン用
 	float d[4] = { 1.0f,1.0f, 1.0f, m_a2 };//人数不足アイコン用
 	float g[4] = { 0.0f,1.0f, 0.0f, m_a2 };//リキャストゲージ(現在値)用
 	float b[4] = { 0.0f,0.0f, 0.0f, m_a2 };//リキャストゲージ(最大値)用
