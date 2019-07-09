@@ -41,10 +41,10 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
 
 	//育アイコンを読み込み1番に登録
-	Draw::LoadImage(L"育ボタン.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"育２.png", 1, TEX_SIZE_512);
 
 	//喰アイコンを読み込み2番に登録
-	Draw::LoadImage(L"喰ボタン.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"喰２.png", 2, TEX_SIZE_512);
 
 	//戻るを読み込み3番に登録
 	Draw::LoadImage(L"戻る.png", 3, TEX_SIZE_512);

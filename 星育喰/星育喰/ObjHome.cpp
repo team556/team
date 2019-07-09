@@ -440,8 +440,8 @@ void CObjHome::Draw()
 	//▼育アイコン表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 128.0f;
+	src.m_right = 200.0f;
+	src.m_bottom = 200.0f;
 
 	dst.m_top = 480.0f + m_Tra_move;
 	dst.m_left = 20.0f - m_Tra_move;
@@ -452,8 +452,8 @@ void CObjHome::Draw()
 	//▼喰アイコン表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 128.0f;
+	src.m_right = 200.0f;
+	src.m_bottom = 200.0f;
 
 	dst.m_top = 480.0f + m_Eat_move;
 	dst.m_left = 980.0f + m_Eat_move;
