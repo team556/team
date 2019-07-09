@@ -155,10 +155,10 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"施設LVUP.png", 22, TEX_SIZE_512);
 
 	//住民振り分けUPを読み込み23番に登録
-	Draw::LoadImage(L"兵舎振り分けUP.png", 23, TEX_SIZE_512);
+	Draw::LoadImage(L"戦上01.png", 23, TEX_SIZE_512);
 
 	//住民振り分けDOWNを読み込み24番に登録
-	Draw::LoadImage(L"兵舎振り分けDOWN.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"戦下.png", 24, TEX_SIZE_512);
 
 	//ミサイルボタン(仮)を読み込み25番に登録
 	Draw::LoadImage(L"ミサイルボタン.png", 25, TEX_SIZE_512);
@@ -439,17 +439,12 @@ void CSceneTraining::InitScene()
 	//兵舎レベルUP文字画像を読み込み117番に登録
 	Draw::LoadImage(L"兵舎レベルUP.png", 117, TEX_SIZE_512);
 
-	//兵舎レベルUP文字画像を読み込み117番に登録
+	//研究所住人UP文字画像を読み込み118番に登録
 	Draw::LoadImage(L"研下.png", 118, TEX_SIZE_512);
 
-	//兵舎レベルUP文字画像を読み込み117番に登録
-	Draw::LoadImage(L"研上.png", 119, TEX_SIZE_512);
+	//研究所住人UP文字画像を読み込み119番に登録
+	Draw::LoadImage(L"研上01.png", 119, TEX_SIZE_512);
 
-	//兵舎レベルUP文字画像を読み込み117番に登録
-	Draw::LoadImage(L"戦上.png", 120, TEX_SIZE_512);
-
-	//兵舎レベルUP文字画像を読み込み117番に登録
-	Draw::LoadImage(L"戦下.png", 121, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
