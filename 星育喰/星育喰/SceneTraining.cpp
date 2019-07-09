@@ -361,8 +361,8 @@ void CSceneTraining::InitScene()
 	//プラスチック文字画像を読み込み91番に登録
 	Draw::LoadImage(L"プラスチック文字.png", 91, TEX_SIZE_512);
 
-	////アルミニウム文字画像を読み込み92番に登録
-	//Draw::LoadImage(L"アルミニウム文字.png", 91, TEX_SIZE_512);
+	//アルミニウム文字画像を読み込み92番に登録
+	Draw::LoadImage(L"アルミニウム文字.png", 92, TEX_SIZE_512);
 
 	//ガス文字画像を読み込み93番に登録
 	Draw::LoadImage(L"ガス文字.png", 93, TEX_SIZE_512);
@@ -464,8 +464,8 @@ void CSceneTraining::InitScene()
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((0.0 - v));
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
