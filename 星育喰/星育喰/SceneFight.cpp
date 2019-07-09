@@ -185,6 +185,9 @@ void CSceneFight::InitScene()
 	//クリックでタイトルに戻るを５１番に登録
 	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
+	//クリックでタイトルに戻るを５１番に登録
+	Draw::LoadImage(L"GAME_OVER.png", 52, TEX_SIZE_512);
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 
