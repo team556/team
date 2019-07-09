@@ -1575,12 +1575,6 @@ void CObjInstitute::Draw()
 		//研究員の住民数
 		Font::StrDraw(Research_num, 950.0f, 150.0f, 40.0f, black);
 
-		Font::StrDraw(L"研究所レベルＵＰ", 40.0f, 370.0f, 50.0f, white);
-
-		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
-
-		Font::StrDraw(L"研究員", 505.0f, 145.0f, 55.0f, blue2);
-
 		Facility_message(g_Ins_Level);//研究所の必要素材&サイズメッセージ描画関数呼び出す
 
 		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
@@ -1674,14 +1668,6 @@ void CObjInstitute::Draw()
 			dst.m_right = 800.0f;
 			dst.m_bottom = 460.0f;
 			Draw::Draw(74, &src, &dst, No, 0.0f);
-
-
-			//▼フォント表示
-			//最終確認メッセージ
-			Font::StrDraw(L"惑星HPと素材消費して", 347.0f, 250.0f, 30.0f, black);
-			Font::StrDraw(L"レベルアップしますか？", 527.0f, 300.0f, 30.0f, black);
-			Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
-			Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
 		}
 	}
 	
@@ -1946,15 +1932,12 @@ void CObjInstitute::Draw()
 			Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
 
 			//研究員の住民数
-			Font::StrDraw(L"研究員", 510.0f, 175.0f, 65.0f, black);
 			Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
 
 			//ミサイルリキャストタイム
-			Font::StrDraw(L"再生産スピード(リキャスト)", 455.0f, 285.0f, 50.0f, black);
 			Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
 
 			//ミサイルリキャスト次のLVUPに関する情報
-			Font::StrDraw(L"NEXT LV UP", 740.0f, 475.0f, 65.0f, black);
 			Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 		}
 
@@ -2048,17 +2031,6 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 138.0f;
 			Draw::Draw(86, &src, &dst, yellow, 0.0f);
 
-			//各タイプ(パワー、スピード等)、ポッドのフォント
-			Font::StrDraw(L"パワー", 285.0f, 98.0f, 40.0f, red);
-
-			Font::StrDraw(L"ディフェンス", 440.0f, 105.0f, 25.0f, blue);
-
-			Font::StrDraw(L"スピード", 615.0f, 100.0f, 35.0f, green);
-
-			Font::StrDraw(L"バランス", 785.0f, 100.0f, 35.0f, white);
-
-			Font::StrDraw(L"ポッド", 965.0f, 97.0f, 40.0f, yellow);
-
 			//▼武器必要素材&人数メッセージ表示
 			//▽ウインドウ表示 
 			src.m_top = 0.0f;
@@ -2150,12 +2122,6 @@ void CObjInstitute::Draw()
 				dst.m_bottom = 460.0f;
 				Draw::Draw(74, &src, &dst, No, 0.0f);
 
-				//▼フォント表示
-				//最終確認メッセージ
-				Font::StrDraw(L"素材消費してレベルアップしますか？", 347.0f, 250.0f, 30.0f, black);
-				Font::StrDraw(L"※研究員は失われません。", 347.0f, 300.0f, 30.0f, black);
-				Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
-				Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
 			}
 		}
 	}
