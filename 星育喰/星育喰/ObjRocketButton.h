@@ -23,6 +23,8 @@ private:
 	float m_w;		//width幅
 	float m_a;		//alpha
 	float m_a2;		//人数不足アイコン、リキャストゲージの透過度(alpha)
+	
+	float m_button_color;//ポッドミサイルボタンのカラー明度
 
 	int m_get_line; //取得したライン(0～2)
 	int m_cnt;		//カウント

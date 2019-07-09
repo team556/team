@@ -8,7 +8,9 @@
 using namespace GameL;
 
 //マクロ
-#define INI_BLACK_STAR_EFFECT_SIZE (1500.0f) //黒星の初期サイズ
+//▼黒星演出IN か OUT なのかで初期位置が変わる
+//INなら 0.0f,OUTなら 1500.0f。
+#define INI_BLACK_STAR_EFFECT_SIZE (m_In_Out_Check == true ? 0.0f : 1500.0f) //黒星の初期サイズ
 
 //イニシャライズ
 void CObjBefore_Fight_Effect::Init()
@@ -19,22 +21,43 @@ void CObjBefore_Fight_Effect::Init()
 //アクション
 void CObjBefore_Fight_Effect::Action()
 {
-	//▼戦闘前演出(黒星)の処理
-	if (m_black_star_effect_size <= 0.0f)
+	//▼戦闘前演出(黒星)INの処理
+	if (m_In_Out_Check == true)
 	{
-		//★の画像が見えなくなった後、
-		//ObjFightの「戦闘開始カウント」を動作させる
-		CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-		fight->SetStart_Count();
-
-		this->SetStatus(false);		//役割を終えたのでこのオブジェクトを削除する
+		if (m_black_star_effect_size >= 1500.0f)
+		{
+			//★画像が画面全体を覆いつくした後、
+			//ObjPreparationの「m_black_star_effect_f」をONにする。
+			CObjPreparation* preparation = (CObjPreparation*)Objs::GetObj(OBJ_PREPARATION);
+			preparation->SetEffectF();
+		}
+		else if (m_black_star_effect_size < 1500.0f)
+		{
+			//画面中央を起点として、★の画像を徐々に拡大
+			//そのまま画面全体を覆いつくす。
+			m_black_star_effect_size += 20.0f;
+		}
 	}
-	else if (m_black_star_effect_size > 0.0f)
+
+	//▼戦闘前演出(黒星)OUTの処理
+	else
 	{
-		//画面全体が★の画像で覆いつくされた状態で始まる。
-		//★の画像を徐々に縮小していき、画面中央へと収束、
-		//最終的に見えなくなる。
-		m_black_star_effect_size -= 20.0f;
+		if (m_black_star_effect_size <= 0.0f)
+		{
+			//★の画像が見えなくなった後、
+			//ObjFightの「戦闘開始カウント」を動作させる
+			CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+			fight->SetStart_Count();
+
+			this->SetStatus(false);		//役割を終えたのでこのオブジェクトを削除する
+		}
+		else if (m_black_star_effect_size > 0.0f)
+		{
+			//画面全体が★の画像で覆いつくされた状態で始まる。
+			//★の画像を徐々に縮小していき、画面中央へと収束、
+			//最終的に見えなくなる。
+			m_black_star_effect_size -= 20.0f;
+		}
 	}
 }
 

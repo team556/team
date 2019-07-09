@@ -194,14 +194,18 @@ void CObjMessage::Action()
 		//※描画速度高速化フラグON時はm_time関係なしにこの処理に入る。
 
 
-		////テスト
-		//for (int i = 0; i < 3; i++)
-		//{
-		//	for (int j = 0; j < 3; j++)
-		//	{
-
-		//	}
-		//}
+		//テスト
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				if (m_font[m_progress][m_font_count] == m_font_data[i][j])
+				{
+					m_font_column[m_font_count] = j;
+					m_font_line[m_font_count] = i;
+				}
+			}
+		}
 
 
 		if (m_font[m_progress][m_font_count] == L'あ')
