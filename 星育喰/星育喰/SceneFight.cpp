@@ -185,6 +185,25 @@ void CSceneFight::InitScene()
 	//クリックでタイトルに戻るを５１番に登録
 	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
+	//クリックでホーム画面を52番に登録
+	Draw::LoadImage(L"クリックでホーム画面.png", 52, TEX_SIZE_512);
+
+	//捕食成功！を53番に登録
+	Draw::LoadImage(L"捕食成功！.png", 53, TEX_SIZE_512);
+
+	//スペシャル技を54番に登録
+	Draw::LoadImage(L"スペシャル技.png", 54, TEX_SIZE_512);
+
+	//惑星HPを55番に登録
+	Draw::LoadImage(L"惑星HP.png", 55, TEX_SIZE_512);
+
+	//住民を55番に登録
+	Draw::LoadImage(L"住民.png", 56, TEX_SIZE_512);
+
+	//住民を55番に登録
+	Draw::LoadImage(L"資材.png", 57, TEX_SIZE_512);
+
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 

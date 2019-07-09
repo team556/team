@@ -481,7 +481,7 @@ void CObjWarehouse::Draw()
 			src.m_right = 242.0f;
 			src.m_bottom = 117.0f;
 
-			dst.m_top = m_mou_y - 43.0f;
+			dst.m_top = m_mou_y - 45.0f;
 			dst.m_left = m_mou_x - 50.0f;
 			dst.m_right = m_mou_x + 30.0f;
 			dst.m_bottom = m_mou_y - 15.0f;
@@ -674,13 +674,13 @@ void CObjWarehouse::Draw()
 		//▼木材表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 717.0f;
-		src.m_bottom = 627.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-		dst.m_top = 120.0f;
-		dst.m_left = 150.0f;
+		dst.m_top = 130.0f;
+		dst.m_left = 200.0f;
 		dst.m_right = 300.0f;
-		dst.m_bottom = 270.0f;
+		dst.m_bottom = 230.0f;
 		Draw::Draw(33, &src, &dst, it, 0.0f);
 
 		//▼木材文字画像表示
@@ -701,13 +701,13 @@ void CObjWarehouse::Draw()
 		//▼鉄表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 160.0f;
-		src.m_bottom = 160.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-		dst.m_top = 120.0f;
-		dst.m_left = 450.0f;
-		dst.m_right = 600.0f;
-		dst.m_bottom = 270.0f;
+		dst.m_top = 130.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 230.0f;
 		Draw::Draw(34, &src, &dst, it, 0.0f);
 
 		//▼鉄文字画像表示
@@ -728,13 +728,13 @@ void CObjWarehouse::Draw()
 		//▼銀表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 160.0f;
-		src.m_bottom = 160.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-		dst.m_top = 120.0f;
-		dst.m_left = 800.0f;
-		dst.m_right = 950.0f;
-		dst.m_bottom = 270.0f;
+		dst.m_top = 130.0f;
+		dst.m_left = 900.0f;
+		dst.m_right = 1000.0f;
+		dst.m_bottom = 230.0f;
 		Draw::Draw(35, &src, &dst, it, 0.0f);
 
 		//▼銀文字画像表示
@@ -755,13 +755,13 @@ void CObjWarehouse::Draw()
 		//▼プラスチック表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 135.0f;
-		src.m_bottom = 245.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-		dst.m_top = 350.0f;
-		dst.m_left = 110.0f;
-		dst.m_right = 260.0f;
-		dst.m_bottom = 500.0f;
+		dst.m_top = 380.0f;
+		dst.m_left = 200.0f;
+		dst.m_right = 300.0f;
+		dst.m_bottom = 480.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
 
 		//▼プラスチック文字画像表示
@@ -782,13 +782,13 @@ void CObjWarehouse::Draw()
 		//▼アルミニウム画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 160.0f;
-		src.m_bottom = 160.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-		dst.m_top = 350.0f;
-		dst.m_left = 540.0f;
-		dst.m_right = 690.0f;
-		dst.m_bottom = 500.0f;
+		dst.m_top = 380.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 480.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 
 		//▼アルミニウム文字画像表示
@@ -809,13 +809,13 @@ void CObjWarehouse::Draw()
 		//▼ガス表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 300.0f;
-		src.m_bottom = 300.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-		dst.m_top = 350.0f;
-		dst.m_left = 800.0f;
-		dst.m_right = 950.0f;
-		dst.m_bottom = 500.0f;
+		dst.m_top = 380.0f;
+		dst.m_left = 900.0f;
+		dst.m_right = 1000.0f;
+		dst.m_bottom = 480.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
 
 		//▼ガス文字画像表示
@@ -1021,7 +1021,7 @@ void CObjWarehouse::Draw()
 
 		////残りの住民数
 		//Font::StrDraw(L"残りの住民数", 540.0f, 470.0f, 35.0f, black);
-		Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
+		//Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 	}
 
@@ -1475,8 +1475,8 @@ void CObjWarehouse::Draw()
 		src.m_bottom = 112.0f;
 
 		dst.m_top = 200.0f;
-		dst.m_left = 620.0f;
-		dst.m_right = 780.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 700.0f;
 		dst.m_bottom = 240.0f;
 		Draw::Draw(85, &src, &dst, black, 0.0f);
 
@@ -1487,8 +1487,8 @@ void CObjWarehouse::Draw()
 		src.m_bottom = 112.0f;
 
 		dst.m_top = 330.0f;
-		dst.m_left = 620.0f;
-		dst.m_right = 740.0f;
+		dst.m_left = 540.0f;
+		dst.m_right = 660.0f;
 		dst.m_bottom = 370.0f;
 		Draw::Draw(86, &src, &dst, black, 0.0f);
 

@@ -287,83 +287,84 @@ void CObjFight::Draw()
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
 	//▼戦闘時間表示
-	int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
-	if (s >= 60) {						//60秒以上の場合
-		m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
-	}													//nはその減らす分。
+	if (battle_end == false) {
+		int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
+		if (s >= 60) {						//60秒以上の場合
+			m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
+		}													//nはその減らす分。
 
-	//▼残り時間表示(十の位の分数)
-	//している動作は残り分数の10の位をとるために
-	//分数/10をして小数点以下切り捨てをして
-	//その値によって切り取り位置を変えている
-	src.m_top = 1254.0f;
-	src.m_left = 1224.0f + (floor(m / 10) * 125);	//実質動くことはないが10分以上に設定したときも
-	src.m_right = 1371.0f + (floor(m / 10) * 125);	//動作するようになっている
-	src.m_bottom = 1371.0f;
+		//▼残り時間表示(十の位の分数)
+		//している動作は残り分数の10の位をとるために
+		//分数/10をして小数点以下切り捨てをして
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + (floor(m / 10) * 125);	//実質動くことはないが10分以上に設定したときも
+		src.m_right = 1375.0f + (floor(m / 10) * 125);	//動作するようになっている
+		src.m_bottom = 1375.0f;
 
-	dst.m_top = 50.0f;
-	dst.m_left = 525.0f;
-	dst.m_right = 550.0f;
-	dst.m_bottom = 100.0f;
-	Draw::Draw(41, &src, &dst, d, 0.0f);
+		dst.m_top = 50.0f;
+		dst.m_left = 525.0f;
+		dst.m_right = 550.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
 
-	//▼残り時間表示(一の位の分数)
-	//している動作は残り分数の1の位をとるために
-	//分数/10の余りを出して
-	//その値によって切り取り位置を変えている
-	src.m_top = 1254.0f;
-	src.m_left = 1251.0f + ((m % 10) * 125);
-	src.m_right = 1368.0f + ((m % 10) * 125);
-	src.m_bottom = 1371.0f;
+		//▼残り時間表示(一の位の分数)
+		//している動作は残り分数の1の位をとるために
+		//分数/10の余りを出して
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + ((m % 10) * 125);
+		src.m_right = 1375.0f + ((m % 10) * 125);
+		src.m_bottom = 1375.0f;
 
-	dst.m_top = 50.0f;
-	dst.m_left = 550.0f;
-	dst.m_right = 575.0f;
-	dst.m_bottom = 100.0f;
-	Draw::Draw(41, &src, &dst, d, 0.0f);
+		dst.m_top = 50.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 575.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
 
-	//▼残り時間表示(コロン)
-	src.m_top = 1254.0f;
-	src.m_left = 254.0f;
-	src.m_right = 371.0f;
-	src.m_bottom = 1371.0f;
+		//▼残り時間表示(コロン)
+		src.m_top = 1250.0f;
+		src.m_left = 250.0f;
+		src.m_right = 375.0f;
+		src.m_bottom = 1375.0f;
 
-	dst.m_top = 50.0f;
-	dst.m_left = 575.0f;
-	dst.m_right = 600.0f;
-	dst.m_bottom = 100.0f;
-	Draw::Draw(41, &src, &dst, d, 0.0f);
+		dst.m_top = 50.0f;
+		dst.m_left = 575.0f;
+		dst.m_right = 600.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
 
-	//▼残り時間表示(十の位の秒数)
-	//している動作は残り秒数の10の位をとるために
-	//秒数/10をして小数点以下切り捨てをして
-	//その値によって切り取り位置を変えている
-	src.m_top = 1254.0f;
-	src.m_left = 1224.0f + (floor(s / 10) * 125);
-	src.m_right = 1371.0f + (floor(s / 10) * 125);
-	src.m_bottom = 1371.0f;
+		//▼残り時間表示(十の位の秒数)
+		//している動作は残り秒数の10の位をとるために
+		//秒数/10をして小数点以下切り捨てをして
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + (floor(s / 10) * 125);
+		src.m_right = 1375.0f + (floor(s / 10) * 125);
+		src.m_bottom = 1375.0f;
 
-	dst.m_top = 50.0f;
-	dst.m_left = 600.0f;
-	dst.m_right = 625.0f;
-	dst.m_bottom = 100.0f;
-	Draw::Draw(41, &src, &dst, d, 0.0f);
+		dst.m_top = 50.0f;
+		dst.m_left = 600.0f;
+		dst.m_right = 625.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
 
-	//▼残り時間表示(一の位の秒数)
-	//している動作は残り秒数の1の位をとるために
-	//秒数/10の余りを出して
-	//その値によって切り取り位置を変えている
-	src.m_top = 1254.0f;
-	src.m_left = 1224.0f + ((s % 10) * 125);
-	src.m_right = 1371.0f + ((s % 10) * 125);
-	src.m_bottom = 1371.0f;
+		//▼残り時間表示(一の位の秒数)
+		//している動作は残り秒数の1の位をとるために
+		//秒数/10の余りを出して
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + ((s % 10) * 125);
+		src.m_right = 1375.0f + ((s % 10) * 125);
+		src.m_bottom = 1375.0f;
 
-	dst.m_top = 50.0f;
-	dst.m_left = 625.0f;
-	dst.m_right = 650.0f;
-	dst.m_bottom = 100.0f;
-	Draw::Draw(41, &src, &dst, d, 0.0f);
-
+		dst.m_top = 50.0f;
+		dst.m_left = 625.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
+	}
 
 	//wchar_t str[256];
 	//swprintf_s(str, L"%02d :%02d", m, s);		//2桁、0詰め表示
@@ -426,58 +427,58 @@ void CObjFight::Draw()
 	dst.m_bottom=480.0f;
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
 
-	//ポッドやミサイルのキーボード選択用画像
-
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	if (battle_end == false) {
+		//ポッドやミサイルのキーボード選択用画像
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
 	//ミサイルキー描画
 	dst.m_top = 647.0f;
-	dst.m_left = 240.0f;
-	dst.m_right = 272.0f;
+	dst.m_left = 230.0f;
+	dst.m_right = 262.0f;
 	dst.m_bottom = 679.0f;
 	Draw::Draw(35, &src, &dst, d, 0.0f);
 
-	//赤ポッドキー描画
-	dst.m_top = 647.0f;
-	dst.m_left = 531.0f;
-	dst.m_right = 563.0f;
-	dst.m_bottom = 679.0f;
-	Draw::Draw(36, &src, &dst, d, 0.0f);
+		//赤ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 531.0f;
+		dst.m_right = 563.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(36, &src, &dst, d, 0.0f);
 
-	//青ポッドキー描画
-	dst.m_top = 647.0f;
-	dst.m_left = 681.0f;
-	dst.m_right = 713.0f;
-	dst.m_bottom = 679.0f;
-	Draw::Draw(37, &src, &dst, d, 0.0f);
+		//青ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 681.0f;
+		dst.m_right = 713.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(37, &src, &dst, d, 0.0f);
 
-	//緑ポッドキー描画
-	dst.m_top = 647.0f;
-	dst.m_left = 838.0f;
-	dst.m_right = 870.0f;
-	dst.m_bottom = 679.0f;
-	Draw::Draw(38, &src, &dst, d, 0.0f);
+		//緑ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 838.0f;
+		dst.m_right = 870.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(38, &src, &dst, d, 0.0f);
 
-	//灰ポッドキー描画
-	dst.m_top = 647.0f;
-	dst.m_left = 979.0f;
-	dst.m_right = 1011.0f;
-	dst.m_bottom = 679.0f;
-	Draw::Draw(39, &src, &dst, d, 0.0f);
-
-	//スペシャル技を装備しているときはアイコンを出す
-	if (g_Special_equipment != 0)
-	{
-		dst.m_top = 64.0f;
+		//灰ポッドキー描画
+		dst.m_top = 647.0f;
 		dst.m_left = 979.0f;
 		dst.m_right = 1011.0f;
-		dst.m_bottom = 92.0f;
-		Draw::Draw(40, &src, &dst, d, 0.0f);
-	}
+		dst.m_bottom = 679.0f;
+		Draw::Draw(39, &src, &dst, d, 0.0f);
 
+		//スペシャル技を装備しているときはアイコンを出す
+		if (g_Special_equipment != 0)
+		{
+			dst.m_top = 64.0f;
+			dst.m_left = 979.0f;
+			dst.m_right = 1011.0f;
+			dst.m_bottom = 92.0f;
+			Draw::Draw(40, &src, &dst, d, 0.0f);
+		}
+	}
 
 
 

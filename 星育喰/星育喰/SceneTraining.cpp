@@ -430,7 +430,7 @@ void CSceneTraining::InitScene()
 	//ポッドレベルUP!文字画像を読み込み114番に登録967*112
 	Draw::LoadImage(L"ポッドレベルUP!.png", 114, TEX_SIZE_512);
 
-	//ポッドレベルUP!文字画像を読み込み115番に登録1199*112
+	//ポッドレベルDOWN…文字画像を読み込み115番に登録1199*112
 	Draw::LoadImage(L"ポッドレベルDOWN….png", 115, TEX_SIZE_512);
 
 	//兵舎 Lv文字画像を読み込み116番に登録
@@ -464,8 +464,8 @@ void CSceneTraining::InitScene()
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
