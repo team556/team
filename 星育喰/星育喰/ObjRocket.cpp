@@ -44,16 +44,15 @@ void CObjRocket::Init()
 			if (m_get_line == 1) { m_y = 310; }	//取得ナンバーで高さ変更
 			else if (m_get_line == 2) { m_y = 420; }
 
-			m_get_cnt = obj->GetCount();		//カウントを取得
-			//m_x += obj->GetCount() / 10;
-			m_x += 0.0f;
-			m_mov_spd = 1.0f / pla->GetX();
+			//m_get_cnt = obj->GetCount();		//カウントを取得
+			////m_x += obj->GetCount() / 10;
+			//m_x += 0.0f;
+			//m_mov_spd = 1.0f / pla->GetX();
 		}
 	}
 	else if (m_type != 0 && battle_end == false)
 	{
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-
 		m_get_line = ene->GetLine();
 	}
 
@@ -76,13 +75,6 @@ void CObjRocket::Init()
 	m_mov = 0;
 	
 	m_r = 0.0f;//角度
-
-	m_mou_x = 0.0f;	//マウス情報
-	m_mou_y = 0.0f;
-	m_mou_r = false;
-	m_mou_l = false;
-	
-	m_mou_f = false;//マウスフラグ
 
 	if (m_type == 0)
 		ButtonUP = ButtonU;
@@ -113,7 +105,6 @@ void CObjRocket::Init()
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
 		}
-
 	}
 	else if(m_type != 0)
 	{
@@ -138,7 +129,6 @@ void CObjRocket::Init()
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
 		}
-
 	}
 
 	m_eff.m_top = 0;
@@ -285,6 +275,8 @@ void CObjRocket::Init()
 				break;
 			}
 	}
+	CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);//ヒットボックス用Obj作成
+	Objs::InsertObj(RH, OBJ_RKTHIT, 15);		//オブジェクト登録
 }
 
 //アクション
@@ -301,36 +293,24 @@ void CObjRocket::Action()
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
-	m_mov += m_mov_spd / 2;
-
-	//マウスの位置を取得
-	m_mou_x = (float)Input::GetPosX();
-	m_mou_y = (float)Input::GetPosY();
-	//マウスのボタンの状態
-	m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
-
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
-	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+	if(m_type == 0)
+		if(ButtonU == 5)//ロケットのみ通常で更新
+			hit->SetPos(m_x, m_y);		//HitBox更新
+		else
+			hit->SetPos(m_x, m_y);		//HitBox更新
+	//0 m_x - m_size * 2, m_y, m_size * 3, m_size
+
+	else
+		hit->SetPos(m_x, m_y);		//HitBox更新
 
 	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
 	{
 		Audio::Start(5);
 		m_del = true;
 	}
-		
-
-	if (m_mou_l == false && m_mou_f == false)
-	{
-		m_mou_f = true;
-	}
-	else
-	{
-		m_mou_f = false;
-	}
-
 	
-	if (m_fight == true)//衝突中フラグＯＮ時
+	if (m_fight == true)//交戦時フラグＯＮ時
 	{
 		if (m_atk_cnt > m_atk_cnt_max)//maxを超えた時
 		{
@@ -341,8 +321,10 @@ void CObjRocket::Action()
 			m_atk_cnt++;//カウント
 		}
 	}
-	else//ポッド同士が当たると動きを止め勝敗を決める処理
+	else//交戦時以外で移動ベクトル加算
 	{
+		m_mov += m_mov_spd / 2;
+
 		//各ライン毎の動き方
 		if (m_get_line == 0 || m_get_line == 3)//------上ライン----
 		{
@@ -779,10 +761,9 @@ void CObjRocket::Draw()
 			else						{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
 			break;
 		case 5://---------ランダムの情報が5なら
-			if (m_get_line == 0)		{ Draw::Draw(17, &src, &dst, d, m_r - 115); }//ミサイルの
-			else if(m_get_line == 1)	{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
-			else if(m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }
-			else						{ Draw::Draw(17, &src, &dst, d, m_r); }
+			 if(m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
+			else if(m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }//ミサイルの
+			else						{ Draw::Draw(17, &src, &dst, d, m_r - 115); }
 			break;
 		}
 	}

@@ -39,7 +39,7 @@ enum OBJ_NAME
 	OBJ_HELP,
 	OBJ_GAME_CLEAR,
 	OBJ_MESSAGE,
-
+	OBJ_RKTHIT,
 
 };
 //------------------------------------------------
@@ -159,6 +159,7 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 #include "ObjHelp.h"
 #include "ObjGameClear.h"
 #include "ObjMessage.h"
+#include "ObjRktHit.h"
 
 //------------------------------------------------
 
@@ -178,7 +179,7 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 //#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
-#define SET_GAME_START CSceneTraining
+//#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
-//#define SET_GAME_START CScenePreparation
+#define SET_GAME_START CScenePreparation
 //----------------------------------------------

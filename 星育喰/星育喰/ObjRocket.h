@@ -14,22 +14,18 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+	float GetX() { return m_vx; }
+	float GetY() { return m_vy; }
 private:
 	float m_x;		//ミサイルの座標X
 	float m_y;		//ミサイルの座標Y
 	float m_vx;		//ベクトルX
 	float m_vy;		//ベクトルY
 	float m_size;	//ミサイルのサイズ
-	bool  m_mou_f;	//マウスフラッグ
 
 	float m_r;		//角度変更用(+で左回転)
 	float m_mov;	//
 	float m_mov_spd;//動く速さ
-
-	float m_mou_x;		//マウスの位置X
-	float m_mou_y;		//マウスの位置Y
-	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
-	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 
 	int m_get_line;		//取得したラインナンバー
 	int m_get_cnt;		//取得したカウント
@@ -61,7 +57,7 @@ private:
 
 	float m_a;			//alpha(透明度)
 	int m_bom;			//爆発エフェクトのランダム(0～3)
-	bool m_fight;		//ポッド同士の衝突中フラグ
+	bool m_fight;		//ポッド同士の衝突中フラグ(交戦時)
 
 	int Enemy_Line_pattern_x;	////敵攻撃パターンの横軸読み込む用
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
