@@ -199,6 +199,9 @@
     <ClCompile Include="ObjMessage.cpp">
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
+    <ClCompile Include="ObjRktHit.cpp">
+      <Filter>ソース ファイル\対戦用</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -341,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="ObjMessage.h">
       <Filter>ソース ファイル\関数/演出</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRktHit.h">
+      <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
