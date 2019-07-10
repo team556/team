@@ -38,8 +38,8 @@ void CSceneTest::InitScene()
 	//メッセージウインドウを読み込み2番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 2, TEX_SIZE_512);
 
-	//黒文字集を読み込み3番に登録
-	Draw::LoadImage(L"黒文字集.png", 3, TEX_SIZE_512);
+	//白文字集を読み込み3番に登録
+	Draw::LoadImage(L"白文字集.png", 3, TEX_SIZE_512);
 
 	////10番に登録
 	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);
