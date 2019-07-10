@@ -87,19 +87,19 @@ void CObjRocket::Init()
 		m_x += 100;
 		if (ButtonUP == 1)
 		{
-			Hits::SetHitBox(this, m_x - m_size * 2, m_y, m_size * 3, m_size, ELEMENT_POD, OBJ_PODP, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODP, 1);
 		}
 		else if (ButtonUP == 2)
 		{
-			Hits::SetHitBox(this, m_x - m_size * 2, m_y, m_size * 3, m_size, ELEMENT_POD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODD, 1);
 		}
 		else if (ButtonUP == 3)
 		{
-			Hits::SetHitBox(this, m_x - m_size * 2, m_y, m_size * 3, m_size, ELEMENT_POD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODS, 1);
 		}
 		else if (ButtonUP == 4)
 		{
-			Hits::SetHitBox(this, m_x - m_size * 2, m_y, m_size * 3, m_size, ELEMENT_POD, OBJ_PODB, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_PODB, 1);
 		}
 		else if (ButtonUP == 5)
 		{
@@ -111,19 +111,19 @@ void CObjRocket::Init()
 		m_x -= 100;
 		if (ButtonUE == 1)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size * 3, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
 		}
 		else if (ButtonUE == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size * 3, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
 		}
 		else if (ButtonUE == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size * 3, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
 		}
 		else if (ButtonUE == 4)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size * 3, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
 		}
 		else if (ButtonUE == 5)
 		{
@@ -298,7 +298,8 @@ void CObjRocket::Action()
 		if(ButtonU == 5)//ロケットのみ通常で更新
 			hit->SetPos(m_x, m_y);		//HitBox更新
 		else
-			hit->SetPos(m_x - m_size * 2, m_y);		//HitBox更新
+			hit->SetPos(m_x, m_y);		//HitBox更新
+	//0 m_x - m_size * 2, m_y, m_size * 3, m_size
 
 	else
 		hit->SetPos(m_x, m_y);		//HitBox更新
