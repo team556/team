@@ -64,8 +64,8 @@ void CSceneTest::InitScene()
 	//Objs::InsertObj(help, OBJ_HELP, 10);	//ヘルプオブジェクト登録
 
 	//メッセージ表示オブジェクト作成
-	CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
-	Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
+	//CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
+	//Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド

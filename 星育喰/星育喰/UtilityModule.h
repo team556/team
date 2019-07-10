@@ -2,6 +2,12 @@
 #include "GameL\DrawTexture.h"
 using namespace GameL;
 
+//マクロ
+//#define FONT_MAX (256)			//フォント格納最大数
+//#define FONT_DATA_X (30)		//フォントデータX
+//#define FONT_DATA_Y (22)		//フォントデータY
+//#define FONT_CLIP_SIZE (125.0f)	//フォント切り取りサイズ
+
 //プロトタイプ宣言
 bool UnitVec(float* vx, float* vy);//ベクトルの正規化
 
@@ -16,3 +22,5 @@ RECT_F GetBulletEffec(int* ani, int* ani_time, bool del, int tining);//delで弾丸
 int Rand(int n_min, int n_max);//受け取った数内でランダム数を返す(1,5)=(1～5)
 
 RECT_F GetPodEffec(int*ani, int* ani_time, bool del, int timing);
+
+//int SetFont(wchar_t *str);
