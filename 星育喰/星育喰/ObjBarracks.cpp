@@ -36,6 +36,7 @@ void CObjBarracks::Init()
 	m_introduce_f = false;
 	m_finalcheck_f = false;
 	m_key_lf = false;
+	m_key_rf = false;
 	m_next_time = 0;
 	m_con_alo_f = false;
 	m_alpha = INI_ALPHA;
@@ -78,6 +79,14 @@ void CObjBarracks::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//▼キーフラグ
+	//※右クリックPush状態→右クリック未Push状態になるまで、
+	//再度右クリックする事は出来ない処理。
+	if (m_mou_r == false)	//右クリックOFF
+	{
+		m_key_rf = true;
+	}
 
 	//▼兵舎ウインドウ表示時の処理
 	if (window_start_manage == Barracks)
@@ -126,15 +135,15 @@ void CObjBarracks::Action()
 						{
 							//兵舎のレベルUP処理
 							g_Bar_Level++;
+
+							//レベルアップ音
+							Audio::Start(3);
 						}
 						
 						m_Yes_Button_color = 0.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
-
-						//レベルアップ音
-						Audio::Start(1);
 					}
 				}
 				else
@@ -225,6 +234,11 @@ void CObjBarracks::Action()
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
 
+					//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(true);
+					help->SetAlpha(1.0f);
+
 					//戻るボタン音
 					Audio::Start(2);
 				}
@@ -254,7 +268,6 @@ void CObjBarracks::Action()
 		}
 		else
 		{
-			m_key_rf = true;
 			m_Back_Button_color = INI_COLOR;
 		}
 
@@ -702,7 +715,7 @@ void CObjBarracks::Action()
 	}
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	else if (window_start_manage != Default)
+	else if (window_start_manage != Default || g_help_f == true)
 	{
 		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
@@ -727,6 +740,11 @@ void CObjBarracks::Action()
 
 				//"兵舎ウインドウを開いている状態"フラグを立てる
 				window_start_manage = Barracks;
+
+				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetOperatable(false);
+				help->SetAlpha(0.0f);
 
 				//選択音
 				Audio::Start(1);
@@ -856,6 +874,18 @@ void CObjBarracks::Draw()
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
+			//▼兵舎 Lv文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 508.0f;
+			src.m_bottom = 117.0f;
+
+			dst.m_top = m_mou_y - 45.0f;
+			dst.m_left = m_mou_x - 75.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 15.0f;
+			Draw::Draw(116, &src, &dst, black, 0.0f);
+
 			//▼フォント表示
 			//兵舎レベル
 			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
@@ -976,6 +1006,201 @@ void CObjBarracks::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 		}
 
+		//▼兵舎 Lv文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 508.0f;
+		src.m_bottom = 117.0f;
+
+		dst.m_top = 95.0f;
+		dst.m_left = 125.0f;
+		dst.m_right = 325.0f;
+		dst.m_bottom = 145.0f;
+		Draw::Draw(116, &src, &dst, white, 0.0f);
+
+		//▼兵舎レベルUP文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 805.0f;
+		src.m_bottom = 117.0f;
+
+		dst.m_top = 370.0f;
+		dst.m_left = 60.0f;
+		dst.m_right = 410.0f;
+		dst.m_bottom = 420.0f;
+		Draw::Draw(117, &src, &dst, white, 0.0f);
+
+		//▼住民振り分け文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 742.0f;
+		src.m_bottom = 117.0f;
+
+		dst.m_top = 45.0f;
+		dst.m_left = 620.0f;
+		dst.m_right = 980.0f;
+		dst.m_bottom = 105.0f;
+		Draw::Draw(76, &src, &dst, white, 0.0f);
+
+		//▼LvUP条件　所持必要文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1335.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 440.0f;
+		dst.m_left = 165.0f;
+		dst.m_right = 415.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(66, &src, &dst, blue, 0.0f);
+
+		//▼惑星HP文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 412.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 475.0f;
+		dst.m_left = 165.0f;
+		dst.m_right = 255.0f;
+		dst.m_bottom = 500.0f;
+		Draw::Draw(67, &src, &dst, black, 0.0f);
+
+		//▼LvUP可能!文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 607.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 550.0f;
+		dst.m_left = 245.0f;
+		dst.m_right = 355.0f;
+		dst.m_bottom = 570.0f;
+		Draw::Draw(70, &src, &dst, blue, 0.0f);
+
+		//▼LvUP不可文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 577.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 550.0f;
+		dst.m_left = 245.0f;
+		dst.m_right = 345.0f;
+		dst.m_bottom = 570.0f;
+		Draw::Draw(71, &src, &dst, red, 0.0f);
+
+		//▼レッド文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 336.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 145.0f;
+		dst.m_left = 505.0f;
+		dst.m_right = 670.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(82, &src, &dst, red, 0.0f);
+
+		//▼ブルー文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 260.0f;
+		dst.m_left = 505.0f;
+		dst.m_right = 670.0f;
+		dst.m_bottom = 310.0f;
+		Draw::Draw(83, &src, &dst, blue, 0.0f);
+
+		//▼グリーン文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 472.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 365.0f;
+		dst.m_left = 480.0f;
+		dst.m_right = 680.0f;
+		dst.m_bottom = 415.0f;
+		Draw::Draw(84, &src, &dst, green, 0.0f);
+
+		//▼ホワイト文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 464.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 475.0f;
+		dst.m_left = 480.0f;
+		dst.m_right = 680.0f;
+		dst.m_bottom = 525.0f;
+		Draw::Draw(85, &src, &dst, white, 0.0f);
+
+		//▼人文字画像表示一段目
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 145.0f;
+		dst.m_left = 1090.0f;
+		dst.m_right = 1140.0f;
+		dst.m_bottom = 195.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+
+		//▼人文字画像表示一段目
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 255.0f;
+		dst.m_left = 1090.0f;
+		dst.m_right = 1140.0f;
+		dst.m_bottom = 305.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示一段目
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 365.0f;
+		dst.m_left = 1090.0f;
+		dst.m_right = 1140.0f;
+		dst.m_bottom = 415.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示一段目
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 475.0f;
+		dst.m_left = 1090.0f;
+		dst.m_right = 1140.0f;
+		dst.m_bottom = 525.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼残り　　　人文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 712.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 590.0f;
+		dst.m_left = 770.0f;
+		dst.m_right = 1130.0f;
+		dst.m_bottom = 640.0f;
+		Draw::Draw(78, &src, &dst, black, 0.0f);
+
+
+
 		//▼フォント表示
 		//兵舎レベル
 		Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);
@@ -1022,6 +1247,55 @@ void CObjBarracks::Draw()
 			dst.m_right = 880.0f;
 			dst.m_bottom = 480.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼素材消費してレベルアップしますか？文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 2017.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 250.0f;
+			dst.m_left = 345.0f;
+			dst.m_right = 855.0f;
+			dst.m_bottom = 280.0f;
+			Draw::Draw(72, &src, &dst, black, 0.0f);
+
+			//▼※研究員は失われません文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1304.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 300.0f;
+			dst.m_left = 347.0f;
+			dst.m_right = 707.0f;
+			dst.m_bottom = 330.0f;
+			Draw::Draw(87, &src, &dst, black, 0.0f);
+
+			//▼はい文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 232.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 410.0f;
+			dst.m_left = 410.0f;
+			dst.m_right = 510.0f;
+			dst.m_bottom = 460.0f;
+			Draw::Draw(73, &src, &dst, Yes, 0.0f);
+
+			//▼いいえ文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 410.0f;
+			dst.m_left = 650.0f;
+			dst.m_right = 800.0f;
+			dst.m_bottom = 460.0f;
+			Draw::Draw(74, &src, &dst, No, 0.0f);
+
 
 			//▼フォント表示
 			//最終確認メッセージ

@@ -20,4 +20,8 @@ private:
 	float m_Cloud_move;		//雲の移動用ベクトル
 	float m_white_out_a;	//ホワイトアウト演出画像透過度
 	float m_white_out_a_vec;//ホワイトアウト演出画像透過度ベクトル
+
+	int   m_time;	 //施設レベルアップ音を鳴らす時間管理用
+	bool  m_level_se;//施設レベルアップ音フラグ
+	bool  m_white_se;//ホワイトアウト音フラグ
 };

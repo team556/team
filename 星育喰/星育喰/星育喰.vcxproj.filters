@@ -56,11 +56,11 @@
     <Filter Include="ソース ファイル\対戦用\クリア＆オーバー">
       <UniqueIdentifier>{b66ac50a-e27f-45d4-a63e-b8134fc0364a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\チュートリアル">
-      <UniqueIdentifier>{5966d595-90db-4cf7-8ba7-9609949aab97}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\シーン\クリア">
       <UniqueIdentifier>{92f14c31-8262-4594-9f42-40586fe09e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ヘルプ">
+      <UniqueIdentifier>{5966d595-90db-4cf7-8ba7-9609949aab97}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -191,7 +191,7 @@
       <Filter>ソース ファイル\シーン\クリア</Filter>
     </ClCompile>
     <ClCompile Include="ObjHelp.cpp">
-      <Filter>ソース ファイル\チュートリアル</Filter>
+      <Filter>ソース ファイル\ヘルプ</Filter>
     </ClCompile>
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\シーン\クリア</Filter>
@@ -337,7 +337,7 @@
       <Filter>ソース ファイル\シーン\クリア</Filter>
     </ClInclude>
     <ClInclude Include="ObjHelp.h">
-      <Filter>ソース ファイル\チュートリアル</Filter>
+      <Filter>ソース ファイル\ヘルプ</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\シーン\クリア</Filter>

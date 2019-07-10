@@ -1,6 +1,7 @@
 //使用するヘッダーファイル
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 
@@ -25,6 +26,10 @@ void CObjCloud_Effect::Init()
 	m_Cloud_move = INI_CLOUD_POS;
 	m_white_out_a = 0.0f;
 	m_white_out_a_vec = 0.0f;
+
+	m_time = 0;
+	m_level_se = false;
+	m_white_se = false;
 }
 
 //アクション
@@ -53,6 +58,8 @@ void CObjCloud_Effect::Action()
 	//▼ホワイトアウト演出の処理(育成画面背景変更時に実行される)
 	if (white_out_f == true)
 	{
+		m_time++;//時間加算処理
+
 		if (m_white_out_a <= 1.0)			//1.0で切り替えて、ホワイトアウト演出のalpha調整
 		{
 			m_white_out_a_vec += 0.0005f;	//ベクトルに加算
@@ -64,6 +71,24 @@ void CObjCloud_Effect::Action()
 
 		m_white_out_a += m_white_out_a_vec;	//ベクトルを反映
 
+
+		//ホワイトアウト演出処理開始と同時に1回鳴らす
+		if (m_white_se == false)
+		{
+			//ホワイトアウト音
+			Audio::Start(4);
+
+			m_white_se = true;
+		}
+
+		//ホワイトアウト演出処理開始から2.3秒後、1回鳴らす
+		if (m_level_se == false && m_time >= 60 * 2.3)
+		{
+			//レベルアップ音
+			Audio::Start(3);
+
+			m_level_se = true;
+		}
 
 		//完全にホワイトアウトした時点で実際に施設レベルを1UPさせる
 		if (m_white_out_a >= 1.0f)
@@ -86,6 +111,9 @@ void CObjCloud_Effect::Action()
 			m_white_out_a = 0.0f;
 			m_white_out_a_vec = 0.0f;
 
+			m_time = 0;
+			m_level_se = false;	//レベルアップ音フラグOFF	
+			m_white_se = false;	//ホワイトアウト音フラグOFF
 			white_out_f = false;//ホワイトアウト演出フラグをOFF
 		}
 	}

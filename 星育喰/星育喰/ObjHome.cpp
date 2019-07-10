@@ -64,6 +64,12 @@ void CObjHome::Init()
 //アクション
 void CObjHome::Action()
 {
+	//ヘルプ画面が表示されている時は操作を受け付けないようにする。
+	if (g_help_f == true)
+	{
+		return;
+	}
+
 	//育アイコン、もしくは喰アイコンクリック時実行
 	if (m_Tra_flag == true || m_Eat_flag == true)
 	{
@@ -197,6 +203,11 @@ void CObjHome::Action()
 
 				m_Tra_flag = true;
 
+				//ObjHelpにシーン移行演出を伝える
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetMig_stageF();
+				help->SetTra_EatF(true);
+
 				//選択音
 				Audio::Start(1);
 			}
@@ -225,6 +236,11 @@ void CObjHome::Action()
 				m_key_f = false;
 
 				m_Eat_flag = true;
+
+				//ObjHelpにシーン移行演出を伝える
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetMig_stageF();
+				help->SetTra_EatF(false);
 
 				//選択音
 				Audio::Start(1);
@@ -424,8 +440,8 @@ void CObjHome::Draw()
 	//▼育アイコン表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 128.0f;
+	src.m_right = 200.0f;
+	src.m_bottom = 200.0f;
 
 	dst.m_top = 480.0f + m_Tra_move;
 	dst.m_left = 20.0f - m_Tra_move;
@@ -436,8 +452,8 @@ void CObjHome::Draw()
 	//▼喰アイコン表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 128.0f;
-	src.m_bottom = 128.0f;
+	src.m_right = 200.0f;
+	src.m_bottom = 200.0f;
 
 	dst.m_top = 480.0f + m_Eat_move;
 	dst.m_left = 980.0f + m_Eat_move;
@@ -466,43 +482,43 @@ void CObjHome::Draw()
 		/*仮の文字画像を置いています	変更などは加えやすいようにしておきます*/
 		for (int i = 0; i < 3; i++)
 		{
-			//惑星HP文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 412.0f;
-			src.m_bottom = 112.0f;
+			////惑星HP文字画像表示
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 412.0f;
+			//src.m_bottom = 112.0f;
 
-			dst.m_top = m_mou_y - 70.0f;
-			dst.m_left = m_mou_x + 35.0f;
-			dst.m_right = m_mou_x + 135.0f;
-			dst.m_bottom = m_mou_y  -45.0f;
-			Draw::Draw(53, &src, &dst, d, 0.0f);
+			//dst.m_top = m_mou_y - 70.0f;
+			//dst.m_left = m_mou_x + 35.0f;
+			//dst.m_right = m_mou_x + 135.0f;
+			//dst.m_bottom = m_mou_y  -45.0f;
+			//Draw::Draw(53, &src, &dst, d, 0.0f);
 
-			//装備中のスペシャル技文字画像
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1134.0f;
-			src.m_bottom = 112.0f;
+			////装備中のスペシャル技文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 1134.0f;
+			//src.m_bottom = 112.0f;
 
-			dst.m_top = m_mou_y - 35.0f;
-			dst.m_left = m_mou_x + 30.0f;
-			dst.m_right = m_mou_x + 255.0f;
-			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(54, &src, &dst, d, 0.0f);
+			//dst.m_top = m_mou_y - 35.0f;
+			//dst.m_left = m_mou_x + 30.0f;
+			//dst.m_right = m_mou_x + 255.0f;
+			//dst.m_bottom = m_mou_y - 10.0f;
+			//Draw::Draw(54, &src, &dst, d, 0.0f);
 
-			//未装備文字画像
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 352.0f;
-			src.m_bottom = 112.0f;
+			////未装備文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 352.0f;
+			//src.m_bottom = 112.0f;
 
-			dst.m_top = m_mou_y - 0.0f;
-			dst.m_left = m_mou_x + 30.0f;
-			dst.m_right = m_mou_x + 130.0f;
-			dst.m_bottom = m_mou_y +25.0f;
-			Draw::Draw(55, &src, &dst, d, 0.0f);
+			//dst.m_top = m_mou_y - 0.0f;
+			//dst.m_left = m_mou_x + 30.0f;
+			//dst.m_right = m_mou_x + 130.0f;
+			//dst.m_bottom = m_mou_y +25.0f;
+			//Draw::Draw(55, &src, &dst, d, 0.0f);
 
-			//Font::StrDraw(status_font[i], m_mou_x + 33.0f, m_mou_y + - 73.0f + i * 40.0f, 25.0f, status_font_color[i]);
+			Font::StrDraw(status_font[i], m_mou_x + 33.0f, m_mou_y + - 73.0f + i * 40.0f, 25.0f, status_font_color[i]);
 		}
 	}
 

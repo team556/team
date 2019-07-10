@@ -19,6 +19,7 @@ using namespace GameL;
 #define INI_BUFF (1.0f)						//上記2つのバフ倍率初期値
 #define INI_WIDTH (200.0f)					//[スペシャル技:Explosion / Fracture_Ray]エフェクト画像の初期幅
 #define INI_ALPHA (1.0f)					//スペシャル技エフェクト画像の初期透過度
+#define INI_COLOR (0.9f) //スペシャルボタン初期カラー明度(ボタン未選択中のカラー)
 
 //コンストラクタ
 CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
@@ -34,6 +35,8 @@ CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
 void CObjSpecialButton::Init()
 {
 	m_a = 1.0f;
+
+	m_button_color = INI_COLOR;
 
 	m_mou_x = 0.0f;	
 	m_mou_y = 0.0f;
@@ -105,6 +108,18 @@ void CObjSpecialButton::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//マウスでボタン選択中、カラー明度変更し、選択出来ているか分かり易くする処理
+	//※スペシャル技が使用済の場合は実行されない。
+	if (m_x <= m_mou_x && m_mou_x <= (m_x + m_w) && m_y <= m_mou_y && m_mou_y <= (m_y + m_h) && //選択範囲
+	   (m_is_used_special[PLAYER] == false))//スペシャル技が未使用かチェック
+	{
+		m_button_color = 1.0f;
+	}
+	else if (m_is_used_special[PLAYER] == false)//スペシャル技が未使用かチェック
+	{
+		m_button_color = INI_COLOR;
+	}
+
 	//▼プレイヤー惑星スペシャル技処理(Sキー)
 	if ((Input::GetVKey('S')) &&						//Sキー
 		(g_Special_equipment != 0) &&					//スペシャル技装備してるかチェック
@@ -165,8 +180,11 @@ void CObjSpecialButton::Action()
 void CObjSpecialButton::Draw()
 {
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float button[4] = { 1.0f,1.0f,1.0f,m_a };		//スペシャル技ボタン用
+	float button[4] = { m_button_color,m_button_color,m_button_color,m_a };		//スペシャル技ボタン用
 	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };	//画面全体やや暗転画像用
+	float b[4] = { 0.0f,0.0f,1.0f,1.0f };			//青色用
+	float r[4] = { 1.0f,0.0f,0.0f,1.0f };			//赤色用
+	float y[4] = { 1.0f,1.0f,0.0f,1.0f };			//黄色用
 
 	//スペシャル技発動演出フォント用
 	float staging_font[3][4] =
@@ -232,12 +250,187 @@ void CObjSpecialButton::Draw()
 		Draw::Draw(20, &src, &dst, blackout, 0.0f);
 
 		//▼スペシャル技発動演出フォント表示
-		for (int i = 0; i < 2; i++)
-		{
-			Font::StrDraw(m_staging_message[i], 280.0f, 150.0f + i * 150.0f, 80.0f, staging_font[i]);
+		//for (int i = 0; i < 2; i++)
+		//{
+		//	Font::StrDraw(m_staging_message[i], 280.0f, 150.0f + i * 150.0f, 80.0f, staging_font[i]);
+		//}
+
+
+		//▼プレイヤー表示
+		if (m_pla_type == 0) {
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 592.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 150.0f;
+			dst.m_left = 375.0f;
+			dst.m_right = 825.0f;
+			dst.m_bottom = 230.0f;
+			Draw::Draw(43, &src, &dst, b, 0.0f);
+
+			//▼スペシャル技(プレイヤー)表示
+			//エクスプロージョン
+			if (g_Special_equipment == 1) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 1072.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 240.0f;
+				dst.m_right = 960.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(45, &src, &dst, y, 0.0f);
+			}
+			//フラクチャーレイ
+			else if (g_Special_equipment == 2) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 952.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 280.0f;
+				dst.m_right = 920.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(46, &src, &dst, y, 0.0f);
+			}
+			//イモータリティ
+			else if (g_Special_equipment == 3) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 817.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 320.0f;
+				dst.m_right = 880.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(47, &src, &dst, y, 0.0f);
+			}
+			//オーバーワーク
+			else if (g_Special_equipment == 4) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 832.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 320.0f;
+				dst.m_right = 880.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(48, &src, &dst, y, 0.0f);
+			}
+			//リミットブレイク
+			else if (g_Special_equipment == 5) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 952.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 280.0f;
+				dst.m_right = 920.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(49, &src, &dst, y, 0.0f);
+			}
 		}
 
-		Font::StrDraw(L"発動！", 490.0f, 450.0f, 80.0f, staging_font[2]);
+		//▼エネミー
+		else if(m_pla_type == 1){
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 472.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 150.0f;
+			dst.m_left = 425.0f;
+			dst.m_right = 775.0f;
+			dst.m_bottom = 230.0f;
+			Draw::Draw(44, &src, &dst, r, 0.0f);
+
+			//▼スペシャル技(エネミー)表示
+			//エクスプロージョン
+			if (m_enemy_special_equipment == 1) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 1072.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 240.0f;
+				dst.m_right = 960.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(45, &src, &dst, y, 0.0f);
+			}
+			//フラクチャーレイ
+			else if (m_enemy_special_equipment == 2) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 952.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 280.0f;
+				dst.m_right = 920.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(46, &src, &dst, y, 0.0f);
+			}
+			//イモータリティ
+			else if (m_enemy_special_equipment == 3) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 817.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 320.0f;
+				dst.m_right = 880.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(47, &src, &dst, y, 0.0f);
+			}
+			//オーバーワーク
+			else if (m_enemy_special_equipment == 4) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 832.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 320.0f;
+				dst.m_right = 880.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(48, &src, &dst, y, 0.0f);
+			}
+			//リミットブレイク
+			else if (m_enemy_special_equipment == 5) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 952.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 280.0f;
+				dst.m_right = 920.0f;
+				dst.m_bottom = 380.0f;
+				Draw::Draw(49, &src, &dst, y, 0.0f);
+			}
+		}
+
+		//▼発動！表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 307.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 450.0f;
+		dst.m_left = 490.0f;
+		dst.m_right = 730.0f;
+		dst.m_bottom = 530.0f;
+		Draw::Draw(50, &src, &dst, staging_font[2], 0.0f);
+
+		//Font::StrDraw(L"発動！", 490.0f, 450.0f, 80.0f, staging_font[2]);
 	}
 }
 
@@ -253,11 +446,13 @@ void CObjSpecialButton::Special_staging_message(int Planet_id, int Special_equip
 	{
 		swprintf_s(m_staging_message[0], L"   プレイヤー"); //文字配列に文字データを入れる
 		m_staging_font_color = 0.0f;	//フォントのカラーを青色に設定する
+		m_pla_type = 0;
 	}
 	else
 	{
 		swprintf_s(m_staging_message[0], L"　  エネミー"); //文字配列に文字データを入れる
 		m_staging_font_color = 1.0f;	//フォントのカラーを赤色に設定する
+		m_pla_type = 1;
 	}
 
 	if (Special_equip == 1)

@@ -286,16 +286,89 @@ void CObjFight::Draw()
 	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
-
 	//▼戦闘時間表示
-	int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
-	if (s >= 60) {						//60秒以上の場合
-		m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
-	}													//nはその減らす分。
+	if (battle_end == false) {
+		int s = (m_cnt / 60), m = 0;	//ミニッツ,セコンドを宣言＆初期化
+		if (s >= 60) {						//60秒以上の場合
+			m += (s / 60); int n = (s / 60); s -= (n * 60);	//分に秒÷60を足して、秒はその分減らす。
+		}													//nはその減らす分。
 
-	wchar_t str[256];
-	swprintf_s(str, L"%02d :%02d", m, s);		//2桁、0詰め表示
-	Font::StrDraw(str,500 ,60 ,50 , c);
+		//▼残り時間表示(十の位の分数)
+		//している動作は残り分数の10の位をとるために
+		//分数/10をして小数点以下切り捨てをして
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + (floor(m / 10) * 125);	//実質動くことはないが10分以上に設定したときも
+		src.m_right = 1375.0f + (floor(m / 10) * 125);	//動作するようになっている
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 525.0f;
+		dst.m_right = 550.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
+
+		//▼残り時間表示(一の位の分数)
+		//している動作は残り分数の1の位をとるために
+		//分数/10の余りを出して
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + ((m % 10) * 125);
+		src.m_right = 1375.0f + ((m % 10) * 125);
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 575.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
+
+		//▼残り時間表示(コロン)
+		src.m_top = 1250.0f;
+		src.m_left = 250.0f;
+		src.m_right = 375.0f;
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 575.0f;
+		dst.m_right = 600.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
+
+		//▼残り時間表示(十の位の秒数)
+		//している動作は残り秒数の10の位をとるために
+		//秒数/10をして小数点以下切り捨てをして
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + (floor(s / 10) * 125);
+		src.m_right = 1375.0f + (floor(s / 10) * 125);
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 600.0f;
+		dst.m_right = 625.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
+
+		//▼残り時間表示(一の位の秒数)
+		//している動作は残り秒数の1の位をとるために
+		//秒数/10の余りを出して
+		//その値によって切り取り位置を変えている
+		src.m_top = 1250.0f;
+		src.m_left = 1250.0f + ((s % 10) * 125);
+		src.m_right = 1375.0f + ((s % 10) * 125);
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 625.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 100.0f;
+		Draw::Draw(41, &src, &dst, d, 0.0f);
+	}
+
+	//wchar_t str[256];
+	//swprintf_s(str, L"%02d :%02d", m, s);		//2桁、0詰め表示
+	//Font::StrDraw(str,500 ,60 ,50 , c);
 
 
 	//▼攻撃用ライン描画処理
@@ -354,6 +427,61 @@ void CObjFight::Draw()
 	dst.m_bottom=480.0f;
 	Draw::Draw(2, &src, &dst, d2, 0.0f);
 
+	if (battle_end == false) {
+		//ポッドやミサイルのキーボード選択用画像
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+	//ミサイルキー描画
+	dst.m_top = 647.0f;
+	dst.m_left = 230.0f;
+	dst.m_right = 262.0f;
+	dst.m_bottom = 679.0f;
+	Draw::Draw(35, &src, &dst, d, 0.0f);
+
+		//赤ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 531.0f;
+		dst.m_right = 563.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(36, &src, &dst, d, 0.0f);
+
+		//青ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 681.0f;
+		dst.m_right = 713.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(37, &src, &dst, d, 0.0f);
+
+		//緑ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 838.0f;
+		dst.m_right = 870.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(38, &src, &dst, d, 0.0f);
+
+		//灰ポッドキー描画
+		dst.m_top = 647.0f;
+		dst.m_left = 979.0f;
+		dst.m_right = 1011.0f;
+		dst.m_bottom = 679.0f;
+		Draw::Draw(39, &src, &dst, d, 0.0f);
+
+		//スペシャル技を装備しているときはアイコンを出す
+		if (g_Special_equipment != 0)
+		{
+			dst.m_top = 64.0f;
+			dst.m_left = 979.0f;
+			dst.m_right = 1011.0f;
+			dst.m_bottom = 92.0f;
+			Draw::Draw(40, &src, &dst, d, 0.0f);
+		}
+	}
+
+
+
 	//▼戦闘開始カウント
 	//戦闘開始カウントの値に合わせて、
 	//３→２→１と徐々にカウントダウンしていき、
@@ -364,25 +492,78 @@ void CObjFight::Draw()
 	
 	if (battle_start == true)
 	{
-		Font::StrDraw(L"スタート！", 420, 250, 80, start_font);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 547.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 225.0f;
+		dst.m_left = 400.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 325.0f;
+		Draw::Draw(42, &src, &dst, start_font, 0.0f);
 	}
 	else if (m_start_count <= 60 * 1)
 	{
-		Font::StrDraw(L"１", 495, 260, 160, start_font);
+		src.m_top = 1254.0f;
+		src.m_left = 1379.0f;
+		src.m_right = 1496.0f;
+		src.m_bottom = 1371.0f;
+
+		dst.m_top = 250.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(41, &src, &dst, start_font, 0.0f);
 	}
 	else if (m_start_count <= 60 * 2)
 	{
-		Font::StrDraw(L"２", 495, 260, 160, start_font);
+		src.m_top = 1254.0f;
+		src.m_left = 1504.0f;
+		src.m_right = 1621.0f;
+		src.m_bottom = 1371.0f;
+
+		dst.m_top = 250.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(41, &src, &dst, start_font, 0.0f);
 	}
 	else if (m_start_count_f == true)
 	{
-		Font::StrDraw(L"３", 495, 260, 160, start_font);
+		src.m_top = 1254.0f;
+		src.m_left = 1629.0f;
+		src.m_right = 1746.0f;
+		src.m_bottom = 1371.0f;
+
+		dst.m_top = 250.0f;
+		dst.m_left = 550.0f;
+		dst.m_right = 650.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(41, &src, &dst, start_font, 0.0f);
 	}
 
+	//if (battle_start == true)
+	//{
+	//	Font::StrDraw(L"スタート！", 420, 250, 80, start_font);
+	//}
+	//else if (m_start_count <= 60 * 1)
+	//{
+	//	Font::StrDraw(L"１", 495, 260, 160, start_font);
+	//}
+	//else if (m_start_count <= 60 * 2)
+	//{
+	//	Font::StrDraw(L"２", 495, 260, 160, start_font);
+	//}
+	//else if (m_start_count_f == true)
+	//{
+	//	Font::StrDraw(L"３", 495, 260, 160, start_font);
+	//}
 
 
-	////デバッグ用仮マウス位置表示
-	//wchar_t test_mou[256];
-	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	//Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+
+	//デバッグ用仮マウス位置表示
+	wchar_t test_mou[256];
+	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }

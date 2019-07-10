@@ -14,10 +14,10 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 
-	bool GetHelpF() { return m_help_f; }//ヘルプ画面表示状態取得用
-	//void SetHelpF() { m_help_f = true; }//ヘルプ画面表示状態設定用
-	
-	//シーン移行した事をこのヘルプオブジェクトに伝える為のセッターいるかも。
+	void SetMig_stageF() { m_mig_staging_f = true; }//シーン移行演出フラグON用
+	void SetTra_EatF(bool staging) { m_Tra_Eat_f = staging; }//育成or戦闘判断フラグ設定用
+	void SetOperatable(bool operatable) { m_is_operatable = operatable; }//ヘルプボタン操作可否設定用
+	void SetAlpha(float alpha) { m_Help_Button_alpha = alpha; }//ヘルプボタン透過度設定用
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -25,28 +25,25 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 	bool  m_key_f;		//マウスの連打制御(キーフラグ)
 
+	float m_px;			//ヘルプボタンの座標X
+	float m_py;			//ヘルプボタンの座標Y
+	float m_vec;		//ヘルプボタンの移動ベクトル
+
 	float m_Help_Button_color;	//ヘルプボタンのカラー明度
 	float m_Back_Button_color;	//戻るボタンのカラー明度
+	float m_Page_Back_Button_color;	//ページ戻すボタンのカラー明度
+	float m_Page_Next_Button_color;	//ページ進めるボタンのカラー明度
 
-	bool  m_help_f;		//ヘルプ画面表示フラグ(true:ヘルプ画面表示　false:ヘルプ画面非表示)
+	float m_Help_Button_alpha;	//ヘルプボタンの透過度
+
+	bool  m_mig_staging_f;	//シーン移行演出フラグ(true:移行演出中　false:移行演出前)
+	bool  m_Tra_Eat_f;		//育成or戦闘判断フラグ(true:育成画面移行　false:戦闘準備画面移行)[ホーム画面シーン移行演出でのみ使用]
+	bool  m_is_operatable;	//ヘルプボタン操作可能か確認フラグ(true:操作可能　false;操作不可)[戦闘準備画面ヘルプボタン表示処理でのみ使用]
 
 	int m_page_num;		//現在表示中のヘルプ画像番号(ページ)
 	int m_page_max;		//現在シーンで表示するヘルプ画像(ページ)の最大数
-	int m_Img_num;		//画像の登録番号(シーン毎にヘルプ画像登録番号が違うためm_Scene_numを考慮して値を決定)[これ使わなくとも出来るように全画像番号(ヘルプで使うの)統一する？]
+	int m_help_reg_num;	//ヘルプボタン、ヘルプ画像の登録番号[この値にはヘルプボタンの登録番号を代入し、ヘルプ画像は枚数分ヘルプボタンの値の後に続くように順番通りに登録する](シーン毎にヘルプ画像登録番号が違うためm_Scene_numを考慮して値を決定)
+	int m_Back_reg_num;	//戻るボタン画像の登録番号(シーン毎に戻るボタン画像登録番号が違うためm_Scene_numを考慮して値を決定)
 
 	int m_Scene_num;	//現在表示中のシーン番号(1:ホーム ,2:育成 ,3:準備)
-
-	//static int  window_start_manage;//施設ウインドウの起動管理フラグ
-
-	////▼各施設ウインドウ(戻るボタン含む)に列挙型で識別番号を割り振る
-	//enum window_id
-	//{
-	//	Default,	//デフォルト。どのウインドウも開いていない状態。
-	//	BackButton,	//戻るボタンを押して、ホーム画面に戻ろうとしている状態。
-	//	Barracks,	//兵舎ウインドウを開いている状態。
-	//	Institute,	//研究所ウインドウを開いている状態。
-	//	Warehouse,	//倉庫ウィンドウを開いている状態。
-	//	Help,		//ヘルプウィンドウを開いている状態。
-	//};
-
 };

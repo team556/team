@@ -32,6 +32,8 @@ private:
 	float m_w;		//スペシャル技ボタンのwidth(幅)
 	float m_a;		//スペシャル技ボタンのalpha(透過度)
 
+	float m_button_color;//スペシャルボタンのカラー明度
+
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)
@@ -39,6 +41,8 @@ private:
 
 	wchar_t m_staging_message[2][15];	//スペシャル技発動演出フォント用([フォント行数][文字データ格納可能数])
 	float m_staging_font_color;			//スペシャル技発動演出フォントカラー変更用
+
+	int m_pla_type;		//惑星がプレイヤーか否かの判別用
 
 	//▼配列数字の意味は以下の通り
 	//0:プレイヤー惑星　1:敵惑星

@@ -36,6 +36,21 @@ void CObjMessage::Init()
 	m_run_switch = true;
 
 
+	//テスト
+	wchar_t font_data[22][30] =
+	{
+		{ L'あ',L'い',L'う',L'え',L'お',L'ア',L'イ',L'ウ',L'エ',L'オ' },
+		{ L'か',L'き',L'く',L'け',L'こ',L'カ',L'キ',L'ク',L'ケ',L'コ',L'が',L'ぎ',L'ぐ',L'げ',L'ご',L'ガ',L'ギ',L'グ',L'ゲ',L'ゴ' },
+		{ L'さ',L'し',L'す',L'せ',L'そ',L'サ',L'シ',L'ス',L'セ',L'ソ',L'ざ',L'じ',L'ず',L'ぜ',L'ぞ',L'ザ',L'ジ',L'ズ',L'ゼ',L'ゾ' },
+		{ L'た',L'ち',L'つ',L'て',L'と',L'タ',L'チ',L'ツ',L'テ',L'ト',L'だ',L'ぢ',L'づ',L'で',L'ど',L'ダ',L'ヂ',L'ヅ',L'デ',L'ド' },
+
+		//仮でここまでにしてテストしたい。
+	};
+
+	//フォントデータをコピー
+	memcpy(m_font_data, font_data, sizeof(wchar_t)*(22 * 30));
+
+
 	//-------------------------------------------------------------------------------
 	//▼メッセージ文設定
 	//以下のように「シーンID(if文)とメッセージ文(swprintf_s)」の２つで１セットとして設定する。
@@ -177,6 +192,22 @@ void CObjMessage::Action()
 		//以下のようにif文で文字を登録し、適切な切り取り位置を設定すべし。
 		//ちなみに、余裕があればこの部分は関数化する予定。
 		//※描画速度高速化フラグON時はm_time関係なしにこの処理に入る。
+
+
+		//テスト
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				if (m_font[m_progress][m_font_count] == m_font_data[i][j])
+				{
+					m_font_column[m_font_count] = j;
+					m_font_line[m_font_count] = i;
+				}
+			}
+		}
+
+
 		if (m_font[m_progress][m_font_count] == L'あ')
 		{
 			m_font_column[m_font_count] = 3;
