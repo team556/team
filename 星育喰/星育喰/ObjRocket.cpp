@@ -291,18 +291,26 @@ void CObjRocket::Action()
 	m_vx = 0.0f;//ベクトル初期化
 	m_vy = 0.0f;
 
-	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-
-	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
-	if(m_type == 0)
-		if(ButtonU == 5)//ロケットのみ通常で更新
+	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);	//戦闘画面の情報
+	CHitBox* hit = Hits::GetHitBox(this);					//HitBox情報取得
+	//ポッド同士の戦闘時にHitBox位置とサイズを変更する
+	if (m_type == 0)
+		if (ButtonU == 5) {//ロケットのみ通常で更新
 			hit->SetPos(m_x, m_y);		//HitBox更新
+		}
 		else
+		{
 			hit->SetPos(m_x, m_y);		//HitBox更新
-	//0 m_x - m_size * 2, m_y, m_size * 3, m_size
-
+			if (m_fight == true)		//戦闘時変更
+				hit->SetPos(m_x - m_size * 2, m_y, m_size * 3, m_size);	
+		}
 	else
-		hit->SetPos(m_x, m_y);		//HitBox更新
+	{
+		hit->SetPos(m_x, m_y);			//HitBox更新
+		if(m_fight == true)				//戦闘時変更
+			hit->SetPos(m_x, m_y, m_size * 3, m_size);
+	}
+
 
 	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
 	{
