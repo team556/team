@@ -1208,6 +1208,7 @@ void CObjBarracks::Draw()
 		//残り住民数
 		Font::StrDraw(human_remain, 780.0f, 590.0f, 50.0f, black);
 
+
 		//各タイプ(パワー、スピード等)の住民数
 		for (int i = 0; i < 4; i++)
 		{

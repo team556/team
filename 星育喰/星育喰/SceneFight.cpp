@@ -185,8 +185,44 @@ void CSceneFight::InitScene()
 	//クリックでタイトルに戻るを５１番に登録
 	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
-	//クリックでタイトルに戻るを５１番に登録
-	Draw::LoadImage(L"GAME_OVER.png", 52, TEX_SIZE_512);
+	//クリックでホーム画面を52番に登録
+	Draw::LoadImage(L"クリックでホーム画面.png", 52, TEX_SIZE_512);
+
+	//捕食成功！を53番に登録
+	Draw::LoadImage(L"捕食成功！.png", 53, TEX_SIZE_512);
+
+	//スペシャル技を54番に登録
+	Draw::LoadImage(L"スペシャル技.png", 54, TEX_SIZE_512);
+
+	//惑星HPを55番に登録
+	Draw::LoadImage(L"惑星HP.png", 55, TEX_SIZE_512);
+
+	//住民を56番に登録
+	Draw::LoadImage(L"住民.png", 56, TEX_SIZE_512);
+
+	//作業を57番に登録
+	Draw::LoadImage(L"資材.png", 57, TEX_SIZE_512);
+
+	//クリックでタイトルに戻るを５8番に登録
+	Draw::LoadImage(L"GAME_OVER.png", 58, TEX_SIZE_512);
+
+	//木材を59番に登録
+	Draw::LoadImage(L"木材文字.png", 59, TEX_SIZE_512);
+
+	//鉄を60番に登録
+	Draw::LoadImage(L"鉄文字.png", 60, TEX_SIZE_512);
+
+	//銀を61番に登録
+	Draw::LoadImage(L"銀文字.png", 61, TEX_SIZE_512);
+
+	//プラスチックを62番に登録
+	Draw::LoadImage(L"プラスチック文字.png", 62, TEX_SIZE_512);
+
+	//アルミを63番に登録
+	Draw::LoadImage(L"アルミ.png", 63, TEX_SIZE_512);
+
+	//ガスを64番に登録
+	Draw::LoadImage(L"ガス文字.png", 64, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);

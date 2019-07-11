@@ -445,6 +445,12 @@ void CSceneTraining::InitScene()
 	//Œ¤‹†ŠZlUP•¶š‰æ‘œ‚ğ“Ç‚İ‚İ119”Ô‚É“o˜^
 	Draw::LoadImage(L"Œ¤ã01.png", 119, TEX_SIZE_512);
 
+	//••¶š‰æ‘œ‚ğ“Ç‚İ‚İ120”Ô‚É“o˜^
+	Draw::LoadImage(L"••¶šW.png", 120, TEX_SIZE_512);
+
+	//”’•¶š‰æ‘œ‚ğ“Ç‚İ‚İ121”Ô‚É“o˜^
+	Draw::LoadImage(L"”’•¶šW.png", 121, TEX_SIZE_512);
+
 
 	//‰¹Šy“Ç‚İ‚İ
 	Audio::LoadAudio(0, L"‚«‚Á‚Æ‚¢‚¢“ú.wav", BACK_MUSIC);

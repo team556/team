@@ -41,6 +41,8 @@ private:
 	int		m_mat_num[2];	//獲得資材数
 	int		m_skill;		//獲得スペシャル技
 
+	int m_c_p;	//ゲームクリア画面の住民人数の位置調整用変数
+
 	//int m_cnt;		//カウント
 	//int m_cnt_max;	//カウントマックス
 
