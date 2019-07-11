@@ -210,19 +210,19 @@ void CObjRocket::Init()
 
 	if (m_type == 0)
 	{
-		//プレイヤーの火力を装備レベルによって変える(ポッドレベル * 10)
+		//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 		switch (ButtonUP) {
 		case 1:
-			m_Enemy_damage = g_Pow_equip_Level * 10;
+			m_Enemy_damage += g_Pow_equip_Level;
 			break;
 		case 2:
-			m_Enemy_damage = g_Def_equip_Level * 10;
+			m_Enemy_damage += g_Def_equip_Level;
 			break;
 		case 3:
-			m_Enemy_damage = g_Spe_equip_Level * 10;
+			m_Enemy_damage += g_Spe_equip_Level;
 			break;
 		case 4:
-			m_Enemy_damage = g_Bal_equip_Level * 10;
+			m_Enemy_damage += g_Bal_equip_Level;
 			break;
 		case 5:					//ミサイルの時は火力3固定
 			m_Enemy_damage = 3;
@@ -230,7 +230,7 @@ void CObjRocket::Init()
 		}
 		
 		if (ButtonU != 5)						//ミサイルは火力固定のため省く
-			m_Enemy_damage += (g_Bar_Level - 1) * 5;	//決まった火力+兵舎のLv*5する
+			m_Enemy_damage += (g_Bar_Level - 1);	//決まった火力+兵舎Lv
 
 	}
 

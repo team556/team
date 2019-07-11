@@ -101,6 +101,8 @@ void CObjRktHit::Action()
 		if (hit->CheckElementHit(ELEMENT_RED) == true)
 		{
 			m_atk_f = true;
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
 
 		}
 	}
@@ -109,6 +111,8 @@ void CObjRktHit::Action()
 		if (hit->CheckElementHit(ELEMENT_BLUE) == true)
 		{
 			m_atk_f = true;
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
 		}
 	}
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBoxXV
