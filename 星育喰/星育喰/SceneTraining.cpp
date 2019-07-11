@@ -445,6 +445,12 @@ void CSceneTraining::InitScene()
 	//研究所住人UP文字画像を読み込み119番に登録
 	Draw::LoadImage(L"研上01.png", 119, TEX_SIZE_512);
 
+	//黒文字画像を読み込み120番に登録
+	Draw::LoadImage(L"黒文字集.png", 120, TEX_SIZE_512);
+
+	//白文字画像を読み込み121番に登録
+	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
@@ -464,8 +470,8 @@ void CSceneTraining::InitScene()
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((0.0 - v));
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
