@@ -35,8 +35,8 @@ private:
 	int ButtonUE;		//エネミーが撃ったポッドの種類
 	int ButtonUP;		//プレイヤーが撃ったポッドの種類
 
-	int m_atk_cnt;
-	int m_atk_cnt_max;
+	int m_atk_cnt;		//ダメージレートのカウント用
+	int m_atk_cnt_max;	//ダメージレートのカウント最大値(1/3秒)
 
 	int m_Enemy_Pod_Level;	//敵のポッドレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
@@ -58,6 +58,8 @@ private:
 	float m_a;			//alpha(透明度)
 	int m_bom;			//爆発エフェクトのランダム(0～3)
 	bool m_fight;		//ポッド同士の衝突中フラグ(交戦時)
+	int m_stop_cnt;		//止めるまでのカウント用
+	bool m_stop_f;		//座標更新を止めるフラグ
 
 	int Enemy_Line_pattern_x;	////敵攻撃パターンの横軸読み込む用
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用

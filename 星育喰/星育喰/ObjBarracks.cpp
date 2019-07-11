@@ -1234,6 +1234,7 @@ void CObjBarracks::Draw()
 		//残り住民数
 		Font::StrDraw(human_remain, 780.0f, 590.0f, 50.0f, black);
 
+
 		//各タイプ(パワー、スピード等)の住民数
 		for (int i = 0; i < 4; i++)
 		{
@@ -1241,18 +1242,6 @@ void CObjBarracks::Draw()
 		}
 
 		//その他フォント
-		Font::StrDraw(L"兵舎レベルＵＰ", 60.0f, 370.0f, 50.0f, white);
-
-		Font::StrDraw(L"住民振り分け", 620.0f, 45.0f, 60.0f, white);
-
-		Font::StrDraw(L"パワー", 505.0f, 145.0f, 55.0f, red);
-
-		Font::StrDraw(L"ディフェンス", 450.0f, 260.0f, 40.0f, blue);
-
-		Font::StrDraw(L"スピード", 480.0f, 365.0f, 50.0f, green);
-
-		Font::StrDraw(L"バランス", 480.0f, 475.0f, 50.0f, white);
-
 		Facility_message(g_Bar_Level);//兵舎の必要素材&サイズメッセージ描画関数呼び出す
 
 

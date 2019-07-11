@@ -63,18 +63,18 @@ void CObjRocket::Init()
 	m_get_cnt = obj->GetCount();		//カウントを取得
 	m_mov_spd = 1.0f / pla->GetX();
 
-	m_size = 50.0f;//サイズ
+	m_size = 50.0f;	//サイズ
 	
 	m_atk_cnt = 0;
 	m_atk_cnt_max = 20;//(1/3秒)
 
 	m_Enemy_Pod_Level = g_Stage_progress;	//現状、現在のステージ進行度に合わせて敵のポッドレベルを設定している
 
-	m_vx = 0.0f;//ベクトル
+	m_vx = 0.0f;	//ベクトル
 	m_vy = 0.0f;
 	m_mov = 0;
 	
-	m_r = 0.0f;//角度
+	m_r = 0.0f;		//角度
 
 	if (m_type == 0)
 		ButtonUP = ButtonU;
@@ -173,6 +173,8 @@ void CObjRocket::Init()
 	m_hp_cnt = 0;		//無敵タイム
 	m_hp_f = false;		//無敵フラグ
 	m_fight = false;	//衝突中フラグ
+	m_stop_f = false;	//止めるフラグ
+	m_stop_cnt = 0;		//止めるまでのカウント
 	m_bomcount = 0;		//爆発カウント
 
 	////ミサイルの火力を決めるための準備
@@ -210,19 +212,19 @@ void CObjRocket::Init()
 
 	if (m_type == 0)
 	{
-		//プレイヤーの火力を装備レベルによって変える(ポッドレベル * 10)
+		//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 		switch (ButtonUP) {
 		case 1:
-			m_Enemy_damage = g_Pow_equip_Level * 10;
+			m_Enemy_damage += g_Pow_equip_Level;
 			break;
 		case 2:
-			m_Enemy_damage = g_Def_equip_Level * 10;
+			m_Enemy_damage += g_Def_equip_Level;
 			break;
 		case 3:
-			m_Enemy_damage = g_Spe_equip_Level * 10;
+			m_Enemy_damage += g_Spe_equip_Level;
 			break;
 		case 4:
-			m_Enemy_damage = g_Bal_equip_Level * 10;
+			m_Enemy_damage += g_Bal_equip_Level;
 			break;
 		case 5:					//ミサイルの時は火力3固定
 			m_Enemy_damage = 3;
@@ -230,7 +232,7 @@ void CObjRocket::Init()
 		}
 		
 		if (ButtonU != 5)						//ミサイルは火力固定のため省く
-			m_Enemy_damage += (g_Bar_Level - 1) * 5;	//決まった火力+兵舎のLv*5する
+			m_Enemy_damage += (g_Bar_Level - 1);	//決まった火力+兵舎Lv
 
 	}
 
@@ -275,8 +277,11 @@ void CObjRocket::Init()
 				break;
 			}
 	}
-	CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);//ヒットボックス用Obj作成
-	Objs::InsertObj(RH, OBJ_RKTHIT, 15);		//オブジェクト登録
+	
+	if (ButtonU != 5) {
+		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+	}
 }
 
 //アクション
@@ -293,32 +298,25 @@ void CObjRocket::Action()
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);	//戦闘画面の情報
 	CHitBox* hit = Hits::GetHitBox(this);					//HitBox情報取得
+
 	//ポッド同士の戦闘時にHitBox位置とサイズを変更する
 	if (m_type == 0)
 		if (ButtonU == 5) {//ロケットのみ通常で更新
-			hit->SetPos(m_x, m_y);		//HitBox更新
+			hit->SetPos(m_x, m_y,m_size, m_size);		//HitBox更新
 		}
 		else
 		{
-			hit->SetPos(m_x, m_y);		//HitBox更新
-			if (m_fight == true)		//戦闘時変更
-				hit->SetPos(m_x - m_size * 2, m_y, m_size * 3, m_size);	
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)		
+				hit->SetPos(m_x - m_size * 2,m_y,m_size,m_size * 3);//戦闘時変更
 		}
 	else
 	{
-		hit->SetPos(m_x, m_y);			//HitBox更新
-		if(m_fight == true)				//戦闘時変更
-			hit->SetPos(m_x, m_y, m_size * 3, m_size);
+		hit->SetPos(m_x, m_y, m_size, m_size);			//HitBox更新
+		if(m_fight == true)				
+			hit->SetPos(m_x, m_y, m_size, m_size * 3);				//戦闘時変更
 	}
-
-
-	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
-	{
-		Audio::Start(5);
-		m_del = true;
-	}
-	
-	if (m_fight == true)//交戦時フラグＯＮ時
+	if (m_fight == true)
 	{
 		if (m_atk_cnt > m_atk_cnt_max)//maxを超えた時
 		{
@@ -329,8 +327,27 @@ void CObjRocket::Action()
 			m_atk_cnt++;//カウント
 		}
 	}
+
+
+	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
+	{
+		Audio::Start(5);
+		m_del = true;
+	}
+	
+	if (m_stop_f == true)//交戦時フラグＯＮ時
+	{
+		m_stop_cnt++;
+		if (m_stop_cnt == 8) {
+			m_fight = true;
+		}
+		else if (m_stop_cnt == 11) {
+			m_stop_cnt = 0;
+		}
+	}
 	else//交戦時以外で移動ベクトル加算
 	{
+		m_fight = false;
 		m_mov += m_mov_spd / 2;
 
 		//各ライン毎の動き方
@@ -364,9 +381,10 @@ void CObjRocket::Action()
 	//爆発エフェクト
 	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 5);	//敵とプレイヤーのポッド当たっているとき処理
 	
-	//ポッド消滅処理
+	//---------------------------------------ポッド消滅処理
 	if (m_del == true)
 	{
+		hit->SetInvincibility(true);		//HitBoxの判定無効
 		if (m_ani == 3 && m_bom == 0)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
@@ -393,13 +411,17 @@ void CObjRocket::Action()
 	//※戦闘終了後は以下のポッドのダメージ処理は行わない
 	if (battle_end == false)
 	{
+		if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr)//Hit用OBJに当たった場合
+			m_stop_f = true;		//止める
+		else
+			m_stop_f = false;		//進める
+
 		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
 		//HPの状態に関わらず消滅処理へと移行する
 		if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
 			m_type == 0)											//プレイヤーの射出したポッドである場合、実行
 		{
 			m_del = true;				//消滅処理フラグON
-			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
 			Audio::Start(5);
 		}
 
@@ -409,29 +431,25 @@ void CObjRocket::Action()
 			m_type != 0)										//エネミーの射出したポッドである場合、実行
 		{
 			m_del = true;				//消滅処理フラグON
-			hit->SetInvincibility(true);//当たり判定を無効化(無敵)
 			Audio::Start(5);
 		}
-
 
 		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)		//惑星に当たった時かつ敵弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
-			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)	//敵の惑星に当たった時かつ自弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
-			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
 
 		//敵のポッドがプレイヤーのポッドにぶつかった時の判定
 		//※エネミーがダメージを受ける時の処理
-		if (hit->CheckElementHit(ELEMENT_POD) == true)
+		if (hit->CheckElementHit(ELEMENT_POD) == true && m_type != 0)
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			
@@ -511,18 +529,17 @@ void CObjRocket::Action()
 			else if (ButtonUE == 5)	//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
 			{
 				m_del = true;				//消滅処理フラグON
-				hit->SetInvincibility(true);//当たり判定を無効化(無敵)
 				Audio::Start(5);
-				m_fight = false;	//衝突中フラグを戻す
 			}
 		}
-		else if(m_type != 0){	//当たってないかつ、自分が敵タイプ時
-			m_fight = false;	//衝突中フラグＯＦＦ
+		else if (m_type != 0 && m_stop_cnt == 10) {	//敵かつ、
+			m_stop_f = false;
 		}
+
 
 		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
 		//※プレイヤーがダメージを受ける時の処理
-		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)
+		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && m_type == 0)
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			Audio::Start(5);
@@ -604,20 +621,17 @@ void CObjRocket::Action()
 			else if (ButtonUP == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
 			{
 				m_del = true;				//消滅処理フラグON
-				hit->SetInvincibility(true);//当たり判定を無効化(無敵)
 				Audio::Start(5);
-				m_fight = false;	//衝突中フラグを戻す
 			}
 			
 		}
-		else if(m_type == 0){	//当たってないかつ、自分が味方のタイプ時
-			m_fight = false;	//衝突中フラグＯＦＦ
+		else if (m_type == 0 && m_stop_cnt == 10) {	//味方かつ、止まってる時
+			m_stop_f = false;
 		}
 
 		if (m_podhp <= 0)//HP
 		{
 			m_del = true;
-			hit->SetInvincibility(true);
 		}
 	}
 }
@@ -639,7 +653,7 @@ void CObjRocket::Draw()
 
 	if (m_type == 0)
 	{
-		if (m_fight == false) 
+		if (m_stop_f == false)
 		{
 			switch (m_get_line) {
 			case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
@@ -710,7 +724,7 @@ void CObjRocket::Draw()
 
 	if(m_type != 0)
 	{
-		if (m_fight == false)
+		if (m_stop_f == false)
 		{
 			switch (m_get_line) {
 			case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算

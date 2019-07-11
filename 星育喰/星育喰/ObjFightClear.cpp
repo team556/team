@@ -70,6 +70,7 @@ void CObjFightClear::Init()
 
 	//m_page_nam = 0;				//ページ数0
 
+	m_c_p = 0;		//クリア画面住民位置調整用
 
 	//ステージクリアした場合
 	if (g_destroy_progress[0] == true &&	
@@ -352,7 +353,6 @@ void CObjFightClear::Draw()
 			dst.m_right = 830.0f;
 			dst.m_bottom = 150.0f;
 			Draw::Draw(53, &src, &dst, c[0], 0.0f);
-
 			//Font::StrDraw(L"捕食成功！", 370, 50, 100, c[0]);
 
 
@@ -380,8 +380,83 @@ void CObjFightClear::Draw()
 			Draw::Draw(41, &src, &dst, c[2], 0.0f);
 			//Font::StrDraw(L"住民：", FONT_X, FONT_Y, 40, c[2]);
 			
-			swprintf_s(str, L"＋%d人", m_people);
-			Font::StrDraw(str, FONT_X + 300, FONT_Y, 40, c[2]);
+			//ここから獲得住民数表示--------------------------------------------------------------------
+			//+
+			src.m_top = 1250.0f;
+			src.m_left = 375.0f;
+			src.m_right = 500.0f;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X + 300.0f;
+			dst.m_right = FONT_X + 340.0f;
+			dst.m_bottom = FONT_Y + 40.0f;
+			Draw::Draw(41, &src, &dst, c[2], 0.0f);
+
+			if (m_people >= 10000) {
+				//万の位
+				src.m_top = 1250.0f;
+				src.m_left = 1250.0f + (floor(m_people / 10000) * 125);
+				src.m_right = 1375.0f + (floor(m_people / 10000) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = FONT_Y;
+				dst.m_left = FONT_X + 340;
+				dst.m_right = FONT_X + 360;
+				dst.m_bottom = FONT_Y + 40;
+				Draw::Draw(41, &src, &dst, c[2], 0.0f);
+				m_c_p = 20;
+			}
+			//千の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + (floor((m_people / 1000) % 10) * 125);
+			src.m_right = 1375.0f + (floor((m_people / 1000) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X + 340 + m_c_p;
+			dst.m_right = FONT_X + 360 + m_c_p;
+			dst.m_bottom = FONT_Y + 40;
+			Draw::Draw(41, &src, &dst, c[2], 0.0f);
+
+			//百の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + (floor((m_people / 100) % 10) * 125);
+			src.m_right = 1375.0f + (floor((m_people / 100) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X + 360 + m_c_p;
+			dst.m_right = FONT_X + 380 + m_c_p;
+			dst.m_bottom = FONT_Y + 40;
+			Draw::Draw(41, &src, &dst, c[2], 0.0f);
+
+			//十の位
+			src.m_top = 1250.0f;
+			src.m_left = 1250.0f + (floor((m_people / 10) % 10) * 125);
+			src.m_right = 1375.0f + (floor((m_people / 10) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X + 380 + m_c_p;
+			dst.m_right = FONT_X + 400 + m_c_p;
+			dst.m_bottom = FONT_Y + 40;
+			Draw::Draw(41, &src, &dst, c[2], 0.0f);
+
+			//一の位
+			src.m_left = 1250.0f + (((m_people / 10) % 10) * 125);
+			src.m_right = 1375.0f + (((m_people / 10) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = FONT_Y;
+			dst.m_left = FONT_X + 400 + m_c_p;
+			dst.m_right = FONT_X + 420 + m_c_p;
+			dst.m_bottom = FONT_Y + 40;
+			Draw::Draw(41, &src, &dst, c[2], 0.0f);
+
+			//--------------------------------------------------------------------
+			//swprintf_s(str, L"＋%d人", m_people);
+			//Font::StrDraw(str, FONT_X + 300, FONT_Y, 40, c[2]);
 
 
 			//サイズ(HP)
@@ -435,8 +510,8 @@ void CObjFightClear::Draw()
 
 			//十の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (((m_large / 10) % 10) * 125);
-			src.m_right = 1375.0f + (((m_large / 10) % 10) * 125);
+			src.m_left = 1250.0f + (floor((m_large / 10) % 10) * 125);
+			src.m_right = 1375.0f + (floor((m_large / 10) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y + 50.0f;
@@ -484,7 +559,93 @@ void CObjFightClear::Draw()
 			Draw::Draw(41, &src, &dst, c[4], 0.0f);
 			//Font::StrDraw(L"資材：", FONT_X, FONT_Y + 100, 40, c[4]);
 
-			Font::StrDraw(m_mat_name[0], FONT_X, FONT_Y + 150, 40, c[4]);	//資材名A表示
+			//一つ目の資材名表示------------------------------------------------
+			//木材
+			if (m_mat_type[0] == &g_Wood_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 150;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 80;
+				dst.m_bottom = FONT_Y + 190;
+				Draw::Draw(59, &src, &dst, c[4], 0.0f);
+			}
+			//鉄
+			else if (m_mat_type[0] == &g_Iron_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 112.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 150;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 40;
+				dst.m_bottom = FONT_Y + 190;
+				Draw::Draw(60, &src, &dst, c[4], 0.0f);
+			}
+			//銀
+			else if (m_mat_type[0] == &g_Silver_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 112.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 150;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 40;
+				dst.m_bottom = FONT_Y + 190;
+				Draw::Draw(61, &src, &dst, c[4], 0.0f);
+			}
+			//プラスチック
+			else if (m_mat_type[0] == &g_Plastic_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 150;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 240;
+				dst.m_bottom = FONT_Y + 190;
+				Draw::Draw(62, &src, &dst, c[4], 0.0f);
+			}
+			//アルミ
+			else if (m_mat_type[0] == &g_Aluminum_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 150;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 120;
+				dst.m_bottom = FONT_Y + 190;
+				Draw::Draw(63, &src, &dst, c[4], 0.0f);
+			}
+			//ガス
+			else if (m_mat_type[0] == &g_gus_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 150;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 80;
+				dst.m_bottom = FONT_Y + 190;
+				Draw::Draw(64, &src, &dst, c[4], 0.0f);
+			}
+			//Font::StrDraw(m_mat_name[0], FONT_X, FONT_Y + 150, 40, c[4]);	//資材名A表示
+			//-----------------------------------------------
 
 			//一つ目の資材の個数表示--------------------------
 			//+
@@ -526,8 +687,95 @@ void CObjFightClear::Draw()
 			//Font::StrDraw(str, FONT_X + 300, FONT_Y + 150, 40, c[4]);		//資材数A表示
 			//^------------------------------------------------------------------------
 			
-			Font::StrDraw(m_mat_name[1], FONT_X, FONT_Y + 200, 40, c[4]);	//資材名B表示
-			
+
+			//二つ目の資材名表示-------------------------------------------------------
+			//木材
+			if (m_mat_type[1] == &g_Wood_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 200;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 80;
+				dst.m_bottom = FONT_Y + 240;
+				Draw::Draw(59, &src, &dst, c[4], 0.0f);
+			}
+			//鉄
+			else if (m_mat_type[1] == &g_Iron_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 112.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 200;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 40;
+				dst.m_bottom = FONT_Y + 240;
+				Draw::Draw(60, &src, &dst, c[4], 0.0f);
+			}
+			//銀
+			else if (m_mat_type[1] == &g_Silver_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 112.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 200;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 40;
+				dst.m_bottom = FONT_Y + 240;
+				Draw::Draw(61, &src, &dst, c[4], 0.0f);
+			}
+			//プラスチック
+			else if (m_mat_type[1] == &g_Plastic_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 200;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 240;
+				dst.m_bottom = FONT_Y + 240;
+				Draw::Draw(62, &src, &dst, c[4], 0.0f);
+			}
+			//アルミ
+			else if (m_mat_type[1] == &g_Aluminum_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 200;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 120;
+				dst.m_bottom = FONT_Y + 240;
+				Draw::Draw(63, &src, &dst, c[4], 0.0f);
+			}
+			//ガス
+			else if (m_mat_type[1] == &g_gus_num)
+			{
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 232.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = FONT_Y + 200;
+				dst.m_left = FONT_X;
+				dst.m_right = FONT_X + 80;
+				dst.m_bottom = FONT_Y + 240;
+				Draw::Draw(64, &src, &dst, c[4], 0.0f);
+			}
+			//Font::StrDraw(m_mat_name[1], FONT_X, FONT_Y + 200, 40, c[4]);	//資材名B表示
+			//---------------------------------------------------------------
+
 			if (m_mat_num[1] != NULL)//資材数BがNULL(0)の時は描画しない
 			{
 				//+

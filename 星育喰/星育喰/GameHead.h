@@ -6,10 +6,9 @@ enum OBJ_NAME
 	OBJ_NO_NAME,	//ƒIƒuƒWƒFƒNƒg–¼–³‚µ(‹Ö~)
 	//ƒQ[ƒ€‚Åg‚¤ƒIƒuƒWƒFƒNƒg‚Ì–¼‘O
 	//OBJ_››‚Æ•\‹L
-
+	OBJ_TEST,
 	OBJ_TITLE,
 	OBJ_HOME,
-	OBJ_TEST,
 	OBJ_HUMAN,
 	OBJ_PLANET,
 	OBJ_ENEMY,
@@ -176,10 +175,10 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 
 //ƒV[ƒ“ƒXƒ^[ƒgƒNƒ‰ƒX---------------------------
 //ƒQ[ƒ€ŠJn‚ÌƒV[ƒ“ƒNƒ‰ƒX“o˜^
-#define SET_GAME_START CSceneTitle
+////#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
-//#define SET_GAME_START CSceneGameClear
+#define SET_GAME_START CSceneGameClear
 //#define SET_GAME_START CScenePreparation
 //----------------------------------------------

@@ -133,8 +133,31 @@ void CScenePreparation::InitScene()
 	//スペシャル技選択ウインドウを読み込み62番に登録
 	Draw::LoadImage(L"スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);
 
+	//強大な惑星出現中文字画像読み込み63番に登録
+	Draw::LoadImage(L"強大な惑星出現中.png", 63, TEX_SIZE_512);
+
+	//強大な惑星接近まで文字画像読み込み64番に登録
+	Draw::LoadImage(L"強大な惑星接近まで.png", 64, TEX_SIZE_512);
+
+	//喰う？文字画像読み込み65番に登録
+	Draw::LoadImage(L"喰う？.png", 65, TEX_SIZE_512);
+
+	//はい文字画像読み込み66番に登録
+	Draw::LoadImage(L"はい.png", 66, TEX_SIZE_512);
+
+	//いいえ文字画像読み込み67番に登録
+	Draw::LoadImage(L"いいえ.png", 67, TEX_SIZE_512);
+
+	//スペシャル技選択文字画像読み込み68番に登録
+	Draw::LoadImage(L"スペシャル技選択.png", 68, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
+
+	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
+	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 	//SE読み込み
 	//選択
