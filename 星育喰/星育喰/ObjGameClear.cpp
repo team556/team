@@ -330,16 +330,40 @@ void CObjGameClear::Draw()
 	dst.m_bottom = 10.0f + m_cy[23];
 	Draw::Draw(21, &src, &dst, w, m_alpha);
 
+	//使用フォント描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 672.0f;
+	src.m_bottom = 105.0f;
+
+	dst.m_top = 0.0f + m_cy[26];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 75.0f + m_cy[26];
+	Draw::Draw(32, &src, &dst, w, m_alpha);
+
+	//使用フォントピリオド描画
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 672.0f;
+	src.m_bottom = 105.0f;
+
+	dst.m_top = 0.0f + m_cy[27];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 75.0f + m_cy[27];
+	Draw::Draw(34, &src, &dst, w, m_alpha);
+
 	//END描画
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 269.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 0.0f + m_cy[25];
+	dst.m_top = 0.0f + m_cy[30];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
-	dst.m_bottom = 75.0f + m_cy[25];
+	dst.m_bottom = 75.0f + m_cy[30];
 	Draw::Draw(2, &src, &dst, w, m_alpha);
 
 	//タイトルロゴ描画
@@ -348,10 +372,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 0.0f + m_cy[28];
+	dst.m_top = 0.0f + m_cy[35];
 	dst.m_left = 300.0f;
 	dst.m_right = 851.0f;
-	dst.m_bottom = 350.0f + m_cy[28];
+	dst.m_bottom = 350.0f + m_cy[35];
 	Draw::Draw(1, &src, &dst, w, m_alpha);
 
 	//右クリックをすると描画
