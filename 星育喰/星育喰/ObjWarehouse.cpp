@@ -777,15 +777,15 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 480.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 
-		//▼アルミニウム文字画像表示
+		//▼アルミ文字画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 712.0f;
+		src.m_right = 352.0f;
 		src.m_bottom = 112.0f;
 
 		dst.m_top = 500.0f;
-		dst.m_left = 500.0f;
-		dst.m_right = 740.0f;
+		dst.m_left = 530.0f;
+		dst.m_right = 650.0f;
 		dst.m_bottom = 540.0f;
 		Draw::Draw(92, &src, &dst, black, 0.0f);
 
@@ -889,8 +889,8 @@ void CObjWarehouse::Draw()
 
 		dst.m_top = 200.0f;
 		dst.m_left = 120.0f;
-		dst.m_right = 225.0f;
-		dst.m_bottom = 235.0f;
+		dst.m_right = 240.0f;
+		dst.m_bottom = 240.0f;
 		Draw::Draw(82, &src, &dst, red, 0.0f);
 
 		//▼ブルー文字画像を表示
@@ -901,8 +901,8 @@ void CObjWarehouse::Draw()
 
 		dst.m_top = 330.0f;
 		dst.m_left = 120.0f;
-		dst.m_right = 225.0f;
-		dst.m_bottom = 365.0f;
+		dst.m_right = 240.0f;
+		dst.m_bottom = 370.0f;
 		Draw::Draw(83, &src, &dst, blue, 0.0f);
 
 		//▼グリーン文字画像表示
@@ -911,10 +911,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 472.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 470.0f;
+		dst.m_top = 460.0f;
 		dst.m_left = 120.0f;
-		dst.m_right = 330.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_right = 280.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(84, &src, &dst, green, 0.0f);
 
 		//▼ホワイト文字画像表示
@@ -925,8 +925,8 @@ void CObjWarehouse::Draw()
 
 		dst.m_top = 200.0f;
 		dst.m_left = 540.0f;
-		dst.m_right = 680.0f;
-		dst.m_bottom = 235.0f;
+		dst.m_right = 700.0f;
+		dst.m_bottom = 240.0f;
 		Draw::Draw(85, &src, &dst, black, 0.0f);
 
 		//▼研究員文字画像表示
