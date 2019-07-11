@@ -25,7 +25,11 @@ private:
 	float m_size;	//縦横サイズ(50)
 
 	int m_get_line;	//戦闘シーンからGetしたline
+	int m_del_cnt;	//削除までのカウント用
 
-	bool  m_atk_f;	//交戦用(false = OFF, true = ON)
-	bool  m_type;	//タイプ(false 味方 , true 敵)
+	bool m_atk_f;	//交戦用(true = 戦闘中)
+	bool m_type;	//タイプ(true = 敵)
+	bool m_del_f;	//削除フラグ(true = 削除)
+	bool m_ppod_f;	//プレイヤーポッドと接触中フラグ(true = 接触中)
+	bool m_epod_f;	//エネミーポッドと接触中フラグ(true = 接触中)
 };
