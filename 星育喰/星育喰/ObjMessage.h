@@ -6,8 +6,10 @@ using namespace GameL;
 
 //マクロ
 #define MES_MAX (10)			//メッセージ最大格納数
-#define FONT_MAX (50)			//フォントデータ格納最大数
-#define FONT_CLIP_SIZE (64.0f)	//フォント切り取りサイズ
+#define FONT_MAX (50)			//フォント格納最大数
+#define FONT_DATA_X (30)		//フォントデータX
+#define FONT_DATA_Y (22)		//フォントデータY
+#define FONT_CLIP_SIZE (125.0f)	//フォント切り取りサイズ
 #define FONT_DRAW_SIZE (32.0f)	//フォント描画サイズ
 
 //オブジェクト：メッセージ
@@ -20,7 +22,7 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
-	wchar_t m_font_data[22][30];		//フォントデータ(画像のどの位置にどの文字があるのか管理している)
+	wchar_t m_font_data[FONT_DATA_Y][FONT_DATA_X];	//フォントデータ(画像のどの位置にどの文字があるのか管理している)
 	wchar_t m_font[MES_MAX][FONT_MAX];	//フォント情報管理配列[メッセージ格納数][フォントデータ格納数]
 	int m_font_column[FONT_MAX];		//フォント切り取り位置(列)
 	int m_font_line[FONT_MAX];			//フォント切り取り位置(行)

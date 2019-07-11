@@ -38,8 +38,8 @@ void CSceneTest::InitScene()
 	//メッセージウインドウを読み込み2番に登録
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 2, TEX_SIZE_512);
 
-	//黒文字集を読み込み3番に登録
-	Draw::LoadImage(L"黒文字集.png", 3, TEX_SIZE_512);
+	//白文字集を読み込み3番に登録
+	Draw::LoadImage(L"白文字集.png", 3, TEX_SIZE_512);
 
 	////10番に登録
 	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);
@@ -64,8 +64,8 @@ void CSceneTest::InitScene()
 	//Objs::InsertObj(help, OBJ_HELP, 10);	//ヘルプオブジェクト登録
 
 	//メッセージ表示オブジェクト作成
-	CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
-	Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
+	//CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
+	//Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド

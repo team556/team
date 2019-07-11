@@ -140,6 +140,7 @@
     <ClCompile Include="ObjHome.cpp" />
     <ClCompile Include="ObjHuman.cpp" />
     <ClCompile Include="ObjMessage.cpp" />
+    <ClCompile Include="ObjRktHit.cpp" />
     <ClCompile Include="ObjRocket.cpp" />
     <ClCompile Include="ObjPlanet.cpp" />
     <ClCompile Include="ObjPreparation.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="ObjHuman.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjMessage.h" />
+    <ClInclude Include="ObjRktHit.h" />
     <ClInclude Include="ObjRocket.h" />
     <ClInclude Include="ObjPlanet.h" />
     <ClInclude Include="ObjPreparation.h" />

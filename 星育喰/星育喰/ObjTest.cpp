@@ -6,6 +6,7 @@
 
 #include "GameHead.h"
 #include "ObjTest.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -22,6 +23,12 @@ using namespace GameL;
 void CObjTest::Init()
 {
 	//m_f = false;
+
+
+	//▼フォント表示関数化テスト
+	//swprintf_s(test, L"あいうえお；");
+
+	//font_clip[2][256] = SetFont(test);
 }
 
 //アクション
