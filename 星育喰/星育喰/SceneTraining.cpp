@@ -464,8 +464,8 @@ void CSceneTraining::InitScene()
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	float v = Audio::VolumeMaster(0);
-	v = Audio::VolumeMaster((0.0 - v));
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	////音楽スタート
 	Audio::Start(0);
