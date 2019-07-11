@@ -653,7 +653,7 @@ void CObjRocket::Draw()
 
 	if (m_type == 0)
 	{
-		if (m_fight == false) 
+		if (m_stop_f == false)
 		{
 			switch (m_get_line) {
 			case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
@@ -724,7 +724,7 @@ void CObjRocket::Draw()
 
 	if(m_type != 0)
 	{
-		if (m_fight == false)
+		if (m_stop_f == false)
 		{
 			switch (m_get_line) {
 			case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
