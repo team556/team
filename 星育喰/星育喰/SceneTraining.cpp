@@ -452,6 +452,13 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
 
+	
+
+
+	//簡易メッセージ画像全てを読み込む為に、
+	//読み込み番号127番を使用しているので使わないように！
+
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
 

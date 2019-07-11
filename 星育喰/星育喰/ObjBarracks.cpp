@@ -39,6 +39,14 @@ void CObjBarracks::Init()
 	m_key_rf = false;
 	m_next_time = 0;
 	m_con_alo_f = false;
+
+	m_message_clip_right = 0.0f;
+	m_message_clip_bottom = 0.0f;
+	m_message_draw_left = 0.0f;
+	m_message_draw_right = 0.0f;
+	m_message_red_color = 0.0f;
+	m_message_green_color = 0.0f;
+	m_message_blue_color = 0.0f;
 	m_alpha = INI_ALPHA;
 
 	//▼兵舎の次のLVUPに必要なサイズ(HP)の住民数設定
@@ -292,8 +300,17 @@ void CObjBarracks::Action()
 					if (g_Bar_Level == FACILITY_MAX_LV)
 					{
 						//▽レベルMAX時の処理
-						//左クリックされたら簡易メッセージでレベルUP不可を伝える
-						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+						//LvUP出来ません文字画像を読み込み127番に登録
+						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 937.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -100.0f;
+						m_message_draw_right = 100.0f;
 
 						//簡易メッセージのカラーを赤色にする
 						m_message_red_color = 1.0f;
@@ -323,8 +340,17 @@ void CObjBarracks::Action()
 					else
 					{
 						//▽レベルUP不可時の処理
-						//左クリックされたら簡易メッセージでレベルUP不可を伝える
-						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+						//LvUP出来ません文字画像を読み込み127番に登録
+						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 937.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -100.0f;
+						m_message_draw_right = 100.0f;
 
 						//簡易メッセージのカラーを赤色にする
 						m_message_red_color = 1.0f;
@@ -821,8 +847,8 @@ void CObjBarracks::Draw()
 	//最終確認[いいえ]ボタン用
 	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
 
-	//エラーメッセージ用
-	float error[4] = { 1.0f,0.0f,0.0f,m_alpha };
+	//簡易メッセージ画像用
+	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
 
 	//▽フォント準備
 	//兵舎レベル用
@@ -1218,9 +1244,19 @@ void CObjBarracks::Draw()
 		//その他フォント
 		Facility_message(g_Bar_Level);//兵舎の必要素材&サイズメッセージ描画関数呼び出す
 
-		//エラーメッセージ
-		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, error);
-		
+
+		//▼簡易メッセージ画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = m_message_clip_right;
+		src.m_bottom = m_message_clip_bottom;
+
+		dst.m_top = m_mou_y + MES_DRAW_TOP;
+		dst.m_left = m_mou_x + m_message_draw_left;
+		dst.m_right = m_mou_x + m_message_draw_right;
+		dst.m_bottom = m_mou_y + MES_DRAW_BOTTOM;
+		Draw::Draw(127, &src, &dst, message, 0.0f);
+
 
 		//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_finalcheck_f == true)
