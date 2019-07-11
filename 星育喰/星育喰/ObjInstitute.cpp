@@ -122,6 +122,10 @@ void CObjInstitute::Init()
 	m_key_rf = false;
 	m_next_time = 0;
 	m_con_alo_f = false;
+	m_message_clip_right = 0.0f;
+	m_message_clip_bottom = 0.0f;
+	m_message_draw_left = 0.0f;
+	m_message_draw_right = 0.0f;
 	m_message_red_color = INI_COLOR;
 	m_message_green_color = INI_COLOR;
 	m_message_blue_color = INI_COLOR;
@@ -483,8 +487,17 @@ void CObjInstitute::Action()
 					if (g_Ins_Level == FACILITY_MAX_LV)
 					{
 						//▽レベルMAX時の処理
-						//左クリックされたら簡易メッセージでレベルUP不可を伝える
-						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+						//LvUP出来ません文字画像を読み込み127番に登録
+						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 937.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -100.0f;
+						m_message_draw_right = 100.0f;
 
 						//簡易メッセージのカラーを赤色にする
 						m_message_red_color = 1.0f;
@@ -514,8 +527,17 @@ void CObjInstitute::Action()
 					else
 					{
 						//▽レベルUP不可時の処理
-						//左クリックされたら簡易メッセージでレベルUP不可を伝える
-						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+						//LvUP出来ません文字画像を読み込み127番に登録
+						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 937.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -100.0f;
+						m_message_draw_right = 100.0f;
 
 						//簡易メッセージのカラーを赤色にする
 						m_message_red_color = 1.0f;
@@ -642,8 +664,18 @@ void CObjInstitute::Action()
 						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
 
 
-						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージにて知らせる
-						swprintf_s(m_message, L"ミサイルリキャストレベルDOWN…");//文字配列に文字データを入れる
+						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
+						
+						//ミサイルリキャストレベルDOWN…文字画像を読み込み127番に登録
+						Draw::LoadImage(L"ミサイルリキャストレベルDOWN….png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 1919.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -200.0f;
+						m_message_draw_right = 200.0f;
 
 						//リキャストレベルDOWNメッセージのカラーを水色にする
 						m_message_red_color = 0.0f;
@@ -1577,8 +1609,18 @@ void CObjInstitute::Draw()
 
 		Facility_message(g_Ins_Level);//研究所の必要素材&サイズメッセージ描画関数呼び出す
 
-		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
-		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
+
+		//▼簡易メッセージ(エラーメッセージ、レベルUP表示等)画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = m_message_clip_right;
+		src.m_bottom = m_message_clip_bottom;
+
+		dst.m_top = m_mou_y + MES_DRAW_TOP;
+		dst.m_left = m_mou_x + m_message_draw_left;
+		dst.m_right = m_mou_x + m_message_draw_right;
+		dst.m_bottom = m_mou_y + MES_DRAW_BOTTOM;
+		Draw::Draw(127, &src, &dst, message, 0.0f);
 
 
 		//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
@@ -2055,7 +2097,19 @@ void CObjInstitute::Draw()
 			Font::StrDraw(m_message_Mat_name, m_mou_x - 135.0f, m_mou_y - 76.0f, 17.5f, Equ_message_font[2]);
 
 			//最下部メッセージ表示(ウインドウ一番下にあるフォント)
-			Font::StrDraw(m_message, m_mou_x - 210.0f, m_mou_y - 40.0f, 30.0f, message);
+			//Font::StrDraw(m_message, m_mou_x - 210.0f, m_mou_y - 40.0f, 30.0f, message);
+
+			//▼最下部メッセージ(ウインドウ一番下にあるフォント)画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = m_message_clip_right;
+			src.m_bottom = m_message_clip_bottom;
+
+			dst.m_top = m_mou_y + MES_DRAW_TOP;
+			dst.m_left = m_mou_x + m_message_draw_left;
+			dst.m_right = m_mou_x + m_message_draw_right;
+			dst.m_bottom = m_mou_y + MES_DRAW_BOTTOM;
+			Draw::Draw(127, &src, &dst, message, 0.0f);
 
 
 
@@ -2152,7 +2206,17 @@ void CObjInstitute::Missile_Lvup_check()
 
 
 		//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
-		swprintf_s(m_message, L"ミサイルリキャストレベルUP！");//文字配列に文字データを入れる
+
+		//ミサイルリキャストレベルUP文字画像を読み込み127番に登録(画像に！が抜けているという不備があった為、ここだけ適用してない)
+		//Draw::LoadImage(L"ミサイルリキャストレベルUP!.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+		//切り取り位置を設定する(不備修正後、入力すべし。)
+		//m_message_clip_right = 1919.0f;
+		//m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -200.0f;
+		m_message_draw_right = 200.0f;
 
 		//リキャストレベルUPメッセージのカラーを黄色にする
 		m_message_red_color = 1.0f;

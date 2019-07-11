@@ -35,6 +35,15 @@ void CObjTraining::Init()
 
 	m_Back_Button_color = INI_COLOR;
 
+	m_message_clip_right = 0.0f;
+	m_message_clip_bottom = 0.0f;
+	m_message_draw_left = 0.0f;
+	m_message_draw_right = 0.0f;
+	m_message_red_color = 0.0f;
+	m_message_green_color = 0.0f;
+	m_message_blue_color = 0.0f;
+	m_alpha = 0.0f;
+
 	//▼以下のstatic変数は他シーンから育成画面に入る度に初期化を行う
 	scene_change_start = false;
 	white_out_f = false;
