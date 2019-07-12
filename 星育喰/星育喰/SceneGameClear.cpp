@@ -90,12 +90,23 @@ void CSceneGameClear::InitScene()
 	Draw::LoadImage(L"坂田.png", 27, TEX_SIZE_512);
 	Draw::LoadImage(L"諏訪.png", 28, TEX_SIZE_512);
 
-	Draw::LoadImage(L"弊社サイト.png", 29, TEX_SIZE_512);
-	Draw::LoadImage(L"よく飛ばない鳥.png", 30, TEX_SIZE_512);
-	Draw::LoadImage(L"ピリオドフォントURL.png", 31, TEX_SIZE_512);
-	Draw::LoadImage(L"フォント.png", 32, TEX_SIZE_512);
-	Draw::LoadImage(L"諏訪.png", 33, TEX_SIZE_512);
-	Draw::LoadImage(L"ピリオドフォント.png", 34, TEX_SIZE_512);
+	//使用グラフィック紹介
+	Draw::LoadImage(L"弊社サイト.png", 29, TEX_SIZE_512);//
+	Draw::LoadImage(L"よく飛ばない鳥.png", 30, TEX_SIZE_512);//
+	Draw::LoadImage(L"ピリオドフォントURL.png", 31, TEX_SIZE_512);//
+	Draw::LoadImage(L"フォント.png", 32, TEX_SIZE_512);//
+	Draw::LoadImage(L"ピリオドフォント.png", 33, TEX_SIZE_512);//
+	Draw::LoadImage(L"作者.png", 34, TEX_SIZE_512);//
+	Draw::LoadImage(L"作者名.png", 35, TEX_SIZE_512);//
+
+	//制作メンバーの役割紹介
+	Draw::LoadImage(L"総合.png", 36, TEX_SIZE_512);
+	Draw::LoadImage(L"プログラマ.png", 37, TEX_SIZE_512);
+	Draw::LoadImage(L"グラフィッカー.png", 38, TEX_SIZE_512);
+	Draw::LoadImage(L"プランナ.png", 39, TEX_SIZE_512);
+
+
+
 
 
 

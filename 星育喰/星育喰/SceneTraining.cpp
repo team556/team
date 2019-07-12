@@ -403,36 +403,6 @@ void CSceneTraining::InitScene()
 	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
 	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
 
-	//レッド武器レベルUP!文字画像を読み込み106番に登録1200*112
-	Draw::LoadImage(L"レッド武器レベルUP!.png", 106, TEX_SIZE_512);
-
-	//レッド武器レベルDOWN…文字画像を読み込み107番に登録1431*112
-	Draw::LoadImage(L"レッド武器レベルDOWN….png", 107, TEX_SIZE_512);
-
-	//ブルー武器レベルUP!文字画像を読み込み108番に登録1200*112
-	Draw::LoadImage(L"ブルー武器レベルUP!.png", 108, TEX_SIZE_512);
-
-	//ブルー武器レベルDOWN…文字画像を読み込み109番に登録1435*112
-	Draw::LoadImage(L"ブルー武器レベルDOWN….png", 109, TEX_SIZE_512);
-
-	//グリーン武器レベルUP!文字画像を読み込み110番に登録1327*112
-	Draw::LoadImage(L"グリーン武器レベルUP!.png", 110, TEX_SIZE_512);
-
-	//グリーン武器レベルDOWN…文字画像を読み込み111番に登録1559*112
-	Draw::LoadImage(L"グリーン武器レベルDOWN….png", 111, TEX_SIZE_512);
-
-	//ホワイト武器レベルUP!文字画像を読み込み112番に登録1327*112
-	Draw::LoadImage(L"ホワイト武器レベルUP!.png", 112, TEX_SIZE_512);
-
-	//ホワイト武器レベルDOWN…文字画像を読み込み113番に登録1559*112
-	Draw::LoadImage(L"ホワイト武器レベルDOWN….png", 113, TEX_SIZE_512);
-
-	//ポッドレベルUP!文字画像を読み込み114番に登録967*112
-	Draw::LoadImage(L"ポッドレベルUP!.png", 114, TEX_SIZE_512);
-
-	//ポッドレベルDOWN…文字画像を読み込み115番に登録1199*112
-	Draw::LoadImage(L"ポッドレベルDOWN….png", 115, TEX_SIZE_512);
-
 	//兵舎 Lv文字画像を読み込み116番に登録
 	Draw::LoadImage(L"兵舎 Lv.png",116,TEX_SIZE_512);
 
