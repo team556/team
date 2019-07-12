@@ -26,14 +26,15 @@ CObjRktHit::CObjRktHit(float x, float y, bool t)
 //イニシャライズ
 void CObjRktHit::Init()
 {
-	m_vx = 0.0f;
-	m_vy = 0.0f;
-
-	m_mov = 0.0f;
+	m_vx	= 0.0f;
+	m_vy	= 0.0f;
+	m_mov	= 0.0f;
 	m_size = 50.0f;
 	m_del_cnt = 0;
 	m_stop_f = false;
 	m_del_f = false;
+
+	m_pod_nam = (g_Power_num + g_Defense_num + g_Speed_num + g_Balance_num) / 1200;//各ポッドの住民総数
 
 	if (m_type == false)
 	{								//味方HitBox作成

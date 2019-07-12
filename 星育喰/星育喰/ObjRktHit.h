@@ -24,6 +24,8 @@ private:
 	float m_mov_spd;//動くスピード
 	float m_size;	//縦横サイズ(50)
 
+	float m_pod_nam;//残りポッドの住民総数 / 1200
+
 	int m_get_line;	//戦闘シーンからGetしたline
 	int m_del_cnt;	//削除までのカウント用
 
