@@ -7,7 +7,7 @@ using namespace GameL;
 //マクロ
 #define MES_MAX (10)			//メッセージ最大格納数
 #define FONT_MAX (50)			//フォント格納最大数
-#define FONT_DATA_X (30)		//フォントデータX
+#define FONT_DATA_X (33)		//フォントデータX
 #define FONT_DATA_Y (22)		//フォントデータY
 #define FONT_CLIP_SIZE (125.0f)	//フォント切り取りサイズ
 #define FONT_DRAW_SIZE (32.0f)	//フォント描画サイズ

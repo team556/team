@@ -168,7 +168,7 @@ void CObjInstitute::Init()
 	m_Equ_next_Hum_num[3][0] = 500;  //レベルが1の時の必要研究員数
 	m_Equ_next_Hum_num[3][1] = 1000; //レベルが2の時の必要研究員数
 	//▽ポッド
-	m_Equ_next_Hum_num[4][0] = 300;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[4][0] = 400;  //レベルが1の時の必要研究員数
 	m_Equ_next_Hum_num[4][1] = 1000; //レベルが2の時の必要研究員数
 
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
@@ -2259,6 +2259,14 @@ void CObjInstitute::Draw()
 	//wchar_t str[256];
 	//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
 	//Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
+
+
+	//テスト(FontDrawの)
+	//float d[4] = { 1.0f,0.0f,0.0f,1.0f };
+
+	//FontDraw(0, 1327890, 20, 50, 25, 50, d);
+	//FontDraw(1, L"あい", 20, 100, 25, 50, d);
+	//FontDraw(2, L"かき", 20, 150, 25, 50, d);
 }
 
 
@@ -2353,8 +2361,8 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -160.0f;
+			m_message_draw_right = 160.0f;
 		}
 		else if (equip_id == 1)
 		{
@@ -2366,8 +2374,8 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -160.0f;
+			m_message_draw_right = 160.0f;
 		}
 		else if (equip_id == 2)
 		{
@@ -2379,8 +2387,8 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -170.0f;
+			m_message_draw_right = 170.0f;
 		}
 		else if (equip_id == 3)
 		{
@@ -2392,8 +2400,8 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -170.0f;
+			m_message_draw_right = 170.0f;
 		}
 		else  //(equip_id == 4)
 		{
@@ -2405,8 +2413,8 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -120.0f;
+			m_message_draw_right = 120.0f;
 		}
 
 		//武器ポッドレベルUPメッセージのカラーを黄色にする
@@ -2462,8 +2470,8 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -180.0f;
+			m_message_draw_right = 180.0f;
 		}
 		else if (equip_id == 1)
 		{
@@ -2475,8 +2483,8 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -180.0f;
+			m_message_draw_right = 180.0f;
 		}
 		else if (equip_id == 2)
 		{
@@ -2514,8 +2522,8 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 			m_message_clip_bottom = 112.0f;
 
 			//描画位置を設定する
-			m_message_draw_left = -200.0f;
-			m_message_draw_right = 200.0f;
+			m_message_draw_left = -150.0f;
+			m_message_draw_right = 150.0f;
 		}
 
 		//武器ポッドレベルDOWNメッセージのカラーを水色にする

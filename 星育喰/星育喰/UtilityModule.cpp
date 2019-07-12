@@ -4,6 +4,8 @@
 #include "GameL\DrawTexture.h"
 #include "UtilityModule.h"
 
+//ゲームヘッダー読み込む？(FontDrawのために)
+
 //使用するネームスペース
 using namespace GameL;
 
