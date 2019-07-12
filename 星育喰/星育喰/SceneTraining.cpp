@@ -362,7 +362,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"プラスチック文字.png", 91, TEX_SIZE_512);
 
 	//アルミニウム文字画像を読み込み92番に登録
-	Draw::LoadImage(L"アルミニウム文字.png", 92, TEX_SIZE_512);
+	Draw::LoadImage(L"アルミ.png", 92, TEX_SIZE_512);
 
 	//ガス文字画像を読み込み93番に登録
 	Draw::LoadImage(L"ガス文字.png", 93, TEX_SIZE_512);
@@ -403,36 +403,6 @@ void CSceneTraining::InitScene()
 	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
 	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
 
-	//レッド武器レベルUP!文字画像を読み込み106番に登録1200*112
-	Draw::LoadImage(L"レッド武器レベルUP!.png", 106, TEX_SIZE_512);
-
-	//レッド武器レベルDOWN…文字画像を読み込み107番に登録1431*112
-	Draw::LoadImage(L"レッド武器レベルDOWN….png", 107, TEX_SIZE_512);
-
-	//ブルー武器レベルUP!文字画像を読み込み108番に登録1200*112
-	Draw::LoadImage(L"ブルー武器レベルUP!.png", 108, TEX_SIZE_512);
-
-	//ブルー武器レベルDOWN…文字画像を読み込み109番に登録1435*112
-	Draw::LoadImage(L"ブルー武器レベルDOWN….png", 109, TEX_SIZE_512);
-
-	//グリーン武器レベルUP!文字画像を読み込み110番に登録1327*112
-	Draw::LoadImage(L"グリーン武器レベルUP!.png", 110, TEX_SIZE_512);
-
-	//グリーン武器レベルDOWN…文字画像を読み込み111番に登録1559*112
-	Draw::LoadImage(L"グリーン武器レベルDOWN….png", 111, TEX_SIZE_512);
-
-	//ホワイト武器レベルUP!文字画像を読み込み112番に登録1327*112
-	Draw::LoadImage(L"ホワイト武器レベルUP!.png", 112, TEX_SIZE_512);
-
-	//ホワイト武器レベルDOWN…文字画像を読み込み113番に登録1559*112
-	Draw::LoadImage(L"ホワイト武器レベルDOWN….png", 113, TEX_SIZE_512);
-
-	//ポッドレベルUP!文字画像を読み込み114番に登録967*112
-	Draw::LoadImage(L"ポッドレベルUP!.png", 114, TEX_SIZE_512);
-
-	//ポッドレベルDOWN…文字画像を読み込み115番に登録1199*112
-	Draw::LoadImage(L"ポッドレベルDOWN….png", 115, TEX_SIZE_512);
-
 	//兵舎 Lv文字画像を読み込み116番に登録
 	Draw::LoadImage(L"兵舎 Lv.png",116,TEX_SIZE_512);
 
@@ -452,6 +422,13 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
 
+	
+
+
+	//簡易メッセージ画像全てを読み込む為に、
+	//読み込み番号127番を使用しているので使わないように！
+
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
 
@@ -468,12 +445,7 @@ void CSceneTraining::InitScene()
 	//ホワイトアウトの音
 	Audio::LoadAudio(4, L"ホワイトアウト音.wav", EFFECT);
 
-	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
-	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
-
-	////音楽スタート
+	//音楽スタート
 	Audio::Start(0);
 }
 

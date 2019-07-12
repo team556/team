@@ -864,6 +864,10 @@ void CObjPreparation::Action()
 //ドロー
 void CObjPreparation::Draw()
 {
+
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	//赤色
 	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
@@ -918,18 +922,44 @@ void CObjPreparation::Draw()
 	{
 		swprintf_s(Until_fight_boss_count[0], L"　　　強大な惑星 出現中!");	//その文字配列に文字データを入れる
 		swprintf_s(Until_fight_boss_count[1], L"");							//文字データをクリアする
+
+		//▼強大な惑星 出現中!文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1012.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = 600.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(63, &src, &dst, d, 0.0f);
+
 	}
 	//それ以外の時
 	else
 	{
 		swprintf_s(Until_fight_boss_count[0], L"強大な惑星 接近まで");			 //その文字配列に文字データを入れる
 		swprintf_s(Until_fight_boss_count[1], L"あと %d体", 3 - m_destroy_count);//その文字配列に文字データを入れる
+
+		//▼強大な惑星 接近まで文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1132.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = 600.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(64, &src, &dst, d, 0.0f);
+
 	}
 
 
 
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
+	//RECT_F src;//描画元切り取り位置
+	//RECT_F dst;//描画先表示位置
 
 	//▼背景表示
 	src.m_top = 0.0f;
@@ -1094,16 +1124,33 @@ void CObjPreparation::Draw()
 		Draw::Draw(57 + i, &src, &dst, Special_icon[i], 0.0f);
 	}
 
+	//▼スペシャル技選択文字画像表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 952.0f;
+	src.m_bottom = 112.0f;
 
-
-	//▼フォント表示
-	//スペシャル技選択
-	Font::StrDraw(L"スペシャル技選択", 445.0f, 915.0f + m_Svy, 40.0f, black);
+	dst.m_top = 915.0f + m_Svy;
+	dst.m_left = 445.0f;
+	dst.m_right = 765.0f;
+	dst.m_bottom = 955.0f + m_Svy;
+	Draw::Draw(68, &src, &dst, black, 0.0f);
 
 	//ボス出現警告メッセージ
 	Font::StrDraw(Until_fight_boss_count[0], m_warning_message_x[0], m_warning_message_y[0], m_warning_message_size, warning_message);
 	Font::StrDraw(Until_fight_boss_count[1], m_warning_message_x[1] + 250.0f, m_warning_message_y[1] + 130.0f, m_warning_message_size, warning_message);
 
+	////▼強大な惑星 接近まで文字画像表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 1132.0f;
+	//src.m_bottom = 112.0f;
+
+	//dst.m_top = 0.0f;
+	//dst.m_left = 0.0f;
+	//dst.m_right = 400.0f;
+	//dst.m_bottom = 200.0f;
+	//Draw::Draw(64, &src, &dst, d, 0.0f);
 
 	//▼詳細説明(敵惑星、スペシャル技)メッセージ表示
 	//▽ウインドウ表示 
@@ -1124,8 +1171,6 @@ void CObjPreparation::Draw()
 		Font::StrDraw(m_detail_message[i], m_mou_x + m_detail_message_font_x, m_mou_y + m_detail_message_font_y + i * 40.0f, 25.0f, detail_message_font[i]);
 	}
 
-
-
 	//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
 	if (m_finalcheck_f == true)
 	{
@@ -1141,11 +1186,41 @@ void CObjPreparation::Draw()
 		dst.m_bottom = 480.0f;
 		Draw::Draw(55, &src, &dst, d, 0.0f);
 
-		//▼フォント表示
-		//最終確認メッセージ
-		Font::StrDraw(L"喰う？", 460.0f, 250.0f, 100.0f, black);
-		Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
-		Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
+		//▼喰う？文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 337.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 250.0f;
+		dst.m_left = 460.0f;
+		dst.m_right = 760.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(65, &src, &dst, black, 0.0f);
+
+		//▼はい文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 232.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 410.0f;
+		dst.m_right = 510.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(66, &src, &dst, Yes, 0.0f);
+
+		//▼いいえ文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 650.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(67, &src, &dst, No, 0.0f);
 	}
 
 

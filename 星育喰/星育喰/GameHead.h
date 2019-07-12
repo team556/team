@@ -175,10 +175,10 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 
 //ƒV[ƒ“ƒXƒ^[ƒgƒNƒ‰ƒX---------------------------
 //ƒQ[ƒ€ŠJn‚ÌƒV[ƒ“ƒNƒ‰ƒX“o˜^
-//#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneTitle
 //#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
-#define SET_GAME_START CScenePreparation
+//#define SET_GAME_START CScenePreparation
 //----------------------------------------------
