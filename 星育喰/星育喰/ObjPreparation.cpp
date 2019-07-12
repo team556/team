@@ -87,7 +87,7 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 0;
+	m_destroy_count = 4;
 
 	//現在の撃破数をカウント
 	for (int i = 0; i < 4; i++)
@@ -1108,19 +1108,130 @@ void CObjPreparation::Draw()
 	//Font::StrDraw(Until_fight_boss_count[0], m_warning_message_x[0], m_warning_message_y[0], m_warning_message_size, warning_message);
 	//Font::StrDraw(Until_fight_boss_count[1], m_warning_message_x[1] + 250.0f, m_warning_message_y[1] + 130.0f, m_warning_message_size, warning_message);
 
-	//▼強大な惑星 接近まで文字画像表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1132.0f;
-	src.m_bottom = 112.0f;
 
-	dst.m_top = m_warning_message_y[0];
-	dst.m_left = m_warning_message_x[0];
-	dst.m_right = m_warning_message_x[0] + (m_warning_message_size*9.5);
-	dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
-	Draw::Draw(64, &src, &dst, warning_message, 0.0);
+	if (m_destroy_count == 0)
+	{
+		//▼強大な惑星 接近まで文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1132.0f;
+		src.m_bottom = 112.0f;
 
-	//▼あと〇人
+		dst.m_top = m_warning_message_y[0];
+		dst.m_left = m_warning_message_x[0];
+		dst.m_right = m_warning_message_x[0] + (m_warning_message_size*9.5);
+		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
+		Draw::Draw(64, &src, &dst, warning_message, 0.0);
+
+		//▼あと3体文字画像表示
+		src.m_top = 4.0f;
+		src.m_left = 0.0f;
+		src.m_right = 502.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[1]+130.0f;
+		dst.m_left = m_warning_message_x[1]+250.0f;
+		dst.m_right = m_warning_message_x[1] + (m_warning_message_size*4)+250.0f;
+		dst.m_bottom = m_warning_message_y[1] + (m_warning_message_size)+130.0f;
+		Draw::Draw(69, &src, &dst, warning_message, 0.0);
+	}
+
+	else if (m_destroy_count == 1)
+	{
+		//▼強大な惑星 接近まで文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1132.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[0];
+		dst.m_left = m_warning_message_x[0];
+		dst.m_right = m_warning_message_x[0] + (m_warning_message_size*9.5);
+		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
+		Draw::Draw(64, &src, &dst, warning_message, 0.0);
+
+		//▼あと2体文字画像表示
+		src.m_top = 4.0f;
+		src.m_left = 0.0f;
+		src.m_right = 502.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[1] + 130.0f;
+		dst.m_left = m_warning_message_x[1] + 250.0f;
+		dst.m_right = m_warning_message_x[1] + (m_warning_message_size * 4) + 250.0f;
+		dst.m_bottom = m_warning_message_y[1] + (m_warning_message_size)+130.0f;
+		Draw::Draw(70, &src, &dst, warning_message, 0.0);
+	}
+
+	else if (m_destroy_count == 2)
+	{
+		//▼強大な惑星 接近まで文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1132.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[0];
+		dst.m_left = m_warning_message_x[0];
+		dst.m_right = m_warning_message_x[0] + (m_warning_message_size*9.5);
+		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
+		Draw::Draw(64, &src, &dst, warning_message, 0.0);
+
+		//▼あと1体文字画像表示
+		src.m_top = 4.0f;
+		src.m_left = 0.0f;
+		src.m_right = 502.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[1] + 130.0f;
+		dst.m_left = m_warning_message_x[1] + 250.0f;
+		dst.m_right = m_warning_message_x[1] + (m_warning_message_size * 4) + 250.0f;
+		dst.m_bottom = m_warning_message_y[1] + (m_warning_message_size)+130.0f;
+		Draw::Draw(71, &src, &dst, warning_message, 0.0);
+	}
+
+	else if (m_destroy_count == 3)
+	{
+		//▼強大な惑星 接近まで文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1132.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[0];
+		dst.m_left = m_warning_message_x[0];
+		dst.m_right = m_warning_message_x[0] + (m_warning_message_size*9.5);
+		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
+		Draw::Draw(64, &src, &dst, warning_message, 0.0);
+
+		//▼あと0体文字画像表示
+		src.m_top = 4.0f;
+		src.m_left = 0.0f;
+		src.m_right = 502.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[1] + 130.0f;
+		dst.m_left = m_warning_message_x[1] + 250.0f;
+		dst.m_right = m_warning_message_x[1] + (m_warning_message_size * 4) + 250.0f;
+		dst.m_bottom = m_warning_message_y[1] + (m_warning_message_size)+130.0f;
+		Draw::Draw(72, &src, &dst, warning_message, 0.0);
+	}
+
+	else
+	{
+		//▼強大な惑星出現中文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1012.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = m_warning_message_y[0];
+		dst.m_left = 200 + m_warning_message_x[0];
+		dst.m_right = 200 + m_warning_message_x[0] + (m_warning_message_size * 8);
+		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
+		Draw::Draw(63, &src, &dst, warning_message, 0.0);
+	}
+	
 
 	//▼詳細説明(敵惑星、スペシャル技)メッセージ表示
 	//▽ウインドウ表示 
@@ -1139,6 +1250,19 @@ void CObjPreparation::Draw()
 	for (int i = 0; i < DETAIL_MES_MAX_FONT_LINE; i++)
 	{
 		Font::StrDraw(m_detail_message[i], m_mou_x + m_detail_message_font_x, m_mou_y + m_detail_message_font_y + i * 40.0f, 25.0f, detail_message_font[i]);
+
+		////▼最終確認ウインドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 367.0f;
+		//src.m_bottom = 117.0f;
+
+		//dst.m_top = m_mou_y + m_detail_message_font_y + i;
+		//dst.m_left = m_mou_x + m_detail_message_font_x;
+		//dst.m_right = m_mou_x + m_detail_message_font_x;
+		//dst.m_bottom = m_mou_y + m_detail_message_font_y + i;
+		//Draw::Draw(73, &src, &dst, d, 0.0f);
+
 	}
 
 	//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
@@ -1186,9 +1310,9 @@ void CObjPreparation::Draw()
 		src.m_right = 352.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 410.0f;
-		dst.m_left = 650.0f;
-		dst.m_right = 800.0f;
+		dst.m_top    = 410.0f;
+		dst.m_left   = 650.0f;
+		dst.m_right  = 800.0f;
 		dst.m_bottom = 460.0f;
 		Draw::Draw(67, &src, &dst, No, 0.0f);
 	}
