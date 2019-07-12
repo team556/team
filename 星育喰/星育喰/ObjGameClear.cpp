@@ -101,7 +101,7 @@ void CObjGameClear::Action()
 	}
 
 	//23番目スクロールに登録された画像が下から上に流れてきたら
-	if (m_cy[28] <= 0.0f)
+	if (m_cy[69] <= 0.0f)
 	{
 		m_y_vec = 0;	//スクロールを止める
 		m_end_f = true;
@@ -343,16 +343,208 @@ void CObjGameClear::Draw()
 	Draw::Draw(32, &src, &dst, w, m_alpha);
 
 	//使用フォントピリオド描画
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 672.0f;
-	src.m_bottom = 105.0f;
+	src.m_top = 1.0f;
+	src.m_left = 1444.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 101.0f;
 
-	dst.m_top = 0.0f + m_cy[27];
-	dst.m_left = 500.0f;
-	dst.m_right = 700.0f;
-	dst.m_bottom = 75.0f + m_cy[27];
+	dst.m_top = 0.0f + m_cy[28];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 0.0f + m_cy[29];
+	Draw::Draw(33, &src, &dst, w, m_alpha);
+
+	//作者紹介
+	src.m_top = 1.0f;
+	src.m_left = 290.0f;
+	src.m_right = 10.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 0.0f + m_cy[30];
+	dst.m_left = 604.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 0.0f + m_cy[31];
+	Draw::Draw(35, &src, &dst, w, m_alpha);
+
+	//作者名紹介
+	src.m_top = 1.0f;
+	src.m_left = 290.0f;
+	src.m_right = 10.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 0.0f + m_cy[32];
+	dst.m_left = 604.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 0.0f + m_cy[33];
 	Draw::Draw(34, &src, &dst, w, m_alpha);
+
+	//サイト紹介
+	src.m_top = 1.0f;
+	src.m_left = 486.0f;
+	src.m_right = 10.0f;
+	src.m_bottom = 108.0f;
+
+	dst.m_top = 0.0f + m_cy[34];
+	dst.m_left = 604.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 0.0f + m_cy[35];
+	Draw::Draw(29, &src, &dst, w, m_alpha);
+
+	//飛べない鳥紹介
+	src.m_top = 1.0f;
+	src.m_left = 716.0f;
+	src.m_right = 10.0f;
+	src.m_bottom = 95.0f;
+
+	dst.m_top = 0.0f + m_cy[36];
+	dst.m_left = 604.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 0.0f + m_cy[37];
+	Draw::Draw(30, &src, &dst, w, m_alpha);
+
+	//使用フォントURL
+	src.m_top = 1.0f;
+	src.m_left = 1649.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 94.0f;
+
+	dst.m_top = 0.0f + m_cy[38];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 0.0f + m_cy[39];
+	Draw::Draw(31, &src, &dst, w, m_alpha);
+
+	//総合ディレクタ
+	src.m_top = 1.0f;
+	src.m_left = 795.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 129.0f;
+
+	dst.m_top = 0.0f + m_cy[40];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 0.0f + m_cy[41];
+	Draw::Draw(36, &src, &dst, w, m_alpha);
+
+	//池田描画
+	src.m_top = 1.0f;
+	src.m_left = 497.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 99.0f;
+
+	dst.m_top = 0.0f + m_cy[43];
+	dst.m_left = 800.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 75.0f + m_cy[43];
+	Draw::Draw(22, &src, &dst, w, m_alpha);
+
+	//プログラマ
+	src.m_top = 1.0f;
+	src.m_left = 497.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 10.0f + m_cy[45];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 75.0f + m_cy[46];
+	Draw::Draw(37, &src, &dst, w, m_alpha);
+
+	//後庵描画
+	src.m_top = 1.0f;
+	src.m_left = 398.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 99.0f;
+
+	dst.m_top = 0.0f + m_cy[48];
+	dst.m_left = 800.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 75.0f + m_cy[48];
+	Draw::Draw(23, &src, &dst, w, m_alpha);
+
+	//木村描画
+	src.m_top = 1.0f;
+	src.m_left = 393.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 15.0f + m_cy[49];
+	dst.m_left = 800.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 75.0f + m_cy[49];
+	Draw::Draw(24, &src, &dst, w, m_alpha);
+
+	//柏崎描画
+	src.m_top = 1.0f;
+	src.m_left = 392.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 15.0f + m_cy[50];
+	dst.m_left = 800.0f;
+	dst.m_right = 304.0f;
+	dst.m_bottom = 75.0f + m_cy[50];
+	Draw::Draw(26, &src, &dst, w, m_alpha);
+
+	//グラフィッカー
+	src.m_top = 1.0f;
+	src.m_left = 679.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 125.0f;
+
+	dst.m_top = 10.0f + m_cy[53];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 75.0f + m_cy[54];
+	Draw::Draw(38, &src, &dst, w, m_alpha);
+
+	//諏訪描画
+	src.m_top = 1.0f;
+	src.m_left = 497.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 10.0f + m_cy[55];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 75.0f + m_cy[56];
+	Draw::Draw(28, &src, &dst, w, m_alpha);
+
+	//坂田描画
+	src.m_top = 1.0f;
+	src.m_left = 497.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 10.0f + m_cy[57];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 75.0f + m_cy[58];
+	Draw::Draw(27, &src, &dst, w, m_alpha);
+
+	//プランナー描画
+	src.m_top = 1.0f;
+	src.m_left = 497.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 10.0f + m_cy[59];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 75.0f + m_cy[60];
+	Draw::Draw(39, &src, &dst, w, m_alpha);
+
+	//脇田描画
+	src.m_top = 1.0f;
+	src.m_left = 497.0f;
+	src.m_right = 0.0f;
+	src.m_bottom = 100.0f;
+
+	dst.m_top = 10.0f + m_cy[61];
+	dst.m_left = 1000.0f;
+	dst.m_right = 104.0f;
+	dst.m_bottom = 75.0f + m_cy[62];
+	Draw::Draw(25, &src, &dst, w, m_alpha);
 
 	//END描画
 	src.m_top = 0.0f;
@@ -360,10 +552,10 @@ void CObjGameClear::Draw()
 	src.m_right = 269.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 0.0f + m_cy[30];
+	dst.m_top = 0.0f + m_cy[64];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
-	dst.m_bottom = 75.0f + m_cy[30];
+	dst.m_bottom = 75.0f + m_cy[64];
 	Draw::Draw(2, &src, &dst, w, m_alpha);
 
 	//タイトルロゴ描画
@@ -372,10 +564,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 0.0f + m_cy[35];
+	dst.m_top = 0.0f + m_cy[66];
 	dst.m_left = 300.0f;
 	dst.m_right = 851.0f;
-	dst.m_bottom = 350.0f + m_cy[35];
+	dst.m_bottom = 350.0f + m_cy[67];
 	Draw::Draw(1, &src, &dst, w, m_alpha);
 
 	//右クリックをすると描画
