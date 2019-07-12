@@ -110,7 +110,7 @@ void CSceneFight::InitScene()
 	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
 	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
 
-	Draw::LoadImage(L"水惑星.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"モアイ.png", 26, TEX_SIZE_512);
 
 	Draw::LoadImage(L"レイド1 128x.png", 27, TEX_SIZE_512);
 
