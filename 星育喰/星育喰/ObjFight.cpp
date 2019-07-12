@@ -298,8 +298,8 @@ void CObjFight::Draw()
 		//分数/10をして小数点以下切り捨てをして
 		//その値によって切り取り位置を変えている
 		src.m_top = 1250.0f;
-		src.m_left = 1250.0f + (floor(m / 10) * 125);	//実質動くことはないが10分以上に設定したときも
-		src.m_right = 1375.0f + (floor(m / 10) * 125);	//動作するようになっている
+		src.m_left =  CUT_ZERO + (floor(m / 10) * 125);	//実質動くことはないが10分以上に設定したときも
+		src.m_right = END_ZERO + (floor(m / 10) * 125);	//動作するようになっている
 		src.m_bottom = 1375.0f;
 
 		dst.m_top = 50.0f;
@@ -313,8 +313,8 @@ void CObjFight::Draw()
 		//分数/10の余りを出して
 		//その値によって切り取り位置を変えている
 		src.m_top = 1250.0f;
-		src.m_left = 1250.0f + ((m % 10) * 125);
-		src.m_right = 1375.0f + ((m % 10) * 125);
+		src.m_left =  CUT_ZERO + ((m % 10) * 125);
+		src.m_right = END_ZERO + ((m % 10) * 125);
 		src.m_bottom = 1375.0f;
 
 		dst.m_top = 50.0f;
@@ -340,8 +340,8 @@ void CObjFight::Draw()
 		//秒数/10をして小数点以下切り捨てをして
 		//その値によって切り取り位置を変えている
 		src.m_top = 1250.0f;
-		src.m_left = 1250.0f + (floor(s / 10) * 125);
-		src.m_right = 1375.0f + (floor(s / 10) * 125);
+		src.m_left =  CUT_ZERO + (floor(s / 10) * 125);
+		src.m_right = END_ZERO + (floor(s / 10) * 125);
 		src.m_bottom = 1375.0f;
 
 		dst.m_top = 50.0f;
@@ -355,8 +355,8 @@ void CObjFight::Draw()
 		//秒数/10の余りを出して
 		//その値によって切り取り位置を変えている
 		src.m_top = 1250.0f;
-		src.m_left = 1250.0f + ((s % 10) * 125);
-		src.m_right = 1375.0f + ((s % 10) * 125);
+		src.m_left =  CUT_ZERO + ((s % 10) * 125);
+		src.m_right = END_ZERO + ((s % 10) * 125);
 		src.m_bottom = 1375.0f;
 
 		dst.m_top = 50.0f;
