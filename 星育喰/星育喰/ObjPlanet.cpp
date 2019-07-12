@@ -20,9 +20,9 @@ using namespace GameL;
 #define THI_DELAY (105)
 #define FOU_DELAY (120)
 #define FIV_DELAY (105)
-#define MIN_SIZE (60.0f) //各惑星の最小サイズ(これ以上は小さくならない)
+#define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
-
+#define MOAI_NAM (1)	//モアイの番号type設定(仮
 
 //コンストラクタ
 CObjPlanet::CObjPlanet(float x, float y, float size, int type)
@@ -45,6 +45,7 @@ void CObjPlanet::Init()
 	//m_siz_vec=  0.0f;
 	m_siz_change_range = 60.0f;
 	m_scale_down_move = 0.0f;
+	m_r = 20.0f;
 
 	m_cnt = 0;		//カウント
 
@@ -75,14 +76,24 @@ void CObjPlanet::Init()
 	else
 		m_px -= 0.0f;
 
+	m_mani[0] = 4;
+	m_mani[1] = 0;
+	m_mani[2] = 1;
+	m_mani[3] = 0;
+	m_mani[4] = 2;
+	m_mani[5] = 3;
+
 	m_ani[0] = 0;//アニメーションデータの初期化
 	m_ani[1] = 1;
 	m_ani[2] = 2;
 	m_ani[3] = 1;
-	m_ani_frame = 0;
+
+	m_ani_frame[0] = 0;
+	m_ani_frame[1] = 0;
 	m_ani_time = 0;
 	m_cntf = 0;
 	m_eat_f = false;	//喰うフラグ(true = 喰う)
+	m_eat_me = false;
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
 
@@ -159,8 +170,9 @@ void CObjPlanet::Action()
 	//-------------------------------------------------アニメーション、星の動き
 	if (m_ani_time == 60) {	//フレーム切り替え時間
 		m_ani_time = 0;		//タイムリセット
-		m_ani_frame++;		//フレーム切り替え
-		if (m_ani_frame == 4) {			//最終初期フレームにする前
+		m_ani_frame[0]++;		//フレーム切り替え
+		m_ani_frame[1]++;
+		if (m_ani_frame[0] == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
 			if (m_type == 0) {		//主人公の場合
@@ -181,6 +193,12 @@ void CObjPlanet::Action()
 				Audio::Start(2);
 			}
 		}
+	}
+	else if (m_ani_time == 30) {
+		m_ani_frame[1]++;		//特殊aniフレーム切り替え
+	}
+	if (m_ani_frame[1] == 5) {
+		m_ani_frame[1] = 0;
 	}
 	//2.5秒
 	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
@@ -247,7 +265,7 @@ void CObjPlanet::Action()
 
 	if (m_eat_f == true) {	//食べるフラグ★処理
 		m_ani_time++;		//ani_time 加算
-		if ((m_ani_frame == 3) && (m_ani_time == 1)) {//口閉じた瞬間
+		if ((m_ani_frame[0] == 3) && (m_ani_time == 1)) {//口閉じた瞬間
 			//▼演出用サイズ変更処理
 			m_size = m_siz_max;//m_size(HP)を満タンに設定
 			m_siz_change_range *= 1.5f;//その後、1.5倍化する
@@ -267,9 +285,12 @@ void CObjPlanet::Action()
 		}
 	}
 	else
-		m_ani_frame = 0;	//初期フレーム
+	{
+		m_ani_frame[0] = 0;	//初期フレーム
+		m_ani_frame[1] = 0;
+	}
 
-	if (m_ani_frame == 2)		//喰うフレームの移動
+	if (m_ani_frame[0] == 2)		//喰うフレームの移動
 	{
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
@@ -717,27 +738,37 @@ void CObjPlanet::Draw()
 	RECT_F dst;
 	//切り取り位置
 	src.m_top   =  0.0f;
-	src.m_left  = m_ani[m_ani_frame] * 128.0f;
-	src.m_right = m_ani[m_ani_frame] * 128.0f + 128.0f;
+	src.m_left  = m_ani[m_ani_frame[0]] * 128.0f;
+	src.m_right = m_ani[m_ani_frame[0]] * 128.0f + 128.0f;
 	src.m_bottom= 128.0f;
 	//表示位置
-	dst.m_top = m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range);
-	dst.m_left = m_px - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+	dst.m_top	= m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range);
+	dst.m_left	= m_px - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
 	dst.m_right = m_px + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
-	dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
+	dst.m_bottom= m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
 
 	
-	if (m_type != 0)//仮グラフィックの為、敵のみ切り取りサイズ変更
+	if (m_type != 0)//敵のみ切り取りサイズ変更
 	{
-		src.m_top = 0.0f;
-		src.m_left = m_ani[m_ani_frame] * 128.0f;
-		src.m_right = m_ani[m_ani_frame] * 128.0f + 128.0f;
-		src.m_bottom = 128.0f;
+		src.m_top	= 0.0f;
+		src.m_left	= m_ani[m_ani_frame[0]] * 128.0f;
+		src.m_right	= m_ani[m_ani_frame[0]] * 128.0f + 128.0f;
+		src.m_bottom= 128.0f;
 	}
 
+	if (m_type == MOAI_NAM)//モアイは,m_mani[ani_frame[1]]を使う
+	{
+		src.m_top   = 0.0f;
+		src.m_left  = m_mani[m_ani_frame[1]] * 300.0f;
+		src.m_right = m_mani[m_ani_frame[1]] * 300.0f + 300.0f;
+		src.m_bottom= 300.0f;
+		Draw::Draw(m_img_nam, &src, &dst, c, m_r);
+	}
+	else {
+		//m_img_namの数で、登録したグラフィックをsrc,dst,c情報をもとに描画
+		Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
+	}
 
-	//0番目に登録したグラフィックをsrc,dst,c情報をもとに描画
-	Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
 
 
 
@@ -749,9 +780,9 @@ void CObjPlanet::Draw()
 		src.m_right = 128.0f;
 		src.m_bottom = 10.0f;
 
-		dst.m_top = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) - 5.0f;
-		dst.m_left = m_px - MIN_SIZE + m_scale_down_move;
-		dst.m_bottom = m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
+		dst.m_top	= m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) - 5.0f;
+		dst.m_left	= m_px - MIN_SIZE + m_scale_down_move;
+		dst.m_bottom= m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
 
 		//▼最大値表示
 		dst.m_right = m_px - MIN_SIZE + m_scale_down_move + (MIN_SIZE * 2);
@@ -783,20 +814,20 @@ void CObjPlanet::Draw()
 			}
 
 			//クリックでスタート文字画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
+			src.m_top	= 0.0f;
+			src.m_left	= 0.0f;
 			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
+			src.m_bottom= 64.0f;
 
-			dst.m_top = m_py - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
-			dst.m_left = m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
+			dst.m_top	= m_py - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
+			dst.m_left	= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
 			dst.m_right = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
-			dst.m_bottom = m_py + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
+			dst.m_bottom= m_py + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
 
 			if (m_type != 0)//惑星がプレイヤー以外の時、汗の位置を左上に表示して反転させる
 			{
 				dst.m_left = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
-				dst.m_right = m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
+				dst.m_right= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
 			}
 			
 			//汗
