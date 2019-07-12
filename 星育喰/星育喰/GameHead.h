@@ -129,8 +129,8 @@ extern int g_Challenge_enemy;		//í“¬‚ðs‚¤“G˜f¯Ž¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯
 extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\Ž¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\Ž¦@false:ƒwƒ‹ƒv‰æ–Ê”ñ•\Ž¦)
 
 //¥’è”
-#define CUT_ZERO 1375		//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
-#define END_ZERO 1500		//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
+#define CUT_ZERO 1625		//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
+#define END_ZERO 1750		//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
 
 //------------------------------------------------
 //ƒQ[ƒ€“à‚ÅŽg—p‚·‚éƒNƒ‰ƒXƒwƒbƒ_------------------
