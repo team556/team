@@ -31,7 +31,7 @@ private:
 
 	//test！変数宣言(FontDrawの。後で適する場所に移動させる予定。→UtilityModule等)
 	wchar_t font[100][256] = {};
-	int length = 0;
+	int length[100] = {};
 	int font_column[100][256] = {};//[100]は同時に表示できるフォント限界数、[256]は表示できる文字数
 	int font_line[100][256] = {};
 	float draw_x[100] = {};

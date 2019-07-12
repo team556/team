@@ -88,7 +88,8 @@ private:
 
 	int m_get_line;				//取得したラインナンバー
 
-	float m_r;			//体力減少時の汗の動き用変数
+	//メモ：↓m_rはモアイ用角度が使っており被っていたので、仮でm_r2としておきました。(後庵)
+	float m_r2;			//体力減少時の汗の動き用変数
 	float m_sweat_vy;	//上に同じ
 	float m_subsize;	//汗表示に使うm_size保存用変数
 };

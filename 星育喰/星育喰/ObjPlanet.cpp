@@ -97,7 +97,7 @@ void CObjPlanet::Init()
 	m_eat_spd = fit->GetCount();
 	m_del_f = false;	//消すフラグ(true = 消す)
 
-	m_r = 0.0f;		
+	m_r2 = 0.0f;		
 
 	m_sweat_vy = 0.0f;
 
@@ -800,14 +800,14 @@ void CObjPlanet::Draw()
 			//▼戦闘が続いているとき(止まっていないとき)上下する"汗"を表示
 			if (battle_start == true) {
 				//角度加算
-				m_r += 10.0f;
+				m_r2 += 10.0f;
 
 				//360°で初期値に戻す
-				if (m_r > 360.0f)
-					m_r = 0.0f;
+				if (m_r2 > 360.0f)
+					m_r2 = 0.0f;
 
 				//移動方向
-				m_sweat_vy = sin(3.14f / 90 * m_r);
+				m_sweat_vy = sin(3.14f / 90 * m_r2);
 
 				//速度付ける。
 				m_sweat_vy *= 10.0f;

@@ -413,11 +413,11 @@ void CObjTraining::FontDraw(int id, int conversion, float x, float y, float x_si
 	//▼文字化した文字列の長さを取得	
 	for (int i = 0; font[id][i] != L'；'; i++)
 	{
-		length = i + 1;
+		length[id] = i + 1;
 	}
 
 	//▼半角→全角変換処理
-	for (int i = 0; i <= length; i++)
+	for (int i = 0; i <= length[id]; i++)
 	{
 		for (int j = 0; j <= WIDTH_DATA_NUM; j++)
 		{
@@ -485,13 +485,13 @@ void CObjTraining::FontDraw(int id, wchar_t *conversion, float x, float y, float
 	//▼文字化した文字列の長さを取得	
 	for (int i = 0; font[id][i] != L'；'; i++)
 	{
-		length = i + 1;
+		length[id] = i + 1;
 	}
 
 	//▼フォント表示処理
 	//文字列の長さ(文字の数)分、フォント表示処理を行う
 	//※フォント１つ１つをfor文で文字の総数分回して、表示している。
-	for (int i = 0; i <= length; i++)
+	for (int i = 0; i <= length[id]; i++)
 	{
 		//フォントデータ読み込み処理
 		//※表示したい文字が白文字集.pngのどこにあるか検索

@@ -87,7 +87,7 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 4;
+	m_destroy_count = 0;
 
 	//Œ»İ‚ÌŒ‚”j”‚ğƒJƒEƒ“ƒg
 	for (int i = 0; i < 4; i++)
