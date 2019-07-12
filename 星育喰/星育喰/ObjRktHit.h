@@ -25,7 +25,9 @@ private:
 	float m_size;	//縦横サイズ(50)
 
 	int m_get_line;	//戦闘シーンからGetしたline
+	int m_del_cnt;	//削除までのカウント用
 
-	bool  m_atk_f;	//交戦用(false = OFF, true = ON)
-	bool  m_type;	//タイプ(false 味方 , true 敵)
+	bool m_stop_f;	//止める用(true = 停止)
+	bool m_type;	//タイプ(true = 敵)
+	bool m_del_f;	//削除フラグ(true = 削除)
 };

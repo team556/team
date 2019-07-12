@@ -10,6 +10,8 @@ using namespace GameL;
 #define MAT_NAME_CHAR_DATA_STORE_NUM (7) //素材名の文字データ格納可能数
 #define CON_PRE_TIME (30)	//連続振り分け前の次住民振り分け時間(0.5秒)
 #define CON_MID_TIME (5)	//連続振り分け中の次住民振り分け時間(0.08秒)
+#define MES_DRAW_TOP (-40.0f)	//簡易メッセージ画像描画位置top
+#define MES_DRAW_BOTTOM (-10.0f)//簡易メッセージ画像描画位置bottom
 
 //オブジェクト：育成画面
 class CObjTraining :public CObj
@@ -42,7 +44,11 @@ protected:
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 
-	wchar_t m_message[18];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用
+	wchar_t m_message[18];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用「画像で行うので、全て変更後不要なので消すべし。」
+	float	m_message_clip_right;	//簡易メッセージ画像切り取り位置right
+	float	m_message_clip_bottom;	//簡易メッセージ画像切り取り位置bottom
+	float	m_message_draw_left;	//簡易メッセージ画像描画位置left
+	float	m_message_draw_right;	//簡易メッセージ画像描画位置right
 	float	m_message_red_color;	//簡易メッセージカラー(Red)
 	float	m_message_green_color;	//簡易メッセージカラー(Green)
 	float	m_message_blue_color;	//簡易メッセージカラー(Blue)

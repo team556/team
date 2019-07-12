@@ -122,6 +122,10 @@ void CObjInstitute::Init()
 	m_key_rf = false;
 	m_next_time = 0;
 	m_con_alo_f = false;
+	m_message_clip_right = 0.0f;
+	m_message_clip_bottom = 0.0f;
+	m_message_draw_left = 0.0f;
+	m_message_draw_right = 0.0f;
 	m_message_red_color = INI_COLOR;
 	m_message_green_color = INI_COLOR;
 	m_message_blue_color = INI_COLOR;
@@ -483,8 +487,17 @@ void CObjInstitute::Action()
 					if (g_Ins_Level == FACILITY_MAX_LV)
 					{
 						//▽レベルMAX時の処理
-						//左クリックされたら簡易メッセージでレベルUP不可を伝える
-						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+						//LvUP出来ません文字画像を読み込み127番に登録
+						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 937.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -100.0f;
+						m_message_draw_right = 100.0f;
 
 						//簡易メッセージのカラーを赤色にする
 						m_message_red_color = 1.0f;
@@ -514,8 +527,17 @@ void CObjInstitute::Action()
 					else
 					{
 						//▽レベルUP不可時の処理
-						//左クリックされたら簡易メッセージでレベルUP不可を伝える
-						swprintf_s(m_message, L"LvUP出来ません");//文字配列に文字データを入れる
+						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+						//LvUP出来ません文字画像を読み込み127番に登録
+						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 937.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -100.0f;
+						m_message_draw_right = 100.0f;
 
 						//簡易メッセージのカラーを赤色にする
 						m_message_red_color = 1.0f;
@@ -642,8 +664,18 @@ void CObjInstitute::Action()
 						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
 
 
-						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージにて知らせる
-						swprintf_s(m_message, L"ミサイルリキャストレベルDOWN…");//文字配列に文字データを入れる
+						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
+						
+						//ミサイルリキャストレベルDOWN…文字画像を読み込み127番に登録
+						Draw::LoadImage(L"ミサイルリキャストレベルDOWN….png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+						//切り取り位置を設定する
+						m_message_clip_right = 1919.0f;
+						m_message_clip_bottom = 112.0f;
+
+						//描画位置を設定する
+						m_message_draw_left = -200.0f;
+						m_message_draw_right = 200.0f;
 
 						//リキャストレベルDOWNメッセージのカラーを水色にする
 						m_message_red_color = 0.0f;
@@ -1650,8 +1682,18 @@ void CObjInstitute::Draw()
 
 		Facility_message(g_Ins_Level);//研究所の必要素材&サイズメッセージ描画関数呼び出す
 
-		//簡易メッセージ(エラーメッセージ、レベルUP表示等)
-		Font::StrDraw(m_message, m_mou_x - 110.0f, m_mou_y - 45.0f, 30.0f, message);
+
+		//▼簡易メッセージ(エラーメッセージ、レベルUP表示等)画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = m_message_clip_right;
+		src.m_bottom = m_message_clip_bottom;
+
+		dst.m_top = m_mou_y + MES_DRAW_TOP;
+		dst.m_left = m_mou_x + m_message_draw_left;
+		dst.m_right = m_mou_x + m_message_draw_right;
+		dst.m_bottom = m_mou_y + MES_DRAW_BOTTOM;
+		Draw::Draw(127, &src, &dst, message, 0.0f);
 
 
 		//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
@@ -2128,7 +2170,19 @@ void CObjInstitute::Draw()
 			Font::StrDraw(m_message_Mat_name, m_mou_x - 135.0f, m_mou_y - 76.0f, 17.5f, Equ_message_font[2]);
 
 			//最下部メッセージ表示(ウインドウ一番下にあるフォント)
-			Font::StrDraw(m_message, m_mou_x - 210.0f, m_mou_y - 40.0f, 30.0f, message);
+			//Font::StrDraw(m_message, m_mou_x - 210.0f, m_mou_y - 40.0f, 30.0f, message);
+
+			//▼最下部メッセージ(ウインドウ一番下にあるフォント)画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = m_message_clip_right;
+			src.m_bottom = m_message_clip_bottom;
+
+			dst.m_top = m_mou_y + MES_DRAW_TOP;
+			dst.m_left = m_mou_x + m_message_draw_left;
+			dst.m_right = m_mou_x + m_message_draw_right;
+			dst.m_bottom = m_mou_y + MES_DRAW_BOTTOM;
+			Draw::Draw(127, &src, &dst, message, 0.0f);
 
 
 
@@ -2225,7 +2279,17 @@ void CObjInstitute::Missile_Lvup_check()
 
 
 		//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
-		swprintf_s(m_message, L"ミサイルリキャストレベルUP！");//文字配列に文字データを入れる
+
+		//ミサイルリキャストレベルUP文字画像を読み込み127番に登録
+		Draw::LoadImage(L"ミサイルリキャストレベルUP.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+		//切り取り位置を設定する
+		m_message_clip_right = 1690.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -200.0f;
+		m_message_draw_right = 200.0f;
 
 		//リキャストレベルUPメッセージのカラーを黄色にする
 		m_message_red_color = 1.0f;
@@ -2256,12 +2320,6 @@ void CObjInstitute::Missile_Lvup_check()
 //装備可能な研究員数に達していれば、レベルUPさせる。
 int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_achieve)
 {
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
-	//黄色
-	float yellow[4] = { 1.0f,1.0f,0.0f,1.0f };
-
-
 	//▼武器ポッドレベルUPチェック処理
 	if (equip_Level == equip_Lv_achieve)
 	{
@@ -2284,91 +2342,71 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		m_Equ_pic_blue_color[equip_Level - 2 + equip_id * 3] = 0.5f;
 
 
-		//▼武器ポッドがレベルUPした事を簡易メッセージにて知らせる
+		//▼武器ポッドがレベルUPした事を簡易メッセージ画像にて知らせる
 		if (equip_id == 0)
 		{
-			swprintf_s(m_message, L"パワー武器レベルUP！");//文字配列に文字データを入れる
+			//レッド武器レベルUP!文字画像を読み込み127番に登録1200*112
+			Draw::LoadImage(L"レッド武器レベルUP!.png", 127, TEX_SIZE_512);
 
-			////▼レッド武器レベルUP!文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1200.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 1200.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(106, &src, &dst, yellow, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else if (equip_id == 1)
 		{
-			swprintf_s(m_message, L"ディフェンス武器レベルUP！");//文字配列に文字データを入れる
-			////▼ブルー武器レベルUP!文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1207.0f;
-			//src.m_bottom = 112.0f;
+			//ブルー武器レベルUP!文字画像を読み込み127番に登録1200*112
+			Draw::LoadImage(L"ブルー武器レベルUP!.png", 127, TEX_SIZE_512);										 
+			
+			//切り取り位置を設定する
+			m_message_clip_right = 1200.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(108, &src, &dst, yellow, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else if (equip_id == 2)
 		{
-			swprintf_s(m_message, L"スピード武器レベルUP！");//文字配列に文字データを入れる
+			//グリーン武器レベルUP!文字画像を読み込み127番に登録1327*112
+			Draw::LoadImage(L"グリーン武器レベルUP!.png", 127, TEX_SIZE_512);
 
-			////▼グリーン武器レベルUP!文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1327.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 1327.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(110, &src, &dst, yellow, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else if (equip_id == 3)
 		{
-			swprintf_s(m_message, L"バランス武器レベルUP！");//文字配列に文字データを入れる
+			//ホワイト武器レベルUP!文字画像を読み込み127番に登録1327*112
+			Draw::LoadImage(L"ホワイト武器レベルUP!.png", 127, TEX_SIZE_512);
 
-			////▼ホワイト武器レベルUP!文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1327.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 1327.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(112, &src, &dst, yellow, 1.0f);
-
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else  //(equip_id == 4)
 		{
-			swprintf_s(m_message, L"ポッドレベルUP！");//文字配列に文字データを入れる
+			//ポッドレベルUP!文字画像を読み込み127番に登録967*112
+			Draw::LoadImage(L"ポッドレベルUP!.png", 127, TEX_SIZE_512);
 
-			////▼ポッドレベルUP!文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 967.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 967.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(114, &src, &dst, yellow, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 
 		//武器ポッドレベルUPメッセージのカラーを黄色にする
@@ -2391,12 +2429,6 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 //装備不可な研究員数に達していれば、レベルDOWNさせる。
 int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 {
-
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
-	//水色
-	float lightblue[4] = { 0.0f,1.0f,1.0f,1.0f };
-
 	//▼武器ポッドレベルDOWNチェック処理
 	if (equip_Level == 1)
 	{
@@ -2422,86 +2454,68 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 		//▼武器ポッドがレベルDOWNした事を簡易メッセージにて知らせる
 		if (equip_id == 0)
 		{
-			swprintf_s(m_message, L"パワー武器レベルDOWN…");//文字配列に文字データを入れる
-			////▼レッド武器レベルDOWN…文字画像表示レッド武器レベルDOWN…
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1431.0f;
-			//src.m_bottom = 112.0f;
+			//レッド武器レベルDOWN…文字画像を読み込み127番に登録1431*112
+			Draw::LoadImage(L"レッド武器レベルDOWN….png", 127, TEX_SIZE_512);
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(107, &src, &dst, lightblue, 1.0f);
+			//切り取り位置を設定する
+			m_message_clip_right = 1431.0f;
+			m_message_clip_bottom = 112.0f;
 
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else if (equip_id == 1)
 		{
-			swprintf_s(m_message, L"ディフェンス武器レベルDOWN…");//文字配列に文字データを入れる
-			////▼ブルー武器レベルDOWN…文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1435.0f;
-			//src.m_bottom = 112.0f;
+			//ブルー武器レベルDOWN…文字画像を読み込み127番に登録1435*112
+			Draw::LoadImage(L"ブルー武器レベルDOWN….png", 127, TEX_SIZE_512);
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(109, &src, &dst, lightblue, 1.0f);
+			//切り取り位置を設定する
+			m_message_clip_right = 1435.0f;
+			m_message_clip_bottom = 112.0f;
 
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else if (equip_id == 2)
 		{
-			swprintf_s(m_message, L"スピード武器レベルDOWN…");//文字配列に文字データを入れる
+			//グリーン武器レベルDOWN…文字画像を読み込み127番に登録1559*112
+			Draw::LoadImage(L"グリーン武器レベルDOWN….png", 127, TEX_SIZE_512);
 
-			////▼グリーン武器レベルDOWN…文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1559.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 1559.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(111, &src, &dst, lightblue, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else if (equip_id == 3)
 		{
-			swprintf_s(m_message, L"バランス武器レベルDOWN…");//文字配列に文字データを入れる
+			//ホワイト武器レベルDOWN…文字画像を読み込み127番に登録1559*112
+			Draw::LoadImage(L"ホワイト武器レベルDOWN….png", 127, TEX_SIZE_512);
 
-			////▼ホワイト武器レベルDOWN…文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1559.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 1559.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(113, &src, &dst, lightblue, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 		else  //(equip_id == 4)
 		{
-			swprintf_s(m_message, L"ポッドレベルDOWN…");//文字配列に文字データを入れる
+			//ポッドレベルDOWN…文字画像を読み込み127番に登録1199*112
+			Draw::LoadImage(L"ポッドレベルDOWN….png", 127, TEX_SIZE_512);
 
-			////▼ポッドレベルDOWN…文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1199.0f;
-			//src.m_bottom = 112.0f;
+			//切り取り位置を設定する
+			m_message_clip_right = 1199.0f;
+			m_message_clip_bottom = 112.0f;
 
-			//dst.m_top = 410.0f;
-			//dst.m_left = 650.0f;
-			//dst.m_right = 800.0f;
-			//dst.m_bottom = 460.0f;
-			//Draw::Draw(115, &src, &dst, lightblue, 1.0f);
-
+			//描画位置を設定する
+			m_message_draw_left = -200.0f;
+			m_message_draw_right = 200.0f;
 		}
 
 		//武器ポッドレベルDOWNメッセージのカラーを水色にする

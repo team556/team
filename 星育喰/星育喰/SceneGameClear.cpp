@@ -81,6 +81,24 @@ void CSceneGameClear::InitScene()
 	Draw::LoadImage(L"OtoLogic.png", 20, TEX_SIZE_512);
 	Draw::LoadImage(L"OtoLogic_URL.png", 21, TEX_SIZE_512);
 
+	//メンバーの名前描画登録
+	Draw::LoadImage(L"池田.png", 22, TEX_SIZE_512);
+	Draw::LoadImage(L"後庵.png", 23, TEX_SIZE_512);
+	Draw::LoadImage(L"木村.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"脇田.png", 25, TEX_SIZE_512);
+	Draw::LoadImage(L"柏崎.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"坂田.png", 27, TEX_SIZE_512);
+	Draw::LoadImage(L"諏訪.png", 28, TEX_SIZE_512);
+
+	Draw::LoadImage(L"弊社サイト.png", 29, TEX_SIZE_512);
+	Draw::LoadImage(L"よく飛ばない鳥.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"ピリオドフォントURL.png", 31, TEX_SIZE_512);
+	Draw::LoadImage(L"フォント.png", 32, TEX_SIZE_512);
+	Draw::LoadImage(L"諏訪.png", 33, TEX_SIZE_512);
+	Draw::LoadImage(L"ピリオドフォント.png", 34, TEX_SIZE_512);
+
+
+
 	
 
 	//オブジェクト作成
