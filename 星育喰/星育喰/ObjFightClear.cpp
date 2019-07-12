@@ -396,8 +396,8 @@ void CObjFightClear::Draw()
 			if (m_people >= 10000) {
 				//万の位
 				src.m_top = 1250.0f;
-				src.m_left = 1250.0f + (floor(m_people / 10000) * 125);
-				src.m_right = 1375.0f + (floor(m_people / 10000) * 125);
+				src.m_left =  CUT_ZERO + (floor(m_people / 10000) * 125);
+				src.m_right =  END_ZERO + (floor(m_people / 10000) * 125);
 				src.m_bottom = 1375.0f;
 
 				dst.m_top = FONT_Y;
@@ -409,8 +409,8 @@ void CObjFightClear::Draw()
 			}
 			//千の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor((m_people / 1000) % 10) * 125);
-			src.m_right = 1375.0f + (floor((m_people / 1000) % 10) * 125);
+			src.m_left =  CUT_ZERO + (floor((m_people / 1000) % 10) * 125);
+			src.m_right =  END_ZERO + (floor((m_people / 1000) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y;
@@ -421,8 +421,8 @@ void CObjFightClear::Draw()
 
 			//百の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor((m_people / 100) % 10) * 125);
-			src.m_right = 1375.0f + (floor((m_people / 100) % 10) * 125);
+			src.m_left =  CUT_ZERO + (floor((m_people / 100) % 10) * 125);
+			src.m_right =  END_ZERO + (floor((m_people / 100) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y;
@@ -433,8 +433,8 @@ void CObjFightClear::Draw()
 
 			//十の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor((m_people / 10) % 10) * 125);
-			src.m_right = 1375.0f + (floor((m_people / 10) % 10) * 125);
+			src.m_left =  CUT_ZERO + (floor((m_people / 10) % 10) * 125);
+			src.m_right =  END_ZERO + (floor((m_people / 10) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y;
@@ -444,8 +444,8 @@ void CObjFightClear::Draw()
 			Draw::Draw(41, &src, &dst, c[2], 0.0f);
 
 			//一の位
-			src.m_left = 1250.0f + (((m_people / 10) % 10) * 125);
-			src.m_right = 1375.0f + (((m_people / 10) % 10) * 125);
+			src.m_left =  CUT_ZERO + (((m_people / 10) % 10) * 125);
+			src.m_right =  END_ZERO + (((m_people / 10) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y;
@@ -498,8 +498,8 @@ void CObjFightClear::Draw()
 
 			//百の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor(m_large / 100) * 125);
-			src.m_right = 1375.0f + (floor(m_large / 100) * 125);
+			src.m_left =  CUT_ZERO + (floor(m_large / 100) * 125);
+			src.m_right =  END_ZERO + (floor(m_large / 100) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y + 50.0f;
@@ -510,8 +510,8 @@ void CObjFightClear::Draw()
 
 			//十の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor((m_large / 10) % 10) * 125);
-			src.m_right = 1375.0f + (floor((m_large / 10) % 10) * 125);
+			src.m_left =  CUT_ZERO + (floor((m_large / 10) % 10) * 125);
+			src.m_right =  END_ZERO + (floor((m_large / 10) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y + 50.0f;
@@ -522,8 +522,8 @@ void CObjFightClear::Draw()
 
 			//一の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + ((m_large % 10) * 125);
-			src.m_right = 1375.0f + ((m_large % 10) * 125);
+			src.m_left =  CUT_ZERO + ((m_large % 10) * 125);
+			src.m_right =  END_ZERO + ((m_large % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y + 50.0f;
@@ -662,8 +662,8 @@ void CObjFightClear::Draw()
 
 			//十の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor(m_mat_num[0] / 10) * 125);
-			src.m_right = 1375.0f + (floor(m_mat_num[0] / 10) * 125);
+			src.m_left =  CUT_ZERO + (floor(m_mat_num[0] / 10) * 125);
+			src.m_right =  END_ZERO + (floor(m_mat_num[0] / 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y + 150.0f;
@@ -674,8 +674,8 @@ void CObjFightClear::Draw()
 
 			//一の位
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + ((m_mat_num[0] % 10) * 125);
-			src.m_right = 1375.0f + ((m_mat_num[0] % 10) * 125);
+			src.m_left =  CUT_ZERO + ((m_mat_num[0] % 10) * 125);
+			src.m_right =  END_ZERO + ((m_mat_num[0] % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = FONT_Y + 150.0f;
@@ -792,8 +792,8 @@ void CObjFightClear::Draw()
 
 				//十の位
 				src.m_top = 1250.0f;
-				src.m_left = 1250.0f + (floor(m_mat_num[1] / 10) * 125);
-				src.m_right = 1375.0f + (floor(m_mat_num[1] / 10) * 125);
+				src.m_left =  CUT_ZERO + (floor(m_mat_num[1] / 10) * 125);
+				src.m_right =  END_ZERO + (floor(m_mat_num[1] / 10) * 125);
 				src.m_bottom = 1375.0f;
 
 				dst.m_top = FONT_Y + 200.0f;
@@ -804,8 +804,8 @@ void CObjFightClear::Draw()
 
 				//一の位
 				src.m_top = 1250.0f;
-				src.m_left = 1250.0f + ((m_mat_num[1] % 10) * 125);
-				src.m_right = 1375.0f + ((m_mat_num[1] % 10) * 125);
+				src.m_left =  CUT_ZERO + ((m_mat_num[1] % 10) * 125);
+				src.m_right =  END_ZERO + ((m_mat_num[1] % 10) * 125);
 				src.m_bottom = 1375.0f;
 
 				dst.m_top = FONT_Y + 200.0f;
