@@ -64,11 +64,14 @@ private:
 	int m_attackf;		//敵の攻撃タイプ
 
 	int m_ani[4];
+	int m_mani[6];
 	int m_ani_time;
-	int m_ani_frame;
+	int m_ani_frame[2];	//[0] = 通常ani用、[1] = 特殊ani用
 
 	bool m_eat_f;		//喰うフラグ(true = 喰う)
-	float m_eat_spd;
+	bool m_eat_me;		//食べられる
+	float m_eat_spd;	//喰う速さ
+	float m_r;			//モアイ用角度
 	bool m_del_f;		//消すフラグ(true = 消す)
 
 	bool m_win;			//敵惑星に勝利した時に流れる音楽のフラグ	

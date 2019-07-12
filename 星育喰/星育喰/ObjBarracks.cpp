@@ -1229,17 +1229,169 @@ void CObjBarracks::Draw()
 
 		//▼フォント表示
 		//兵舎レベル
-		Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);
+		src.m_top = 1250.0f;
+		src.m_left = CUT_ZERO + (g_Bar_Level * 125);
+		src.m_right = END_ZERO + (g_Bar_Level * 125);
+		src.m_bottom = 1375.0f;
 
-		//残り住民数
-		Font::StrDraw(human_remain, 780.0f, 590.0f, 50.0f, black);
+		dst.m_top = 90;
+		dst.m_left = 325;
+		dst.m_right = 375;
+		dst.m_bottom = 147;
+		Draw::Draw(121, &src, &dst, white, 0.0f);
+		//Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);
 
+		//残り住民数ー--------ーーーーーーーーーーーーーーーーーーーーー
+		//万の位
+		if (g_Remain_num >= 10000) {
 
-		//各タイプ(パワー、スピード等)の住民数
-		for (int i = 0; i < 4; i++)
-		{
-			Font::StrDraw(human_num[i], 950.0f, 150.0f + i * 110.0f, 40.0f, black);
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor(g_Remain_num / 10000) * 125);
+			src.m_right = END_ZERO + (floor(g_Remain_num / 10000) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 590;
+			dst.m_left = 920;
+			dst.m_right = 950;
+			dst.m_bottom = 640;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
 		}
+		//千の位
+		if (g_Remain_num >= 1000) {
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor((g_Remain_num / 1000) % 10) * 125);
+			src.m_right = END_ZERO + (floor((g_Remain_num / 1000) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 590;
+			dst.m_left = 950;
+			dst.m_right = 980;
+			dst.m_bottom = 640;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}
+		//百の位
+		if (g_Remain_num >= 100) {
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor((g_Remain_num / 100) % 10) * 125);
+			src.m_right = END_ZERO + (floor((g_Remain_num / 100) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 590;
+			dst.m_left = 980;
+			dst.m_right = 1010;
+			dst.m_bottom = 640;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+
+			//十の位の0
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO;
+			src.m_right = END_ZERO;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 590;
+			dst.m_left = 1010;
+			dst.m_right = 1040;
+			dst.m_bottom = 640;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}
+
+		//一の位
+		src.m_top = 1250.0f;
+		src.m_left = CUT_ZERO;
+		src.m_right = END_ZERO;
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 590;
+		dst.m_left = 1040;
+		dst.m_right = 1070;
+		dst.m_bottom = 640;
+		Draw::Draw(120, &src, &dst, black, 0.0f);
+		//Font::StrDraw(human_remain, 780.0f, 590.0f, 50.0f, black);
+		//----------------------------------------------------------------------------------------------
+
+		//各タイプ(パワー、スピード等)の住民数-------------------------------------------------------------
+		for (int i = 0; i < 4; i++){
+
+			switch (i) {
+			case 0:
+				m_Warrior[i] = g_Power_num;
+				break;
+			case 1:
+				m_Warrior[i] = g_Defense_num;
+				break;
+			case 2:
+				m_Warrior[i] = g_Speed_num;
+				break;
+			case 3:
+				m_Warrior[i] = g_Balance_num;
+			}
+
+			if (m_Warrior[i] >= 10000) {
+
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor(m_Warrior[i] / 10000) * 125);
+				src.m_right = END_ZERO + (floor(m_Warrior[i] / 10000) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 150 + (i * 110);
+				dst.m_left = 940;
+				dst.m_right = 970;
+				dst.m_bottom = 190 + (i * 110);
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+			//千の位
+			if (m_Warrior[i] >= 1000) {
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor((m_Warrior[i] / 1000) % 10) * 125);
+				src.m_right = END_ZERO + (floor((m_Warrior[i] / 1000) % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 150 + (i * 110);
+				dst.m_left = 970;
+				dst.m_right = 1000;
+				dst.m_bottom = 190 + (i * 110);
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+			//百の位
+			if (m_Warrior[i] >= 100) {
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor((m_Warrior[i] / 100) % 10) * 125);
+				src.m_right = END_ZERO + (floor((m_Warrior[i] / 100) % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 150 + (i * 110);
+				dst.m_left = 1000;
+				dst.m_right = 1030;
+				dst.m_bottom = 190 + (i * 110);
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//十の位の0
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO;
+				src.m_right = END_ZERO;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 150 + (i * 110);
+				dst.m_left = 1030;
+				dst.m_right = 1060;
+				dst.m_bottom = 190 + (i * 110);
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+
+			//一の位
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO;
+			src.m_right = END_ZERO;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 150 + (i * 110);
+			dst.m_left = 1060;
+			dst.m_right = 1090;
+			dst.m_bottom = 190 + (i * 110);
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}	
+		//Font::StrDraw(human_num[i], 950.0f, 150.0f + i * 110.0f, 40.0f, black);
+		//-------------------------------------------------------------------------------
 
 		//その他フォント
 		Facility_message(g_Bar_Level);//兵舎の必要素材&サイズメッセージ描画関数呼び出す

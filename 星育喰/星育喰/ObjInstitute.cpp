@@ -1600,8 +1600,8 @@ void CObjInstitute::Draw()
 		//▼フォント表示
 		//研究所レベル
 		src.m_top = 1250.0f;
-		src.m_left = 1250.0f + (g_Ins_Level * 125);
-		src.m_right = 1375.0f + (g_Ins_Level * 125);
+		src.m_left = CUT_ZERO + (g_Ins_Level * 125);
+		src.m_right = END_ZERO + (g_Ins_Level * 125);
 		src.m_bottom = 1375.0f;
 
 		dst.m_top = 92;
@@ -1616,8 +1616,8 @@ void CObjInstitute::Draw()
 		if (g_Remain_num >= 10000) {
 			
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor(g_Remain_num / 10000) * 125);
-			src.m_right = 1375.0f + (floor(g_Remain_num / 10000) * 125);
+			src.m_left = CUT_ZERO + (floor(g_Remain_num / 10000) * 125);
+			src.m_right = END_ZERO + (floor(g_Remain_num / 10000) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 245;
@@ -1629,8 +1629,8 @@ void CObjInstitute::Draw()
 		//千の位
 		if (g_Remain_num >= 1000) {
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor((g_Remain_num / 1000) % 10) * 125);
-			src.m_right = 1375.0f + (floor((g_Remain_num / 1000) % 10) * 125);
+			src.m_left = CUT_ZERO + (floor((g_Remain_num / 1000) % 10) * 125);
+			src.m_right = END_ZERO + (floor((g_Remain_num / 1000) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 245;
@@ -1642,8 +1642,8 @@ void CObjInstitute::Draw()
 		//百の位
 		if (g_Remain_num >= 100) {
 			src.m_top = 1250.0f;
-			src.m_left = 1250.0f + (floor((g_Remain_num / 100) % 10) * 125);
-			src.m_right = 1375.0f + (floor((g_Remain_num / 100) % 10) * 125);
+			src.m_left = CUT_ZERO + (floor((g_Remain_num / 100) % 10) * 125);
+			src.m_right = END_ZERO + (floor((g_Remain_num / 100) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 245;
@@ -1651,22 +1651,25 @@ void CObjInstitute::Draw()
 			dst.m_right = 1010;
 			dst.m_bottom = 295;
 			Draw::Draw(120, &src, &dst, black, 0.0f);
-		}
-		//十と一の位の0
-		src.m_top = 1250.0f;
-		src.m_left = 1250.0f;
-		src.m_right = 1375.0f;
-		src.m_bottom = 1375.0f;
 
-		dst.m_top = 245;
-		dst.m_left = 1010;
-		dst.m_right = 1040;
-		dst.m_bottom = 295;
-		Draw::Draw(120, &src, &dst, black, 0.0f);
-		
+		    //十の位
+			//百以下の時は絶対に描画しない
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO;
+			src.m_right = END_ZERO;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 245;
+			dst.m_left = 1010;
+			dst.m_right = 1040;
+			dst.m_bottom = 295;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}
+
+		//一の位の0
 		src.m_top = 1250.0f;
-		src.m_left = 1250.0f;
-		src.m_right = 1375.0f;
+		src.m_left = CUT_ZERO;
+		src.m_right = END_ZERO;
 		src.m_bottom = 1375.0f;
 
 		dst.m_top = 245;
@@ -1677,8 +1680,73 @@ void CObjInstitute::Draw()
 		//Font::StrDraw(human_remain, 780.0f, 245.0f, 50.0f, black);
 		//---------------------------------------------------------------------------
 
-		//研究員の住民数
-		Font::StrDraw(Research_num, 950.0f, 150.0f, 40.0f, black);
+		//研究員の住民数-------------------------------------------------------------
+		//万の位
+		if (g_Research_num >= 10000) {
+
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor(g_Research_num / 10000) * 125);
+			src.m_right = END_ZERO + (floor(g_Research_num / 10000) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 145;
+			dst.m_left = 940;
+			dst.m_right = 970;
+			dst.m_bottom = 195;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}
+		//千の位
+		if (g_Research_num >= 1000) {
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor((g_Research_num / 1000) % 10) * 125);
+			src.m_right = END_ZERO + (floor((g_Research_num / 1000) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 145;
+			dst.m_left = 970;
+			dst.m_right = 1000;
+			dst.m_bottom = 195;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}
+		//百の位
+		if (g_Research_num >= 100) {
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor((g_Research_num / 100) % 10) * 125);
+			src.m_right = END_ZERO + (floor((g_Research_num / 100) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 145;
+			dst.m_left = 1000;
+			dst.m_right = 1030;
+			dst.m_bottom = 195;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+
+			//十の位の0
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO;
+			src.m_right = END_ZERO;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 145;
+			dst.m_left = 1030;
+			dst.m_right = 1060;
+			dst.m_bottom = 195;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+		}
+
+		//一の位
+		src.m_top = 1250.0f;
+		src.m_left = CUT_ZERO;
+		src.m_right = END_ZERO;
+		src.m_bottom = 1375.0f;
+
+		dst.m_top = 145;
+		dst.m_left = 1060;
+		dst.m_right = 1090;
+		dst.m_bottom = 195;
+		Draw::Draw(120, &src, &dst, black, 0.0f);
+		//Font::StrDraw(Research_num, 950.0f, 150.0f, 40.0f, black);
+		//---------------------------------------------------------------------------
 
 		Facility_message(g_Ins_Level);//研究所の必要素材&サイズメッセージ描画関数呼び出す
 
@@ -1946,18 +2014,137 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 335.0f;
 			Draw::Draw(79, &src, &dst, black, 0.0f);
 
-			//▼50音(s)文字画像表示(仮)に人文字画像を表示しています
+			//▼S文字画像
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 112.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 370.0f;
-			dst.m_left = 850.0f;
-			dst.m_right = 900.0f;
-			dst.m_bottom = 420.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
+			dst.m_top = 375.0f;
+			dst.m_left = 810.0f;
+			dst.m_right = 850.0f;
+			dst.m_bottom = 415.0f;
+			Draw::Draw(122, &src, &dst, black, 0.0f);
 
+			//▼フォント表示
+			//研究所レベル
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (g_Ins_Level * 125);
+			src.m_right = END_ZERO + (g_Ins_Level * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 92;
+			dst.m_left = 920;
+			dst.m_right = 960;
+			dst.m_bottom = 157;
+			Draw::Draw(121, &src, &dst, black, 0.0f);
+			//Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
+
+			//研究員の住民数--------------------------------------------------
+			//万の位
+			if (g_Research_num >= 10000) {
+
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor(g_Research_num / 10000) * 125);
+				src.m_right = END_ZERO + (floor(g_Research_num / 10000) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 175;
+				dst.m_left = 760;
+				dst.m_right = 800;
+				dst.m_bottom = 240;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+			//千の位
+			if (g_Research_num >= 1000) {
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor((g_Research_num / 1000) % 10) * 125);
+				src.m_right = END_ZERO + (floor((g_Research_num / 1000) % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 175;
+				dst.m_left = 800;
+				dst.m_right = 840;
+				dst.m_bottom = 240;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+			//百の位
+			if (g_Research_num >= 100) {
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor((g_Research_num / 100) % 10) * 125);
+				src.m_right = END_ZERO + (floor((g_Research_num / 100) % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 175;
+				dst.m_left = 840;
+				dst.m_right = 880;
+				dst.m_bottom = 240;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//十の位の0
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO;
+				src.m_right = END_ZERO;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 175;
+				dst.m_left = 880;
+				dst.m_right = 920;
+				dst.m_bottom = 240;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+
+			//一の位
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO;
+			src.m_right = END_ZERO;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 175;
+			dst.m_left = 920;
+			dst.m_right = 960;
+			dst.m_bottom = 240;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+			//Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
+			//---------------------------------------------------------------------------
+
+			//ミサイルリキャストタイム
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor(g_Recast_time) * 125);
+			src.m_right = END_ZERO + (floor(g_Recast_time) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 350;
+			dst.m_left = 660;
+			dst.m_right = 730;
+			dst.m_bottom = 420;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+
+			//ピリオド
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO - 250;
+			src.m_right = END_ZERO - 250;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 350;
+			dst.m_left = 710;
+			dst.m_right = 780;
+			dst.m_bottom = 420;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (((g_Recast_time * 10) % 10) * 125);
+			src.m_right = END_ZERO + (((g_Recast_time * 10) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 350;
+			dst.m_left = 750;
+			dst.m_right = 820;
+			dst.m_bottom = 420;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+			//Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
+
+			//ミサイルリキャスト次のLVUPに関する情報--------------------------------
 			//▼NEXT LV UP文字画像表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
@@ -1982,29 +2169,80 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 610.0f;
 			Draw::Draw(81, &src, &dst, black, 0.0f);
 
-			//▼50音(数字)文字画像表示 (仮)に人文字画像を表示しています
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
+			//▼50音(数字)文字画像表示
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] * 125);
+			src.m_right = END_ZERO + (m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] * 125);
+			src.m_bottom = 1375.0f;
 
-			dst.m_top = 560.0f;
+			dst.m_top = 555.0f;
 			dst.m_left = 535.0f;
 			dst.m_right = 595.0f;
-			dst.m_bottom = 610.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
+			dst.m_bottom = 615.0f;
+			Draw::Draw(121, &src, &dst, black, 0.0f);
 
-			//▼50音(＆)文字画像表示 (仮)に人文字画像を表示しています
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
+			//▼50音(＆)文字画像表示
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO - 375;
+			src.m_right = END_ZERO - 375;
+			src.m_bottom = 1375.0f;
 
 			dst.m_top = 560.0f;
 			dst.m_left = 605.0f;
 			dst.m_right = 645.0f;
 			dst.m_bottom = 610.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
+			Draw::Draw(121, &src, &dst, black, 0.0f);
+
+			//▼ミサイル次レベル必要人数表示
+			if (m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] >= 1000) {
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 1000) % 10) * 125);
+				src.m_right = END_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 1000) % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560;
+				dst.m_left = 660;
+				dst.m_right = 700;
+				dst.m_bottom = 610;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+			//百の位
+			if (m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] >= 100) {
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 100) % 10) * 125);
+				src.m_right = END_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 100) % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560;
+				dst.m_left = 700;
+				dst.m_right = 740;
+				dst.m_bottom = 610;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//十の位の0
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO;
+				src.m_right = END_ZERO;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560;
+				dst.m_left = 740;
+				dst.m_right = 780;
+				dst.m_bottom = 610;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+			}
+
+			//一の位
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO;
+			src.m_right = END_ZERO;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 560;
+			dst.m_left = 780;
+			dst.m_right = 820;
+			dst.m_bottom = 610;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
 
 			//▼人文字画像表示
 			src.m_top = 0.0f;
@@ -2019,16 +2257,50 @@ void CObjInstitute::Draw()
 			Draw::Draw(77, &src, &dst, black, 0.0f);
 
 			//▼50音(＝)文字画像表示 (仮)に人文字画像を表示しています
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO - 125;
+			src.m_right = END_ZERO - 125;
+			src.m_bottom = 1375.0f;
 
 			dst.m_top = 560.0f;
 			dst.m_left = 890.0f;
 			dst.m_right = 950.0f;
 			dst.m_bottom = 610.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
+			Draw::Draw(121, &src, &dst, black, 0.0f);
+
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
+			src.m_right = END_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 570;
+			dst.m_left = 915;
+			dst.m_right = 965;
+			dst.m_bottom = 610;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+
+			//ピリオド
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO - 250;
+			src.m_right = END_ZERO - 250;
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 570;
+			dst.m_left = 965;
+			dst.m_right = 1015;
+			dst.m_bottom = 610;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
+			//途中
+			src.m_top = 1250.0f;
+			src.m_left = CUT_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
+			src.m_right = END_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
+			src.m_bottom = 1375.0f;
+
+			dst.m_top = 570;
+			dst.m_left = 1015;
+			dst.m_right = 1065;
+			dst.m_bottom = 610;
+			Draw::Draw(120, &src, &dst, black, 0.0f);
 
 			//▼50音(s)文字画像表示(仮)に人文字画像を表示しています
 			src.m_top = 0.0f;
@@ -2037,23 +2309,12 @@ void CObjInstitute::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 570.0f;
-			dst.m_left = 1070.0f;
-			dst.m_right = 1100.0f;
-			dst.m_bottom = 600.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
-
-			//▼フォント表示
-			//研究所レベル
-			Font::StrDraw(Ins, 590.0f, 95.0f, 65.0f, black);
-
-			//研究員の住民数
-			Font::StrDraw(Research_num, 750.0f, 175.0f, 65.0f, black);
-
-			//ミサイルリキャストタイム
-			Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
-
-			//ミサイルリキャスト次のLVUPに関する情報
-			Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
+			dst.m_left = 1065.0f;
+			dst.m_right = 1095.0f;
+			dst.m_bottom = 605.0f;
+			Draw::Draw(122, &src, &dst, black, 0.0f);
+			//Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
+			//-----------------------------------------
 		}
 
 		//▽以下は武器ポッドウインドウで描画するもの
