@@ -69,9 +69,11 @@ void CObjRocket::Init()
 	m_atk_cnt_max = 20;//(1/3秒)
 
 	m_Enemy_Pod_Level = g_Stage_progress;	//現状、現在のステージ進行度に合わせて敵のポッドレベルを設定している
+	m_pod_nam = (g_Power_num + g_Defense_num + g_Speed_num + g_Balance_num) / 1200;//各ポッドの住民総数
 
 	m_vx = 0.0f;	//ベクトル
 	m_vy = 0.0f;
+	m_schange = 3.0f;
 	m_mov = 0;
 	
 	m_r = 0.0f;		//角度
@@ -173,7 +175,8 @@ void CObjRocket::Init()
 	m_hp_cnt = 0;		//無敵タイム
 	m_hp_f = false;		//無敵フラグ
 	m_fight = false;	//衝突中フラグ
-	m_stop_f = false;	//止めるフラグ
+	m_stop_f = false;	//停止フラグ
+	//m_pstop = false;	//ポッドでの停止フラグ
 	m_stop_cnt = 0;		//止めるまでのカウント
 	m_bomcount = 0;		//爆発カウント
 
@@ -299,6 +302,12 @@ void CObjRocket::Action()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);	//戦闘画面の情報
 	CHitBox* hit = Hits::GetHitBox(this);					//HitBox情報取得
 
+	if (battle_end == true)
+	{					//バトル終了時、存在している全てのポッドを破壊する
+		Audio::Start(5);
+		m_del = true;
+	}
+
 	//ポッド同士の戦闘時にHitBox位置とサイズを変更する
 	if (m_type == 0)
 		if (ButtonU == 5) {//ロケットのみ通常で更新
@@ -308,14 +317,15 @@ void CObjRocket::Action()
 		{
 			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 			if (m_fight == true)		
-				hit->SetPos(m_x - m_size * 2,m_y,m_size,m_size * 3);//戦闘時変更
+				hit->SetPos(m_x - m_size * (m_schange - 1),m_y,m_size,m_size * m_schange);//戦闘時変更
 		}
 	else
 	{
 		hit->SetPos(m_x, m_y, m_size, m_size);			//HitBox更新
 		if(m_fight == true)				
-			hit->SetPos(m_x, m_y, m_size, m_size * 3);				//戦闘時変更
+			hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
 	}
+
 	if (m_fight == true)
 	{
 		if (m_atk_cnt > m_atk_cnt_max)//maxを超えた時
@@ -328,54 +338,67 @@ void CObjRocket::Action()
 		}
 	}
 
+	//if (m_pstop == true)		//ポッド停止フラグON時
+	//{
+	//	m_stop_cnt+=0.5;
+	//	if (m_stop_cnt == m_pod_nam)
+	//	{
+	//		hit->SetInvincibility(true);		//HitBoxの判定無効
+	//		m_schange = 4.0f;
+	//		m_fight = true;
+	//	}
+	//	else if (m_stop_cnt == m_pod_nam + 10)
+	//	{
+	//		hit->SetInvincibility(false);		//HitBoxの判定有効
+	//		m_stop_cnt = 0;
+	//	}
+	//}
+	//else
+	//	m_schange = 3.0f;
 
-	if (battle_end == true)	//バトル終了時、存在している全てのポッドを破壊する
-	{
-		Audio::Start(5);
-		m_del = true;
-	}
-	
-	if (m_stop_f == true)//交戦時フラグＯＮ時
-	{
-		m_stop_cnt++;
-		if (m_stop_cnt == 8) {
-			m_fight = true;
+	//if (m_pstop == false) {
+		if (m_stop_f == true)	//停止フラグON時
+		{
+			m_stop_cnt++;
+			if (m_stop_cnt == 8) {
+				m_fight = true;
+			}
+			else if (m_stop_cnt == 11) {
+				m_stop_cnt = 0;
+			}
 		}
-		else if (m_stop_cnt == 11) {
-			m_stop_cnt = 0;
-		}
-	}
-	else//交戦時以外で移動ベクトル加算
-	{
-		m_fight = false;
-		m_mov += m_mov_spd / 2;
+		else//停止時以外、移動ベクトル加算
+		{
+			m_fight = false;
+			m_mov += m_mov_spd / 2;
 
-		//各ライン毎の動き方
-		if (m_get_line == 0 || m_get_line == 3)//------上ライン----
-		{
-			m_vx -= 0.3f;
-			m_vy += (-0.15 + m_mov);
-		}
-		else if (m_get_line == 1)//---------------中ライン-----
-		{
-			m_vx -= 0.5f;
-		}
-		else//if(m_get_line == 2)---------------下ライン------
-		{
-			m_vx -= 0.3f;
-			m_vy -= (-0.15 + m_mov);
-		}
+			//各ライン毎の動き方
+			if (m_get_line == 0 || m_get_line == 3)//------上ライン----
+			{
+				m_vx -= 0.3f;
+				m_vy += (-0.15 + m_mov);
+			}
+			else if (m_get_line == 1)//---------------中ライン-----
+			{
+				m_vx -= 0.5f;
+			}
+			else//if(m_get_line == 2)---------------下ライン------
+			{
+				m_vx -= 0.3f;
+				m_vy -= (-0.15 + m_mov);
+			}
 
-		//-----------------------------座標更新
-		if (m_type == 0) {
-			m_x += m_vx * 2 - m_mov_spd * 200;
-			m_y += m_vy * 2;
+			//-----------------------------座標更新
+			if (m_type == 0) {
+				m_x += m_vx * 2 - m_mov_spd * 200;
+				m_y += m_vy * 2;
+			}
+			else {
+				m_x -= m_vx * 2 - m_mov_spd * 200;
+				m_y += m_vy * 2;
+			}
 		}
-		else {
-			m_x -= m_vx * 2 - m_mov_spd * 200;
-			m_y += m_vy * 2;
-		}
-	}
+	//}
 	
 
 	//爆発エフェクト
@@ -411,10 +434,12 @@ void CObjRocket::Action()
 	//※戦闘終了後は以下のポッドのダメージ処理は行わない
 	if (battle_end == false)
 	{
-		if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr)//Hit用OBJに当たった場合
-			m_stop_f = true;		//止める
-		else
-			m_stop_f = false;		//進める
+		if (ButtonU != 5) {
+			if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr)//Hit用OBJに当たった場合
+				m_stop_f = true;		//止める
+			else
+				m_stop_f = false;		//進める
+		}
 
 		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
 		//HPの状態に関わらず消滅処理へと移行する
@@ -532,10 +557,17 @@ void CObjRocket::Action()
 				Audio::Start(5);
 			}
 		}
-		else if (m_type != 0 && m_stop_cnt == 10) {	//敵かつ、
+		else if (m_type != 0 && m_stop_cnt == 10) {	//敵かつ、停止時
 			m_stop_f = false;
+			m_stop_cnt = 0;
+			//m_pstop = true;
 		}
-
+		//else 
+			//m_pstop = false;
+		/*else if (((hit->CheckObjNameHit(OBJ_PODP) != nullptr || hit->CheckObjNameHit(OBJ_PODS) != nullptr || hit->CheckObjNameHit(OBJ_PODD) != nullptr || hit->CheckObjNameHit(OBJ_PODB) != nullptr)
+			&& ButtonU != 5 )&& m_type != 0) {
+			m_pstop = true;
+		}*/
 
 		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
 		//※プレイヤーがダメージを受ける時の処理
@@ -627,9 +659,17 @@ void CObjRocket::Action()
 		}
 		else if (m_type == 0 && m_stop_cnt == 10) {	//味方かつ、止まってる時
 			m_stop_f = false;
+			m_stop_cnt = 0;
+			//m_pstop = true;
 		}
+		//else if(m_pstop == true)
+		//	m_pstop = false;
+		/*else if (((hit->CheckObjNameHit(OBJ_PODP) != nullptr || hit->CheckObjNameHit(OBJ_PODS) != nullptr || hit->CheckObjNameHit(OBJ_PODD) != nullptr || hit->CheckObjNameHit(OBJ_PODB) != nullptr)
+			&& ButtonU != 5) && m_type == 0) {
+			m_pstop = true;
+		}*/
 
-		if (m_podhp <= 0)//HP
+		if (m_podhp <= 0)//両ポッドHPでの削除
 		{
 			m_del = true;
 		}
@@ -644,7 +684,7 @@ void CObjRocket::Draw()
 	float r[4] =	{ 1.0f, 0.0f, 0.0f, 1.0f }; //赤
 	float g[4] =	{ 0.0f, 1.0f, 0.0f, 1.0f }; //緑
 	float b[4] =	{ 0.0f, 0.2f, 2.0f, 1.0f }; //青
-	float black[4]=	{ 0.0f, 0.0f, 0.0f, 1.0f };//黒(HPゲージ最大値で使用)
+	float black[4]=	{ 0.0f, 0.0f, 0.0f, 1.0f };	//黒(HPゲージ最大値で使用)
 	float c[4] =	{ 1.0f,1.0f,1.0f,m_a };
 
 
@@ -653,7 +693,7 @@ void CObjRocket::Draw()
 
 	if (m_type == 0)
 	{
-		if (m_stop_f == false)
+		if (m_stop_f == false /*&& m_pstop == false*/)
 		{
 			switch (m_get_line) {
 			case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
@@ -724,7 +764,7 @@ void CObjRocket::Draw()
 
 	if(m_type != 0)
 	{
-		if (m_stop_f == false)
+		if (m_stop_f == false/* && m_pstop == false*/)
 		{
 			switch (m_get_line) {
 			case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算

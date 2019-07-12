@@ -151,6 +151,66 @@ void CScenePreparation::InitScene()
 	//スペシャル技選択文字画像読み込み68番に登録
 	Draw::LoadImage(L"スペシャル技選択.png", 68, TEX_SIZE_512);
 
+	//あと3体文字画像読み込み69番に登録
+	Draw::LoadImage(L"あと3体.png", 69, TEX_SIZE_512);
+
+	//あと2体文字画像読み込み70番に登録
+	Draw::LoadImage(L"あと2体.png", 70, TEX_SIZE_512);
+
+	//あと1体文字画像読み込み71番に登録
+	Draw::LoadImage(L"あと1体.png", 71, TEX_SIZE_512);
+
+	//あと0体文字画像読み込み72番に登録
+	Draw::LoadImage(L"あと0体.png", 72, TEX_SIZE_512);
+
+	//難易度文字画像読み込み73番に登録367*117
+	Draw::LoadImage(L"難易度.png", 73, TEX_SIZE_512);
+
+	//★画像読み込み74番に登録101*107
+	Draw::LoadImage(L"★.png", 74, TEX_SIZE_512);
+
+	//取得可能な資材・技文字画像読み込み75番に登録
+	Draw::LoadImage(L"取得可能な資材・技文字.png", 75, TEX_SIZE_512);
+
+	//木材50・鉄30文字画像文字画像読み込み76番に登録
+	Draw::LoadImage(L"木材50・鉄30文字画像.png", 76, TEX_SIZE_512);
+
+	//フラクチャーレイ文字画像読み込み77番に登録
+	Draw::LoadImage(L"取得可能な資材・技文字.png", 77, TEX_SIZE_512);
+
+	//ディフェンス重視文字画像読み込み78番に登録
+	Draw::LoadImage(L"ディフェンス重視文字.png", 78, TEX_SIZE_512);
+
+	//鉄70・アルミ80文字画像読み込み79番に登録
+	Draw::LoadImage(L"鉄70・アルミ80.png", 79, TEX_SIZE_512);
+
+	//イモータリティ文字画像読み込み80番に登録
+	Draw::LoadImage(L"イモータリティ.png", 80, TEX_SIZE_512);
+
+	//スピード重視文字画像読み込み81番に登録
+	Draw::LoadImage(L"スピード重視文字.png", 81, TEX_SIZE_512);
+
+	//プラスチック40・ガス50文字画像読み込み82番に登録
+	Draw::LoadImage(L"プラスチック40・ガス50.png", 82, TEX_SIZE_512);
+
+	//エクスプロージョン文字画像読み込み83番に登録
+	Draw::LoadImage(L"エクスプロージョン.png", 83, TEX_SIZE_512);
+
+	//パワー重視文字画像読み込み84番に登録
+	Draw::LoadImage(L"パワー重視文字.png", 84, TEX_SIZE_512);
+
+	////文字画像読み込み85番に登録
+	//Draw::LoadImage(L".png", 85, TEX_SIZE_512);
+
+	//リミットブレイク文字画像読み込み86番に登録
+	Draw::LoadImage(L"リミットブレイク.png", 86, TEX_SIZE_512);
+
+	//バランス重視文字読み込み87番に登録
+	Draw::LoadImage(L"バランス重視文字.png", 87, TEX_SIZE_512);
+
+	//オーバーワーク画像読み込み88番に登録
+	Draw::LoadImage(L"パワー重視文字.png", 88, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 

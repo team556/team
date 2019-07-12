@@ -421,6 +421,9 @@ void CSceneTraining::InitScene()
 	//”’•¶š‰æ‘œ‚ğ“Ç‚İ‚İ121”Ô‚É“o˜^
 	Draw::LoadImage(L"”’•¶šW.png", 121, TEX_SIZE_512);
 
+	//S‚ğ“Ç‚İ‚İ122”Ô‚É“o˜^
+	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
+
 
 	
 
