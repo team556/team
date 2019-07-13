@@ -151,8 +151,8 @@ void CObjHelp::Action()
 			//‰ŠúXˆÊ’u‚É—ˆ‚é‚Ü‚ÅˆÚ“®‚³‚¹‚é
 			if (m_px >= HELP_X_POS)
 			{
-				m_px -= m_vec * 0.37;//XˆÚ“®ˆ—
-				m_py += m_vec * 0.37;//YˆÚ“®ˆ—
+				m_px -= m_vec * 0.37f;//XˆÚ“®ˆ—
+				m_py += m_vec * 0.37f;//YˆÚ“®ˆ—
 				m_vec *= 0.956f;//ˆÚ“®‘¬“xŒ¸­ˆ—
 			}
 		}

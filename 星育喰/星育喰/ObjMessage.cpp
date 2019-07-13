@@ -81,8 +81,6 @@ void CObjMessage::Init()
 	//以下の全角文字を打ち込むと、それぞれ特殊処理が行われます。
 	//「＿」……空白
 	//「￥」……改行
-	//「；」……メッセージ終了
-	//※メッセージ終了を入れなければ永遠に読み込み続け、やがて読み取り違反が発生する)
 	//「｜」……メッセージ表示機能停止
 	//※全てのメッセージ終了後、
 	//またはメッセージ途中にプレイヤーに
@@ -91,11 +89,11 @@ void CObjMessage::Init()
 	//テスト
 	if (m_Scene_id == 0)
 	{
-		swprintf_s(m_font[0], L"あかあかきくきく＿かうい￥テスト１２３２１３２３１２１３１２１３２；");//メッセージ１
-		swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展；");	//メッセージ２
-		swprintf_s(m_font[2], L"うか１２２２３；");		//メッセージ３
+		swprintf_s(m_font[0], L"あかあかきくきく＿かうい￥テスト１２３２１３２３１２１３１２１３２");//メッセージ１
+		swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展");	//メッセージ２
+		swprintf_s(m_font[2], L"うか１２２２３");		//メッセージ３
 		swprintf_s(m_font[3], L"|");					//メッセージ４
-		swprintf_s(m_font[4], L"うか１２２２３；");		//メッセージ５
+		swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
 		swprintf_s(m_font[5], L"|");					//メッセージ６
 	}
 	//テスト
@@ -158,6 +156,9 @@ void CObjMessage::Action()
 	//※新たなメッセージ取得毎に１回だけ実行される。
 	if (m_length == 0)
 	{
+		//▼文字の終わり部分に印(；)をつける
+		swprintf_s(m_font[m_progress], L"%s；", m_font[m_progress]);
+
 		for (int i = 0; m_font[m_progress][i] != L'；'; i++)
 		{
 			m_length = i;
