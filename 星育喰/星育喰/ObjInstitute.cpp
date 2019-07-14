@@ -1274,8 +1274,8 @@ void CObjInstitute::Draw()
 		src.m_bottom = 400.0f;
 
 		dst.m_top = 280.0f;
-		dst.m_left = -100.0f;
-		dst.m_right = 300.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = 350.0f;
 		dst.m_bottom = 680.0f;
 		Draw::Draw(3 + (g_Ins_Level - 1) * 3, &src, &dst, ins, 0.0f);
 
