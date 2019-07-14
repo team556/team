@@ -873,17 +873,17 @@ void CObjBarracks::Draw()
 	//施設ウインドウ(兵舎、研究所、倉庫)が開いてない時に表示するグラフィック
 	if (window_start_manage == Default || window_start_manage == BackButton)
 	{
-		//▼兵舎表示 
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 256.0f;
-		src.m_bottom = 256.0f;
+		////▼兵舎表示 
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 256.0f;
+		//src.m_bottom = 256.0f;
 
-		dst.m_top = 460.0f;
-		dst.m_left = 810.0f;
-		dst.m_right = 1190.0f;
-		dst.m_bottom = 690.0f;
-		Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, bar, 0.0f);
+		//dst.m_top = 460.0f;
+		//dst.m_left = 810.0f;
+		//dst.m_right = 1190.0f;
+		//dst.m_bottom = 690.0f;
+		//Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, bar, 0.0f);
 
 		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_introduce_f == true)

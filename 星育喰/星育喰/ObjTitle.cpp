@@ -57,8 +57,8 @@ int g_Remain_num = 6000;
 int g_Recast_time = 3;
 int g_P_Planet_damage = 0;
 
-int g_Iron_num = 0;
-int g_Wood_num = 0;
+int g_Iron_num = 100;
+int g_Wood_num = 100;
 int g_Silver_num = 0;
 int g_Plastic_num = 0;
 int g_Aluminum_num = 0;
@@ -236,8 +236,8 @@ void CObjTitle::Draw()
 	//▼背景表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 960.0f;
-	src.m_bottom = 638.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
@@ -318,15 +318,15 @@ void CObjTitle::Draw()
 	Draw::Draw(24, &src, &dst, w, 0.0f);
 
 	//▼プレイヤー惑星表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 62.0f;
-	src.m_bottom = 62.0f;
+	src.m_top = 63.0f;
+	src.m_left = 63.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 384.0f;
 
-	dst.m_top = 250.0f;
+	dst.m_top = 270.0f;
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
-	dst.m_bottom = 550.0f;
+	dst.m_bottom = 570.0f;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 	//Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
@@ -354,10 +354,7 @@ void CObjTitle::Draw()
 	dst.m_left   = 450.0f;
 	dst.m_right  = 823.0f;
 	dst.m_bottom = 641.0f + m_click_vy;
-	Draw::Draw(53, &src, &dst, w, 1.0f);
-
-
-	//Font::StrDraw(L"クリックでスタート", 460, 600 + m_click_vy, 32, w);
+	Draw::Draw(53, &src, &dst, w, 0.0f);
 
 	//タイトルロゴ描画
 	src.m_top = 0.0f;
@@ -369,7 +366,7 @@ void CObjTitle::Draw()
 	dst.m_left = 350.0f;
 	dst.m_right = 851.0f;
 	dst.m_bottom = 300.0f;
-	Draw::Draw(1, &src, &dst, w, m_alpha);
+	Draw::Draw(1, &src, &dst, w, 0.0);
 
 
 	//▼画面全体暗転用画像表示

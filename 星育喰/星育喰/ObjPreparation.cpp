@@ -1217,7 +1217,7 @@ void CObjPreparation::Draw()
 		Draw::Draw(72, &src, &dst, warning_message, 0.0);
 	}
 
-	else
+	else if (m_destroy_count = 4)
 	{
 		//▼強大な惑星出現中文字画像表示
 		src.m_top = 0.0f;
@@ -1226,12 +1226,13 @@ void CObjPreparation::Draw()
 		src.m_bottom = 112.0f;
 
 		dst.m_top = m_warning_message_y[0];
-		dst.m_left = 200 + m_warning_message_x[0];
-		dst.m_right = 200 + m_warning_message_x[0] + (m_warning_message_size * 8);
+		dst.m_left =/* m_warning_message_x[0]+*/350;
+		dst.m_right = /*m_warning_message_x[0] + (m_warning_message_size * 8.0) + */900;
 		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
 		Draw::Draw(63, &src, &dst, warning_message, 0.0);
 	}
-	
+
+	Font::StrDraw(Until_fight_boss_count[0], m_warning_message_x[0], m_warning_message_y[0], m_warning_message_size, warning_message);
 
 	//▼詳細説明(敵惑星、スペシャル技)メッセージ表示
 	//▽ウインドウ表示 
@@ -1251,7 +1252,7 @@ void CObjPreparation::Draw()
 	{
 		Font::StrDraw(m_detail_message[i], m_mou_x + m_detail_message_font_x, m_mou_y + m_detail_message_font_y + i * 40.0f, 25.0f, detail_message_font[i]);
 
-		////▼最終確認ウインドウ表示
+		////▼難易度文字画像表示
 		//src.m_top = 0.0f;
 		//src.m_left = 0.0f;
 		//src.m_right = 367.0f;

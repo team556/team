@@ -195,8 +195,8 @@ void CObjTraining::Draw()
 	//この切り取り位置はホーム画面と同じが好ましい
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 960.0f;
-	src.m_bottom = 638.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
@@ -223,16 +223,17 @@ void CObjTraining::Draw()
 	else
 	{
 		//▼プレイヤー惑星表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 62.0f;
-		src.m_bottom = 62.0f;
+		src.m_top = 63.0f;
+		src.m_left = 63.0f;
+		src.m_right = 384.0f;
+		src.m_bottom = 384.0f;
 
 		dst.m_top = 250.0f - m_size;
 		dst.m_left = 450.0f - m_size;
 		dst.m_right = 750.0f + m_size;
 		dst.m_bottom = 550.0f + m_size;
 		Draw::Draw(16 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
+
 	}
 
 

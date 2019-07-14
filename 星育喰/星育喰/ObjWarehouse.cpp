@@ -60,7 +60,7 @@ void CObjWarehouse::Action()
 	if (window_start_manage == Warehouse)
 	{
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
+		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
@@ -116,7 +116,7 @@ void CObjWarehouse::Action()
 		}
 
 		//資材ボタン選択
-		if (90 < m_mou_x && m_mou_x < 600 && 80 < m_mou_y && m_mou_y < 350)
+		if (100 < m_mou_x && m_mou_x < 600 && 100 < m_mou_y && m_mou_y < 350)
 		{
 			m_object_ma = 1.0f;
 			//左クリックされたらフラグを立て、資材ウインドウを開く
@@ -147,7 +147,7 @@ void CObjWarehouse::Action()
 		}
 
 		//住民ボタン選択
-		if (610 < m_mou_x && m_mou_x < 1120 && 80 < m_mou_y && m_mou_y < 350)
+		if (610 < m_mou_x && m_mou_x < 1110 && 100 < m_mou_y && m_mou_y < 350)
 		{
 			m_object_re = 1.0f;
 			//左クリックされたらフラグを立て、住民ウインドウを開く
@@ -177,7 +177,7 @@ void CObjWarehouse::Action()
 		}
 
 		//スペシャル技ボタン選択
-		if (90 < m_mou_x && m_mou_x < 600 && 360 < m_mou_y && m_mou_y < 630)
+		if (100 < m_mou_x && m_mou_x < 600 && 360 < m_mou_y && m_mou_y < 610)
 		{
 			m_object_sp = 1.0f;
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
@@ -207,7 +207,7 @@ void CObjWarehouse::Action()
 		}
 
 		//装備ボタン選択
-		if (610 < m_mou_x && m_mou_x < 1120 && 360 < m_mou_y && m_mou_y < 630)
+		if (610 < m_mou_x && m_mou_x < 1110 && 360 < m_mou_y && m_mou_y < 610)
 		{
 			m_object_eq = 1.0f;
 			//左クリックされたらフラグを立て、装備ウインドウを開く
@@ -243,13 +243,18 @@ void CObjWarehouse::Action()
 		window_start_manage == Specialskill || window_start_manage == Soubicheck)
 	{
 		//戻るボタン選択
-		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (80 < m_mou_x && m_mou_x < 130 && 80 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
+				//dst.m_top = 80.0f;
+				//dst.m_left = 80.0f;
+				//dst.m_right = 130.0f;
+				//dst.m_bottom = 130.0f;
+
 				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -304,7 +309,7 @@ void CObjWarehouse::Action()
 	}
 
 	//倉庫選択
-	if (95 < m_mou_x && m_mou_x < 320 && 170 < m_mou_y && m_mou_y < 280)
+	if (850 < m_mou_x && m_mou_x < 1250 && 350 < m_mou_y && m_mou_y < 650)
 	{
 		m_introduce_f = true;	//施設紹介ウィンドウを表示する
 		m_Ware_color = 1.0f;
@@ -451,29 +456,90 @@ void CObjWarehouse::Draw()
 		//▼倉庫表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 402.0f;
-		src.m_bottom = 332.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 400.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 325.0f;
-		dst.m_bottom = 325.0f;
+		dst.m_top = 350.0f;
+		dst.m_left = 850.0f;
+		dst.m_right = 1250.0f;
+		dst.m_bottom = 650.0f;
 		Draw::Draw(27, &src, &dst, wh, 0.0f);
 
 		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_introduce_f == true)
 		{
-			//▼施設紹介ウインドウ表示
+			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
+			src.m_right = 800.0f;
+			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
 			dst.m_left = m_mou_x - 120.0f;
-			dst.m_right = m_mou_x + 110.0f;
+			dst.m_right = m_mou_x - 40.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示左下
+			src.m_top = 0.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x - 120.0f;
+			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央上
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x - 40.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央下
+			src.m_top = 0.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x - 40.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x + 40.0f;
+			dst.m_right = m_mou_x + 120.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x + 40.0f;
+			dst.m_right = m_mou_x + 120.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
 
 		    //▼倉庫文字画像表示
 			src.m_top = 0.0f;
@@ -485,18 +551,18 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 50.0f;
 			dst.m_right = m_mou_x + 30.0f;
 			dst.m_bottom = m_mou_y - 15.0f;
-			Draw::Draw(88, &src, &dst, black, 0.0f);
+			Draw::Draw(88, &src, &dst, white, 0.0f);
 		}
 }
 
 	//倉庫をクリックした時
 	else if (window_start_manage == Warehouse)
 	{
-		//▼灰色ウィンドウ表示
+		//▼ウィンドウ表示
 		src.m_top    =    0.0f;
 		src.m_left   =    0.0f;
-		src.m_right  = 1160.0f;
-		src.m_bottom =  660.0f;
+		src.m_right  = 1200.0f;
+		src.m_bottom =  700.0f;
 
 		dst.m_top    =   20.0f;
 		dst.m_left   =   20.0f;
@@ -510,20 +576,20 @@ void CObjWarehouse::Draw()
 		src.m_right  = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top    =  30.0f;
-		dst.m_left   =  30.0f;
-		dst.m_right  =  80.0f;
-		dst.m_bottom =  80.0f;
+		dst.m_top    =  50.0f;
+		dst.m_left   =  60.0f;
+		dst.m_right  =  110.0f;
+		dst.m_bottom =  100.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
 		//▼資材選択ボタン表示
 		src.m_top    = 0.0f;
 		src.m_left   = 0.0f;
-		src.m_right  = 307.0f;
-		src.m_bottom = 175.0f;
+		src.m_right  = 300.0f;
+		src.m_bottom = 170.0f;
 
-		dst.m_top    = 80.0f;
-		dst.m_left   = 90.0f;
+		dst.m_top    = 100.0f;
+		dst.m_left   = 100.0f;
 		dst.m_right  = 600.0f;
 		dst.m_bottom = 350.0f;
 		Draw::Draw(28, &src, &dst, ma, 0.0f);
@@ -531,70 +597,129 @@ void CObjWarehouse::Draw()
 		//▼住民選択ボタン表示
 		src.m_top	 = 0.0f;
 		src.m_left	 = 0.0f;
-		src.m_right	 = 307.0f;
-		src.m_bottom = 175.0f;
+		src.m_right	 = 300.0f;
+		src.m_bottom = 170.0f;
 
-		dst.m_top    = 80.0f;
+		dst.m_top    = 100.0f;
 		dst.m_left   = 610.0f;
-		dst.m_right  = 1120.0f;
+		dst.m_right  = 1110.0f;
 		dst.m_bottom = 350.0f;
 		Draw::Draw(29, &src, &dst, re, 0.0f);
 
 		//▼スペシャル技選択ボタン表示
 		src.m_top	 = 0.0f;
 		src.m_left   = 0.0f;
-		src.m_right	 = 307.0f;
-		src.m_bottom = 175.0f;
+		src.m_right	 = 300.0f;
+		src.m_bottom = 170.0f;
 
 		dst.m_top    = 360.0f;
-		dst.m_left   = 90.0f;
+		dst.m_left   = 100.0f;
 		dst.m_right  = 600.0f;
-		dst.m_bottom = 630.0f;
+		dst.m_bottom = 610.0f;
 		Draw::Draw(30, &src, &dst, sp, 0.0f);
 
 		//▼装備選択ボタン表示
 		src.m_top	 = 0.0f;
 		src.m_left	 = 0.0f;
-		src.m_right  = 307.0f;
-		src.m_bottom = 175.0f;
+		src.m_right  = 300.0f;
+		src.m_bottom = 170.0f;
 
 		dst.m_top    = 360.0f;
 		dst.m_left   = 610.0f;
-		dst.m_right  = 1120.0f;
-		dst.m_bottom = 630.0f;
+		dst.m_right  = 1110.0f;
+		dst.m_bottom = 610.0f;
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
 	//戻るボタンを選択して描画する画像
 	else if (window_start_manage == Default || window_start_manage == BackButton)
 	{
-
 		//▼倉庫表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 225.0f;
-		src.m_bottom = 225.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 400.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 325.0f;
-		dst.m_bottom = 325.0f;
+		dst.m_top = 350.0f;
+		dst.m_left = 850.0f;
+		dst.m_right = 1250.0f;
+		dst.m_bottom = 650.0f;
 		Draw::Draw(27, &src, &dst, wh, 0.0f);
 
 		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_introduce_f == true)
 		{
-			//▼施設紹介ウインドウ表示
+			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
+			src.m_right = 800.0f;
+			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
 			dst.m_left = m_mou_x - 120.0f;
-			dst.m_right = m_mou_x + 110.0f;
+			dst.m_right = m_mou_x - 40.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示左下
+			src.m_top = 0.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x - 120.0f;
+			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);//灰色のウインドウにする為"ins"にしている。
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央上
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x - 40.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央下
+			src.m_top = 0.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x - 40.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x + 40.0f;
+			dst.m_right = m_mou_x + 120.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x + 40.0f;
+			dst.m_right = m_mou_x + 120.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, ware, 0.0f);
 
 			//▼倉庫文字画像表示
 			src.m_top = 0.0f;
@@ -613,11 +738,11 @@ void CObjWarehouse::Draw()
 	//資材ボタンを押して描画する画像
 	else if (window_start_manage == Materials)
 	{
-		//▼灰色ウィンドウ表示(ダミー倉庫ウィンドウ用)
+		//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 20.0f;
 		dst.m_left = 20.0f;
@@ -625,11 +750,11 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 680.0f;
 		Draw::Draw(20, &src, &dst, sb, 0.0f);
 
-		//▼灰色ウィンドウ表示
+		//▼ウィンドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 40.0f;
 		dst.m_left = 40.0f;
@@ -643,23 +768,23 @@ void CObjWarehouse::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 50.0f;
-		dst.m_left = 50.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 100.0f;
+		dst.m_top = 80.0f;
+		dst.m_left = 80.0f;
+		dst.m_right = 130.0f;
+		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		//▼白色ウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		////▼白色ウィンドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 100.0f;
+		//src.m_bottom = 100.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 600.0f;
-		Draw::Draw(32, &src, &dst, it, 0.0f);
+		//dst.m_top = 100.0f;
+		//dst.m_left = 100.0f;
+		//dst.m_right = 1100.0f;
+		//dst.m_bottom = 600.0f;
+		//Draw::Draw(32, &src, &dst, it, 0.0f);
 
 		//▼木材表示
 		src.m_top = 0.0f;
@@ -821,11 +946,11 @@ void CObjWarehouse::Draw()
 	//住民ボタンを押して描画する画像
 	else if (window_start_manage == Residents)
 	{
-		//▼灰色ウィンドウ表示(ダミー倉庫ウィンドウ用)
+		//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 20.0f;
 		dst.m_left = 20.0f;
@@ -833,11 +958,11 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 680.0f;
 		Draw::Draw(20, &src, &dst, sb, 0.0f);
 
-		//▼灰色ウィンドウ表示
+		//▼ウィンドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 40.0f;
 		dst.m_left = 40.0f;
@@ -851,23 +976,23 @@ void CObjWarehouse::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 50.0f;
-		dst.m_left = 50.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 100.0f;
+		dst.m_top = 80.0f;
+		dst.m_left = 80.0f;
+		dst.m_right = 130.0f;
+		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		//▼白色ウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		////▼白色ウィンドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 100.0f;
+		//src.m_bottom = 100.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 600.0f;
-		Draw::Draw(32, &src, &dst, it, 0.0f);
+		//dst.m_top = 100.0f;
+		//dst.m_left = 100.0f;
+		//dst.m_right = 1100.0f;
+		//dst.m_bottom = 600.0f;
+		//Draw::Draw(32, &src, &dst, it, 0.0f);
 		
 		//▼残り住民数がいません(住民数だけ)文字画像を表示
 		src.m_top = 0.0f;
@@ -1002,11 +1127,11 @@ void CObjWarehouse::Draw()
 	//スペシャル技ボタンを押して描画する画像
 	else if (window_start_manage == Specialskill)
 	{
-		//▼灰色ウィンドウ表示(ダミー倉庫ウィンドウ用)
+		//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 20.0f;
 		dst.m_left = 20.0f;
@@ -1014,11 +1139,11 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 680.0f;
 		Draw::Draw(20, &src, &dst, sb, 0.0f);
 
-		//▼灰色ウィンドウ表示
+		//▼ウィンドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 40.0f;
 		dst.m_left = 40.0f;
@@ -1032,29 +1157,29 @@ void CObjWarehouse::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 50.0f;
-		dst.m_left = 50.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 100.0f;
+		dst.m_top = 80.0f;
+		dst.m_left = 80.0f;
+		dst.m_right = 130.0f;
+		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		//▼白色ウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		////▼白色ウィンドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 100.0f;
+		//src.m_bottom = 100.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 600.0f;
-		Draw::Draw(32, &src, &dst, it, 0.0f);
+		//dst.m_top = 100.0f;
+		//dst.m_left = 100.0f;
+		//dst.m_right = 1100.0f;
+		//dst.m_bottom = 600.0f;
+		//Draw::Draw(32, &src, &dst, it, 0.0f);
 
 		//スペシャル技1メッセージウィンドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 200.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		for (int i = 0; i < 5; i++)//メッセージウィンドウを適切な位置に５回表示させる
 		{
@@ -1062,14 +1187,14 @@ void CObjWarehouse::Draw()
 			dst.m_left = 235.0f;
 			dst.m_right = 1100.0f;
 			dst.m_bottom = 200.0f + (i * 100);
-			Draw::Draw(45, &src, &dst, it, 0.0f);
+			Draw::Draw(20, &src, &dst, it, 0.0f);
 		}
 
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 130.0f;
+		src.m_bottom = 130.0f;
 
 		//▼現在のスペシャル技習得状況、装備状況に応じて
 		//スペシャル技アイコンのカラー明度を以下のように設定していく。
@@ -1125,8 +1250,8 @@ void CObjWarehouse::Draw()
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 130.0f;
+		src.m_bottom = 130.0f;
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 185.0f;
@@ -1177,8 +1302,8 @@ void CObjWarehouse::Draw()
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 130.0f;
+		src.m_bottom = 130.0f;
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 285.0f;
@@ -1228,8 +1353,8 @@ void CObjWarehouse::Draw()
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 130.0f;
+		src.m_bottom = 130.0f;
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 385.0f;
@@ -1276,12 +1401,12 @@ void CObjWarehouse::Draw()
 			Draw::Draw(43, &src, &dst, black, 0.0f);
 		}
 
-		//ステロイド投与の判定
+		//オーバーワークの判定
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 130.0f;
+		src.m_bottom = 130.0f;
 
 		//まず貼り付け位置を設定する
 		dst.m_top =485.0f;
@@ -1289,7 +1414,7 @@ void CObjWarehouse::Draw()
 		dst.m_right = 230.0f;
 		dst.m_bottom = 615.0f;
 
-		//ステロイド投与を覚えているならば
+		//オーバーワークを覚えているならば
 		if (g_Special_mastering[4] == true)
 		{
 			if (g_Special_equipment == 6)
@@ -1332,11 +1457,11 @@ void CObjWarehouse::Draw()
 	//装備ボタンを押して描画する画像
 	else if (window_start_manage == Soubicheck)
 	{
-		//▼灰色ウィンドウ表示(ダミー倉庫ウィンドウ用)
+		//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 20.0f;
 		dst.m_left = 20.0f;
@@ -1344,11 +1469,11 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 680.0f;
 		Draw::Draw(20, &src, &dst, sb, 0.0f);
 
-		//▼灰色ウィンドウ表示
+		//▼ウィンドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 40.0f;
 		dst.m_left = 40.0f;
@@ -1362,23 +1487,23 @@ void CObjWarehouse::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 50.0f;
-		dst.m_left = 50.0f;
-		dst.m_right = 100.0f;
-		dst.m_bottom = 100.0f;
+		dst.m_top = 80.0f;
+		dst.m_left = 80.0f;
+		dst.m_right = 130.0f;
+		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		//▼白色ウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		////▼白色ウィンドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 100.0f;
+		//src.m_bottom = 100.0f;
 
-		dst.m_top = 100.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 1100.0f;
-		dst.m_bottom = 600.0f;
-		Draw::Draw(32, &src, &dst, it, 0.0f);
+		//dst.m_top = 100.0f;
+		//dst.m_left = 100.0f;
+		//dst.m_right = 1100.0f;
+		//dst.m_bottom = 600.0f;
+		//Draw::Draw(32, &src, &dst, it, 0.0f);
 
 		//▼未装備(装備だけ)文字画像を表示
 		src.m_top = 0.0f;

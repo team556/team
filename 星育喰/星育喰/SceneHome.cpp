@@ -38,7 +38,7 @@ void CSceneHome::InitScene()
 	Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
-	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//育アイコンを読み込み1番に登録
 	Draw::LoadImage(L"育２.png", 1, TEX_SIZE_512);
@@ -67,13 +67,13 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み50番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 50, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1.png", 50, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み51番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 51, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv2.png", 51, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み52番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 52, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv3.png", 52, TEX_SIZE_512);
 
 	//惑星HP文字画像を読み込み53番に登録
 	Draw::LoadImage(L"惑星HP.png", 53, TEX_SIZE_512);

@@ -148,7 +148,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 250.0f;
 	dst.m_right = 950.0f;
 	dst.m_bottom = 0.0f + m_cy[1];
-	Draw::Draw(3, &src, &dst, w, m_alpha);
+	Draw::Draw(3, &src, &dst, w, 0.0);
 
 	//音人描画
 	src.m_top = 0.0f;
@@ -160,7 +160,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 550.0f;
 	dst.m_right = 650.0f;
 	dst.m_bottom = 0.0f + m_cy[3];
-	Draw::Draw(7, &src, &dst, w, m_alpha);
+	Draw::Draw(7, &src, &dst, w, 0.0);
 
 	//音人URL描画
 	src.m_top = 0.0f;
@@ -172,7 +172,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 300.0f;
 	dst.m_right = 900.0f;
 	dst.m_bottom = 10.0f + m_cy[4];
-	Draw::Draw(8, &src, &dst, w, m_alpha);
+	Draw::Draw(8, &src, &dst, w, 0.0);
 
 	//魔王魂描画
 	src.m_top = 0.0f;
@@ -184,7 +184,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 0.0f + m_cy[6];
-	Draw::Draw(9, &src, &dst, w, m_alpha);
+	Draw::Draw(9, &src, &dst, w, 0.0);
 
 	//魔王魂URL1描画
 	src.m_top = 0.0f;
@@ -196,7 +196,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 250.0f;
 	dst.m_right = 950.0f;
 	dst.m_bottom = 10.0f + m_cy[7];
-	Draw::Draw(10, &src, &dst, w, m_alpha);
+	Draw::Draw(10, &src, &dst, w, 0.0);
 
 	//魔王魂URL2描画
 	src.m_top = 0.0f;
@@ -208,7 +208,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 250.0f;
 	dst.m_right = 950.0f;
 	dst.m_bottom = 10.0f + m_cy[8];
-	Draw::Draw(11, &src, &dst, w, m_alpha);
+	Draw::Draw(11, &src, &dst, w, 0.0);
 
 	//TAMM描画
 	src.m_top = 0.0f;
@@ -220,7 +220,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 300.0f;
 	dst.m_right = 900.0f;
 	dst.m_bottom = 00.0f + m_cy[10];
-	Draw::Draw(12, &src, &dst, w, m_alpha);
+	Draw::Draw(12, &src, &dst, w, 0.0);
 
 	//TAMMURL描画
 	src.m_top = 0.0f;
@@ -232,7 +232,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 200.0f;
 	dst.m_right = 1000.0f;
 	dst.m_bottom = 10.0f + m_cy[11];
-	Draw::Draw(13, &src, &dst, w, m_alpha);
+	Draw::Draw(13, &src, &dst, w, 0.0);
 
 	//DOVA-SYN_DROME描画
 	src.m_top = 2.0f;
@@ -244,7 +244,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 200.0f;
 	dst.m_right = 1000.0f;
 	dst.m_bottom = 0.0f + m_cy[13];
-	Draw::Draw(14, &src, &dst, w, m_alpha);
+	Draw::Draw(14, &src, &dst, w, 0.0);
 
 	//DOVA-SYN_DROMEURL描画
 	src.m_top = 0.0f;
@@ -256,7 +256,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 300.0f;
 	dst.m_right = 900.0f;
 	dst.m_bottom = 10.0f + m_cy[14];
-	Draw::Draw(15, &src, &dst, w, m_alpha);
+	Draw::Draw(15, &src, &dst, w, 0.0);
 
 	//無料効果音で遊ぼう描画
 	src.m_top = 0.0f;
@@ -268,7 +268,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 400.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 0.0f + m_cy[16];
-	Draw::Draw(16, &src, &dst, w, m_alpha);
+	Draw::Draw(16, &src, &dst, w, 0.0);
 
 	//無料効果音で遊ぼうURL描画
 	src.m_top = 0.0f;
@@ -280,7 +280,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 200.0f;
 	dst.m_right = 1000.0f;
 	dst.m_bottom = 10.0f + m_cy[17];
-	Draw::Draw(17, &src, &dst, w, m_alpha);
+	Draw::Draw(17, &src, &dst, w, 0.0);
 
 	//効果音ラボ描画
 	src.m_top = 0.0f;
@@ -292,7 +292,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 0.0f + m_cy[19];
-	Draw::Draw(18, &src, &dst, w, m_alpha);
+	Draw::Draw(18, &src, &dst, w, 0.0);
 
 	//効果音ラボ描画
 	src.m_top = 0.0f;
@@ -304,7 +304,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 200.0f;
 	dst.m_right = 1000.0f;
 	dst.m_bottom = 10.0f + m_cy[20];
-	Draw::Draw(19, &src, &dst, w, m_alpha);
+	Draw::Draw(19, &src, &dst, w, 0.0);
 
 	//OtoLogic描画
 	src.m_top = 0.0f;
@@ -316,7 +316,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
 	dst.m_bottom = 0.0f + m_cy[22];
-	Draw::Draw(20, &src, &dst, w, m_alpha);
+	Draw::Draw(20, &src, &dst, w, 0.0);
 
 	//OtoLogic描画
 	src.m_top = 0.0f;
@@ -328,7 +328,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 300.0f;
 	dst.m_right = 900.0f;
 	dst.m_bottom = 10.0f + m_cy[23];
-	Draw::Draw(21, &src, &dst, w, m_alpha);
+	Draw::Draw(21, &src, &dst, w, 0.0);
 
 	//使用フォント描画
 	src.m_top = 0.0f;
@@ -340,7 +340,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 75.0f + m_cy[26];
-	Draw::Draw(32, &src, &dst, w, m_alpha);
+	Draw::Draw(32, &src, &dst, w, 0.0);
 
 	//使用フォントピリオド描画
 	src.m_top = 1.0f;
@@ -352,7 +352,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 0.0f + m_cy[29];
-	Draw::Draw(33, &src, &dst, w, m_alpha);
+	Draw::Draw(33, &src, &dst, w, 0.0);
 
 	//作者紹介
 	src.m_top = 1.0f;
@@ -364,7 +364,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 604.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 0.0f + m_cy[31];
-	Draw::Draw(35, &src, &dst, w, m_alpha);
+	Draw::Draw(35, &src, &dst, w, 0.0);
 
 	//作者名紹介
 	src.m_top = 1.0f;
@@ -376,7 +376,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 604.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 0.0f + m_cy[33];
-	Draw::Draw(34, &src, &dst, w, m_alpha);
+	Draw::Draw(34, &src, &dst, w, 0.0);
 
 	//サイト紹介
 	src.m_top = 1.0f;
@@ -388,7 +388,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 604.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 0.0f + m_cy[35];
-	Draw::Draw(29, &src, &dst, w, m_alpha);
+	Draw::Draw(29, &src, &dst, w, 0.0);
 
 	//飛べない鳥紹介
 	src.m_top = 1.0f;
@@ -400,7 +400,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 604.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 0.0f + m_cy[37];
-	Draw::Draw(30, &src, &dst, w, m_alpha);
+	Draw::Draw(30, &src, &dst, w, 0.0);
 
 	//使用フォントURL
 	src.m_top = 1.0f;
@@ -412,7 +412,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 0.0f + m_cy[39];
-	Draw::Draw(31, &src, &dst, w, m_alpha);
+	Draw::Draw(31, &src, &dst, w, 0.0);
 
 	//総合ディレクタ
 	src.m_top = 1.0f;
@@ -424,7 +424,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 0.0f + m_cy[41];
-	Draw::Draw(36, &src, &dst, w, m_alpha);
+	Draw::Draw(36, &src, &dst, w, 0.0);
 
 	//池田描画
 	src.m_top = 1.0f;
@@ -436,7 +436,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 800.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 75.0f + m_cy[43];
-	Draw::Draw(22, &src, &dst, w, m_alpha);
+	Draw::Draw(22, &src, &dst, w, 0.0);
 
 	//プログラマ
 	src.m_top = 1.0f;
@@ -448,7 +448,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 75.0f + m_cy[46];
-	Draw::Draw(37, &src, &dst, w, m_alpha);
+	Draw::Draw(37, &src, &dst, w, 0.0);
 
 	//後庵描画
 	src.m_top = 1.0f;
@@ -460,7 +460,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 800.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 75.0f + m_cy[48];
-	Draw::Draw(23, &src, &dst, w, m_alpha);
+	Draw::Draw(23, &src, &dst, w, 0.0);
 
 	//木村描画
 	src.m_top = 1.0f;
@@ -472,7 +472,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 800.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 75.0f + m_cy[49];
-	Draw::Draw(24, &src, &dst, w, m_alpha);
+	Draw::Draw(24, &src, &dst, w, 0.0);
 
 	//柏崎描画
 	src.m_top = 1.0f;
@@ -484,7 +484,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 800.0f;
 	dst.m_right = 304.0f;
 	dst.m_bottom = 75.0f + m_cy[50];
-	Draw::Draw(26, &src, &dst, w, m_alpha);
+	Draw::Draw(26, &src, &dst, w, 0.0);
 
 	//グラフィッカー
 	src.m_top = 1.0f;
@@ -496,7 +496,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 75.0f + m_cy[54];
-	Draw::Draw(38, &src, &dst, w, m_alpha);
+	Draw::Draw(38, &src, &dst, w, 0.0);
 
 	//諏訪描画
 	src.m_top = 1.0f;
@@ -508,7 +508,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 75.0f + m_cy[56];
-	Draw::Draw(28, &src, &dst, w, m_alpha);
+	Draw::Draw(28, &src, &dst, w, 0.0);
 
 	//坂田描画
 	src.m_top = 1.0f;
@@ -520,7 +520,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 75.0f + m_cy[58];
-	Draw::Draw(27, &src, &dst, w, m_alpha);
+	Draw::Draw(27, &src, &dst, w, 0.0);
 
 	//プランナー描画
 	src.m_top = 1.0f;
@@ -532,7 +532,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 75.0f + m_cy[60];
-	Draw::Draw(39, &src, &dst, w, m_alpha);
+	Draw::Draw(39, &src, &dst, w, 0.0);
 
 	//脇田描画
 	src.m_top = 1.0f;
@@ -544,7 +544,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 1000.0f;
 	dst.m_right = 104.0f;
 	dst.m_bottom = 75.0f + m_cy[62];
-	Draw::Draw(25, &src, &dst, w, m_alpha);
+	Draw::Draw(25, &src, &dst, w, 0.0);
 
 	//END描画
 	src.m_top = 0.0f;
@@ -556,7 +556,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 75.0f + m_cy[64];
-	Draw::Draw(2, &src, &dst, w, m_alpha);
+	Draw::Draw(2, &src, &dst, w, 0.0);
 
 	//タイトルロゴ描画
 	src.m_top = 0.0f;
@@ -568,7 +568,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 300.0f;
 	dst.m_right = 851.0f;
 	dst.m_bottom = 350.0f + m_cy[67];
-	Draw::Draw(1, &src, &dst, w, m_alpha);
+	Draw::Draw(1, &src, &dst, w, 0.0);
 
 	//右クリックをすると描画
 	src.m_top = 3.0f;
@@ -580,7 +580,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 200.0f;
 	dst.m_bottom = 32.0f;
-	Draw::Draw(4, &src, &dst, w2, m_alpha);
+	Draw::Draw(4, &src, &dst, w2, 0.0);
 
 	//エンドロールが早く流れます描画
 	src.m_top = 3.0f;
@@ -592,7 +592,7 @@ void CObjGameClear::Draw()
 	dst.m_left = 50.0f;
 	dst.m_right = 300.0f;
 	dst.m_bottom = 72.0f;
-	Draw::Draw(5, &src, &dst, w2, m_alpha);
+	Draw::Draw(5, &src, &dst, w2, 0.0);
 
 	//Font::StrDraw(L"右クリックを押し続けると", 0, 0, 20, w2);
 	//Font::StrDraw(L"エンドロールが早く流れます。", 0,25, 20, w2);
@@ -614,6 +614,6 @@ void CObjGameClear::Draw()
 		dst.m_left = 300.0f;
 		dst.m_right = 900.0f;
 		dst.m_bottom = 670.0f;
-		Draw::Draw(6, &src, &dst, w, m_alpha);
+		Draw::Draw(6, &src, &dst, w, 0.0);
 	}
 }
