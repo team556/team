@@ -78,7 +78,8 @@ void CObjTraining::Action()
 		else if (m_Mig_time >= 120)
 		{
 			//ホーム画面の背景をプレイヤー惑星のレベルに合わせた読み込み番号部分に登録
-			Draw::LoadImage(L"TitleBackgroundTest.jpg", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
+			//Draw::LoadImage(L"TitleBackgroundTest.jpg", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
+			Draw::LoadImage(L"背景.png", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
 
 			//ObjHelpにシーン移行演出を伝える
 			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);

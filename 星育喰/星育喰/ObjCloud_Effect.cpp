@@ -136,9 +136,9 @@ void CObjCloud_Effect::Draw()
 
 	//Å•â_(âEè„)ï\é¶
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 500.0f;
-	src.m_bottom = 500.0f;
+	src.m_left = 40.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 165.0f;
 
 	dst.m_top = -1100.0f + m_Cloud_move;
 	dst.m_left = 700.0f - m_Cloud_move;
@@ -154,10 +154,10 @@ void CObjCloud_Effect::Draw()
 
 
 	//Å•â_(ç∂â∫)ï\é¶
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = -500.0f;
-	src.m_bottom = -500.0f;
+	src.m_top = -10.0f;
+	src.m_left = 10.0f;
+	src.m_right = -280.0f;
+	src.m_bottom = -170.0f;
 
 	dst.m_top = 400.0f - m_Cloud_move;
 	dst.m_left = -1100.0f + m_Cloud_move;
