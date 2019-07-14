@@ -131,7 +131,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ˆç¬‰æ–ÊLv3.png", 14, TEX_SIZE_512);
 	
 	//‰_‚ğ“Ç‚İ‚İ15”Ô‚É“o˜^
-	Draw::LoadImage(L"“§‰ß‰_.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"‰æ–ÊˆÚs‰_.png", 15, TEX_SIZE_512);
 
 	//ƒvƒŒƒCƒ„[˜f¯Lv1‚ğ“Ç‚İ‚İ16”Ô‚É“o˜^
 	Draw::LoadImage(L"P˜f¯_Lv1.png", 16, TEX_SIZE_512);

@@ -59,7 +59,7 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"メッセージウインドウ(仮).png", 6, TEX_SIZE_512);
 
 	//雲を読み込み15番に登録
-	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
 
 	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
 
