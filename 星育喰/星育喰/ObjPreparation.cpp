@@ -931,8 +931,8 @@ void CObjPreparation::Draw()
 	//▼背景表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 960.0f;
-	src.m_bottom = 638.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
@@ -1053,10 +1053,10 @@ void CObjPreparation::Draw()
 	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
 	//▼プレイヤー惑星表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 62.0f;
-	src.m_bottom = 62.0f;
+	src.m_top = 63.0f;
+	src.m_left = 63.0f;
+	src.m_right = 384.0f;
+	src.m_bottom = 384.0f;
 
 	dst.m_top = 800.0f + m_Pvy;
 	dst.m_left = -500.0f + m_Pvx;
@@ -1081,8 +1081,8 @@ void CObjPreparation::Draw()
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 100.0f;
-		src.m_bottom = 100.0f;
+		src.m_right = 130.0f;
+		src.m_bottom = 130.0f;
 
 		dst.m_top = 985.0f + m_Svy;
 		dst.m_left = 380.0f + i * 95.0f;
@@ -1232,7 +1232,7 @@ void CObjPreparation::Draw()
 		Draw::Draw(63, &src, &dst, warning_message, 0.0);
 	}
 
-	Font::StrDraw(Until_fight_boss_count[0], m_warning_message_x[0], m_warning_message_y[0], m_warning_message_size, warning_message);
+	//Font::StrDraw(Until_fight_boss_count[0], m_warning_message_x[0], m_warning_message_y[0], m_warning_message_size, warning_message);
 
 	//▼詳細説明(敵惑星、スペシャル技)メッセージ表示
 	//▽ウインドウ表示 

@@ -1094,7 +1094,7 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (30 < m_mou_x && m_mou_x < 150 && 340 < m_mou_y && m_mou_y < 550)
+	if (120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Ins_color = 1.0f;
@@ -2390,7 +2390,7 @@ void CObjInstitute::Draw()
 		//▽以下は武器ポッドウインドウで描画するもの
 		else // (window_start_manage == Equipment)
 		{
-			//▼武器ポッド画像集を表示
+			//▼武器画像集を表示
 			for (int i = 0; i < 4; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -2405,6 +2405,23 @@ void CObjInstitute::Draw()
 					dst.m_right = 410.0f + i * 170.0f;
 					dst.m_bottom = 340.0f + j * 150.0f;
 					Draw::Draw(49 + j + i * 3, &src, &dst, equip_pic[j + i * 3], 0.0f);
+				}
+			}
+
+			for (int p = 0;p < 3;p++)
+			{
+				for (int x = 0;x < 1;x++)
+				{
+					src.m_top = 0.0f;
+					src.m_left = 0.0f;
+					src.m_right = 64.0f;
+					src.m_bottom = 64.0f;
+
+					dst.m_top = 210.0f + p * 150.0f;
+					dst.m_left = 950.0f + x * 170.0f;
+					dst.m_right = 1080.0f + x * 170.0f;
+					dst.m_bottom = 340.0f + p * 150.0f;
+					Draw::Draw(61 + p + x * 3, &src, &dst, equip_pic[p + x * 3], 0.0f);
 				}
 			}
 
