@@ -26,23 +26,9 @@ private:
 	float m_size;		//プレイヤー惑星のサイズ
 
 	int m_Mig_time;		//ホーム画面にシーン移行する際の時間管理変数
-
-
-
-	//test！変数宣言(FontDrawの。後で適する場所に移動させる予定。→UtilityModule等)
-	wchar_t font[100][256] = {};
-	int length[100] = {};
-	int font_column[100][256] = {};//[100]は同時に表示できるフォント限界数、[256]は表示できる文字数
-	int font_line[100][256] = {};
-	float draw_x[100] = {};
-	float draw_y[100] = {};
-	float draw_x_size[100] = {};
-	float draw_y_size[100] = {};
 protected:
 	int Allocation(int type_num, int up_down_check);//振り分け関数
 	void Facility_message(int Facility_Level);//施設(兵舎、研究所)の必要素材&サイズメッセージ描画関数
-	void FontDraw(int id, int conversion, float x, float y, float x_size, float y_size, float color[4]);//
-	void FontDraw(int id, wchar_t *conversion, float x, float y, float x_size, float y_size, float color[4]);//
 
 	float m_mou_x;		 //マウスの位置X
 	float m_mou_y;		 //マウスの位置Y

@@ -2180,8 +2180,8 @@ void CObjInstitute::Draw()
 
 			//ミサイルリキャストタイム
 			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + (floor(g_Recast_time) * 125);
-			src.m_right = END_ZERO + (floor(g_Recast_time) * 125);
+			src.m_left = CUT_ZERO + (floor((int)g_Recast_time) * 125);
+			src.m_right = END_ZERO + (floor((int)g_Recast_time) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 350;
@@ -2203,8 +2203,8 @@ void CObjInstitute::Draw()
 			Draw::Draw(120, &src, &dst, black, 0.0f);
 
 			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + (((g_Recast_time * 10) % 10) * 125);
-			src.m_right = END_ZERO + (((g_Recast_time * 10) % 10) * 125);
+			src.m_left = CUT_ZERO + ((((int)g_Recast_time * 10) % 10) * 125);
+			src.m_right = END_ZERO + ((((int)g_Recast_time * 10) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 350;
@@ -2590,14 +2590,6 @@ void CObjInstitute::Draw()
 	//wchar_t str[256];
 	//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
 	//Font::StrDraw(str, 20.0f, 20.0f, 12.0f, white);
-
-
-	//テスト(FontDrawの)
-	//float d[4] = { 1.0f,0.0f,0.0f,1.0f };
-
-	//FontDraw(0, 1327890, 20, 50, 25, 50, d);
-	//FontDraw(1, L"あい", 20, 100, 25, 50, d);
-	//FontDraw(2, L"かき", 20, 150, 25, 50, d);
 }
 
 

@@ -110,7 +110,7 @@ extern int g_Speed_num;				//スピード住民数
 extern int g_Balance_num;			//バランス住民数
 extern int g_Research_num;			//研究員住民数
 extern int g_Remain_num;			//残り住民数
-extern int g_Recast_time;			//ミサイルのリキャストタイム用
+extern float g_Recast_time;			//ミサイルのリキャストタイム用
 //extern float g_Missile_pow;			//ミサイルの火力用
 //extern int g_E_Planet_damage;					//
 extern int g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
