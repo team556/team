@@ -409,7 +409,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
-		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
+		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -914,7 +914,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (50 < m_mou_x && m_mou_x < 100 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (80 < m_mou_x && m_mou_x < 130 && 80 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -1405,10 +1405,10 @@ void CObjInstitute::Draw()
 		src.m_right = 400.0f;
 		src.m_bottom = 400.0f;
 
-		dst.m_top = 150.0f;
+		dst.m_top = 160.0f;
 		dst.m_left = 100.0f;
 		dst.m_right = 400.0f;
-		dst.m_bottom = 350.0f;
+		dst.m_bottom = 400.0f;
 		Draw::Draw(3 + (g_Ins_Level - 1) * 3, &src, &dst, white, 0.0f);
 
 		//▼研究所LVUP表示
@@ -2391,7 +2391,7 @@ void CObjInstitute::Draw()
 		else // (window_start_manage == Equipment)
 		{
 			//▼武器ポッド画像集を表示
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				for (int j = 0; j < 3; j++)
 				{

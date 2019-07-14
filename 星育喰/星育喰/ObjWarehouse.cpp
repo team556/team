@@ -309,7 +309,7 @@ void CObjWarehouse::Action()
 	}
 
 	//倉庫選択
-	if (850 < m_mou_x && m_mou_x < 1250 && 350 < m_mou_y && m_mou_y < 650)
+	if (850 < m_mou_x && m_mou_x < 1250 && 430 < m_mou_y && m_mou_y < 550)
 	{
 		m_introduce_f = true;	//施設紹介ウィンドウを表示する
 		m_Ware_color = 1.0f;

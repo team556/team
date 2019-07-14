@@ -468,14 +468,75 @@ void CObjHome::Draw()
 		//▽ウインドウ表示 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 800.0f;
+		src.m_bottom = 800.0f;
 
 		dst.m_top = m_mou_y - 85.0f;
 		dst.m_left = m_mou_x + 20.0f;
-		dst.m_right = m_mou_x + 320.0f;
-		dst.m_bottom = m_mou_y + 40.0f;
+		dst.m_right = m_mou_x + 120.0f;
+		dst.m_bottom = m_mou_y - 25.0f;
 		Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示 
+		src.m_top = 0.0f;
+		src.m_left = 800.0f;
+		src.m_right = 1600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = m_mou_y - 25.0f;
+		dst.m_left = m_mou_x + 20.0f;
+		dst.m_right = m_mou_x + 120.0f;
+		dst.m_bottom = m_mou_y + 45.0f;
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示 
+		src.m_top = 0.0f;
+		src.m_left = 1600.0f;
+		src.m_right = 2400.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = m_mou_y - 85.0f;
+		dst.m_left = m_mou_x + 120.0f;
+		dst.m_right = m_mou_x + 220.0f;
+		dst.m_bottom = m_mou_y - 25.0f;
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示 
+		src.m_top = 0.0f;
+		src.m_left = 2400.0f;
+		src.m_right = 3200.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = m_mou_y - 25.0f;
+		dst.m_left = m_mou_x + 120.0f;
+		dst.m_right = m_mou_x + 220.0f;
+		dst.m_bottom = m_mou_y + 45.0f;
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▼施設紹介ウインドウ表示右上
+		src.m_top = 0.0f;
+		src.m_left = 4000.0f;
+		src.m_right = 4800.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = m_mou_y - 85.0f;
+		dst.m_left = m_mou_x + 220.0f;
+		dst.m_right = m_mou_x + 320.0f;
+		dst.m_bottom = m_mou_y - 25.0f;
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▼施設紹介ウインドウ表示中央下
+		src.m_top = 0.0f;
+		src.m_left = 4800.0f;
+		src.m_right = 5600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = m_mou_y - 25.0f;
+		dst.m_left = m_mou_x + 220.0f;
+		dst.m_right = m_mou_x + 320.0f;
+		dst.m_bottom = m_mou_y + 45.0f;
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+
 
 		//▽フォント表示
 		//フォント画像表示
