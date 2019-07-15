@@ -35,7 +35,7 @@ void CObjGameClear::Init()
 	m_y_vec = 1.0;
 
 	for (int i = 0; i < 100; i++)//”z—ñ‚Ì‰Šú‰»
-		m_cy[i] = i * 60 + 700;	//sŠÔ‚ÌŠÔŠu‚ð‹ó‚¯‚é‚Ì‚ÆA‰æ–Ê‚æ‚è‰º‚É‚·‚é
+		m_cy[i] = i * 25 + 700;	//sŠÔ‚ÌŠÔŠu‚ð‹ó‚¯‚é‚Ì‚ÆA‰æ–Ê‚æ‚è‰º‚É‚·‚é
 	m_c_nam = 0;
 
 	m_speed = 0;
@@ -73,6 +73,11 @@ void CObjGameClear::Action()
 		m_speed = 10;
 		m_right_alpha -= 0.1f;//‰EƒNƒŠƒbƒN‚ð‰Ÿ‚·‚Æ“§‰ß‘¬“x‚ª‘‚­‚È‚é
 	}
+	else if (m_mou_l == true && m_end_f == false)
+	{
+		m_speed = -10;
+		m_right_alpha -= 0.1f;//‰EƒNƒŠƒbƒN‚ð‰Ÿ‚·‚Æ“§‰ß‘¬“x‚ª‘‚­‚È‚é
+	}
 	else
 	{
 		m_speed = 0;
@@ -101,7 +106,7 @@ void CObjGameClear::Action()
 	}
 
 	//23”Ô–ÚƒXƒNƒ[ƒ‹‚É“o˜^‚³‚ê‚½‰æ‘œ‚ª‰º‚©‚çã‚É—¬‚ê‚Ä‚«‚½‚ç
-	if (m_cy[69] <= 0.0f)
+	if (m_cy[79]+125.0f <= 0.0f)
 	{
 		m_y_vec = 0;	//ƒXƒNƒ[ƒ‹‚ðŽ~‚ß‚é
 		m_end_f = true;
@@ -145,8 +150,8 @@ void CObjGameClear::Draw()
 	src.m_bottom = 114.0f;
 
 	dst.m_top = 0.0f + m_cy[0];
-	dst.m_left = 250.0f;
-	dst.m_right = 950.0f;
+	dst.m_left = 350.0f;
+	dst.m_right = 850.0f;
 	dst.m_bottom = 0.0f + m_cy[1];
 	Draw::Draw(3, &src, &dst, w, 0.0);
 
@@ -157,8 +162,8 @@ void CObjGameClear::Draw()
 	src.m_bottom = 90.0f;
 
 	dst.m_top = 0.0f + m_cy[2];
-	dst.m_left = 550.0f;
-	dst.m_right = 650.0f;
+	dst.m_left = 575.0f;
+	dst.m_right = 625.0f;
 	dst.m_bottom = 0.0f + m_cy[3];
 	Draw::Draw(7, &src, &dst, w, 0.0);
 
@@ -169,8 +174,8 @@ void CObjGameClear::Draw()
 	src.m_bottom = 84.0f;
 
 	dst.m_top = 10.0f + m_cy[3];
-	dst.m_left = 300.0f;
-	dst.m_right = 900.0f;
+	dst.m_left = 475.0f;
+	dst.m_right = 725.0f;
 	dst.m_bottom = 10.0f + m_cy[4];
 	Draw::Draw(8, &src, &dst, w, 0.0);
 
@@ -180,10 +185,10 @@ void CObjGameClear::Draw()
 	src.m_right = 282.0f;
 	src.m_bottom = 90.0f;
 
-	dst.m_top = 0.0f + m_cy[5];
-	dst.m_left = 500.0f;
-	dst.m_right = 700.0f;
-	dst.m_bottom = 0.0f + m_cy[6];
+	dst.m_top = 20.0f + m_cy[6];
+	dst.m_left = 565.0f;
+	dst.m_right = 635.0f;
+	dst.m_bottom = 20.0f + m_cy[7];
 	Draw::Draw(9, &src, &dst, w, 0.0);
 
 	//–‚‰¤°URL1•`‰æ
@@ -192,10 +197,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1060.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[6];
-	dst.m_left = 250.0f;
-	dst.m_right = 950.0f;
-	dst.m_bottom = 10.0f + m_cy[7];
+	dst.m_top = 30.0f + m_cy[7];
+	dst.m_left = 425.0f;
+	dst.m_right = 775.0f;
+	dst.m_bottom = 30.0f + m_cy[8];
 	Draw::Draw(10, &src, &dst, w, 0.0);
 
 	//–‚‰¤°URL2•`‰æ
@@ -204,10 +209,10 @@ void CObjGameClear::Draw()
 	src.m_right = 876.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[7];
-	dst.m_left = 250.0f;
-	dst.m_right = 950.0f;
-	dst.m_bottom = 10.0f + m_cy[8];
+	dst.m_top = 30.0f + m_cy[8];
+	dst.m_left = 475.0f;
+	dst.m_right = 725.0f;
+	dst.m_bottom = 30.0f + m_cy[9];
 	Draw::Draw(11, &src, &dst, w, 0.0);
 
 	//TAMM•`‰æ
@@ -216,10 +221,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1005.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 0.0f + m_cy[9];
-	dst.m_left = 300.0f;
-	dst.m_right = 900.0f;
-	dst.m_bottom = 00.0f + m_cy[10];
+	dst.m_top = 30.0f + m_cy[11];
+	dst.m_left = 505.0f;
+	dst.m_right = 690.0f;
+	dst.m_bottom = 30.0f + m_cy[12];
 	Draw::Draw(12, &src, &dst, w, 0.0);
 
 	//TAMMURL•`‰æ
@@ -228,10 +233,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1341.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[10];
-	dst.m_left = 200.0f;
-	dst.m_right = 1000.0f;
-	dst.m_bottom = 10.0f + m_cy[11];
+	dst.m_top = 40.0f + m_cy[12];
+	dst.m_left = 400.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 40.0f + m_cy[13];
 	Draw::Draw(13, &src, &dst, w, 0.0);
 
 	//DOVA-SYN_DROME•`‰æ
@@ -240,10 +245,10 @@ void CObjGameClear::Draw()
 	src.m_right = 945.0f;
 	src.m_bottom = 77.0f;
 
-	dst.m_top = 0.0f + m_cy[12];
-	dst.m_left = 200.0f;
-	dst.m_right = 1000.0f;
-	dst.m_bottom = 0.0f + m_cy[13];
+	dst.m_top = 40.0f + m_cy[15];
+	dst.m_left = 505.0f;
+	dst.m_right = 690.0f;
+	dst.m_bottom = 40.0f + m_cy[16];
 	Draw::Draw(14, &src, &dst, w, 0.0);
 
 	//DOVA-SYN_DROMEURL•`‰æ
@@ -252,10 +257,10 @@ void CObjGameClear::Draw()
 	src.m_right = 819.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[13];
-	dst.m_left = 300.0f;
-	dst.m_right = 900.0f;
-	dst.m_bottom = 10.0f + m_cy[14];
+	dst.m_top = 50.0f + m_cy[16];
+	dst.m_left = 480.0f;
+	dst.m_right = 720.0f;
+	dst.m_bottom = 50.0f + m_cy[17];
 	Draw::Draw(15, &src, &dst, w, 0.0);
 
 	//–³—¿Œø‰Ê‰¹‚Å—V‚Ú‚¤•`‰æ
@@ -264,10 +269,10 @@ void CObjGameClear::Draw()
 	src.m_right = 852.0f;
 	src.m_bottom = 90.0f;
 
-	dst.m_top = 0.0f + m_cy[15];
-	dst.m_left = 400.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 0.0f + m_cy[16];
+	dst.m_top = 50.0f + m_cy[19];
+	dst.m_left = 495.0f;
+	dst.m_right = 705.0f;
+	dst.m_bottom = 50.0f + m_cy[20];
 	Draw::Draw(16, &src, &dst, w, 0.0);
 
 	//–³—¿Œø‰Ê‰¹‚Å—V‚Ú‚¤URL•`‰æ
@@ -276,10 +281,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1842.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[16];
-	dst.m_left = 200.0f;
-	dst.m_right = 1000.0f;
-	dst.m_bottom = 10.0f + m_cy[17];
+	dst.m_top = 60.0f + m_cy[20];
+	dst.m_left = 400.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 60.0f + m_cy[21];
 	Draw::Draw(17, &src, &dst, w, 0.0);
 
 	//Œø‰Ê‰¹ƒ‰ƒ{•`‰æ
@@ -288,22 +293,22 @@ void CObjGameClear::Draw()
 	src.m_right = 474.0f;
 	src.m_bottom = 90.0f;
 
-	dst.m_top = 0.0f + m_cy[18];
-	dst.m_left = 500.0f;
-	dst.m_right = 700.0f;
-	dst.m_bottom = 0.0f + m_cy[19];
+	dst.m_top = 70.0f + m_cy[23];
+	dst.m_left = 542.0f;
+	dst.m_right = 658.0f;
+	dst.m_bottom = 70.0f + m_cy[24];
 	Draw::Draw(18, &src, &dst, w, 0.0);
 
-	//Œø‰Ê‰¹ƒ‰ƒ{•`‰æ
+	//Œø‰Ê‰¹ƒ‰ƒ{url•`‰æ
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1364.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[19];
-	dst.m_left = 200.0f;
-	dst.m_right = 1000.0f;
-	dst.m_bottom = 10.0f + m_cy[20];
+	dst.m_top = 80.0f + m_cy[24];
+	dst.m_left = 400.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 80.0f + m_cy[25];
 	Draw::Draw(19, &src, &dst, w, 0.0);
 
 	//OtoLogic•`‰æ
@@ -312,10 +317,10 @@ void CObjGameClear::Draw()
 	src.m_right = 444.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 0.0f + m_cy[21];
-	dst.m_left = 450.0f;
-	dst.m_right = 750.0f;
-	dst.m_bottom = 0.0f + m_cy[22];
+	dst.m_top = 90.0f + m_cy[27];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 90.0f + m_cy[28];
 	Draw::Draw(20, &src, &dst, w, 0.0);
 
 	//OtoLogic•`‰æ
@@ -324,10 +329,10 @@ void CObjGameClear::Draw()
 	src.m_right = 882.0f;
 	src.m_bottom = 84.0f;
 
-	dst.m_top = 10.0f + m_cy[22];
-	dst.m_left = 300.0f;
-	dst.m_right = 900.0f;
-	dst.m_bottom = 10.0f + m_cy[23];
+	dst.m_top = 100.0f + m_cy[28];
+	dst.m_left = 450.0f;
+	dst.m_right = 750.0f;
+	dst.m_bottom = 100.0f + m_cy[29];
 	Draw::Draw(21, &src, &dst, w, 0.0);
 
 	//Žg—pƒtƒHƒ“ƒg•`‰æ
@@ -336,10 +341,10 @@ void CObjGameClear::Draw()
 	src.m_right = 672.0f;
 	src.m_bottom = 105.0f;
 
-	dst.m_top = 0.0f + m_cy[26];
+	dst.m_top = 110.0f + m_cy[33];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
-	dst.m_bottom = 75.0f + m_cy[26];
+	dst.m_bottom = 110.0f + m_cy[34];
 	Draw::Draw(32, &src, &dst, w, 0.0);
 
 	//Žg—pƒtƒHƒ“ƒgƒsƒŠƒIƒh•`‰æ
@@ -348,10 +353,10 @@ void CObjGameClear::Draw()
 	src.m_right = 0.0f;
 	src.m_bottom = 101.0f;
 
-	dst.m_top = 0.0f + m_cy[28];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 0.0f + m_cy[29];
+	dst.m_top = 120.0f + m_cy[34];
+	dst.m_left = 750.0f;
+	dst.m_right = 450.0f;
+	dst.m_bottom = 120.0f + m_cy[35];
 	Draw::Draw(33, &src, &dst, w, 0.0);
 
 	//ìŽÒÐ‰î
@@ -360,190 +365,190 @@ void CObjGameClear::Draw()
 	src.m_right = 10.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 0.0f + m_cy[30];
-	dst.m_left = 604.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 0.0f + m_cy[31];
+	dst.m_top = 130.0f + m_cy[36];
+	dst.m_left = 650.0f;
+	dst.m_right = 550.0f;
+	dst.m_bottom = 130.0f + m_cy[37];
 	Draw::Draw(35, &src, &dst, w, 0.0);
 
 	//ìŽÒ–¼Ð‰î
 	src.m_top = 1.0f;
 	src.m_left = 290.0f;
-	src.m_right = 10.0f;
+	src.m_right = 30.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 0.0f + m_cy[32];
-	dst.m_left = 604.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 0.0f + m_cy[33];
+	dst.m_top =140.0f + m_cy[37];
+	dst.m_left = 650.0f;
+	dst.m_right = 550.0f;
+	dst.m_bottom = 140.0f + m_cy[38];
 	Draw::Draw(34, &src, &dst, w, 0.0);
 
 	//ƒTƒCƒgÐ‰î
-	src.m_top = 1.0f;
+	src.m_top =2.0f;
 	src.m_left = 486.0f;
-	src.m_right = 10.0f;
-	src.m_bottom = 108.0f;
+	src.m_right = 105.0f;
+	src.m_bottom = 100.0f;
 
-	dst.m_top = 0.0f + m_cy[34];
-	dst.m_left = 604.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 0.0f + m_cy[35];
+	dst.m_top = 150.0f + m_cy[39];
+	dst.m_left = 650.0f;
+	dst.m_right = 550.0f;
+	dst.m_bottom = 150.0f + m_cy[40];
 	Draw::Draw(29, &src, &dst, w, 0.0);
 
 	//”ò‚×‚È‚¢’¹Ð‰î
 	src.m_top = 1.0f;
-	src.m_left = 716.0f;
-	src.m_right = 10.0f;
-	src.m_bottom = 95.0f;
+	src.m_left = 0.0f;
+	src.m_right = 716.0f;
+	src.m_bottom = 93.0f;
 
-	dst.m_top = 0.0f + m_cy[36];
-	dst.m_left = 604.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 0.0f + m_cy[37];
+	dst.m_top = 160.0f + m_cy[40];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 160.0f + m_cy[41];
 	Draw::Draw(30, &src, &dst, w, 0.0);
 
 	//Žg—pƒtƒHƒ“ƒgURL
-	src.m_top = 1.0f;
-	src.m_left = 1649.0f;
-	src.m_right = 0.0f;
-	src.m_bottom = 94.0f;
+	src.m_top		= 1.0f;
+	src.m_left		= 0.0f;
+	src.m_right		= 1649.0f;
+	src.m_bottom	= 94.0f;
 
-	dst.m_top = 0.0f + m_cy[38];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 0.0f + m_cy[39];
+	dst.m_top = 170.0f + m_cy[41];
+	dst.m_left = 400.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 170.0f + m_cy[42];
 	Draw::Draw(31, &src, &dst, w, 0.0);
 
 	//‘‡ƒfƒBƒŒƒNƒ^
 	src.m_top = 1.0f;
-	src.m_left = 795.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 795.0f;
 	src.m_bottom = 129.0f;
 
-	dst.m_top = 0.0f + m_cy[40];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 0.0f + m_cy[41];
+	dst.m_top = 180.0f + m_cy[46];
+	dst.m_left = 450.0f;
+	dst.m_right = 750.0f;
+	dst.m_bottom = 180.0f + m_cy[47];
 	Draw::Draw(36, &src, &dst, w, 0.0);
 
 	//’r“c•`‰æ
-	src.m_top = 1.0f;
-	src.m_left = 497.0f;
-	src.m_right = 0.0f;
+	src.m_top = 5.0f;
+	src.m_left = 0.0f;
+	src.m_right = 497.0f;
 	src.m_bottom = 99.0f;
 
-	dst.m_top = 0.0f + m_cy[43];
-	dst.m_left = 800.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 75.0f + m_cy[43];
+	dst.m_top = 190.0f + m_cy[47];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 190.0f + m_cy[48];
 	Draw::Draw(22, &src, &dst, w, 0.0);
 
 	//ƒvƒƒOƒ‰ƒ}
 	src.m_top = 1.0f;
-	src.m_left = 497.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 490.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 10.0f + m_cy[45];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 75.0f + m_cy[46];
+	dst.m_top = 200.0f + m_cy[50];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 200.0f + m_cy[51];
 	Draw::Draw(37, &src, &dst, w, 0.0);
 
 	//ŒãˆÁ•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 398.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 398.0f;
 	src.m_bottom = 99.0f;
 
-	dst.m_top = 0.0f + m_cy[48];
-	dst.m_left = 800.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 75.0f + m_cy[48];
+	dst.m_top = 210.0f + m_cy[51];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 210.0f + m_cy[52];
 	Draw::Draw(23, &src, &dst, w, 0.0);
 
 	//–Ø‘º•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 393.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 393.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 15.0f + m_cy[49];
-	dst.m_left = 800.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 75.0f + m_cy[49];
+	dst.m_top = 220.0f + m_cy[52];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 220.0f + m_cy[53];
 	Draw::Draw(24, &src, &dst, w, 0.0);
 
 	//”è•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 392.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 392.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 15.0f + m_cy[50];
-	dst.m_left = 800.0f;
-	dst.m_right = 304.0f;
-	dst.m_bottom = 75.0f + m_cy[50];
+	dst.m_top = 230.0f + m_cy[53];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 230.0f + m_cy[54];
 	Draw::Draw(26, &src, &dst, w, 0.0);
 
 	//ƒOƒ‰ƒtƒBƒbƒJ[
 	src.m_top = 1.0f;
-	src.m_left = 679.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 674.0f;
 	src.m_bottom = 125.0f;
 
-	dst.m_top = 10.0f + m_cy[53];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 75.0f + m_cy[54];
+	dst.m_top = 240.0f + m_cy[56];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 240.0f + m_cy[57];
 	Draw::Draw(38, &src, &dst, w, 0.0);
 
 	//z–K•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 497.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 488.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 10.0f + m_cy[55];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 75.0f + m_cy[56];
+	dst.m_top = 250.0f + m_cy[57];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 250.0f + m_cy[58];
 	Draw::Draw(28, &src, &dst, w, 0.0);
 
 	//â“c•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 497.0f;
-	src.m_right = 0.0f;
-	src.m_bottom = 100.0f;
+	src.m_left = 0.0f;
+	src.m_right = 484.0f;
+	src.m_bottom = 90.0f;
 
-	dst.m_top = 10.0f + m_cy[57];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 75.0f + m_cy[58];
+	dst.m_top = 260.0f + m_cy[58];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 260.0f + m_cy[59];
 	Draw::Draw(27, &src, &dst, w, 0.0);
 
 	//ƒvƒ‰ƒ“ƒi[•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 497.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 497.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 10.0f + m_cy[59];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 75.0f + m_cy[60];
+	dst.m_top = 270.0f + m_cy[61];
+	dst.m_left = 500.0f;
+	dst.m_right = 700.0f;
+	dst.m_bottom = 270.0f + m_cy[62];
 	Draw::Draw(39, &src, &dst, w, 0.0);
 
 	//˜e“c•`‰æ
 	src.m_top = 1.0f;
-	src.m_left = 497.0f;
-	src.m_right = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 490.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 10.0f + m_cy[61];
-	dst.m_left = 1000.0f;
-	dst.m_right = 104.0f;
-	dst.m_bottom = 75.0f + m_cy[62];
+	dst.m_top = 280.0f + m_cy[62];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 280.0f + m_cy[63];
 	Draw::Draw(25, &src, &dst, w, 0.0);
 
 	//END•`‰æ
@@ -552,10 +557,10 @@ void CObjGameClear::Draw()
 	src.m_right = 269.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 0.0f + m_cy[64];
-	dst.m_left = 500.0f;
-	dst.m_right = 700.0f;
-	dst.m_bottom = 75.0f + m_cy[64];
+	dst.m_top = 290.0f + m_cy[71];
+	dst.m_left = 525.0f;
+	dst.m_right = 675.0f;
+	dst.m_bottom = 290.0f + m_cy[72];
 	Draw::Draw(2, &src, &dst, w, 0.0);
 
 	//ƒ^ƒCƒgƒ‹ƒƒS•`‰æ
@@ -564,11 +569,13 @@ void CObjGameClear::Draw()
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 0.0f + m_cy[66];
+	dst.m_top = 300.0f + m_cy[78];
 	dst.m_left = 300.0f;
 	dst.m_right = 851.0f;
-	dst.m_bottom = 350.0f + m_cy[67];
+	dst.m_bottom = 650.0f + m_cy[79];
 	Draw::Draw(1, &src, &dst, w, 0.0);
+	
+
 
 	//‰EƒNƒŠƒbƒN‚ð‚·‚é‚Æ•`‰æ
 	src.m_top = 3.0f;
@@ -610,10 +617,10 @@ void CObjGameClear::Draw()
 		src.m_right = 1483.0f;
 		src.m_bottom = 116.0f;
 
-		dst.m_top = 620.0f;
-		dst.m_left = 300.0f;
-		dst.m_right = 900.0f;
-		dst.m_bottom = 670.0f;
+		dst.m_top = 630.0f;
+		dst.m_left = 400.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 660.0f;
 		Draw::Draw(6, &src, &dst, w, 0.0);
 	}
 }
