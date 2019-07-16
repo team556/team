@@ -211,6 +211,9 @@ void CScenePreparation::InitScene()
 	//オーバーワーク画像読み込み88番に登録
 	Draw::LoadImage(L"パワー重視文字.png", 88, TEX_SIZE_512);
 
+	//メッセージウィンドウ画像89番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
