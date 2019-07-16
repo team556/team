@@ -1285,14 +1285,14 @@ void CObjPreparation::Draw()
 		//▼最終確認ウインドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 220.0f;
 		dst.m_left = 320.0f;
 		dst.m_right = 880.0f;
 		dst.m_bottom = 480.0f;
-		Draw::Draw(55, &src, &dst, d, 0.0f);
+		Draw::Draw(89, &src, &dst, d, 0.0f);
 
 		//▼喰う？文字画像表示
 		src.m_top = 0.0f;
