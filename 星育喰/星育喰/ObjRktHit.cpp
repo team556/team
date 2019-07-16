@@ -63,16 +63,6 @@ void CObjRktHit::Action()
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 
-	if (m_del_f == true)	//削除フラグ
-	{
-		m_del_cnt++;
-		if (m_del_cnt == 7)//削除
-		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
-	}
-
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
@@ -93,7 +83,7 @@ void CObjRktHit::Action()
 		}
 		else if (m_get_line == 1)//----------------中ライン-----
 		{
-			m_vx -= 0.5f;
+			m_vx -= 0.2f;
 		}
 		else//if(m_get_line == 2)---------------下ライン------
 		{
@@ -141,6 +131,16 @@ void CObjRktHit::Action()
 
 	if (hit->CheckElementHit(ELEMENT_NULL) == true)
 		m_stop_f = true;
+
+	if (m_del_f == true)	//削除フラグ
+	{
+		m_del_cnt++;
+		if (m_del_cnt == 7)//削除
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+	}
 }
 
 //ドロー
