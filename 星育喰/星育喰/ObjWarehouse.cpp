@@ -8,6 +8,7 @@
 
 #include "GameHead.h"
 #include "ObjWarehouse.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -808,7 +809,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 170.0f;
 		dst.m_right = 250.0f;
 		dst.m_bottom = 290.0f;
-		Draw::Draw(89, &src, &dst, it, 0.0f);
+		Draw::Draw(89, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
@@ -834,7 +835,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 540.0f;
 		dst.m_right = 580.0f;
 		dst.m_bottom = 290.0f;
-		Draw::Draw(69, &src, &dst, it, 0.0f);
+		Draw::Draw(69, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
@@ -860,7 +861,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 910.0f;
 		dst.m_right = 950.0f;
 		dst.m_bottom = 290.0f;
-		Draw::Draw(90, &src, &dst, it, 0.0f);
+		Draw::Draw(90, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
@@ -886,7 +887,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 140.0f;
 		dst.m_right = 380.0f;
 		dst.m_bottom = 540.0f;
-		Draw::Draw(91, &src, &dst, it, 0.0f);
+		Draw::Draw(91, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
@@ -938,7 +939,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 910.0f;
 		dst.m_right = 990.0f;
 		dst.m_bottom = 540.0f;
-		Draw::Draw(93, &src, &dst, it, 0.0f);
+		Draw::Draw(93, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
@@ -1036,10 +1037,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 472.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 460.0f;
+		dst.m_top = 470.0f;
 		dst.m_left = 120.0f;
 		dst.m_right = 280.0f;
-		dst.m_bottom = 500.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(84, &src, &dst, green, 0.0f);
 
 		//▼ホワイト文字画像表示
@@ -1063,7 +1064,7 @@ void CObjWarehouse::Draw()
 		dst.m_top = 330.0f;
 		dst.m_left = 540.0f;
 		dst.m_right = 645.0f;
-		dst.m_bottom = 365.0f;
+		dst.m_bottom = 370.0f;
 		Draw::Draw(75, &src, &dst, black, 0.0f);
 
 		//▼残り住民数がいません(残り住民数だけ)文字画像を表示
@@ -1075,8 +1076,68 @@ void CObjWarehouse::Draw()
 		dst.m_top = 470.0f;
 		dst.m_left = 540.0f;
 		dst.m_right = 750.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(94, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示(pow数)
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 110.0f;
+
+		dst.m_top = 200.0f;
+		dst.m_left = 450.0f;
+		dst.m_right = 490.0f;
+		dst.m_bottom = 240.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示(spe数)
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 110.0f;
+
+		dst.m_top = 330.0f;
+		dst.m_left = 450.0f;
+		dst.m_right = 490.0f;
+		dst.m_bottom = 370.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示(def数)
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 110.0f;
+
+		dst.m_top = 470.0f;
+		dst.m_left = 450.0f;
+		dst.m_right = 490.0f;
+		dst.m_bottom = 510.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示(bal数)
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 110.0f;
+
+		dst.m_top = 200.0f;
+		dst.m_left = 1030.0f;
+		dst.m_right = 1070.0f;
+		dst.m_bottom = 240.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
+
+		//▼人文字画像表示(研究員数)
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 112.0f;
+		src.m_bottom = 110.0f;
+
+		dst.m_top = 330.0f;
+		dst.m_left = 1030.0f;
+		dst.m_right = 1070.0f;
+		dst.m_bottom = 370.0f;
+		Draw::Draw(77, &src, &dst, black, 0.0f);
 
 		//▼残り　　　人(残り)だけ文字画像表示
 		src.m_top = 0.0f;
@@ -1087,40 +1148,46 @@ void CObjWarehouse::Draw()
 		dst.m_top = 470.0f;
 		dst.m_left = 780.0f;
 		dst.m_right = 990.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(78, &src, &dst, red, 0.0f);
 
-		//▼人文字画像表示
-		src.m_top = 0.0f;
+		//▼人文字画像表示(残り住民数)
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 112.0f;
-		src.m_bottom = 112.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 995.0f;
-		dst.m_right = 1030.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_left = 1030.0f;
+		dst.m_right = 1070.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(77, &src, &dst, red, 0.0f);
 
 		//▼フォント表示
 		//住民ステータス
-		//パワー
-		Font::StrDraw(human_num[0], 355.0f, 200.0f, 35.0f, black);
+		//レッド
+		FontDraw(0, NumConversion(g_Power_num)   , 420, 200, 30, 40, black, true);
+		//Font::StrDraw(human_num[0], 355.0f, 200.0f, 35.0f, black);
 
-		//スピード
-		Font::StrDraw(human_num[1], 355.0f, 330.0f, 35.0f, black);
+		//ブルー
+		FontDraw(0, NumConversion(g_Defense_num) , 420, 330, 30, 40, black, true);
+		//Font::StrDraw(human_num[1], 355.0f, 330.0f, 35.0f, black);
 
-		//ディフェンス
-		Font::StrDraw(human_num[2], 355.0f, 470.0f, 35.0f, black);
+		//グリーン
+		FontDraw(0, NumConversion(g_Speed_num)   , 420, 470, 30, 40, black, true);
+		//Font::StrDraw(human_num[2], 355.0f, 470.0f, 35.0f, black);
 
-		//バランス
-		Font::StrDraw(human_num[3], 865.0f, 200.0f, 35.0f, black);
+		//ホワイト
+		FontDraw(0, NumConversion(g_Balance_num) , 1000, 200, 30, 40, black, true);
+		//Font::StrDraw(human_num[3], 865.0f, 200.0f, 35.0f, black);
 
 		//研究員
-		Font::StrDraw(Research_num, 865.0f, 330.0f, 35.0f, black);
+		FontDraw(0, NumConversion(g_Research_num), 1000, 330, 30, 40, black, true);
+		//Font::StrDraw(Research_num, 865.0f, 330.0f, 35.0f, black);
 
 		//残りの住民数
-		Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
+		FontDraw(0, NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
+		//Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 	}
 
@@ -1586,7 +1653,7 @@ void CObjWarehouse::Draw()
 		dst.m_top = 470.0f;
 		dst.m_left = 540.0f;
 		dst.m_right = 750.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(94, &src, &dst, black, 0.0f);
 
 		//▼残り　　　人(残り)だけ文字画像表示
@@ -1598,19 +1665,19 @@ void CObjWarehouse::Draw()
 		dst.m_top = 470.0f;
 		dst.m_left = 780.0f;
 		dst.m_right = 990.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(78, &src, &dst, red, 0.0f);
 
-		//▼人文字画像表示
-		src.m_top = 0.0f;
+		//▼人文字画像表示(残り住民数)
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 112.0f;
-		src.m_bottom = 112.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 995.0f;
-		dst.m_right = 1030.0f;
-		dst.m_bottom = 505.0f;
+		dst.m_left = 1030.0f;
+		dst.m_right = 1070.0f;
+		dst.m_bottom = 510.0f;
 		Draw::Draw(77, &src, &dst, red, 0.0f);
 
 		//パワー
