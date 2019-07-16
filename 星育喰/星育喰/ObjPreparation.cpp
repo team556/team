@@ -19,7 +19,7 @@ using namespace GameL;
 #define INI_SPEED (50.0f)//各演出で移動する各オブジェクトの初期移動速度
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
-#define INI_PLANET (128.0f)
+#define INI_PLANET (287.0f)
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -87,7 +87,7 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 0;
+	m_destroy_count = 3;
 
 	//現在の撃破数をカウント
 	for (int i = 0; i < 4; i++)
@@ -971,8 +971,8 @@ void CObjPreparation::Draw()
 	//▼ボス惑星1表示(演出用)
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = -128.0f;
-	src.m_bottom = 128.0f;
+	src.m_right = 290.0f;
+	src.m_bottom = 290.0f;
 
 	dst.m_top = 360.0f + m_Boss_vy[0];
 	dst.m_left = 1260.0f + m_Boss_vx[0];
