@@ -45,7 +45,7 @@ void CObjPlanet::Init()
 	//m_siz_vec=  0.0f;
 	m_siz_change_range = 60.0f;
 	m_scale_down_move = 0.0f;
-	m_r = 20.0f;
+	m_r = 0.0f;
 
 	m_cnt = 0;		//カウント
 
@@ -98,7 +98,7 @@ void CObjPlanet::Init()
 	m_del_f = false;	//消すフラグ(true = 消す)
 
 	m_r2 = 0.0f;		
-
+	m_vy = 0.0f;
 	m_sweat_vy = 0.0f;
 
 	m_subsize = 0.0f;
@@ -172,6 +172,9 @@ void CObjPlanet::Action()
 		m_ani_time = 0;		//タイムリセット
 		m_ani_frame[0]++;		//フレーム切り替え
 		m_ani_frame[1]++;
+		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+		if(pla != nullptr)
+			pla->SetEmF();
 		if (m_ani_frame[0] == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
@@ -197,7 +200,7 @@ void CObjPlanet::Action()
 	else if (m_ani_time == 30) {
 		m_ani_frame[1]++;		//特殊aniフレーム切り替え
 	}
-	if (m_ani_frame[1] == 5) {
+	if (m_ani_frame[1] == 6) {
 		m_ani_frame[1] = 0;
 	}
 	//2.5秒
@@ -255,6 +258,7 @@ void CObjPlanet::Action()
 				if ((m_size / m_siz_max) > (m_get_siz / m_get_max_siz))
 				{
 					m_eat_f = true;		//喰うフラグ有効
+					m_r = 20.0f;		//モアイ角度変更
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 					ene->SetPrio(11);	//オブジェクトの優先順位変更し、敵惑星が手前に来るようにする
@@ -269,6 +273,7 @@ void CObjPlanet::Action()
 			//▼演出用サイズ変更処理
 			m_size = m_siz_max;//m_size(HP)を満タンに設定
 			m_siz_change_range *= 1.5f;//その後、1.5倍化する
+			m_r = 0.0f;
 			
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
@@ -292,22 +297,48 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame[0] == 2)		//喰うフレームの移動
 	{
+		
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
-		if (m_type == 0)
+		if (m_ani_time == 1)
+			pla->SetEmF();
+
+		if (g_Challenge_enemy == MOAI_NAM - 1)
 		{
-			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
-			{
-				m_px -= 4.0f;
-			}
+			;//モアイは動かない
 		}
 		else
 		{
-			if (m_px < pla->GetX() + pla->GetScale_down_move() - ene->GetScale_down_move())		//自分のX座標より敵惑星が小さくなると移動を止める
+			if (m_type == 0)
 			{
-				m_px += 4.0f;
+				if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
+				{
+					m_px -= 4.0f;
+				}
 			}
+			else
+			{
+				if (m_px < pla->GetX() + pla->GetScale_down_move() - ene->GetScale_down_move())		//自分のX座標より敵惑星が小さくなると移動を止める
+				{
+					m_px += 4.0f;
+				}
+			}
+		}
+	}
+	else if (m_eat_me == true)
+	{
+		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+		if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
+		{
+			m_px -= 2.0f;
+			m_size -= 1.4f;
+			if (m_py < 365)
+				m_vy += 0.1f;
+			else
+				m_vy -= 0.1f;
+			m_py += m_vy;
 		}
 	}
 
@@ -720,10 +751,13 @@ void CObjPlanet::Action()
 		}
 	}
 
-	if (m_size >= 60.0f) {
-		m_subsize = m_size;
-		if (m_subsize >= MIN_SIZE)
-			m_subsize = MIN_SIZE;
+	if (battle_end == false)	//バトル終了時、処理しない
+	{
+		if (m_size >= 60.0f) {
+			m_subsize = m_size;
+			if (m_subsize >= MIN_SIZE)
+				m_subsize = MIN_SIZE;
+		}
 	}
 }
 
