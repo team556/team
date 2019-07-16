@@ -33,7 +33,7 @@ CSceneFight::~CSceneFight()
 void CSceneFight::InitScene()
 {
 	//背景を読み込み0番に登録
-	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
@@ -42,13 +42,13 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み3番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1.png", 3, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み4番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv2.png", 4, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み5番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv3.png", 5, TEX_SIZE_512);
 
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);

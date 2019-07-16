@@ -277,8 +277,8 @@ void CObjFight::Draw()
 	//Å•îwåiï\é¶
 	src.m_top = 0.0f + (m_scale_down_cnt * 4.5 / 6);
 	src.m_left = 0.0f + m_scale_down_cnt;
-	src.m_right = 960.0f - m_scale_down_cnt;
-	src.m_bottom = 638.0f - (m_scale_down_cnt * 4.5 / 6);
+	src.m_right = 1200.0f - m_scale_down_cnt;
+	src.m_bottom = 700.0f - (m_scale_down_cnt * 4.5 / 6);
 
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;

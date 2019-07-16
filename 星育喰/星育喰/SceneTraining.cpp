@@ -266,7 +266,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ポッドコア白Lv2.png", 59, TEX_SIZE_512);
 
 	//ポッドコア白Lv2の画像を読み込み60番に登録
-	Draw::LoadImage(L"ポッドコア白Lv2.png", 60, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドコア白Lv3.png", 60, TEX_SIZE_512);
 
 	//ポッド白Lv1の画像を読み込み61番に登録
 	Draw::LoadImage(L"ポッド白Lv1.png", 61, TEX_SIZE_512);

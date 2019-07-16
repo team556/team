@@ -166,8 +166,8 @@ void CScenePreparation::InitScene()
 	//難易度文字画像読み込み73番に登録367*117
 	Draw::LoadImage(L"難易度.png", 73, TEX_SIZE_512);
 
-	//★画像読み込み74番に登録101*107
-	Draw::LoadImage(L"★.png", 74, TEX_SIZE_512);
+	//★画像読み込み74番に登録
+	Draw::LoadImage(L"画面移行★.png", 74, TEX_SIZE_512);
 
 	//取得可能な資材・技文字画像読み込み75番に登録
 	Draw::LoadImage(L"取得可能な資材・技文字.png", 75, TEX_SIZE_512);
@@ -219,8 +219,8 @@ void CScenePreparation::InitScene()
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 	//SE読み込み
 	//選択
