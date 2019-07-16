@@ -6,6 +6,7 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -35,6 +36,10 @@ void CObjInstitute::Init()
 	m_Equ_Button_color = INI_COLOR;
 	m_Yes_Button_color = 0.0f;
 	m_No_Button_color = 0.0f;
+
+	m_equip_id = 0;
+	m_Lv_id = 0;
+	m_equipable_count = 0;
 
 	//▼武器ポッド画像集全てのカラー明度を0.1f(黒色)で初期化
 	for (int i = 0; i < 15; i++)
@@ -130,6 +135,7 @@ void CObjInstitute::Init()
 	m_message_green_color = INI_COLOR;
 	m_message_blue_color = INI_COLOR;
 	m_alpha = INI_ALPHA;
+	m_Equ_alpha = INI_ALPHA;
 
 	//-----------------------------------------------------------------------------------------------------
 
@@ -182,10 +188,10 @@ void CObjInstitute::Init()
 	swprintf_s(m_Equ_next_Mat_name[2][0], L"鉄");			//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[2][1], L"銀");		 //レベルが2の時の必要素材名
 	//▽バランス武器
-	swprintf_s(m_Equ_next_Mat_name[3][0], L"アルミニウム");		//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[3][0], L"アルミ");		//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[3][1], L"ガス");	//レベルが2の時の必要素材名
 	//▽ポッド武器
-	swprintf_s(m_Equ_next_Mat_name[4][0], L"アルミニウム");	//レベルが1の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][0], L"アルミ");	//レベルが1の時の必要素材名
 	swprintf_s(m_Equ_next_Mat_name[4][1], L"レアメタル");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
@@ -232,7 +238,7 @@ void CObjInstitute::Init()
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");//レベルが1の時の必要素材名
-	swprintf_s(m_Facility_next_Mat_name[1], L"アルミニウム");//レベルが2の時の必要素材名
+	swprintf_s(m_Facility_next_Mat_name[1], L"アルミ");//レベルが2の時の必要素材名
 
 	//▼研究所の次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
@@ -1079,7 +1085,8 @@ void CObjInstitute::Action()
 			//武器必要素材&人数メッセージを非表示にする
 			else
 			{
-				m_alpha = 0.0f;//武器必要素材&人数メッセージを非表示
+				m_Equ_alpha = 0.0f;//武器ポッド必要素材&人数フォントを非表示
+				m_alpha = 0.0f;//最下部メッセージを非表示
 			}
 		}
 
@@ -1208,12 +1215,12 @@ void CObjInstitute::Draw()
 		{ m_Equ_pic_red_color[14],m_Equ_pic_green_color[14],m_Equ_pic_blue_color[14],1.0f },
 	};
 
-	//武器ポッド必要素材&人数フォント用
+	//武器ポッド必要素材&人数フォント画像用
 	float Equ_message_font[EQU_MES_MAX_FONT_LINE][4] =
 	{
-		{ 0.0f,0.0f,1.0f,m_alpha },//1行目は青色
-		{ 0.0f,0.0f,0.0f,m_alpha },//2行目以降は全て黒色
-		{ 0.0f,0.0f,0.0f,m_alpha },
+		{ 0.0f,0.0f,1.0f,m_Equ_alpha },//1行目は青色
+		{ 0.0f,0.0f,0.0f,m_Equ_alpha },//2行目以降は全て黒色
+		{ 0.0f,0.0f,0.0f,m_Equ_alpha },
 	};
 	
 	//武器ポッド必要素材&人数ウインドウ用
@@ -1472,81 +1479,6 @@ void CObjInstitute::Draw()
 		dst.m_right = 440.0f;
 		dst.m_bottom = 415.0f;
 		Draw::Draw(65, &src, &dst, white, 0.0f);
-
-		//▼LvUP条件　所持必要文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1335.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 440.0f;
-		dst.m_left = 165.0f;
-		dst.m_right = 415.0f;
-		dst.m_bottom = 460.0f;
-		Draw::Draw(66, &src, &dst, blue, 0.0f);
-
-		//▼惑星HP文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 412.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 475.0f;
-		dst.m_left = 165.0f;
-		dst.m_right = 255.0f;
-		dst.m_bottom = 500.0f;
-		Draw::Draw(67, &src, &dst, black, 0.0f);
-
-		/*50音文字画像と鉄文字画像はプログラムを大きく変えるので
-		描画位置だけ記載しています。
-		参考にしてください。*/
-		////▼50音文字画像表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 412.0f;
-		//src.m_bottom = 112.0f;
-
-		//dst.m_top = 475.0f;
-		//dst.m_left = 165.0f;
-		//dst.m_right = 255.0f;
-		//dst.m_bottom = 500.0f;
-		//Draw::Draw(68, &src, &dst, white, 0.0f);
-
-		//▼鉄文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 112.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 510.0f;
-		dst.m_left = 165.0f;
-		dst.m_right = 185.0f;
-		dst.m_bottom = 530.0f;
-		Draw::Draw(69, &src, &dst, black, 0.0f);
-
-		//▼LvUP可能!文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 607.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 550.0f;
-		dst.m_left = 245.0f;
-		dst.m_right = 355.0f;
-		dst.m_bottom = 570.0f;
-		Draw::Draw(70, &src, &dst, blue, 0.0f);
-
-		//▼LvUP不可文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 577.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 550.0f;
-		dst.m_left = 245.0f;
-		dst.m_right = 345.0f;
-		dst.m_bottom = 570.0f;
-		Draw::Draw(71, &src, &dst, red, 0.0f);
 
 		//▼研究員文字画像表示
 		src.m_top = 0.0f;
@@ -2407,8 +2339,8 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 138.0f;
 			Draw::Draw(86, &src, &dst, yellow, 0.0f);
 
-			//▼武器必要素材&人数メッセージ表示
-			//▽ウインドウ表示 
+			//▽武器必要素材&人数メッセージ表示
+			//▼ウインドウ表示 
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 64.0f;
@@ -2420,18 +2352,59 @@ void CObjInstitute::Draw()
 			dst.m_bottom = m_mou_y + 0.0f;
 			Draw::Draw(21, &src, &dst, Equ_message_window, 0.0f);
 
-			//▽フォント表示
-			//素材名を除いたフォント表示
-			for (int i = 0; i < EQU_MES_MAX_FONT_LINE; i++)
+			//▼LvUP条件　所持必要文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1335.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = m_mou_y -160.0f;
+			dst.m_left = m_mou_x - 135.0f;
+			dst.m_right = m_mou_x + 135.0f;
+			dst.m_bottom = m_mou_y - 135.0f;
+			Draw::Draw(66, &src, &dst, Equ_message_font[0], 0.0f);
+
+			//▼研究員文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = m_mou_y - 120.0f;
+			dst.m_left = m_mou_x - 135.0f;
+			dst.m_right = m_mou_x - 60.0f;
+			dst.m_bottom = m_mou_y - 95.0f;
+			Draw::Draw(75, &src, &dst, Equ_message_font[1], 0.0f);
+
+			//▼現在の研究員数を表示
+			FontDraw(0, NumConversion(g_Research_num), m_mou_x + 40.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
+
+			//▽武器ポッド画像が灰色(レベルUP済[装備可])の時のみ描画するもの
+			if (m_Equ_alpha == -0.1f)
 			{
-				Font::StrDraw(m_Equ_message[i], m_mou_x - 135.0f, m_mou_y - 160.0f + i * 40.0f, 25.0f, Equ_message_font[i]);
+				//▼装備可能となる研究員数表示
+				FontDraw(1, NumConversion(m_equipable_count), m_mou_x - 40.0f, m_mou_y - 40.0f, 20.0f, 30.0f, black, true);
 			}
+			//▽武器ポッド画像が黄色(レベルアップ可能)、黒色(装備不可)の時のみ描画するもの
+			//※武器ポッド必要素材&人数フォント透過度が0.0fの時は処理さえしないようにする。
+			else if (m_Equ_alpha != 0.0f)
+			{
+				//▼各武器、ポッドの次のLVUPに必要な研究員の住民数表示
+				FontDraw(2, NumConversion(m_Equ_next_Hum_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
 
-			//素材名のフォント表示
-			Font::StrDraw(m_message_Mat_name, m_mou_x - 135.0f, m_mou_y - 76.0f, 17.5f, Equ_message_font[2]);
+				//▼各武器、ポッドの次のLVUPに必要な素材名表示
+				FontDraw(3, m_Equ_next_Mat_name[m_equip_id][m_Lv_id - 1], m_mou_x - 135.0f, m_mou_y - 80.0f, 25.0f, 25.0f, Equ_message_font[2], false);
 
-			//最下部メッセージ表示(ウインドウ一番下にあるフォント)
-			//Font::StrDraw(m_message, m_mou_x - 210.0f, m_mou_y - 40.0f, 30.0f, message);
+				//▼各武器、ポッドの次のLVUPに必要な現在の素材所持数を表示
+				FontDraw(4, NumConversion(*m_Equ_next_Mat_type[m_equip_id][m_Lv_id - 1]), m_mou_x + 40.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
+
+				//▼各武器、ポッドの次のLVUPに必要な素材数を表示
+				FontDraw(5, NumConversion(m_Equ_next_Mat_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
+
+				//▼「所持 / 必要」の値を区切る仕切り表示
+				FontDraw(6, L"／", m_mou_x + 55.0f, m_mou_y - 120.0f, 20.0f, 25.0f, Equ_message_font[1], false);
+				FontDraw(7, L"／", m_mou_x + 55.0f, m_mou_y - 80.0f, 20.0f, 25.0f, Equ_message_font[2], false);
+			}
 
 			//▼最下部メッセージ(ウインドウ一番下にあるフォント)画像表示
 			src.m_top = 0.0f;
@@ -2865,19 +2838,28 @@ void CObjInstitute::Equip_Lvup_possible_check()
 //それに対応する武器ポッド必要素材&人数メッセージを表示する。
 void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 {
+	//フリーフォント画像で表示する事になり、
+	//この引数をドローでも使用する事になったので、
+	//以下の変数に入れて使えるようにする。
+	m_equip_id = equip_id;
+	m_Lv_id = Lv_id;
+
 	//▼武器ポッド画像が黄色(レベルアップ可能)の時の処理
 	if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 1.0f &&
 		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 1.0f &&
 		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 0.0f)
 	{
-		//武器ポッド必要素材&人数メッセージ設定
-		swprintf_s(m_Equ_message[0], L"LvUP条件  所持/  必要");																				 //文字配列に文字データを入れる
-		swprintf_s(m_Equ_message[1], L"研究員  %6d/%6d", g_Research_num, m_Equ_next_Hum_num[equip_id][Lv_id - 1]);							 //文字配列に文字データを入れる
-		swprintf_s(m_Equ_message[2], L"        %6d/%6d", *m_Equ_next_Mat_type[equip_id][Lv_id - 1], m_Equ_next_Mat_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
-		swprintf_s(m_message_Mat_name, L"%s", m_Equ_next_Mat_name[equip_id][Lv_id - 1]);												 //文字配列に文字データを入れる
+		//▽最下部メッセージ画像設定
+		//クリックでLvUP可文字画像を読み込み127番に登録
+		Draw::LoadImage(L"クリックでLvUP可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
-		//最下部メッセージ設定
-		swprintf_s(m_message, L"　　　クリックでLvUP可");//文字配列に文字データを入れる
+		//切り取り位置を設定する
+		m_message_clip_right = 1057.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -110.0f;
+		m_message_draw_right = 110.0f;
 
 		//最下部メッセージのカラーを青色にする
 		m_message_red_color = 0.0f;
@@ -2887,6 +2869,9 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		//武器ポッド必要素材&人数ウインドウのサイズを設定
 		m_Equ_message_window_x_size = 150.0f;
 		m_Equ_message_window_y_size = 170.0f;
+
+		//武器ポッド必要素材&人数フォントを表示
+		m_Equ_alpha = 1.0f;
 
 		//左クリックされたらフラグを立て、最終確認ウインドウを開く
 		if (m_mou_l == true)
@@ -2926,7 +2911,8 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 					finalcheck_Lvup_achieve = &g_Pod_equip_Lv_achieve;
 				}
 
-				m_alpha = 0.0f;//武器ポッド必要素材&人数メッセージを非表示にする
+				m_Equ_alpha = 0.0f;//武器ポッド必要素材&人数フォントを非表示
+				m_alpha = 0.0f;//最下部メッセージを非表示にする
 
 				m_finalcheck_f = true;//最終確認ウインドウを表示する
 
@@ -2946,14 +2932,17 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 0.1f &&
 		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 0.1f)
 	{
-		//武器ポッド必要素材&人数メッセージ設定
-		swprintf_s(m_Equ_message[0], L"LvUP条件  所持/  必要");																				 //文字配列に文字データを入れる
-		swprintf_s(m_Equ_message[1], L"研究員  %6d/%6d", g_Research_num, m_Equ_next_Hum_num[equip_id][Lv_id - 1]);							 //文字配列に文字データを入れる
-		swprintf_s(m_Equ_message[2], L"        %6d/%6d", *m_Equ_next_Mat_type[equip_id][Lv_id - 1], m_Equ_next_Mat_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
-		swprintf_s(m_message_Mat_name, L"%s", m_Equ_next_Mat_name[equip_id][Lv_id - 1]);												 //文字配列に文字データを入れる
+		//▽最下部メッセージ画像設定
+		//LvUP不可文字画像を読み込み127番に登録
+		Draw::LoadImage(L"LvUP不可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
-		//最下部メッセージ設定
-		swprintf_s(m_message, L"　　　　　LvUP不可");//文字配列に文字データを入れる
+		//切り取り位置を設定する
+		m_message_clip_right = 577.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -60.0f;
+		m_message_draw_right = 60.0f;
 
 		//最下部メッセージのカラーを赤色にする
 		m_message_red_color = 1.0f;
@@ -2963,20 +2952,26 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		//武器ポッド必要素材&人数ウインドウのサイズを設定
 		m_Equ_message_window_x_size = 150.0f;
 		m_Equ_message_window_y_size = 170.0f;
+
+		//武器ポッド必要素材&人数フォントを表示
+		m_Equ_alpha = 1.0f;
 	}
 	//▼武器ポッド画像が白色(装備中)の処理
 	else if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 1.0f &&
 		m_Equ_pic_green_color[Lv_id + equip_id * 3] == 1.0f &&
 		m_Equ_pic_blue_color[Lv_id + equip_id * 3] == 1.0f)
 	{
-		//武器ポッド必要素材&人数メッセージ設定
-		swprintf_s(m_Equ_message[0], L"");//文字データをクリアする
-		swprintf_s(m_Equ_message[1], L"");//文字データをクリアする
-		swprintf_s(m_Equ_message[2], L"");//文字データをクリアする
-		swprintf_s(m_message_Mat_name, L"");//文字データをクリアする
+		//▽最下部メッセージ画像設定
+		//装備中文字画像を読み込み127番に登録
+		Draw::LoadImage(L"装備中.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
-		//最下部メッセージ設定
-		swprintf_s(m_message, L"　　　　   装備中");//文字配列に文字データを入れる
+		//切り取り位置を設定する
+		m_message_clip_right = 352.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -40.0f;
+		m_message_draw_right = 40.0f;
 
 		//最下部メッセージのカラーを黒色にする
 		m_message_red_color = 0.0f;
@@ -2986,6 +2981,9 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		//武器ポッド必要素材&人数ウインドウのサイズを設定
 		m_Equ_message_window_x_size = 55.0f;
 		m_Equ_message_window_y_size = 50.0f;
+
+		//武器ポッド必要素材&人数フォントを非表示
+		m_Equ_alpha = 0.0f;
 	}
 	//▼武器ポッド画像が灰色(レベルUP済[装備可])の処理
 	else if (m_Equ_pic_red_color[Lv_id + equip_id * 3] == 0.5f &&
@@ -3017,23 +3015,31 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 			Tmp_equip_Level = g_Pod_equip_Level;
 		}
 
-		//武器ポッド必要素材&人数メッセージ設定
-		swprintf_s(m_Equ_message[0], L"");//文字データをクリアする
-		swprintf_s(m_Equ_message[1], L"");//文字データをクリアする
-		swprintf_s(m_Equ_message[2], L"");//文字データをクリアする
-		swprintf_s(m_message_Mat_name, L"");//文字データをクリアする
-
-		//最下部メッセージ設定
+		//▽最下部メッセージ画像設定
 		//マウス選択中の武器ポッドレベルがその武器の現在レベルより低かった場合
 		if (Lv_id + 1 < Tmp_equip_Level) 
 		{
-			swprintf_s(m_message, L"研究員%6d人 未満で装備可", m_Equ_next_Hum_num[equip_id][Lv_id]);//文字配列に文字データを入れる
+			//研究員%6d人　未満で装備可文字画像を読み込み127番に登録
+			Draw::LoadImage(L"研究員%6d人　未満で装備可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+			m_equipable_count = m_Equ_next_Hum_num[equip_id][Lv_id];//装備可能となる研究員数を変数に保存。(ドロー処理部分で使用)
 		}
 		//マウス選択中の武器ポッドレベルがその武器の現在レベルより高かった場合
 		else
 		{
-			swprintf_s(m_message, L"研究員%6d人 以上で装備可", m_Equ_next_Hum_num[equip_id][Lv_id - 1]);//文字配列に文字データを入れる
+			//研究員%6d人　以上で装備可文字画像を読み込み127番に登録
+			Draw::LoadImage(L"研究員%6d人　以上で装備可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+			m_equipable_count = m_Equ_next_Hum_num[equip_id][Lv_id - 1];//装備可能となる研究員数を変数に保存。(ドロー処理部分で使用)
 		}
+
+		//切り取り位置を設定する
+		m_message_clip_right = 1559.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -200.0f;
+		m_message_draw_right = 200.0f;
 
 		//最下部メッセージのカラーを黒色にする
 		m_message_red_color = 0.0f;
@@ -3043,6 +3049,9 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		//武器ポッド必要素材&人数ウインドウのサイズを設定
 		m_Equ_message_window_x_size = 240.0f;
 		m_Equ_message_window_y_size = 50.0f;
+
+		//武器ポッド必要素材&人数フォントを非表示
+		m_Equ_alpha = -0.1f;//-0.1fにする理由は、ドロー処理で灰色選択中と理解させる為。
 	}
 
 

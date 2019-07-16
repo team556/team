@@ -36,7 +36,12 @@ private:
 	float m_Equ_pic_green_color[15];//武器ポッド画像集カラー(Green)
 	float m_Equ_pic_blue_color[15];	//武器ポッド画像集カラー(Blue)
 
+	int   m_equip_id;	//武器ポッド識別番号(パワー武器:0　ディフェンス武器:1　スピード武器:2　バランス武器:3　ポッド:4)[Equip_message用]
+	int   m_Lv_id;		//レベル識別番号(Lv.1 = 0  Lv.2 = 1  Lv.3 = 2)[Equip_message用]
+	int   m_equipable_count; //装備可能となる研究員数管理用[Equip_message用]
+
 	wchar_t m_Equ_message[EQU_MES_MAX_FONT_LINE][22];	//武器ポッド必要素材&人数メッセージのフォント用(素材名除く)
+	float   m_Equ_alpha;								//武器ポッド必要素材&人数フォントの透過度
 	float	m_Equ_message_window_x_size;				//武器ポッド必要素材&人数ウインドウのサイズX
 	float	m_Equ_message_window_y_size;				//武器ポッド必要素材&人数ウインドウのサイズY
 

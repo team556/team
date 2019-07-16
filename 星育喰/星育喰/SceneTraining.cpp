@@ -403,6 +403,12 @@ void CSceneTraining::InitScene()
 	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
 	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
 
+	//最大Lv到達!文字画像を読み込み107番に登録
+	Draw::LoadImage(L"最大Lv到達!.png", 107, TEX_SIZE_512);
+
+	//これ以上LVUP不可です。文字画像を読み込み108番に登録
+	Draw::LoadImage(L"これ以上LVUP不可です。.png", 108, TEX_SIZE_512);
+
 	//兵舎 Lv文字画像を読み込み116番に登録
 	Draw::LoadImage(L"兵舎 Lv.png",116,TEX_SIZE_512);
 

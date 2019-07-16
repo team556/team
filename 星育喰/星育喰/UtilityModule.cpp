@@ -15,11 +15,11 @@ using namespace GameL;
 #define WIDTH_DATA_NUM (10)		//半角全角データ情報の数
 
 //▼FontDraw、NumConversion関数で使用する変数
-wchar_t con_num[FONT_LENGTH_MAX] = {};
-wchar_t font[FONT_ID_MAX][FONT_LENGTH_MAX] = {};
-int font_column[FONT_ID_MAX][FONT_LENGTH_MAX] = {};
-int font_line[FONT_ID_MAX][FONT_LENGTH_MAX] = {};
-int length = 0;
+wchar_t con_num[FONT_LENGTH_MAX] = {};				//int→wchar_tに変換した情報管理配列
+wchar_t font[FONT_ID_MAX][FONT_LENGTH_MAX] = {};	//フォント情報管理配列
+int font_column[FONT_ID_MAX][FONT_LENGTH_MAX] = {};	//フォント切り取り位置(列)
+int font_line[FONT_ID_MAX][FONT_LENGTH_MAX] = {};	//フォント切り取り位置(行)
+int length = 0;										//文字列の長さを管理
 
 
 bool UnitVec(float* vx, float* vy)
@@ -164,13 +164,14 @@ int Rand(int n_min, int n_max)
 //引数5  float x_size	:フォントのサイズX(横幅)
 //引数6  float y_size	:フォントのサイズY(縦幅)
 //引数7  float color[4]	:フォントカラー&透過度(RGBA)
+//引数8  bool  right_alignment :[true:右詰め　false:左詰め]
 //▼内容
 //今回のフォントを登録(保存)する配列番号を決めた後、
 //*strに入力された文字(wchar_t)をフリーフォント画像と照らし合わせ、フリーフォント化し、
 //x,y,x_size,y_size,color[4]の情報に従い、フリーフォント化した文字を出力する関数。
 //※入力する文字は必ず全角文字を用いる事。
 //半角文字、フォントデータに登録されてない文字等は使用不可なので注意。(入力すると空白扱いとなる)
-void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size, float color[4])
+void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment)
 {
 	//フォントデータ情報
 	//※配列位置がそのまま切り取り位置となる為、フォント画像の配置と同じように文字登録するように
@@ -187,7 +188,7 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 		{ L'ら',L'り',L'る',L'れ',L'ろ',L'ラ',L'リ',L'ル',L'レ',L'ロ' },
 		{ L'わ',L'を',L'ん',L'ワ',L'ヲ',L'ン' },
 		{ L'×',L'※',L'：',L'＋',L'－',L'…',L'。',L'！',L'？',L'、',L'＆',L'．',L'＝',L'０',L'１',L'２',L'３',L'４',L'５',L'６',L'７',L'８',L'９',L'一',L'二',L'三',L'四',L'五',L'六',L'七',L'八',L'九',L'零' },
-		{ L'今',L'日',L'人',L'類',L'統',L'括',L'山',L'田',L'先',L'敵',L'惑',L'星',L'情',L'報',L'不',L'意',L'打',L'喰',L'前',L'行' },
+		{ L'今',L'日',L'人',L'類',L'統',L'括',L'山',L'田',L'先',L'敵',L'惑',L'星',L'情',L'報',L'不',L'意',L'打',L'喰',L'前',L'行',L'鉄',L'木',L'／' },
 		{ L'聞',L'強',L'来',L'思',L'準',L'備',L'越',L'手',L'入',L'見',L'攻',L'撃',L'傾',L'向',L'戦',L'闘',L'必',L'殺',L'技',L'持',L'捕',L'食',L'奪' },
 		{ L'直',L'結',L'負',L'無',L'気',L'仕',L'方',L'下',L'出',L'押',L'命',L'令',L'住',L'最',L'初',L'回',L'目',L'時',L'間',L'属',L'性' },
 		{ L'有',L'利',L'不',L'利',L'赤',L'青',L'緑',L'灰',L'色',L'対',L'等',L'察',L'簡',L'単',L'活',L'用',L'数',L'字',L'上',L'真',L'中',L'線' },
@@ -252,8 +253,20 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 		src.m_bottom = FONT_CLIP_SIZE * font_line[id][i];
 
 		dst.m_top = y;
-		dst.m_left = x + (x_size * i);
-		dst.m_right = x + (x_size * (i + 1));
+
+		//右詰めの処理
+		if (right_alignment == true)
+		{
+			dst.m_left = x + (x_size * i) - (x_size * (length - 1));
+			dst.m_right = x + (x_size * (i + 1)) - (x_size * (length - 1));
+		}
+		//左詰めの処理
+		else
+		{
+			dst.m_left = x + (x_size * i);
+			dst.m_right = x + (x_size * (i + 1));
+		}
+
 		dst.m_bottom = y + (y_size);
 
 		//以下はフォント切り取り位置(列、行)のどちらかに0が入力されていた場合、
@@ -274,6 +287,13 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 		//読み込み番号121番に白文字集.pngの画像が無ければ正常に動作しないので注意。
 		Draw::Draw(121, &src, &dst, color, 0.0f);
 	}
+
+	//フォント切り取り位置(列、行)を初期化する
+	for (int i = 0; i <= length; i++)
+	{
+		font_column[id][i] = 0;
+		font_line[id][i] = 0;
+	}
 }
 
 //---NumConversion関数
@@ -288,7 +308,7 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 //unsigned intが記憶できない値を入力すると、正常に処理されないので注意。
 //
 //▽実際の使用例
-//FontDraw(0, NumConversion(1234), 20, 50, 25, 50, d);
+//FontDraw(0, NumConversion(1234), 20, 50, 25, 50, d, false);
 //
 //▽使用タイミング例
 //武器ポッドウインドウの必要資材数、各施設のレベルアップに必要なHP等といった、
