@@ -1264,8 +1264,8 @@ void CObjWarehouse::Draw()
 		for (int i = 0; i < 5; i++)//メッセージウィンドウを適切な位置に５回表示させる
 		{
 			dst.m_top = 100.0f + ( i * 100 );
-			dst.m_left = 235.0f;
-			dst.m_right = 1100.0f;
+			dst.m_left = 280.0f;
+			dst.m_right = 1140.0f;
 			dst.m_bottom = 200.0f + (i * 100);
 			Draw::Draw(20, &src, &dst, it, 0.0f);
 		}
@@ -1285,8 +1285,8 @@ void CObjWarehouse::Draw()
 		//Explosionの判定
 		//まず貼り付け位置を設定する
 		dst.m_top = 85.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 230.0f;
+		dst.m_left = 140.0f;
+		dst.m_right = 270.0f;
 		dst.m_bottom = 215.0f;
 
 		//Explosionを覚えているならば
@@ -1304,8 +1304,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 135.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 455.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 510.0f;
 			dst.m_bottom = 170.0f;
 			Draw::Draw(95, &src, &dst, black, 0.0f);
 
@@ -1316,8 +1316,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 135.0f;
-			dst.m_left = 456.0f;
-			dst.m_right = 806.0f;
+			dst.m_left = 511.0f;
+			dst.m_right = 861.0f;
 			dst.m_bottom = 170.0f;
 			Draw::Draw(96, &src, &dst, black, 0.0f);
 		}
@@ -1335,8 +1335,8 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 185.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 230.0f;
+		dst.m_left = 140.0f;
+		dst.m_right = 270.0f;
 		dst.m_bottom = 315.0f;
 		
 		//Fracture Rayを覚えているならば
@@ -1353,10 +1353,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 832.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 210.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 490.0f;
-			dst.m_bottom = 245.0f;
+			dst.m_top = 235.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 510.0f;
+			dst.m_bottom = 270.0f;
 			Draw::Draw(97, &src, &dst, black, 0.0f);
 
 			//▼相手ポッド等を破壊する文字画像を表示
@@ -1365,10 +1365,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 1304.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 260.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 630.0f;
-			dst.m_bottom = 295.0f;
+			dst.m_top = 235.0f;
+			dst.m_left = 515.0f;
+			dst.m_right = 900.0f;
+			dst.m_bottom = 270.0f;
 			Draw::Draw(98, &src, &dst, black, 0.0f);
 
 
@@ -1387,8 +1387,8 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 285.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 230.0f;
+		dst.m_left = 140.0f;
+		dst.m_right = 270.0f;
 		dst.m_bottom = 415.0f;
 
 		//Immotalityを覚えているならば
@@ -1406,20 +1406,20 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 335.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 420.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 475.0f;
 			dst.m_bottom = 370.0f;
 			Draw::Draw(99, &src, &dst, black, 0.0f);
 
-			//▼無敵となるの文字画像を表示584*112
+			//▼無敵となるの文字画像を表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 584.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 335.0f;
-			dst.m_left = 425.0f;
-			dst.m_right = 600.0f;
+			dst.m_left = 480.0f;
+			dst.m_right = 655.0f;
 			dst.m_bottom = 370.0f;
 			Draw::Draw(100, &src, &dst, black, 0.0f);
 
@@ -1438,8 +1438,8 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 385.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 230.0f;
+		dst.m_left = 140.0f;
+		dst.m_right = 270.0f;
 		dst.m_bottom = 515.0f;
 
 		//リミットブレイクを覚えているならば
@@ -1457,8 +1457,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 410.0f;
-			dst.m_left = 240.0f;
-			dst.m_right = 625.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 680.0f;
 			dst.m_bottom = 445.0f;
 			Draw::Draw(101, &src, &dst, black, 0.0f);
 
@@ -1469,8 +1469,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 460.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 595.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 650.0f;
 			dst.m_bottom = 495.0f;
 			Draw::Draw(102, &src, &dst, black, 0.0f);
 
@@ -1490,8 +1490,8 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top =485.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 230.0f;
+		dst.m_left = 140.0f;
+		dst.m_right = 270.0f;
 		dst.m_bottom = 615.0f;
 
 		//オーバーワークを覚えているならば
@@ -1508,10 +1508,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 464.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 510.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 385.0f;
-			dst.m_bottom = 545.0f;
+			dst.m_top = 535.0f;
+			dst.m_left = 300.0f;
+			dst.m_right = 440.0f;
+			dst.m_bottom = 570.0f;
 			Draw::Draw(103, &src, &dst, black, 0.0f);
 
 			//▼ポッド5機の攻撃力UPの文字画像を表示
@@ -1520,13 +1520,11 @@ void CObjWarehouse::Draw()
 			src.m_right = 1222.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 560.0f;
-			dst.m_left = 245.0f;
-			dst.m_right = 630.0f;
-			dst.m_bottom = 595.0f;
+			dst.m_top = 535.0f;
+			dst.m_left = 445.0f;
+			dst.m_right = 830.0f;
+			dst.m_bottom = 570.0f;
 			Draw::Draw(104, &src, &dst, black, 0.0f);
-
-
 		}
 		else
 		{
