@@ -1064,17 +1064,29 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
 	Draw::Draw(47 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	//▼スペシャル技選択ウインドウ表示
+	//▼ウインドウ01表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 500.0f;
-	src.m_bottom = 200.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
-	dst.m_top = 900.0f + m_Svy;
+	dst.m_top = 940.0f + m_Svy;
 	dst.m_left = 360.0f;
 	dst.m_right = 860.0f;
 	dst.m_bottom = 1100.0f + m_Svy;
-	Draw::Draw(62, &src, &dst, d, 0.0f);
+	Draw::Draw(89, &src, &dst, d, 0.0f);
+
+	//▼ウインドウ01表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
+
+	dst.m_top = 905.0f + m_Svy;
+	dst.m_left = 420.0f;
+	dst.m_right = 790.0f;
+	dst.m_bottom = 970.0f + m_Svy;
+	Draw::Draw(89, &src, &dst, d, 0.0f);
 
 	//▼スペシャル技アイコン集表示
 	for (int i = 0; i < 5; i++)
