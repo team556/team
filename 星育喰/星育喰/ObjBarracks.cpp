@@ -1025,12 +1025,12 @@ void CObjBarracks::Draw()
 		//Å•ï∫é…LVUPï\é¶
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 32.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
 		dst.m_left = 40.0f;
-		dst.m_right = 160.0f;
+		dst.m_right = 145.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
