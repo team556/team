@@ -266,7 +266,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ポッドコア白Lv2.png", 59, TEX_SIZE_512);
 
 	//ポッドコア白Lv2の画像を読み込み60番に登録
-	Draw::LoadImage(L"ポッドコア白Lv2.png", 60, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドコア白Lv3.png", 60, TEX_SIZE_512);
 
 	//ポッド白Lv1の画像を読み込み61番に登録
 	Draw::LoadImage(L"ポッド白Lv1.png", 61, TEX_SIZE_512);
@@ -430,8 +430,14 @@ void CSceneTraining::InitScene()
 	//Sを読み込み122番に登録
 	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
 
+	//Lv1を読み込み122番に登録
+	Draw::LoadImage(L"Lv1.png", 123, TEX_SIZE_512);
 
-	
+	//Lv2を読み込み122番に登録
+	Draw::LoadImage(L"Lv2.png", 124, TEX_SIZE_512);
+
+	//Lv3を読み込み122番に登録
+	Draw::LoadImage(L"Lv3.png", 125, TEX_SIZE_512);
 
 
 	//簡易メッセージ画像全てを読み込む為に、

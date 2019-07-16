@@ -19,7 +19,7 @@ using namespace GameL;
 #define INI_SPEED (50.0f)//各演出で移動する各オブジェクトの初期移動速度
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
-#define INI_PLANET (128.0f)
+#define INI_PLANET (287.0f)
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -87,7 +87,7 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 0;
+	m_destroy_count = 3;
 
 	//現在の撃破数をカウント
 	for (int i = 0; i < 4; i++)
@@ -618,7 +618,7 @@ void CObjPreparation::Action()
 				//ボス惑星出現時の処理
 				if (m_destroy_count == 4)
 				{
-					m_warning_message_x[0] = 200.7f;
+					m_warning_message_x[0] = 97.2f;
 				}
 				//それ以外の時の処理
 				else
@@ -681,6 +681,7 @@ void CObjPreparation::Action()
 			if (m_warning_message_alpha <= 0.0f)
 			{
 				m_destroy_count = 4;
+				m_warning_message_x[0] = 97.2f;
 				m_speed = m_save_speed;
 			}
 			else if (m_warning_message_alpha > 0.0f)
@@ -808,7 +809,7 @@ void CObjPreparation::Action()
 		//ボス惑星出現時の処理
 		if (m_destroy_count == 4)
 		{
-			m_warning_message_x[0] += 7.35f;
+			m_warning_message_x[0] += 5.05f;
 		}
 		//それ以外の時の処理
 		else
@@ -971,8 +972,8 @@ void CObjPreparation::Draw()
 	//▼ボス惑星1表示(演出用)
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = -128.0f;
-	src.m_bottom = 128.0f;
+	src.m_right = 290.0f;
+	src.m_bottom = 290.0f;
 
 	dst.m_top = 360.0f + m_Boss_vy[0];
 	dst.m_left = 1260.0f + m_Boss_vx[0];
@@ -1064,17 +1065,29 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
 	Draw::Draw(47 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	//▼スペシャル技選択ウインドウ表示
+	//▼ウインドウ01表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 500.0f;
-	src.m_bottom = 200.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
-	dst.m_top = 900.0f + m_Svy;
+	dst.m_top = 940.0f + m_Svy;
 	dst.m_left = 360.0f;
 	dst.m_right = 860.0f;
 	dst.m_bottom = 1100.0f + m_Svy;
-	Draw::Draw(62, &src, &dst, d, 0.0f);
+	Draw::Draw(89, &src, &dst, d, 0.0f);
+
+	//▼ウインドウ01表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
+
+	dst.m_top = 905.0f + m_Svy;
+	dst.m_left = 420.0f;
+	dst.m_right = 790.0f;
+	dst.m_bottom = 970.0f + m_Svy;
+	Draw::Draw(89, &src, &dst, d, 0.0f);
 
 	//▼スペシャル技アイコン集表示
 	for (int i = 0; i < 5; i++)
@@ -1226,8 +1239,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 112.0f;
 
 		dst.m_top = m_warning_message_y[0];
-		dst.m_left =/* m_warning_message_x[0]+*/350;
-		dst.m_right = /*m_warning_message_x[0] + (m_warning_message_size * 8.0) + */900;
+		dst.m_left = m_warning_message_x[0] + (m_warning_message_size) + 240.0f - (m_warning_message_size - 45);
+		dst.m_right = m_warning_message_x[0] + (m_warning_message_size * 8.5) + 240.0f + (m_warning_message_size - 45);
 		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
 		Draw::Draw(63, &src, &dst, warning_message, 0.0);
 	}
@@ -1238,14 +1251,14 @@ void CObjPreparation::Draw()
 	//▽ウインドウ表示 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
 	dst.m_top = m_mou_y + m_detail_message_window_top;
 	dst.m_left = m_mou_x + m_detail_message_window_left;
 	dst.m_right = m_mou_x + m_detail_message_window_right;
 	dst.m_bottom = m_mou_y + m_detail_message_window_bottom;
-	Draw::Draw(55, &src, &dst, detail_message_window, 0.0f);
+	Draw::Draw(89, &src, &dst, detail_message_window, 0.0f);
 
 	//▽フォント表示
 	for (int i = 0; i < DETAIL_MES_MAX_FONT_LINE; i++)

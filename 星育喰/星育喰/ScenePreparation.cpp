@@ -41,19 +41,19 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//敵惑星1(1ステージ)を読み込み1番に登録
-	Draw::LoadImage(L"水惑星.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"lv1x3.png", 1, TEX_SIZE_512);
 
 	//敵惑星2(1ステージ)を読み込み2番に登録
-	Draw::LoadImage(L"レイド1 128x.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"モアイ.png", 2, TEX_SIZE_512);
 
 	//敵惑星3(1ステージ)を読み込み3番に登録
-	Draw::LoadImage(L"悪☆.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"悪惑星.png", 3, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み4番に登録
-	Draw::LoadImage(L"ぼやけた星.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"lv2x3.png", 4, TEX_SIZE_512);
 
 	//ボス惑星(1ステージ)を読み込み5番に登録
-	Draw::LoadImage(L"パンダ戦闘.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"lv4x3.png", 5, TEX_SIZE_512);
 
 	//敵惑星1(2ステージ)を読み込み6番に登録
 	Draw::LoadImage(L"Enemy_Planet_Test.jpg", 6, TEX_SIZE_512);
@@ -166,8 +166,8 @@ void CScenePreparation::InitScene()
 	//難易度文字画像読み込み73番に登録367*117
 	Draw::LoadImage(L"難易度.png", 73, TEX_SIZE_512);
 
-	//★画像読み込み74番に登録101*107
-	Draw::LoadImage(L"★.png", 74, TEX_SIZE_512);
+	//★画像読み込み74番に登録
+	Draw::LoadImage(L"画面移行★.png", 74, TEX_SIZE_512);
 
 	//取得可能な資材・技文字画像読み込み75番に登録
 	Draw::LoadImage(L"取得可能な資材・技文字.png", 75, TEX_SIZE_512);
@@ -211,13 +211,16 @@ void CScenePreparation::InitScene()
 	//オーバーワーク画像読み込み88番に登録
 	Draw::LoadImage(L"パワー重視文字.png", 88, TEX_SIZE_512);
 
+	//メッセージウィンドウ画像89番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 	//SE読み込み
 	//選択

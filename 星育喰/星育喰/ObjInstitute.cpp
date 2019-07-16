@@ -2273,14 +2273,15 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 610.0f;
 			Draw::Draw(121, &src, &dst, black, 0.0f);
 
+			//ミサイルの次のレベルでのリキャストの一の位
 			src.m_top = 1250.0f;
 			src.m_left = CUT_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
 			src.m_right = END_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
 			src.m_bottom = 1375.0f;
 
-			dst.m_top = 570;
-			dst.m_left = 915;
-			dst.m_right = 965;
+			dst.m_top = 560;
+			dst.m_left = 950;
+			dst.m_right = 990;
 			dst.m_bottom = 610;
 			Draw::Draw(120, &src, &dst, black, 0.0f);
 
@@ -2290,20 +2291,21 @@ void CObjInstitute::Draw()
 			src.m_right = END_ZERO - 250;
 			src.m_bottom = 1375.0f;
 
-			dst.m_top = 570;
-			dst.m_left = 965;
+			dst.m_top = 560;
+			dst.m_left = 975;
 			dst.m_right = 1015;
 			dst.m_bottom = 610;
 			Draw::Draw(120, &src, &dst, black, 0.0f);
-			//途中
+
+			//小数第一位
 			src.m_top = 1250.0f;
 			src.m_left = CUT_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
 			src.m_right = END_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
 			src.m_bottom = 1375.0f;
 
-			dst.m_top = 570;
-			dst.m_left = 1015;
-			dst.m_right = 1065;
+			dst.m_top = 560;
+			dst.m_left = 1000;
+			dst.m_right = 1040;
 			dst.m_bottom = 610;
 			Draw::Draw(120, &src, &dst, black, 0.0f);
 
@@ -2313,10 +2315,10 @@ void CObjInstitute::Draw()
 			src.m_right = 112.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 570.0f;
-			dst.m_left = 1065.0f;
-			dst.m_right = 1095.0f;
-			dst.m_bottom = 605.0f;
+			dst.m_top = 580.0f;
+			dst.m_left = 1040.0f;
+			dst.m_right = 1070.0f;
+			dst.m_bottom = 610.0f;
 			Draw::Draw(122, &src, &dst, black, 0.0f);
 			//Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 			//-----------------------------------------
@@ -2365,8 +2367,18 @@ void CObjInstitute::Draw()
 			wchar_t weapon_Lv[5];
 			for (int i = 0; i < 3; i++)
 			{
-				swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
-				Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 313.0f;
+				src.m_bottom = 107.0f;
+
+				dst.m_top = 250 + (i * 150);
+				dst.m_left = 80;
+				dst.m_right = 200;
+				dst.m_bottom = 300 + (i * 150);
+				Draw::Draw(123 + i, &src, &dst,white, 0.0f);
+				//swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
+				//Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
 			}
 
 			//▼レッド文字画像表示
