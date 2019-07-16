@@ -6,6 +6,7 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -273,8 +274,17 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	}
 	else if (Tmp_remain < 0) //残り住民数がいない場合
 	{
-		swprintf_s(m_message, L"残り住民数がいません");//文字配列に文字データを入れる
-		
+		//残り住民数がいません文字画像を読み込み127番に登録
+		Draw::LoadImage(L"残り住民数がいません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+		//切り取り位置を設定する
+		m_message_clip_right = 1192.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -150.0f;
+		m_message_draw_right = 150.0f;
+
 		//▼エラーメッセージのカラーを赤色にする
 		m_message_red_color = 1.0f;
 		m_message_green_color = 0.0f;
@@ -284,7 +294,16 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	}
 	else  //(Tmp_human < 0 || 999900 < Tmp_human) これ以上振り分けられない場合
 	{
-		swprintf_s(m_message, L"これ以上振り分けられません");//文字配列に文字データを入れる
+		//これ以上振り分けられません文字画像を読み込み127番に登録
+		Draw::LoadImage(L"これ以上振り分けられません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+		//切り取り位置を設定する
+		m_message_clip_right = 1552.0f;
+		m_message_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_message_draw_left = -200.0f;
+		m_message_draw_right = 200.0f;
 
 		//▼エラーメッセージのカラーを赤色にする
 		m_message_red_color = 1.0f;
@@ -315,36 +334,105 @@ void CObjTraining::Facility_message(int Facility_Level)
 		{ 1.0f,0.0f,0.0f,1.0f },//6行目は赤色
 	};
 
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
+
+
+	//▼LvUP条件　所持必要文字画像表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1335.0f;
+	src.m_bottom = 112.0f;
+
+	dst.m_top = 440.0f;
+	dst.m_left = 165.0f;
+	dst.m_right = 433.0f;
+	dst.m_bottom = 465.0f;
+	Draw::Draw(66, &src, &dst, Facility_message_font[0], 0.0f);
 
 	//▼施設レベルMAX時の処理
 	if (Facility_Level == FACILITY_MAX_LV)
 	{
-		//施設必要素材&サイズメッセージ設定
-		swprintf_s(m_Facility_message[0], L"LvUP条件  所持/  必要");	//文字配列に文字データを入れる
-		swprintf_s(m_Facility_message[1], L"最大レベル到達！");			//文字配列に文字データを入れる
-		swprintf_s(m_Facility_message[2], L"これ以上LVUP不可です。");	//文字配列に文字データを入れる
-		swprintf_s(m_Facility_message[3], L"");							//文字データをクリアする
-		swprintf_s(m_message_Mat_name, L"");							//文字データをクリアする
+		//▼最大Lv到達!文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 907.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 475.0f;
+		dst.m_left = 167.5f;
+		dst.m_right = 338.5f;
+		dst.m_bottom = 500.0f;
+		Draw::Draw(107, &src, &dst, Facility_message_font[1], 0.0f);
+
+		//▼これ以上LVUP不可です。文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1350.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 510.0f;
+		dst.m_left = 167.5f;
+		dst.m_right = 433.0f;
+		dst.m_bottom = 535.0f;
+		Draw::Draw(108, &src, &dst, Facility_message_font[2], 0.0f);
 	}
 
 	//▼施設レベルMAXではない時の処理
 	else
 	{
-		//▽施設必要素材&サイズメッセージ設定(共通処理)
-		swprintf_s(m_Facility_message[0], L"LvUP条件  所持/  必要");																						//文字配列に文字データを入れる
-		swprintf_s(m_Facility_message[1], L"惑星HP  %6.0f/%6.0f", g_Player_max_size, m_Facility_next_Size_num[Facility_Level - 1]);							//文字配列に文字データを入れる
-		swprintf_s(m_Facility_message[2], L"        %6d/%6d", *m_Facility_next_Mat_type[Facility_Level - 1], m_Facility_next_Mat_num[Facility_Level - 1]);	//文字配列に文字データを入れる
-		swprintf_s(m_message_Mat_name, L"%s", m_Facility_next_Mat_name[Facility_Level - 1]);																//文字配列に文字データを入れる
+		//▼惑星HP文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 412.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 475.0f;
+		dst.m_left = 165.0f;
+		dst.m_right = 255.0f;
+		dst.m_bottom = 500.0f;
+		Draw::Draw(67, &src, &dst, Facility_message_font[1], 0.0f);
+
+		//▼現在の惑星HPを表示
+		FontDraw(0, NumConversion((unsigned int)g_Player_max_size), 338.0f, 475.0f, 15.0f, 25.0f, Facility_message_font[1], true);
+
+		//▼施設(兵舎、研究所)の次のLVUPに必要なサイズ(HP)表示
+		FontDraw(1, NumConversion((unsigned int)m_Facility_next_Size_num[Facility_Level - 1]), 420.0f, 475.0f, 15.0f, 25.0f, Facility_message_font[1], true);
+
+		//▼施設(兵舎、研究所)の次のLVUPに必要な素材名表示
+		FontDraw(2, m_Facility_next_Mat_name[Facility_Level - 1], 165.0f, 510.0f, 25.0f, 25.0f, Facility_message_font[2], false);
+
+		//▼施設(兵舎、研究所)の次のLVUPに必要な現在の素材所持数を表示
+		FontDraw(3, NumConversion(*m_Facility_next_Mat_type[Facility_Level - 1]), 338.0f, 510.0f, 15.0f, 25.0f, Facility_message_font[2], true);
+
+		//▼施設(兵舎、研究所)の次のLVUPに必要な素材数を表示
+		FontDraw(4, NumConversion(m_Facility_next_Mat_num[Facility_Level - 1]), 420.0f, 510.0f, 15.0f, 25.0f, Facility_message_font[2], true);
+
+		//▼「所持 / 必要」の値を区切る仕切り表示
+		FontDraw(5, L"／", 354.0f, 475.0f, 20.0f, 25.0f, Facility_message_font[1], false);
+		FontDraw(6, L"／", 354.0f, 510.0f, 20.0f, 25.0f, Facility_message_font[2], false);
 
 
 		//▽レベルUP可能時の処理
 		if (g_Player_max_size > m_Facility_next_Size_num[Facility_Level - 1] &&
 			*m_Facility_next_Mat_type[Facility_Level - 1] >= m_Facility_next_Mat_num[Facility_Level - 1])
 		{
+			//▼LvUP可能!文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 607.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 550.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 355.0f;
+			dst.m_bottom = 570.0f;
+			Draw::Draw(70, &src, &dst, Facility_message_font[3], 0.0f);
+
 			//施設必要素材&サイズメッセージ設定
-			swprintf_s(m_Facility_message[3], L"      LvUP可能!");	//文字配列に文字データを入れる
-			swprintf_s(m_Facility_message[4], L"");					//文字データをクリアする
-			swprintf_s(m_Facility_message[5], L"");					//文字データをクリアする
+			//swprintf_s(m_Facility_message[3], L"      LvUP可能!");	//文字配列に文字データを入れる
+			//swprintf_s(m_Facility_message[4], L"");					//文字データをクリアする
+			//swprintf_s(m_Facility_message[5], L"");					//文字データをクリアする
 
 			//施設必要素材&サイズメッセージ4行目のカラーを青色に設定
 			Facility_message_font[3][0] = 0.0f;
@@ -353,8 +441,20 @@ void CObjTraining::Facility_message(int Facility_Level)
 		//▽レベルUP不可時の処理
 		else
 		{
+			//▼LvUP不可文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 577.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 550.0f;
+			dst.m_left = 245.0f;
+			dst.m_right = 345.0f;
+			dst.m_bottom = 570.0f;
+			Draw::Draw(71, &src, &dst, Facility_message_font[3], 0.0f);
+
 			//施設必要素材&サイズメッセージ設定
-			swprintf_s(m_Facility_message[3], L"      LvUP不可");	//文字配列に文字データを入れる
+			//swprintf_s(m_Facility_message[3], L"      LvUP不可");	//文字配列に文字データを入れる
 			
 			//以下のメッセージは現在のサイズ(HP)がレベルUPに必要なサイズ(HP)以下だった場合のみ表示する
 			if (g_Player_max_size <= m_Facility_next_Size_num[Facility_Level - 1])
@@ -377,11 +477,40 @@ void CObjTraining::Facility_message(int Facility_Level)
 
 	//▼描画処理
 	//素材名を除いたフォント表示
-	for (int i = 0; i < FACILITY_MES_MAX_FONT_LINE; i++)
-	{
-		Font::StrDraw(m_Facility_message[i], 167.5f, 440.0f + i * 35.0f, 25.0f, Facility_message_font[i]);
-	}
+	//for (int i = 0; i < FACILITY_MES_MAX_FONT_LINE; i++)
+	//{
+	//	Font::StrDraw(m_Facility_message[i], 167.5f, 440.0f + i * 35.0f, 25.0f, Facility_message_font[i]);
+	//}
 
-	//素材名のフォント表示
-	Font::StrDraw(m_message_Mat_name, 167.5f, 514.0f, 17.5f, Facility_message_font[2]);
+	////素材名のフォント表示
+	//Font::StrDraw(m_message_Mat_name, 167.5f, 514.0f, 17.5f, Facility_message_font[2]);
+
+
+
+	///*50音文字画像と鉄文字画像はプログラムを大きく変えるので
+	//描画位置だけ記載しています。
+	//参考にしてください。*/
+	//////▼50音文字画像表示
+	////src.m_top = 0.0f;
+	////src.m_left = 0.0f;
+	////src.m_right = 412.0f;
+	////src.m_bottom = 112.0f;
+
+	////dst.m_top = 475.0f;
+	////dst.m_left = 165.0f;
+	////dst.m_right = 255.0f;
+	////dst.m_bottom = 500.0f;
+	////Draw::Draw(68, &src, &dst, white, 0.0f);
+
+	////▼鉄文字画像表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 112.0f;
+	//src.m_bottom = 112.0f;
+
+	//dst.m_top = 510.0f;
+	//dst.m_left = 165.0f;
+	//dst.m_right = 185.0f;
+	//dst.m_bottom = 530.0f;
+	//Draw::Draw(69, &src, &dst, black, 0.0f);
 }

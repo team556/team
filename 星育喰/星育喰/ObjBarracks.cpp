@@ -1133,54 +1133,6 @@ void CObjBarracks::Draw()
 		dst.m_bottom = 110.0f;
 		Draw::Draw(76, &src, &dst, white, 0.0f);
 
-		//▼LvUP条件　所持必要文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1335.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 440.0f;
-		dst.m_left = 165.0f;
-		dst.m_right = 415.0f;
-		dst.m_bottom = 460.0f;
-		Draw::Draw(66, &src, &dst, blue, 0.0f);
-
-		//▼惑星HP文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 412.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 475.0f;
-		dst.m_left = 165.0f;
-		dst.m_right = 255.0f;
-		dst.m_bottom = 500.0f;
-		Draw::Draw(67, &src, &dst, black, 0.0f);
-
-		//▼LvUP可能!文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 607.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 550.0f;
-		dst.m_left = 245.0f;
-		dst.m_right = 355.0f;
-		dst.m_bottom = 570.0f;
-		Draw::Draw(70, &src, &dst, blue, 0.0f);
-
-		//▼LvUP不可文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 577.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 550.0f;
-		dst.m_left = 245.0f;
-		dst.m_right = 345.0f;
-		dst.m_bottom = 570.0f;
-		Draw::Draw(71, &src, &dst, red, 0.0f);
-
 		//▼レッド文字画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;

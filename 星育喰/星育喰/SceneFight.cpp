@@ -224,6 +224,34 @@ void CSceneFight::InitScene()
 	//ガスを64番に登録
 	Draw::LoadImage(L"ガス文字.png", 64, TEX_SIZE_512);
 
+	//赤ポッドレベル1を65番目に登録
+	Draw::LoadImage(L"ポッド赤Lv1.png", 65, TEX_SIZE_512);
+	//赤ポッドレベル2を66番目に登録
+	Draw::LoadImage(L"ポッド赤Lv2.png", 66, TEX_SIZE_512);
+	//赤ポッドレベル3を67番目に登録
+	Draw::LoadImage(L"ポッド赤Lv3.png", 67, TEX_SIZE_512);
+
+	//青ポッドレベル1を68番目に登録
+	Draw::LoadImage(L"ポッド青Lv1.png", 68, TEX_SIZE_512);
+	//青ポッドレベル2を69番目に登録
+	Draw::LoadImage(L"ポッド青Lv2.png", 69, TEX_SIZE_512);
+	//青ポッドレベル3を70番目に登録
+	Draw::LoadImage(L"ポッド青Lv3.png", 70, TEX_SIZE_512);
+
+	//緑ポッドレベル1を71番目に登録
+	Draw::LoadImage(L"ポッド緑Lv1.png", 71, TEX_SIZE_512);
+	//緑ポッドレベル2を72番目に登録
+	Draw::LoadImage(L"ポッド緑Lv2.png", 72, TEX_SIZE_512);
+	//緑ポッドレベル3を73番目に登録
+	Draw::LoadImage(L"ポッド緑Lv3.png", 73, TEX_SIZE_512);
+
+	//白ポッドレベル1を74番目に登録
+	Draw::LoadImage(L"ポッド白Lv1.png", 74, TEX_SIZE_512);
+	//白ポッドレベル2を75番目に登録
+	Draw::LoadImage(L"ポッド白Lv2.png", 75, TEX_SIZE_512);
+	//白ポッドレベル3を76番目に登録
+	Draw::LoadImage(L"ポッド白Lv3.png", 76, TEX_SIZE_512);
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 
