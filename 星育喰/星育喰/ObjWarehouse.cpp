@@ -809,7 +809,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 170.0f;
 		dst.m_right = 250.0f;
 		dst.m_bottom = 290.0f;
-		Draw::Draw(89, &src, &dst, it, 0.0f);
+		Draw::Draw(89, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
@@ -835,7 +835,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 540.0f;
 		dst.m_right = 580.0f;
 		dst.m_bottom = 290.0f;
-		Draw::Draw(69, &src, &dst, it, 0.0f);
+		Draw::Draw(69, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
@@ -861,7 +861,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 910.0f;
 		dst.m_right = 950.0f;
 		dst.m_bottom = 290.0f;
-		Draw::Draw(90, &src, &dst, it, 0.0f);
+		Draw::Draw(90, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
@@ -887,7 +887,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 140.0f;
 		dst.m_right = 380.0f;
 		dst.m_bottom = 540.0f;
-		Draw::Draw(91, &src, &dst, it, 0.0f);
+		Draw::Draw(91, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
@@ -939,7 +939,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 910.0f;
 		dst.m_right = 990.0f;
 		dst.m_bottom = 540.0f;
-		Draw::Draw(93, &src, &dst, it, 0.0f);
+		Draw::Draw(93, &src, &dst, black, 0.0f);
 
 		Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
