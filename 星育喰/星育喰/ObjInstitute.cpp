@@ -1101,7 +1101,10 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)
+	if (((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)||
+		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550&& !(m_mou_y>357&& m_mou_y<550&& m_mou_x>1&& m_mou_x<117))||//レベル2の研究所の処理
+		((g_Ins_Level == 3) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>400 && m_mou_y<452 && m_mou_x>1 && m_mou_x<117)) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)
+		)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Ins_color = 1.0f;
@@ -1421,12 +1424,12 @@ void CObjInstitute::Draw()
 		//▼研究所LVUP表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 32.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
 		dst.m_left = 40.0f;
-		dst.m_right = 160.0f;
+		dst.m_right = 145.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 

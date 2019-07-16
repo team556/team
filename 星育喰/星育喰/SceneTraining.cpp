@@ -152,7 +152,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"メッセージウィンドウ.png", 21, TEX_SIZE_512);
 
 	//矢印を読み込み22番に登録
-	Draw::LoadImage(L"矢印.png", 22, TEX_SIZE_512);
+	Draw::LoadImage(L"レベルアップ.png", 22, TEX_SIZE_512);
 
 	//住民振り分けUPを読み込み23番に登録
 	Draw::LoadImage(L"戦上01.png", 23, TEX_SIZE_512);
