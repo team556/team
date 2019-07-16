@@ -222,7 +222,7 @@ void CObjBarracks::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
-		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
+		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -747,9 +747,13 @@ void CObjBarracks::Action()
 		return;
 	}
 
+	//dst.m_top = 230.0f;
+	//dst.m_left = 400.0f;
+	//dst.m_right = 800.0f;
+	//dst.m_bottom = 630.0f;
 
 	//兵舎選択範囲
-	if (810 < m_mou_x && m_mou_x < 1190 && 460 < m_mou_y && m_mou_y < 690)
+	if (450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Bar_color = 1.0f;
@@ -876,29 +880,90 @@ void CObjBarracks::Draw()
 		//▼兵舎表示 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 256.0f;
-		src.m_bottom = 256.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 400.0f;
 
-		dst.m_top = 460.0f;
-		dst.m_left = 810.0f;
-		dst.m_right = 1190.0f;
-		dst.m_bottom = 690.0f;
+		dst.m_top = 230.0f;
+		dst.m_left = 400.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 630.0f;
 		Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, bar, 0.0f);
 
 		//施設紹介ウインドウ表示管理フラグがtrueの時、描画。
 		if (m_introduce_f == true)
 		{
-			//▼施設紹介ウインドウ表示
+			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
+			src.m_right = 800.0f;
+			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
-			dst.m_left = m_mou_x - 100.0f;
-			dst.m_right = m_mou_x + 100.0f;
+			dst.m_left = m_mou_x - 120.0f;
+			dst.m_right = m_mou_x - 40.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼施設紹介ウインドウ表示左下
+			src.m_top = 0.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x - 120.0f;
+			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央上
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x - 40.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央下
+			src.m_top = 0.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x - 40.0f;
+			dst.m_right = m_mou_x + 40.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼施設紹介ウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 50.0f;
+			dst.m_left = m_mou_x + 40.0f;
+			dst.m_right = m_mou_x + 120.0f;
+			dst.m_bottom = m_mou_y - 30.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼施設紹介ウインドウ表示中央下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = m_mou_y - 30.0f;
+			dst.m_left = m_mou_x + 40.0f;
+			dst.m_right = m_mou_x + 120.0f;
+			dst.m_bottom = m_mou_y - 10.0f;
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
 
 			//▼兵舎 Lv文字画像表示
 			src.m_top = 0.0f;
@@ -921,11 +986,11 @@ void CObjBarracks::Draw()
 	//兵舎ウインドウ開いている際に表示するグラフィック
 	else if (window_start_manage == Barracks)
 	{
-		//▼灰色ウインドウ表示
-		src.m_top    =    0.0f;
-		src.m_left   =    0.0f;
-		src.m_right  = 1160.0f;
-		src.m_bottom =  660.0f;
+		//▼ウィンドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 20.0f;
 		dst.m_left = 20.0f;
@@ -939,59 +1004,59 @@ void CObjBarracks::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 30.0f;
-		dst.m_left = 30.0f;
-		dst.m_right = 80.0f;
-		dst.m_bottom = 80.0f;
+		dst.m_top = 60.0f;
+		dst.m_left = 70.0f;
+		dst.m_right = 120.0f;
+		dst.m_bottom = 110.0f;
 		Draw::Draw(1, &src, &dst, back, 0.0f);
 
 		//▼兵舎表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 256.0f;
-		src.m_bottom = 256.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 400.0f;
 
-		dst.m_top = 150.0f;
-		dst.m_left = 100.0f;
-		dst.m_right = 400.0f;
-		dst.m_bottom = 350.0f;
+		dst.m_top = 120.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 430.0f;
+		dst.m_bottom = 360.0f;
 		Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, white, 0.0f);
 
 		//▼兵舎LVUP表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 48.0f;
+		src.m_right = 32.0f;
 		src.m_bottom = 64.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 30.0f;
-		dst.m_right = 150.0f;
+		dst.m_left = 40.0f;
+		dst.m_right = 160.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
 		//▼レベルUP条件ウインドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 420.0f;
 		dst.m_left = 150.0f;
 		dst.m_right = 450.0f;
-		dst.m_bottom = 670.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
+		dst.m_bottom = 650.0f;
+		Draw::Draw(20, &src, &dst, white, 0.0f);
 
 		//▼残り住民数のウインドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 580.0f;
 		dst.m_left = 750.0f;
-		dst.m_right = 1160.0f;
+		dst.m_right = 1140.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
+		Draw::Draw(20, &src, &dst, white, 0.0f);
 
 		for (int i = 0; i < 4; i++)
 		{
@@ -1022,14 +1087,14 @@ void CObjBarracks::Draw()
 			//▼各タイプ(パワー、スピード等)の住民数ウインドウ表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
+			src.m_right = 1200.0f;
+			src.m_bottom = 700.0f;
 
 			dst.m_top = 140.0f + i * 110.0f;
 			dst.m_left = 930.0f;
 			dst.m_right = 1150.0f;
 			dst.m_bottom = 200.0f + i * 110.0f;
-			Draw::Draw(21, &src, &dst, white, 0.0f);
+			Draw::Draw(20, &src, &dst, white, 0.0f);
 		}
 
 		//▼兵舎 Lv文字画像表示
@@ -1038,10 +1103,10 @@ void CObjBarracks::Draw()
 		src.m_right = 508.0f;
 		src.m_bottom = 117.0f;
 
-		dst.m_top = 95.0f;
-		dst.m_left = 125.0f;
-		dst.m_right = 325.0f;
-		dst.m_bottom = 145.0f;
+		dst.m_top = 120.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 380.0f;
+		dst.m_bottom = 170.0f;
 		Draw::Draw(116, &src, &dst, white, 0.0f);
 
 		//▼兵舎レベルUP文字画像表示
@@ -1050,10 +1115,10 @@ void CObjBarracks::Draw()
 		src.m_right = 805.0f;
 		src.m_bottom = 117.0f;
 
-		dst.m_top = 370.0f;
-		dst.m_left = 60.0f;
-		dst.m_right = 410.0f;
-		dst.m_bottom = 420.0f;
+		dst.m_top = 350.0f;
+		dst.m_left = 80.0f;
+		dst.m_right = 430.0f;
+		dst.m_bottom = 400.0f;
 		Draw::Draw(117, &src, &dst, white, 0.0f);
 
 		//▼住民振り分け文字画像表示
@@ -1062,10 +1127,10 @@ void CObjBarracks::Draw()
 		src.m_right = 742.0f;
 		src.m_bottom = 117.0f;
 
-		dst.m_top = 45.0f;
+		dst.m_top = 50.0f;
 		dst.m_left = 620.0f;
 		dst.m_right = 980.0f;
-		dst.m_bottom = 105.0f;
+		dst.m_bottom = 110.0f;
 		Draw::Draw(76, &src, &dst, white, 0.0f);
 
 		//▼レッド文字画像表示
@@ -1186,13 +1251,12 @@ void CObjBarracks::Draw()
 		src.m_right = END_ZERO + (g_Bar_Level * 125);
 		src.m_bottom = 1375.0f;
 
-		dst.m_top = 90;
-		dst.m_left = 325;
-		dst.m_right = 375;
-		dst.m_bottom = 147;
+		dst.m_top = 117;
+		dst.m_left = 385;
+		dst.m_right = 435;
+		dst.m_bottom = 172;
 		Draw::Draw(121, &src, &dst, white, 0.0f);
 		//Font::StrDraw(Bar, 125.0f, 95.0f, 50.0f, white);
-
 		//残り住民数ー--------ーーーーーーーーーーーーーーーーーーーーー
 		//万の位
 		if (g_Remain_num >= 10000) {
@@ -1368,14 +1432,14 @@ void CObjBarracks::Draw()
 			//▼最終確認ウインドウ表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
+			src.m_right = 1200.0f;
+			src.m_bottom = 700.0f;
 
 			dst.m_top = 220.0f;
 			dst.m_left = 320.0f;
 			dst.m_right = 880.0f;
 			dst.m_bottom = 480.0f;
-			Draw::Draw(21, &src, &dst, white, 0.0f);
+			Draw::Draw(20, &src, &dst, white, 0.0f);
 
 			//▼素材消費してレベルアップしますか？文字画像表示
 			src.m_top = 0.0f;
@@ -1424,18 +1488,7 @@ void CObjBarracks::Draw()
 			dst.m_right = 800.0f;
 			dst.m_bottom = 460.0f;
 			Draw::Draw(74, &src, &dst, No, 0.0f);
-
-
-			//▼フォント表示
-			//最終確認メッセージ
-			Font::StrDraw(L"惑星HPと素材消費して", 347.0f, 250.0f, 30.0f, black);
-			Font::StrDraw(L"レベルアップしますか？", 527.0f, 300.0f, 30.0f, black);
-			Font::StrDraw(L"はい", 410.0f, 410.0f, 50.0f, Yes);
-			Font::StrDraw(L"いいえ", 650.0f, 410.0f, 50.0f, No);
 		}
-
-
-
 		//デバッグ用仮マウス位置表示
 		//wchar_t str[256];
 		//swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);

@@ -380,7 +380,7 @@ void CObjRocket::Action()
 			}
 			else if (m_get_line == 1)//---------------中ライン-----
 			{
-				m_vx -= 0.5f;
+				m_vx -= 0.2f;
 			}
 			else//if(m_get_line == 2)---------------下ライン------
 			{
@@ -706,7 +706,7 @@ void CObjRocket::Draw()
 			//ポッドの描画情報
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 128.0f;
+			src.m_right = -64.0f;
 			src.m_bottom = 64.0f;
 
 			dst.m_top = m_y + m_size;
@@ -733,24 +733,24 @@ void CObjRocket::Draw()
 
 		switch (ButtonUP) {
 		case 1:
-			if (m_get_line == 1)		{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, r, m_r - 180); }//赤色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, r, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, r, m_r - 200); }
+			if (m_get_line == 1)		{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//赤色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+			else						{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
 			break;
 		case 2:
-			if (m_get_line == 1)		{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, b, m_r - 180); }//青色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, b, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, b, m_r - 200); }
+			if (m_get_line == 1)		{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//青色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+			else						{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
 			break;
 		case 3:
-			if (m_get_line == 1)		{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, g, m_r - 180); }//緑色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, g, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, g, m_r - 200); }
+			if (m_get_line == 1)		{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//緑色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+			else						{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
 			break;
 		case 4:
-			if (m_get_line == 1)		{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//原色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+			if (m_get_line == 1)		{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//原色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+			else						{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
 			break;
 		case 5:
 			if (m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r + 45); }//ミサイルの
@@ -779,7 +779,7 @@ void CObjRocket::Draw()
 			//ポッドの描画情報
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 128.0f;
+			src.m_right = -64.0f;
 			src.m_bottom = 64.0f;
 
 			dst.m_top = m_y;
@@ -803,24 +803,24 @@ void CObjRocket::Draw()
 
 		switch (ButtonUE) {
 		case 1://---------ランダムの情報が1なら
-			if (m_get_line == 1)		{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, r, m_r); }//赤色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, r, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, r, m_r + 20); }
+			if (m_get_line == 1)		{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//赤色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+			else						{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
 			break;
 		case 2://---------ランダムの情報が2なら
-			if (m_get_line == 1)		{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, b, m_r); }//青色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, b, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, b, m_r + 20); }
+			if (m_get_line == 1)		{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//青色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+			else						{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
 			break;
 		case 3://---------ランダムの情報が3なら
-			if (m_get_line == 1)		{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, g, m_r); }//緑色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, g, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, g, m_r + 20); }
+			if (m_get_line == 1)		{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//緑色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+			else						{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
 			break;
 		case 4://---------ランダムの情報が4なら
-			if (m_get_line == 1)		{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//原色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(8 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+			if (m_get_line == 1)		{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//原色ポッドの
+			else if (m_get_line == 2)	{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+			else						{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
 			break;
 		case 5://---------ランダムの情報が5なら
 			 if(m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整

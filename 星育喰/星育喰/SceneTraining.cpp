@@ -86,7 +86,7 @@ void CSceneTraining::InitScene()
 
 
 	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
-	Draw::LoadImage(L"地面TEST.gif", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"育成画面Lv1.png", 0, TEX_SIZE_512);
 
 	//戻るアイコンを読み込み1番に登録
 	Draw::LoadImage(L"戻る.png", 1, TEX_SIZE_512);
@@ -95,7 +95,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"兵舎Lv1.png", 2, TEX_SIZE_512);
 
 	//研究所Lv1を読み込み3番に登録
-	Draw::LoadImage(L"研究所Lv1.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"研究所Lv.1.png", 3, TEX_SIZE_512);
 
 	//ミサイル(仮)を読み込み4番に登録
 	Draw::LoadImage(L"ミサイル.png", 4, TEX_SIZE_512);
@@ -103,17 +103,17 @@ void CSceneTraining::InitScene()
 	//兵舎Lv2を読み込み5番に登録
 	Draw::LoadImage(L"兵舎Lv2.png", 5, TEX_SIZE_512);
 
-	//研究所Lv2を読み込み6番に登録
-	Draw::LoadImage(L"研究所Lv2.png", 6, TEX_SIZE_512);
+	//研究所Lv.2を読み込み6番に登録
+	Draw::LoadImage(L"研究所Lv.2.png", 6, TEX_SIZE_512);
 
 	//背景Lv2(背景レベル＝プレイヤー惑星レベル)を読み込み7番に登録
-	Draw::LoadImage(L"地面TEST.gif", 7, TEX_SIZE_512);
+	Draw::LoadImage(L"育成画面Lv2.png", 7, TEX_SIZE_512);
 
 	//兵舎Lv3を読み込み8番に登録
 	Draw::LoadImage(L"兵舎Lv3.png", 8, TEX_SIZE_512);
 
-	//研究所Lv3を読み込み9番に登録
-	Draw::LoadImage(L"研究所Lv3.png", 9, TEX_SIZE_512);
+	//研究所Lv.3を読み込み9番に登録
+	Draw::LoadImage(L"研究所Lv.3.png", 9, TEX_SIZE_512);
 
 	//住民を読み込み10番に登録
 	Draw::LoadImage(L"Human.png", 10, TEX_SIZE_512);
@@ -128,31 +128,31 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ヘルプ兵舎.png", 13, TEX_SIZE_512);
 
 	//背景Lv3(背景レベル＝プレイヤー惑星レベル)を読み込み14番に登録
-	Draw::LoadImage(L"地面TEST.gif", 14, TEX_SIZE_512);
+	Draw::LoadImage(L"育成画面Lv3.png", 14, TEX_SIZE_512);
 	
 	//雲を読み込み15番に登録
-	Draw::LoadImage(L"透過雲.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み16番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 16, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1.png", 16, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み17番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 17, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv2.png", 17, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み18番に登録
-	Draw::LoadImage(L"プレイヤー惑星.png", 18, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv3.png", 18, TEX_SIZE_512);
 
 	//ホワイトアウト演出画像を読み込み19番に登録
 	Draw::LoadImage(L"ホワイトアウト演出画像.png", 19, TEX_SIZE_512);
 
-	//灰色ウインドウ(仮)を読み込み20番に登録
-	Draw::LoadImage(L"灰色ウインドウ(仮).png", 20, TEX_SIZE_512);
+	//ウインドウ01を読み込み20番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 20, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み21番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 21, TEX_SIZE_512);
+	Draw::LoadImage(L"メッセージウィンドウ.png", 21, TEX_SIZE_512);
 
-	//施設LVUPを読み込み22番に登録
-	Draw::LoadImage(L"施設LVUP.png", 22, TEX_SIZE_512);
+	//矢印を読み込み22番に登録
+	Draw::LoadImage(L"矢印.png", 22, TEX_SIZE_512);
 
 	//住民振り分けUPを読み込み23番に登録
 	Draw::LoadImage(L"戦上01.png", 23, TEX_SIZE_512);
@@ -160,13 +160,13 @@ void CSceneTraining::InitScene()
 	//住民振り分けDOWNを読み込み24番に登録
 	Draw::LoadImage(L"戦下.png", 24, TEX_SIZE_512);
 
-	//ミサイルボタン(仮)を読み込み25番に登録
-	Draw::LoadImage(L"ミサイルボタン.png", 25, TEX_SIZE_512);
+	//ミサイルメニューボタンを読み込み25番に登録
+	Draw::LoadImage(L"ミサイルメニューボタン.png", 25, TEX_SIZE_512);
 
-	//武器ポッドボタン(仮)を読み込み26番に登録
-	Draw::LoadImage(L"武器ポッドボタン.png", 26, TEX_SIZE_512);
+	//ポッドメニューボタンを読み込み26番に登録
+	Draw::LoadImage(L"ポッドメニューボタン.png", 26, TEX_SIZE_512);
 
-	//test用倉庫画像読み込み27番に登録
+	//倉庫画像読み込み27番に登録
 	Draw::LoadImage(L"倉庫.png", 27, TEX_SIZE_512);
 
 	//資材選択ボタン画像読み込み28番に登録
@@ -232,50 +232,50 @@ void CSceneTraining::InitScene()
 	//ヘルプ画像を読み込み48番に登録
 	Draw::LoadImage(L"ヘルプ育成画面.png", 48, TEX_SIZE_512);
 
-	//パワー武器Lv.1の画像を読み込み49番に登録
-	Draw::LoadImage(L"パワーLv1.png", 49, TEX_SIZE_512);
+	//ポッドコア赤Lv1の画像を読み込み49番に登録
+	Draw::LoadImage(L"ポッドコア赤Lv1.png", 49, TEX_SIZE_512);
 
-	//パワー武器Lv.2の画像を読み込み50番に登録
-	Draw::LoadImage(L"パワーLv2.png", 50, TEX_SIZE_512);
+	//ポッドコア赤Lv2の画像を読み込み50番に登録ポッドコア赤Lv2
+	Draw::LoadImage(L"ポッドコア赤Lv2.png", 50, TEX_SIZE_512);
 
-	//パワー武器Lv.3の画像を読み込み51番に登録
-	Draw::LoadImage(L"パワーLv3.png", 51, TEX_SIZE_512);
+	//ポッドコア赤Lv3の画像を読み込み51番に登録
+	Draw::LoadImage(L"ポッドコア赤Lv3.png", 51, TEX_SIZE_512);
 
-	//ディフェンス武器Lv.1の画像を読み込み52番に登録
-	Draw::LoadImage(L"ディフェンスLv1.png", 52, TEX_SIZE_512);
+	//ポッドコア青Lv1の画像を読み込み52番に登録
+	Draw::LoadImage(L"ポッドコア青Lv1.png", 52, TEX_SIZE_512);
 
-	//ディフェンス武器Lv.2の画像を読み込み53番に登録
-	Draw::LoadImage(L"ディフェンスLv2.png", 53, TEX_SIZE_512);
+	//ポッドコア青Lv2の画像を読み込み53番に登録
+	Draw::LoadImage(L"ポッドコア青Lv2.png", 53, TEX_SIZE_512);
 
-	//ディフェンス武器Lv.3の画像を読み込み54番に登録
-	Draw::LoadImage(L"ディフェンスLv3.png", 54, TEX_SIZE_512);
+	//ポッドコア青Lv3の画像を読み込み54番に登録
+	Draw::LoadImage(L"ポッドコア青Lv3.png", 54, TEX_SIZE_512);
 
-	//スピード武器Lv.1の画像を読み込み55番に登録
-	Draw::LoadImage(L"スピードLv1.png", 55, TEX_SIZE_512);
+	//ポッドコア緑Lv1の画像を読み込み55番に登録
+	Draw::LoadImage(L"ポッドコア緑Lv1.png", 55, TEX_SIZE_512);
 
-	//スピード武器Lv.2の画像を読み込み56番に登録
-	Draw::LoadImage(L"スピードLv2.png", 56, TEX_SIZE_512);
+	//ポッドコア緑Lv2の画像を読み込み56番に登録
+	Draw::LoadImage(L"ポッドコア緑Lv2.png", 56, TEX_SIZE_512);
 
-	//スピード武器Lv.3の画像を読み込み57番に登録
-	Draw::LoadImage(L"スピードLv3.png", 57, TEX_SIZE_512);
+	//ポッドコア緑Lv3の画像を読み込み57番に登録
+	Draw::LoadImage(L"ポッドコア緑Lv3.png", 57, TEX_SIZE_512);
 
-	//バランス武器Lv.1の画像を読み込み58番に登録
-	Draw::LoadImage(L"バランスLv1.png", 58, TEX_SIZE_512);
+	//ポッドコア白Lv1の画像を読み込み58番に登録
+	Draw::LoadImage(L"ポッドコア白Lv1.png", 58, TEX_SIZE_512);
 
-	//バランス武器Lv.2の画像を読み込み59番に登録
-	Draw::LoadImage(L"バランスLv2.png", 59, TEX_SIZE_512);
+	//ポッドコア白Lv2の画像を読み込み59番に登録
+	Draw::LoadImage(L"ポッドコア白Lv2.png", 59, TEX_SIZE_512);
 
-	//バランス武器Lv.3の画像を読み込み60番に登録
-	Draw::LoadImage(L"バランスLv3.png", 60, TEX_SIZE_512);
+	//ポッドコア白Lv2の画像を読み込み60番に登録
+	Draw::LoadImage(L"ポッドコア白Lv2.png", 60, TEX_SIZE_512);
 
-	//ポッドLv.1の画像を読み込み61番に登録
-	Draw::LoadImage(L"ポッドLv1.png", 61, TEX_SIZE_512);
+	//ポッド白Lv1の画像を読み込み61番に登録
+	Draw::LoadImage(L"ポッド白Lv1.png", 61, TEX_SIZE_512);
 
-	//ポッドLv.2の画像を読み込み62番に登録
-	Draw::LoadImage(L"ポッドLv2.png", 62, TEX_SIZE_512);
+	//ポッド白Lv2の画像を読み込み62番に登録
+	Draw::LoadImage(L"ポッド白Lv2.png", 62, TEX_SIZE_512);
 
-	//ポッドLv.3の画像を読み込み63番に登録
-	Draw::LoadImage(L"ポッドLv3.png", 63, TEX_SIZE_512);
+	//ポッド白Lv3の画像を読み込み63番に登録
+	Draw::LoadImage(L"ポッド白Lv3.png", 63, TEX_SIZE_512);
 
 	//研究所 LV.文字画像を読み込み64番に登録
 	Draw::LoadImage(L"研究所 Lv.png",64,TEX_SIZE_512);
