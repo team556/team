@@ -811,7 +811,9 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 290.0f;
 		Draw::Draw(89, &src, &dst, black, 0.0f);
 
-		Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
+		FontDraw(0, NumConversion(g_Wood_num), 270, 290, 30, 40, black, true);
+		FontDraw(0, L"コ", 315, 310, 15, 20, black, true);
+		//Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
 		//▼鉄表示
 		src.m_top = 0.0f;
@@ -837,7 +839,9 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 290.0f;
 		Draw::Draw(69, &src, &dst, black, 0.0f);
 
-		Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
+		FontDraw(0, NumConversion(g_Iron_num), 620, 290, 30, 40, black, true);
+		FontDraw(0, L"コ", 665, 310, 15, 20, black, true);
+		//Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
 		//▼銀表示
 		src.m_top = 0.0f;
@@ -863,7 +867,9 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 290.0f;
 		Draw::Draw(90, &src, &dst, black, 0.0f);
 
-		Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
+		FontDraw(0, NumConversion(g_Silver_num), 970, 290, 30, 40, black, true);
+		FontDraw(0, L"コ", 1015, 310, 15, 20, black, true);
+		//Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
 		//▼プラスチック表示
 		src.m_top = 0.0f;
@@ -889,7 +895,10 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(91, &src, &dst, black, 0.0f);
 
-		Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
+
+		FontDraw(0, NumConversion(g_Plastic_num), 270, 540, 30, 40, black, true);
+		FontDraw(0, L"コ", 315, 560, 15, 20, black, true);
+		//Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
 		//▼アルミニウム画像表示
 		src.m_top = 0.0f;
@@ -915,7 +924,9 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(92, &src, &dst, black, 0.0f);
 
-		Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
+		FontDraw(0, NumConversion(g_Aluminum_num), 620, 540, 30, 40, black, true);
+		FontDraw(0, L"コ", 665, 560, 15, 20, black, true);
+		//Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
 
 		//▼ガス表示
 		src.m_top = 0.0f;
@@ -941,7 +952,9 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(93, &src, &dst, black, 0.0f);
 
-		Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
+		FontDraw(0, NumConversion(g_gus_num), 970, 540, 30, 40, black, true);
+		FontDraw(0, L"コ", 1015, 560, 15, 20, black, true);
+		//Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
 
 	//住民ボタンを押して描画する画像
@@ -1681,22 +1694,73 @@ void CObjWarehouse::Draw()
 		Draw::Draw(77, &src, &dst, red, 0.0f);
 
 		//パワー
-		Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 312.0f;
+		src.m_bottom = 107.0f;
+
+		dst.m_top = 200.0f;
+		dst.m_left = 360.0f;
+		dst.m_right = 480.0f;
+		dst.m_bottom = 240.0f;
+		Draw::Draw(122 + g_Pow_equip_Level, &src, &dst, black, 0.0f);
+		//Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
 
 		//ディフェンス
-		Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 312.0f;
+		src.m_bottom = 107.0f;
+
+		dst.m_top = 330.0f;
+		dst.m_left = 360.0f;
+		dst.m_right = 480.0f;
+		dst.m_bottom = 370.0f;
+		Draw::Draw(122 + g_Def_equip_Level, &src, &dst, black, 0.0f);
+		//Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
 
 		//スピード
-		Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 312.0f;
+		src.m_bottom = 107.0f;
+
+		dst.m_top = 470.0f;
+		dst.m_left = 360.0f;
+		dst.m_right = 480.0f;
+		dst.m_bottom = 510.0f;
+		Draw::Draw(122 + g_Spe_equip_Level, &src, &dst, black, 0.0f);
+		//Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
 
 		//バランス
-		Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 312.0f;
+		src.m_bottom = 107.0f;
+
+		dst.m_top = 200.0f;
+		dst.m_left = 900.0f;
+		dst.m_right = 1020.0f;
+		dst.m_bottom = 240.0f;
+		Draw::Draw(122 + g_Bal_equip_Level, &src, &dst, black, 0.0f);
+		//Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
 
 		//▼ポッド
-		Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 312.0f;
+		src.m_bottom = 107.0f;
+
+		dst.m_top = 330.0f;
+		dst.m_left = 900.0f;
+		dst.m_right = 1020.0f;
+		dst.m_bottom = 370.0f;
+		Draw::Draw(122 + g_Pod_equip_Level, &src, &dst, black, 0.0f);
+		//Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
 
 		//残りの住民数
-		Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
+		FontDraw(0, NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
+		//Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 
 	}

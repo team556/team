@@ -2364,8 +2364,18 @@ void CObjInstitute::Draw()
 			wchar_t weapon_Lv[5];
 			for (int i = 0; i < 3; i++)
 			{
-				swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
-				Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 313.0f;
+				src.m_bottom = 107.0f;
+
+				dst.m_top = 250 + (i * 150);
+				dst.m_left = 80;
+				dst.m_right = 200;
+				dst.m_bottom = 300 + (i * 150);
+				Draw::Draw(123 + i, &src, &dst,white, 0.0f);
+				//swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
+				//Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
 			}
 
 			//¥ƒŒƒbƒh•¶Žš‰æ‘œ•\Ž¦
