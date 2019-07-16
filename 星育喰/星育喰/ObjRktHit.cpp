@@ -83,7 +83,7 @@ void CObjRktHit::Action()
 		}
 		else if (m_get_line == 1)//----------------’†ƒ‰ƒCƒ“-----
 		{
-			m_vx -= 0.2f;
+			m_vx -= 0.3f;
 		}
 		else//if(m_get_line == 2)---------------‰ºƒ‰ƒCƒ“------
 		{
