@@ -811,8 +811,8 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 290.0f;
 		Draw::Draw(89, &src, &dst, black, 0.0f);
 
-		FontDraw(0, NumConversion(g_Wood_num), 270, 290, 30, 40, black, true);
-		FontDraw(0, L"コ", 315, 310, 15, 20, black, true);
+		FontDraw(NumConversion(g_Wood_num), 270, 290, 30, 40, black, true);
+		FontDraw(L"コ", 315, 310, 15, 20, black, true);
 		//Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
 		//▼鉄表示
@@ -839,8 +839,8 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 290.0f;
 		Draw::Draw(69, &src, &dst, black, 0.0f);
 
-		FontDraw(0, NumConversion(g_Iron_num), 620, 290, 30, 40, black, true);
-		FontDraw(0, L"コ", 665, 310, 15, 20, black, true);
+		FontDraw(NumConversion(g_Iron_num), 620, 290, 30, 40, black, true);
+		FontDraw(L"コ", 665, 310, 15, 20, black, true);
 		//Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
 		//▼銀表示
@@ -867,8 +867,8 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 290.0f;
 		Draw::Draw(90, &src, &dst, black, 0.0f);
 
-		FontDraw(0, NumConversion(g_Silver_num), 970, 290, 30, 40, black, true);
-		FontDraw(0, L"コ", 1015, 310, 15, 20, black, true);
+		FontDraw(NumConversion(g_Silver_num), 970, 290, 30, 40, black, true);
+		FontDraw(L"コ", 1015, 310, 15, 20, black, true);
 		//Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
 		//▼プラスチック表示
@@ -896,8 +896,8 @@ void CObjWarehouse::Draw()
 		Draw::Draw(91, &src, &dst, black, 0.0f);
 
 
-		FontDraw(0, NumConversion(g_Plastic_num), 270, 540, 30, 40, black, true);
-		FontDraw(0, L"コ", 315, 560, 15, 20, black, true);
+		FontDraw(NumConversion(g_Plastic_num), 270, 540, 30, 40, black, true);
+		FontDraw(L"コ", 315, 560, 15, 20, black, true);
 		//Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
 		//▼アルミニウム画像表示
@@ -924,8 +924,8 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(92, &src, &dst, black, 0.0f);
 
-		FontDraw(0, NumConversion(g_Aluminum_num), 620, 540, 30, 40, black, true);
-		FontDraw(0, L"コ", 665, 560, 15, 20, black, true);
+		FontDraw(NumConversion(g_Aluminum_num), 620, 540, 30, 40, black, true);
+		FontDraw(L"コ", 665, 560, 15, 20, black, true);
 		//Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
 
 		//▼ガス表示
@@ -952,8 +952,8 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 540.0f;
 		Draw::Draw(93, &src, &dst, black, 0.0f);
 
-		FontDraw(0, NumConversion(g_gus_num), 970, 540, 30, 40, black, true);
-		FontDraw(0, L"コ", 1015, 560, 15, 20, black, true);
+		FontDraw(NumConversion(g_gus_num), 970, 540, 30, 40, black, true);
+		FontDraw(L"コ", 1015, 560, 15, 20, black, true);
 		//Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
 
@@ -1179,27 +1179,27 @@ void CObjWarehouse::Draw()
 		//▼フォント表示
 		//住民ステータス
 		//レッド
-		FontDraw(0, NumConversion(g_Power_num)   , 420, 200, 30, 40, black, true);
+		FontDraw(NumConversion(g_Power_num)   , 420, 200, 30, 40, black, true);
 		//Font::StrDraw(human_num[0], 355.0f, 200.0f, 35.0f, black);
 
 		//ブルー
-		FontDraw(0, NumConversion(g_Defense_num) , 420, 330, 30, 40, black, true);
+		FontDraw(NumConversion(g_Defense_num) , 420, 330, 30, 40, black, true);
 		//Font::StrDraw(human_num[1], 355.0f, 330.0f, 35.0f, black);
 
 		//グリーン
-		FontDraw(0, NumConversion(g_Speed_num)   , 420, 470, 30, 40, black, true);
+		FontDraw(NumConversion(g_Speed_num)   , 420, 470, 30, 40, black, true);
 		//Font::StrDraw(human_num[2], 355.0f, 470.0f, 35.0f, black);
 
 		//ホワイト
-		FontDraw(0, NumConversion(g_Balance_num) , 1000, 200, 30, 40, black, true);
+		FontDraw(NumConversion(g_Balance_num) , 1000, 200, 30, 40, black, true);
 		//Font::StrDraw(human_num[3], 865.0f, 200.0f, 35.0f, black);
 
 		//研究員
-		FontDraw(0, NumConversion(g_Research_num), 1000, 330, 30, 40, black, true);
+		FontDraw(NumConversion(g_Research_num), 1000, 330, 30, 40, black, true);
 		//Font::StrDraw(Research_num, 865.0f, 330.0f, 35.0f, black);
 
 		//残りの住民数
-		FontDraw(0, NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
+		FontDraw(NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
 		//Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 	}
@@ -1757,7 +1757,7 @@ void CObjWarehouse::Draw()
 		//Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
 
 		//残りの住民数
-		FontDraw(0, NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
+		FontDraw(NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
 		//Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
 
 
