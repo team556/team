@@ -505,10 +505,10 @@ void CObjFight::Draw()
 	}
 	else if (m_start_count <= 60 * 1)
 	{
-		src.m_top = 1254.0f;
-		src.m_left = 1379.0f;
-		src.m_right = 1496.0f;
-		src.m_bottom = 1371.0f;
+		src.m_top = 1250.0f;
+		src.m_left = CUT_ZERO + 125;
+		src.m_right = END_ZERO + 125;
+		src.m_bottom = 1375.0f;
 
 		dst.m_top = 250.0f;
 		dst.m_left = 550.0f;
@@ -518,10 +518,10 @@ void CObjFight::Draw()
 	}
 	else if (m_start_count <= 60 * 2)
 	{
-		src.m_top = 1254.0f;
-		src.m_left = 1504.0f;
-		src.m_right = 1621.0f;
-		src.m_bottom = 1371.0f;
+		src.m_top = 1250.0f;
+		src.m_left = CUT_ZERO + 250;
+		src.m_right = END_ZERO + 250;
+		src.m_bottom = 1375.0f;
 
 		dst.m_top = 250.0f;
 		dst.m_left = 550.0f;
@@ -531,10 +531,10 @@ void CObjFight::Draw()
 	}
 	else if (m_start_count_f == true)
 	{
-		src.m_top = 1254.0f;
-		src.m_left = 1629.0f;
-		src.m_right = 1746.0f;
-		src.m_bottom = 1371.0f;
+		src.m_top = 1250.0f;
+		src.m_left = CUT_ZERO + 375;
+		src.m_right = END_ZERO + 375;
+		src.m_bottom = 1375.0f;
 
 		dst.m_top = 250.0f;
 		dst.m_left = 550.0f;

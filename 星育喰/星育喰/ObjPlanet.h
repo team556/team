@@ -34,12 +34,14 @@ public:
 	void SetInvincible(bool is_Invincible) { m_invincible_f = is_Invincible; }//無敵フラグ設定用[スペシャル技:Immortality用]
 	void SetRecastBuff(float buff) { m_enemy_recast_buff = buff; }//バフ倍率設定用[スペシャル技:リミットブレイク用]
 	void SetEeatF() { m_eat_f = true; }//セット喰うフラグ
+	void SetEmF() { m_eat_me = true; } //セット喰われるフラグ
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
 private:
 
 	float m_px;			//星座標X
 	float m_py;			//星座標Y
+	float m_vy;			//モアイ用()
 	float m_size;		//星サイズ(現在HP)
 	float m_siz_max;	//サイズマックス(最大HP)
 	float m_siz_change_range;	//星サイズの変更幅(最小サイズ＋この変数の値が最大サイズとなる)[例:最小サイズ:60,この変数:60 → 60～120のサイズで変動する惑星となる]

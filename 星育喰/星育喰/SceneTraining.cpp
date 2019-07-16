@@ -430,6 +430,15 @@ void CSceneTraining::InitScene()
 	//Sを読み込み122番に登録
 	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
 
+	//Lv1を読み込み122番に登録
+	Draw::LoadImage(L"Lv1.png", 123, TEX_SIZE_512);
+
+	//Lv2を読み込み122番に登録
+	Draw::LoadImage(L"Lv2.png", 124, TEX_SIZE_512);
+
+	//Lv3を読み込み122番に登録
+	Draw::LoadImage(L"Lv3.png", 125, TEX_SIZE_512);
+
 
 	//簡易メッセージ画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
