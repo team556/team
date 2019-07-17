@@ -402,7 +402,7 @@ void CObjRocket::Action()
 	
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 5);	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 20);	//敵とプレイヤーのポッド当たっているとき処理
 	
 	//---------------------------------------ポッド消滅処理
 	if (m_del == true)
@@ -856,10 +856,15 @@ void CObjRocket::Draw()
 	//左斜め上
 	if (m_bom== 0) 
 	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 2560.0f;
+		src.m_bottom = 128.0f;
+
 		dst.m_top = 0.0f + m_y;
 		dst.m_left = 0.0f + m_x;
-		dst.m_right = 50.0f + m_x;
-		dst.m_bottom = 50.0f + m_y;
+		dst.m_right = 100.0f + m_x;
+		dst.m_bottom = 100.0f + m_y;
 	}
 
 	if (m_del == true) 
