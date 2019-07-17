@@ -394,23 +394,23 @@ void CObjTraining::Facility_message(int Facility_Level)
 		Draw::Draw(67, &src, &dst, Facility_message_font[1], 0.0f);
 
 		//▼現在の惑星HPを表示
-		FontDraw(0, NumConversion((unsigned int)g_Player_max_size), 338.0f, 475.0f, 15.0f, 25.0f, Facility_message_font[1], true);
+		FontDraw(NumConversion((unsigned int)g_Player_max_size), 338.0f, 475.0f, 15.0f, 25.0f, Facility_message_font[1], true);
 
 		//▼施設(兵舎、研究所)の次のLVUPに必要なサイズ(HP)表示
-		FontDraw(1, NumConversion((unsigned int)m_Facility_next_Size_num[Facility_Level - 1]), 420.0f, 475.0f, 15.0f, 25.0f, Facility_message_font[1], true);
+		FontDraw(NumConversion((unsigned int)m_Facility_next_Size_num[Facility_Level - 1]), 420.0f, 475.0f, 15.0f, 25.0f, Facility_message_font[1], true);
 
 		//▼施設(兵舎、研究所)の次のLVUPに必要な素材名表示
-		FontDraw(2, m_Facility_next_Mat_name[Facility_Level - 1], 165.0f, 510.0f, 25.0f, 25.0f, Facility_message_font[2], false);
+		FontDraw(m_Facility_next_Mat_name[Facility_Level - 1], 165.0f, 510.0f, 25.0f, 25.0f, Facility_message_font[2], false);
 
 		//▼施設(兵舎、研究所)の次のLVUPに必要な現在の素材所持数を表示
-		FontDraw(3, NumConversion(*m_Facility_next_Mat_type[Facility_Level - 1]), 338.0f, 510.0f, 15.0f, 25.0f, Facility_message_font[2], true);
+		FontDraw(NumConversion(*m_Facility_next_Mat_type[Facility_Level - 1]), 338.0f, 510.0f, 15.0f, 25.0f, Facility_message_font[2], true);
 
 		//▼施設(兵舎、研究所)の次のLVUPに必要な素材数を表示
-		FontDraw(4, NumConversion(m_Facility_next_Mat_num[Facility_Level - 1]), 420.0f, 510.0f, 15.0f, 25.0f, Facility_message_font[2], true);
+		FontDraw(NumConversion(m_Facility_next_Mat_num[Facility_Level - 1]), 420.0f, 510.0f, 15.0f, 25.0f, Facility_message_font[2], true);
 
 		//▼「所持 / 必要」の値を区切る仕切り表示
-		FontDraw(5, L"／", 354.0f, 475.0f, 20.0f, 25.0f, Facility_message_font[1], false);
-		FontDraw(6, L"／", 354.0f, 510.0f, 20.0f, 25.0f, Facility_message_font[2], false);
+		FontDraw(L"／", 354.0f, 475.0f, 20.0f, 25.0f, Facility_message_font[1], false);
+		FontDraw(L"／", 354.0f, 510.0f, 20.0f, 25.0f, Facility_message_font[2], false);
 
 
 		//▽レベルUP可能時の処理

@@ -263,8 +263,19 @@ void CObjInstitute::Init()
 void CObjInstitute::Action()
 {
 	//ホワイトアウト演出中は操作不能にする処理
+	//※ただしミサイルリキャストレベルUPチェックだけは行う。
+	//※マウス位置取得はミサイルリキャストタイムレベルUPチェックに必要なので入れてる。
 	if (white_out_f == true)
 	{
+		//マウスの位置を取得
+		m_mou_x = (float)Input::GetPosX();
+		m_mou_y = (float)Input::GetPosY();
+
+		//▼ミサイルリキャストレベルUPチェック
+		//レベルUP条件を満たしているかチェックし、
+		//満たしていればレベルUPさせる。
+		Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
+
 		return;
 	}
 
@@ -332,14 +343,14 @@ void CObjInstitute::Action()
 							//研究所のレベルUP処理
 							g_Ins_Level++;
 
+							//▼ミサイルリキャストレベルUPチェック
+							//レベルUP条件を満たしているかチェックし、
+							//満たしていればレベルUPさせる。
+							Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
+
 							//レベルアップ音
 							Audio::Start(3);
 						}
-
-						//▼ミサイルリキャストレベルUPチェック
-						//レベルUP条件を満たしているかチェックし、
-						//満たしていればレベルUPさせる。
-						Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
 
 						m_Yes_Button_color = 0.0f;
 
@@ -2479,33 +2490,33 @@ void CObjInstitute::Draw()
 			Draw::Draw(75, &src, &dst, Equ_message_font[1], 0.0f);
 
 			//▼現在の研究員数を表示
-			FontDraw(0, NumConversion(g_Research_num), m_mou_x + 40.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
+			FontDraw(NumConversion(g_Research_num), m_mou_x + 40.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
 
 			//▽武器ポッド画像が灰色(レベルUP済[装備可])の時のみ描画するもの
 			if (m_Equ_alpha == -0.1f)
 			{
 				//▼装備可能となる研究員数表示
-				FontDraw(1, NumConversion(m_equipable_count), m_mou_x - 40.0f, m_mou_y - 40.0f, 20.0f, 30.0f, black, true);
+				FontDraw(NumConversion(m_equipable_count), m_mou_x - 40.0f, m_mou_y - 40.0f, 20.0f, 30.0f, black, true);
 			}
 			//▽武器ポッド画像が黄色(レベルアップ可能)、黒色(装備不可)の時のみ描画するもの
 			//※武器ポッド必要素材&人数フォント透過度が0.0fの時は処理さえしないようにする。
 			else if (m_Equ_alpha != 0.0f)
 			{
 				//▼各武器、ポッドの次のLVUPに必要な研究員の住民数表示
-				FontDraw(2, NumConversion(m_Equ_next_Hum_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
+				FontDraw(NumConversion(m_Equ_next_Hum_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
 
 				//▼各武器、ポッドの次のLVUPに必要な素材名表示
-				FontDraw(3, m_Equ_next_Mat_name[m_equip_id][m_Lv_id - 1], m_mou_x - 135.0f, m_mou_y - 80.0f, 25.0f, 25.0f, Equ_message_font[2], false);
+				FontDraw(m_Equ_next_Mat_name[m_equip_id][m_Lv_id - 1], m_mou_x - 135.0f, m_mou_y - 80.0f, 25.0f, 25.0f, Equ_message_font[2], false);
 
 				//▼各武器、ポッドの次のLVUPに必要な現在の素材所持数を表示
-				FontDraw(4, NumConversion(*m_Equ_next_Mat_type[m_equip_id][m_Lv_id - 1]), m_mou_x + 40.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
+				FontDraw(NumConversion(*m_Equ_next_Mat_type[m_equip_id][m_Lv_id - 1]), m_mou_x + 40.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
 
 				//▼各武器、ポッドの次のLVUPに必要な素材数を表示
-				FontDraw(5, NumConversion(m_Equ_next_Mat_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
+				FontDraw(NumConversion(m_Equ_next_Mat_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
 
 				//▼「所持 / 必要」の値を区切る仕切り表示
-				FontDraw(6, L"／", m_mou_x + 55.0f, m_mou_y - 120.0f, 20.0f, 25.0f, Equ_message_font[1], false);
-				FontDraw(7, L"／", m_mou_x + 55.0f, m_mou_y - 80.0f, 20.0f, 25.0f, Equ_message_font[2], false);
+				FontDraw(L"／", m_mou_x + 55.0f, m_mou_y - 120.0f, 20.0f, 25.0f, Equ_message_font[1], false);
+				FontDraw(L"／", m_mou_x + 55.0f, m_mou_y - 80.0f, 20.0f, 25.0f, Equ_message_font[2], false);
 			}
 
 			//▼最下部メッセージ(ウインドウ一番下にあるフォント)画像表示

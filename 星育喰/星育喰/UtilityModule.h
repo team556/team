@@ -34,7 +34,7 @@ RECT_F GetPodEffec(int*ani, int* ani_time, bool del, int timing);
 //x,y,x_size,y_size,color[4]の情報に従い、フリーフォント化した文字を出力する関数。
 //※入力する文字は必ず全角文字を用いる事。
 //半角文字、フォントデータに登録されてない文字等は使用不可なので注意。(入力すると空白扱いとなる)
-void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment);
+void FontDraw(wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment);
 
 //---NumConversion関数
 //引数1　unsigned int 	:文字(wchar_t)化したい数値(int)の入力場所
@@ -48,7 +48,7 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 //unsigned intが記憶できない値を入力すると、正常に処理されないので注意。
 //
 //▽実際の使用例
-//FontDraw(0, NumConversion(1234), 20, 50, 25, 50, d ,false);
+//FontDraw(NumConversion(1234), 20, 50, 25, 50, d ,false);
 //
 //▽使用タイミング例
 //武器ポッドウインドウの必要資材数、各施設のレベルアップに必要なHP等といった、

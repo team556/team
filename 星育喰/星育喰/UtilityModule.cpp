@@ -10,16 +10,15 @@
 using namespace GameL;
 
 //マクロ
-#define FONT_ID_MAX (32)		//フォント登録限界数(同時に表示出来るフォント総数)
 #define FONT_LENGTH_MAX (256)	//フォントにて表示可能な文字限界数(この値を越える文字数は正常に処理されない)
 #define WIDTH_DATA_NUM (10)		//半角全角データ情報の数
 
 //▼FontDraw、NumConversion関数で使用する変数
-wchar_t con_num[FONT_LENGTH_MAX] = {};				//int→wchar_tに変換した情報管理配列
-wchar_t font[FONT_ID_MAX][FONT_LENGTH_MAX] = {};	//フォント情報管理配列
-int font_column[FONT_ID_MAX][FONT_LENGTH_MAX] = {};	//フォント切り取り位置(列)
-int font_line[FONT_ID_MAX][FONT_LENGTH_MAX] = {};	//フォント切り取り位置(行)
-int length = 0;										//文字列の長さを管理
+wchar_t con_num[FONT_LENGTH_MAX] = {};	//int→wchar_tに変換した情報管理配列
+wchar_t font[FONT_LENGTH_MAX] = {};		//フォント情報管理配列
+int font_column[FONT_LENGTH_MAX] = {};	//フォント切り取り位置(列)
+int font_line[FONT_LENGTH_MAX] = {};	//フォント切り取り位置(行)
+int length = 0;							//文字列の長さを管理
 
 
 bool UnitVec(float* vx, float* vy)
@@ -173,21 +172,19 @@ int Rand(int n_min, int n_max)
 
 
 //---FontDraw関数
-//引数1　int id			:フォント登録番号[デフォルトでは32個登録可能。FONT_ID_MAXを変えれば増やす事が可能。]
-//引数2　wchar_t *str	:出力したい文字入力場所
-//引数3　float x		:フォント表示位置X
-//引数4  float y		:フォント表示位置Y
-//引数5  float x_size	:フォントのサイズX(横幅)
-//引数6  float y_size	:フォントのサイズY(縦幅)
-//引数7  float color[4]	:フォントカラー&透過度(RGBA)
-//引数8  bool  right_alignment :[true:右詰め　false:左詰め]
+//引数1　wchar_t *str	:出力したい文字入力場所
+//引数2　float x		:フォント表示位置X
+//引数3  float y		:フォント表示位置Y
+//引数4  float x_size	:フォントのサイズX(横幅)
+//引数5  float y_size	:フォントのサイズY(縦幅)
+//引数6  float color[4]	:フォントカラー&透過度(RGBA)
+//引数7  bool  right_alignment :[true:右詰め　false:左詰め]
 //▼内容
-//今回のフォントを登録(保存)する配列番号を決めた後、
 //*strに入力された文字(wchar_t)をフリーフォント画像と照らし合わせ、フリーフォント化し、
 //x,y,x_size,y_size,color[4]の情報に従い、フリーフォント化した文字を出力する関数。
 //※入力する文字は必ず全角文字を用いる事。
 //半角文字、フォントデータに登録されてない文字等は使用不可なので注意。(入力すると空白扱いとなる)
-void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment)
+void FontDraw(wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment)
 {
 	//フォントデータ情報
 	//※配列位置がそのまま切り取り位置となる為、フォント画像の配置と同じように文字登録するように
@@ -221,10 +218,10 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 	RECT_F dst;//描画先表示位置
 
 	//▼文字の終わり部分に印(；)をつける
-	swprintf_s(font[id], L"%s；", str);
+	swprintf_s(font, L"%s；", str);
 
 	//▼文字化した文字列の長さを取得	
-	for (int i = 0; font[id][i] != L'；'; i++)
+	for (int i = 0; font[i] != L'；'; i++)
 	{
 		length = i + 1;
 	}
@@ -246,27 +243,27 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 					break;
 				}
 				//検索HITしたら、その切り取り位置を代入する
-				else if (font[id][i] == font_data[j][k])
+				else if (font[i] == font_data[j][k])
 				{
-					font_column[id][i] = k + 1;
-					font_line[id][i] = j + 1;
+					font_column[i] = k + 1;
+					font_line[i] = j + 1;
 
 					break;//検索HITしたので、フォントデータ読み込み処理から抜ける
 				}
 			}
 
 			//検索終了していれば、フォントデータ読み込み処理から抜ける
-			if (font_column[id][i] != 0 || font_line[id][i] != 0)
+			if (font_column[i] != 0 || font_line[i] != 0)
 			{
 				break;
 			}
 		}
 
 		//▼フォント表示処理
-		src.m_top = FONT_CLIP_SIZE * (font_line[id][i] - 1);
-		src.m_left = FONT_CLIP_SIZE * (font_column[id][i] - 1);
-		src.m_right = FONT_CLIP_SIZE * font_column[id][i];
-		src.m_bottom = FONT_CLIP_SIZE * font_line[id][i];
+		src.m_top = FONT_CLIP_SIZE * (font_line[i] - 1);
+		src.m_left = FONT_CLIP_SIZE * (font_column[i] - 1);
+		src.m_right = FONT_CLIP_SIZE * font_column[i];
+		src.m_bottom = FONT_CLIP_SIZE * font_line[i];
 
 		dst.m_top = y;
 
@@ -307,8 +304,8 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 	//フォント切り取り位置(列、行)を初期化する
 	for (int i = 0; i <= length; i++)
 	{
-		font_column[id][i] = 0;
-		font_line[id][i] = 0;
+		font_column[i] = 0;
+		font_line[i] = 0;
 	}
 }
 
@@ -324,7 +321,7 @@ void FontDraw(int id, wchar_t *str, float x, float y, float x_size, float y_size
 //unsigned intが記憶できない値を入力すると、正常に処理されないので注意。
 //
 //▽実際の使用例
-//FontDraw(0, NumConversion(1234), 20, 50, 25, 50, d, false);
+//FontDraw(NumConversion(1234), 20, 50, 25, 50, d, false);
 //
 //▽使用タイミング例
 //武器ポッドウインドウの必要資材数、各施設のレベルアップに必要なHP等といった、
