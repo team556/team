@@ -406,26 +406,26 @@ void CObjFight::Draw()
 	//攻撃用ライン画像
 	src.m_top   =  0.0f;
 	src.m_left  =  0.0f;
-	src.m_right =100.0f;
-	src.m_bottom=100.0f;
+	src.m_right =400.0f;
+	src.m_bottom=60.0f;
 
 	dst.m_top   =200.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=260.0f;
-	Draw::Draw(2, &src, &dst, d0, 0.0f);
+	Draw::Draw(5, &src, &dst, d0, 0.0f);
 
 	dst.m_top   =310.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=370.0f;
-	Draw::Draw(2, &src, &dst, d1, 0.0f);
+	Draw::Draw(6, &src, &dst, d1, 0.0f);
 
 	dst.m_top   =420.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=480.0f;
-	Draw::Draw(2, &src, &dst, d2, 0.0f);
+	Draw::Draw(7, &src, &dst, d2, 0.0f);
 
 	if (battle_end == false) {
 		//ポッドやミサイルのキーボード選択用画像

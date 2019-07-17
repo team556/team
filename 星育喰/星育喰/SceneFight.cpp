@@ -38,8 +38,8 @@ void CSceneFight::InitScene()
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
 
-	//2番にミサイル登録
-	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
+	////2番にミサイル登録
+	//Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み3番に登録
 	Draw::LoadImage(L"P惑星_Lv1.png", 3, TEX_SIZE_512);
@@ -53,8 +53,14 @@ void CSceneFight::InitScene()
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
-	//5番に登録
-	//Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
+	//上レーン画像を5番に登録
+	Draw::LoadImage(L"上レーン.png", 5, TEX_SIZE_512);
+
+	//中央レーン画像を6番に登録
+	Draw::LoadImage(L"中央レーン.png", 6, TEX_SIZE_512);
+
+	//下レーン画像を7番に登録
+	Draw::LoadImage(L"下レーン.png", 7, TEX_SIZE_512);
 
 	//ポッドLv.1を8番に登録
 	Draw::LoadImage(L"ポッド1.png", 8, TEX_SIZE_512);
@@ -107,7 +113,7 @@ void CSceneFight::InitScene()
 	//スペシャル技[リミットブレイク]画像を読み込み24番に登録
 	Draw::LoadImage(L"リミブレ.png", 24, TEX_SIZE_512);
 
-	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
+	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
 	Draw::LoadImage(L"オーバーワーク.png", 25, TEX_SIZE_512);
 
 	Draw::LoadImage(L"モアイ.png", 26, TEX_SIZE_512);
