@@ -184,6 +184,7 @@ int Rand(int n_min, int n_max)
 //x,y,x_size,y_size,color[4]の情報に従い、フリーフォント化した文字を出力する関数。
 //※入力する文字は必ず全角文字を用いる事。
 //半角文字、フォントデータに登録されてない文字等は使用不可なので注意。(入力すると空白扱いとなる)
+//また、読み込み番号121番に白文字集.pngの画像が無ければ正常に動作しないので注意。
 void FontDraw(wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment)
 {
 	//フォントデータ情報

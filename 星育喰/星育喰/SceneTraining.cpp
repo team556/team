@@ -403,6 +403,9 @@ void CSceneTraining::InitScene()
 	//–¢‘•”õ‚Ì•¶Žš‰æ‘œ(‘•”õ•”•ª‚¾‚¯)‚ð“Ç‚Ýž‚Ý105”Ô‚É“o˜^
 	Draw::LoadImage(L"–¢‘•”õ.png", 105, TEX_SIZE_512);
 
+	//¦˜f¯HP‚ª0ˆÈ‰º‚É‚È‚éê‡LvUP‚Ío—ˆ‚Ü‚¹‚ñ•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý106”Ô‚É“o˜^
+	Draw::LoadImage(L"¦˜f¯HP‚ª0ˆÈ‰º‚É‚È‚éê‡LvUP‚Ío—ˆ‚Ü‚¹‚ñ.png", 106, TEX_SIZE_512);
+
 	//Å‘åLv“ž’B!•¶Žš‰æ‘œ‚ð“Ç‚Ýž‚Ý107”Ô‚É“o˜^
 	Draw::LoadImage(L"Å‘åLv“ž’B!.png", 107, TEX_SIZE_512);
 

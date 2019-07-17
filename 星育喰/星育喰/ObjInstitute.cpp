@@ -1387,9 +1387,8 @@ void CObjInstitute::Draw()
 			dst.m_bottom = m_mou_y - 18.0f;
 			Draw::Draw(64, &src, &dst, white, 0.0f);
 
-			//▼フォント表示
-			//研究所レベル
-			Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
+			//▼研究所レベル
+			FontDraw(NumConversion(g_Ins_Level), m_mou_x + 60.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
 		}
 	}
 	
@@ -1608,10 +1607,10 @@ void CObjInstitute::Draw()
 		src.m_right = END_ZERO + (g_Ins_Level * 125);
 		src.m_bottom = 1375.0f;
 
-		dst.m_top = 117;
-		dst.m_left = 380;
-		dst.m_right = 430;
-		dst.m_bottom = 177;
+		dst.m_top = 115;
+		dst.m_left = 385;
+		dst.m_right = 435;
+		dst.m_bottom = 175;
 		Draw::Draw(121, &src, &dst, white, 0.0f);
 		//Font::StrDraw(Ins, 105.0f, 95.0f, 50.0f, white);
 
@@ -1795,18 +1794,8 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 280.0f;
 			Draw::Draw(67, &src, &dst, black, 0.0f);
 
-			//▼五十音(と)文字画像表示//仮に「人」文字画像を使用しています
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 250.0f;
-			dst.m_left = 466.0f;
-			dst.m_right = 496.0f;
-			dst.m_bottom = 280.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
-
+			//「と」の文字画像をFontDraw関数にて表示
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
 
 			//▼素材消費して文字画像表示
 			src.m_top = 0.0f;
@@ -1865,16 +1854,16 @@ void CObjInstitute::Draw()
 		//ダミーの研究所ウインドウのグラフィックを描画する。
 
 		//▼灰色ウインドウ表示(ダミー研究所ウインドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 1160.0f;
+		//src.m_bottom = 660.0f;
 
-		dst.m_top = 20.0f;
-		dst.m_left = 20.0f;
-		dst.m_right = 1180.0f;
-		dst.m_bottom = 680.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		//dst.m_top = 20.0f;
+		//dst.m_left = 20.0f;
+		//dst.m_right = 1180.0f;
+		//dst.m_bottom = 680.0f;
+		//Draw::Draw(20, &src, &dst, white, 0.0f);
 
 		////▼戻るボタン表示(ダミー研究所ウインドウ用)
 		//src.m_top = 0.0f;
@@ -1949,7 +1938,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 80.0f;
 		dst.m_right = 130.0f;
 		dst.m_bottom = 130.0f;
-		Draw::Draw(1, &src, &dst, white, 0.0f);
+		Draw::Draw(1, &src, &dst, back, 0.0f);
 
 
 		//▽以下はミサイルウインドウで描画するもの
@@ -2338,7 +2327,7 @@ void CObjInstitute::Draw()
 		//▽以下は武器ポッドウインドウで描画するもの
 		else // (window_start_manage == Equipment)
 		{
-			//▼武器画像集を表示
+			//▼武器(コア)画像集を表示
 			for (int i = 0; i < 4; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -2356,21 +2345,19 @@ void CObjInstitute::Draw()
 				}
 			}
 
+			//▼ポット画像集を表示
 			for (int p = 0;p < 3;p++)
 			{
-				for (int x = 0;x < 1;x++)
-				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = 64.0f;
-					src.m_bottom = 64.0f;
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
 
-					dst.m_top = 210.0f + p * 150.0f;
-					dst.m_left = 950.0f + x * 170.0f;
-					dst.m_right = 1080.0f + x * 170.0f;
-					dst.m_bottom = 340.0f + p * 150.0f;
-					Draw::Draw(61 + p + x * 3, &src, &dst, equip_pic[p + x * 3], 0.0f);
-				}
+				dst.m_top = 210.0f + p * 150.0f;
+				dst.m_left = 950.0f;
+				dst.m_right = 1080.0f;
+				dst.m_bottom = 340.0f + p * 150.0f;
+				Draw::Draw(61 + p, &src, &dst, equip_pic[12 + p], 0.0f);
 			}
 
 			//▼フォント表示

@@ -20,20 +20,19 @@ RECT_F GetPodEffec(int*ani, int* ani_time, bool del, int timing);
 
 
 //---FontDraw関数
-//引数1　int id			:フォント登録番号[デフォルトでは32個登録可能。FONT_ID_MAXを変えれば増やす事が可能。]
-//引数2　wchar_t *str	:出力したい文字入力場所
-//引数3　float x		:フォント表示位置X
-//引数4  float y		:フォント表示位置Y
-//引数5  float x_size	:フォントのサイズX(横幅)
-//引数6  float y_size	:フォントのサイズY(縦幅)
-//引数7  float color[4]	:フォントカラー&透過度(RGBA)
-//引数8  bool  right_alignment :[true:右詰め　false:左詰め]
+//引数1　wchar_t *str	:出力したい文字入力場所
+//引数2　float x		:フォント表示位置X
+//引数3  float y		:フォント表示位置Y
+//引数4  float x_size	:フォントのサイズX(横幅)
+//引数5  float y_size	:フォントのサイズY(縦幅)
+//引数6  float color[4]	:フォントカラー&透過度(RGBA)
+//引数7  bool  right_alignment :[true:右詰め　false:左詰め]
 //▼内容
-//今回のフォントを登録(保存)する配列番号を決めた後、
 //*strに入力された文字(wchar_t)をフリーフォント画像と照らし合わせ、フリーフォント化し、
 //x,y,x_size,y_size,color[4]の情報に従い、フリーフォント化した文字を出力する関数。
 //※入力する文字は必ず全角文字を用いる事。
 //半角文字、フォントデータに登録されてない文字等は使用不可なので注意。(入力すると空白扱いとなる)
+//また、読み込み番号121番に白文字集.pngの画像が無ければ正常に動作しないので注意。
 void FontDraw(wchar_t *str, float x, float y, float x_size, float y_size, float color[4], bool right_alignment);
 
 //---NumConversion関数

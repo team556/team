@@ -7,6 +7,7 @@
 
 #include "GameHead.h"
 #include "Call_Planet.h"
+#include "UtilityModule.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -50,6 +51,11 @@ void CObjHome::Init()
 	m_Tra_flag = false;
 	m_Eat_flag = false;
 	m_status_flag = false;
+
+	m_special_clip_right = 0.0f;
+	m_special_clip_bottom = 0.0f;
+	m_special_draw_left = 0.0f;
+	m_special_draw_right = 0.0f;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -310,29 +316,89 @@ void CObjHome::Draw()
 	swprintf_s(status_font[0], L"惑星HP：%.0f", g_Player_max_size);	//文字配列に文字データを入れる
 	swprintf_s(status_font[1], L"装備中のスペシャル技：");			//文字配列に文字データを入れる
 
-	//現在装備中のスペシャル技名を文字配列に入れる
+
+	//▽現在装備中のスペシャル技文字画像を読み込み127番に登録する
 	switch (g_Special_equipment)
 	{
 	case 1:
-		swprintf_s(status_font[2], L"Explosion");//文字配列に文字データを入れる
+		//エクスプロージョン文字画像を読み込み127番に登録
+		Draw::LoadImage(L"エクスプロージョン.png", 127, TEX_SIZE_512);
+
+		//切り取り位置を設定する
+		m_special_clip_right = 1072.0f;
+		m_special_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_special_draw_left = 33.0f;
+		m_special_draw_right = 260.0f;
+
 		break;
 	case 2:
-		swprintf_s(status_font[2], L"Fracture Ray");//文字配列に文字データを入れる
+		//フラクチャーレイ文字画像を読み込み127番に登録
+		Draw::LoadImage(L"フラクチャーレイ.png", 127, TEX_SIZE_512);
+
+		//切り取り位置を設定する
+		m_special_clip_right = 952.0f;
+		m_special_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_special_draw_left = 33.0f;
+		m_special_draw_right = 235.0f;
+
 		break;
 	case 3:
-		swprintf_s(status_font[2], L"Immortality");//文字配列に文字データを入れる
+		//イモータリティ文字画像を読み込み127番に登録
+		Draw::LoadImage(L"イモータリティ.png", 127, TEX_SIZE_512);
+
+		//切り取り位置を設定する
+		m_special_clip_right = 817.0f;
+		m_special_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_special_draw_left = 33.0f;
+		m_special_draw_right = 210.0f;
+
 		break;
 	case 4:
-		swprintf_s(status_font[2], L"リミットブレイク");//文字配列に文字データを入れる
+		//オーバーワーク文字画像を読み込み127番に登録
+		Draw::LoadImage(L"オーバーワーク.png", 127, TEX_SIZE_512);
+
+		//切り取り位置を設定する
+		m_special_clip_right = 832.0f;
+		m_special_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_special_draw_left = 33.0f;
+		m_special_draw_right = 210.0f;
+
 		break;
 	case 5:
-		swprintf_s(status_font[2], L"ステロイド投与");//文字配列に文字データを入れる
+		//リミットブレイク文字画像を読み込み127番に登録
+		Draw::LoadImage(L"リミットブレイク.png", 127, TEX_SIZE_512);
+
+		//切り取り位置を設定する
+		m_special_clip_right = 952.0f;
+		m_special_clip_bottom = 112.0f;
+
+		//描画位置を設定する
+		m_special_draw_left = 33.0f;
+		m_special_draw_right = 235.0f;
+
 		break;
 	default:
-		swprintf_s(status_font[2], L"未装備");//文字配列に文字データを入れる
+		//未装備文字画像を読み込み127番に登録
+		Draw::LoadImage(L"未装備.png", 127, TEX_SIZE_512);
+
+		//切り取り位置を設定する
+		m_special_clip_right = 367.0f;
+		m_special_clip_bottom = 117.0f;
+
+		//描画位置を設定する
+		m_special_draw_left = 33.0f;
+		m_special_draw_right = 108.0f;
+
 		break;
 	}
-
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -538,49 +604,51 @@ void CObjHome::Draw()
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
 
-		//▽フォント表示
-		//フォント画像表示
-		/*仮の文字画像を置いています	変更などは加えやすいようにしておきます*/
-		for (int i = 0; i < 3; i++)
-		{
-			////惑星HP文字画像表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 412.0f;
-			//src.m_bottom = 112.0f;
 
-			//dst.m_top = m_mou_y - 70.0f;
-			//dst.m_left = m_mou_x + 35.0f;
-			//dst.m_right = m_mou_x + 135.0f;
-			//dst.m_bottom = m_mou_y  -45.0f;
-			//Draw::Draw(53, &src, &dst, d, 0.0f);
+		//▽フォント画像表示
 
-			////装備中のスペシャル技文字画像
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 1134.0f;
-			//src.m_bottom = 112.0f;
+		//惑星HP文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 412.0f;
+		src.m_bottom = 112.0f;
 
-			//dst.m_top = m_mou_y - 35.0f;
-			//dst.m_left = m_mou_x + 30.0f;
-			//dst.m_right = m_mou_x + 255.0f;
-			//dst.m_bottom = m_mou_y - 10.0f;
-			//Draw::Draw(54, &src, &dst, d, 0.0f);
+		dst.m_top = m_mou_y - 73.0f;
+		dst.m_left = m_mou_x + 33.0f;
+		dst.m_right = m_mou_x + 133.0f;
+		dst.m_bottom = m_mou_y  -48.0f;
+		Draw::Draw(53, &src, &dst, status_font_color[0], 0.0f);
 
-			////未装備文字画像
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 352.0f;
-			//src.m_bottom = 112.0f;
+		//装備中のスペシャル技文字画像
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1242.0f;
+		src.m_bottom = 117.0f;
 
-			//dst.m_top = m_mou_y - 0.0f;
-			//dst.m_left = m_mou_x + 30.0f;
-			//dst.m_right = m_mou_x + 130.0f;
-			//dst.m_bottom = m_mou_y +25.0f;
-			//Draw::Draw(55, &src, &dst, d, 0.0f);
+		dst.m_top = m_mou_y - 33.0f;
+		dst.m_left = m_mou_x + 33.0f;
+		dst.m_right = m_mou_x + 285.0f;
+		dst.m_bottom = m_mou_y - 8.0f;
+		Draw::Draw(54, &src, &dst, status_font_color[1], 0.0f);
 
-			Font::StrDraw(status_font[i], m_mou_x + 33.0f, m_mou_y + - 73.0f + i * 40.0f, 25.0f, status_font_color[i]);
-		}
+		//「：」を表示
+		FontDraw(L"：", m_mou_x + 133.0f, m_mou_y - 73.0f, 25.0f, 25.0f, status_font_color[0], false);
+		FontDraw(L"：", m_mou_x + 285.0f, m_mou_y - 33.0f, 25.0f, 25.0f, status_font_color[1], false);
+
+		//現在の最大惑星HPを表示
+		FontDraw(NumConversion((int)g_Player_max_size), m_mou_x + 158.0f, m_mou_y - 73.0f, 15.0f, 25.0f, status_font_color[0], false);
+
+		//現在装備中のスペシャル技[未装備/エクスプロージョン等]文字画像
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = m_special_clip_right;
+		src.m_bottom = m_special_clip_bottom;
+
+		dst.m_top = m_mou_y + 7.0f;
+		dst.m_left = m_mou_x + m_special_draw_left;
+		dst.m_right = m_mou_x + m_special_draw_right;
+		dst.m_bottom = m_mou_y + 32.0f;
+		Draw::Draw(127, &src, &dst, status_font_color[2], 0.0f);
 	}
 
 

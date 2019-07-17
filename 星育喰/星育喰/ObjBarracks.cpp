@@ -6,6 +6,7 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -975,11 +976,14 @@ void CObjBarracks::Draw()
 			dst.m_left = m_mou_x - 75.0f;
 			dst.m_right = m_mou_x + 40.0f;
 			dst.m_bottom = m_mou_y - 15.0f;
-			Draw::Draw(116, &src, &dst, black, 0.0f);
+			Draw::Draw(116, &src, &dst, white, 0.0f);
 
-			//▼フォント表示
-			//兵舎レベル
-			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
+			//▼兵舎レベル
+			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 60.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
+
+			////▼フォント表示
+			////兵舎レベル
+			//Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
 		}
 	}
 
@@ -1441,29 +1445,44 @@ void CObjBarracks::Draw()
 			dst.m_bottom = 480.0f;
 			Draw::Draw(20, &src, &dst, white, 0.0f);
 
-			//▼素材消費してレベルアップしますか？文字画像表示
+			//▼惑星HP文字画像表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 2017.0f;
+			src.m_right = 412.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 250.0f;
 			dst.m_left = 345.0f;
-			dst.m_right = 855.0f;
+			dst.m_right = 465.0f;
+			dst.m_bottom = 280.0f;
+			Draw::Draw(67, &src, &dst, black, 0.0f);
+
+			//「と」の文字画像をFontDraw関数にて表示
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
+
+			//▼素材消費して文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 717.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 250.0f;
+			dst.m_left = 497.0f;
+			dst.m_right = 677.0f;
 			dst.m_bottom = 280.0f;
 			Draw::Draw(72, &src, &dst, black, 0.0f);
 
-			//▼※研究員は失われません文字画像表示
+			//▼レベルアップしますか？文字画像表示
 			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1304.0f;
+			src.m_left = 717.0f;
+			src.m_right = 2017.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 300.0f;
-			dst.m_left = 347.0f;
-			dst.m_right = 707.0f;
+			dst.m_left = 520.0f;
+			dst.m_right = 850.0f;
 			dst.m_bottom = 330.0f;
-			Draw::Draw(87, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, black, 0.0f);
 
 			//▼はい文字画像表示
 			src.m_top = 0.0f;
