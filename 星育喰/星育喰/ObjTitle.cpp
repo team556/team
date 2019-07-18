@@ -145,11 +145,11 @@ void CObjTitle::Init()
 	g_Research_num = 0;
 	g_Remain_num = 6000;
 
-	g_Iron_num = 0;
-	g_Wood_num = 0;
-	g_Silver_num = 0;
-	g_Plastic_num = 0;
-	g_Aluminum_num = 0;
+	g_Iron_num = 1000;
+	g_Wood_num = 1000;
+	g_Silver_num = 1000;
+	g_Plastic_num = 1000;
+	g_Aluminum_num = 1000;
 	g_gus_num = 0;
 	g_Raremetal_num = 0;
 }
@@ -323,10 +323,10 @@ void CObjTitle::Draw()
 	src.m_right = 384.0f;
 	src.m_bottom = 384.0f;
 
-	dst.m_top = 270.0f;
+	dst.m_top = 250.0f;
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
-	dst.m_bottom = 570.0f;
+	dst.m_bottom = 550.0f;
 	Draw::Draw(50, &src, &dst, d, 0.0f);
 	//Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
@@ -365,7 +365,7 @@ void CObjTitle::Draw()
 	dst.m_top = 0.0f;
 	dst.m_left = 350.0f;
 	dst.m_right = 851.0f;
-	dst.m_bottom = 300.0f;
+	dst.m_bottom = 280.0f;
 	Draw::Draw(1, &src, &dst, w, 0.0);
 
 

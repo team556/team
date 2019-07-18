@@ -753,7 +753,11 @@ void CObjBarracks::Action()
 	//dst.m_bottom = 630.0f;
 
 	//兵舎選択範囲
-	if (450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520)
+	if (
+		((g_Bar_Level == 1) &&(450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520))||		//兵舎レベル1の時の判定処理
+		((g_Bar_Level == 2) && 420 < m_mou_x && m_mou_x < 650 && 270 < m_mou_y && m_mou_y < 520&&!(472< m_mou_x&& m_mou_x <671&& 276 < m_mou_y && m_mou_y <400))||	//兵舎レベル2の時の判定処理
+		((g_Bar_Level == 3) && (420 < m_mou_x && m_mou_x < 778 && 270 < m_mou_y && m_mou_y < 520) && !(472< m_mou_x&& m_mou_x <671 && 276 < m_mou_y && m_mou_y <400))		//兵舎レベル3の時の判定処理
+		)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Bar_color = 1.0f;
@@ -1023,14 +1027,15 @@ void CObjBarracks::Draw()
 		Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, white, 0.0f);
 
 		//▼兵舎LVUP表示
+		//▼研究所LVUP表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 32.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 40.0f;
-		dst.m_right = 160.0f;
+		dst.m_left = 48.0f;
+		dst.m_right = 148.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 

@@ -1101,9 +1101,9 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)||
-		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550&& !(m_mou_y>357&& m_mou_y<550&& m_mou_x>1&& m_mou_x<117))||//レベル2の研究所の処理
-		((g_Ins_Level == 3) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>400 && m_mou_y<452 && m_mou_x>1 && m_mou_x<117)) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)
+	if (((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)||	//研究所のレベル1の時の選択範囲
+		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550&& !(m_mou_y>320&& m_mou_y<450&& m_mou_x>1&& m_mou_x<117))||//研究所のレベル2の時の選択範囲
+		((g_Ins_Level == 3) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !((m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117)) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575))//研究所のレベル3の時の選択範囲
 		)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
@@ -1428,8 +1428,8 @@ void CObjInstitute::Draw()
 		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 40.0f;
-		dst.m_right = 145.0f;
+		dst.m_left = 48.0f;
+		dst.m_right = 148.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
