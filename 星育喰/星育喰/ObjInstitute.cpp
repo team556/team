@@ -1266,6 +1266,10 @@ void CObjInstitute::Draw()
 			m_Mis_recast_next_Hum_num[g_Mis_Recast_Level], 
 			m_Mis_recast_time[g_Mis_Recast_Level + 1]);//その文字配列に文字データを入れる
 	}
+	//ミサイルボタンを押したときに出る数値の初期化
+	m_Mis_recast = g_Recast_time * 10;//g_Recast_timeをint型にして保存する
+	m_Mis_recast_next_f = m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10;
+	m_Mis_recast_next = (int)m_Mis_recast_next_f;
 	
 
 	RECT_F src;//描画元切り取り位置
@@ -2111,6 +2115,7 @@ void CObjInstitute::Draw()
 			//---------------------------------------------------------------------------
 
 			//ミサイルリキャストタイム
+			//一の位を表示するので小数点切り上げていいのでg_Recast_time
 			src.m_top = 1250.0f;
 			src.m_left = CUT_ZERO + (floor((int)g_Recast_time) * 125);
 			src.m_right = END_ZERO + (floor((int)g_Recast_time) * 125);
@@ -2134,9 +2139,10 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 420;
 			Draw::Draw(120, &src, &dst, black, 0.0f);
 
+			//小数第一位なのでm_Mis_recastの一の位
 			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + ((((int)g_Recast_time * 10) % 10) * 125);
-			src.m_right = END_ZERO + ((((int)g_Recast_time * 10) % 10) * 125);
+			src.m_left = CUT_ZERO + ((m_Mis_recast % 10) * 125);
+			src.m_right = END_ZERO + ((m_Mis_recast % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 350;
@@ -2296,8 +2302,8 @@ void CObjInstitute::Draw()
 
 			//小数第一位
 			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
-			src.m_right = END_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
+			src.m_left = CUT_ZERO + ((m_Mis_recast_next % 10) * 125);
+			src.m_right = END_ZERO + ((m_Mis_recast_next % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 560;
