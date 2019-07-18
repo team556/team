@@ -333,12 +333,24 @@ void CObjFightClear::Draw()
 		//※クリア画面で見せるグラフィック
 		if (m_scene_migration_f == false)
 		{
-			//▼ウインドウ表示
-			dst.m_top = 210.0f;
-			dst.m_left = 350.0f;
-			dst.m_right = 1150.0f;
-			dst.m_bottom = 530.0f;
-			Draw::Draw(33, &src, &dst, c[1], 0.0f);
+			////▼ウインドウ表示
+			//dst.m_top = 210.0f;
+			//dst.m_left = 350.0f;
+			//dst.m_right = 1150.0f;
+			//dst.m_bottom = 530.0f;
+			//Draw::Draw(33, &src, &dst, c[1], 0.0f);
+
+			////▼ウインドウ表示
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 5600.0f;
+			//src.m_bottom = 800.0f;
+
+			//dst.m_top = 210.0f;
+			//dst.m_left = 350.0f;
+			//dst.m_right = 1150.0f;
+			//dst.m_bottom = 530.0f;
+			//Draw::Draw(77, &src, &dst, c[1], 0.0f);
 
 
 			//▼戦闘結果フォント表示
@@ -952,10 +964,10 @@ void CObjFightClear::Draw()
 			Draw::Draw(0, &src, &dst, d, 0.0f);
 
 			//▼プレイヤー惑星表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 62.0f;
-			src.m_bottom = 62.0f;
+			src.m_top = 63.0f;
+			src.m_left = 63.0f;
+			src.m_right = 384.0f;
+			src.m_bottom = 384.0f;
 
 			dst.m_top = 250.0f;
 			dst.m_left = 450.0f;

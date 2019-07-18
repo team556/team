@@ -77,9 +77,13 @@ private:
 	float	m_detail_message_window_left;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(left)
 	float	m_detail_message_window_right;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(right)
 	float	m_detail_message_window_bottom;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(bottom)
-	float	m_detail_message_font_x;		//詳細説明(敵惑星、スペシャル技)フォント位置X
-	float	m_detail_message_font_y;		//詳細説明(敵惑星、スペシャル技)フォント位置Y
+	float	m_detail_message_clip_right[DETAIL_MES_MAX_FONT_LINE];	//詳細説明(敵惑星、スペシャル技)画像切り取り位置right
+	float	m_detail_message_clip_bottom[DETAIL_MES_MAX_FONT_LINE]; //詳細説明(敵惑星、スペシャル技)画像切り取り位置bottom
+	float	m_detail_message_draw_y;								//詳細説明(敵惑星、スペシャル技)画像描画位置Y(top & bottom)
+	float	m_detail_message_draw_left;								//詳細説明(敵惑星、スペシャル技)画像描画位置left
+	float	m_detail_message_draw_right[DETAIL_MES_MAX_FONT_LINE];	//詳細説明(敵惑星、スペシャル技)画像描画位置right
 	float	m_detail_message_alpha;			//詳細説明(敵惑星、スペシャル技)の透過度(アルファ値)
+	int     m_level_star_num;				//敵惑星詳細説明にて、難易度を表す★の数を管理
 
 	int		m_destroy_count;			//現在ステージでの敵惑星撃破数
 	//static bool g_destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)

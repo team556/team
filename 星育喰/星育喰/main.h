@@ -6,7 +6,7 @@
 #define PIXEL_SIZE_W	(1200)
 #define PIXEL_SIZE_H	(700)
 //一つのシーンで読み込めるグラフィック総数
-#define SCENE_IMG_MAX	(128)
+#define SCENE_IMG_MAX	(192)
 //一つのシーンで読み込める音楽総数
 #define SCENE_AUDIO_MAX	(32)
 //バックグラウンド色

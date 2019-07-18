@@ -138,7 +138,9 @@
     <ClCompile Include="ObjCloud_Effect.cpp" />
     <ClCompile Include="ObjFight.cpp" />
     <ClCompile Include="ObjHome.cpp" />
-    <ClCompile Include="ObjHuman.cpp" />
+    <ClCompile Include="ObjHuman.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjMessage.cpp" />
     <ClCompile Include="ObjRktHit.cpp" />
     <ClCompile Include="ObjRocket.cpp" />
@@ -191,7 +193,9 @@
     <ClInclude Include="ObjCloud_Effect.h" />
     <ClInclude Include="ObjFight.h" />
     <ClInclude Include="ObjHome.h" />
-    <ClInclude Include="ObjHuman.h" />
+    <ClInclude Include="ObjHuman.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjMessage.h" />
     <ClInclude Include="ObjRktHit.h" />

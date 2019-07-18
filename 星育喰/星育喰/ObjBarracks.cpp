@@ -6,6 +6,7 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -222,7 +223,7 @@ void CObjBarracks::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
-		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -899,7 +900,7 @@ void CObjBarracks::Draw()
 			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 800.0f;
+			src.m_right = 790.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
@@ -909,9 +910,9 @@ void CObjBarracks::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示左下
-			src.m_top = 0.0f;
+			src.m_top = 10.0f;
 			src.m_left = 800.0f;
-			src.m_right = 1600.0f;
+			src.m_right = 1595.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 30.0f;
@@ -958,7 +959,7 @@ void CObjBarracks::Draw()
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
-			src.m_left = 4800.0f;
+			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
 			src.m_bottom = 800.0f;
 
@@ -967,7 +968,6 @@ void CObjBarracks::Draw()
 			dst.m_right = m_mou_x + 120.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
-
 
 			//▼兵舎 Lv文字画像表示
 			src.m_top = 0.0f;
@@ -979,11 +979,14 @@ void CObjBarracks::Draw()
 			dst.m_left = m_mou_x - 75.0f;
 			dst.m_right = m_mou_x + 40.0f;
 			dst.m_bottom = m_mou_y - 15.0f;
-			Draw::Draw(116, &src, &dst, black, 0.0f);
+			Draw::Draw(116, &src, &dst, white, 0.0f);
 
-			//▼フォント表示
-			//兵舎レベル
-			Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
+			//▼兵舎レベル
+			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 60.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
+
+			////▼フォント表示
+			////兵舎レベル
+			//Font::StrDraw(Bar, m_mou_x - 75.0f, m_mou_y - 45.0f, 30.0f, black);
 		}
 	}
 
@@ -1020,10 +1023,10 @@ void CObjBarracks::Draw()
 		src.m_right = 400.0f;
 		src.m_bottom = 400.0f;
 
-		dst.m_top = 120.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 430.0f;
-		dst.m_bottom = 360.0f;
+		dst.m_top = 150.0f;
+		dst.m_left = 150.0f;
+		dst.m_right = 450.0f;
+		dst.m_bottom = 390.0f;
 		Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, white, 0.0f);
 
 		//▼兵舎LVUP表示
@@ -1247,8 +1250,6 @@ void CObjBarracks::Draw()
 		dst.m_bottom = 640.0f;
 		Draw::Draw(78, &src, &dst, black, 0.0f);
 
-
-
 		//▼フォント表示
 		//兵舎レベル
 		src.m_top = 1250.0f;
@@ -1446,29 +1447,44 @@ void CObjBarracks::Draw()
 			dst.m_bottom = 480.0f;
 			Draw::Draw(20, &src, &dst, white, 0.0f);
 
-			//▼素材消費してレベルアップしますか？文字画像表示
+			//▼惑星HP文字画像表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 2017.0f;
+			src.m_right = 412.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 250.0f;
 			dst.m_left = 345.0f;
-			dst.m_right = 855.0f;
+			dst.m_right = 465.0f;
+			dst.m_bottom = 280.0f;
+			Draw::Draw(67, &src, &dst, black, 0.0f);
+
+			//「と」の文字画像をFontDraw関数にて表示
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
+
+			//▼素材消費して文字画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 717.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 250.0f;
+			dst.m_left = 497.0f;
+			dst.m_right = 677.0f;
 			dst.m_bottom = 280.0f;
 			Draw::Draw(72, &src, &dst, black, 0.0f);
 
-			//▼※研究員は失われません文字画像表示
+			//▼レベルアップしますか？文字画像表示
 			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1304.0f;
+			src.m_left = 717.0f;
+			src.m_right = 2017.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 300.0f;
-			dst.m_left = 347.0f;
-			dst.m_right = 707.0f;
+			dst.m_left = 520.0f;
+			dst.m_right = 850.0f;
 			dst.m_bottom = 330.0f;
-			Draw::Draw(87, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, black, 0.0f);
 
 			//▼はい文字画像表示
 			src.m_top = 0.0f;

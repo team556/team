@@ -53,11 +53,11 @@ void CSceneTraining::InitScene()
 	//今は3回ずつの繰り返し回数だが、
 	//繰り返し回数は住民数を管理するグローバル変数を基に
 	//描画する住民の数分行うように後に変更しておく。
-	for (int i = 0; i < 3; i++)
-	{
-		CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
-		Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
-	}
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
+	//	Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
+	//}
 
 	
 	//育成画面オブジェクト
@@ -169,19 +169,19 @@ void CSceneTraining::InitScene()
 	//倉庫画像読み込み27番に登録
 	Draw::LoadImage(L"倉庫.png", 27, TEX_SIZE_512);
 
-	//資材選択ボタン画像読み込み28番に登録
-	Draw::LoadImage(L"資材選択ボタン.png", 28 , TEX_SIZE_512);
+	//資材ボタン画像読み込み28番に登録
+	Draw::LoadImage(L"資材ボタン.png", 28 , TEX_SIZE_512);
 
-	//住民選択ボタン画像読み込み29番に登録
-	Draw::LoadImage(L"住民選択ボタン.png", 29, TEX_SIZE_512);
+	//住民ボタン画像読み込み29番に登録
+	Draw::LoadImage(L"住民ボタン.png", 29, TEX_SIZE_512);
 
-	//スペシャル技選択ボタン画像読み込み30番に登録
-	Draw::LoadImage(L"スペシャル技選択ボタン.png", 30, TEX_SIZE_512);
+	//スペシャル技ボタン画像読み込み30番に登録
+	Draw::LoadImage(L"スペシャルボタン.png", 30, TEX_SIZE_512);
 
-	//装備選択ボタン画像読み込み31番に登録
-	Draw::LoadImage(L"装備選択ボタン.png", 31, TEX_SIZE_512);
+	//装備ボタン画像読み込み31番に登録
+	Draw::LoadImage(L"装備ボタン.png", 31, TEX_SIZE_512);
 
-	//資材ボタン選択後の画面背景画像32番に登録
+	//資材ボタン後の画面背景画像32番に登録
 	Draw::LoadImage(L"w.png", 32 , TEX_SIZE_512);
 
 	//資材(木材)画像33番に登録
@@ -403,6 +403,9 @@ void CSceneTraining::InitScene()
 	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
 	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
 
+	//※惑星HPが0以下になる場合LvUPは出来ません文字画像を読み込み106番に登録
+	Draw::LoadImage(L"※惑星HPが0以下になる場合LvUPは出来ません.png", 106, TEX_SIZE_512);
+
 	//最大Lv到達!文字画像を読み込み107番に登録
 	Draw::LoadImage(L"最大Lv到達!.png", 107, TEX_SIZE_512);
 
@@ -430,19 +433,26 @@ void CSceneTraining::InitScene()
 	//Sを読み込み122番に登録
 	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
 
-	//Lv1を読み込み122番に登録
+	//Lv1を読み込み123番に登録
 	Draw::LoadImage(L"Lv1.png", 123, TEX_SIZE_512);
 
-	//Lv2を読み込み122番に登録
+	//Lv2を読み込み124番に登録
 	Draw::LoadImage(L"Lv2.png", 124, TEX_SIZE_512);
 
-	//Lv3を読み込み122番に登録
+	//Lv3を読み込み125番に登録
 	Draw::LoadImage(L"Lv3.png", 125, TEX_SIZE_512);
 
+	//ポッド強化ボタンLv1を126番に登録
+	Draw::LoadImage(L"ポッド強化ボタンLv1.png", 128, TEX_SIZE_512);
+
+	//ポッド強化ボタンLv2を127番に登録
+	Draw::LoadImage(L"ポッド強化ボタンLv2.png", 129, TEX_SIZE_512);
+
+	//ポッド強化ボタンLv3を128番に登録
+	Draw::LoadImage(L"ポッド強化ボタンLv3.png", 130, TEX_SIZE_512);
 
 	//簡易メッセージ画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
-
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);

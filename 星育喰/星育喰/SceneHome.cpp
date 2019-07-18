@@ -81,10 +81,14 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"惑星HP.png", 53, TEX_SIZE_512);
 
 	//装備中のスペシャル技文字画像を読み込み54番に登録
-	Draw::LoadImage(L"ミサイル生産速度UP.png", 54, TEX_SIZE_512);//名前を変更してください
+	Draw::LoadImage(L"装備中のスペシャル技.png", 54, TEX_SIZE_512);
 
-	//未装備文字画像を読み込み55番に登録
-	Draw::LoadImage(L"装備中.png", 55, TEX_SIZE_512);//名前を変更してください
+	//白文字画像を読み込み121番に登録
+	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+
+	
+	//現在装備中のスペシャル技文字画像全てを読み込む為に、
+	//読み込み番号127番を使用しているので使わないように！
 
 
 	//音楽読み込み

@@ -207,8 +207,8 @@ void CObjSpecialButton::Draw()
 		//▼スペシャル技ボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 175.0f;
-		src.m_bottom = 114.0f;
+		src.m_right = 192.0f;
+		src.m_bottom = 128.0f;
 
 		dst.m_top = m_y;
 		dst.m_left = m_x;
@@ -258,10 +258,10 @@ void CObjSpecialButton::Draw()
 
 		//▼プレイヤー表示
 		if (m_pla_type == 0) {
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 592.0f;
-			src.m_bottom = 112.0f;
+			src.m_top = 63.0f;
+			src.m_left = 63.0f;
+			src.m_right = 384.0f;
+			src.m_bottom = 384.0f;
 
 			dst.m_top = 150.0f;
 			dst.m_left = 375.0f;
