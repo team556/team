@@ -426,7 +426,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
-		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -866,7 +866,7 @@ void CObjInstitute::Action()
 						m_finalcheck_f = false;
 
 						//選択音
-						Audio::Start(1);
+						Audio::Start(3);
 					}
 				}
 				else
@@ -1306,7 +1306,7 @@ void CObjInstitute::Draw()
 			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 800.0f;
+			src.m_right = 790.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
@@ -1316,9 +1316,9 @@ void CObjInstitute::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示左下
-			src.m_top = 0.0f;
+			src.m_top = 10.0f;
 			src.m_left = 800.0f;
-			src.m_right = 1600.0f;
+			src.m_right = 1595.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 30.0f;
@@ -1365,7 +1365,7 @@ void CObjInstitute::Draw()
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
-			src.m_left = 4800.0f;
+			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
 			src.m_bottom = 800.0f;
 

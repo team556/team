@@ -53,11 +53,11 @@ void CSceneTraining::InitScene()
 	//今は3回ずつの繰り返し回数だが、
 	//繰り返し回数は住民数を管理するグローバル変数を基に
 	//描画する住民の数分行うように後に変更しておく。
-	for (int i = 0; i < 3; i++)
-	{
-		CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
-		Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
-	}
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
+	//	Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
+	//}
 
 	
 	//育成画面オブジェクト
@@ -445,7 +445,6 @@ void CSceneTraining::InitScene()
 
 	//簡易メッセージ画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
-
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
