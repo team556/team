@@ -152,7 +152,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"メッセージウィンドウ.png", 21, TEX_SIZE_512);
 
 	//矢印を読み込み22番に登録
-	Draw::LoadImage(L"矢印.png", 22, TEX_SIZE_512);
+	Draw::LoadImage(L"レベルアップ.png", 22, TEX_SIZE_512);
 
 	//住民振り分けUPを読み込み23番に登録
 	Draw::LoadImage(L"戦上01.png", 23, TEX_SIZE_512);
@@ -169,19 +169,19 @@ void CSceneTraining::InitScene()
 	//倉庫画像読み込み27番に登録
 	Draw::LoadImage(L"倉庫.png", 27, TEX_SIZE_512);
 
-	//資材選択ボタン画像読み込み28番に登録
-	Draw::LoadImage(L"資材選択ボタン.png", 28 , TEX_SIZE_512);
+	//資材ボタン画像読み込み28番に登録
+	Draw::LoadImage(L"資材ボタン.png", 28 , TEX_SIZE_512);
 
-	//住民選択ボタン画像読み込み29番に登録
-	Draw::LoadImage(L"住民選択ボタン.png", 29, TEX_SIZE_512);
+	//住民ボタン画像読み込み29番に登録
+	Draw::LoadImage(L"住民ボタン.png", 29, TEX_SIZE_512);
 
-	//スペシャル技選択ボタン画像読み込み30番に登録
-	Draw::LoadImage(L"スペシャル技選択ボタン.png", 30, TEX_SIZE_512);
+	//スペシャル技ボタン画像読み込み30番に登録
+	Draw::LoadImage(L"スペシャルボタン.png", 30, TEX_SIZE_512);
 
-	//装備選択ボタン画像読み込み31番に登録
-	Draw::LoadImage(L"装備選択ボタン.png", 31, TEX_SIZE_512);
+	//装備ボタン画像読み込み31番に登録
+	Draw::LoadImage(L"装備ボタン.png", 31, TEX_SIZE_512);
 
-	//資材ボタン選択後の画面背景画像32番に登録
+	//資材ボタン後の画面背景画像32番に登録
 	Draw::LoadImage(L"w.png", 32 , TEX_SIZE_512);
 
 	//資材(木材)画像33番に登録
@@ -266,7 +266,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ポッドコア白Lv2.png", 59, TEX_SIZE_512);
 
 	//ポッドコア白Lv2の画像を読み込み60番に登録
-	Draw::LoadImage(L"ポッドコア白Lv2.png", 60, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドコア白Lv3.png", 60, TEX_SIZE_512);
 
 	//ポッド白Lv1の画像を読み込み61番に登録
 	Draw::LoadImage(L"ポッド白Lv1.png", 61, TEX_SIZE_512);
@@ -402,6 +402,9 @@ void CSceneTraining::InitScene()
 
 	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
 	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
+
+	//※惑星HPが0以下になる場合LvUPは出来ません文字画像を読み込み106番に登録
+	Draw::LoadImage(L"※惑星HPが0以下になる場合LvUPは出来ません.png", 106, TEX_SIZE_512);
 
 	//最大Lv到達!文字画像を読み込み107番に登録
 	Draw::LoadImage(L"最大Lv到達!.png", 107, TEX_SIZE_512);

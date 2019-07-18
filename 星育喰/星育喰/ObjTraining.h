@@ -5,7 +5,6 @@
 using namespace GameL;
 
 //マクロ
-#define FACILITY_MES_MAX_FONT_LINE (6) //施設(兵舎、研究所)の必要素材&サイズメッセージの最大フォント行数
 #define FACILITY_MAX_LV (3) //施設(兵舎、研究所)のMAXレベル
 #define MAT_NAME_CHAR_DATA_STORE_NUM (7) //素材名の文字データ格納可能数
 #define CON_PRE_TIME (30)	//連続振り分け前の次住民振り分け時間(0.5秒)
@@ -44,7 +43,7 @@ protected:
 
 	float m_Back_Button_color;	//戻るボタンカラー明度
 
-	wchar_t m_message[18];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用「画像で行うので、全て変更後不要なので消すべし。」
+	//wchar_t m_message[18];		//マウスカーソル上部に描画する簡易メッセージ(エラーメッセージ、レベルUP表示等)のフォント用「画像で行うので、全て変更後不要なので消すべし。」
 	float	m_message_clip_right;	//簡易メッセージ画像切り取り位置right
 	float	m_message_clip_bottom;	//簡易メッセージ画像切り取り位置bottom
 	float	m_message_draw_left;	//簡易メッセージ画像描画位置left
@@ -58,7 +57,7 @@ protected:
 	float m_No_Button_color;		//最終確認[いいえ]ボタンカラー(Blue)調節用
 
 	//▼施設(兵舎、研究所)LvUP処理等に使用する配列
-	wchar_t m_Facility_message[FACILITY_MES_MAX_FONT_LINE][22];	//施設(兵舎、研究所)の必要素材&サイズメッセージのフォント用(素材名除く)
+	//wchar_t m_Facility_message[20][22];	//施設(兵舎、研究所)の必要素材&サイズメッセージのフォント用(素材名除く)(フォント入れ替えしたのでこれは不要である。)
 	wchar_t m_message_Mat_name[MAT_NAME_CHAR_DATA_STORE_NUM];	//各メッセージ(兵舎、研究所、武器ポッド)の素材名フォント用(現在ウインドウサイズ的に全角6文字分しか入らないようにしている)
 
 	float  m_Facility_next_Size_num[FACILITY_MAX_LV - 1];	//施設(兵舎、研究所)の次のLVUPに必要なサイズ(HP)管理用

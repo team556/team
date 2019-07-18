@@ -87,7 +87,7 @@ void CObjPreparation::Init()
 	m_detail_message_font_y = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
 
-	m_destroy_count = 3;
+	m_destroy_count = 0;
 
 	//現在の撃破数をカウント
 	for (int i = 0; i < 4; i++)
@@ -618,7 +618,7 @@ void CObjPreparation::Action()
 				//ボス惑星出現時の処理
 				if (m_destroy_count == 4)
 				{
-					m_warning_message_x[0] = 200.7f;
+					m_warning_message_x[0] = 97.2f;
 				}
 				//それ以外の時の処理
 				else
@@ -681,6 +681,7 @@ void CObjPreparation::Action()
 			if (m_warning_message_alpha <= 0.0f)
 			{
 				m_destroy_count = 4;
+				m_warning_message_x[0] = 97.2f;
 				m_speed = m_save_speed;
 			}
 			else if (m_warning_message_alpha > 0.0f)
@@ -808,7 +809,7 @@ void CObjPreparation::Action()
 		//ボス惑星出現時の処理
 		if (m_destroy_count == 4)
 		{
-			m_warning_message_x[0] += 7.35f;
+			m_warning_message_x[0] += 5.05f;
 		}
 		//それ以外の時の処理
 		else
@@ -1238,8 +1239,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 112.0f;
 
 		dst.m_top = m_warning_message_y[0];
-		dst.m_left =/* m_warning_message_x[0]+*/350;
-		dst.m_right = /*m_warning_message_x[0] + (m_warning_message_size * 8.0) + */900;
+		dst.m_left = m_warning_message_x[0] + (m_warning_message_size) + 240.0f - (m_warning_message_size - 45);
+		dst.m_right = m_warning_message_x[0] + (m_warning_message_size * 8.5) + 240.0f + (m_warning_message_size - 45);
 		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
 		Draw::Draw(63, &src, &dst, warning_message, 0.0);
 	}
@@ -1250,14 +1251,14 @@ void CObjPreparation::Draw()
 	//▽ウインドウ表示 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
 	dst.m_top = m_mou_y + m_detail_message_window_top;
 	dst.m_left = m_mou_x + m_detail_message_window_left;
 	dst.m_right = m_mou_x + m_detail_message_window_right;
 	dst.m_bottom = m_mou_y + m_detail_message_window_bottom;
-	Draw::Draw(55, &src, &dst, detail_message_window, 0.0f);
+	Draw::Draw(89, &src, &dst, detail_message_window, 0.0f);
 
 	//▽フォント表示
 	for (int i = 0; i < DETAIL_MES_MAX_FONT_LINE; i++)
@@ -1284,14 +1285,14 @@ void CObjPreparation::Draw()
 		//▼最終確認ウインドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = 220.0f;
 		dst.m_left = 320.0f;
 		dst.m_right = 880.0f;
 		dst.m_bottom = 480.0f;
-		Draw::Draw(55, &src, &dst, d, 0.0f);
+		Draw::Draw(89, &src, &dst, d, 0.0f);
 
 		//▼喰う？文字画像表示
 		src.m_top = 0.0f;
