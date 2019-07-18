@@ -40,6 +40,10 @@ private:
 	int   m_Lv_id;		//レベル識別番号(Lv.1 = 0  Lv.2 = 1  Lv.3 = 2)[Equip_message用]
 	int   m_equipable_count; //装備可能となる研究員数管理用[Equip_message用]
 
+	int	  m_Mis_recast;			//現在のミサイルリキャストタイム表示する用
+	float   m_Mis_recast_next_f;	//次のミサイルリキャストタイム表示する用を保存するよう
+	int   m_Mis_recast_next;	//次のミサイルリキャストタイム表示する用
+
 	wchar_t m_Equ_message[EQU_MES_MAX_FONT_LINE][22];	//武器ポッド必要素材&人数メッセージのフォント用(素材名除く)
 	float   m_Equ_alpha;								//武器ポッド必要素材&人数フォントの透過度
 	float	m_Equ_message_window_x_size;				//武器ポッド必要素材&人数ウインドウのサイズX
