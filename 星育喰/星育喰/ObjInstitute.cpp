@@ -263,8 +263,19 @@ void CObjInstitute::Init()
 void CObjInstitute::Action()
 {
 	//ホワイトアウト演出中は操作不能にする処理
+	//※ただしミサイルリキャストレベルUPチェックだけは行う。
+	//※マウス位置取得はミサイルリキャストタイムレベルUPチェックに必要なので入れてる。
 	if (white_out_f == true)
 	{
+		//マウスの位置を取得
+		m_mou_x = (float)Input::GetPosX();
+		m_mou_y = (float)Input::GetPosY();
+
+		//▼ミサイルリキャストレベルUPチェック
+		//レベルUP条件を満たしているかチェックし、
+		//満たしていればレベルUPさせる。
+		Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
+
 		return;
 	}
 
@@ -332,14 +343,14 @@ void CObjInstitute::Action()
 							//研究所のレベルUP処理
 							g_Ins_Level++;
 
+							//▼ミサイルリキャストレベルUPチェック
+							//レベルUP条件を満たしているかチェックし、
+							//満たしていればレベルUPさせる。
+							Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
+
 							//レベルアップ音
 							Audio::Start(3);
 						}
-
-						//▼ミサイルリキャストレベルUPチェック
-						//レベルUP条件を満たしているかチェックし、
-						//満たしていればレベルUPさせる。
-						Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
 
 						m_Yes_Button_color = 0.0f;
 
@@ -1101,7 +1112,10 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)
+	if (((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)||
+		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550&& !(m_mou_y>357&& m_mou_y<550&& m_mou_x>1&& m_mou_x<117))||//レベル2の研究所の処理
+		((g_Ins_Level == 3) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>400 && m_mou_y<452 && m_mou_x>1 && m_mou_x<117)) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)
+		)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Ins_color = 1.0f;
@@ -1373,9 +1387,8 @@ void CObjInstitute::Draw()
 			dst.m_bottom = m_mou_y - 18.0f;
 			Draw::Draw(64, &src, &dst, white, 0.0f);
 
-			//▼フォント表示
-			//研究所レベル
-			Font::StrDraw(Ins, m_mou_x - 95.0f, m_mou_y - 45.0f, 30.0f, white);
+			//▼研究所レベル
+			FontDraw(NumConversion(g_Ins_Level), m_mou_x + 60.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
 		}
 	}
 	
@@ -1421,12 +1434,12 @@ void CObjInstitute::Draw()
 		//▼研究所LVUP表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 32.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 120.0f;
+		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
 		dst.m_left = 40.0f;
-		dst.m_right = 160.0f;
+		dst.m_right = 145.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
@@ -1594,10 +1607,10 @@ void CObjInstitute::Draw()
 		src.m_right = END_ZERO + (g_Ins_Level * 125);
 		src.m_bottom = 1375.0f;
 
-		dst.m_top = 117;
-		dst.m_left = 380;
-		dst.m_right = 430;
-		dst.m_bottom = 177;
+		dst.m_top = 115;
+		dst.m_left = 385;
+		dst.m_right = 435;
+		dst.m_bottom = 175;
 		Draw::Draw(121, &src, &dst, white, 0.0f);
 		//Font::StrDraw(Ins, 105.0f, 95.0f, 50.0f, white);
 
@@ -1781,18 +1794,8 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 280.0f;
 			Draw::Draw(67, &src, &dst, black, 0.0f);
 
-			//▼五十音(と)文字画像表示//仮に「人」文字画像を使用しています
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 250.0f;
-			dst.m_left = 466.0f;
-			dst.m_right = 496.0f;
-			dst.m_bottom = 280.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
-
+			//「と」の文字画像をFontDraw関数にて表示
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
 
 			//▼素材消費して文字画像表示
 			src.m_top = 0.0f;
@@ -1851,16 +1854,16 @@ void CObjInstitute::Draw()
 		//ダミーの研究所ウインドウのグラフィックを描画する。
 
 		//▼灰色ウインドウ表示(ダミー研究所ウインドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1160.0f;
-		src.m_bottom = 660.0f;
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 1160.0f;
+		//src.m_bottom = 660.0f;
 
-		dst.m_top = 20.0f;
-		dst.m_left = 20.0f;
-		dst.m_right = 1180.0f;
-		dst.m_bottom = 680.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		//dst.m_top = 20.0f;
+		//dst.m_left = 20.0f;
+		//dst.m_right = 1180.0f;
+		//dst.m_bottom = 680.0f;
+		//Draw::Draw(20, &src, &dst, white, 0.0f);
 
 		////▼戻るボタン表示(ダミー研究所ウインドウ用)
 		//src.m_top = 0.0f;
@@ -1935,7 +1938,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 80.0f;
 		dst.m_right = 130.0f;
 		dst.m_bottom = 130.0f;
-		Draw::Draw(1, &src, &dst, white, 0.0f);
+		Draw::Draw(1, &src, &dst, back, 0.0f);
 
 
 		//▽以下はミサイルウインドウで描画するもの
@@ -2324,7 +2327,7 @@ void CObjInstitute::Draw()
 		//▽以下は武器ポッドウインドウで描画するもの
 		else // (window_start_manage == Equipment)
 		{
-			//▼武器画像集を表示
+			//▼武器(コア)画像集を表示
 			for (int i = 0; i < 4; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -2342,21 +2345,19 @@ void CObjInstitute::Draw()
 				}
 			}
 
+			//▼ポット画像集を表示
 			for (int p = 0;p < 3;p++)
 			{
-				for (int x = 0;x < 1;x++)
-				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = 64.0f;
-					src.m_bottom = 64.0f;
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
 
-					dst.m_top = 210.0f + p * 150.0f;
-					dst.m_left = 950.0f + x * 170.0f;
-					dst.m_right = 1080.0f + x * 170.0f;
-					dst.m_bottom = 340.0f + p * 150.0f;
-					Draw::Draw(61 + p + x * 3, &src, &dst, equip_pic[p + x * 3], 0.0f);
-				}
+				dst.m_top = 210.0f + p * 150.0f;
+				dst.m_left = 950.0f;
+				dst.m_right = 1080.0f;
+				dst.m_bottom = 340.0f + p * 150.0f;
+				Draw::Draw(61 + p, &src, &dst, equip_pic[12 + p], 0.0f);
 			}
 
 			//▼フォント表示
@@ -2364,8 +2365,18 @@ void CObjInstitute::Draw()
 			wchar_t weapon_Lv[5];
 			for (int i = 0; i < 3; i++)
 			{
-				swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
-				Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 313.0f;
+				src.m_bottom = 107.0f;
+
+				dst.m_top = 250 + (i * 150);
+				dst.m_left = 80;
+				dst.m_right = 200;
+				dst.m_bottom = 300 + (i * 150);
+				Draw::Draw(123 + i, &src, &dst,white, 0.0f);
+				//swprintf_s(weapon_Lv, L"Lv.%d", i + 1);
+				//Font::StrDraw(weapon_Lv, 80.0f, 250.0f + i * 150.0f, 50.0f, white);
 			}
 
 			//▼レッド文字画像表示
@@ -2466,33 +2477,33 @@ void CObjInstitute::Draw()
 			Draw::Draw(75, &src, &dst, Equ_message_font[1], 0.0f);
 
 			//▼現在の研究員数を表示
-			FontDraw(0, NumConversion(g_Research_num), m_mou_x + 40.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
+			FontDraw(NumConversion(g_Research_num), m_mou_x + 40.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
 
 			//▽武器ポッド画像が灰色(レベルUP済[装備可])の時のみ描画するもの
 			if (m_Equ_alpha == -0.1f)
 			{
 				//▼装備可能となる研究員数表示
-				FontDraw(1, NumConversion(m_equipable_count), m_mou_x - 40.0f, m_mou_y - 40.0f, 20.0f, 30.0f, black, true);
+				FontDraw(NumConversion(m_equipable_count), m_mou_x - 40.0f, m_mou_y - 40.0f, 20.0f, 30.0f, black, true);
 			}
 			//▽武器ポッド画像が黄色(レベルアップ可能)、黒色(装備不可)の時のみ描画するもの
 			//※武器ポッド必要素材&人数フォント透過度が0.0fの時は処理さえしないようにする。
 			else if (m_Equ_alpha != 0.0f)
 			{
 				//▼各武器、ポッドの次のLVUPに必要な研究員の住民数表示
-				FontDraw(2, NumConversion(m_Equ_next_Hum_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
+				FontDraw(NumConversion(m_Equ_next_Hum_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 120.0f, 15.0f, 25.0f, Equ_message_font[1], true);
 
 				//▼各武器、ポッドの次のLVUPに必要な素材名表示
-				FontDraw(3, m_Equ_next_Mat_name[m_equip_id][m_Lv_id - 1], m_mou_x - 135.0f, m_mou_y - 80.0f, 25.0f, 25.0f, Equ_message_font[2], false);
+				FontDraw(m_Equ_next_Mat_name[m_equip_id][m_Lv_id - 1], m_mou_x - 135.0f, m_mou_y - 80.0f, 25.0f, 25.0f, Equ_message_font[2], false);
 
 				//▼各武器、ポッドの次のLVUPに必要な現在の素材所持数を表示
-				FontDraw(4, NumConversion(*m_Equ_next_Mat_type[m_equip_id][m_Lv_id - 1]), m_mou_x + 40.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
+				FontDraw(NumConversion(*m_Equ_next_Mat_type[m_equip_id][m_Lv_id - 1]), m_mou_x + 40.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
 
 				//▼各武器、ポッドの次のLVUPに必要な素材数を表示
-				FontDraw(5, NumConversion(m_Equ_next_Mat_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
+				FontDraw(NumConversion(m_Equ_next_Mat_num[m_equip_id][m_Lv_id - 1]), m_mou_x + 120.0f, m_mou_y - 80.0f, 15.0f, 25.0f, Equ_message_font[2], true);
 
 				//▼「所持 / 必要」の値を区切る仕切り表示
-				FontDraw(6, L"／", m_mou_x + 55.0f, m_mou_y - 120.0f, 20.0f, 25.0f, Equ_message_font[1], false);
-				FontDraw(7, L"／", m_mou_x + 55.0f, m_mou_y - 80.0f, 20.0f, 25.0f, Equ_message_font[2], false);
+				FontDraw(L"／", m_mou_x + 55.0f, m_mou_y - 120.0f, 20.0f, 25.0f, Equ_message_font[1], false);
+				FontDraw(L"／", m_mou_x + 55.0f, m_mou_y - 80.0f, 20.0f, 25.0f, Equ_message_font[2], false);
 			}
 
 			//▼最下部メッセージ(ウインドウ一番下にあるフォント)画像表示

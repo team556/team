@@ -38,6 +38,11 @@ private:
 	bool  m_Eat_flag;	//喰アイコンクリック時trueフラグ
 	bool  m_status_flag;//プレイヤー惑星ステータス表示フラグ(true:表示　false:非表示)
 
+	float	m_special_clip_right;	//スペシャル技文字画像切り取り位置right
+	float	m_special_clip_bottom;	//スペシャル技文字画像切り取り位置bottom
+	float	m_special_draw_left;	//スペシャル技文字画像描画位置left
+	float	m_special_draw_right;	//スペシャル技文字画像描画位置right
+
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
 	bool  m_mou_r;		//マウスプッシュ確認(右クリック)

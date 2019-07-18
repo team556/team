@@ -33,28 +33,34 @@ CSceneFight::~CSceneFight()
 void CSceneFight::InitScene()
 {
 	//背景を読み込み0番に登録
-	Draw::LoadImage(L"TitleBackgroundTest.jpg", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
 	Draw::LoadImage(L"Human.png", 1, TEX_SIZE_512);
 
-	//2番にミサイル登録
-	Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
+	////2番にミサイル登録
+	//Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み3番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1.png", 3, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み4番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv2.png", 4, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み5番に登録
-	Draw::LoadImage(L"プレイヤー惑星Lv1 128x.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv3.png", 5, TEX_SIZE_512);
 
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
-	//5番に登録
-	//Draw::LoadImage(L"プレイヤー捕食.png", 5, TEX_SIZE_512);
+	//上レーン画像を5番に登録
+	Draw::LoadImage(L"上レーン.png", 5, TEX_SIZE_512);
+
+	//中央レーン画像を6番に登録
+	Draw::LoadImage(L"中央レーン.png", 6, TEX_SIZE_512);
+
+	//下レーン画像を7番に登録
+	Draw::LoadImage(L"下レーン.png", 7, TEX_SIZE_512);
 
 	//ポッドLv.1を8番に登録
 	Draw::LoadImage(L"ポッド1.png", 8, TEX_SIZE_512);
@@ -90,25 +96,25 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 
 	//スペシャル技ボタンを読み込み19番に登録
-	Draw::LoadImage(L"スペシャル技ボタン(仮).png", 19, TEX_SIZE_512);
+	Draw::LoadImage(L"スペシャル技ボタン.png", 19, TEX_SIZE_512);
 
 	//ポーズ画面背景を読み込み20番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 20, TEX_SIZE_512);
 
 	//スペシャル技[Explosion]画像を読み込み21番に登録
-	Draw::LoadImage(L"Explosion.png", 21, TEX_SIZE_512);
+	Draw::LoadImage(L"エクスプロージョンビーム.png", 21, TEX_SIZE_512);
 
 	//スペシャル技[Fracture_Ray]画像を読み込み22番に登録
-	Draw::LoadImage(L"スペシャル技Fracture_Ray.png", 22, TEX_SIZE_512);
+	Draw::LoadImage(L"フラクチャーレイビーム.png", 22, TEX_SIZE_512);
 
 	//スペシャル技[Immortality]画像を読み込み23番に登録
 	Draw::LoadImage(L"スペシャル技インモータリティ.png", 23, TEX_SIZE_512);
 
 	//スペシャル技[リミットブレイク]画像を読み込み24番に登録
-	Draw::LoadImage(L"攻撃力アップ.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"リミブレ.png", 24, TEX_SIZE_512);
 
-	//スペシャル技[ステロイド投与]画像を読み込み25番に登録
-	Draw::LoadImage(L"ステロイド投与.png", 25, TEX_SIZE_512);
+	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
+	Draw::LoadImage(L"オーバーワーク.png", 25, TEX_SIZE_512);
 
 	Draw::LoadImage(L"モアイ.png", 26, TEX_SIZE_512);
 
@@ -155,7 +161,7 @@ void CSceneFight::InitScene()
 	//白文字のフォントを41番に登録
 	Draw::LoadImage(L"白文字集.png", 41, TEX_SIZE_512);
 
-	//スタート！を42番に登録
+	//スタート！文字画像を42番に登録
 	Draw::LoadImage(L"スタート！.png", 42, TEX_SIZE_512);
 
 	//プレイヤーを43番に登録
@@ -164,64 +170,64 @@ void CSceneFight::InitScene()
 	//エネミーを44番に登録
 	Draw::LoadImage(L"エネミー.png", 44, TEX_SIZE_512);
 
-	//エクスプロージョンを45番に登録
+	//エクスプロージョン文字画像を45番に登録
 	Draw::LoadImage(L"エクスプロージョン.png", 45, TEX_SIZE_512);
 
-	//フラクチャーレイを46番に登録
+	//フラクチャーレイ文字画像を46番に登録
 	Draw::LoadImage(L"フラクチャーレイ.png", 46, TEX_SIZE_512);
 
-	//イモータリティを47番に登録
+	//イモータリティ文字画像を47番に登録
 	Draw::LoadImage(L"イモータリティ.png", 47, TEX_SIZE_512);
 
-	//オーバーワークを48番に登録
+	//オーバーワーク文字画像を48番に登録
 	Draw::LoadImage(L"オーバーワーク.png", 48, TEX_SIZE_512);
 
-	//リミットブレイクを49番に登録
+	//リミットブレイク文字画像を49番に登録
 	Draw::LoadImage(L"リミットブレイク.png", 49, TEX_SIZE_512);
 
 	//発動！を50番に登録
 	Draw::LoadImage(L"発動！.png", 50, TEX_SIZE_512);
 
-	//クリックでタイトルに戻るを５１番に登録
+	//クリックでタイトルに戻る文字画像を５１番に登録
 	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
-	//クリックでホーム画面を52番に登録
+	//クリックでホーム画面文字画像を52番に登録
 	Draw::LoadImage(L"クリックでホーム画面.png", 52, TEX_SIZE_512);
 
-	//捕食成功！を53番に登録
+	//捕食成功！文字画像を53番に登録
 	Draw::LoadImage(L"捕食成功！.png", 53, TEX_SIZE_512);
 
-	//スペシャル技を54番に登録
+	//スペシャル技文字画像を54番に登録
 	Draw::LoadImage(L"スペシャル技.png", 54, TEX_SIZE_512);
 
-	//惑星HPを55番に登録
+	//惑星HP文字画像を55番に登録
 	Draw::LoadImage(L"惑星HP.png", 55, TEX_SIZE_512);
 
-	//住民を56番に登録
+	//住民文字画像を56番に登録
 	Draw::LoadImage(L"住民.png", 56, TEX_SIZE_512);
 
-	//作業を57番に登録
+	//資材文字画像を57番に登録
 	Draw::LoadImage(L"資材.png", 57, TEX_SIZE_512);
 
-	//クリックでタイトルに戻るを５8番に登録
+	//クリックでタイトルに戻る文字画像を５8番に登録
 	Draw::LoadImage(L"GAME_OVER.png", 58, TEX_SIZE_512);
 
-	//木材を59番に登録
+	//木材文字画像を59番に登録
 	Draw::LoadImage(L"木材文字.png", 59, TEX_SIZE_512);
 
-	//鉄を60番に登録
+	//鉄文字画像を60番に登録
 	Draw::LoadImage(L"鉄文字.png", 60, TEX_SIZE_512);
 
-	//銀を61番に登録
+	//銀文字画像を61番に登録
 	Draw::LoadImage(L"銀文字.png", 61, TEX_SIZE_512);
 
-	//プラスチックを62番に登録
+	//プラスチック文字画像を62番に登録
 	Draw::LoadImage(L"プラスチック文字.png", 62, TEX_SIZE_512);
 
-	//アルミを63番に登録
+	//アルミ文字画像を63番に登録
 	Draw::LoadImage(L"アルミ.png", 63, TEX_SIZE_512);
 
-	//ガスを64番に登録
+	//ガス文字画像を64番に登録
 	Draw::LoadImage(L"ガス文字.png", 64, TEX_SIZE_512);
 
 	//赤ポッドレベル1を65番目に登録
@@ -251,6 +257,12 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッド白Lv2.png", 75, TEX_SIZE_512);
 	//白ポッドレベル3を76番目に登録
 	Draw::LoadImage(L"ポッド白Lv3.png", 76, TEX_SIZE_512);
+
+	//メッセージウインドウを読み込み78番に登録
+	Draw::LoadImage(L"メッセージウィンドウ.png", 77, TEX_SIZE_512);
+
+	//ポッドレーザーを読み込み78番に登録
+	Draw::LoadImage(L"ポッドレーザー.png", 78, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
