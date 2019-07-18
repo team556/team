@@ -53,11 +53,11 @@ void CSceneTraining::InitScene()
 	//今は3回ずつの繰り返し回数だが、
 	//繰り返し回数は住民数を管理するグローバル変数を基に
 	//描画する住民の数分行うように後に変更しておく。
-	for (int i = 0; i < 3; i++)
-	{
-		CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
-		Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
-	}
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	CObjHuman* obj_human = new CObjHuman(m_ini_hx[i], m_ini_hy[i], i);	//住民オブジェクト作成
+	//	Objs::InsertObj(obj_human, OBJ_HUMAN, 15);						//住民オブジェクト登録
+	//}
 
 	
 	//育成画面オブジェクト
@@ -433,19 +433,26 @@ void CSceneTraining::InitScene()
 	//Sを読み込み122番に登録
 	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
 
-	//Lv1を読み込み122番に登録
+	//Lv1を読み込み123番に登録
 	Draw::LoadImage(L"Lv1.png", 123, TEX_SIZE_512);
 
-	//Lv2を読み込み122番に登録
+	//Lv2を読み込み124番に登録
 	Draw::LoadImage(L"Lv2.png", 124, TEX_SIZE_512);
 
-	//Lv3を読み込み122番に登録
+	//Lv3を読み込み125番に登録
 	Draw::LoadImage(L"Lv3.png", 125, TEX_SIZE_512);
 
+	//ポッド強化ボタンLv1を126番に登録
+	Draw::LoadImage(L"ポッド強化ボタンLv1.png", 128, TEX_SIZE_512);
+
+	//ポッド強化ボタンLv2を127番に登録
+	Draw::LoadImage(L"ポッド強化ボタンLv2.png", 129, TEX_SIZE_512);
+
+	//ポッド強化ボタンLv3を128番に登録
+	Draw::LoadImage(L"ポッド強化ボタンLv3.png", 130, TEX_SIZE_512);
 
 	//簡易メッセージ画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
-
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
