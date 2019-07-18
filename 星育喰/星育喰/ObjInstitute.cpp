@@ -1281,9 +1281,9 @@ void CObjInstitute::Draw()
 			m_Mis_recast_time[g_Mis_Recast_Level + 1]);//その文字配列に文字データを入れる
 	}
 	//ミサイルボタンを押したときに出る数値の初期化
-	m_Mis_recast = g_Recast_time * 10;//g_Recast_timeをint型にして保存する
-	m_Mis_recast_next_f = m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10;
-	m_Mis_recast_next = (int)m_Mis_recast_next_f;
+	m_Mis_recast = g_Recast_time * 10;										//g_Recast_timeをint型にして保存する
+	m_Mis_recast_next_f = m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10;	//float型の変数を10倍してint型に入れるためにここで一度保存する
+	m_Mis_recast_next = (int)m_Mis_recast_next_f;							//ここでようやくintに代入
 	
 
 	RECT_F src;//描画元切り取り位置
