@@ -70,7 +70,7 @@ void CObjBarracks::Init()
 
 
 	//当たり判定用HitBoxを作成(Objhuman用)
-	Hits::SetHitBox(this, 810, 460, 380, 230, ELEMENT_ENEMY, OBJ_BARRACKS, 1);
+	//Hits::SetHitBox(this, 810, 460, 380, 230, ELEMENT_ENEMY, OBJ_BARRACKS, 1);
 }
 
 //アクション
@@ -982,7 +982,7 @@ void CObjBarracks::Draw()
 			Draw::Draw(116, &src, &dst, white, 0.0f);
 
 			//▼兵舎レベル
-			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 60.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
+			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 55.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
 
 			////▼フォント表示
 			////兵舎レベル
