@@ -680,6 +680,14 @@ void CObjInstitute::Action()
 					{
 						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
 
+						switch (g_Mis_Recast_Level)
+						{
+						case 0:g_Recast_time = MIS_LV_1; break;
+						case 1:g_Recast_time = MIS_LV_2; break;//6秒
+						case 2:g_Recast_time = MIS_LV_3; break;//5秒
+						case 3:g_Recast_time = MIS_LV_4; break;//4秒
+						case 4:g_Recast_time = MIS_LV_5; break;//3秒
+						}
 
 						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
 						
@@ -2356,14 +2364,14 @@ void CObjInstitute::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 64.0f;
-				src.m_bottom = 64.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
 
 				dst.m_top = 210.0f + p * 150.0f;
 				dst.m_left = 950.0f;
 				dst.m_right = 1080.0f;
 				dst.m_bottom = 340.0f + p * 150.0f;
-				Draw::Draw(61 + p, &src, &dst, equip_pic[12 + p], 0.0f);
+				Draw::Draw(128 + p, &src, &dst, equip_pic[12 + p], 0.0f);
 			}
 
 			//▼フォント表示
