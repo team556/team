@@ -407,7 +407,7 @@ void CObjWarehouse::Draw()
 	float yellow[4] = { 1.0f,1.0f,0.0f,1.0f };
 
 	//灰色
-	float gray[4] = { 0.4f,0.4f,0.4f,1.0f };
+	float gray[4] = { 0.8f,0.8f,0.9f,1.0f };
 
 	//▽フォント準備
 	//倉庫用
@@ -1020,7 +1020,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(82, &src, &dst, red, 0.0f);
 
 		//▼ブルー文字画像を表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 352.0f;
 		src.m_bottom = 112.0f;
@@ -1032,10 +1032,10 @@ void CObjWarehouse::Draw()
 		Draw::Draw(83, &src, &dst, blue, 0.0f);
 
 		//▼グリーン文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_top = 2.0f;
+		src.m_left = 2.0f;
 		src.m_right = 472.0f;
-		src.m_bottom = 112.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 470.0f;
 		dst.m_left = 120.0f;
@@ -1044,7 +1044,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(84, &src, &dst, green, 0.0f);
 
 		//▼ホワイト文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 464.0f;
 		src.m_bottom = 112.0f;
@@ -1053,22 +1053,22 @@ void CObjWarehouse::Draw()
 		dst.m_left = 540.0f;
 		dst.m_right = 700.0f;
 		dst.m_bottom = 240.0f;
-		Draw::Draw(85, &src, &dst, black, 0.0f);
+		Draw::Draw(85, &src, &dst, white, 0.0f);
 
 		//▼研究員文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 352.0f;
-		src.m_bottom = 112.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 330.0f;
 		dst.m_left = 540.0f;
 		dst.m_right = 645.0f;
 		dst.m_bottom = 370.0f;
-		Draw::Draw(75, &src, &dst, black, 0.0f);
+		Draw::Draw(75, &src, &dst, gray, 0.0f);
 
 		//▼残り住民数がいません(残り住民数だけ)文字画像を表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 600.0f;
 		src.m_bottom = 112.0f;
@@ -1140,7 +1140,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(77, &src, &dst, black, 0.0f);
 
 		//▼残り　　　人(残り)だけ文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 592.0f;
 		src.m_bottom = 112.0f;
@@ -1242,19 +1242,89 @@ void CObjWarehouse::Draw()
 		//dst.m_bottom = 600.0f;
 		//Draw::Draw(32, &src, &dst, it, 0.0f);
 
-		//スペシャル技1メッセージウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
+		////スペシャル技1メッセージウィンドウ表示
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 800.0f;
+		//src.m_bottom = 800.0f;
 
 		for (int i = 0; i < 5; i++)//メッセージウィンドウを適切な位置に５回表示させる
 		{
-			dst.m_top = 100.0f + ( i * 100 );
+			//スペシャル技メッセージウィンドウ表示左上
+			src.m_top = -10.0f;
+			src.m_left = 0.0f;
+			src.m_right = 795.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 105.0f + ( i * 100 );
 			dst.m_left = 280.0f;
-			dst.m_right = 1140.0f;
-			dst.m_bottom = 200.0f + (i * 100);
-			Draw::Draw(20, &src, &dst, it, 0.0f);
+			dst.m_right = 330.0f;
+			dst.m_bottom = 155.0f + (i * 100);
+			Draw::Draw(21, &src, &dst, it, 0.0f);
+
+			//スペシャル技メッセージウィンドウ表示左下
+			src.m_top = 40.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 145.0f + (i * 100);
+			dst.m_left = 280.0f;
+			dst.m_right = 330.0f;
+			dst.m_bottom = 195.0f + (i * 100);
+			Draw::Draw(21, &src, &dst, it, 0.0f);
+
+			for (int j = 0; j < 15; j++)
+			{
+				//スペシャル技メッセージウィンドウ表示中央上
+				src.m_top = -10.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 105.0f + (i * 100);
+				dst.m_left = 330.0f + (j * 50);
+				dst.m_right = 380.0f + (j * 50);
+				dst.m_bottom = 155.0f + (i * 100);
+				Draw::Draw(21, &src, &dst, it, 0.0f);
+
+				//スペシャル技メッセージウィンドウ表示中央下
+				src.m_top = 0.0f;
+				src.m_left = 2400.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 145.0f + (i * 100);
+				dst.m_left = 330.0f + (j * 50);
+				dst.m_right = 380.0f + (j * 50);
+				dst.m_bottom = 195.0f + (i * 100);
+				Draw::Draw(21, &src, &dst, it, 0.0f);
+
+			}
+
+			//スペシャル技メッセージウィンドウ表示右上
+			src.m_top = -10.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 105.0f + (i * 100);
+			dst.m_left = 1080.0f;
+			dst.m_right = 1130.0f;
+			dst.m_bottom = 155.0f + (i * 100);
+			Draw::Draw(21, &src, &dst, it, 0.0f);
+
+			//スペシャル技メッセージウィンドウ表示右下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 145.0f + (i * 100);
+			dst.m_left = 1080.0f;
+			dst.m_right = 1130.0f;
+			dst.m_bottom = 195.0f + (i * 100);
+			Draw::Draw(21, &src, &dst, it, 0.0f);
 		}
 
 		//スペシャルボタンの共通切り取り位置設定
@@ -1268,6 +1338,8 @@ void CObjWarehouse::Draw()
 		//「未習得」……………………………0.0f(黒色)
 		//「クリックで装備可(習得済)」……0.4f(灰色)
 		//「装備中」……………………………1.0f(白色)
+
+
 
 		//Explosionの判定
 		//まず貼り付け位置を設定する
@@ -1293,7 +1365,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 135.0f;
 			dst.m_left = 300.0f;
 			dst.m_right = 510.0f;
-			dst.m_bottom = 170.0f;
+			dst.m_bottom = 165.0f;
 			Draw::Draw(95, &src, &dst, black, 0.0f);
 
 			//▼固定ダメージを与える文字画像を表示
@@ -1305,7 +1377,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 135.0f;
 			dst.m_left = 511.0f;
 			dst.m_right = 861.0f;
-			dst.m_bottom = 170.0f;
+			dst.m_bottom = 165.0f;
 			Draw::Draw(96, &src, &dst, black, 0.0f);
 		}
 		else
@@ -1343,7 +1415,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 235.0f;
 			dst.m_left = 300.0f;
 			dst.m_right = 510.0f;
-			dst.m_bottom = 270.0f;
+			dst.m_bottom = 265.0f;
 			Draw::Draw(97, &src, &dst, black, 0.0f);
 
 			//▼相手ポッド等を破壊する文字画像を表示
@@ -1355,7 +1427,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 235.0f;
 			dst.m_left = 515.0f;
 			dst.m_right = 900.0f;
-			dst.m_bottom = 270.0f;
+			dst.m_bottom = 265.0f;
 			Draw::Draw(98, &src, &dst, black, 0.0f);
 
 
@@ -1395,7 +1467,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 335.0f;
 			dst.m_left = 300.0f;
 			dst.m_right = 475.0f;
-			dst.m_bottom = 370.0f;
+			dst.m_bottom = 365.0f;
 			Draw::Draw(99, &src, &dst, black, 0.0f);
 
 			//▼無敵となるの文字画像を表示
@@ -1407,7 +1479,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 335.0f;
 			dst.m_left = 480.0f;
 			dst.m_right = 655.0f;
-			dst.m_bottom = 370.0f;
+			dst.m_bottom = 365.0f;
 			Draw::Draw(100, &src, &dst, black, 0.0f);
 
 		}
@@ -1443,10 +1515,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 1252.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 410.0f;
+			dst.m_top = 435.0f;
 			dst.m_left = 300.0f;
-			dst.m_right = 680.0f;
-			dst.m_bottom = 445.0f;
+			dst.m_right = 600.0f;
+			dst.m_bottom = 465.0f;
 			Draw::Draw(101, &src, &dst, black, 0.0f);
 
 			//▼ミサイル生産速度UPの文字画像を表示
@@ -1455,13 +1527,11 @@ void CObjWarehouse::Draw()
 			src.m_right = 1134.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 460.0f;
-			dst.m_left = 300.0f;
-			dst.m_right = 650.0f;
-			dst.m_bottom = 495.0f;
+			dst.m_top = 435.0f;
+			dst.m_left = 630.0f;
+			dst.m_right = 860.0f;
+			dst.m_bottom = 465.0f;
 			Draw::Draw(102, &src, &dst, black, 0.0f);
-
-
 		}
 		else
 		{
@@ -1498,7 +1568,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 535.0f;
 			dst.m_left = 300.0f;
 			dst.m_right = 440.0f;
-			dst.m_bottom = 570.0f;
+			dst.m_bottom = 565.0f;
 			Draw::Draw(103, &src, &dst, black, 0.0f);
 
 			//▼ポッド5機の攻撃力UPの文字画像を表示
@@ -1510,7 +1580,7 @@ void CObjWarehouse::Draw()
 			dst.m_top = 535.0f;
 			dst.m_left = 445.0f;
 			dst.m_right = 830.0f;
-			dst.m_bottom = 570.0f;
+			dst.m_bottom = 565.0f;
 			Draw::Draw(104, &src, &dst, black, 0.0f);
 		}
 		else
@@ -1595,7 +1665,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(82, &src, &dst, red, 0.0f);
 
 		//▼ブルー文字画像を表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 352.0f;
 		src.m_bottom = 112.0f;
@@ -1607,10 +1677,10 @@ void CObjWarehouse::Draw()
 		Draw::Draw(83, &src, &dst, blue, 0.0f);
 
 		//▼グリーン文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_top = 2.0f;
+		src.m_left = 2.0f;
 		src.m_right = 472.0f;
-		src.m_bottom = 112.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 460.0f;
 		dst.m_left = 120.0f;
@@ -1619,7 +1689,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(84, &src, &dst, green, 0.0f);
 
 		//▼ホワイト文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 464.0f;
 		src.m_bottom = 112.0f;
@@ -1628,10 +1698,10 @@ void CObjWarehouse::Draw()
 		dst.m_left = 540.0f;
 		dst.m_right = 700.0f;
 		dst.m_bottom = 300.0f;
-		Draw::Draw(85, &src, &dst, black, 0.0f);
+		Draw::Draw(85, &src, &dst, white, 0.0f);
 
 		//▼ポッド文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 344.0f;
 		src.m_bottom = 112.0f;
@@ -1640,7 +1710,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 540.0f;
 		dst.m_right = 660.0f;
 		dst.m_bottom = 440.0f;
-		Draw::Draw(86, &src, &dst, black, 0.0f);
+		Draw::Draw(86, &src, &dst, yellow, 0.0f);
 
 		//レッドレベル表示文字画像
 		src.m_top = 0.0f;

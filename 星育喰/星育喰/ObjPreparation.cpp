@@ -61,7 +61,7 @@ void CObjPreparation::Init()
 	}
 
 	m_Boss_clip_pos_x = -1.0f;//0.0fだと意図してないタイミングで条件文に入る為、初期値を-1.0fにする事で現状対応。
-	m_Boss_clip_pos_y = 0.0f;
+	//m_Boss_clip_pos_y = 0.0f;
 
 	m_speed = INI_SPEED;
 	m_save_speed = 0.0f;
@@ -699,14 +699,14 @@ void CObjPreparation::Action()
 			}
 
 			//ボス惑星描画元切り取り位置を徐々に変更し、最終的に口を閉じた状態にする
-			if (m_warning_message_alpha <= 0.0f)
-			{
-				if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
-				{
-					m_Boss_clip_pos_y = 128.0f;//正面を向かせる
-				}
-			}
-			else if (m_warning_message_alpha <= 0.4f)
+			//if (m_warning_message_alpha <= 0.0f)
+			//{
+			//	if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
+			//	{
+			//		m_Boss_clip_pos_y = 128.0f;//正面を向かせる
+			//	}
+			//}
+			if (m_warning_message_alpha <= 0.4f)
 			{
 				m_Boss_clip_pos_x = 256.0f;
 			}
@@ -857,12 +857,12 @@ void CObjPreparation::Action()
 			m_Boss_vx[2] -= m_speed * 0.91;
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
 
-			if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
-			{
-				//正面を向かせる
-				m_Boss_clip_pos_x = 256.0f;
-				m_Boss_clip_pos_y = 128.0f;
-			}
+			//if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
+			//{
+			//	//正面を向かせる
+			//	m_Boss_clip_pos_x = 256.0f;
+			//	m_Boss_clip_pos_y = 128.0f;
+			//}
 		}
 
 		//徐々に上記オブジェクトの画面内移動速度を減少させる
@@ -1051,10 +1051,10 @@ void CObjPreparation::Draw()
 	}
 
 	//▼ボス惑星3表示
-	src.m_top = m_Boss_clip_pos_y;
+	src.m_top = 0.0f;
 	src.m_left = 0.0f - m_Boss_clip_pos_x;
 	src.m_right = -(INI_PLANET) - m_Boss_clip_pos_x;
-	src.m_bottom = INI_PLANET + m_Boss_clip_pos_y;
+	src.m_bottom = INI_PLANET;
 
 	dst.m_top = 100.0f + m_Boss_vy[2];
 	dst.m_left = 1400.0f + m_Boss_vx[2];

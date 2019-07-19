@@ -22,7 +22,7 @@ using namespace GameL;
 #define MIS_LV_2 (2.5f)
 #define MIS_LV_3 (2.0f)
 #define MIS_LV_4 (1.5f)
-#define MIS_LV_5 (1.0f)//1.0未満にはしないでください
+#define MIS_LV_5 (1.0f)//1.0未満にはしないでください(追記：バグ修正したので、1.0未満OKである。)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -1123,7 +1123,7 @@ void CObjInstitute::Action()
 	if (
 		((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 225 && 340 < m_mou_y && m_mou_y < 550)||	//研究所のレベル1の時の選択範囲
 		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>320&& m_mou_y<450&& m_mou_x>1&& m_mou_x<117))||//研究所のレベル2の時の選択範囲
-		((g_Ins_Level == 3) && (1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550) && !(m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)|| (221 < m_mou_x && m_mou_x < 293 && 428 < m_mou_y && m_mou_y < 482))//研究所のレベル3の時の選択範囲
+		((g_Ins_Level == 3) && ((1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550) || (220 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575) || (220 < m_mou_x && m_mou_x < 293 && 428 < m_mou_y && m_mou_y < 482)) && !(m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117) )//研究所のレベル3の時の選択範囲
 	)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
@@ -1216,6 +1216,9 @@ void CObjInstitute::Draw()
 
 	//武器ポッドボタン用
 	float equip[4] = { m_Equ_Button_color,m_Equ_Button_color,m_Equ_Button_color,1.0f };
+
+	//灰色
+	float gray[4] = { 0.8f,0.8f,0.9f,1.0f };
 
 	//武器ポッド画像集用
 	float equip_pic[15][4] =
@@ -1344,7 +1347,7 @@ void CObjInstitute::Draw()
 			src.m_top = 0.0f;
 			src.m_left = 1600.0f;
 			src.m_right = 2400.0f;
-			src.m_bottom = 800.0f;
+			src.m_bottom = 790.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
 			dst.m_left = m_mou_x - 40.0f;
@@ -1353,7 +1356,7 @@ void CObjInstitute::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央下
-			src.m_top = 0.0f;
+			src.m_top = 10.0f;
 			src.m_left = 2400.0f;
 			src.m_right = 3200.0f;
 			src.m_bottom = 800.0f;
@@ -1574,7 +1577,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 505.0f;
 		dst.m_right = 670.0f;
 		dst.m_bottom = 200.0f;
-		Draw::Draw(75, &src, &dst, blue2, 0.0f);
+		Draw::Draw(75, &src, &dst, gray, 0.0f);
 
 		//▼住民振り分け文字画像表示
 		src.m_top = 0.0f;
@@ -2413,7 +2416,7 @@ void CObjInstitute::Draw()
 			//▼レッド文字画像表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 336.0f;
+			src.m_right = 334.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 98.0f;
@@ -2423,7 +2426,7 @@ void CObjInstitute::Draw()
 			Draw::Draw(82, &src, &dst, red, 0.0f);
 
 			//▼ブルー文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 0.0f;
 			src.m_right = 352.0f;
 			src.m_bottom = 112.0f;
@@ -2435,32 +2438,32 @@ void CObjInstitute::Draw()
 			Draw::Draw(83, &src, &dst, blue, 0.0f);
 
 			//▼グリーン文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
+			src.m_top = 2.0f;
+			src.m_left = 2.0f;
 			src.m_right = 472.0f;
-			src.m_bottom = 112.0f;
+			src.m_bottom = 110.0f;
 
-			dst.m_top = 98.0f;
-			dst.m_left = 605.0f;
-			dst.m_right = 765.0f;
-			dst.m_bottom = 138.0f;
+			dst.m_top = 103.0f;
+			dst.m_left = 625.0f;
+			dst.m_right = 745.0f;
+			dst.m_bottom = 133.0f;
 			Draw::Draw(84, &src, &dst, green, 0.0f);
 
 			//▼ホワイト文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 0.0f;
 			src.m_right = 464.0f;
 			src.m_bottom = 112.0f;
 
-			dst.m_top = 98.0f;
-			dst.m_left = 785.0f;
-			dst.m_right = 945.0f;
-			dst.m_bottom = 138.0f;
+			dst.m_top = 103.0f;
+			dst.m_left = 805.0f;
+			dst.m_right = 925.0f;
+			dst.m_bottom = 133.0f;
 			Draw::Draw(85, &src, &dst, white, 0.0f);
 
 			//▼ポッド文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
+			src.m_top = 2.0f;
+			src.m_left = 2.0f;
 			src.m_right = 344.0f;
 			src.m_bottom = 112.0f;
 
