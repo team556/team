@@ -558,7 +558,7 @@ void CObjRocket::Action()
 			}
 		}
 		else if (m_type != 0 && m_stop_cnt == 10) {	//“G‚©‚ÂA’â~
-			m_stop_f = false;
+			m_fight = false;
 			m_stop_cnt = 0;
 			//m_pstop = true;
 		}
@@ -658,7 +658,7 @@ void CObjRocket::Action()
 			
 		}
 		else if (m_type == 0 && m_stop_cnt == 10) {	//–¡•û‚©‚ÂA~‚Ü‚Á‚Ä‚é
-			m_stop_f = false;
+			m_fight = false;
 			m_stop_cnt = 0;
 			//m_pstop = true;
 		}

@@ -451,6 +451,9 @@ void CSceneTraining::InitScene()
 	//ポッド強化ボタンLv3を128番に登録
 	Draw::LoadImage(L"ポッド強化ボタンLv3.png", 130, TEX_SIZE_512);
 
+	//これ以上レベルUP出来ません
+	Draw::LoadImage(L"これ以上レベルUP出来ません.png", 131, TEX_SIZE_512);
+
 	//簡易メッセージ画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
 

@@ -297,16 +297,13 @@ void CObjPlanet::Action()
 
 	if (m_ani_frame[0] == 2)		//喰うフレームの移動
 	{
-		
+
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
-		if (m_ani_time == 1)
-			pla->SetEmF();
-
-		if (g_Challenge_enemy == MOAI_NAM - 1)
-		{
-			;//モアイは動かない
+		if (m_type == MOAI_NAM) {
+			if (m_ani_time == 1)
+				pla->SetEmF();
 		}
 		else
 		{
@@ -326,19 +323,21 @@ void CObjPlanet::Action()
 			}
 		}
 	}
-	else if (m_eat_me == true)
+	else if (m_eat_me == true && m_eat_f != true)
 	{
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-		if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
-		{
-			m_px -= 2.0f;
-			m_size -= 1.4f;
-			if (m_py < 365)
-				m_vy += 0.1f;
-			else
-				m_vy -= 0.1f;
-			m_py += m_vy;
+		if (ene != nullptr) {
+			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
+			{
+				m_px -= 2.0f;
+				m_size -= 1.4f;
+				if (m_py < 365)
+					m_vy += 0.1f;
+				else
+					m_vy -= 0.1f;
+				m_py += m_vy;
+			}
 		}
 	}
 
