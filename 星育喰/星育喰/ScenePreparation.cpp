@@ -214,6 +214,18 @@ void CScenePreparation::InitScene()
 	//メッセージウィンドウ画像89番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
 
+	//不明文字画像90番に登録
+	Draw::LoadImage(L"不明.png", 90, TEX_SIZE_512);
+
+	//無し文字画像91番に登録
+	Draw::LoadImage(L"無し.png", 91, TEX_SIZE_512);
+
+	//攻撃傾向文字画像92番に登録
+	Draw::LoadImage(L"攻撃傾向.png", 92, TEX_SIZE_512);
+
+	//測定不能文字画像93番に登録
+	Draw::LoadImage(L"測定不能.png", 93, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
