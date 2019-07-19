@@ -83,9 +83,18 @@ void CObjPreparation::Init()
 	m_detail_message_window_left = 0.0f;
 	m_detail_message_window_right = 0.0f;
 	m_detail_message_window_bottom = 0.0f;
-	m_detail_message_font_x = 0.0f;
-	m_detail_message_font_y = 0.0f;
+	m_detail_message_draw_y = 0.0f;
+
+	for (int i = 0; i < DETAIL_MES_MAX_FONT_LINE; i++)
+	{
+		m_detail_message_clip_right[i] = 0.0f;
+		m_detail_message_clip_bottom[i] = 0.0f;
+		m_detail_message_draw_right[i] = 0.0f;
+	}
+
+	m_detail_message_draw_left = 0.0f;
 	m_detail_message_alpha = INI_ALPHA;
+	m_level_star_num = 0;
 
 	m_destroy_count = 0;
 
@@ -521,35 +530,35 @@ void CObjPreparation::Action()
 			Enemy_message(4);//敵惑星詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(Explosion)
+		//スペシャル技(エクスプロージョン)
 		else if (377 < m_mou_x && m_mou_x < 455 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(0);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(Fracture_Ray)
+		//スペシャル技(フラクチャーレイ)
 		else if (471 < m_mou_x && m_mou_x < 549 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(1);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(Immortality)
+		//スペシャル技(イモータリティ)
 		else if (565 < m_mou_x && m_mou_x < 643 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(2);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(リミットブレイク)
+		//スペシャル技(オーバーワーク)
 		else if (660 < m_mou_x && m_mou_x < 737 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
 			Special_message(3);//スペシャル技詳細説明表示関数を呼び出す
 		}
 
-		//スペシャル技(ステロイド投与)
+		//スペシャル技(リミットブレイク)
 		else if (754 < m_mou_x && m_mou_x < 831 && 579 < m_mou_y && m_mou_y < 637)
 		{
 			//▼スペシャル技詳細説明を表示
@@ -1260,10 +1269,22 @@ void CObjPreparation::Draw()
 	dst.m_bottom = m_mou_y + m_detail_message_window_bottom;
 	Draw::Draw(89, &src, &dst, detail_message_window, 0.0f);
 
-	//▽フォント表示
+	//▽詳細説明フォント画像表示
 	for (int i = 0; i < DETAIL_MES_MAX_FONT_LINE; i++)
 	{
-		Font::StrDraw(m_detail_message[i], m_mou_x + m_detail_message_font_x, m_mou_y + m_detail_message_font_y + i * 40.0f, 25.0f, detail_message_font[i]);
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = m_detail_message_clip_right[i];
+		src.m_bottom = m_detail_message_clip_bottom[i];
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y + i * 40.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left;
+		dst.m_right = m_mou_x + m_detail_message_draw_right[i];
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 35.0f + i * 40.0f;
+		Draw::Draw(123 + i, &src, &dst, detail_message_font[i], 0.0f);
+
+
+		//Font::StrDraw(m_detail_message[i], m_mou_x + m_detail_message_font_x, m_mou_y + m_detail_message_draw_y + i * 40.0f, 25.0f, detail_message_font[i]);
 
 		////▼難易度文字画像表示
 		//src.m_top = 0.0f;
@@ -1271,13 +1292,29 @@ void CObjPreparation::Draw()
 		//src.m_right = 367.0f;
 		//src.m_bottom = 117.0f;
 
-		//dst.m_top = m_mou_y + m_detail_message_font_y + i;
+		//dst.m_top = m_mou_y + m_detail_message_draw_y + i;
 		//dst.m_left = m_mou_x + m_detail_message_font_x;
 		//dst.m_right = m_mou_x + m_detail_message_font_x;
-		//dst.m_bottom = m_mou_y + m_detail_message_font_y + i;
+		//dst.m_bottom = m_mou_y + m_detail_message_draw_y + i;
 		//Draw::Draw(73, &src, &dst, d, 0.0f);
 
 	}
+
+	//▼難易度を表す★画像を表示
+	//ボス惑星の場合
+	if (m_level_star_num >= 5)
+	{
+		//「測定不能」の画像を表示させる。
+	}
+	//その他のザコ惑星の場合
+	else
+	{
+		for (int i = 0; i < m_level_star_num; i++)
+		{
+			//星の数分、回して★画像を表示。i増加ごとにX位置ずれていく。
+		}
+	}
+
 
 	//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
 	if (m_finalcheck_f == true)
@@ -1340,13 +1377,14 @@ void CObjPreparation::Draw()
 }
 
 //---Enemy_message関数
-//引数1　int enemy_id	:敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
+//引数1　int enemy_id	:敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星　5:チュートリアル惑星)
 //▼内容
 //マウスで選択している敵惑星が何であるかを識別し、
 //それに対応する敵惑星詳細説明を表示する。
 void CObjPreparation::Enemy_message(int enemy_id)
 {
 	//▽以下は各敵惑星毎に異なる値を代入する個別処理
+	//▼左から1番目の敵惑星
 	if (enemy_id == 0)
 	{
 		//敵惑星詳細説明ウインドウのサイズを設定
@@ -1355,10 +1393,48 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_right = 320.0f;
 		m_detail_message_window_bottom = 120.0f;
 
-		//敵惑星詳細説明フォントの位置を設定
-		m_detail_message_font_x = 33.0f;
-		m_detail_message_font_y = -73.0f;
+		//敵惑星詳細説明画像の描画位置(right以外)を設定
+		m_detail_message_draw_left = 33.0f;
+		m_detail_message_draw_y = -73.0f;
+
+		//▽3行目
+		//敵惑星詳細説明画像を125番に登録
+		Draw::LoadImage(L"木材50・鉄30文字画像.png", 125, TEX_SIZE_512);
+
+		//敵惑星詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[2] = 681.0f;
+		m_detail_message_clip_bottom[2] = 122.0f;
+
+		//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+		//▽4行目
+		//敵惑星詳細説明画像を126番に登録
+		Draw::LoadImage(L"フラクチャーレイ.png", 126, TEX_SIZE_512);
+
+		//敵惑星詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[3] = 952.0f;
+		m_detail_message_clip_bottom[3] = 112.0f;
+
+		//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+		//▽5行目
+		//敵惑星詳細説明画像を127番に登録
+		Draw::LoadImage(L"ディフェンス重視文字.png", 127, TEX_SIZE_512);
+
+		//敵惑星詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[4] = 772.0f;
+		m_detail_message_clip_bottom[4] = 124.0f;
+
+		//敵惑星詳細説明画像の描画位置(right)を設定
+
+		
+
+		//難易度を表す★の数を設定
+		m_level_star_num = 1;
 	}
+	//▼左から4番目の敵惑星
 	else if (enemy_id == 3)
 	{
 		//敵惑星詳細説明ウインドウのサイズを設定
@@ -1367,11 +1443,49 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_right = -300.0f;
 		m_detail_message_window_bottom = 120.0f;
 
-		//敵惑星詳細説明フォントの位置を設定
-		m_detail_message_font_x = -288.0f;
-		m_detail_message_font_y = -73.0f;
+		//敵惑星詳細説明画像の描画位置(right以外)を設定
+		m_detail_message_draw_left = -288.0f;
+		m_detail_message_draw_y = -73.0f;
+
+		//▽3行目
+		//敵惑星詳細説明画像を125番に登録
+		Draw::LoadImage(L"鉄70・アルミ80.png", 125, TEX_SIZE_512);
+
+		//敵惑星詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[2] = 772.0f;
+		m_detail_message_clip_bottom[2] = 124.0f;
+
+		//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+		//▽4行目
+		//敵惑星詳細説明画像を126番に登録
+		Draw::LoadImage(L"イモータリティ.png", 126, TEX_SIZE_512);
+
+		//敵惑星詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[3] = 817.0f;
+		m_detail_message_clip_bottom[3] = 112.0f;
+
+		//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+		//▽5行目
+		//敵惑星詳細説明画像を127番に登録
+		Draw::LoadImage(L"スピード重視文字.png", 127, TEX_SIZE_512);
+
+		//敵惑星詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[4] = 579.0f;
+		m_detail_message_clip_bottom[4] = 125.0f;
+
+		//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+
+		//難易度を表す★の数を設定
+		m_level_star_num = 2;
 	}
-	else  //(enemy_id == 1 || enemy_id == 2 || enemy_id == 4)
+	//▼左から2、3番目の敵惑星 & ボス惑星 & チュートリアル惑星
+	else  //(enemy_id == 1 || enemy_id == 2 || enemy_id == 4 || enemy_id == 5)
 	{
 		//敵惑星詳細説明ウインドウのサイズを設定
 		m_detail_message_window_top = 20.0f;
@@ -1379,18 +1493,205 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_window_right = 150.0f;
 		m_detail_message_window_bottom = 225.0f;
 
-		//敵惑星詳細説明フォントの位置を設定
-		m_detail_message_font_x = -138.0f;
-		m_detail_message_font_y = 33.0f;
+		//敵惑星詳細説明画像の描画位置(right以外)を設定
+		m_detail_message_draw_left = -138.0f;
+		m_detail_message_draw_y = 33.0f;
+
+		
+		//▼左から2番目の敵惑星
+		if (enemy_id == 1)
+		{
+			//▽3行目
+			//敵惑星詳細説明画像を125番に登録
+			Draw::LoadImage(L"プラスチック40・ガス50.png", 125, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 1158.0f;
+			m_detail_message_clip_bottom[2] = 130.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽4行目
+			//敵惑星詳細説明画像を126番に登録
+			Draw::LoadImage(L"エクスプロージョン.png", 126, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 1072.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽5行目
+			//敵惑星詳細説明画像を127番に登録
+			Draw::LoadImage(L"パワー重視文字.png", 127, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[4] = 485.0f;
+			m_detail_message_clip_bottom[4] = 131.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			
+			//難易度を表す★の数を設定
+			m_level_star_num = 3;
+		}
+		//▼左から3番目の敵惑星
+		else if (enemy_id == 2)
+		{
+			//▽3行目
+			//敵惑星詳細説明画像を125番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 125, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 0.0f;
+			m_detail_message_clip_bottom[2] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽4行目
+			//敵惑星詳細説明画像を126番に登録
+			Draw::LoadImage(L"リミットブレイク.png", 126, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 952.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽5行目
+			//敵惑星詳細説明画像を127番に登録
+			Draw::LoadImage(L"バランス重視文字.png", 127, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[4] = 580.0f;
+			m_detail_message_clip_bottom[4] = 133.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+
+			//難易度を表す★の数を設定
+			m_level_star_num = 4;
+		}
+		//▼ボス惑星
+		else if (enemy_id == 4)
+		{
+			//▽3行目
+			//敵惑星詳細説明画像を125番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 125, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 0.0f;
+			m_detail_message_clip_bottom[2] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽4行目
+			//敵惑星詳細説明画像を126番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 126, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 0.0f;
+			m_detail_message_clip_bottom[3] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽5行目
+			//敵惑星詳細説明画像を127番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 127, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[4] = 0.0f;
+			m_detail_message_clip_bottom[4] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+
+			//難易度を表す★の数を設定
+			m_level_star_num = 5;
+		}
+		//▼チュートリアル惑星
+		else if (enemy_id == 5)
+		{
+			//▽3行目
+			//敵惑星詳細説明画像を125番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 125, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 0.0f;
+			m_detail_message_clip_bottom[2] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽4行目
+			//敵惑星詳細説明画像を126番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 126, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 0.0f;
+			m_detail_message_clip_bottom[3] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+			//▽5行目
+			//敵惑星詳細説明画像を127番に登録	(画像がなかったため適用してない)
+			//Draw::LoadImage(L"", 127, TEX_SIZE_512);
+
+			//敵惑星詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[4] = 0.0f;
+			m_detail_message_clip_bottom[4] = 0.0f;
+
+			//敵惑星詳細説明画像の描画位置(right)を設定
+
+
+
+			//難易度を表す★の数を設定
+			m_level_star_num = 1;
+		}
 	}
 
+
 	//▽以下は各敵惑星関係なく行う共通処理
-	//敵惑星詳細説明フォント設定
-	swprintf_s(m_detail_message[0], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][0]);//文字配列に文字データを入れる
-	swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
-	swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
-	swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
-	swprintf_s(m_detail_message[4], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][4]);//文字配列に文字データを入れる
+	//▽1行目
+	//敵惑星詳細説明画像を123番に登録
+	Draw::LoadImage(L"難易度.png", 123, TEX_SIZE_512);
+
+	//敵惑星詳細説明画像の切り取り位置を設定
+	m_detail_message_clip_right[0] = 367.0f;
+	m_detail_message_clip_bottom[0] = 117.0f;
+
+	//敵惑星詳細説明画像の描画位置(right)を設定
+	m_detail_message_draw_right[0] = m_detail_message_draw_left + 200.0f;
+
+
+	//▽2行目
+	//敵惑星詳細説明画像を124番に登録
+	Draw::LoadImage(L"取得可能な資材・技文字.png", 124, TEX_SIZE_512);
+
+	//敵惑星詳細説明画像の切り取り位置を設定
+	m_detail_message_clip_right[1] = 930.0f;
+	m_detail_message_clip_bottom[1] = 121.0f;
+
+	//敵惑星詳細説明画像の描画位置(right)を設定
+	m_detail_message_draw_right[1] = m_detail_message_draw_left + 200.0f;
+
+
+	////敵惑星詳細説明フォント設定
+	//swprintf_s(m_detail_message[0], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][0]);//文字配列に文字データを入れる
+	//swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
+	//swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
+	//swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
+	//swprintf_s(m_detail_message[4], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][4]);//文字配列に文字データを入れる
 
 	m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
 
@@ -1421,7 +1722,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 }
 
 //---Special_message関数
-//引数1　int special_id	:スペシャル技アイコン識別番号(0:Explosion　1:Fracture_Ray　2:Immortality　3:リミットブレイク　4:ステロイド投与)
+//引数1　int special_id	:スペシャル技アイコン識別番号(0:エクスプロージョン　1:フラクチャーレイ　2:イモータリティ　3:オーバーワーク　4:リミットブレイク)
 //▼内容
 //マウスで選択しているスペシャル技アイコンが何であるかを識別し、
 //それに対応するスペシャル技詳細説明を表示する。
@@ -1444,8 +1745,8 @@ void CObjPreparation::Special_message(int special_id)
 		m_detail_message_window_bottom = 0.0f;
 
 		//スペシャル技詳細説明フォントの位置を設定
-		m_detail_message_font_x = -38.0f;
-		m_detail_message_font_y = -78.0f;
+		m_detail_message_draw_left = -38.0f;
+		m_detail_message_draw_y = -78.0f;
 	}
 	//▼スペシャル技アイコンが灰色(クリックで装備可)、もしくは白色(装備中)の時の処理
 	else  //(m_Special_icon_color[special_id] == 0.4f || m_Special_icon_color[special_id] == 1.0f)
@@ -1495,8 +1796,8 @@ void CObjPreparation::Special_message(int special_id)
 		m_detail_message_window_bottom = 0.0f;
 
 		//スペシャル技詳細説明フォントの位置を設定
-		m_detail_message_font_x = -138.0f;
-		m_detail_message_font_y = -195.0f;
+		m_detail_message_draw_left = -138.0f;
+		m_detail_message_draw_y = -195.0f;
 
 
 		//▽以下はスペシャル技アイコンが灰色(クリックで装備可)の時のみ行う処理
