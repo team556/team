@@ -35,7 +35,7 @@ void CObjWarehouse::Init()
 	m_key_rf = false;
 
 	//当たり判定用HitBoxを作成(Objhuman用)
-	Hits::SetHitBox(this, 95, 170, 225, 110, ELEMENT_ENEMY, OBJ_WAREHOUSE, 1);
+	//Hits::SetHitBox(this, 95, 170, 225, 110, ELEMENT_ENEMY, OBJ_WAREHOUSE, 1);
 }
 
 //アクション

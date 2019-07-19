@@ -256,7 +256,7 @@ void CObjInstitute::Init()
 
 
 	//当たり判定用HitBoxを作成(Objhuman用)
-	Hits::SetHitBox(this, 60, 505, 265, 132, ELEMENT_ENEMY, OBJ_INSTITUTE, 1);
+	//Hits::SetHitBox(this, 60, 505, 265, 132, ELEMENT_ENEMY, OBJ_INSTITUTE, 1);
 }
 
 //アクション
