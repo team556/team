@@ -472,10 +472,10 @@ void CObjFight::Draw()
 		//スペシャル技を装備しているときはアイコンを出す
 		if (g_Special_equipment != 0)
 		{
-			dst.m_top = 64.0f;
-			dst.m_left = 979.0f;
-			dst.m_right = 1011.0f;
-			dst.m_bottom = 92.0f;
+			dst.m_top = 60.0f;
+			dst.m_left = 950.0f;
+			dst.m_right = 990.0f;
+			dst.m_bottom = 100.0f;
 			Draw::Draw(40, &src, &dst, d, 0.0f);
 		}
 	}
