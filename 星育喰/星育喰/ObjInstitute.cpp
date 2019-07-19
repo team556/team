@@ -22,7 +22,7 @@ using namespace GameL;
 #define MIS_LV_2 (2.5f)
 #define MIS_LV_3 (2.0f)
 #define MIS_LV_4 (1.5f)
-#define MIS_LV_5 (1.0f)//1.0未満にはしないでください
+#define MIS_LV_5 (1.0f)//1.0未満にはしないでください(追記：バグ修正したので、1.0未満OKである。)
 
 //イニシャライズ
 void CObjInstitute::Init()
