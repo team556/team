@@ -176,8 +176,6 @@ void CScenePreparation::InitScene()
 	//読み込み番号123～127番を使用しているので
 	//この番号は使わないように！
 
-
-
 	//不明文字画像90番に登録
 	Draw::LoadImage(L"不明.png", 90, TEX_SIZE_512);
 
