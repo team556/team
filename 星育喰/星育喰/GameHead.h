@@ -39,6 +39,25 @@ enum OBJ_NAME
 	OBJ_GAME_CLEAR,
 	OBJ_MESSAGE,
 	OBJ_RKTHIT,
+	OBJ_RKTHIT1,
+	OBJ_RKTHIT2,
+	OBJ_RKTHIT3,
+	OBJ_RKTHIT4,
+	OBJ_RKTHIT5,
+	OBJ_RKTHIT6,
+	OBJ_RKTHIT7,
+	OBJ_RKTHIT8,
+	OBJ_RKTHIT9,
+	OBJ_eRKTHIT,
+	OBJ_eRKTHIT1,
+	OBJ_eRKTHIT2,
+	OBJ_eRKTHIT3,
+	OBJ_eRKTHIT4,
+	OBJ_eRKTHIT5,
+	OBJ_eRKTHIT6,
+	OBJ_eRKTHIT7,
+	OBJ_eRKTHIT8,
+	OBJ_eRKTHIT9,
 
 };
 //------------------------------------------------
@@ -62,13 +81,22 @@ enum HIT_ELEMENTS
 	ELEMENT_FACILITY,
 	ELEMENT_BUILD,
 	ELEMENT_POD,
+	ELEMENT_POD1,
+	ELEMENT_POD2,
+	ELEMENT_POD3,
+	ELEMENT_POD4,
+	ELEMENT_POD5,
+	ELEMENT_POD6,
+	ELEMENT_POD7,
+	ELEMENT_POD8,
+	ELEMENT_POD9,
 	ELEMENT_ENEMYPOD,
+	ELEMENT_ENEMYPOD1,
+	ELEMENT_ENEMYPOD2,
+	ELEMENT_ENEMYPOD3,
+	ELEMENT_ENEMYPOD4,
 	ELEMENT_P_MIS,		//ÉvÉåÉCÉÑÅ[Ç∆
 	ELEMENT_E_MIS,		//ìGÇÃÉ~ÉTÉCÉã
-	ELEMENT_PODP,		//ÉpÉèÅ[
-	ELEMENT_PODS,		//ÉXÉsÅ[Éh
-	ELEMENT_PODD,		//ÉfÉBÉtÉFÉìÉX
-	ELEMENT_PODB,		//ÉoÉâÉìÉX
 	ELEMENT_LINE,
 
 };
@@ -180,8 +208,8 @@ extern bool g_help_f;				//ÉwÉãÉvâÊñ ï\é¶ÉtÉâÉO(true:ÉwÉãÉvâÊñ ï\é¶Å@false:ÉwÉãÉ
 //ÉVÅ[ÉìÉXÉ^Å[ÉgÉNÉâÉX---------------------------
 //ÉQÅ[ÉÄäJénéûÇÃÉVÅ[ÉìÉNÉâÉXìoò^
 //#define SET_GAME_START CSceneTitle
-#define SET_GAME_START CSceneHome
-//#define SET_GAME_START CSceneFight
+//#define SET_GAME_START CSceneHome
+#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
 //#define SET_GAME_START CScenePreparation
