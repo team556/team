@@ -178,6 +178,18 @@ void CScenePreparation::InitScene()
 
 
 
+	//•s–¾•¶š‰æ‘œ90”Ô‚É“o˜^
+	Draw::LoadImage(L"•s–¾.png", 90, TEX_SIZE_512);
+
+	//–³‚µ•¶š‰æ‘œ91”Ô‚É“o˜^
+	Draw::LoadImage(L"–³‚µ.png", 91, TEX_SIZE_512);
+
+	//UŒ‚ŒXŒü•¶š‰æ‘œ92”Ô‚É“o˜^
+	Draw::LoadImage(L"UŒ‚ŒXŒü.png", 92, TEX_SIZE_512);
+
+	//‘ª’è•s”\•¶š‰æ‘œ93”Ô‚É“o˜^
+	Draw::LoadImage(L"‘ª’è•s”\.png", 93, TEX_SIZE_512);
+
 	//‰¹Šy“Ç‚İ‚İ
 	Audio::LoadAudio(0, L"—û‚ÌR.wav", BACK_MUSIC);
 
