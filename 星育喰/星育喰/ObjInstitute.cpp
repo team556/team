@@ -256,7 +256,7 @@ void CObjInstitute::Init()
 
 
 	//当たり判定用HitBoxを作成(Objhuman用)
-	Hits::SetHitBox(this, 60, 505, 265, 132, ELEMENT_ENEMY, OBJ_INSTITUTE, 1);
+	//Hits::SetHitBox(this, 60, 505, 265, 132, ELEMENT_ENEMY, OBJ_INSTITUTE, 1);
 }
 
 //アクション
@@ -426,7 +426,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
-		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -680,6 +680,14 @@ void CObjInstitute::Action()
 					{
 						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
 
+						switch (g_Mis_Recast_Level)
+						{
+						case 0:g_Recast_time = MIS_LV_1; break;
+						case 1:g_Recast_time = MIS_LV_2; break;//6秒
+						case 2:g_Recast_time = MIS_LV_3; break;//5秒
+						case 3:g_Recast_time = MIS_LV_4; break;//4秒
+						case 4:g_Recast_time = MIS_LV_5; break;//3秒
+						}
 
 						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
 						
@@ -866,7 +874,7 @@ void CObjInstitute::Action()
 						m_finalcheck_f = false;
 
 						//選択音
-						Audio::Start(1);
+						Audio::Start(3);
 					}
 				}
 				else
@@ -1112,10 +1120,11 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550)||
-		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550&& !(m_mou_y>357&& m_mou_y<550&& m_mou_x>1&& m_mou_x<117))||//レベル2の研究所の処理
-		((g_Ins_Level == 3) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>400 && m_mou_y<452 && m_mou_x>1 && m_mou_x<117)) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)
-		)
+	if (
+		((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 225 && 340 < m_mou_y && m_mou_y < 550)||	//研究所のレベル1の時の選択範囲
+		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550&& !(m_mou_y>320&& m_mou_y<450&& m_mou_x>1&& m_mou_x<117))||//研究所のレベル2の時の選択範囲
+		((g_Ins_Level == 3) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !((m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)))//研究所のレベル3の時の選択範囲
+	)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Ins_color = 1.0f;
@@ -1280,6 +1289,10 @@ void CObjInstitute::Draw()
 			m_Mis_recast_next_Hum_num[g_Mis_Recast_Level], 
 			m_Mis_recast_time[g_Mis_Recast_Level + 1]);//その文字配列に文字データを入れる
 	}
+	//ミサイルボタンを押したときに出る数値の初期化
+	m_Mis_recast = g_Recast_time * 10;										//g_Recast_timeをint型にして保存する
+	m_Mis_recast_next_f = m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10;	//float型の変数を10倍してint型に入れるためにここで一度保存する
+	m_Mis_recast_next = (int)m_Mis_recast_next_f;							//ここでようやくintに代入
 	
 
 	RECT_F src;//描画元切り取り位置
@@ -1306,7 +1319,7 @@ void CObjInstitute::Draw()
 			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 800.0f;
+			src.m_right = 790.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
@@ -1316,9 +1329,9 @@ void CObjInstitute::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示左下
-			src.m_top = 0.0f;
+			src.m_top = 10.0f;
 			src.m_left = 800.0f;
-			src.m_right = 1600.0f;
+			src.m_right = 1595.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 30.0f;
@@ -1365,7 +1378,7 @@ void CObjInstitute::Draw()
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
-			src.m_left = 4800.0f;
+			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
 			src.m_bottom = 800.0f;
 
@@ -1438,8 +1451,8 @@ void CObjInstitute::Draw()
 		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 40.0f;
-		dst.m_right = 145.0f;
+		dst.m_left = 48.0f;
+		dst.m_right = 148.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
@@ -2114,6 +2127,7 @@ void CObjInstitute::Draw()
 			//---------------------------------------------------------------------------
 
 			//ミサイルリキャストタイム
+			//一の位を表示するので小数点切り上げていいのでg_Recast_time
 			src.m_top = 1250.0f;
 			src.m_left = CUT_ZERO + (floor((int)g_Recast_time) * 125);
 			src.m_right = END_ZERO + (floor((int)g_Recast_time) * 125);
@@ -2137,9 +2151,10 @@ void CObjInstitute::Draw()
 			dst.m_bottom = 420;
 			Draw::Draw(120, &src, &dst, black, 0.0f);
 
+			//小数第一位なのでm_Mis_recastの一の位
 			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + ((((int)g_Recast_time * 10) % 10) * 125);
-			src.m_right = END_ZERO + ((((int)g_Recast_time * 10) % 10) * 125);
+			src.m_left = CUT_ZERO + ((m_Mis_recast % 10) * 125);
+			src.m_right = END_ZERO + ((m_Mis_recast % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 350;
@@ -2299,8 +2314,8 @@ void CObjInstitute::Draw()
 
 			//小数第一位
 			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
-			src.m_right = END_ZERO + ((((int)m_Mis_recast_time[g_Mis_Recast_Level + 1] * 10) % 10) * 125);
+			src.m_left = CUT_ZERO + ((m_Mis_recast_next % 10) * 125);
+			src.m_right = END_ZERO + ((m_Mis_recast_next % 10) * 125);
 			src.m_bottom = 1375.0f;
 
 			dst.m_top = 560;
@@ -2350,14 +2365,14 @@ void CObjInstitute::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 64.0f;
-				src.m_bottom = 64.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
 
 				dst.m_top = 210.0f + p * 150.0f;
 				dst.m_left = 950.0f;
 				dst.m_right = 1080.0f;
 				dst.m_bottom = 340.0f + p * 150.0f;
-				Draw::Draw(61 + p, &src, &dst, equip_pic[12 + p], 0.0f);
+				Draw::Draw(128 + p, &src, &dst, equip_pic[12 + p], 0.0f);
 			}
 
 			//▼フォント表示

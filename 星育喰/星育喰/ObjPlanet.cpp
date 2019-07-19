@@ -846,11 +846,11 @@ void CObjPlanet::Draw()
 				m_sweat_vy *= 10.0f;
 			}
 
-			//クリックでスタート文字画像を表示
+			//汗を表示
 			src.m_top	= 0.0f;
 			src.m_left	= 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom= 64.0f;
+			src.m_right = 128.0f;
+			src.m_bottom= 128.0f;
 
 			dst.m_top	= m_py - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
 			dst.m_left	= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);

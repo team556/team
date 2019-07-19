@@ -9,7 +9,7 @@ enum OBJ_NAME
 	OBJ_TEST,
 	OBJ_TITLE,
 	OBJ_HOME,
-	OBJ_HUMAN,
+	//OBJ_HUMAN,
 	OBJ_PLANET,
 	OBJ_ENEMY,
 	OBJ_POD_BUTTON1,
@@ -142,7 +142,7 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 #include "ObjTitle.h"
 #include "ObjHome.h"
 #include "ObjTest.h"
-#include "ObjHuman.h"
+//#include "ObjHuman.h"
 #include "ObjCloud_Effect.h"
 #include "ObjBefore_Fight_Effect.h"
 #include "ObjBarracks.h"
@@ -180,8 +180,8 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 //ƒV[ƒ“ƒXƒ^[ƒgƒNƒ‰ƒX---------------------------
 //ƒQ[ƒ€ŠJn‚ÌƒV[ƒ“ƒNƒ‰ƒX“o˜^
 //#define SET_GAME_START CSceneTitle
-//#define SET_GAME_START CSceneHome
-#define SET_GAME_START CSceneFight
+#define SET_GAME_START CSceneHome
+//#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
 //#define SET_GAME_START CScenePreparation

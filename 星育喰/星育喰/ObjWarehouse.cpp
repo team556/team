@@ -35,7 +35,7 @@ void CObjWarehouse::Init()
 	m_key_rf = false;
 
 	//当たり判定用HitBoxを作成(Objhuman用)
-	Hits::SetHitBox(this, 95, 170, 225, 110, ELEMENT_ENEMY, OBJ_WAREHOUSE, 1);
+	//Hits::SetHitBox(this, 95, 170, 225, 110, ELEMENT_ENEMY, OBJ_WAREHOUSE, 1);
 }
 
 //アクション
@@ -61,7 +61,7 @@ void CObjWarehouse::Action()
 	if (window_start_manage == Warehouse)
 	{
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
@@ -117,7 +117,7 @@ void CObjWarehouse::Action()
 		}
 
 		//資材ボタン選択
-		if (100 < m_mou_x && m_mou_x < 600 && 100 < m_mou_y && m_mou_y < 350)
+		if (110 < m_mou_x && m_mou_x < 610 && 110 < m_mou_y && m_mou_y < 360)
 		{
 			m_object_ma = 1.0f;
 			//左クリックされたらフラグを立て、資材ウインドウを開く
@@ -148,7 +148,7 @@ void CObjWarehouse::Action()
 		}
 
 		//住民ボタン選択
-		if (610 < m_mou_x && m_mou_x < 1110 && 100 < m_mou_y && m_mou_y < 350)
+		if (620 < m_mou_x && m_mou_x < 1120 && 110 < m_mou_y && m_mou_y < 360)
 		{
 			m_object_re = 1.0f;
 			//左クリックされたらフラグを立て、住民ウインドウを開く
@@ -178,7 +178,7 @@ void CObjWarehouse::Action()
 		}
 
 		//スペシャル技ボタン選択
-		if (100 < m_mou_x && m_mou_x < 600 && 360 < m_mou_y && m_mou_y < 610)
+		if (110 < m_mou_x && m_mou_x < 610 && 370 < m_mou_y && m_mou_y < 620)
 		{
 			m_object_sp = 1.0f;
 			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
@@ -208,7 +208,7 @@ void CObjWarehouse::Action()
 		}
 
 		//装備ボタン選択
-		if (610 < m_mou_x && m_mou_x < 1110 && 360 < m_mou_y && m_mou_y < 610)
+		if (620 < m_mou_x && m_mou_x < 1120 && 370 < m_mou_y && m_mou_y < 620)
 		{
 			m_object_eq = 1.0f;
 			//左クリックされたらフラグを立て、装備ウインドウを開く
@@ -472,26 +472,26 @@ void CObjWarehouse::Draw()
 			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 800.0f;
+			src.m_right = 790.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 30.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示左下
-			src.m_top = 0.0f;
+			src.m_top = 10.0f;
 			src.m_left = 800.0f;
-			src.m_right = 1600.0f;
+			src.m_right = 1595.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 30.0f;
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央上
 			src.m_top = 0.0f;
@@ -503,7 +503,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 40.0f;
 			dst.m_right = m_mou_x + 40.0f;
 			dst.m_bottom = m_mou_y - 30.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
@@ -515,7 +515,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 40.0f;
 			dst.m_right = m_mou_x + 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示右上
 			src.m_top = 0.0f;
@@ -527,11 +527,11 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x + 40.0f;
 			dst.m_right = m_mou_x + 120.0f;
 			dst.m_bottom = m_mou_y - 30.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
-			src.m_left = 4800.0f;
+			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
 			src.m_bottom = 800.0f;
 
@@ -539,10 +539,9 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x + 40.0f;
 			dst.m_right = m_mou_x + 120.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
-
-		    //▼倉庫文字画像表示
+			//▼倉庫文字画像表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 242.0f;
@@ -577,10 +576,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top    =  50.0f;
-		dst.m_left   =  60.0f;
-		dst.m_right  =  110.0f;
-		dst.m_bottom =  100.0f;
+		dst.m_top    =  60.0f;
+		dst.m_left   =  70.0f;
+		dst.m_right  =  120.0f;
+		dst.m_bottom =  110.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
 		//▼資材選択ボタン表示
@@ -589,10 +588,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 300.0f;
 		src.m_bottom = 170.0f;
 
-		dst.m_top    = 100.0f;
-		dst.m_left   = 100.0f;
-		dst.m_right  = 600.0f;
-		dst.m_bottom = 350.0f;
+		dst.m_top    = 110.0f;
+		dst.m_left   = 110.0f;
+		dst.m_right  = 610.0f;
+		dst.m_bottom = 360.0f;
 		Draw::Draw(28, &src, &dst, ma, 0.0f);
 
 		//▼住民選択ボタン表示
@@ -601,10 +600,10 @@ void CObjWarehouse::Draw()
 		src.m_right	 = 300.0f;
 		src.m_bottom = 170.0f;
 
-		dst.m_top    = 100.0f;
-		dst.m_left   = 610.0f;
-		dst.m_right  = 1110.0f;
-		dst.m_bottom = 350.0f;
+		dst.m_top    = 110.0f;
+		dst.m_left   = 620.0f;
+		dst.m_right  = 1120.0f;
+		dst.m_bottom = 360.0f;
 		Draw::Draw(29, &src, &dst, re, 0.0f);
 
 		//▼スペシャル技選択ボタン表示
@@ -613,10 +612,10 @@ void CObjWarehouse::Draw()
 		src.m_right	 = 300.0f;
 		src.m_bottom = 170.0f;
 
-		dst.m_top    = 360.0f;
-		dst.m_left   = 100.0f;
-		dst.m_right  = 600.0f;
-		dst.m_bottom = 610.0f;
+		dst.m_top    = 370.0f;
+		dst.m_left   = 110.0f;
+		dst.m_right  = 610.0f;
+		dst.m_bottom = 620.0f;
 		Draw::Draw(30, &src, &dst, sp, 0.0f);
 
 		//▼装備選択ボタン表示
@@ -625,10 +624,10 @@ void CObjWarehouse::Draw()
 		src.m_right  = 300.0f;
 		src.m_bottom = 170.0f;
 
-		dst.m_top    = 360.0f;
-		dst.m_left   = 610.0f;
-		dst.m_right  = 1110.0f;
-		dst.m_bottom = 610.0f;
+		dst.m_top    = 370.0f;
+		dst.m_left   = 620.0f;
+		dst.m_right  = 1120.0f;
+		dst.m_bottom = 620.0f;
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
@@ -653,26 +652,26 @@ void CObjWarehouse::Draw()
 			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 800.0f;
-			src.m_bottom = 800.0f;
+			src.m_right = 790.0f;
+			src.m_bottom = 780.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 30.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示左下
 			src.m_top = 0.0f;
 			src.m_left = 800.0f;
-			src.m_right = 1600.0f;
+			src.m_right = 1595.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 30.0f;
 			dst.m_left = m_mou_x - 120.0f;
 			dst.m_right = m_mou_x - 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央上
 			src.m_top = 0.0f;
@@ -684,7 +683,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 40.0f;
 			dst.m_right = m_mou_x + 40.0f;
 			dst.m_bottom = m_mou_y - 30.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
@@ -696,7 +695,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x - 40.0f;
 			dst.m_right = m_mou_x + 40.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示右上
 			src.m_top = 0.0f;
@@ -708,11 +707,11 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x + 40.0f;
 			dst.m_right = m_mou_x + 120.0f;
 			dst.m_bottom = m_mou_y - 30.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
-			src.m_left = 4800.0f;
+			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
 			src.m_bottom = 800.0f;
 
@@ -720,19 +719,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = m_mou_x + 40.0f;
 			dst.m_right = m_mou_x + 120.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
-			Draw::Draw(21, &src, &dst, ware, 0.0f);
-
-			//▼倉庫文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 242.0f;
-			src.m_bottom = 117.0f;
-
-			dst.m_top = m_mou_y - 43.0f;
-			dst.m_left = m_mou_x - 900.0f;
-			dst.m_right = m_mou_x + 40.0f;
-			dst.m_bottom = m_mou_y - 18.0f;
-			Draw::Draw(88, &src, &dst, black, 0.0f);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
 		}
 	}
 
@@ -1637,10 +1624,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 464.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 200.0f;
+		dst.m_top = 260.0f;
 		dst.m_left = 540.0f;
 		dst.m_right = 700.0f;
-		dst.m_bottom = 240.0f;
+		dst.m_bottom = 300.0f;
 		Draw::Draw(85, &src, &dst, black, 0.0f);
 
 		//▼ポッド文字画像表示
@@ -1649,49 +1636,13 @@ void CObjWarehouse::Draw()
 		src.m_right = 344.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 330.0f;
+		dst.m_top = 400.0f;
 		dst.m_left = 540.0f;
 		dst.m_right = 660.0f;
-		dst.m_bottom = 370.0f;
+		dst.m_bottom = 440.0f;
 		Draw::Draw(86, &src, &dst, black, 0.0f);
 
-		//▼残り住民数がいません(残り住民数だけ)文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 600.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 470.0f;
-		dst.m_left = 540.0f;
-		dst.m_right = 750.0f;
-		dst.m_bottom = 510.0f;
-		Draw::Draw(94, &src, &dst, black, 0.0f);
-
-		//▼残り　　　人(残り)だけ文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 592.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 470.0f;
-		dst.m_left = 780.0f;
-		dst.m_right = 990.0f;
-		dst.m_bottom = 510.0f;
-		Draw::Draw(78, &src, &dst, red, 0.0f);
-
-		//▼人文字画像表示(残り住民数)
-		src.m_top = 2.0f;
-		src.m_left = 0.0f;
-		src.m_right = 112.0f;
-		src.m_bottom = 110.0f;
-
-		dst.m_top = 470.0f;
-		dst.m_left = 1030.0f;
-		dst.m_right = 1070.0f;
-		dst.m_bottom = 510.0f;
-		Draw::Draw(77, &src, &dst, red, 0.0f);
-
-		//パワー
+		//レッドレベル表示文字画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 312.0f;
@@ -1704,7 +1655,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(122 + g_Pow_equip_Level, &src, &dst, black, 0.0f);
 		//Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
 
-		//ディフェンス
+		//ブルーレベル表示文字画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 312.0f;
@@ -1717,49 +1668,44 @@ void CObjWarehouse::Draw()
 		Draw::Draw(122 + g_Def_equip_Level, &src, &dst, black, 0.0f);
 		//Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
 
-		//スピード
+		//グリーンレベル表示文字画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 312.0f;
 		src.m_bottom = 107.0f;
 
-		dst.m_top = 470.0f;
+		dst.m_top = 460.0f;
 		dst.m_left = 360.0f;
 		dst.m_right = 480.0f;
-		dst.m_bottom = 510.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(122 + g_Spe_equip_Level, &src, &dst, black, 0.0f);
 		//Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
 
-		//バランス
+		//ホワイトレベル表示文字画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 312.0f;
 		src.m_bottom = 107.0f;
 
-		dst.m_top = 200.0f;
+		dst.m_top = 260.0f;
 		dst.m_left = 900.0f;
 		dst.m_right = 1020.0f;
-		dst.m_bottom = 240.0f;
+		dst.m_bottom = 300.0f;
 		Draw::Draw(122 + g_Bal_equip_Level, &src, &dst, black, 0.0f);
 		//Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
 
-		//▼ポッド
+		//▼ポッドレベル表示文字画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 312.0f;
 		src.m_bottom = 107.0f;
 
-		dst.m_top = 330.0f;
+		dst.m_top = 400.0f;
 		dst.m_left = 900.0f;
 		dst.m_right = 1020.0f;
-		dst.m_bottom = 370.0f;
+		dst.m_bottom = 440.0f;
 		Draw::Draw(122 + g_Pod_equip_Level, &src, &dst, black, 0.0f);
 		//Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
-
-		//残りの住民数
-		FontDraw(NumConversion(g_Remain_num), 1000, 470, 30, 40, red, true);
-		//Font::StrDraw(human_remain, 780.0f, 470.0f, 35.0f, red);
-
 
 	}
 }

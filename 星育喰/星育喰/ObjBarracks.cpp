@@ -70,7 +70,7 @@ void CObjBarracks::Init()
 
 
 	//当たり判定用HitBoxを作成(Objhuman用)
-	Hits::SetHitBox(this, 810, 460, 380, 230, ELEMENT_ENEMY, OBJ_BARRACKS, 1);
+	//Hits::SetHitBox(this, 810, 460, 380, 230, ELEMENT_ENEMY, OBJ_BARRACKS, 1);
 }
 
 //アクション
@@ -223,7 +223,7 @@ void CObjBarracks::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
-		if (60 < m_mou_x && m_mou_x < 110 && 50 < m_mou_y && m_mou_y < 100 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -754,7 +754,11 @@ void CObjBarracks::Action()
 	//dst.m_bottom = 630.0f;
 
 	//兵舎選択範囲
-	if (450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520)
+	if (
+		((g_Bar_Level == 1) &&(450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520))||		//兵舎レベル1の時の判定処理
+		((g_Bar_Level == 2) && 420 < m_mou_x && m_mou_x < 650 && 270 < m_mou_y && m_mou_y < 520&&!(472< m_mou_x&& m_mou_x <671&& 276 < m_mou_y && m_mou_y <400))||	//兵舎レベル2の時の判定処理
+		((g_Bar_Level == 3) && (420 < m_mou_x && m_mou_x < 778 && 270 < m_mou_y && m_mou_y < 520) && !(472< m_mou_x&& m_mou_x <671 && 276 < m_mou_y && m_mou_y <400))		//兵舎レベル3の時の判定処理
+		)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
 		m_Bar_color = 1.0f;
@@ -896,7 +900,7 @@ void CObjBarracks::Draw()
 			//▼施設紹介ウインドウ表示左上
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 800.0f;
+			src.m_right = 790.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 50.0f;
@@ -906,9 +910,9 @@ void CObjBarracks::Draw()
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
 			//▼施設紹介ウインドウ表示左下
-			src.m_top = 0.0f;
+			src.m_top = 10.0f;
 			src.m_left = 800.0f;
-			src.m_right = 1600.0f;
+			src.m_right = 1595.0f;
 			src.m_bottom = 800.0f;
 
 			dst.m_top = m_mou_y - 30.0f;
@@ -955,7 +959,7 @@ void CObjBarracks::Draw()
 
 			//▼施設紹介ウインドウ表示中央下
 			src.m_top = 0.0f;
-			src.m_left = 4800.0f;
+			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
 			src.m_bottom = 800.0f;
 
@@ -964,7 +968,6 @@ void CObjBarracks::Draw()
 			dst.m_right = m_mou_x + 120.0f;
 			dst.m_bottom = m_mou_y - 10.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
-
 
 			//▼兵舎 Lv文字画像表示
 			src.m_top = 0.0f;
@@ -979,7 +982,7 @@ void CObjBarracks::Draw()
 			Draw::Draw(116, &src, &dst, white, 0.0f);
 
 			//▼兵舎レベル
-			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 60.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
+			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 55.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
 
 			////▼フォント表示
 			////兵舎レベル
@@ -1020,21 +1023,22 @@ void CObjBarracks::Draw()
 		src.m_right = 400.0f;
 		src.m_bottom = 400.0f;
 
-		dst.m_top = 120.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = 430.0f;
-		dst.m_bottom = 360.0f;
+		dst.m_top = 150.0f;
+		dst.m_left = 150.0f;
+		dst.m_right = 450.0f;
+		dst.m_bottom = 390.0f;
 		Draw::Draw(2 + (g_Bar_Level - 1) * 3, &src, &dst, white, 0.0f);
 
 		//▼兵舎LVUP表示
+		//▼研究所LVUP表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 120.0f;
 		src.m_bottom = 150.0f;
 
 		dst.m_top = 470.0f;
-		dst.m_left = 40.0f;
-		dst.m_right = 145.0f;
+		dst.m_left = 48.0f;
+		dst.m_right = 148.0f;
 		dst.m_bottom = 620.0f;
 		Draw::Draw(22, &src, &dst, Lvup, 0.0f);
 
@@ -1245,8 +1249,6 @@ void CObjBarracks::Draw()
 		dst.m_right = 1130.0f;
 		dst.m_bottom = 640.0f;
 		Draw::Draw(78, &src, &dst, black, 0.0f);
-
-
 
 		//▼フォント表示
 		//兵舎レベル
