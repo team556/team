@@ -22,7 +22,7 @@ using namespace GameL;
 #define MIS_LV_2 (2.5f)
 #define MIS_LV_3 (2.0f)
 #define MIS_LV_4 (1.5f)
-#define MIS_LV_5 (1.0f)//1.0未満にはしないでください
+#define MIS_LV_5 (1.0f)//1.0未満にはしないでください(追記：バグ修正したので、1.0未満OKである。)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -2165,177 +2165,193 @@ void CObjInstitute::Draw()
 			//Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
 
 			//ミサイルリキャスト次のLVUPに関する情報--------------------------------
-			//▼NEXT LV UP文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 832.0f;
-			src.m_bottom = 112.0f;
+			if (g_Mis_Recast_Level < 4) {
+				//▼NEXT LV UP文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 832.0f;
+				src.m_bottom = 112.0f;
 
-			dst.m_top = 475.0f;
-			dst.m_left = 740.0f;
-			dst.m_right = 1070.0f;
-			dst.m_bottom = 540.0f;
-			Draw::Draw(80, &src, &dst, black, 0.0f);
+				dst.m_top = 475.0f;
+				dst.m_left = 740.0f;
+				dst.m_right = 1070.0f;
+				dst.m_bottom = 540.0f;
+				Draw::Draw(80, &src, &dst, black, 0.0f);
 
-			//▼LV 文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 190.0f;
-			src.m_bottom = 107.0f;
+				//▼LV 文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 190.0f;
+				src.m_bottom = 107.0f;
 
-			dst.m_top = 560.0f;
-			dst.m_left = 450.0f;
-			dst.m_right = 510.0f;
-			dst.m_bottom = 610.0f;
-			Draw::Draw(81, &src, &dst, black, 0.0f);
+				dst.m_top = 560.0f;
+				dst.m_left = 450.0f;
+				dst.m_right = 510.0f;
+				dst.m_bottom = 610.0f;
+				Draw::Draw(81, &src, &dst, black, 0.0f);
 
-			//▼50音(数字)文字画像表示
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + (m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] * 125);
-			src.m_right = END_ZERO + (m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] * 125);
-			src.m_bottom = 1375.0f;
-
-			dst.m_top = 555.0f;
-			dst.m_left = 535.0f;
-			dst.m_right = 595.0f;
-			dst.m_bottom = 615.0f;
-			Draw::Draw(121, &src, &dst, black, 0.0f);
-
-			//▼50音(＆)文字画像表示
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO - 375;
-			src.m_right = END_ZERO - 375;
-			src.m_bottom = 1375.0f;
-
-			dst.m_top = 560.0f;
-			dst.m_left = 605.0f;
-			dst.m_right = 645.0f;
-			dst.m_bottom = 610.0f;
-			Draw::Draw(121, &src, &dst, black, 0.0f);
-
-			//▼ミサイル次レベル必要人数表示
-			if (m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] >= 1000) {
+				//▼50音(数字)文字画像表示
 				src.m_top = 1250.0f;
-				src.m_left = CUT_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 1000) % 10) * 125);
-				src.m_right = END_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 1000) % 10) * 125);
+				src.m_left = CUT_ZERO + (m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] * 125);
+				src.m_right = END_ZERO + (m_Mis_recast_next_Ins_Lv[g_Mis_Recast_Level] * 125);
 				src.m_bottom = 1375.0f;
 
-				dst.m_top = 560;
-				dst.m_left = 660;
-				dst.m_right = 700;
-				dst.m_bottom = 610;
-				Draw::Draw(120, &src, &dst, black, 0.0f);
-			}
-			//百の位
-			if (m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] >= 100) {
+				dst.m_top = 555.0f;
+				dst.m_left = 535.0f;
+				dst.m_right = 595.0f;
+				dst.m_bottom = 615.0f;
+				Draw::Draw(121, &src, &dst, black, 0.0f);
+
+				//▼50音(＆)文字画像表示
 				src.m_top = 1250.0f;
-				src.m_left = CUT_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 100) % 10) * 125);
-				src.m_right = END_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 100) % 10) * 125);
+				src.m_left = CUT_ZERO - 375;
+				src.m_right = END_ZERO - 375;
 				src.m_bottom = 1375.0f;
 
-				dst.m_top = 560;
-				dst.m_left = 700;
-				dst.m_right = 740;
-				dst.m_bottom = 610;
-				Draw::Draw(120, &src, &dst, black, 0.0f);
+				dst.m_top = 560.0f;
+				dst.m_left = 605.0f;
+				dst.m_right = 645.0f;
+				dst.m_bottom = 610.0f;
+				Draw::Draw(121, &src, &dst, black, 0.0f);
 
-				//十の位の0
+				//▼ミサイル次レベル必要人数表示
+				if (m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] >= 1000) {
+					src.m_top = 1250.0f;
+					src.m_left = CUT_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 1000) % 10) * 125);
+					src.m_right = END_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 1000) % 10) * 125);
+					src.m_bottom = 1375.0f;
+
+					dst.m_top = 560;
+					dst.m_left = 660;
+					dst.m_right = 700;
+					dst.m_bottom = 610;
+					Draw::Draw(120, &src, &dst, black, 0.0f);
+				}
+				//百の位
+				if (m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] >= 100) {
+					src.m_top = 1250.0f;
+					src.m_left = CUT_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 100) % 10) * 125);
+					src.m_right = END_ZERO + (floor((m_Mis_recast_next_Hum_num[g_Mis_Recast_Level] / 100) % 10) * 125);
+					src.m_bottom = 1375.0f;
+
+					dst.m_top = 560;
+					dst.m_left = 700;
+					dst.m_right = 740;
+					dst.m_bottom = 610;
+					Draw::Draw(120, &src, &dst, black, 0.0f);
+
+					//十の位の0
+					src.m_top = 1250.0f;
+					src.m_left = CUT_ZERO;
+					src.m_right = END_ZERO;
+					src.m_bottom = 1375.0f;
+
+					dst.m_top = 560;
+					dst.m_left = 740;
+					dst.m_right = 780;
+					dst.m_bottom = 610;
+					Draw::Draw(120, &src, &dst, black, 0.0f);
+				}
+
+				//一の位
 				src.m_top = 1250.0f;
 				src.m_left = CUT_ZERO;
 				src.m_right = END_ZERO;
 				src.m_bottom = 1375.0f;
 
 				dst.m_top = 560;
-				dst.m_left = 740;
-				dst.m_right = 780;
+				dst.m_left = 780;
+				dst.m_right = 820;
 				dst.m_bottom = 610;
 				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//▼人文字画像表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 112.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 560.0f;
+				dst.m_left = 820.0f;
+				dst.m_right = 880.0f;
+				dst.m_bottom = 610.0f;
+				Draw::Draw(77, &src, &dst, black, 0.0f);
+
+				//▼50音(＝)文字画像表示 (仮)に人文字画像を表示しています
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO - 125;
+				src.m_right = END_ZERO - 125;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560.0f;
+				dst.m_left = 890.0f;
+				dst.m_right = 950.0f;
+				dst.m_bottom = 610.0f;
+				Draw::Draw(121, &src, &dst, black, 0.0f);
+
+				//ミサイルの次のレベルでのリキャストの一の位
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
+				src.m_right = END_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560;
+				dst.m_left = 950;
+				dst.m_right = 990;
+				dst.m_bottom = 610;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//ピリオド
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO - 250;
+				src.m_right = END_ZERO - 250;
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560;
+				dst.m_left = 975;
+				dst.m_right = 1015;
+				dst.m_bottom = 610;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//小数第一位
+				src.m_top = 1250.0f;
+				src.m_left = CUT_ZERO + ((m_Mis_recast_next % 10) * 125);
+				src.m_right = END_ZERO + ((m_Mis_recast_next % 10) * 125);
+				src.m_bottom = 1375.0f;
+
+				dst.m_top = 560;
+				dst.m_left = 1000;
+				dst.m_right = 1040;
+				dst.m_bottom = 610;
+				Draw::Draw(120, &src, &dst, black, 0.0f);
+
+				//▼50音(s)文字画像表示(仮)に人文字画像を表示しています
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 112.0f;
+				src.m_bottom = 112.0f;
+
+				dst.m_top = 580.0f;
+				dst.m_left = 1040.0f;
+				dst.m_right = 1070.0f;
+				dst.m_bottom = 610.0f;
+				Draw::Draw(122, &src, &dst, black, 0.0f);
+				//Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 			}
 
-			//一の位
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO;
-			src.m_right = END_ZERO;
-			src.m_bottom = 1375.0f;
+			//ミサイルのリキャストレベルがマックスではないとき
+			else {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 1605.0f;
+				src.m_bottom = 112.0f;
 
-			dst.m_top = 560;
-			dst.m_left = 780;
-			dst.m_right = 820;
-			dst.m_bottom = 610;
-			Draw::Draw(120, &src, &dst, black, 0.0f);
-
-			//▼人文字画像表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 560.0f;
-			dst.m_left = 820.0f;
-			dst.m_right = 880.0f;
-			dst.m_bottom = 610.0f;
-			Draw::Draw(77, &src, &dst, black, 0.0f);
-
-			//▼50音(＝)文字画像表示 (仮)に人文字画像を表示しています
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO - 125;
-			src.m_right = END_ZERO - 125;
-			src.m_bottom = 1375.0f;
-
-			dst.m_top = 560.0f;
-			dst.m_left = 890.0f;
-			dst.m_right = 950.0f;
-			dst.m_bottom = 610.0f;
-			Draw::Draw(121, &src, &dst, black, 0.0f);
-
-			//ミサイルの次のレベルでのリキャストの一の位
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
-			src.m_right = END_ZERO + (floor(m_Mis_recast_time[g_Mis_Recast_Level + 1]) * 125);
-			src.m_bottom = 1375.0f;
-
-			dst.m_top = 560;
-			dst.m_left = 950;
-			dst.m_right = 990;
-			dst.m_bottom = 610;
-			Draw::Draw(120, &src, &dst, black, 0.0f);
-
-			//ピリオド
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO - 250;
-			src.m_right = END_ZERO - 250;
-			src.m_bottom = 1375.0f;
-
-			dst.m_top = 560;
-			dst.m_left = 975;
-			dst.m_right = 1015;
-			dst.m_bottom = 610;
-			Draw::Draw(120, &src, &dst, black, 0.0f);
-
-			//小数第一位
-			src.m_top = 1250.0f;
-			src.m_left = CUT_ZERO + ((m_Mis_recast_next % 10) * 125);
-			src.m_right = END_ZERO + ((m_Mis_recast_next % 10) * 125);
-			src.m_bottom = 1375.0f;
-
-			dst.m_top = 560;
-			dst.m_left = 1000;
-			dst.m_right = 1040;
-			dst.m_bottom = 610;
-			Draw::Draw(120, &src, &dst, black, 0.0f);
-
-			//▼50音(s)文字画像表示(仮)に人文字画像を表示しています
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 112.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 580.0f;
-			dst.m_left = 1040.0f;
-			dst.m_right = 1070.0f;
-			dst.m_bottom = 610.0f;
-			Draw::Draw(122, &src, &dst, black, 0.0f);
-			//Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
+				dst.m_top = 525.0f;
+				dst.m_left = 440.0f;
+				dst.m_right = 1090.0f;
+				dst.m_bottom = 525.0f + 50.0f;
+				Draw::Draw(131, &src, &dst, black, 0.0f);
+			}
 			//-----------------------------------------
 		}
 

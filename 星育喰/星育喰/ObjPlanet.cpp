@@ -732,7 +732,7 @@ void CObjPlanet::Action()
 			}
 		}
 
-		//m_time--;
+		m_time--;
 	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
