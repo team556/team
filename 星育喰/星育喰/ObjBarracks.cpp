@@ -757,7 +757,7 @@ void CObjBarracks::Action()
 	if (
 		((g_Bar_Level == 1) &&(450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520))||		//兵舎レベル1の時の判定処理
 		((g_Bar_Level == 2) && 420 < m_mou_x && m_mou_x < 650 && 270 < m_mou_y && m_mou_y < 520&&!(472< m_mou_x&& m_mou_x <671&& 276 < m_mou_y && m_mou_y <400))||	//兵舎レベル2の時の判定処理
-		((g_Bar_Level == 3) && (420 < m_mou_x && m_mou_x < 778 && 270 < m_mou_y && m_mou_y < 520) && !(472< m_mou_x&& m_mou_x <671 && 276 < m_mou_y && m_mou_y <400))		//兵舎レベル3の時の判定処理
+		((g_Bar_Level == 3) && (420 < m_mou_x && m_mou_x < 778 && 270 < m_mou_y && m_mou_y < 520) && !(472< m_mou_x&& m_mou_x <789 && 264 < m_mou_y && m_mou_y <394))		//兵舎レベル3の時の判定処理
 		)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
