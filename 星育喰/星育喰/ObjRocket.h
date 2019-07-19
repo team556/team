@@ -71,5 +71,7 @@ private:
 	int m_level_comp[4];	//装備武器レベルの比較用
 
 	int m_pod_nam;			//残りポッドの住民総数 / 1200
+	int m_pnam;				//static p_pnam格納用
+	int m_enam;				//static e_pnam格納用
 	//bool m_pstop;			//ポッド同士でのストップ用
 };

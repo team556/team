@@ -6,7 +6,7 @@
 using namespace GameL;
 
 //オブジェクト：タイトル
-class CObjRktHit :public CObj
+class CObjRktHit :public CObjFight			//fight継承
 
 {
 public:
@@ -28,6 +28,8 @@ private:
 
 	int m_get_line;	//戦闘シーンからGetしたline
 	int m_del_cnt;	//削除までのカウント用
+	int m_pnam;		//static p_pnam格納用
+	int m_enam;		//static e_pnam格納用
 
 	bool m_stop_f;	//止める用(true = 停止)
 	bool m_type;	//タイプ(true = 敵)

@@ -55,5 +55,8 @@ protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
 
+	static int p_pnam;		//プレイヤーの排出したポッド数
+	static int e_pnam;		//エネミーの排出したポッド数
+
 	static float damage_buff[2];//ダメージのバフ倍率[スペシャル技:ステロイド投与用]
 };
