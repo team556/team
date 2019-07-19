@@ -22,7 +22,7 @@ using namespace GameL;
 #define MIS_LV_2 (2.5f)
 #define MIS_LV_3 (2.0f)
 #define MIS_LV_4 (1.5f)
-#define MIS_LV_5 (1.0f)//1.0未満にはしないでください
+#define MIS_LV_5 (1.0f)//1.0未満にはしないでください(追記：バグ修正したので、1.0未満OKである。)
 
 //イニシャライズ
 void CObjInstitute::Init()
@@ -1123,7 +1123,7 @@ void CObjInstitute::Action()
 	if (
 		((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x < 225 && 340 < m_mou_y && m_mou_y < 550)||	//研究所のレベル1の時の選択範囲
 		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>320&& m_mou_y<450&& m_mou_x>1&& m_mou_x<117))||//研究所のレベル2の時の選択範囲
-		((g_Ins_Level == 3) && (1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550) && !(m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575)|| (221 < m_mou_x && m_mou_x < 293 && 428 < m_mou_y && m_mou_y < 482))//研究所のレベル3の時の選択範囲
+		((g_Ins_Level == 3) && ((1 < m_mou_x && m_mou_x < 220 && 340 < m_mou_y && m_mou_y < 550) || (221 < m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575) || (221 < m_mou_x && m_mou_x < 293 && 428 < m_mou_y && m_mou_y < 482)) && !(m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117) )//研究所のレベル3の時の選択範囲
 	)
 	{
 		m_introduce_f = true;	//施設紹介ウインドウを表示する
