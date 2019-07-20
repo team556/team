@@ -1308,8 +1308,8 @@ void CObjPreparation::Draw()
 		//▼測定不能文字画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 391.0f;
-		src.m_bottom = 95.0f;
+		src.m_right = 379.0f;
+		src.m_bottom = 90.0f;
 
 		dst.m_top = m_mou_y + m_detail_message_draw_y + 38.0f;
 		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
@@ -1336,10 +1336,80 @@ void CObjPreparation::Draw()
 		}
 	}
 
-	//難易度★数を基に、どの惑星か判断し、敵惑星名を表示する。
-	//※チュートリアル惑星はチュートリアルのグローバルフラグ等をifに組み込み判断させたい。
+	//▼敵惑星名を表示　[難易度★数を基にどの惑星か判断する]
+	//※チュートリアル惑星名を表示する処理はまだ作っていない。
+	//チュートリアル惑星はm_level_star_num == 1の処理の中に、
+	//チュートリアルのグローバルフラグ等で更に分岐させて判断させたい。
+	if (m_level_star_num == 1)
+	{
+		//▼「O阪魂」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 258.0f;
+		src.m_bottom = 90.0f;
 
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(76, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 2)
+	{
+		//▼「再星」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 186.0f;
+		src.m_bottom = 90.0f;
 
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(77, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 3)
+	{
+		//▼「アモイ」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 282.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(78, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 4)
+	{
+		//▼「コワモーテ」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 474.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 250.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(79, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 5)
+	{
+		//▼「アマテラス」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 474.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 250.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(80, &src, &dst, detail_message_font[0], 0.0f);
+	}
 
 
 	//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
@@ -1432,7 +1502,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_clip_bottom[3] = 90.0f;
 
 		//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-		m_detail_message_draw_right[3] = m_detail_message_draw_left + 150.0f;
+		m_detail_message_draw_right[3] = m_detail_message_draw_left + 175.0f;
 
 
 		//▽5行目
@@ -1485,7 +1555,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_clip_bottom[3] = 90.0f;
 
 		//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-		m_detail_message_draw_right[3] = m_detail_message_draw_left + 175.0f;
+		m_detail_message_draw_right[3] = m_detail_message_draw_left + 200.0f;
 
 
 		//▽5行目
@@ -1624,8 +1694,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 			Draw::LoadImage(L"無し.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[3] = 190.0f;
-			m_detail_message_clip_bottom[3] = 98.0f;
+			m_detail_message_clip_right[3] = 180.0f;
+			m_detail_message_clip_bottom[3] = 90.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 			m_detail_message_draw_right[3] = m_detail_message_draw_left + 50.0f;
@@ -1636,8 +1706,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 			Draw::LoadImage(L"攻撃傾向.png", 126, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[4] = 390.0f;
-			m_detail_message_clip_bottom[4] = 98.0f;
+			m_detail_message_clip_right[4] = 378.0f;
+			m_detail_message_clip_bottom[4] = 90.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 			m_detail_message_draw_right[4] = m_detail_message_draw_left + 100.0f;
@@ -1648,8 +1718,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 			Draw::LoadImage(L"不明.png", 127, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[5] = 202.0f;
-			m_detail_message_clip_bottom[5] = 96.0f;
+			m_detail_message_clip_right[5] = 186.0f;
+			m_detail_message_clip_bottom[5] = 90.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 			m_detail_message_draw_right[5] = m_detail_message_draw_left + 50.0f;
@@ -1706,16 +1776,16 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 
 	//▽以下は各敵惑星関係なく行う共通処理
-	//▽1行目	(画像がなかったため適用してない)
+	//▽1行目
 	//敵惑星詳細説明画像を122番に登録
-	//Draw::LoadImage(L"", 122, TEX_SIZE_512);
+	Draw::LoadImage(L"惑星：.png", 122, TEX_SIZE_512);
 
 	//敵惑星詳細説明画像の切り取り位置を設定
-	m_detail_message_clip_right[0] = 0.0f;
-	m_detail_message_clip_bottom[0] = 0.0f;
+	m_detail_message_clip_right[0] = 246.0f;
+	m_detail_message_clip_bottom[0] = 90.0f;
 
 	//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-	m_detail_message_draw_right[0] = m_detail_message_draw_left + 0.0f;
+	m_detail_message_draw_right[0] = m_detail_message_draw_left + 100.0f;
 
 
 	//▽2行目
