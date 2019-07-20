@@ -183,6 +183,27 @@ void CScenePreparation::InitScene()
 
 
 
+	//惑星：文字画像94番に登録
+	Draw::LoadImage(L"惑星：.png", 94, TEX_SIZE_512);
+
+	//ボロボロン文字画像95番に登録
+	Draw::LoadImage(L"ボロボロン.png", 95, TEX_SIZE_512);
+
+	//O阪魂文字画像96番に登録
+	Draw::LoadImage(L"O阪魂.png", 96, TEX_SIZE_512);
+
+	//再星文字画像97番に登録
+	Draw::LoadImage(L"再星.png", 97, TEX_SIZE_512);
+
+	//アモイ文字画像98番に登録
+	Draw::LoadImage(L"アモイ.png", 98, TEX_SIZE_512);
+
+	//コワモーテ文字画像99番に登録
+	Draw::LoadImage(L"コワモーテ.png", 99, TEX_SIZE_512);
+
+	//アマテラス文字画像100番に登録
+	Draw::LoadImage(L"アマテラス.png", 100, TEX_SIZE_512);
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
