@@ -17,6 +17,8 @@ using namespace GameL;
 bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
 float CObjFight::damage_buff[2] = { 1.0f,1.0f };
+int CObjFight::p_pnam = 0;
+int CObjFight::e_pnam = 0;
 
 #define INI_COLOR (0.5f) //全カラー明度の初期値(アイコン未選択中のカラー)
 

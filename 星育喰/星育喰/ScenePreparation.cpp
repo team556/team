@@ -163,8 +163,11 @@ void CScenePreparation::InitScene()
 	//あと0体文字画像読み込み72番に登録
 	Draw::LoadImage(L"あと0体.png", 72, TEX_SIZE_512);
 
-	//★画像読み込み74番に登録
-	//Draw::LoadImage(L"画面移行★.png", 74, TEX_SIZE_512);
+	//★画像読み込み73番に登録(正確な★画像に変更予定)
+	//Draw::LoadImage(L"画面移行★.png", 73, TEX_SIZE_512);
+
+	//測定不能文字画像74番に登録
+	Draw::LoadImage(L"測定不能.png", 74, TEX_SIZE_512);
 
 	//メッセージウィンドウ画像89番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
@@ -172,21 +175,13 @@ void CScenePreparation::InitScene()
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
-	//詳細説明画像をを読み込む為に、
-	//読み込み番号123～127番を使用しているので
+	//詳細説明画像を読み込む為に、
+	//読み込み番号122～127番を使用しているので
 	//この番号は使わないように！
 
-	//不明文字画像90番に登録
-	Draw::LoadImage(L"不明.png", 90, TEX_SIZE_512);
 
-	//無し文字画像91番に登録
-	Draw::LoadImage(L"無し.png", 91, TEX_SIZE_512);
 
-	//攻撃傾向文字画像92番に登録
-	Draw::LoadImage(L"攻撃傾向.png", 92, TEX_SIZE_512);
 
-	//測定不能文字画像93番に登録
-	Draw::LoadImage(L"測定不能.png", 93, TEX_SIZE_512);
 
 	//惑星：文字画像94番に登録
 	Draw::LoadImage(L"惑星：.png", 94, TEX_SIZE_512);

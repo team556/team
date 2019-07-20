@@ -31,6 +31,8 @@ void CObjRktHit::Init()
 	m_mov	= 0.0f;
 	m_size = 50.0f;
 	m_del_cnt = 0;
+	m_pnam = p_pnam -1;
+	m_enam = e_pnam -1;
 	m_stop_f = false;
 	m_del_f = false;
 
@@ -38,15 +40,39 @@ void CObjRktHit::Init()
 
 	if (m_type == false)
 	{								//–¡•ûHitBoxì¬
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT, 1);
 		CObjFight* fit = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 		m_get_line = fit->GetLine();//‘I‘ğLineæ“¾
+
+		switch (m_pnam) {
+		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT, 1); break;
+		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT1, 1); break;
+		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT2, 1); break;
+		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT3, 1); break;
+		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT4, 1); break;
+		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT5, 1); break;
+		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT6, 1); break;
+		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT7, 1); break;
+		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT8, 1); break;
+		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT9, 1); break;
+		}
 	}
 	else
 	{								//“GHitBoxì¬
-		Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT, 1);
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		m_get_line = ene->GetLine();//‘I‘ğLineæ“¾
+
+		switch (m_enam) {
+		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT, 1); break;
+		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT1, 1); break;
+		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT2, 1); break;
+		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT3, 1); break;
+		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT4, 1); break;
+		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT5, 1); break;
+		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT6, 1); break;
+		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT7, 1); break;
+		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT8, 1); break;
+		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT9, 1); break;
+		}
 	}
 
 	CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
@@ -103,17 +129,21 @@ void CObjRktHit::Action()
 	}
 
 	
-	if (m_type == false && hit->CheckElementHit(ELEMENT_NULL))		//this‚ª–¡•û ‚©‚Â“G‚ÌHitBox‚É“–‚½‚Á‚½
+	if (m_type == false && hit->CheckElementHit(ELEMENT_NULL) == true)		//this‚ª–¡•û ‚©‚Â“G‚ÌHitBox‚É“–‚½‚Á‚½
 	{
 		m_stop_f = true;		//’â~
-		if (hit->CheckElementHit(ELEMENT_POD) == true)		//–¡•û‚ÌPOD‚É“–‚½‚Á‚½
+		if ((hit->CheckElementHit(ELEMENT_POD) == true ||
+			hit->CheckElementHit(ELEMENT_POD1) == true ||
+			hit->CheckElementHit(ELEMENT_POD2) == true ||
+			hit->CheckElementHit(ELEMENT_POD3) == true ||
+			hit->CheckElementHit(ELEMENT_POD4) == true) == true)		//–¡•û‚ÌPOD‚É“–‚½‚Á‚½
 		{
 			m_del_f = false;
 		}
 		else
 			m_del_f = true;	//íœ
 	}
-	else if (m_type == true && hit->CheckElementHit(ELEMENT_NULL))	//this‚ª“G ‚©‚Â–¡•û‚ÌHitBox‚É“–‚½‚Á‚½
+	else if (m_type == true && hit->CheckElementHit(ELEMENT_NULL) == true)	//this‚ª“G ‚©‚Â–¡•û‚ÌHitBox‚É“–‚½‚Á‚½
 	{
 		m_stop_f = true;
 		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)	//“Gƒ|ƒbƒh‚É“–‚½‚Á‚½
@@ -126,13 +156,10 @@ void CObjRktHit::Action()
 	else
 		m_stop_f = false;
 
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true || hit->CheckElementHit(ELEMENT_PLAYER) == true)
-		m_del_f = true;
+	/*if (hit->CheckElementHit(ELEMENT_ENEMY) == true || hit->CheckElementHit(ELEMENT_PLAYER) == true)
+		m_del_f = true;*/
 
-	if (hit->CheckElementHit(ELEMENT_NULL) == true)
-		m_stop_f = true;
-
-	if (m_del_f == true)	//íœƒtƒ‰ƒO
+	if (m_del_f == true || battle_end == true)	//íœƒtƒ‰ƒO
 	{
 		m_del_cnt++;
 		if (m_del_cnt == 7)//íœ

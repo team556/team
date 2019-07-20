@@ -5,7 +5,7 @@
 using namespace GameL;
 
 //マクロ
-#define DETAIL_MES_MAX_FONT_LINE (5) //詳細説明の最大フォント行数
+#define DETAIL_MES_MAX_FONT_LINE (6) //詳細説明の最大フォント行数
 #define DETAIL_MES_CHAR_DATA_STORE_NUM (100) //詳細説明の文字データ格納可能数
 
 //オブジェクト：戦闘準備画面
@@ -71,8 +71,8 @@ private:
 	bool  m_boss_emerge_staging_f;	//ボス惑星出現演出開始フラグ
 	bool  m_finalcheck_f;			//最終確認ウインドウ表示管理フラグ(true:表示 / false:非表示)
 
-	wchar_t m_detail_message[DETAIL_MES_MAX_FONT_LINE][DETAIL_MES_CHAR_DATA_STORE_NUM];	//詳細説明(敵惑星、スペシャル技)のフォント用
-	wchar_t m_Enemy_detail_message[3][5][DETAIL_MES_MAX_FONT_LINE][DETAIL_MES_CHAR_DATA_STORE_NUM];//各敵惑星の詳細説明文管理用([ステージ数][敵惑星ナンバー][最大フォント行数][文字データ格納可能数])
+	//wchar_t m_detail_message[DETAIL_MES_MAX_FONT_LINE][DETAIL_MES_CHAR_DATA_STORE_NUM];	//詳細説明(敵惑星、スペシャル技)のフォント用
+	//wchar_t m_Enemy_detail_message[3][5][DETAIL_MES_MAX_FONT_LINE][DETAIL_MES_CHAR_DATA_STORE_NUM];//各敵惑星の詳細説明文管理用([ステージ数][敵惑星ナンバー][最大フォント行数][文字データ格納可能数])
 	float	m_detail_message_window_top;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(top)
 	float	m_detail_message_window_left;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(left)
 	float	m_detail_message_window_right;	//詳細説明(敵惑星、スペシャル技)ウインドウの描画先表示位置(right)
@@ -83,7 +83,7 @@ private:
 	float	m_detail_message_draw_left;								//詳細説明(敵惑星、スペシャル技)画像描画位置left
 	float	m_detail_message_draw_right[DETAIL_MES_MAX_FONT_LINE];	//詳細説明(敵惑星、スペシャル技)画像描画位置right
 	float	m_detail_message_alpha;			//詳細説明(敵惑星、スペシャル技)の透過度(アルファ値)
-	int     m_level_star_num;				//敵惑星詳細説明にて、難易度を表す★の数を管理
+	int     m_level_star_num;				//敵惑星詳細説明にて、難易度を表す★の数を管理[+どの惑星を選択しているかの判断にも使用している]
 
 	int		m_destroy_count;			//現在ステージでの敵惑星撃破数
 	//static bool g_destroy_progress[4];//現在ステージでの敵惑星撃破進行度(true:撃破　false:未撃破)
