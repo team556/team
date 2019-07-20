@@ -403,7 +403,6 @@ void CObjHome::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-
 	//▼背景表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -415,7 +414,6 @@ void CObjHome::Draw()
 	dst.m_right = 1200.0f;
 	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
-
 
 	//▼敵惑星(背景)表示
 	//1500に到達するまで、それぞれ4ずつ加算されていく。
@@ -488,8 +486,6 @@ void CObjHome::Draw()
 	dst.m_bottom = m_Ey[2] + 50.0f;
 	Draw::Draw(24, &src, &dst, p, 0.0f);
 
-
-
 	//▼プレイヤー惑星表示
 	src.m_top = 63.0f;
 	src.m_left = 63.0f;
@@ -501,7 +497,6 @@ void CObjHome::Draw()
 	dst.m_right = 750.0f + m_Pvx + m_size;
 	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
-
 
 	//▼育アイコン表示
 	src.m_top = 0.0f;
@@ -526,7 +521,6 @@ void CObjHome::Draw()
 	dst.m_right = 1180.0f + m_Eat_move;
 	dst.m_bottom = 680.0f + m_Eat_move;
 	Draw::Draw(2, &src, &dst, e, 0.0f);
-
 
 	//プレイヤー惑星ステータス表示(フラグtrue時のみ描画)
 	if (m_status_flag == true)
@@ -603,10 +597,7 @@ void CObjHome::Draw()
 		dst.m_bottom = m_mou_y + 45.0f;
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
-
-
 		//▽フォント画像表示
-
 		//惑星HP文字画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -650,8 +641,6 @@ void CObjHome::Draw()
 		dst.m_bottom = m_mou_y + 32.0f;
 		Draw::Draw(127, &src, &dst, status_font_color[2], 0.0f);
 	}
-
-
 
 	//デバッグ用仮マウス位置表示
 	//wchar_t str[256];
