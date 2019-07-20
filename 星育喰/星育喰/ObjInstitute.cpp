@@ -1179,7 +1179,7 @@ void CObjInstitute::Draw()
 	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
 
 	//ê¬êF
-	float blue[4] = { 0.0f,0.0f,1.0f,1.0f };
+	float blue[4] = { 0.5f,0.5f,1.0f,1.0f };
 
 	//ê¬êF(é·ä±óŒì¸ÇË)
 	float blue2[4] = { 0.0f,0.3f,0.9f,1.0f };
@@ -2432,8 +2432,8 @@ void CObjInstitute::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 98.0f;
-			dst.m_left = 460.0f;
-			dst.m_right = 585.0f;
+			dst.m_left = 452.5f;
+			dst.m_right = 577.5f;
 			dst.m_bottom = 138.0f;
 			Draw::Draw(83, &src, &dst, blue, 0.0f);
 
@@ -2444,8 +2444,8 @@ void CObjInstitute::Draw()
 			src.m_bottom = 110.0f;
 
 			dst.m_top = 103.0f;
-			dst.m_left = 625.0f;
-			dst.m_right = 745.0f;
+			dst.m_left = 622.5f;
+			dst.m_right = 742.5f;
 			dst.m_bottom = 133.0f;
 			Draw::Draw(84, &src, &dst, green, 0.0f);
 
@@ -2456,8 +2456,8 @@ void CObjInstitute::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 103.0f;
-			dst.m_left = 805.0f;
-			dst.m_right = 925.0f;
+			dst.m_left = 795.0f;
+			dst.m_right = 915.0f;
 			dst.m_bottom = 133.0f;
 			Draw::Draw(85, &src, &dst, white, 0.0f);
 
@@ -2468,8 +2468,8 @@ void CObjInstitute::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 98.0f;
-			dst.m_left = 965.0f;
-			dst.m_right = 1085.0f;
+			dst.m_left = 955.0f;
+			dst.m_right = 1075.0f;
 			dst.m_bottom = 138.0f;
 			Draw::Draw(86, &src, &dst, yellow, 0.0f);
 

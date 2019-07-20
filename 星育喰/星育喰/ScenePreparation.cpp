@@ -163,8 +163,8 @@ void CScenePreparation::InitScene()
 	//あと0体文字画像読み込み72番に登録
 	Draw::LoadImage(L"あと0体.png", 72, TEX_SIZE_512);
 
-	//★画像読み込み73番に登録(正確な★画像に変更予定)
-	//Draw::LoadImage(L"画面移行★.png", 73, TEX_SIZE_512);
+	//★画像読み込み73番に登録
+	Draw::LoadImage(L"★.png", 73, TEX_SIZE_512);
 
 	//測定不能文字画像74番に登録
 	Draw::LoadImage(L"測定不能.png", 74, TEX_SIZE_512);
