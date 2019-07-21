@@ -116,17 +116,17 @@ void CSceneFight::InitScene()
 	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
 	Draw::LoadImage(L"オーバーワーク.png", 25, TEX_SIZE_512);
 
-	Draw::LoadImage(L"モアイ.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"lv1x3.png", 26, TEX_SIZE_512);
 
-	Draw::LoadImage(L"レイド1 128x.png", 27, TEX_SIZE_512);
+	Draw::LoadImage(L"モアイ.png", 27, TEX_SIZE_512);
 
-	Draw::LoadImage(L"悪☆.png", 28, TEX_SIZE_512);
+	Draw::LoadImage(L"悪惑星.png", 28, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み29番に登録
-	Draw::LoadImage(L"ぼやけた星.png", 29, TEX_SIZE_512);
+	Draw::LoadImage(L"lv2x3.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"パンダ戦闘.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"lv4x3.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"人数不足new.png", 31, TEX_SIZE_512);

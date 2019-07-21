@@ -784,9 +784,9 @@ void CObjPlanet::Draw()
 	if (m_type != 0)//敵のみ切り取りサイズ変更
 	{
 		src.m_top	= 0.0f;
-		src.m_left	= m_ani[m_ani_frame[0]] * 128.0f;
-		src.m_right	= m_ani[m_ani_frame[0]] * 128.0f + 128.0f;
-		src.m_bottom= 128.0f;
+		src.m_left	= m_ani[m_ani_frame[0]] * 300.0f;
+		src.m_right	= m_ani[m_ani_frame[0]] * 300.0f + 300.0f;
+		src.m_bottom= 300.0f;
 	}
 
 	if (m_type == MOAI_NAM)//モアイは,m_mani[ani_frame[1]]を使う

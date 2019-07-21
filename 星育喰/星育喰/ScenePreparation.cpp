@@ -200,7 +200,8 @@ void CScenePreparation::InitScene()
 	//読み込み番号122～127番を使用しているので
 	//この番号は使わないように！
 
-
+	//モアイ正面画像を読み込み128番に登録
+	Draw::LoadImage(L"モアイ正面.png", 128, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);

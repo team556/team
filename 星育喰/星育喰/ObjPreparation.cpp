@@ -19,7 +19,7 @@ using namespace GameL;
 #define INI_SPEED (50.0f)//各演出で移動する各オブジェクトの初期移動速度
 #define INI_ALPHA (0.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //全カラー明度の初期値(アイコン未選択中のカラー)
-#define INI_PLANET (287.0f)
+#define INI_PLANET (300.0f)
 
 //イニシャライズ
 void CObjPreparation::Init()
@@ -708,11 +708,11 @@ void CObjPreparation::Action()
 			//}
 			if (m_warning_message_alpha <= 0.4f)
 			{
-				m_Boss_clip_pos_x = 256.0f;
+				m_Boss_clip_pos_x = 300.0f;
 			}
 			else if (m_warning_message_alpha <= 0.8f)
 			{
-				m_Boss_clip_pos_x = 128.0f;
+				m_Boss_clip_pos_x = 300.0f;
 			}
 			
 		}
@@ -976,20 +976,20 @@ void CObjPreparation::Draw()
 		dst.m_left = INI_ENEMY_X_POS + 300.0f + m_Evx;
 		dst.m_right = INI_ENEMY_X_POS + 400.0f + m_Evx;
 		dst.m_bottom = INI_ENEMY_Y_POS + 70.0f;
-		Draw::Draw(2 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
+		Draw::Draw(128 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 	}
 
 	//▼ボス惑星1表示(演出用)
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 290.0f;
-	src.m_bottom = 290.0f;
+	src.m_left = 600.0f;
+	src.m_right = 900.0f;
+	src.m_bottom = 300.0f;
 
 	dst.m_top = 360.0f + m_Boss_vy[0];
 	dst.m_left = 1260.0f + m_Boss_vx[0];
 	dst.m_right = 1410.0f + m_Boss_vx[0];
 	dst.m_bottom = 510.0f + m_Boss_vy[0];
-	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
+	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 180.0f);
 
 	//未撃破時のみ表示
 	if (g_destroy_progress[0] == false)
@@ -1025,9 +1025,9 @@ void CObjPreparation::Draw()
 
 	//▼ボス惑星2表示(演出用)
 	src.m_top = 0.0f;
-	src.m_left = 256.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 128.0f;
+	src.m_left = 600.0f;
+	src.m_right = 900.0f;
+	src.m_bottom = 300.0f;
 
 	dst.m_top = 200.0f + m_Boss_vy[1];
 	dst.m_left = -310.0f + m_Boss_vx[1];
@@ -1053,8 +1053,8 @@ void CObjPreparation::Draw()
 
 	//▼ボス惑星3表示
 	src.m_top = 0.0f;
-	src.m_left = 0.0f - m_Boss_clip_pos_x;
-	src.m_right = -(INI_PLANET) - m_Boss_clip_pos_x;
+	src.m_left = m_Boss_clip_pos_x;
+	src.m_right = -(INI_PLANET) + m_Boss_clip_pos_x;
 	src.m_bottom = INI_PLANET;
 
 	dst.m_top = 100.0f + m_Boss_vy[2];
