@@ -442,17 +442,20 @@ void CSceneTraining::InitScene()
 	//Lv3を読み込み125番に登録
 	Draw::LoadImage(L"Lv3.png", 125, TEX_SIZE_512);
 
-	//ポッド強化ボタンLv1を126番に登録
+	//ポッド強化ボタンLv1を128番に登録
 	Draw::LoadImage(L"ポッド強化ボタンLv1.png", 128, TEX_SIZE_512);
 
-	//ポッド強化ボタンLv2を127番に登録
+	//ポッド強化ボタンLv2を129番に登録
 	Draw::LoadImage(L"ポッド強化ボタンLv2.png", 129, TEX_SIZE_512);
 
-	//ポッド強化ボタンLv3を128番に登録
+	//ポッド強化ボタンLv3を130番に登録
 	Draw::LoadImage(L"ポッド強化ボタンLv3.png", 130, TEX_SIZE_512);
 
-	//これ以上レベルUP出来ません
+	//これ以上レベルUP出来ませんメッセージウィンドウ01
 	Draw::LoadImage(L"これ以上レベルUP出来ません.png", 131, TEX_SIZE_512);
+
+	//メッセージウィンドウ01を132番に登録
+	Draw::LoadImage(L"メッセージウィンドウ01.png", 132, TEX_SIZE_512);
 
 	//簡易メッセージ画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！

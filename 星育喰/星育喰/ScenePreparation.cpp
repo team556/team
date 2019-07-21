@@ -169,8 +169,11 @@ void CScenePreparation::InitScene()
 	//測定不能文字画像74番に登録
 	Draw::LoadImage(L"測定不能.png", 74, TEX_SIZE_512);
 
-	//メッセージウィンドウ画像89番に登録
+	//ウィンドウ画像89番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
+
+	//メッセージウィンドウ01画像90番に登録
+	Draw::LoadImage(L"メッセージウィンドウ01.png", 90, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);

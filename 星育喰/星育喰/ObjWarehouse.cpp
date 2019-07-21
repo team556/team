@@ -1260,7 +1260,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = 280.0f;
 			dst.m_right = 330.0f;
 			dst.m_bottom = 155.0f + (i * 100);
-			Draw::Draw(21, &src, &dst, it, 0.0f);
+			Draw::Draw(132, &src, &dst, it, 0.0f);
 
 			//スペシャル技メッセージウィンドウ表示左下
 			src.m_top = 40.0f;
@@ -1272,7 +1272,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = 280.0f;
 			dst.m_right = 330.0f;
 			dst.m_bottom = 195.0f + (i * 100);
-			Draw::Draw(21, &src, &dst, it, 0.0f);
+			Draw::Draw(132, &src, &dst, it, 0.0f);
 
 			for (int j = 0; j < 15; j++)
 			{
@@ -1286,7 +1286,7 @@ void CObjWarehouse::Draw()
 				dst.m_left = 330.0f + (j * 50);
 				dst.m_right = 380.0f + (j * 50);
 				dst.m_bottom = 155.0f + (i * 100);
-				Draw::Draw(21, &src, &dst, it, 0.0f);
+				Draw::Draw(132, &src, &dst, it, 0.0f);
 
 				//スペシャル技メッセージウィンドウ表示中央下
 				src.m_top = 0.0f;
@@ -1298,7 +1298,7 @@ void CObjWarehouse::Draw()
 				dst.m_left = 330.0f + (j * 50);
 				dst.m_right = 380.0f + (j * 50);
 				dst.m_bottom = 195.0f + (i * 100);
-				Draw::Draw(21, &src, &dst, it, 0.0f);
+				Draw::Draw(132, &src, &dst, it, 0.0f);
 
 			}
 
@@ -1312,7 +1312,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = 1080.0f;
 			dst.m_right = 1130.0f;
 			dst.m_bottom = 155.0f + (i * 100);
-			Draw::Draw(21, &src, &dst, it, 0.0f);
+			Draw::Draw(132, &src, &dst, it, 0.0f);
 
 			//スペシャル技メッセージウィンドウ表示右下
 			src.m_top = 0.0f;
@@ -1324,7 +1324,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = 1080.0f;
 			dst.m_right = 1130.0f;
 			dst.m_bottom = 195.0f + (i * 100);
-			Draw::Draw(21, &src, &dst, it, 0.0f);
+			Draw::Draw(132, &src, &dst, it, 0.0f);
 		}
 
 		//スペシャルボタンの共通切り取り位置設定

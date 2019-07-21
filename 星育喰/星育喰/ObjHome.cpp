@@ -585,7 +585,7 @@ void CObjHome::Draw()
 		dst.m_bottom = m_mou_y - 25.0f;
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
-		//▼ウインドウ中央下
+		//▼ウインドウ右下
 		src.m_top = 5.0f;
 		src.m_left = 4800.0f;
 		src.m_right = 5600.0f;
