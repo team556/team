@@ -336,8 +336,8 @@ void CObjRocketButton::Draw()
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 398.0f;
-		src.m_bottom = 130.0f;
+		src.m_right = 923.0f;
+		src.m_bottom = 414.0f;
 
 		dst.m_top = m_y + 25.0f;
 		dst.m_left = m_x - 10.0f;
