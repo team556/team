@@ -58,7 +58,7 @@ protected:
 
 	//▼施設(兵舎、研究所)LvUP処理等に使用する配列
 	//wchar_t m_Facility_message[20][22];	//施設(兵舎、研究所)の必要素材&サイズメッセージのフォント用(素材名除く)(フォント入れ替えしたのでこれは不要である。)
-	wchar_t m_message_Mat_name[MAT_NAME_CHAR_DATA_STORE_NUM];	//各メッセージ(兵舎、研究所、武器ポッド)の素材名フォント用(現在ウインドウサイズ的に全角6文字分しか入らないようにしている)
+	//wchar_t m_message_Mat_name[MAT_NAME_CHAR_DATA_STORE_NUM];	//各メッセージ(兵舎、研究所、武器ポッド)の素材名フォント用(現在ウインドウサイズ的に全角6文字分しか入らないようにしている)
 
 	float  m_Facility_next_Size_num[FACILITY_MAX_LV - 1];	//施設(兵舎、研究所)の次のLVUPに必要なサイズ(HP)管理用
 	wchar_t m_Facility_next_Mat_name[FACILITY_MAX_LV - 1][MAT_NAME_CHAR_DATA_STORE_NUM];//施設(兵舎、研究所)の次のLVUPに必要な素材の名前管理用
