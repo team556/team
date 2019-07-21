@@ -258,11 +258,14 @@ void CSceneFight::InitScene()
 	//白ポッドレベル3を76番目に登録
 	Draw::LoadImage(L"ポッド白Lv3.png", 76, TEX_SIZE_512);
 
-	//メッセージウインドウを読み込み78番に登録
-	Draw::LoadImage(L"メッセージウィンドウ.png", 77, TEX_SIZE_512);
+	//メッセージウィンドウ01を読み込み77番に登録
+	Draw::LoadImage(L"メッセージウィンドウ01.png", 77, TEX_SIZE_512);
 
 	//ポッドレーザーを読み込み78番に登録
 	Draw::LoadImage(L"ポッドレーザー.png", 78, TEX_SIZE_512);
+
+	//メッセージウィンドウ01画像79番に登録
+	Draw::LoadImage(L"メッセージウィンドウ01.png", 79, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);

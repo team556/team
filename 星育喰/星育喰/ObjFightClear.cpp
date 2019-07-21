@@ -340,23 +340,86 @@ void CObjFightClear::Draw()
 			//dst.m_bottom = 530.0f;
 			//Draw::Draw(33, &src, &dst, c[1], 0.0f);
 
-			////▼ウインドウ表示
-			//src.m_top = 0.0f;
-			//src.m_left = 0.0f;
-			//src.m_right = 5600.0f;
-			//src.m_bottom = 800.0f;
+			//▼ウインドウ表示左上
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 795.0f;
+			src.m_bottom = 800.0f;
 
-			//dst.m_top = 210.0f;
-			//dst.m_left = 350.0f;
-			//dst.m_right = 1150.0f;
-			//dst.m_bottom = 530.0f;
-			//Draw::Draw(77, &src, &dst, c[1], 0.0f);
+			dst.m_top = 210.0f;
+			dst.m_left = 350.0f;
+			dst.m_right = 510.0f;
+			dst.m_bottom = 370.0f;
+			Draw::Draw(77, &src, &dst, c[1], 0.0f);
+
+			//▼ウインドウ表示左下
+			src.m_top = 40.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 370.0f;
+			dst.m_left = 350.0f;
+			dst.m_right = 510.0f;
+			dst.m_bottom = 530.0f;
+			Draw::Draw(77, &src, &dst, c[1], 0.0f);
+
+			for (int i = 0;i < 3;i++)
+			{
+				//▼ウインドウ表示中央上
+				src.m_top = 0.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 210.0f;
+				dst.m_left = 510.0f + (i * 160);
+				dst.m_right = 670.0f + (i * 160);
+				dst.m_bottom = 370.0f;
+				Draw::Draw(77, &src, &dst, c[1], 0.0f);
+
+				//▼ウインドウ表示中央下
+				src.m_top = 0.0f;
+				src.m_left = 2400.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 370.0f;
+				dst.m_left = 510.0f + (i * 160);
+				dst.m_right = 670.0f + (i * 160);
+				dst.m_bottom = 530.0f;
+				Draw::Draw(77, &src, &dst, c[1], 0.0f);
+			}
+			
+			//▼ウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 210.0f;
+			dst.m_left = 990.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 370.0f;
+			Draw::Draw(77, &src, &dst, c[1], 0.0f);
+
+			//▼ウインドウ表示右下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 370.0f;
+			dst.m_left = 990.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 530.0f;
+			Draw::Draw(77, &src, &dst, c[1], 0.0f);
 
 
 			//▼戦闘結果フォント表示
 			//捕食成功フォント
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
+			src.m_top = 2.0f;
+			src.m_left = 2.0f;
 			src.m_right = 547.0f;
 			src.m_bottom = 112.0f;
 

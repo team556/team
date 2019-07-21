@@ -771,9 +771,9 @@ void CObjPlanet::Draw()
 	RECT_F dst;
 	//êÿÇËéÊÇËà íu
 	src.m_top   =  0.0f;
-	src.m_left  = m_ani[m_ani_frame[0]] * 384.0f;
-	src.m_right = m_ani[m_ani_frame[0]] * 384.0f + 384.0f;
-	src.m_bottom= 384.0f;
+	src.m_left  = m_ani[m_ani_frame[0]] * 440.0f;
+	src.m_right = m_ani[m_ani_frame[0]] * 440.0f + 512.0f;
+	src.m_bottom= 448.0f;
 	//ï\é¶à íu
 	dst.m_top	= m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range);
 	dst.m_left	= m_px - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;

@@ -131,15 +131,15 @@ void CObjFightOver::Draw()
 	//Font::StrDraw(L"G A M E", 220, 100, 200, c);
 	//Font::StrDraw(L"O V E R", 220, 300, 200, c);
 
-	src.m_top = 60.0f;
+	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 900.0f;
-	src.m_bottom = 400.0f;
+	src.m_right = 634.0f;
+	src.m_bottom = 78.0f;
 
-	dst.m_top = 150.0f;
-	dst.m_left = 220.0f;
-	dst.m_right = 975.0f;
-	dst.m_bottom = 495.0f;
+	dst.m_top = 300.0f;
+	dst.m_left = 200.0f;
+	dst.m_right = 1000.0f;
+	dst.m_bottom = 400.0f;
 	Draw::Draw(58, &src, &dst, c, 0.0f);
 
 

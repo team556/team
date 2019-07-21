@@ -58,7 +58,7 @@ void CSceneHome::InitScene()
 	////メッセージウインドウを読み込み6番に登録
 	//Draw::LoadImage(L"メッセージウインドウ(仮).png", 6, TEX_SIZE_512);
 	//メッセージウインドウを読み込み21番に登録
-	Draw::LoadImage(L"メッセージウィンドウ.png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"メッセージウィンドウ01.png", 6, TEX_SIZE_512);
 
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
