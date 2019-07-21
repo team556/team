@@ -1436,8 +1436,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 90.0f;
 
 		dst.m_top = m_mou_y + m_detail_message_draw_y;
-		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
-		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
 		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
 		Draw::Draw(76, &src, &dst, detail_message_font[0], 0.0f);
 	}
@@ -1450,8 +1450,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 90.0f;
 
 		dst.m_top = m_mou_y + m_detail_message_draw_y;
-		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
-		dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 150.0f;
 		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
 		Draw::Draw(77, &src, &dst, detail_message_font[0], 0.0f);
 	}
@@ -1464,8 +1464,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 84.0f;
 
 		dst.m_top = m_mou_y + m_detail_message_draw_y;
-		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
-		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
 		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
 		Draw::Draw(78, &src, &dst, detail_message_font[0], 0.0f);
 	}
@@ -1478,8 +1478,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 84.0f;
 
 		dst.m_top = m_mou_y + m_detail_message_draw_y;
-		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
-		dst.m_right = m_mou_x + m_detail_message_draw_left + 250.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 225.0f;
 		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
 		Draw::Draw(79, &src, &dst, detail_message_font[0], 0.0f);
 	}
@@ -1492,8 +1492,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 84.0f;
 
 		dst.m_top = m_mou_y + m_detail_message_draw_y;
-		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
-		dst.m_right = m_mou_x + m_detail_message_draw_left + 250.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 225.0f;
 		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
 		Draw::Draw(80, &src, &dst, detail_message_font[0], 0.0f);
 	}
@@ -1870,7 +1870,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	m_detail_message_clip_bottom[0] = 90.0f;
 
 	//“G˜f¯Ú×à–¾‰æ‘œ‚Ì•`‰æˆÊ’u(right)‚ğİ’è(‘SŠpˆê•¶š‚Ì‘å‚«‚³‚Í25.0f)
-	m_detail_message_draw_right[0] = m_detail_message_draw_left + 100.0f;
+	m_detail_message_draw_right[0] = m_detail_message_draw_left + 89.0f;
 
 
 	//¤2s–Ú
