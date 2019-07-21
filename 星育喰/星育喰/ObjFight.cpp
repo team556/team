@@ -480,6 +480,19 @@ void CObjFight::Draw()
 			dst.m_bottom = 100.0f;
 			Draw::Draw(40, &src, &dst, d, 0.0f);
 		}
+
+		//éOÇ∑Ç≠Ç›ê‡ñæâÊëúï`âÊ
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1353.0f;
+		src.m_bottom = 1025.0f;
+
+		dst.m_top = 25.0f;
+		dst.m_left = 25.0f;
+		dst.m_right = 225.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(80, &src, &dst, d, 0.0f);
+
 	}
 
 

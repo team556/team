@@ -267,6 +267,9 @@ void CSceneFight::InitScene()
 	//メッセージウィンドウ01画像79番に登録
 	Draw::LoadImage(L"メッセージウィンドウ01.png", 79, TEX_SIZE_512);
 
+	//新三すくみを80番に登録
+	Draw::LoadImage(L"新三すくみ.png", 80, TEX_SIZE_512);
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 
