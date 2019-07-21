@@ -1075,7 +1075,7 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
 	Draw::Draw(47 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	//▼ウインドウ01表示
+	//▼下のウインドウ01表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 1200.0f;
@@ -1087,17 +1087,104 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 1100.0f + m_Svy;
 	Draw::Draw(89, &src, &dst, d, 0.0f);
 
-	//▼ウインドウ01表示
+	//▽ウインドウ表示左上 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 1200.0f;
-	src.m_bottom = 700.0f;
+	src.m_right = 800.0f;
+	src.m_bottom = 790.0f;
 
 	dst.m_top = 905.0f + m_Svy;
 	dst.m_left = 420.0f;
-	dst.m_right = 790.0f;
+	dst.m_right = 470.0f;
+	dst.m_bottom = 955.0 + m_Svy;
+	Draw::Draw(90, &src, &dst, d, 0.0f);
+
+	//▽ウインドウ表示左下
+	src.m_top = 30.0f;
+	src.m_left = 800.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 795.0f;
+
+	dst.m_top = 920.0f + m_Svy;
+	dst.m_left = 420.0f;
+	dst.m_right = 470.0f;
+	dst.m_bottom = 970.0 + m_Svy;
+	Draw::Draw(90, &src, &dst, d, 0.0f);
+	for (int i = 0;i < 5;i++)
+	{
+		//▽ウインドウ表示中央上 
+		src.m_top = 0.0f;
+		src.m_left = 1600.0f;
+		src.m_right = 2400.0f;
+		src.m_bottom = 795.0f;
+
+		dst.m_top = 905.0f + m_Svy;
+		dst.m_left = 470.0f + (i * 50);
+		dst.m_right = 520.0f + (i * 50);
+		dst.m_bottom = 955.0f + m_Svy;
+		Draw::Draw(90, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示中央下 
+		src.m_top = 5.0f;
+		src.m_left = 2400.0f;
+		src.m_right = 3200.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 920.0f + m_Svy;
+		dst.m_left = 470.0f + (i * 50);
+		dst.m_right = 520.0f + (i * 50);
+		dst.m_bottom = 970.0f + m_Svy;
+		Draw::Draw(90, &src, &dst, d, 0.0f);
+	}
+
+	//▽ウインドウ表示中央上 
+	src.m_top = 0.0f;
+	src.m_left = 1600.0f;
+	src.m_right = 2400.0f;
+	src.m_bottom = 795.0f;
+
+	dst.m_top = 905.0f + m_Svy;
+	dst.m_left = 690.0f;
+	dst.m_right = 740.0f;
+	dst.m_bottom = 955.0f + m_Svy;
+	Draw::Draw(90, &src, &dst, d, 0.0f);
+
+	//▽ウインドウ表示中央下 
+	src.m_top = 5.0f;
+	src.m_left = 2400.0f;
+	src.m_right = 3200.0f;
+	src.m_bottom = 800.0f;
+
+	dst.m_top = 920.0f + m_Svy;
+	dst.m_left = 690.0f;
+	dst.m_right = 740.0f;
 	dst.m_bottom = 970.0f + m_Svy;
-	Draw::Draw(89, &src, &dst, d, 0.0f);
+	Draw::Draw(90, &src, &dst, d, 0.0f);
+
+	//▼ウインドウ右上
+	src.m_top = 0.0f;
+	src.m_left = 4000.0f;
+	src.m_right = 4800.0f;
+	src.m_bottom = 795.0f;
+
+	dst.m_top = 905.0f + m_Svy;
+	dst.m_left = 740.0f;
+	dst.m_right = 790.0f;
+	dst.m_bottom = 955.0 + m_Svy;
+	Draw::Draw(90, &src, &dst, d, 0.0f);
+
+	//▼ウインドウ右下
+	src.m_top = 5.0f;
+	src.m_left = 4800.0f;
+	src.m_right = 5600.0f;
+	src.m_bottom = 800.0f;
+
+	dst.m_top = 920.0f + m_Svy;
+	dst.m_left = 740.0f;
+	dst.m_right = 790.0f;
+	dst.m_bottom = 970.0 + m_Svy;
+	Draw::Draw(90, &src, &dst, d, 0.0f);
+
 
 	//▼スペシャル技アイコン集表示
 	for (int i = 0; i < 5; i++)
@@ -1527,8 +1614,6 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 		m_detail_message_draw_right[5] = m_detail_message_draw_left + 125.0f;
-		
-
 
 		//難易度を表す★の数を設定
 		m_level_star_num = 1;
@@ -1778,10 +1863,10 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	//▽以下は各敵惑星関係なく行う共通処理
 	//▽1行目
 	//敵惑星詳細説明画像を122番に登録
-	Draw::LoadImage(L"惑星：.png", 122, TEX_SIZE_512);
+	Draw::LoadImage(L"惑星名.png", 122, TEX_SIZE_512);
 
 	//敵惑星詳細説明画像の切り取り位置を設定
-	m_detail_message_clip_right[0] = 246.0f;
+	m_detail_message_clip_right[0] = 342.0f;
 	m_detail_message_clip_bottom[0] = 90.0f;
 
 	//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
