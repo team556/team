@@ -442,6 +442,9 @@ void CSceneTraining::InitScene()
 	//Lv3を読み込み125番に登録
 	Draw::LoadImage(L"Lv3.png", 125, TEX_SIZE_512);
 
+	//簡易メッセージ画像全てを読み込む為に、
+	//読み込み番号127番を使用しているので使わないように！
+
 	//ポッド強化ボタンLv1を128番に登録
 	Draw::LoadImage(L"ポッド強化ボタンLv1.png", 128, TEX_SIZE_512);
 
@@ -457,8 +460,7 @@ void CSceneTraining::InitScene()
 	//メッセージウィンドウ01を132番に登録
 	Draw::LoadImage(L"メッセージウィンドウ01.png", 132, TEX_SIZE_512);
 
-	//簡易メッセージ画像全てを読み込む為に、
-	//読み込み番号127番を使用しているので使わないように！
+
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);

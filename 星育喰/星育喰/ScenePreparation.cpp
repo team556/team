@@ -169,6 +169,24 @@ void CScenePreparation::InitScene()
 	//測定不能文字画像74番に登録
 	Draw::LoadImage(L"測定不能.png", 74, TEX_SIZE_512);
 
+	//ボロボロン文字画像75番に登録
+	Draw::LoadImage(L"ボロボロン.png", 75, TEX_SIZE_512);
+
+	//O阪魂文字画像76番に登録
+	Draw::LoadImage(L"O阪魂.png", 76, TEX_SIZE_512);
+
+	//再星文字画像77番に登録
+	Draw::LoadImage(L"再星.png", 77, TEX_SIZE_512);
+
+	//アモイ文字画像78番に登録
+	Draw::LoadImage(L"アモイ.png", 78, TEX_SIZE_512);
+
+	//コワモーテ文字画像79番に登録
+	Draw::LoadImage(L"コワモーテ.png", 79, TEX_SIZE_512);
+
+	//アマテラス文字画像80番に登録
+	Draw::LoadImage(L"アマテラス.png", 80, TEX_SIZE_512);
+
 	//ウィンドウ画像89番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
 
@@ -181,7 +199,7 @@ void CScenePreparation::InitScene()
 	//詳細説明画像を読み込む為に、
 	//読み込み番号122～127番を使用しているので
 	//この番号は使わないように！
-	//追記惑星の名前を128番～133番を使用しています
+
 
 
 	//音楽読み込み

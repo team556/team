@@ -597,8 +597,13 @@ void CObjInstitute::Action()
 			{
 				if (m_next_time <= 0)
 				{
+					//キーフラグOFFの時は以下の処理を実行させない
+					if (m_key_lf == false)
+					{
+						return;
+					}
 					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
-					if (m_con_alo_f == false)
+					else if (m_con_alo_f == false)
 					{
 						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
 					}
@@ -634,12 +639,14 @@ void CObjInstitute::Action()
 				{
 					m_con_alo_f = true;//連続振り分けフラグON
 					m_next_time--;//次の住民振り分けまでの時間減少処理
+					m_key_lf = true;//キーフラグON
 				}
 			}
 			else
 			{
 				m_con_alo_f = false;//連続振り分けフラグOFF
 				m_next_time = 0;//次の住民振り分けまでの時間を初期化
+				m_key_lf = true;//キーフラグON
 			}
 		}
 
@@ -654,8 +661,13 @@ void CObjInstitute::Action()
 			{
 				if (m_next_time <= 0)
 				{
+					//キーフラグOFFの時は以下の処理を実行させない
+					if (m_key_lf == false)
+					{
+						return;
+					}
 					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
-					if (m_con_alo_f == false)
+					else if (m_con_alo_f == false)
 					{
 						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
 					}
@@ -727,12 +739,14 @@ void CObjInstitute::Action()
 				{
 					m_con_alo_f = true;//連続振り分けフラグON
 					m_next_time--;//次の住民振り分けまでの時間減少処理
+					m_key_lf = true;//キーフラグON
 				}
 			}
 			else
 			{
 				m_con_alo_f = false;//連続振り分けフラグOFF
 				m_next_time = 0;//次の住民振り分けまでの時間を初期化
+				m_key_lf = true;//キーフラグON
 			}
 		}
 
@@ -745,6 +759,7 @@ void CObjInstitute::Action()
 			{
 				m_con_alo_f = false;//連続振り分けフラグOFF
 				m_next_time = 0;//次の住民振り分けまでの時間を初期化
+				m_key_lf = true;//キーフラグON
 			}
 		}
 
