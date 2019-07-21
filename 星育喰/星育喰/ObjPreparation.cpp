@@ -907,7 +907,7 @@ void CObjPreparation::Draw()
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//3行目は黒色
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//4行目は黒色
 		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//5行目は黒色
-		{ 0.0f,0.0f,1.0f,m_detail_message_alpha },//6行目は青色
+		{ 0.5f,0.5f,1.0f,m_detail_message_alpha },//6行目は青色
 	};
 
 	//最終確認[はい]ボタン用
@@ -1305,21 +1305,111 @@ void CObjPreparation::Draw()
 	//ボス惑星の場合
 	if (m_level_star_num >= 5)
 	{
-		//「測定不能」の画像を表示させる。
+		//▼測定不能文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 379.0f;
+		src.m_bottom = 90.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y + 38.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 63.0f;
+		Draw::Draw(74, &src, &dst, detail_message_font[1], 0.0f);
 	}
 	//その他のザコ惑星の場合
 	else
 	{
 		for (int i = 0; i < m_level_star_num; i++)
 		{
-			//星の数分、回して★画像を表示。i増加ごとにX位置ずれていく。
+			//▼★画像表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 101.0f;
+			src.m_bottom = 107.0f;
+
+			dst.m_top = m_mou_y + m_detail_message_draw_y + 38.0f;
+			dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f + (25.0f * i);
+			dst.m_right = m_mou_x + m_detail_message_draw_left + 125.0f + (25.0f * i);
+			dst.m_bottom = m_mou_y + m_detail_message_draw_y + 63.0f;
+			Draw::Draw(73, &src, &dst, detail_message_font[1], 0.0f);
 		}
 	}
 
-	//難易度★数を基に、どの惑星か判断し、敵惑星名を表示する。
-	//※チュートリアル惑星はチュートリアルのグローバルフラグ等をifに組み込み判断させたい。
+	//▼敵惑星名を表示　[難易度★数を基にどの惑星か判断する]
+	//※チュートリアル惑星名を表示する処理はまだ作っていない。
+	//チュートリアル惑星はm_level_star_num == 1の処理の中に、
+	//チュートリアルのグローバルフラグ等で更に分岐させて判断させたい。
+	if (m_level_star_num == 1)
+	{
+		//▼「O阪魂」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 258.0f;
+		src.m_bottom = 90.0f;
 
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(76, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 2)
+	{
+		//▼「再星」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 186.0f;
+		src.m_bottom = 90.0f;
 
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(77, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 3)
+	{
+		//▼「アモイ」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 282.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 200.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(78, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 4)
+	{
+		//▼「コワモーテ」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 474.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 250.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(79, &src, &dst, detail_message_font[0], 0.0f);
+	}
+	else if (m_level_star_num == 5)
+	{
+		//▼「アマテラス」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 474.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 125.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 250.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+		Draw::Draw(80, &src, &dst, detail_message_font[0], 0.0f);
+	}
 
 
 	//▼最終確認ウインドウ表示管理フラグがtrueの時、描画。
@@ -1412,7 +1502,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_clip_bottom[3] = 90.0f;
 
 		//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-		m_detail_message_draw_right[3] = m_detail_message_draw_left + 150.0f;
+		m_detail_message_draw_right[3] = m_detail_message_draw_left + 175.0f;
 
 
 		//▽5行目
@@ -1465,7 +1555,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		m_detail_message_clip_bottom[3] = 90.0f;
 
 		//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-		m_detail_message_draw_right[3] = m_detail_message_draw_left + 175.0f;
+		m_detail_message_draw_right[3] = m_detail_message_draw_left + 200.0f;
 
 
 		//▽5行目
@@ -1604,8 +1694,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 			Draw::LoadImage(L"無し.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[3] = 190.0f;
-			m_detail_message_clip_bottom[3] = 98.0f;
+			m_detail_message_clip_right[3] = 180.0f;
+			m_detail_message_clip_bottom[3] = 90.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 			m_detail_message_draw_right[3] = m_detail_message_draw_left + 50.0f;
@@ -1616,8 +1706,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 			Draw::LoadImage(L"攻撃傾向.png", 126, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[4] = 390.0f;
-			m_detail_message_clip_bottom[4] = 98.0f;
+			m_detail_message_clip_right[4] = 378.0f;
+			m_detail_message_clip_bottom[4] = 90.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 			m_detail_message_draw_right[4] = m_detail_message_draw_left + 100.0f;
@@ -1628,8 +1718,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 			Draw::LoadImage(L"不明.png", 127, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[5] = 202.0f;
-			m_detail_message_clip_bottom[5] = 96.0f;
+			m_detail_message_clip_right[5] = 186.0f;
+			m_detail_message_clip_bottom[5] = 90.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
 			m_detail_message_draw_right[5] = m_detail_message_draw_left + 50.0f;
@@ -1686,16 +1776,16 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 
 	//▽以下は各敵惑星関係なく行う共通処理
-	//▽1行目	(画像がなかったため適用してない)
+	//▽1行目
 	//敵惑星詳細説明画像を122番に登録
-	//Draw::LoadImage(L"", 122, TEX_SIZE_512);
+	Draw::LoadImage(L"惑星：.png", 122, TEX_SIZE_512);
 
 	//敵惑星詳細説明画像の切り取り位置を設定
-	m_detail_message_clip_right[0] = 0.0f;
-	m_detail_message_clip_bottom[0] = 0.0f;
+	m_detail_message_clip_right[0] = 246.0f;
+	m_detail_message_clip_bottom[0] = 90.0f;
 
 	//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-	m_detail_message_draw_right[0] = m_detail_message_draw_left + 0.0f;
+	m_detail_message_draw_right[0] = m_detail_message_draw_left + 100.0f;
 
 
 	//▽2行目
@@ -1722,15 +1812,8 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	m_detail_message_draw_right[2] = m_detail_message_draw_left + 225.0f;
 
 
-	////敵惑星詳細説明フォント設定
-	//swprintf_s(m_detail_message[0], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][0]);//文字配列に文字データを入れる
-	//swprintf_s(m_detail_message[1], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][1]);//文字配列に文字データを入れる
-	//swprintf_s(m_detail_message[2], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][2]);//文字配列に文字データを入れる
-	//swprintf_s(m_detail_message[3], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][3]);//文字配列に文字データを入れる
-	//swprintf_s(m_detail_message[4], m_Enemy_detail_message[g_Stage_progress - 1][enemy_id][4]);//文字配列に文字データを入れる
 
 	m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
-
 
 	//左クリックされたらフラグを立て、最終確認ウインドウを開く
 	if (m_mou_l == true)
@@ -1767,79 +1850,264 @@ void CObjPreparation::Special_message(int special_id)
 	//▼スペシャル技アイコンが黒色(未習得)の時の処理
 	if (m_Special_icon_color[special_id] == 0.0f)
 	{
-		//スペシャル技詳細説明フォント設定
-		//swprintf_s(m_detail_message[0], L"");		//文字データをクリアする
-		//swprintf_s(m_detail_message[1], L"未習得"); //文字配列に文字データを入れる
-		//swprintf_s(m_detail_message[2], L"");		//文字データをクリアする
-		//swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
-		//swprintf_s(m_detail_message[4], L"");		//文字データをクリアする
-
 		//スペシャル技詳細説明ウインドウのサイズを設定
 		m_detail_message_window_top = -50.0f;
 		m_detail_message_window_left = -50.0f;
 		m_detail_message_window_right = 50.0f;
 		m_detail_message_window_bottom = 0.0f;
 
-		//スペシャル技詳細説明フォントの位置を設定
+		//スペシャル技詳細説明画像の描画位置(right以外)を設定
 		m_detail_message_draw_left = -38.0f;
-		m_detail_message_draw_y = -73.0f;
+		m_detail_message_draw_y = -113.0f;
+
+		//▽3行目
+		//スペシャル技詳細説明画像を124番に登録
+		Draw::LoadImage(L"未習得.png", 124, TEX_SIZE_512);
+
+		//スペシャル技詳細説明画像の切り取り位置を設定
+		m_detail_message_clip_right[2] = 352.0f;
+		m_detail_message_clip_bottom[2] = 112.0f;
+
+		//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+		m_detail_message_draw_right[2] = m_detail_message_draw_left + 75.0f;
+
+		//3行目以外の画像の描画位置rightをleftと同じにする事で表示しない処理
+		for (int i = 0; i < DETAIL_MES_MAX_FONT_LINE; i++)
+		{
+			if (i != 2)
+			{
+				m_detail_message_draw_right[i] = m_detail_message_draw_left;
+			}
+		}
+
+		//難易度★を表示しないようにする
+		m_level_star_num = 0;
 	}
 	//▼スペシャル技アイコンが灰色(クリックで装備可)、もしくは白色(装備中)の時の処理
 	else  //(m_Special_icon_color[special_id] == 0.4f || m_Special_icon_color[special_id] == 1.0f)
 	{
-		//▽以下は灰色、白色のどちらでも行う共通処理
-		//スペシャル技詳細説明フォント設定
-		if (special_id == 0)
-		{
-			//swprintf_s(m_detail_message[0], L"Explosion");				//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[1], L"相手の惑星に");			//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[2], L"固定ダメージを与える");	//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
-		}
-		else if (special_id == 1)
-		{
-			//swprintf_s(m_detail_message[0], L"Fracture Ray");			//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[1], L"選択ライン上の");			//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[2], L"相手ポッド等を破壊する");	//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
-		}
-		else if (special_id == 2)
-		{
-			//swprintf_s(m_detail_message[0], L"Immortality");//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[1], L"約10秒間");	//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[2], L"無敵となる");	//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
-		}
-		else if (special_id == 3)
-		{
-			//swprintf_s(m_detail_message[0], L"リミットブレイク");		//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[1], L"10秒間ポッド生産速度");	//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[2], L"ミサイル生産速度UP");		//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
-		}
-		else  //(special_id == 4)
-		{
-			//swprintf_s(m_detail_message[0], L"ステロイド投与");		//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[1], L"出撃する");			//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[2], L"ポッド5機の攻撃力UP");//文字配列に文字データを入れる
-			//swprintf_s(m_detail_message[3], L"");		//文字データをクリアする
-		}
-		
 		//スペシャル技詳細説明ウインドウのサイズを設定
 		m_detail_message_window_top = -205.0f;
 		m_detail_message_window_left = -150.0f;
 		m_detail_message_window_right = 150.0f;
 		m_detail_message_window_bottom = 0.0f;
 
-		//スペシャル技詳細説明フォントの位置を設定
+		//スペシャル技詳細説明フォントの位置(right以外)を設定
 		m_detail_message_draw_left = -138.0f;
-		m_detail_message_draw_y = -190.0f;
+		m_detail_message_draw_y = -225.0f;
+
+
+		//▽以下は灰色、白色のどちらでも行う共通処理
+		//スペシャル技詳細説明フォント設定
+		if (special_id == 0)
+		{
+			//▽2行目
+			//スペシャル技詳細説明画像を123番に登録
+			Draw::LoadImage(L"エクスプロージョン.png", 123, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[1] = 1072.0f;
+			m_detail_message_clip_bottom[1] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[1] = m_detail_message_draw_left + 225.0f;
+
+
+			//▽3行目
+			//スペシャル技詳細説明画像を124番に登録
+			Draw::LoadImage(L"相手の惑星に.png", 124, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 713.0f;
+			m_detail_message_clip_bottom[2] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[2] = m_detail_message_draw_left + 150.0f;
+
+
+			//▽4行目
+			//スペシャル技詳細説明画像を125番に登録
+			Draw::LoadImage(L"固定ダメージを与える.png", 125, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 1182.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 250.0f;
+		}
+		else if (special_id == 1)
+		{
+			//▽2行目
+			//スペシャル技詳細説明画像を123番に登録
+			Draw::LoadImage(L"フラクチャーレイ.png", 123, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[1] = 952.0f;
+			m_detail_message_clip_bottom[1] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[1] = m_detail_message_draw_left + 200.0f;
+
+
+			//▽3行目
+			//スペシャル技詳細説明画像を124番に登録
+			Draw::LoadImage(L"選択ライン上の.png", 124, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 832.0f;
+			m_detail_message_clip_bottom[2] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[2] = m_detail_message_draw_left + 175.0f;
+
+
+			//▽4行目
+			//スペシャル技詳細説明画像を125番に登録
+			Draw::LoadImage(L"相手ポッド等を破壊する.png", 125, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 1304.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 275.0f;
+		}
+		else if (special_id == 2)
+		{
+			//▽2行目
+			//スペシャル技詳細説明画像を123番に登録
+			Draw::LoadImage(L"イモータリティ.png", 123, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[1] = 817.0f;
+			m_detail_message_clip_bottom[1] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[1] = m_detail_message_draw_left + 175.0f;
+
+
+			//▽3行目
+			//スペシャル技詳細説明画像を124番に登録
+			Draw::LoadImage(L"約10秒間.png", 124, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 532.0f;
+			m_detail_message_clip_bottom[2] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[2] = m_detail_message_draw_left + 100.0f;
+
+
+			//▽4行目
+			//スペシャル技詳細説明画像を125番に登録
+			Draw::LoadImage(L"無敵となる.png", 125, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 584.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 125.0f;
+		}
+		else if (special_id == 3)
+		{
+			//▽2行目
+			//スペシャル技詳細説明画像を123番に登録
+			Draw::LoadImage(L"オーバーワーク.png", 123, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[1] = 832.0f;
+			m_detail_message_clip_bottom[1] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[1] = m_detail_message_draw_left + 175.0f;
+
+
+			//▽3行目
+			//スペシャル技詳細説明画像を124番に登録
+			Draw::LoadImage(L"10秒間ポッド生産速度.png", 124, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 1252.0f;
+			m_detail_message_clip_bottom[2] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[2] = m_detail_message_draw_left + 262.5f;
+
+
+			//▽4行目
+			//スペシャル技詳細説明画像を125番に登録
+			Draw::LoadImage(L"ミサイル生産速度UP.png", 125, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 1134.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 237.5f;
+		}
+		else  //(special_id == 4)
+		{
+			//▽2行目
+			//スペシャル技詳細説明画像を123番に登録
+			Draw::LoadImage(L"リミットブレイク.png", 123, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[1] = 952.0f;
+			m_detail_message_clip_bottom[1] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[1] = m_detail_message_draw_left + 200.0f;
+
+
+			//▽3行目
+			//スペシャル技詳細説明画像を124番に登録
+			Draw::LoadImage(L"出撃する.png", 124, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[2] = 464.0f;
+			m_detail_message_clip_bottom[2] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[2] = m_detail_message_draw_left + 100.0f;
+
+
+			//▽4行目
+			//スペシャル技詳細説明画像を125番に登録
+			Draw::LoadImage(L"ポッド5機の攻撃力UP.png", 125, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[3] = 1222.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 262.5f;
+		}
+		
+
+		//1行目と5行目は使用しないので、
+		//その行の画像の描画位置rightをleftと同じにする事で表示しない処理
+		m_detail_message_draw_right[0] = m_detail_message_draw_left;
+		m_detail_message_draw_right[4] = m_detail_message_draw_left;
+
+		//難易度★を表示しないようにする
+		m_level_star_num = 0;
 
 
 		//▽以下はスペシャル技アイコンが灰色(クリックで装備可)の時のみ行う処理
 		if (m_Special_icon_color[special_id] == 0.4f)
 		{
-			//swprintf_s(m_detail_message[4], L"クリックで装備可");//文字配列に文字データを入れる
+			//▽6行目
+			//スペシャル技詳細説明画像を127番に登録
+			Draw::LoadImage(L"クリックで装備可.png", 127, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[5] = 952.0f;
+			m_detail_message_clip_bottom[5] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[5] = m_detail_message_draw_left + 200.0f;
 
 			//左クリックされたらマウスで選択中のスペシャル技を装備する
 			if (m_mou_l == true)
@@ -1875,7 +2143,16 @@ void CObjPreparation::Special_message(int special_id)
 		//▽以下はスペシャル技アイコンが白色(装備中)の時のみ行う処理
 		else  //(m_Special_icon_color[special_id] == 1.0f)
 		{
-			//swprintf_s(m_detail_message[4], L"装備中");//文字配列に文字データを入れる
+			//▽6行目
+			//スペシャル技詳細説明画像を127番に登録
+			Draw::LoadImage(L"装備中.png", 127, TEX_SIZE_512);
+
+			//スペシャル技詳細説明画像の切り取り位置を設定
+			m_detail_message_clip_right[5] = 352.0f;
+			m_detail_message_clip_bottom[5] = 112.0f;
+
+			//スペシャル技詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
+			m_detail_message_draw_right[5] = m_detail_message_draw_left + 75.0f;
 
 			//左クリックされたら現在装備中のスペシャル技を外し、未装備状態にする
 			if (m_mou_l == true)

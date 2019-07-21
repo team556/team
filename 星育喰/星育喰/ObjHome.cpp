@@ -300,11 +300,12 @@ void CObjHome::Draw()
 	float e[4] = { m_Eat_color,m_Eat_color,m_Eat_color,m_alpha };
 
 	//プレイヤー惑星ステータスのフォントカラー用
-	float status_font_color[3][4] =
+	float status_font_color[4][4] =
 	{
-		{ 0.0f,0.0f,0.0f,1.0f },//1行目は黒色
+		{ 1.0f,1.0f,1.0f,1.0f },//1行目は白色
 		{ 0.0f,0.0f,0.0f,1.0f },//2行目は黒色
-		{ 1.0f,0.0f,0.0f,1.0f },//3行目は赤色
+		{ 0.0f,0.0f,0.0f,1.0f },//3行目は黒色
+		{ 1.0f,0.0f,0.0f,1.0f },//4行目は赤色
 	};
 
 	//それ以外の画像用
@@ -531,10 +532,10 @@ void CObjHome::Draw()
 		src.m_right = 800.0f;
 		src.m_bottom = 790.0f;
 
-		dst.m_top = m_mou_y - 85.0f;
+		dst.m_top = m_mou_y - 125.0f;
 		dst.m_left = m_mou_x + 20.0f;
 		dst.m_right = m_mou_x + 120.0f;
-		dst.m_bottom = m_mou_y - 25.0f;
+		dst.m_bottom = m_mou_y - 65.0f;
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
 		//▽ウインドウ表示左下
@@ -543,7 +544,7 @@ void CObjHome::Draw()
 		src.m_right = 1600.0f;
 		src.m_bottom = 795.0f;
 
-		dst.m_top = m_mou_y - 25.0f;
+		dst.m_top = m_mou_y - 65.0f;
 		dst.m_left = m_mou_x + 20.0f;
 		dst.m_right = m_mou_x + 120.0f;
 		dst.m_bottom = m_mou_y + 45.0f;
@@ -555,10 +556,10 @@ void CObjHome::Draw()
 		src.m_right = 2400.0f;
 		src.m_bottom = 795.0f;
 
-		dst.m_top = m_mou_y - 85.0f;
+		dst.m_top = m_mou_y - 125.0f;
 		dst.m_left = m_mou_x + 120.0f;
 		dst.m_right = m_mou_x + 220.0f;
-		dst.m_bottom = m_mou_y - 25.0f;
+		dst.m_bottom = m_mou_y - 65.0f;
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
 		//▽ウインドウ表示中央下 
@@ -567,7 +568,7 @@ void CObjHome::Draw()
 		src.m_right = 3200.0f;
 		src.m_bottom = 800.0f;
 
-		dst.m_top = m_mou_y - 25.0f;
+		dst.m_top = m_mou_y - 65.0f;
 		dst.m_left = m_mou_x + 120.0f;
 		dst.m_right = m_mou_x + 220.0f;
 		dst.m_bottom = m_mou_y + 45.0f;
@@ -579,10 +580,10 @@ void CObjHome::Draw()
 		src.m_right = 4800.0f;
 		src.m_bottom = 795.0f;
 
-		dst.m_top = m_mou_y - 85.0f;
+		dst.m_top = m_mou_y - 125.0f;
 		dst.m_left = m_mou_x + 220.0f;
 		dst.m_right = m_mou_x + 320.0f;
-		dst.m_bottom = m_mou_y - 25.0f;
+		dst.m_bottom = m_mou_y - 65.0f;
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 
 		//▼ウインドウ右下
@@ -591,7 +592,7 @@ void CObjHome::Draw()
 		src.m_right = 5600.0f;
 		src.m_bottom = 800.0f;
 
-		dst.m_top = m_mou_y - 25.0f;
+		dst.m_top = m_mou_y - 65.0f;
 		dst.m_left = m_mou_x + 220.0f;
 		dst.m_right = m_mou_x + 320.0f;
 		dst.m_bottom = m_mou_y + 45.0f;
@@ -608,7 +609,7 @@ void CObjHome::Draw()
 		dst.m_left = m_mou_x + 33.0f;
 		dst.m_right = m_mou_x + 133.0f;
 		dst.m_bottom = m_mou_y  -48.0f;
-		Draw::Draw(53, &src, &dst, status_font_color[0], 0.0f);
+		Draw::Draw(53, &src, &dst, status_font_color[1], 0.0f);
 
 		//装備中のスペシャル技文字画像
 		src.m_top = 0.0f;
@@ -620,14 +621,14 @@ void CObjHome::Draw()
 		dst.m_left = m_mou_x + 33.0f;
 		dst.m_right = m_mou_x + 285.0f;
 		dst.m_bottom = m_mou_y - 8.0f;
-		Draw::Draw(54, &src, &dst, status_font_color[1], 0.0f);
+		Draw::Draw(54, &src, &dst, status_font_color[2], 0.0f);
 
 		//「：」を表示
-		FontDraw(L"：", m_mou_x + 133.0f, m_mou_y - 73.0f, 25.0f, 25.0f, status_font_color[0], false);
-		FontDraw(L"：", m_mou_x + 285.0f, m_mou_y - 33.0f, 25.0f, 25.0f, status_font_color[1], false);
+		FontDraw(L"：", m_mou_x + 133.0f, m_mou_y - 73.0f, 25.0f, 25.0f, status_font_color[1], false);
+		FontDraw(L"：", m_mou_x + 285.0f, m_mou_y - 33.0f, 25.0f, 25.0f, status_font_color[2], false);
 
 		//現在の最大惑星HPを表示
-		FontDraw(NumConversion((int)g_Player_max_size), m_mou_x + 158.0f, m_mou_y - 73.0f, 15.0f, 25.0f, status_font_color[0], false);
+		FontDraw(NumConversion((int)g_Player_max_size), m_mou_x + 158.0f, m_mou_y - 73.0f, 15.0f, 25.0f, status_font_color[1], false);
 
 		//現在装備中のスペシャル技[未装備/エクスプロージョン等]文字画像
 		src.m_top = 0.0f;
@@ -639,7 +640,7 @@ void CObjHome::Draw()
 		dst.m_left = m_mou_x + m_special_draw_left;
 		dst.m_right = m_mou_x + m_special_draw_right;
 		dst.m_bottom = m_mou_y + 32.0f;
-		Draw::Draw(127, &src, &dst, status_font_color[2], 0.0f);
+		Draw::Draw(127, &src, &dst, status_font_color[3], 0.0f);
 	}
 
 	//デバッグ用仮マウス位置表示

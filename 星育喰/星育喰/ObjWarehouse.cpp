@@ -398,7 +398,7 @@ void CObjWarehouse::Draw()
 	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
 
 	//ÂF
-	float blue[4] = { 0.0f,0.0f,1.0f,1.0f };
+	float blue[4] = { 0.5f,0.5f,1.0f,1.0f };
 
 	//—ÎF
 	float green[4] = { 0.0f,1.0f,0.0f,1.0f };
