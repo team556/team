@@ -143,6 +143,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjMessage.cpp" />
+    <ClCompile Include="ObjNameInput.cpp" />
     <ClCompile Include="ObjRktHit.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -160,6 +161,7 @@
     <ClCompile Include="SceneFight.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneHome.cpp" />
+    <ClCompile Include="SceneNameInput.cpp" />
     <ClCompile Include="ScenePreparation.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
@@ -202,6 +204,7 @@
     </ClInclude>
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjMessage.h" />
+    <ClInclude Include="ObjNameInput.h" />
     <ClInclude Include="ObjRktHit.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -219,6 +222,7 @@
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneHome.h" />
+    <ClInclude Include="SceneNameInput.h" />
     <ClInclude Include="ScenePreparation.h" />
     <ClInclude Include="SceneTest.h" />
     <ClInclude Include="SceneTitle.h" />
