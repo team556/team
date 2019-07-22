@@ -395,10 +395,10 @@ void CObjRocket::Init()
 			m_Player_damage *= m_One_pat_dem;
 	}
 	
-	//if (ButtonU != 5) {
-	//	CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
-	//	Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
-	//}
+	if (ButtonU != 5) {
+		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+	}
 }
 
 //アクション

@@ -31,8 +31,8 @@ void CObjRktHit::Init()
 	m_mov	= 0.0f;
 	m_size = 50.0f;
 	m_del_cnt = 0;
-	m_pnam = p_pnam -1;
-	m_enam = e_pnam -1;
+	m_pnam = p_pnam /*-1*/;
+	m_enam = e_pnam /*-1*/;
 	m_stop_f = false;
 	m_del_f = false;
 
