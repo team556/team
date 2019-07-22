@@ -460,7 +460,8 @@ void CSceneTraining::InitScene()
 	//メッセージウィンドウ01を132番に登録
 	Draw::LoadImage(L"メッセージウィンドウ01.png", 132, TEX_SIZE_512);
 
-
+	//ウインドウ02を133番に登録
+	Draw::LoadImage(L"ウインドウ02.png", 133, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
@@ -480,6 +481,10 @@ void CSceneTraining::InitScene()
 
 	//音楽スタート
 	Audio::Start(0);
+
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
+
 }
 
 //ゲームメイン実行中メソッド

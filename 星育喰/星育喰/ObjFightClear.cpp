@@ -1017,8 +1017,8 @@ void CObjFightClear::Draw()
 			//Å•îwåiï\é¶
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 960.0f;
-			src.m_bottom = 638.0f;
+			src.m_right = 1200.0f;
+			src.m_bottom = 700.0f;
 
 			dst.m_top = 0.0f;
 			dst.m_left = 0.0f;

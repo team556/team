@@ -1484,19 +1484,83 @@ void CObjInstitute::Draw()
 		dst.m_left = 150.0f;
 		dst.m_right = 450.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		Draw::Draw(133, &src, &dst, white, 0.0f);
 
 		//▼残り住民数のウインドウ表示
+		//左上
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
+		src.m_right = 795.0f;
+		src.m_bottom = 800.0f;
 
 		dst.m_top = 235.0f;
 		dst.m_left = 750.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 285.0;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		//左下
+		src.m_top = 40.0f;
+		src.m_left = 800.0f;
+		src.m_right = 1600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 255.0f;
+		dst.m_left = 750.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 305.0f;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		for (int j = 0; j < 7; j++)
+		{
+			//中央上
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 235.0f;
+			dst.m_left = 800.0f + (j * 50);
+			dst.m_right = 850.0f + (j * 50);
+			dst.m_bottom = 285.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//中央下
+			src.m_top = 0.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 255.0f;
+			dst.m_left = 800.0f + (j * 50);
+			dst.m_right = 850.0f + (j * 50);
+			dst.m_bottom = 305.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+		}
+
+		//右上
+		src.m_top = 0.0f;
+		src.m_left = 4000.0f;
+		src.m_right = 4800.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 235.0f ;
+		dst.m_left = 1110.0f;
+		dst.m_right = 1160.0f;
+		dst.m_bottom = 285.0f;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		//右下
+		src.m_top = 0.0f;
+		src.m_left = 4800.0f;
+		src.m_right = 5600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 255.0f;
+		dst.m_left = 1110.0f;
 		dst.m_right = 1160.0f;
 		dst.m_bottom = 305.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		Draw::Draw(132, &src, &dst, white, 0.0f);
 
 		//▼研究所振り分けDOWN表示
 		src.m_top = 0.0f;
@@ -1523,16 +1587,80 @@ void CObjInstitute::Draw()
 		Draw::Draw(119, &src, &dst, up, 0.0f);
 
 		//▼研究員の住民数ウインドウ表示
+		//左上
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
+		src.m_right = 795.0f;
+		src.m_bottom = 800.0f;
 
 		dst.m_top = 140.0f;
 		dst.m_left = 930.0f;
+		dst.m_right = 970.0f;
+		dst.m_bottom = 180.0;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		//左下
+		src.m_top = 40.0f;
+		src.m_left = 800.0f;
+		src.m_right = 1600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 160.0f;
+		dst.m_left = 930.0f;
+		dst.m_right = 970.0f;
+		dst.m_bottom = 200.0f;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		for (int j = 0; j < 4; j++)
+		{
+			//中央上
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 140.0f;
+			dst.m_left = 970.0f + (j * 40);
+			dst.m_right = 1010.0f + (j * 40);
+			dst.m_bottom = 180.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//中央下
+			src.m_top = 0.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 160.0f;
+			dst.m_left = 970.0f + (j * 40);
+			dst.m_right = 1010.0f + (j * 40);
+			dst.m_bottom = 200.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+		}
+
+		//右上
+		src.m_top = 0.0f;
+		src.m_left = 4000.0f;
+		src.m_right = 4800.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 140.0f;
+		dst.m_left = 1110.0f;
+		dst.m_right = 1150.0f;
+		dst.m_bottom = 180.0f;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		//右下
+		src.m_top = 0.0f;
+		src.m_left = 4800.0f;
+		src.m_right = 5600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 160.0f;
+		dst.m_left = 1110.0f;
 		dst.m_right = 1150.0f;
 		dst.m_bottom = 200.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		Draw::Draw(132, &src, &dst, white, 0.0f);
 
 		//▼ミサイルボタン表示
 		src.m_top = 0.0f;
@@ -1883,59 +2011,9 @@ void CObjInstitute::Draw()
 	{
 		//▽研究所ウインドウの上に開いているように見せるため、
 		//ダミーの研究所ウインドウのグラフィックを描画する。
-
-		//▼灰色ウインドウ表示(ダミー研究所ウインドウ用)
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 1160.0f;
-		//src.m_bottom = 660.0f;
-
-		//dst.m_top = 20.0f;
-		//dst.m_left = 20.0f;
-		//dst.m_right = 1180.0f;
-		//dst.m_bottom = 680.0f;
-		//Draw::Draw(20, &src, &dst, white, 0.0f);
-
-		////▼戻るボタン表示(ダミー研究所ウインドウ用)
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 64.0f;
-		//src.m_bottom = 64.0f;
-
-		//dst.m_top = 30.0f;
-		//dst.m_left = 30.0f;
-		//dst.m_right = 80.0f;
-		//dst.m_bottom = 80.0f;
-		//Draw::Draw(1, &src, &dst, white, 0.0f);
-
-		////▼研究所LVUP表示(ダミー研究所ウインドウ用)
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 48.0f;
-		//src.m_bottom = 64.0f;
-
-		//dst.m_top = 470.0f;
-		//dst.m_left = 30.0f;
-		//dst.m_right = 150.0f;
-		//dst.m_bottom = 620.0f;
-		//Draw::Draw(22, &src, &dst, white, 0.0f);
-
-		////▼レベルUP条件ウインドウ表示(ダミー研究所ウインドウ用)
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 64.0f;
-		//src.m_bottom = 64.0f;
-
-		//dst.m_top = 420.0f;
-		//dst.m_left = 150.0f;
-		//dst.m_right = 450.0f;
-		//dst.m_bottom = 670.0f;
-		//Draw::Draw(21, &src, &dst, white, 0.0f);
-
-
 		//▽以下はミサイルウインドウ、武器ポッドウインドウのどちらでも描画
 
-		//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
+		//▼ウィンドウ表示(ダミーウィンドウ用)
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1200.0f;
@@ -1999,7 +2077,7 @@ void CObjInstitute::Draw()
 				dst.m_left = 400.0f;
 				dst.m_right = 1130.0f;
 				dst.m_bottom = 255.0f + 190.0f * i;
-				Draw::Draw(20, &src, &dst, white, 0.0f);
+				Draw::Draw(133, &src, &dst, white, 0.0f);
 			}
 
 			//▼研究所 LV.文字画像表示

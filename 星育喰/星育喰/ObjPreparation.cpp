@@ -708,11 +708,11 @@ void CObjPreparation::Action()
 			//}
 			if (m_warning_message_alpha <= 0.4f)
 			{
-				m_Boss_clip_pos_x = 300.0f;
+				m_Boss_clip_pos_x = -600.0f;
 			}
 			else if (m_warning_message_alpha <= 0.8f)
 			{
-				m_Boss_clip_pos_x = 300.0f;
+				m_Boss_clip_pos_x = -300.0f;
 			}
 			
 		}
@@ -981,15 +981,15 @@ void CObjPreparation::Draw()
 
 	//▼ボス惑星1表示(演出用)
 	src.m_top = 0.0f;
-	src.m_left = 600.0f;
-	src.m_right = 900.0f;
+	src.m_left = 0.0f;
+	src.m_right = -300.0f;
 	src.m_bottom = 300.0f;
 
 	dst.m_top = 360.0f + m_Boss_vy[0];
 	dst.m_left = 1260.0f + m_Boss_vx[0];
 	dst.m_right = 1410.0f + m_Boss_vx[0];
 	dst.m_bottom = 510.0f + m_Boss_vy[0];
-	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 180.0f);
+	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
 	//未撃破時のみ表示
 	if (g_destroy_progress[0] == false)
@@ -1089,7 +1089,7 @@ void CObjPreparation::Draw()
 
 	//▽ウインドウ表示左上 
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
+	src.m_left = -20.0f;
 	src.m_right = 800.0f;
 	src.m_bottom = 790.0f;
 
@@ -1097,11 +1097,11 @@ void CObjPreparation::Draw()
 	dst.m_left = 420.0f;
 	dst.m_right = 470.0f;
 	dst.m_bottom = 955.0 + m_Svy;
-	Draw::Draw(90, &src, &dst, d, 0.0f);
+	Draw::Draw(55, &src, &dst, d, 0.0f);
 
 	//▽ウインドウ表示左下
 	src.m_top = 30.0f;
-	src.m_left = 800.0f;
+	src.m_left = 780.0f;
 	src.m_right = 1600.0f;
 	src.m_bottom = 795.0f;
 
@@ -1109,7 +1109,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 420.0f;
 	dst.m_right = 470.0f;
 	dst.m_bottom = 970.0 + m_Svy;
-	Draw::Draw(90, &src, &dst, d, 0.0f);
+	Draw::Draw(55, &src, &dst, d, 0.0f);
 	for (int i = 0;i < 5;i++)
 	{
 		//▽ウインドウ表示中央上 
@@ -1122,7 +1122,7 @@ void CObjPreparation::Draw()
 		dst.m_left = 470.0f + (i * 50);
 		dst.m_right = 520.0f + (i * 50);
 		dst.m_bottom = 955.0f + m_Svy;
-		Draw::Draw(90, &src, &dst, d, 0.0f);
+		Draw::Draw(55, &src, &dst, d, 0.0f);
 
 		//▽ウインドウ表示中央下 
 		src.m_top = 5.0f;
@@ -1134,7 +1134,7 @@ void CObjPreparation::Draw()
 		dst.m_left = 470.0f + (i * 50);
 		dst.m_right = 520.0f + (i * 50);
 		dst.m_bottom = 970.0f + m_Svy;
-		Draw::Draw(90, &src, &dst, d, 0.0f);
+		Draw::Draw(55, &src, &dst, d, 0.0f);
 	}
 
 	//▽ウインドウ表示中央上 
@@ -1147,7 +1147,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 690.0f;
 	dst.m_right = 740.0f;
 	dst.m_bottom = 955.0f + m_Svy;
-	Draw::Draw(90, &src, &dst, d, 0.0f);
+	Draw::Draw(55, &src, &dst, d, 0.0f);
 
 	//▽ウインドウ表示中央下 
 	src.m_top = 5.0f;
@@ -1159,7 +1159,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 690.0f;
 	dst.m_right = 740.0f;
 	dst.m_bottom = 970.0f + m_Svy;
-	Draw::Draw(90, &src, &dst, d, 0.0f);
+	Draw::Draw(55, &src, &dst, d, 0.0f);
 
 	//▼ウインドウ右上
 	src.m_top = 0.0f;
@@ -1171,7 +1171,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 740.0f;
 	dst.m_right = 790.0f;
 	dst.m_bottom = 955.0 + m_Svy;
-	Draw::Draw(90, &src, &dst, d, 0.0f);
+	Draw::Draw(55, &src, &dst, d, 0.0f);
 
 	//▼ウインドウ右下
 	src.m_top = 5.0f;
@@ -1183,7 +1183,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 740.0f;
 	dst.m_right = 790.0f;
 	dst.m_bottom = 970.0 + m_Svy;
-	Draw::Draw(90, &src, &dst, d, 0.0f);
+	Draw::Draw(55, &src, &dst, d, 0.0f);
 
 
 	//▼スペシャル技アイコン集表示
@@ -1211,7 +1211,7 @@ void CObjPreparation::Draw()
 	dst.m_left = 445.0f;
 	dst.m_right = 765.0f;
 	dst.m_bottom = 955.0f + m_Svy;
-	Draw::Draw(68, &src, &dst, black, 0.0f);
+	Draw::Draw(68, &src, &dst, d, 0.0f);
 
 	//ボス出現警告メッセージ
 	//Font::StrDraw(文字列,X軸,Y軸,一文字当たりのサイズ,色);

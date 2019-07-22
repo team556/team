@@ -110,7 +110,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"P惑星_Lv3.png", 49, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み55番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 55, TEX_SIZE_512);
+	Draw::LoadImage(L"メッセージウィンドウ.png", 55, TEX_SIZE_512);
 
 	//戻るアイコンを読み込み56番に登録
 	Draw::LoadImage(L"戻る.png", 56, TEX_SIZE_512);
