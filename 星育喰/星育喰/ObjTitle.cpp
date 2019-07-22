@@ -57,13 +57,12 @@ int g_Remain_num = 6000;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 
-int g_Iron_num		= 0;
-int g_Wood_num		= 0;
-int g_Silver_num	= 0;
-int g_Plastic_num	= 0;
-int g_Aluminum_num	= 0;
-int g_gus_num		= 0;
-int g_Raremetal_num = 0;
+int g_Iron_num		= 1000;
+int g_Wood_num		= 1000;
+int g_Silver_num	= 1000;
+int g_Plastic_num	= 1000;
+int g_Aluminum_num	= 1000;
+int g_gus_num		= 1000;
 
 int g_Challenge_enemy = 0;
 bool g_help_f = false;
@@ -151,7 +150,6 @@ void CObjTitle::Init()
 	g_Plastic_num = 0;
 	g_Aluminum_num = 0;
 	g_gus_num = 0;
-	g_Raremetal_num = 0;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
