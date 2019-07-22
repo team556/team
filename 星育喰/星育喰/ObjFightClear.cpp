@@ -682,7 +682,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 232.0f;
+				src.m_right = 712.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 150;
@@ -811,7 +811,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 232.0f;
+				src.m_right = 712.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 200;
