@@ -864,7 +864,7 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		//※点滅処理のプログラム内容は、
 		//上記のImmortalityの処理と同じなので、
 		//細かい説明は省略する。
-		else if (m_count[Planet_id] > 60 * 5)
+		else if (m_count[Planet_id] > 60 * 5 && m_count[Planet_id] < 60 * 8.5)
 		{
 			//初期透過度は1.0f、切り替えポイントは0.5f。
 			if (m_Special_effect_alpha[Planet_id] >= 0.5)
@@ -874,6 +874,23 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			else
 			{
 				m_Special_effect_alpha_vec[Planet_id] += 0.003f;	//ベクトルに加算
+			}
+
+			m_Special_effect_alpha[Planet_id] += m_Special_effect_alpha_vec[Planet_id];	//ベクトルを反映
+		}
+
+		//8秒経過後、エフェクト画像点滅処理
+		//上記の処理を早くしただけ
+		else if (m_count[Planet_id] > 60 * 8.5)
+		{
+			//初期透過度は1.0f、切り替えポイントは0.5f。
+			if (m_Special_effect_alpha[Planet_id] >= 0.5)
+			{
+				m_Special_effect_alpha_vec[Planet_id] -= 0.015f;	//ベクトルに減算
+			}
+			else
+			{
+				m_Special_effect_alpha_vec[Planet_id] += 0.015f;	//ベクトルに加算
 			}
 
 			m_Special_effect_alpha[Planet_id] += m_Special_effect_alpha_vec[Planet_id];	//ベクトルを反映
