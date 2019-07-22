@@ -22,7 +22,7 @@ using namespace GameL;
 #define FIV_DELAY (105)
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
-#define MOAI_NAM (1)	//モアイの番号type設定(仮
+#define MOAI_NAM (2)	//モアイの番号type設定(仮
 
 //コンストラクタ
 CObjPlanet::CObjPlanet(float x, float y, float size, int type)
