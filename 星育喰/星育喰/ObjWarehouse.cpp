@@ -422,7 +422,6 @@ void CObjWarehouse::Draw()
 	swprintf_s(mrl[3], L"%d 個", g_Plastic_num);
 	swprintf_s(mrl[4], L"%d 個", g_Aluminum_num);
 	swprintf_s(mrl[5], L"%d 個", g_gus_num);
-	swprintf_s(mrl[6], L"%d 個", g_Raremetal_num);
 
 	//住民数表示
 	//各タイプ(パワー、スピード等)の住民数用
