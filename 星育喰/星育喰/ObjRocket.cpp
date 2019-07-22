@@ -624,7 +624,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Enemy_damage;
 				}
 			}
 			else if (ButtonUE == 2)	//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
@@ -646,7 +646,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Enemy_damage;
 				}
 			}
 			else if (ButtonUE == 3)	//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
@@ -668,7 +668,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Enemy_damage;
 				}
 			}
 			else if (ButtonUE == 4)	//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
@@ -722,7 +722,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Player_damage;
 				}
 			}
 			else if (ButtonUP == 2)	//自分の種類２(ディフェンス)が敵のポッドと当たった場合
@@ -744,7 +744,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Player_damage;
 				}
 			}
 			else if (ButtonUP == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
@@ -766,7 +766,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Player_damage;
 				}
 
 			}
