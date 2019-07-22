@@ -42,7 +42,7 @@ void CSceneFight::InitScene()
 	//Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み3番に登録
-	Draw::LoadImage(L"P惑星_Lv1.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1修正.png", 3, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み4番に登録
 	Draw::LoadImage(L"P惑星_Lv2.png", 4, TEX_SIZE_512);
@@ -116,7 +116,7 @@ void CSceneFight::InitScene()
 	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
 	Draw::LoadImage(L"オーバーワーク.png", 25, TEX_SIZE_512);
 
-	Draw::LoadImage(L"lv1x3.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"lv1x3修正.png", 26, TEX_SIZE_512);
 
 	Draw::LoadImage(L"モアイ.png", 27, TEX_SIZE_512);
 
