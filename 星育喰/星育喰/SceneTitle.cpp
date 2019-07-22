@@ -48,7 +48,7 @@ void CSceneTitle::InitScene()
 	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
 
 	//プレイヤー惑星Lv1を読み込み50番に登録
-	Draw::LoadImage(L"P惑星_Lv1.png", 50, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1修正.png", 50, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み51番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 51, TEX_SIZE_512);

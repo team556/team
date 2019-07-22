@@ -128,7 +128,7 @@ void CObjCloud_Effect::Draw()
 	//ホワイトアウト演出画像用
 	float c[4] = { 1.0f,1.0f,1.0f,m_white_out_a };
 	//ホワイトアウト中に表示するフォント画像用
-	float f[4] = { 0.0f,0.0f,0.0f,m_white_out_a - 1.0f };
+	float f[4] = { 0.0f,0.0f,1.0f,m_white_out_a - 1.0f };
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -185,18 +185,15 @@ void CObjCloud_Effect::Draw()
 	Draw::Draw(19, &src, &dst, c, 0.0f);
 
 
-	//※以下のプログラムはグラフィックがまだない為、
-	//いつでも画像を表示出来るようにプログラムだけ組んでいる状態。(デバッグ状態)
-	//グラフィック用意完了後、切り取り位置、描画位置、描画番号を適切なものに変更すべし。
 	//▼ホワイトアウト中のフォント画像(惑星発展度UP！)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 891.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 250.0f;
-	dst.m_left = 300.0f;
+	dst.m_top = 275.0f;
+	dst.m_left = 200.0f;
 	dst.m_right = 1000.0f;
-	dst.m_bottom = 350.0f;
+	dst.m_bottom = 425.0f;
 	Draw::Draw(133, &src, &dst, f, 0.0f);
 }

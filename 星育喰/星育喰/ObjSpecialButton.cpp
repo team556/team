@@ -7,6 +7,7 @@
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -614,11 +615,10 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	//▼[Explosion]の処理
 	if (Special_equip == 1)
 	{
-		//スペシャル技効果処理開始から約1.7秒後、
+		//スペシャル技効果処理開始から約1.25秒～1.5秒の間、
 		//相手が無敵ではない、かつ相手のHPが0より上の時、
-		//約0.1秒毎に相手のHPを減少させる。
-		//※現状、計5ダメージ与える設定となっている。
-		if (m_count[Planet_id] >= 100 && m_count[Planet_id] % 5 == 0 && Planet[Opponent_id]->GetInvincible() == false && Planet[Opponent_id]->GetSiz() > 0)
+		//約0.1秒毎に相手のHPを減少させる。(計5回このダメージ処理に入る)
+		if (75 <= m_count[Planet_id] && m_count[Planet_id] <= 95 && m_count[Planet_id] % 5 == 0 && Planet[Opponent_id]->GetInvincible() == false && Planet[Opponent_id]->GetSiz() > 0)
 		{
 			Planet[Opponent_id]->SetDamage();//サイズ(HP)減少
 			Planet[Opponent_id]->SetScale_down_move(Opponent_id);//縮む分だけ移動
@@ -658,19 +658,20 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_Explosion_target[Planet_id] = Opponent_id;//エフェクト対象を相手に設定
 			m_Explosion_angle[Planet_id] = 270.0f;		//エフェクト角度を下に向くように設定
 		}
-		else if (m_Explosion_size[Planet_id] > 200.0f && m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] > 0)
+		else if (m_Explosion_size[Planet_id] > 800.0f && m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] > 0)
 		{
 			//▽エフェクト画像サイズが画面外(上)に到達すると実行。
 			//サイズ変更(上発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
 			m_Explosion_width[Planet_id] -= 10.0f;//エフェクト画像の幅を狭める
 		}
-		else if (m_Explosion_size[Planet_id] <= 200.0f)
+		else if (m_Explosion_size[Planet_id] <= 800.0f)
 		{
 			//▽最初に実行される。
 			//エフェクト画像がプレイヤーを起点に上へと発射される
 			m_Explosion_target[Planet_id] = Planet_id;//エフェクト対象を自分に設定
 			m_Explosion_angle[Planet_id] = 90.0f;//エフェクト角度を上に向くように設定
-			m_Explosion_size[Planet_id] += 20.0f;//エフェクト画像サイズを変更し、上方向に画像を伸ばす
+			m_Explosion_size[Planet_id] += 40.0f;//エフェクト画像サイズを変更し、上方向に画像を伸ばす
+			m_Explosion_width[Planet_id] -= 40.0f;//上方向へ伸ばすと同時にエフェクト画像の幅を狭めて、いい感じの光線幅で射出させる
 
 			if (m_sptime[Planet_id] == false)
 			{
@@ -755,16 +756,16 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	else if (Special_equip == 3)
 	{
 		//▽エフェクト画像点滅処理
-		//初期透過度は1.0f、切り替えポイントは0.75f。
-		//1.0f→0.75fへ移動する際、0.003ずつベクトルが減算されていき、
+		//初期透過度は0.75f、切り替えポイントは0.5f。
+		//0.75f→0.5fへ移動する際、0.003ずつベクトルが減算されていき、
 		//同時に透過度も減少していく。
-		//切り替えポイントの0.75fに到達時、0.003ずつベクトルが加算されていくが、
+		//切り替えポイントの0.5fに到達時、0.003ずつベクトルが加算されていくが、
 		//今まで移動したベクトル分が残っている為、すぐに透過度は上昇せず、
 		//今まで移動したベクトル分が0.0fになるまで透過度は減少する。
-		//透過度が上昇するのは、切り替えポイント的に透過度が0.5fになった時である。
+		//透過度が上昇するのは、切り替えポイント的に透過度が0.25fになった時である。
 		//その後は先程と全く真逆の処理が行われ、
-		//結果的に透過度が1.0f⇔0.5fを行き来するプログラムとなっている。
-		if (m_Special_effect_alpha[Planet_id] >= 0.75)
+		//結果的に透過度が0.75f⇔0.25fを行き来するプログラムとなっている。
+		if (m_Special_effect_alpha[Planet_id] >= 0.5)
 		{
 			m_Special_effect_alpha_vec[Planet_id] -= 0.003f;	//ベクトルに減算
 		}
@@ -808,6 +809,8 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 				//バリアの音を出す
 				Audio::Start(7);
 				m_sptime[Planet_id] = true;
+
+				m_Special_effect_alpha[Planet_id] = 0.75f;//初期透過度を設定
 			}
 		}
 	}
@@ -939,10 +942,6 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };	//その他画像用
 
 
-	//▽フォント準備
-	wchar_t power_up_pod_count[2][2];	//強化状態のポッド数表示用
-
-
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
@@ -978,28 +977,32 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 	//▼[Fracture_Ray]の描画処理
 	else if (Special_equip == 2)
 	{
-		//▼Fracture_Ray表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f + (Planet_id * 128.0f);//プレイヤーの時は左向き、エネミーの時は右向きになるように設定。
-		src.m_bottom = 400.0f;
-
-		dst.m_top = Planet[Planet_id]->GetY() - m_Fracture_Ray_width[Planet_id] + m_Fracture_Ray_pos[Planet_id];
-
-		//leftとrightの描画処理はプレイヤーとエネミーで大きく違う為、別々で処理を行う。
-		if (Planet_id == PLAYER)
+		//描画位置確定後、表示する。
+		if (m_Fracture_Ray_pos[Planet_id] != 0.0f)
 		{
-			dst.m_left = 0.0f;
-			dst.m_right = Planet[Planet_id]->GetX() + Planet[Planet_id]->GetScale_down_move();
-		}
-		else //(Planet_id == ENEMY)
-		{
-			dst.m_left = Planet[Planet_id]->GetX() + Planet[Planet_id]->GetScale_down_move();
-			dst.m_right = 1200.0f;
-		}
+			//▼Fracture_Ray表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1200.0f + (Planet_id * 128.0f);//プレイヤーの時は左向き、エネミーの時は右向きになるように設定。
+			src.m_bottom = 400.0f;
 
-		dst.m_bottom = Planet[Planet_id]->GetY() + m_Fracture_Ray_width[Planet_id] + m_Fracture_Ray_pos[Planet_id];
-		Draw::Draw(22, &src, &dst, d, 0.0f);
+			dst.m_top = Planet[Planet_id]->GetY() - m_Fracture_Ray_width[Planet_id] + m_Fracture_Ray_pos[Planet_id];
+
+			//leftとrightの描画処理はプレイヤーとエネミーで大きく違う為、別々で処理を行う。
+			if (Planet_id == PLAYER)
+			{
+				dst.m_left = 0.0f;
+				dst.m_right = Planet[Planet_id]->GetX() + Planet[Planet_id]->GetScale_down_move();
+			}
+			else //(Planet_id == ENEMY)
+			{
+				dst.m_left = Planet[Planet_id]->GetX() + Planet[Planet_id]->GetScale_down_move();
+				dst.m_right = 1200.0f;
+			}
+
+			dst.m_bottom = Planet[Planet_id]->GetY() + m_Fracture_Ray_width[Planet_id] + m_Fracture_Ray_pos[Planet_id];
+			Draw::Draw(22, &src, &dst, d, 0.0f);
+		}
 	}
 
 	//▼[Immortality]の描画処理
@@ -1052,7 +1055,6 @@ void CObjSpecialButton::Special_effect(int Planet_id, int Special_equip)
 		Draw::Draw(24, &src, &dst, d, 0.0f);
 
 		//▼強化状態のポッド数表示
-		swprintf_s(power_up_pod_count[Planet_id], L"%d", (5 - m_count[Planet_id]));
-		Font::StrDraw(power_up_pod_count[Planet_id], Planet[Planet_id]->GetX() + 15.0f + Planet[Planet_id]->GetScale_down_move(), Planet[Planet_id]->GetY() - 190.0f, 75.0f, d);
+		FontDraw(NumConversion(5 - m_count[Planet_id]), Planet[Planet_id]->GetX() + 15.0f + Planet[Planet_id]->GetScale_down_move(), Planet[Planet_id]->GetY() - 190.0f, 65.0f, 75.0f, d, false);
 	}
 }

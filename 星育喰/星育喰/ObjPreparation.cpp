@@ -1064,10 +1064,10 @@ void CObjPreparation::Draw()
 	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
 
 	//▼プレイヤー惑星表示
-	src.m_top = 63.0f;
-	src.m_left = 63.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 448.0f;
+	src.m_bottom = 448.0f;
 
 	dst.m_top = 800.0f + m_Pvy;
 	dst.m_left = -500.0f + m_Pvx;

@@ -69,13 +69,13 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"ƒy[ƒW‚ği‚ß‚éƒ{ƒ^ƒ“(‰¼).png", 46, TEX_SIZE_512);
 
 	//ƒvƒŒƒCƒ„[˜f¯Lv1‚ğ“Ç‚İ‚İ50”Ô‚É“o˜^
-	Draw::LoadImage(L"P˜f¯_Lv1.png", 50, TEX_SIZE_512);
+	Draw::LoadImage(L"P˜f¯_Lv1C³.png", 50, TEX_SIZE_512);
 
 	//ƒvƒŒƒCƒ„[˜f¯Lv2‚ğ“Ç‚İ‚İ51”Ô‚É“o˜^
-	Draw::LoadImage(L"P˜f¯_Lv2.png", 51, TEX_SIZE_512);
+	Draw::LoadImage(L"P˜f¯_Lv2C³.png", 51, TEX_SIZE_512);
 
 	//ƒvƒŒƒCƒ„[˜f¯Lv3‚ğ“Ç‚İ‚İ52”Ô‚É“o˜^
-	Draw::LoadImage(L"P˜f¯_Lv3.png", 52, TEX_SIZE_512);
+	Draw::LoadImage(L"P˜f¯_Lv3C³.png", 52, TEX_SIZE_512);
 
 	//˜f¯HP•¶š‰æ‘œ‚ğ“Ç‚İ‚İ53”Ô‚É“o˜^
 	Draw::LoadImage(L"˜f¯HP.png", 53, TEX_SIZE_512);
