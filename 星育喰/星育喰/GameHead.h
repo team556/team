@@ -150,7 +150,6 @@ extern int g_Silver_num;        //銀
 extern int g_Plastic_num;		//プラスチック
 extern int g_Aluminum_num;		//アルミニウム
 extern int g_gus_num;			//ガス
-extern int g_Raremetal_num;		//レアメタル
 
 //▼セーブ必要性無し
 extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)

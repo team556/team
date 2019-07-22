@@ -13,6 +13,9 @@
 
 #include <time.h>
 
+//関数でm_typeを判別して0の時はm_Player_damageをtype0のやつに渡してm_hpを現象
+//if分で12345
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -395,10 +398,10 @@ void CObjRocket::Init()
 			m_Player_damage *= m_One_pat_dem;
 	}
 	
-	//if (ButtonU != 5) {
-	//	CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
-	//	Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
-	//}
+	if (ButtonU != 5) {
+		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+	}
 }
 
 //アクション
@@ -1038,4 +1041,9 @@ void CObjRocket::Draw()
 	//	Font::StrDraw(test_mou, 1100.0f, 20.0f, 12.0f, d);
 	//}
 	
+}
+
+void CObjRocket::SetDMG(float hp, float dmg)
+{
+	hp = m_podhp;
 }

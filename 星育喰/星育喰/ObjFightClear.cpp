@@ -682,7 +682,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 232.0f;
+				src.m_right = 712.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 150;
@@ -696,7 +696,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 232.0f;
+				src.m_right = 352.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 150;
@@ -811,7 +811,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 232.0f;
+				src.m_right = 712.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 200;
@@ -825,7 +825,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 232.0f;
+				src.m_right = 352.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 200;
@@ -1017,8 +1017,8 @@ void CObjFightClear::Draw()
 			//Å•îwåiï\é¶
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 960.0f;
-			src.m_bottom = 638.0f;
+			src.m_right = 1200.0f;
+			src.m_bottom = 700.0f;
 
 			dst.m_top = 0.0f;
 			dst.m_left = 0.0f;
@@ -1027,10 +1027,10 @@ void CObjFightClear::Draw()
 			Draw::Draw(0, &src, &dst, d, 0.0f);
 
 			//Å•ÉvÉåÉCÉÑÅ[òfêØï\é¶
-			src.m_top = 63.0f;
-			src.m_left = 63.0f;
-			src.m_right = 384.0f;
-			src.m_bottom = 384.0f;
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 448.0f;
+			src.m_bottom = 448.0f;
 
 			dst.m_top = 250.0f;
 			dst.m_left = 450.0f;
