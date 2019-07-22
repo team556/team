@@ -51,8 +51,8 @@ void CObjBarracks::Init()
 	m_alpha = INI_ALPHA;
 
 	//▼兵舎の次のLVUPに必要なサイズ(HP)の住民数設定
-	m_Facility_next_Size_num[0] = 5.0f; //レベルが1の時の必要サイズ(HP)
-	m_Facility_next_Size_num[1] = 4.0f;	//レベルが2の時の必要サイズ(HP)
+	m_Facility_next_Size_num[0] = 20.0f; //レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 150.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼兵舎の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"木材");			 //レベルが1の時の必要素材名

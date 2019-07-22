@@ -13,6 +13,9 @@
 
 #include <time.h>
 
+//関数でm_typeを判別して0の時はm_Player_damageをtype0のやつに渡してm_hpを現象
+//if分で12345
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -58,27 +61,27 @@ void CObjRocket::Init()
 	//▽エネミーの処理
 	else
 	{
-		//CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 
-		////発射されたレーンのワンパターンデメリット値を受け取る
-		//m_One_pat_dem = Ene_One_pat_dem[ene->GetAttackf()];
+		//発射されたレーンのワンパターンデメリット値を受け取る
+		m_One_pat_dem = Ene_One_pat_dem[ene->GetLine() - 1];
 
-		////発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
-		////※最低値の0.5の場合、実行されない。
-		//if (Ene_One_pat_dem[ene->GetAttackf()] > 0.5f)
-		//{
-		//	Ene_One_pat_dem[ene->GetAttackf()] -= 0.1f;
-		//}
+		//発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
+		//※最低値の0.5の場合、実行されない。
+		if (Ene_One_pat_dem[ene->GetLine() - 1] > 0.5f)
+		{
+			Ene_One_pat_dem[ene->GetLine() - 1] -= 0.1f;
+		}
 
-		////発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
-		////※最高値の1.0の場合、実行されない。
-		//for (int i = 0; i < 3; i++)
-		//{
-		//	if (Ene_One_pat_dem[i] < 1.0f && obj->GetLine() != i)
-		//	{
-		//		Ene_One_pat_dem[i] += 0.1f;
-		//	}
-		//}
+		//発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
+		//※最高値の1.0の場合、実行されない。
+		for (int i = 0; i < 3; i++)
+		{
+			if (Ene_One_pat_dem[i] < 1.0f && ene->GetLine() - 1 != i)
+			{
+				Ene_One_pat_dem[i] += 0.1f;
+			}
+		}
 	}
 
 	Enemy_Line_pattern_x = 0;
@@ -392,13 +395,13 @@ void CObjRocket::Init()
 
 
 			//ワンパターンデメリット値の乗算を行う
-			//m_Player_damage *= m_One_pat_dem;
+			m_Player_damage *= m_One_pat_dem;
 	}
 	
-	//if (ButtonU != 5) {
-	//	CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
-	//	Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
-	//}
+	if (ButtonU != 5) {
+		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+	}
 }
 
 //アクション
@@ -624,7 +627,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Enemy_damage;
 				}
 			}
 			else if (ButtonUE == 2)	//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
@@ -646,7 +649,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Enemy_damage;
 				}
 			}
 			else if (ButtonUE == 3)	//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
@@ -668,7 +671,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Enemy_damage;
 				}
 			}
 			else if (ButtonUE == 4)	//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
@@ -722,7 +725,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Player_damage;
 				}
 			}
 			else if (ButtonUP == 2)	//自分の種類２(ディフェンス)が敵のポッドと当たった場合
@@ -744,7 +747,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Player_damage;
 				}
 			}
 			else if (ButtonUP == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
@@ -766,7 +769,7 @@ void CObjRocket::Action()
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= 3;
+					m_podhp -= m_Player_damage;
 				}
 
 			}
@@ -1038,4 +1041,9 @@ void CObjRocket::Draw()
 	//	Font::StrDraw(test_mou, 1100.0f, 20.0f, 12.0f, d);
 	//}
 	
+}
+
+void CObjRocket::SetDMG(float hp, float dmg)
+{
+	hp = m_podhp;
 }

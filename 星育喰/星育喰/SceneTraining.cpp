@@ -460,8 +460,8 @@ void CSceneTraining::InitScene()
 	//メッセージウィンドウ01を132番に登録
 	Draw::LoadImage(L"メッセージウィンドウ01.png", 132, TEX_SIZE_512);
 
-	//ウインドウ02を133番に登録
-	Draw::LoadImage(L"ウインドウ02.png", 133, TEX_SIZE_512);
+	//惑星発展度UP!を133番に登録
+	Draw::LoadImage(L"惑星発展度UP！.png", 133, TEX_SIZE_512);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);

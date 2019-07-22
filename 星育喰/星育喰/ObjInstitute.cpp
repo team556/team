@@ -163,19 +163,19 @@ void CObjInstitute::Init()
 	//▼各武器、ポッドの次のLVUPに必要な研究員の住民数設定
 	//▽パワー武器
 	m_Equ_next_Hum_num[0][0] = 100;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[0][1] = 1000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[0][1] = 2000; //レベルが2の時の必要研究員数
 	//▽ディフェンス武器
 	m_Equ_next_Hum_num[1][0] = 200;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[1][1] = 1000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[1][1] = 2500; //レベルが2の時の必要研究員数
 	//▽スピード武器
 	m_Equ_next_Hum_num[2][0] = 300;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[2][1] = 1000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[2][1] = 3000; //レベルが2の時の必要研究員数
 	//▽バランス武器
 	m_Equ_next_Hum_num[3][0] = 500;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[3][1] = 1000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[3][1] = 4000; //レベルが2の時の必要研究員数
 	//▽ポッド
 	m_Equ_next_Hum_num[4][0] = 400;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[4][1] = 1000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[4][1] = 3500; //レベルが2の時の必要研究員数
 
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
@@ -192,7 +192,7 @@ void CObjInstitute::Init()
 	swprintf_s(m_Equ_next_Mat_name[3][1], L"ガス");	//レベルが2の時の必要素材名
 	//▽ポッド武器
 	swprintf_s(m_Equ_next_Mat_name[4][0], L"アルミ");	//レベルが1の時の必要素材名
-	swprintf_s(m_Equ_next_Mat_name[4][1], L"レアメタル");		 //レベルが2の時の必要素材名
+	swprintf_s(m_Equ_next_Mat_name[4][1], L"ガス");		 //レベルが2の時の必要素材名
 
 	//▼各武器、ポッドの次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
@@ -211,7 +211,7 @@ void CObjInstitute::Init()
 	m_Equ_next_Mat_type[3][1] = &g_gus_num;	//レベルが2の時の必要素材種類
 	//▽ポッド
 	m_Equ_next_Mat_type[4][0] = &g_Aluminum_num;	//レベルが1の時の必要素材種類
-	m_Equ_next_Mat_type[4][1] = &g_Raremetal_num;	//レベルが2の時の必要素材種類
+	m_Equ_next_Mat_type[4][1] = &g_gus_num;	//レベルが2の時の必要素材種類
 
 	//▼各武器、ポッドの次のLVUPに必要な素材数設定
 	//▽パワー武器
@@ -233,8 +233,8 @@ void CObjInstitute::Init()
 //-----------------------------------------------------------------------------------------------------
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
-	m_Facility_next_Size_num[0] = 5.0f;	//レベルが1の時の必要サイズ(HP)
-	m_Facility_next_Size_num[1] = 20.0f;	//レベルが2の時の必要サイズ(HP)
+	m_Facility_next_Size_num[0] = 30.0f;	//レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 200.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");//レベルが1の時の必要素材名
