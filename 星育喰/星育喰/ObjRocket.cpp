@@ -13,6 +13,9 @@
 
 #include <time.h>
 
+//関数でm_typeを判別して0の時はm_Player_damageをtype0のやつに渡してm_hpを現象
+//if分で12345
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -1038,4 +1041,9 @@ void CObjRocket::Draw()
 	//	Font::StrDraw(test_mou, 1100.0f, 20.0f, 12.0f, d);
 	//}
 	
+}
+
+void CObjRocket::SetDMG(float hp, float dmg)
+{
+	hp = m_podhp;
 }
