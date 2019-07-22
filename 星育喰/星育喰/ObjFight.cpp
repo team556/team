@@ -16,9 +16,11 @@ using namespace GameL;
 //static変数の定義
 bool CObjFight::battle_start = false;
 bool CObjFight::battle_end = false;
-float CObjFight::damage_buff[2] = { 1.0f,1.0f };
+float CObjFight::Pla_One_pat_dem[3] = { 1.0f,1.0f,1.0f };
+float CObjFight::Ene_One_pat_dem[3] = { 1.0f,1.0f,1.0f };
 int CObjFight::p_pnam = 0;
 int CObjFight::e_pnam = 0;
+float CObjFight::damage_buff[2] = { 1.0f,1.0f };
 
 #define INI_COLOR (0.5f) //全カラー明度の初期値(アイコン未選択中のカラー)
 
@@ -64,6 +66,16 @@ void CObjFight::Init()
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
 	battle_end = false;
+	
+	for (int i = 0; i < 3; i++)
+	{
+		Pla_One_pat_dem[i] = 1.0f;
+		Ene_One_pat_dem[i] = 1.0f;
+	}
+	
+	p_pnam = 0;
+	e_pnam = 0;
+
 	for (int i = 0; i < 2; i++)
 	{
 		damage_buff[i] = 1.0f;
@@ -377,9 +389,9 @@ void CObjFight::Draw()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d0[4] = { 1.0f,1.0f,1.0f,0.2f };
-	float d1[4] = { 1.0f,1.0f,1.0f,0.2f };
-	float d2[4] = { 1.0f,1.0f,1.0f,0.2f };
+	float d0[4] = { 1.0f,(Pla_One_pat_dem[0] - 0.5f) * 2,(Pla_One_pat_dem[0] - 0.5f) * 2,0.2f };
+	float d1[4] = { 1.0f,(Pla_One_pat_dem[1] - 0.5f) * 2,(Pla_One_pat_dem[1] - 0.5f) * 2,0.2f };
+	float d2[4] = { 1.0f,(Pla_One_pat_dem[2] - 0.5f) * 2,(Pla_One_pat_dem[2] - 0.5f) * 2,0.2f };
 
 	if (obj->GetCount() == 0) {//-------------------------時間切れの場合----
 		if (m_a > 0.0f) {

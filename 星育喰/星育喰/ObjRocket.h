@@ -42,13 +42,14 @@ private:
 	int m_Enemy_Pod_Level;	//敵のポッドレベル情報(レベルに合わせたポット描画を行う)(1:レベル1　2:レベル2　3:レベル3)
 
 	int m_type;		//生成時のタイプ(0主人公)
-	int m_podhp;		//ポッド現在HP
-	int m_pod_max_hp;	//ポッド最大HP
+	float m_podhp;		//ポッド現在HP
+	float m_pod_max_hp;	//ポッド最大HP
 	int m_hp_cnt;		//無敵タイム
 	bool m_hp_f;		//無敵フラグ
 
-	int m_Player_damage;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
-	int m_Enemy_damage; //エネミーが受けるダメージ量(プレイヤーの攻撃力)
+	float m_Player_damage;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
+	float m_Enemy_damage; //エネミーが受けるダメージ量(プレイヤーの攻撃力)
+	float m_One_pat_dem;//ワンパターンデメリット値を受け取る為の変数(この値と攻撃力を乗算した値が最終的な攻撃力となる)
 
 	int m_ani;			//着弾アニメーション
 	int m_ani_max;

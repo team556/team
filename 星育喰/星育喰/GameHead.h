@@ -141,7 +141,7 @@ extern int g_Remain_num;			//残り住民数
 extern float g_Recast_time;			//ミサイルのリキャストタイム用
 //extern float g_Missile_pow;			//ミサイルの火力用
 //extern int g_E_Planet_damage;					//
-extern int g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
+extern float g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
 //extern int g_Enemy_Pod_LV;			//テスト用敵ポッドレベル
 //--------------------------------------------------資源----
 extern int g_Iron_num;				//鉄の所持数

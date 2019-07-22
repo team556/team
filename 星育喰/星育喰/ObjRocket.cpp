@@ -29,6 +29,58 @@ CObjRocket::CObjRocket(float x, float y, int type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
+	//▼ワンパターンデメリット処理
+	//▽プレイヤーの処理
+	if (m_type == 0)
+	{
+		CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+		
+		//発射されたレーンのワンパターンデメリット値を受け取る
+		m_One_pat_dem = Pla_One_pat_dem[obj->GetLine()];
+
+		//発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
+		//※最低値の0.5の場合、実行されない。
+		if (Pla_One_pat_dem[obj->GetLine()] > 0.5f)
+		{
+			Pla_One_pat_dem[obj->GetLine()] -= 0.1f;
+		}
+
+		//発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
+		//※最高値の1.0の場合、実行されない。
+		for (int i = 0; i < 3; i++)
+		{
+			if (Pla_One_pat_dem[i] < 1.0f && obj->GetLine() != i)
+			{
+				Pla_One_pat_dem[i] += 0.1f;
+			}
+		}
+	}
+	//▽エネミーの処理
+	else
+	{
+		//CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+
+		////発射されたレーンのワンパターンデメリット値を受け取る
+		//m_One_pat_dem = Ene_One_pat_dem[ene->GetAttackf()];
+
+		////発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
+		////※最低値の0.5の場合、実行されない。
+		//if (Ene_One_pat_dem[ene->GetAttackf()] > 0.5f)
+		//{
+		//	Ene_One_pat_dem[ene->GetAttackf()] -= 0.1f;
+		//}
+
+		////発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
+		////※最高値の1.0の場合、実行されない。
+		//for (int i = 0; i < 3; i++)
+		//{
+		//	if (Ene_One_pat_dem[i] < 1.0f && obj->GetLine() != i)
+		//	{
+		//		Ene_One_pat_dem[i] += 0.1f;
+		//	}
+		//}
+	}
+
 	Enemy_Line_pattern_x = 0;
 
 	srand(time(NULL));
@@ -204,25 +256,25 @@ void CObjRocket::Init()
 	//ポッドのHPを決める
 	if (ButtonU == 5)			//ポッドがミサイルの時のみHPを1にする
 	{
-		m_pod_max_hp = 1;
+		m_pod_max_hp = 1.0f;
 	}
 	else if (m_type == 0) {		//自惑星の時に(ポッドのLv*10)+(研究所のLv*5)をHPに代入する
-		m_pod_max_hp = (g_Pod_equip_Level * 10) + ((g_Ins_Level - 1)* 5);
+		m_pod_max_hp = (float)((g_Pod_equip_Level * 10) + ((g_Ins_Level - 1)* 5));
 	}
 	else if (m_type == 1) {		//敵惑星の時は固定値
-		m_pod_max_hp = 10;
+		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 2) {
-		m_pod_max_hp = 20;
+		m_pod_max_hp = 20.0f;
 	}
 	else if (m_type == 3) {
-		m_pod_max_hp = 20;
+		m_pod_max_hp = 20.0f;
 	}
 	else if (m_type == 4) {
-		m_pod_max_hp = 10;
+		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 5) {
-		m_pod_max_hp = 30;
+		m_pod_max_hp = 30.0f;
 	}
 
 	m_podhp = m_pod_max_hp;
@@ -273,25 +325,28 @@ void CObjRocket::Init()
 		//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 		switch (ButtonUP) {
 		case 1:
-			m_Enemy_damage += g_Pow_equip_Level;
+			m_Enemy_damage += (float)g_Pow_equip_Level;
 			break;
 		case 2:
-			m_Enemy_damage += g_Def_equip_Level;
+			m_Enemy_damage += (float)g_Def_equip_Level;
 			break;
 		case 3:
-			m_Enemy_damage += g_Spe_equip_Level;
+			m_Enemy_damage += (float)g_Spe_equip_Level;
 			break;
 		case 4:
-			m_Enemy_damage += g_Bal_equip_Level;
+			m_Enemy_damage += (float)g_Bal_equip_Level;
 			break;
 		case 5:					//ミサイルの時は火力3固定
-			m_Enemy_damage = 3;
+			m_Enemy_damage = 3.0f;
 			break;
 		}
 		
 		if (ButtonU != 5)						//ミサイルは火力固定のため省く
-			m_Enemy_damage += (g_Bar_Level - 1);	//決まった火力+兵舎Lv
+			m_Enemy_damage += (float)(g_Bar_Level - 1);	//決まった火力+兵舎Lv
 
+
+		//ワンパターンデメリット値の乗算を行う
+		m_Enemy_damage *= m_One_pat_dem;
 	}
 
 	else if (m_type != 0)
@@ -300,40 +355,44 @@ void CObjRocket::Init()
 			switch (m_type) {
 			case 1:
 				m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-				m_Player_damage = 3;		//いったんミサイルの攻撃力(3)を代入
+				m_Player_damage = 3.0f;		//いったんミサイルの攻撃力(3)を代入
 				if (ButtonUE != 5)			//ミサイル以外かどうか判定
-					m_Player_damage = 10;	//ミサイル以外なら本来のダメージを代入
+					m_Player_damage = 10.0f;//ミサイル以外なら本来のダメージを代入
 				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 2:
 				m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-				m_Player_damage = 3;
+				m_Player_damage = 3.0f;
 				if (ButtonUE != 5)
-					m_Player_damage = 20;
+					m_Player_damage = 20.0f;
 				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 3:
 				m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-				m_Player_damage = 3;
+				m_Player_damage = 3.0f;
 				if (ButtonUE != 5)
-					m_Player_damage = 20;
+					m_Player_damage = 20.0f;
 				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 4:
 				m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-				m_Player_damage = 3;
+				m_Player_damage = 3.0f;
 				if (ButtonUE != 5)
-					m_Player_damage = 10;
+					m_Player_damage = 10.0f;
 				g_P_Planet_damage = m_Player_damage;
 				break;
 			case 5:
 				m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-				m_Player_damage = 3;
+				m_Player_damage = 3.0f;
 				if (ButtonUE != 5)
-					m_Player_damage = 30;
+					m_Player_damage = 30.0f;
 				g_P_Planet_damage = m_Player_damage;
 				break;
 			}
+
+
+			//ワンパターンデメリット値の乗算を行う
+			//m_Player_damage *= m_One_pat_dem;
 	}
 	
 	//if (ButtonU != 5) {

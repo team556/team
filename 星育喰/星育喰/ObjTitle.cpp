@@ -55,7 +55,7 @@ int g_Balance_num = 1000;
 int g_Research_num = 0;
 int g_Remain_num = 6000;
 float g_Recast_time = 3.0f;
-int g_P_Planet_damage = 0;
+float g_P_Planet_damage = 0.0f;
 
 int g_Iron_num		= 0;
 int g_Wood_num		= 0;
