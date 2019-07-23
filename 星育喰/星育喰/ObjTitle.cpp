@@ -316,10 +316,10 @@ void CObjTitle::Draw()
 	Draw::Draw(24, &src, &dst, w, 0.0f);
 
 	//▼プレイヤー惑星表示
-	src.m_top = 63.0f;
-	src.m_left = 63.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 448.0f;
+	src.m_bottom = 448.0f;
 
 	dst.m_top = 250.0f;
 	dst.m_left = 450.0f;

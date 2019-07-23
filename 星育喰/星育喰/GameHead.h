@@ -58,6 +58,7 @@ enum OBJ_NAME
 	OBJ_eRKTHIT7,
 	OBJ_eRKTHIT8,
 	OBJ_eRKTHIT9,
+	OBJ_NAME_INPUT,
 
 };
 //------------------------------------------------
@@ -190,6 +191,7 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 #include "ObjGameClear.h"
 #include "ObjMessage.h"
 #include "ObjRktHit.h"
+#include "ObjNameInput.h"
 
 //------------------------------------------------
 
@@ -201,6 +203,7 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 #include "ScenePreparation.h"
 #include "SceneFight.h"
 #include "SceneGameClear.h"
+#include "SceneNameInput.h"
 
 //-----------------------------------------------
 
@@ -212,4 +215,5 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 #define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
 //#define SET_GAME_START CScenePreparation
+//#define SET_GAME_START CSceneNameInput
 //----------------------------------------------

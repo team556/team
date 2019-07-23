@@ -62,6 +62,9 @@
     <Filter Include="ソース ファイル\ヘルプ">
       <UniqueIdentifier>{5966d595-90db-4cf7-8ba7-9609949aab97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\チュートリアル">
+      <UniqueIdentifier>{e706e60f-7f8d-4f4d-bb2f-e44c0fbe13e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -201,6 +204,12 @@
     </ClCompile>
     <ClCompile Include="ObjRktHit.cpp">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneNameInput.cpp">
+      <Filter>ソース ファイル\チュートリアル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjNameInput.cpp">
+      <Filter>ソース ファイル\チュートリアル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +356,12 @@
     </ClInclude>
     <ClInclude Include="ObjRktHit.h">
       <Filter>ソース ファイル\対戦用</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneNameInput.h">
+      <Filter>ソース ファイル\チュートリアル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjNameInput.h">
+      <Filter>ソース ファイル\チュートリアル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
