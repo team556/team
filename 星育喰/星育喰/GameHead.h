@@ -96,6 +96,11 @@ enum HIT_ELEMENTS
 	ELEMENT_ENEMYPOD2,
 	ELEMENT_ENEMYPOD3,
 	ELEMENT_ENEMYPOD4,
+	ELEMENT_ENEMYPOD5,
+	ELEMENT_ENEMYPOD6,
+	ELEMENT_ENEMYPOD7,
+	ELEMENT_ENEMYPOD8,
+	ELEMENT_ENEMYPOD9,
 	ELEMENT_P_MIS,		//ÉvÉåÉCÉÑÅ[Ç∆
 	ELEMENT_E_MIS,		//ìGÇÃÉ~ÉTÉCÉã
 	ELEMENT_LINE,
@@ -214,6 +219,6 @@ extern bool g_help_f;				//ÉwÉãÉvâÊñ ï\é¶ÉtÉâÉO(true:ÉwÉãÉvâÊñ ï\é¶Å@false:ÉwÉãÉ
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear
-#define SET_GAME_START CScenePreparation
-//#define SET_GAME_START CSceneNameInput
+//#define SET_GAME_START CScenePreparation
+#define SET_GAME_START CSceneNameInput
 //----------------------------------------------
