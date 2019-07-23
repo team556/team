@@ -33,9 +33,9 @@ void CSceneHome::InitScene()
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
-	//ヘルプオブジェクト
-	CObjHelp* help = new CObjHelp(1);     //ヘルプオブジェクト作成
-	Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
+	////ヘルプオブジェクト
+	//CObjHelp* help = new CObjHelp(1);     //ヘルプオブジェクト作成
+	//Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
