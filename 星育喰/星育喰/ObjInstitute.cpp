@@ -1394,7 +1394,7 @@ void CObjInstitute::Draw()
 			dst.m_bottom = m_mou_y - 30.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 
-			//▼施設紹介ウインドウ表示中央下
+			//▼施設紹介ウインドウ表示右下
 			src.m_top = 0.0f;
 			src.m_left = 4805.0f;
 			src.m_right = 5600.0f;
@@ -1484,7 +1484,7 @@ void CObjInstitute::Draw()
 		dst.m_left = 150.0f;
 		dst.m_right = 450.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(133, &src, &dst, white, 0.0f);
+		Draw::Draw(134, &src, &dst, white, 0.0f);
 
 		//▼残り住民数のウインドウ表示
 		//左上
@@ -2077,7 +2077,7 @@ void CObjInstitute::Draw()
 				dst.m_left = 400.0f;
 				dst.m_right = 1130.0f;
 				dst.m_bottom = 255.0f + 190.0f * i;
-				Draw::Draw(133, &src, &dst, white, 0.0f);
+				Draw::Draw(134, &src, &dst, white, 0.0f);		
 			}
 
 			//▼研究所 LV.文字画像表示
