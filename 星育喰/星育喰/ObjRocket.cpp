@@ -13,9 +13,6 @@
 
 #include <time.h>
 
-//関数でm_typeを判別して0の時はm_Player_damageをtype0のやつに渡してm_hpを現象
-//if分で12345
-
 //使用するネームスペース
 using namespace GameL;
 
