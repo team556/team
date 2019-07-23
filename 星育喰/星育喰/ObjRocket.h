@@ -16,7 +16,6 @@ public:
 	void Draw();     //ドロー
 	float GetX() { return m_vx; }
 	float GetY() { return m_vy; }
-	void SetDMG(float hp, float dmg);
 private:
 	float m_x;		//ミサイルの座標X
 	float m_y;		//ミサイルの座標Y

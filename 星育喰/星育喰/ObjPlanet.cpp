@@ -357,25 +357,26 @@ void CObjPlanet::Action()
 		if (m_invincible_f == false)
 		{
 			//ポッドが与えれるダメージ量をRocket.cppからグローバル変数で引っ張ってきた
+			//ダメージ量は「(敵攻撃力 * 3.6 [リミットブレイクすれば更に1.5倍]」
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
 			{
-				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
-				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
-				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
 			{
-				m_size -= g_P_Planet_damage * damage_buff[1];	//サイズ(HP)減少
+				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
 			{
-				m_size -= 3 * damage_buff[1];	//サイズ(HP)減少
+				m_size -= 3;	//サイズ(HP)減少
 			}
 
 
@@ -388,26 +389,26 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			//ダメージ量は武器のレベル×10
+			//ダメージ量は「(2 + コアのレベル + 兵舎のレベル - 1) * 3.6 [リミットブレイクすれば更に1.5倍]」
 			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//パワーポッドHIT時の処理
 			{
-				m_size -= (g_Pow_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (2.0f + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1)) * 3.6f * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
 			{
-				m_size -= (g_Spe_equip_Level*10) * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (2.0f + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1)) * 3.6f * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
 			{
-				m_size -= (g_Def_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (2.0f + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1)) * 3.6f * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
 			{
-				m_size -= (g_Bal_equip_Level * 10) * damage_buff[0];	//サイズ(HP)減少
+				m_size -= (2.0f + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1)) * 3.6f * damage_buff[0];	//サイズ(HP)減少
 			}
 			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
 			{
-				m_size -= 3 * damage_buff[0];	//サイズ(HP)減少
+				m_size -= 3;	//サイズ(HP)減少
 			}
 
 
