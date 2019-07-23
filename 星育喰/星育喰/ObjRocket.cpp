@@ -519,13 +519,13 @@ void CObjRocket::Action()
 	
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 20);	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 4);	//敵とプレイヤーのポッド当たっているとき処理
 	
 	//---------------------------------------ポッド消滅処理
 	if (m_del == true)
 	{
 		hit->SetInvincibility(true);		//HitBoxの判定無効
-		if (m_ani == 3 && m_bom == 0)
+		if (m_ani == 20 && m_bom == 0)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
 			//ポッドが破壊される度にその数をカウントする
@@ -1019,10 +1019,10 @@ void CObjRocket::Draw()
 		src.m_right = 2560.0f;
 		src.m_bottom = 128.0f;
 
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 100.0f + m_x;
-		dst.m_bottom = 100.0f + m_y;
+		dst.m_top = -48.0f + m_y;
+		dst.m_left = -48.0f + m_x;
+		dst.m_right = 80.0f + m_x;
+		dst.m_bottom = 80.0f + m_y;
 	}
 
 	if (m_del == true) 
