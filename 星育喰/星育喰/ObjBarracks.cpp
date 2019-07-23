@@ -1109,18 +1109,11 @@ void CObjBarracks::Draw()
 		dst.m_left = 150.0f;
 		dst.m_right = 450.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		Draw::Draw(134, &src, &dst, white, 0.0f);
 
 		//▼残り住民数のウインドウ表示
 		//▼研究員の住民数ウインドウ表示
 		//左上
-
-		//dst.m_top = 580.0f;
-		//dst.m_left = 750.0f;
-		//dst.m_right = 1140.0f;
-		//dst.m_bottom = 650.0f;
-		//Draw::Draw(20, &src, &dst, white, 0.0f);
-
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 795.0f;
@@ -1222,16 +1215,86 @@ void CObjBarracks::Draw()
 			Draw::Draw(24, &src, &dst, down[i], 0.0f);
 
 			//▼各タイプ(パワー、スピード等)の住民数ウインドウ表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1200.0f;
-			src.m_bottom = 700.0f;
-
 			dst.m_top = 140.0f + i * 110.0f;
 			dst.m_left = 930.0f;
 			dst.m_right = 1150.0f;
 			dst.m_bottom = 200.0f + i * 110.0f;
 			Draw::Draw(20, &src, &dst, white, 0.0f);
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 795.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 140.0f + i * 110.0f;
+			dst.m_left = 930.0f;
+			dst.m_right = 970.0f;
+			dst.m_bottom = 180.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//左下
+			src.m_top = 40.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 160.0f + i * 110.0f;
+			dst.m_left = 930.0f;
+			dst.m_right = 970.0f;
+			dst.m_bottom = 200.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			for (int j = 0; j < 4; j++)
+			{
+				//中央上
+				src.m_top = 0.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 140.0f + i * 110.0f;
+				dst.m_left = 970.0f + (j * 40);
+				dst.m_right = 1010.0f + (j * 40);
+				dst.m_bottom = 180.0f + i * 110.0f;
+				Draw::Draw(132, &src, &dst, white, 0.0f);
+
+				//中央下
+				src.m_top = 0.0f;
+				src.m_left = 2400.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 160.0f + i * 110.0f;
+				dst.m_left = 970.0f + (j * 40);
+				dst.m_right = 1010.0f + (j * 40);
+				dst.m_bottom = 200.0f + i * 110.0f;
+				Draw::Draw(132, &src, &dst, white, 0.0f);
+			}
+
+			//右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 140.0f + i * 110.0f;
+			dst.m_left = 1110.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 180.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//右下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 160.0f + i * 110.0f;
+			dst.m_left = 1110.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 200.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+
 		}
 
 		//▼兵舎 Lv文字画像表示
