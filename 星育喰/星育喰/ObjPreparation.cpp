@@ -1733,14 +1733,14 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		{
 			//¤4s–Ú
 			//“G˜f¯Ú×à–¾‰æ‘œ‚ğ125”Ô‚É“o˜^	(‰æ‘œ‚ª‚È‚©‚Á‚½‚½‚ß“K—p‚µ‚Ä‚È‚¢)
-			//Draw::LoadImage(L"", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"‹â65EƒKƒX50.png", 125, TEX_SIZE_512);
 
 			//“G˜f¯Ú×à–¾‰æ‘œ‚ÌØ‚èæ‚èˆÊ’u‚ğİ’è
-			m_detail_message_clip_right[3] = 0.0f;
-			m_detail_message_clip_bottom[3] = 0.0f;
+			m_detail_message_clip_right[3] = 666.0f;
+			m_detail_message_clip_bottom[3] = 90.0f;
 
 			//“G˜f¯Ú×à–¾‰æ‘œ‚Ì•`‰æˆÊ’u(right)‚ğİ’è(‘SŠpˆê•¶š‚Ì‘å‚«‚³‚Í25.0f)
-			m_detail_message_draw_right[3] = m_detail_message_draw_left + 0.0f;
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 200.0f;
 
 
 			//¤5s–Ú
