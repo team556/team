@@ -31,8 +31,8 @@ void CObjRktHit::Init()
 	m_mov	= 0.0f;
 	m_size = 50.0f;
 	m_del_cnt = 0;
-	m_pnam = p_pnam;
-	m_enam = e_pnam;
+	m_pnam = p_pnam-1;
+	m_enam = e_pnam-1;
 	m_stop_f = false;
 	m_del_f = false;
 
@@ -94,8 +94,7 @@ void CObjRktHit::Action()
 
 	if (m_stop_f == true)	//ポッド戦闘中
 	{
-		m_del_f = false;
-		m_del_cnt = 0;
+		
 	}
 	else					//ポッド移動中
 	{
@@ -155,46 +154,87 @@ void CObjRktHit::Action()
 		else
 			m_stop_f = false;
 
-		if (hit->CheckElementHit(ELEMENT_POD) == true ||
-			hit->CheckElementHit(ELEMENT_POD1) == true ||
-			hit->CheckElementHit(ELEMENT_POD2) == true ||
-			hit->CheckElementHit(ELEMENT_POD3) == true ||
-			hit->CheckElementHit(ELEMENT_POD4) == true ||
-			hit->CheckElementHit(ELEMENT_POD5) == true ||
-			hit->CheckElementHit(ELEMENT_POD6) == true ||
-			hit->CheckElementHit(ELEMENT_POD7) == true ||
-			hit->CheckElementHit(ELEMENT_POD8) == true ||
-			hit->CheckElementHit(ELEMENT_POD9) == true)
+		if (hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr ||
+			hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr)
 		{
 			m_stop_f = true;
-			m_del_f = false;
-		}
-		else {
-			if (hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr ||
-				hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr)		//敵HitBoxに当たった時
-			{
-				m_stop_f = true;
+			if (hit->CheckElementHit(ELEMENT_POD) == false &&
+				hit->CheckElementHit(ELEMENT_POD1) == false &&
+				hit->CheckElementHit(ELEMENT_POD2) == false &&
+				hit->CheckElementHit(ELEMENT_POD3) == false &&
+				hit->CheckElementHit(ELEMENT_POD4) == false &&
+				hit->CheckElementHit(ELEMENT_POD5) == false &&
+				hit->CheckElementHit(ELEMENT_POD6) == false &&
+				hit->CheckElementHit(ELEMENT_POD7) == false &&
+				hit->CheckElementHit(ELEMENT_POD8) == false &&
+				hit->CheckElementHit(ELEMENT_POD9) == false) {
 				m_del_f = true;	//削除
 			}
+			else
+				m_del_f = false;
 		}
+		
 	}
 	else if (m_type == true && hit->CheckElementHit(ELEMENT_NULL) == true)	//thisが敵 かつHitBoxに当たった時
 	{
-		m_stop_f = true;
-		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true)	//敵ポッドに当たった時
-		{
-			m_del_f = false;	//停止
-		}
+		if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && (m_pnam >= 1 && m_pnam <= 3))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && (m_pnam >= 2 && m_pnam <= 4))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && (m_pnam >= 3 && m_pnam <= 5))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && (m_pnam >= 4 && m_pnam <= 6))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && (m_pnam >= 5 && m_pnam <= 7))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && (m_pnam >= 6 && m_pnam <= 8))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && (m_pnam >= 7 && m_pnam <= 9))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && (m_pnam >= 8 || m_pnam <= 0))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && (m_pnam >= 9 || m_pnam <= 1))
+			m_stop_f = true;
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && (m_pnam >= 0 || m_pnam <= 2))
+			m_stop_f = true;
 		else
-			m_del_f = true;	//削除
+			m_stop_f = false;
+
+		if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT4) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT5) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr ||
+			hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr)
+		{
+			m_stop_f = true;
+			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD1) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD2) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD3) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD4) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD5) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD6) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD7) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD8) == false &&
+				hit->CheckElementHit(ELEMENT_ENEMYPOD9) == false){
+				m_del_f = true;	//削除
+			}
+			else
+				m_del_f = false;
+		}
 	}
 	else
 		m_stop_f = false;
@@ -213,6 +253,17 @@ void CObjRktHit::Action()
 	}
 	else
 		m_del_cnt = 0;
+
+	//(hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr ||//敵HitBoxに当たった時
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr ||
+	//	hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr)
 }
 
 //ドロー

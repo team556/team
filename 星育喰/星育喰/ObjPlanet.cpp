@@ -199,6 +199,10 @@ void CObjPlanet::Action()
 	}
 	else if (m_ani_time == 30) {
 		m_ani_frame[1]++;		//特殊aniフレーム切り替え
+		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+		if (m_type == MOAI_NAM && m_ani_frame[1] == 3 && pla != nullptr) {
+			pla->SetEmF();
+		}
 	}
 	if (m_ani_frame[1] == 6) {
 		m_ani_frame[1] = 0;
@@ -301,12 +305,7 @@ void CObjPlanet::Action()
 		CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
-		if (m_type == MOAI_NAM) {
-			if (m_ani_time == 1)
-				pla->SetEmF();
-		}
-		else
-		{
+		if (m_type != MOAI_NAM) {
 			if (m_type == 0)
 			{
 				if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
@@ -330,8 +329,8 @@ void CObjPlanet::Action()
 		if (ene != nullptr) {
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
 			{
-				m_px -= 3.0f;
-				m_size -= 2.5f;
+				m_px -= 2.2f;
+				m_size -= 1.5f;
 				if (m_py < 365)
 					m_vy += 0.1f;
 				else
