@@ -497,7 +497,7 @@ void CObjFight::Draw()
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1353.0f;
-		src.m_bottom = 1025.0f;
+		src.m_bottom = 1050.0f;
 
 		dst.m_top = 25.0f;
 		dst.m_left = 25.0f;
