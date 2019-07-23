@@ -111,7 +111,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"スペシャル技インモータリティ.png", 23, TEX_SIZE_512);
 
 	//スペシャル技[リミットブレイク]画像を読み込み24番に登録
-	Draw::LoadImage(L"リミブレ.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"リミブレ02.png", 24, TEX_SIZE_512);
 
 	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
 	Draw::LoadImage(L"オーバーワーク.png", 25, TEX_SIZE_512);
@@ -340,7 +340,6 @@ void CSceneFight::InitScene()
 
 	//音楽スタート
 	Audio::Start(0);
-
 }
 
 //ゲームメイン実行中メソッド
