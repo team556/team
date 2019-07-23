@@ -173,8 +173,8 @@ void CObjPlanet::Action()
 		m_ani_frame[0]++;		//フレーム切り替え
 		m_ani_frame[1]++;
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-		if(pla != nullptr)
-			pla->SetEmF();
+		/*if(pla != nullptr && )
+			pla->SetEmF();*/
 		if (m_ani_frame[0] == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
@@ -330,8 +330,8 @@ void CObjPlanet::Action()
 		if (ene != nullptr) {
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
 			{
-				m_px -= 2.0f;
-				m_size -= 1.4f;
+				m_px -= 3.0f;
+				m_size -= 2.5f;
 				if (m_py < 365)
 					m_vy += 0.1f;
 				else
@@ -384,7 +384,9 @@ void CObjPlanet::Action()
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
-	else if ((hit->CheckElementHit(ELEMENT_POD) == true) && (m_type != 0) && (m_size > 0))
+	else if ((hit->CheckElementHit(ELEMENT_POD) == true || hit->CheckElementHit(ELEMENT_POD1) == true || hit->CheckElementHit(ELEMENT_POD2) == true || hit->CheckElementHit(ELEMENT_POD3) == true || hit->CheckElementHit(ELEMENT_POD4) == true
+		|| hit->CheckElementHit(ELEMENT_POD5) == true || hit->CheckElementHit(ELEMENT_POD6) == true || hit->CheckElementHit(ELEMENT_POD7) == true || hit->CheckElementHit(ELEMENT_POD8) == true || hit->CheckElementHit(ELEMENT_POD9) == true)
+		&& (m_type != 0) && (m_size > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
