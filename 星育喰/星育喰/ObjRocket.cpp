@@ -325,27 +325,27 @@ void CObjRocket::Init()
 	case 1:
 		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
 		m_Player_damage = 3.0f;		//プレイヤーへのポッドによる攻撃力決定
-		//g_P_Planet_damage = m_Player_damage;
+		g_P_Planet_damage = m_Player_damage;//ObjPlanetに渡す用
 		break;
 	case 2:
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
 		m_Player_damage = 5.0f;
-		//g_P_Planet_damage = m_Player_damage;
+		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
 		m_Player_damage = 5.0f;
-		//g_P_Planet_damage = m_Player_damage;
+		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 4:
 		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
 		m_Player_damage = 5.0f;
-		//g_P_Planet_damage = m_Player_damage;
+		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 5:
 		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
 		m_Player_damage = 7.0f;
-		//g_P_Planet_damage = m_Player_damage;
+		g_P_Planet_damage = m_Player_damage;
 		break;
 	}
 
@@ -472,13 +472,13 @@ void CObjRocket::Action()
 	
 
 	//爆発エフェクト
-	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 20);	//敵とプレイヤーのポッド当たっているとき処理
+	m_eff = GetPodEffec(&m_ani, &m_ani_time, m_del, 4);	//敵とプレイヤーのポッド当たっているとき処理
 	
 	//---------------------------------------ポッド消滅処理
 	if (m_del == true)
 	{
 		hit->SetInvincibility(true);		//HitBoxの判定無効
-		if (m_ani == 3 && m_bom == 0)
+		if (m_ani == 20 && m_bom == 0)
 		{
 			//[スペシャル技:ステロイド投与]発動中に実行
 			//ポッドが破壊される度にその数をカウントする
@@ -592,7 +592,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else	//プレイヤーのバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)//プレイヤーのバランスポッド当たり時のHP
 					{
 						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
@@ -641,7 +641,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else	//プレイヤーのバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//プレイヤーのバランスポッド当たり時のHP
 					{
 						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
@@ -690,7 +690,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else	//プレイヤーのバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//プレイヤーのバランスポッド当たり時のHP
 					{
 						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
@@ -739,7 +739,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.9f * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else	//プレイヤーのバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//プレイヤーのバランスポッド当たり時のHP
 					{
 						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
 						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
@@ -754,7 +754,7 @@ void CObjRocket::Action()
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 					
-					m_podhp -= (m_Enemy_damage + 1.0f) * 2.0f * m_One_pat_dem;
+					m_podhp -= (m_pod_max_hp * 0.85) * m_One_pat_dem;//最大HP*0.85倍のダメージを与える
 				}
 			}
 			else if (ButtonUE == 5)	//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
@@ -804,7 +804,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
 					}
-					else	//敵のバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//敵のバランスポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
@@ -842,7 +842,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
 					}
-					else	//敵のバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//敵のバランスポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
@@ -880,7 +880,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
 					}
-					else	//敵のバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//敵のバランスポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
@@ -890,7 +890,6 @@ void CObjRocket::Action()
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
 					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
-
 					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
 					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
@@ -918,7 +917,7 @@ void CObjRocket::Action()
 
 						m_podhp -= m_Player_damage * damage_buff[1] * 0.9f * m_One_pat_dem;
 					}
-					else	//敵のバランスポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//敵のバランスポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
@@ -931,7 +930,7 @@ void CObjRocket::Action()
 
 					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 					
-					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
+					m_podhp -= (m_pod_max_hp * 0.85) * m_One_pat_dem;//最大HP*0.85倍のダメージを与える
 				}
 			}
 			else if (ButtonUP == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
@@ -1173,10 +1172,10 @@ void CObjRocket::Draw()
 		src.m_right = 2560.0f;
 		src.m_bottom = 128.0f;
 
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 100.0f + m_x;
-		dst.m_bottom = 100.0f + m_y;
+		dst.m_top = -48.0f + m_y;
+		dst.m_left = -48.0f + m_x;
+		dst.m_right = 80.0f + m_x;
+		dst.m_bottom = 80.0f + m_y;
 	}
 
 	if (m_del == true) 
@@ -1195,9 +1194,4 @@ void CObjRocket::Draw()
 	//	Font::StrDraw(test_mou, 1100.0f, 20.0f, 12.0f, d);
 	//}
 	
-}
-
-void CObjRocket::SetDMG(float hp, float dmg)
-{
-	hp = m_podhp;
 }
