@@ -120,13 +120,13 @@ void CSceneFight::InitScene()
 
 	Draw::LoadImage(L"モアイ.png", 27, TEX_SIZE_512);
 
-	Draw::LoadImage(L"悪惑星.png", 28, TEX_SIZE_512);
+	Draw::LoadImage(L"悪惑星修正.png", 28, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み29番に登録
-	Draw::LoadImage(L"lv2x3.png", 29, TEX_SIZE_512);
+	Draw::LoadImage(L"lv2x3修正.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"lv4x3.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"lv4x3修正.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"人数不足new.png", 31, TEX_SIZE_512);
