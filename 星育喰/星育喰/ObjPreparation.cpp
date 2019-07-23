@@ -96,7 +96,7 @@ void CObjPreparation::Init()
 	m_detail_message_alpha = INI_ALPHA;
 	m_level_star_num = 0;
 
-	m_destroy_count = 0;
+	m_destroy_count = 3;
 
 	//現在の撃破数をカウント
 	for (int i = 0; i < 4; i++)
@@ -854,8 +854,9 @@ void CObjPreparation::Action()
 		//ボス惑星出現時、以下の処理も行う
 		if (m_destroy_count == 4)
 		{
-			m_Boss_vx[2] -= m_speed * 0.91;
+			m_Boss_vx[2] -= m_speed * 0.955;
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
+			m_Boss_clip_pos_x = -600.0f;
 
 			//if (g_Stage_progress == 1)//ステージ1のパンダ惑星の時のみ、以下の処理を実行。
 			//{
