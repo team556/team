@@ -463,6 +463,10 @@ void CSceneTraining::InitScene()
 	//惑星発展度UP!を133番に登録
 	Draw::LoadImage(L"惑星発展度UP！.png", 133, TEX_SIZE_512);
 
+	//ウインドウ02を134番に登録
+	Draw::LoadImage(L"ウインドウ02.png", 134, TEX_SIZE_512);
+
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
 
@@ -481,6 +485,10 @@ void CSceneTraining::InitScene()
 
 	//音楽スタート
 	Audio::Start(0);
+
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
+
 }
 
 //ゲームメイン実行中メソッド

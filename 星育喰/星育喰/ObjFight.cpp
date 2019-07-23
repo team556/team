@@ -181,15 +181,15 @@ void CObjFight::Action()
 	//※キーを押してる間はマウスに反応させないため
 	if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
 
-		if (200 <= m_mou_y && m_mou_y <= 260 ) {
+		if (200 <= m_mou_y && m_mou_y <= 250 ) {
 			if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
 			else { m_line = 0; }
 		}
-		else if (310 <= m_mou_y && m_mou_y <= 370) {
+		else if (310 <= m_mou_y && m_mou_y <= 340) {
 			if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
 			else { m_line = 1; }
 		}
-		else if (420 <= m_mou_y && m_mou_y <= 480 ) {
+		else if (420 <= m_mou_y && m_mou_y <= 470 ) {
 			if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
 			else { m_line = 2; }
 		}
