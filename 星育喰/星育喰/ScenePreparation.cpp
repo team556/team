@@ -98,7 +98,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
 	
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み47番に登録
 	Draw::LoadImage(L"P惑星_Lv1修正.png", 47, TEX_SIZE_512);
