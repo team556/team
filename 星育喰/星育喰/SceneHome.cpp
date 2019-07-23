@@ -66,7 +66,7 @@ void CSceneHome::InitScene()
 	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
 
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み50番に登録
 	Draw::LoadImage(L"P惑星_Lv1修正.png", 50, TEX_SIZE_512);
