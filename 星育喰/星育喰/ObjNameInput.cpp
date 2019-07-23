@@ -111,7 +111,7 @@ void CObjNameInput::Action()
 	word[100][100];
 	word_y[100];
 
-
+	//名前入力の処理
 	if (word_y[0] < m_mou_y&& m_mou_y < word_y[1])
 	{
 		//あ
@@ -162,6 +162,7 @@ void CObjNameInput::Draw()
 
 	/*FontDraw(L"と", 0.0f, 250.0, 30.0f, 30.0f, c, false);*/
 
+	//↓クリックされた時の描画----------------------------------
 	if (word_w[0][0] == true)
 	{
 		FontDraw(L"あ", click_win[click_cut], 100.0, 30.0f, 30.0f, c, false);
@@ -170,6 +171,7 @@ void CObjNameInput::Draw()
 	{
 		FontDraw(L"い", click_win[click_cut], 100.0, 30.0f, 30.0f, c, false);
 	}
+	//-----------------------------------------------------------
 
 	//名前を入力してもらう画像の適用
 	src.m_top = 0.0f;
