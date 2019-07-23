@@ -60,7 +60,6 @@ void CObjBarracks::Init()
 
 	//▼兵舎の次のLVUPに必要な素材種類設定と同時にその素材の所持数を代入する
 	//※以下のように所持素材数を管理しているグローバル変数のアドレスを代入する事で素材の種類設定と所持数の代入をしている。
-	//ただし現在は素材種類が確定していないため、仮でTEST用の物を入れている。後で適切なものに変更すべし。
 	m_Facility_next_Mat_type[0] = &g_Wood_num;	//レベルが1の時の必要素材種類
 	m_Facility_next_Mat_type[1] = &g_Plastic_num;	//レベルが2の時の必要素材種類
 
@@ -1109,19 +1108,84 @@ void CObjBarracks::Draw()
 		dst.m_left = 150.0f;
 		dst.m_right = 450.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		Draw::Draw(134, &src, &dst, white, 0.0f);
 
 		//▼残り住民数のウインドウ表示
+		//▼研究員の住民数ウインドウ表示
+		//左上
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
+		src.m_right = 795.0f;
+		src.m_bottom = 800.0f;
 
 		dst.m_top = 580.0f;
 		dst.m_left = 750.0f;
-		dst.m_right = 1140.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 630.0;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		//左下
+		src.m_top = 40.0f;
+		src.m_left = 800.0f;
+		src.m_right = 1600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 600.0f;
+		dst.m_left = 750.0f;
+		dst.m_right = 800.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(20, &src, &dst, white, 0.0f);
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		for (int j = 0; j < 6; j++)
+		{
+			//中央上
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 580.0f;
+			dst.m_left = 800.0f + (j * 50);
+			dst.m_right = 850.0f + (j * 50);
+			dst.m_bottom = 630.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//中央下
+			src.m_top = 0.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 600.0f;
+			dst.m_left = 800.0f + (j * 50);
+			dst.m_right = 850.0f + (j * 50);
+			dst.m_bottom = 650.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+		}
+
+		//右上
+		src.m_top = 0.0f;
+		src.m_left = 4000.0f;
+		src.m_right = 4800.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 580.0f;
+		dst.m_left = 1080.0f;
+		dst.m_right = 1130.0f;
+		dst.m_bottom = 630.0f;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
+
+		//右下
+		src.m_top = 0.0f;
+		src.m_left = 4800.0f;
+		src.m_right = 5600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 600.0f;
+		dst.m_left = 1080.0f;
+		dst.m_right = 1130.0f;
+		dst.m_bottom = 650.0f;
+		Draw::Draw(132, &src, &dst, white, 0.0f);
 
 		for (int i = 0; i < 4; i++)
 		{
@@ -1150,16 +1214,86 @@ void CObjBarracks::Draw()
 			Draw::Draw(24, &src, &dst, down[i], 0.0f);
 
 			//▼各タイプ(パワー、スピード等)の住民数ウインドウ表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1200.0f;
-			src.m_bottom = 700.0f;
-
 			dst.m_top = 140.0f + i * 110.0f;
 			dst.m_left = 930.0f;
 			dst.m_right = 1150.0f;
 			dst.m_bottom = 200.0f + i * 110.0f;
 			Draw::Draw(20, &src, &dst, white, 0.0f);
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 795.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 140.0f + i * 110.0f;
+			dst.m_left = 930.0f;
+			dst.m_right = 970.0f;
+			dst.m_bottom = 180.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//左下
+			src.m_top = 40.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 160.0f + i * 110.0f;
+			dst.m_left = 930.0f;
+			dst.m_right = 970.0f;
+			dst.m_bottom = 200.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			for (int j = 0; j < 4; j++)
+			{
+				//中央上
+				src.m_top = 0.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 140.0f + i * 110.0f;
+				dst.m_left = 970.0f + (j * 40);
+				dst.m_right = 1010.0f + (j * 40);
+				dst.m_bottom = 180.0f + i * 110.0f;
+				Draw::Draw(132, &src, &dst, white, 0.0f);
+
+				//中央下
+				src.m_top = 0.0f;
+				src.m_left = 2400.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 800.0f;
+
+				dst.m_top = 160.0f + i * 110.0f;
+				dst.m_left = 970.0f + (j * 40);
+				dst.m_right = 1010.0f + (j * 40);
+				dst.m_bottom = 200.0f + i * 110.0f;
+				Draw::Draw(132, &src, &dst, white, 0.0f);
+			}
+
+			//右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 140.0f + i * 110.0f;
+			dst.m_left = 1110.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 180.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+			//右下
+			src.m_top = 0.0f;
+			src.m_left = 4800.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 160.0f + i * 110.0f;
+			dst.m_left = 1110.0f;
+			dst.m_right = 1150.0f;
+			dst.m_bottom = 200.0f + i * 110.0f;
+			Draw::Draw(132, &src, &dst, white, 0.0f);
+
+
 		}
 
 		//▼兵舎 Lv文字画像表示

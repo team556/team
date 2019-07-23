@@ -116,8 +116,8 @@ void CObjFightOver::Draw()
 	src.m_bottom = 117.0f;
 
 	dst.m_top = 600.0f;
-	dst.m_left = 275.0f;
-	dst.m_right = 975.0f;
+	dst.m_left = 250.0f;
+	dst.m_right = 950.0f;
 	dst.m_bottom = 650.0f;
 	Draw::Draw(51, &src, &dst, c0, 0.0f);
 

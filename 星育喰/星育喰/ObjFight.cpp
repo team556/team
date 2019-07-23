@@ -181,15 +181,15 @@ void CObjFight::Action()
 	//※キーを押してる間はマウスに反応させないため
 	if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
 
-		if (200 <= m_mou_y && m_mou_y <= 260 ) {
+		if (200 <= m_mou_y && m_mou_y <= 250 ) {
 			if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
 			else { m_line = 0; }
 		}
-		else if (310 <= m_mou_y && m_mou_y <= 370) {
+		else if (310 <= m_mou_y && m_mou_y <= 340) {
 			if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
 			else { m_line = 1; }
 		}
-		else if (420 <= m_mou_y && m_mou_y <= 480 ) {
+		else if (420 <= m_mou_y && m_mou_y <= 470 ) {
 			if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
 			else { m_line = 2; }
 		}
@@ -248,25 +248,25 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{					
-			CObjFightClear* crer = new CObjFightClear(5000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 30, 2);
+			CObjFightClear* crer = new CObjFightClear(3000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(10000, 200, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
+			CObjFightClear* crer = new CObjFightClear(8000, 200, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から３番目
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(15000, 250, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
+			CObjFightClear* crer = new CObjFightClear(12000, 250, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(7000, 150, L"鉄", &g_Iron_num, 70, L"アルミ", &g_Aluminum_num, 80, 3);
+			CObjFightClear* crer = new CObjFightClear(6000, 150, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ボス
@@ -389,9 +389,9 @@ void CObjFight::Draw()
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
-	float d0[4] = { 1.0f,(Pla_One_pat_dem[0] - 0.5f) * 2,(Pla_One_pat_dem[0] - 0.5f) * 2,0.2f };
-	float d1[4] = { 1.0f,(Pla_One_pat_dem[1] - 0.5f) * 2,(Pla_One_pat_dem[1] - 0.5f) * 2,0.2f };
-	float d2[4] = { 1.0f,(Pla_One_pat_dem[2] - 0.5f) * 2,(Pla_One_pat_dem[2] - 0.5f) * 2,0.2f };
+	float d0[4] = { 1.0f,1.0f - (Pla_One_pat_dem[0] - 1.0f) * 2,1.0f - (Pla_One_pat_dem[0] - 1.0f) * 2,0.2f };
+	float d1[4] = { 1.0f,1.0f - (Pla_One_pat_dem[1] - 1.0f) * 2,1.0f - (Pla_One_pat_dem[1] - 1.0f) * 2,0.2f };
+	float d2[4] = { 1.0f,1.0f - (Pla_One_pat_dem[2] - 1.0f) * 2,1.0f - (Pla_One_pat_dem[2] - 1.0f) * 2,0.2f };
 
 	if (obj->GetCount() == 0) {//-------------------------時間切れの場合----
 		if (m_a > 0.0f) {
@@ -497,7 +497,7 @@ void CObjFight::Draw()
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1353.0f;
-		src.m_bottom = 1025.0f;
+		src.m_bottom = 1050.0f;
 
 		dst.m_top = 25.0f;
 		dst.m_left = 25.0f;

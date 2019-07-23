@@ -42,6 +42,8 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 	bool  m_key_f;		//キーフラグ
 
+	int   m_message_window_num;	//メッセージウインドウ登録番号格納用
+
 	
 	//▼基本的にはtrue。メッセージ終了 or メッセージ途中にプレイヤーに何か操作させたい時にfalseにする。
 	bool m_run_switch;	//メッセージ表示機能ON/OFF管理フラグ[true:動作させる　false:停止させる]

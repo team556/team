@@ -16,7 +16,6 @@ public:
 	void Draw();     //ドロー
 	float GetX() { return m_vx; }
 	float GetY() { return m_vy; }
-	void SetDMG(float hp, float dmg);
 private:
 	float m_x;		//ミサイルの座標X
 	float m_y;		//ミサイルの座標Y
@@ -50,7 +49,7 @@ private:
 
 	float m_Player_damage;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
 	float m_Enemy_damage; //エネミーが受けるダメージ量(プレイヤーの攻撃力)
-	float m_One_pat_dem;//ワンパターンデメリット値を受け取る為の変数(この値と攻撃力を乗算した値が最終的な攻撃力となる)
+	float m_One_pat_dem;//ワンパターンデメリット値を受け取る為の変数(この値と攻撃力を乗算した値が最終的な受けるダメージとなる)
 
 	int m_ani;			//着弾アニメーション
 	int m_ani_max;

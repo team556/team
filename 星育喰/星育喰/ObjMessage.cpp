@@ -86,6 +86,9 @@ void CObjMessage::Init()
 	//またはメッセージ途中にプレイヤーに
 	//何か操作させたい時にこの全角文字を書いて下さい。
 
+	//テスト(名前入力が完成したという報告あれば取り掛かってみる。＆を入れれば、その文字が途中に入る。)
+	//wchar_t strr[20] = L"きになあ";
+
 	//テスト
 	if (m_Scene_id == 0)
 	{
@@ -95,11 +98,13 @@ void CObjMessage::Init()
 		swprintf_s(m_font[3], L"|");					//メッセージ４
 		swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
 		swprintf_s(m_font[5], L"|");					//メッセージ６
+
+		m_message_window_num = 2;
 	}
 	//テスト
 	else if (m_Scene_id == 1)
 	{
-
+		m_message_window_num = 2;
 	}
 }
 
@@ -324,7 +329,7 @@ void CObjMessage::Draw()
 	dst.m_left = 20.0f;
 	dst.m_right = 1180.0f;
 	dst.m_bottom = 680.0f;
-	Draw::Draw(2, &src, &dst, d, 0.0f);
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
 
 	//現在メッセージの文字列の長さが取得出来ていれば実行される
 	if (m_length != 0)

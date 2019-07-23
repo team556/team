@@ -303,8 +303,8 @@ void CObjHome::Draw()
 	float status_font_color[4][4] =
 	{
 		{ 1.0f,1.0f,1.0f,1.0f },//1行目は白色
-		{ 0.0f,0.0f,0.0f,1.0f },//2行目は黒色
-		{ 0.0f,0.0f,0.0f,1.0f },//3行目は黒色
+		{ 1.0f,1.0f,1.0f,1.0f },//2行目は白色
+		{ 1.0f,1.0f,1.0f,1.0f },//3行目は白色
 		{ 1.0f,0.0f,0.0f,1.0f },//4行目は赤色
 	};
 
@@ -488,10 +488,10 @@ void CObjHome::Draw()
 	Draw::Draw(24, &src, &dst, p, 0.0f);
 
 	//▼プレイヤー惑星表示
-	src.m_top = 63.0f;
-	src.m_left = 63.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 448.0f;
+	src.m_bottom = 448.0f;
 
 	dst.m_top = 250.0f + m_Pvy - m_size;
 	dst.m_left = 450.0f + m_Pvx - m_size;

@@ -34,35 +34,35 @@ int g_Stage_progress = 1;
 bool g_destroy_progress[4] = { false,false,false,false };//“G‚ÌŒ‚”jó‘Ô
 int g_Bar_Level = 1;
 int g_Ins_Level = 1;
-int g_Mis_Recast_Level = 0;
-int g_Pow_equip_Level = 1;
-int g_Pow_equip_Lv_achieve = 1;
-int g_Def_equip_Level = 1;
-int g_Def_equip_Lv_achieve = 1;
-int g_Spe_equip_Level = 1;
-int g_Spe_equip_Lv_achieve = 1;
-int g_Bal_equip_Level = 1;
-int g_Bal_equip_Lv_achieve = 1;
-int g_Pod_equip_Level = 1;
-int g_Pod_equip_Lv_achieve = 1;
+int g_Mis_Recast_Level		= 0;
+int g_Pow_equip_Level		= 1;
+int g_Pow_equip_Lv_achieve	= 1;
+int g_Def_equip_Level		= 1;
+int g_Def_equip_Lv_achieve	= 1;
+int g_Spe_equip_Level		= 1;
+int g_Spe_equip_Lv_achieve	= 1;
+int g_Bal_equip_Level		= 1;
+int g_Bal_equip_Lv_achieve	= 1;
+int g_Pod_equip_Level		= 1;
+int g_Pod_equip_Lv_achieve	= 1;
 float g_Player_max_size = 100.0f;
 int g_Special_equipment = 0;//‘•”õ’†‚ÌƒXƒyƒVƒƒƒ‹‹Z
 bool g_Special_mastering[5] = { false,false,false,true,false };//ƒXƒyƒVƒƒƒ‹‹Z‚ÌK“¾ó‘Ô
-int g_Power_num = 1000;
-int g_Defense_num = 1000;
-int g_Speed_num = 1000;
-int g_Balance_num = 1000;
-int g_Research_num = 0;
-int g_Remain_num = 6000;
+int g_Power_num		= 2000;
+int g_Defense_num	= 2000;
+int g_Speed_num		= 2000;
+int g_Balance_num	= 2000;
+int g_Research_num	= 0;
+int g_Remain_num	= 2000;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 
-int g_Iron_num		= 1000;
-int g_Wood_num		= 1000;
-int g_Silver_num	= 1000;
-int g_Plastic_num	= 1000;
-int g_Aluminum_num	= 1000;
-int g_gus_num		= 1000;
+int g_Iron_num		= 0;
+int g_Wood_num		= 0;
+int g_Silver_num	= 0;
+int g_Plastic_num	= 0;
+int g_Aluminum_num	= 0;
+int g_gus_num		= 0;
 
 int g_Challenge_enemy = 0;
 bool g_help_f = false;
@@ -142,7 +142,7 @@ void CObjTitle::Init()
 	g_Speed_num = 1000;
 	g_Balance_num = 1000;
 	g_Research_num = 0;
-	g_Remain_num = 6000;
+	g_Remain_num = 0;
 
 	g_Iron_num = 0;
 	g_Wood_num = 0;
@@ -316,10 +316,10 @@ void CObjTitle::Draw()
 	Draw::Draw(24, &src, &dst, w, 0.0f);
 
 	//¥ƒvƒŒƒCƒ„[˜f¯•\¦
-	src.m_top = 63.0f;
-	src.m_left = 63.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 384.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 448.0f;
+	src.m_bottom = 448.0f;
 
 	dst.m_top = 250.0f;
 	dst.m_left = 450.0f;
