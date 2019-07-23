@@ -26,7 +26,6 @@ CObjRocket::CObjRocket(float x, float y, int type,int n)
 	m_y = y;
 	m_type = type;
 	ButtonU = n;
-
 }
 
 //イニシャライズ
@@ -43,18 +42,18 @@ void CObjRocket::Init()
 
 		//発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
 		//※最低値の0.5の場合、実行されない。
-		if (Pla_One_pat_dem[obj->GetLine()] > 0.5f)
+		if (Pla_One_pat_dem[obj->GetLine()] < 1.5f)
 		{
-			Pla_One_pat_dem[obj->GetLine()] -= 0.1f;
+			Pla_One_pat_dem[obj->GetLine()] += 0.1f;
 		}
 
 		//発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
 		//※最高値の1.0の場合、実行されない。
 		for (int i = 0; i < 3; i++)
 		{
-			if (Pla_One_pat_dem[i] < 1.0f && obj->GetLine() != i)
+			if (Pla_One_pat_dem[i] > 1.0f && obj->GetLine() != i)
 			{
-				Pla_One_pat_dem[i] += 0.1f;
+				Pla_One_pat_dem[i] -= 0.1f;
 			}
 		}
 	}
@@ -68,18 +67,18 @@ void CObjRocket::Init()
 
 		//発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
 		//※最低値の0.5の場合、実行されない。
-		if (Ene_One_pat_dem[ene->GetLine() - 1] > 0.5f)
+		if (Ene_One_pat_dem[ene->GetLine() - 1] < 1.5f)
 		{
-			Ene_One_pat_dem[ene->GetLine() - 1] -= 0.1f;
+			Ene_One_pat_dem[ene->GetLine() - 1] += 0.1f;
 		}
 
 		//発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
 		//※最高値の1.0の場合、実行されない。
 		for (int i = 0; i < 3; i++)
 		{
-			if (Ene_One_pat_dem[i] < 1.0f && ene->GetLine() - 1 != i)
+			if (Ene_One_pat_dem[i] > 1.0f && ene->GetLine() - 1 != i)
 			{
-				Ene_One_pat_dem[i] += 0.1f;
+				Ene_One_pat_dem[i] -= 0.1f;
 			}
 		}
 	}
@@ -320,84 +319,41 @@ void CObjRocket::Init()
 
 	//g_Missile_pow = g_Missile_pow * (10 / 2);
 
-	m_Enemy_damage = 2;//エネミーが受けるダメージ量(プレイヤーの攻撃力)
-	m_Player_damage = 2;//プレイヤーが受けるダメージ量(エネミーの攻撃力)
-
-	if (m_type == 0)
-	{
-		//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
-		switch (ButtonUP) {
-		case 1:
-			m_Enemy_damage += (float)g_Pow_equip_Level;
-			break;
-		case 2:
-			m_Enemy_damage += (float)g_Def_equip_Level;
-			break;
-		case 3:
-			m_Enemy_damage += (float)g_Spe_equip_Level;
-			break;
-		case 4:
-			m_Enemy_damage += (float)g_Bal_equip_Level;
-			break;
-		case 5:					//ミサイルの時は火力3固定
-			m_Enemy_damage = 3.0f;
-			break;
-		}
-		
-		if (ButtonU != 5)						//ミサイルは火力固定のため省く
-			m_Enemy_damage += (float)(g_Bar_Level - 1);	//決まった火力+兵舎Lv
-
-
-		//ワンパターンデメリット値の乗算を行う
-		m_Enemy_damage *= m_One_pat_dem;
-	}
-
-	else if (m_type != 0)
-	{
-			//敵の火力を敵によって変える
-			switch (m_type) {
-			case 1:
-				m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-				m_Player_damage = 3.0f;		//いったんミサイルの攻撃力(3)を代入
-				if (ButtonUE != 5)			//ミサイル以外かどうか判定
-					m_Player_damage = 10.0f;//ミサイル以外なら本来のダメージを代入
-				g_P_Planet_damage = m_Player_damage;
-				break;
-			case 2:
-				m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-				m_Player_damage = 3.0f;
-				if (ButtonUE != 5)
-					m_Player_damage = 20.0f;
-				g_P_Planet_damage = m_Player_damage;
-				break;
-			case 3:
-				m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-				m_Player_damage = 3.0f;
-				if (ButtonUE != 5)
-					m_Player_damage = 20.0f;
-				g_P_Planet_damage = m_Player_damage;
-				break;
-			case 4:
-				m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-				m_Player_damage = 3.0f;
-				if (ButtonUE != 5)
-					m_Player_damage = 10.0f;
-				g_P_Planet_damage = m_Player_damage;
-				break;
-			case 5:
-				m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-				m_Player_damage = 3.0f;
-				if (ButtonUE != 5)
-					m_Player_damage = 30.0f;
-				g_P_Planet_damage = m_Player_damage;
-				break;
-			}
-
-
-			//ワンパターンデメリット値の乗算を行う
-			m_Player_damage *= m_One_pat_dem;
-	}
+	m_Enemy_damage = 2.0f;//エネミーが受けるダメージ量(プレイヤーの基礎攻撃力)
+	m_Player_damage = 2.0f;//プレイヤーが受けるダメージ量(エネミーの基礎攻撃力)
 	
+
+	//敵の火力を敵によって変える
+	switch (g_Challenge_enemy + 1) {
+	case 1:
+		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
+		m_Player_damage = 3.0f;		//プレイヤーへのポッドによる攻撃力決定
+		//g_P_Planet_damage = m_Player_damage;
+		break;
+	case 2:
+		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
+		m_Player_damage = 5.0f;
+		//g_P_Planet_damage = m_Player_damage;
+		break;
+	case 3:
+		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
+		m_Player_damage = 5.0f;
+		//g_P_Planet_damage = m_Player_damage;
+		break;
+	case 4:
+		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
+		m_Player_damage = 5.0f;
+		//g_P_Planet_damage = m_Player_damage;
+		break;
+	case 5:
+		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
+		m_Player_damage = 7.0f;
+		//g_P_Planet_damage = m_Player_damage;
+		break;
+	}
+
+
+
 	if (ButtonU != 5) {
 		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
@@ -614,20 +570,47 @@ void CObjRocket::Action()
 				{
 					if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)			//プレイヤーのスピードポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+						//m_Enemy_damage += (float)g_Spe_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//プレイヤーのディフェンスポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+						//m_Enemy_damage += (float)g_Def_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else													//プレイヤーのバランスポッド&同ポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//プレイヤーのパワーポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0];
+						//m_Enemy_damage += (float)g_Pow_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
+					}
+					else	//プレイヤーのバランスポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.1f * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= m_Enemy_damage;
+					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
+					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 2)	//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
@@ -636,20 +619,47 @@ void CObjRocket::Action()
 				{
 					if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)			//プレイヤーのパワーポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+						//m_Enemy_damage += (float)g_Pow_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//プレイヤーのスピードポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+						//m_Enemy_damage += (float)g_Spe_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else													//プレイヤーのバランスポッド&同ポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//プレイヤーのディフェンスポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0];
+						//m_Enemy_damage += (float)g_Def_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
+					}
+					else	//プレイヤーのバランスポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.1f * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= m_Enemy_damage;
+					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
+					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 3)	//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
@@ -658,27 +668,96 @@ void CObjRocket::Action()
 				{
 					if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)			//プレイヤーのパワーポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f;
+						//m_Enemy_damage += (float)g_Pow_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.2f * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//プレイヤーのディフェンスポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f;
+						//m_Enemy_damage += (float)g_Def_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.8f * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
 					}
-					else													//プレイヤーのバランスポッド&同ポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//プレイヤーのスピードポッド当たり時のHP
 					{
-						m_podhp -= m_Enemy_damage * damage_buff[0];
+						//m_Enemy_damage += (float)g_Spe_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
+					}
+					else	//プレイヤーのバランスポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.1f * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= m_Enemy_damage;
+					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
+					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 4)	//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
 			{
 				if (m_atk_cnt == 0)	//0の時のみ、ダメージを受ける
 				{
-					m_podhp -= m_Enemy_damage * damage_buff[0];
+					if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)			//プレイヤーのパワーポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Pow_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.9f * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
+					}
+					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//プレイヤーのディフェンスポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Def_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.9f * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
+					}
+					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//プレイヤーのスピードポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Spe_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.9f * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
+					}
+					else	//プレイヤーのバランスポッド当たり時のHP
+					{
+						//m_Enemy_damage += (float)g_Bal_equip_Level;//プレイヤーの火力を装備レベルによって変える(+ポッドレベル)
+						//m_Enemy_damage += (float)(g_Bar_Level - 1);//決まった火力+兵舎Lv
+
+						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
+					}
+				}
+				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
+					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+					
+					m_podhp -= (m_Enemy_damage + 1.0f) * 2.0f * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 5)	//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
@@ -712,20 +791,36 @@ void CObjRocket::Action()
 				{
 					if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)			//敵のスピードポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.8f * m_One_pat_dem;
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//敵のディフェンスポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 1.2f * m_One_pat_dem;
 					}
-					else													//敵のバランスポッド&同ポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)		//敵のパワーポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1];
+						// * m_One_pat_demm_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
+					}
+					else	//敵のバランスポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 1.1f * m_One_pat_dem;
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= m_Player_damage;
+					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
+
+					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUP == 2)	//自分の種類２(ディフェンス)が敵のポッドと当たった場合
@@ -734,20 +829,36 @@ void CObjRocket::Action()
 				{
 					if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)			//敵のパワーポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.8f * m_One_pat_dem;
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//敵のスピードポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 1.2f * m_One_pat_dem;
 					}
-					else													//敵のバランスポッド&同ポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//敵のディフェンスポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1];
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
+					}
+					else	//敵のバランスポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 1.1f * m_One_pat_dem;
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= m_Player_damage;
+					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
+
+					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+					
+					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUP == 3)//自分の種類３(スピード)が敵のポッドと当たった場合
@@ -756,28 +867,74 @@ void CObjRocket::Action()
 				{
 					if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)			//敵のパワーポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.2f;
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 1.2f * m_One_pat_dem;
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//敵のディフェンスポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1] * 0.8f;
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.8f * m_One_pat_dem;
 					}
-					else													//敵のバランスポッド&同ポッド当たり時のHP
+					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//敵のスピードポッド当たり時のHP
 					{
-						m_podhp -= m_Player_damage * damage_buff[1];
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
+					}
+					else	//敵のバランスポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 1.1f * m_One_pat_dem;
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
 				{
-					m_podhp -= m_Player_damage;
-				}
+					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
 
+					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
+				}
 			}
 			else if (ButtonUP == 4)//自分の種類４(バランス)が敵のポッドとミサイルに当たった場合
 			{
 				if (m_atk_cnt == 0)	//0の時のみ、ダメージを受ける
 				{
-					m_podhp -= m_Player_damage * damage_buff[1];
+					if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)			//敵のパワーポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.9f * m_One_pat_dem;
+					}
+					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//敵のディフェンスポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.9f * m_One_pat_dem;
+					}
+					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//敵のスピードポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.9f * m_One_pat_dem;
+					}
+					else	//敵のバランスポッド当たり時のHP
+					{
+						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+
+						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
+					}
+				}
+				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
+				{
+					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
+
+					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
+					
+					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUP == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
