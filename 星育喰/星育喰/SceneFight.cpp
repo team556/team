@@ -340,7 +340,6 @@ void CSceneFight::InitScene()
 
 	//音楽スタート
 	Audio::Start(0);
-
 }
 
 //ゲームメイン実行中メソッド
