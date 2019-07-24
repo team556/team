@@ -28,6 +28,10 @@ CObjRocket::CObjRocket(float x, float y, int type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
+	if (ButtonU != 5) {
+		
+	}
+
 	//▼ワンパターンデメリット処理
 	//▽プレイヤーの処理
 	if (m_type == 0)
@@ -205,8 +209,11 @@ void CObjRocket::Init()
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
 		}
-		if(ButtonUP != 5)
+		if (ButtonUP != 5) {
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
 			p_pnam++;
+		}
 		if (p_pnam == 9)
 			p_pnam = 0;
 	}
@@ -216,25 +223,34 @@ void CObjRocket::Init()
 		if (ButtonUE == 1)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
 		}
 		else if (ButtonUE == 2)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
 		}
 		else if (ButtonUE == 3)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
 		}
 		else if (ButtonUE == 4)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
 		}
 		else if (ButtonUE == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
 		}
-		if (ButtonUP != 5)
+		if (ButtonUP != 5) {
 			e_pnam++;
+		}
 		if (e_pnam == 9)
 			e_pnam = 0;
 	}
@@ -348,13 +364,6 @@ void CObjRocket::Init()
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	}
-
-
-
-	if (ButtonU != 5) {
-		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
-		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
-	}
 }
 
 //アクション
@@ -437,7 +446,7 @@ void CObjRocket::Action()
 				m_stop_cnt = 0;
 			}
 		}
-		else//停止時以外、移動ベクトル加算
+		else if(m_del == false)//停止時以外、移動ベクトル加算
 		{
 			m_fight = false;
 			m_mov += m_mov_spd / 2;
@@ -605,12 +614,14 @@ void CObjRocket::Action()
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
+			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)	//敵の惑星に当たった時かつ自弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
+			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
 
@@ -1034,146 +1045,147 @@ void CObjRocket::Draw()
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
-
-	if (m_type == 0)
-	{
-		if (m_stop_f == false /*&& m_pstop == false*/)
+	if (m_ani < 10) {		//着弾アニメーションの途中まで描画
+		if (m_type == 0)
 		{
-			switch (m_get_line) {
-			case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
-			case 2:m_r -= 0.08 + m_mov_spd * 2; break;
+			if (m_stop_f == false /*&& m_pstop == false*/)
+			{
+				switch (m_get_line) {
+				case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
+				case 2:m_r -= 0.08 + m_mov_spd * 2; break;
+				}
+			}
+
+			if (ButtonUP >= 1 && ButtonUP <= 4)
+			{
+				//ポッドの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = -64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y + m_size;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y;
+			}
+			else
+			{
+				//ミサイルの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y + m_size;
+			}
+
+			//-----------ボタン赤・青・緑を分ける判定
+
+
+
+			switch (ButtonUP) {
+			case 1:
+				if (m_get_line == 1) { Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//赤色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 2:
+				if (m_get_line == 1) { Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//青色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 3:
+				if (m_get_line == 1) { Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//緑色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 4:
+				if (m_get_line == 1) { Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//原色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 5:
+				if (m_get_line == 1) { Draw::Draw(17, &src, &dst, d, m_r + 45); }//ミサイルの
+				else if (m_get_line == 2) { Draw::Draw(17, &src, &dst, d, m_r + 65); }//各ラインの角度調整
+				else { Draw::Draw(17, &src, &dst, d, m_r + 25); }
+				//else if ();
+				break;
+			}
+			//Draw::Draw(10, &src, &dst, d, m_r - 15);
+		}
+
+		if (m_type != 0)
+		{
+			if (m_stop_f == false/* && m_pstop == false*/)
+			{
+				switch (m_get_line) {
+				case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
+				case 2:m_r += 0.08 + m_mov_spd * 2; break;
+				case 3:m_r -= 0.08 + m_mov_spd * 2; break;
+				}
+			}
+
+			//敵ポッドの1～4の番号(ポッド)の描画情報
+			if (ButtonUE >= 1 && ButtonUE <= 4)
+			{
+				//ポッドの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = -64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y + m_size;
+			}
+			else  //------------敵ミサイルの描画用
+			{
+				//ミサイルの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y + m_size;
+			}
+
+			switch (ButtonUE) {
+			case 1://---------ランダムの情報が1なら
+				if (m_get_line == 1) { Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//赤色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 2://---------ランダムの情報が2なら
+				if (m_get_line == 1) { Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//青色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 3://---------ランダムの情報が3なら
+				if (m_get_line == 1) { Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//緑色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 4://---------ランダムの情報が4なら
+				if (m_get_line == 1) { Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//原色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 5://---------ランダムの情報が5なら
+				if (m_get_line == 1) { Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
+				else if (m_get_line == 2) { Draw::Draw(17, &src, &dst, d, m_r - 155); }//ミサイルの
+				else { Draw::Draw(17, &src, &dst, d, m_r - 115); }
+				break;
 			}
 		}
-		
-		if (ButtonUP >= 1 && ButtonUP <= 4)
-		{
-			//ポッドの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = -64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y + m_size;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y;
-		}
-		else
-		{
-			//ミサイルの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
-		}
-
-		 //-----------ボタン赤・青・緑を分ける判定
-		
-
-		switch (ButtonUP) {
-		case 1:
-			if (m_get_line == 1)		{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//赤色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 2:
-			if (m_get_line == 1)		{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//青色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 3:
-			if (m_get_line == 1)		{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//緑色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 4:
-			if (m_get_line == 1)		{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//原色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 5:
-			if (m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r + 45); }//ミサイルの
-			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r + 65); }//各ラインの角度調整
-			else						{ Draw::Draw(17, &src, &dst, d, m_r + 25); }
-			//else if ();
-			break;
-		}
-		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
-
-	if(m_type != 0)
-	{
-		if (m_stop_f == false/* && m_pstop == false*/)
-		{
-			switch (m_get_line) {
-			case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
-			case 2:m_r += 0.08 + m_mov_spd * 2; break;
-			case 3:m_r -= 0.08 + m_mov_spd * 2; break;
-			}
-		}
-
-		//敵ポッドの1～4の番号(ポッド)の描画情報
-		if (ButtonUE >= 1 && ButtonUE <= 4)
-		{
-			//ポッドの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = -64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
-		}
-		else  //------------敵ミサイルの描画用
-		{
-			//ミサイルの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
-		}
-
-		switch (ButtonUE) {
-		case 1://---------ランダムの情報が1なら
-			if (m_get_line == 1)		{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//赤色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 2://---------ランダムの情報が2なら
-			if (m_get_line == 1)		{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//青色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 3://---------ランダムの情報が3なら
-			if (m_get_line == 1)		{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//緑色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 4://---------ランダムの情報が4なら
-			if (m_get_line == 1)		{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//原色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 5://---------ランダムの情報が5なら
-			 if(m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
-			else if(m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }//ミサイルの
-			else						{ Draw::Draw(17, &src, &dst, d, m_r - 115); }
-			break;
-		}
-	}
-
 	//HPゲージ表示(ミサイル以外かつ破壊されていない時に表示される)
 	if (ButtonU != 5 && m_del == false)
 	{

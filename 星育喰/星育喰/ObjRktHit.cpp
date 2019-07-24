@@ -31,8 +31,8 @@ void CObjRktHit::Init()
 	m_mov	= 0.0f;
 	m_size = 50.0f;
 	m_del_cnt = 0;
-	m_pnam = p_pnam-1;
-	m_enam = e_pnam-1;
+	m_pnam = p_pnam;
+	m_enam = e_pnam;
 	m_stop_f = false;
 	m_del_f = false;
 
@@ -86,11 +86,19 @@ void CObjRktHit::Init()
 //アクション
 void CObjRktHit::Action()
 {
+	//▼スペシャル技の時は操作不能にする処理
+	if (battle_start == false )
+	{
+		return;
+	}
+
 	CHitBox* hit = Hits::GetHitBox(this);		//HitBox情報取得
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
-
 	m_vx = 0.0f;
 	m_vy = 0.0f;
+	
+
+	
 
 	if (m_stop_f == true)	//ポッド戦闘中
 	{
@@ -99,7 +107,6 @@ void CObjRktHit::Action()
 	else					//ポッド移動中
 	{
 		m_mov += m_mov_spd / 2;
-		hit->SetInvincibility(false);//HitBoxの無敵効果OFF
 
 		//各ライン毎の動き方
 		if (m_get_line == 0 || m_get_line == 3)//------上ライン----
@@ -239,8 +246,16 @@ void CObjRktHit::Action()
 	else
 		m_stop_f = false;
 
-	/*if (hit->CheckElementHit(ELEMENT_ENEMY) == true || hit->CheckElementHit(ELEMENT_PLAYER) == true)
-		m_del_f = true;*/
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == true)		//惑星に当たった時かつ敵弾
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+	else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == false)//敵星に当たった時かつ自弾
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	if (m_del_f == true || battle_end == true)	//削除フラグ
 	{
