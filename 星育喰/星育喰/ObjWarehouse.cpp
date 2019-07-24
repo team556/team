@@ -61,7 +61,7 @@ void CObjWarehouse::Action()
 	if (window_start_manage == Warehouse)
 	{
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 56 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
@@ -244,18 +244,13 @@ void CObjWarehouse::Action()
 		window_start_manage == Specialskill || window_start_manage == Soubicheck)
 	{
 		//戻るボタン選択
-		if (80 < m_mou_x && m_mou_x < 130 && 80 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
+		if (80 < m_mou_x && m_mou_x < 130 && 74 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 			//▼クリックされたらフラグを立て、このウインドウを閉じる
 			//右クリック入力時
 			if (m_mou_r == true)
 			{
-				//dst.m_top = 80.0f;
-				//dst.m_left = 80.0f;
-				//dst.m_right = 130.0f;
-				//dst.m_bottom = 130.0f;
-
 				//前シーン(最終確認ウインドウ)から右クリック押したままの状態では入力出来ないようにしている
 				if (m_key_rf == true)
 				{
@@ -546,10 +541,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 242.0f;
 			src.m_bottom = 117.0f;
 
-			dst.m_top = m_mou_y - 45.0f;
+			dst.m_top = m_mou_y - 43.0f;
 			dst.m_left = m_mou_x - 30.0f;
-			dst.m_right = m_mou_x + 30.0f;
-			dst.m_bottom = m_mou_y - 15.0f;
+			dst.m_right = m_mou_x + 20.0f;
+			dst.m_bottom = m_mou_y - 18.0f;
 			Draw::Draw(88, &src, &dst, white, 0.0f);
 		}
 }

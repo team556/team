@@ -153,7 +153,7 @@ RECT_F GetPodEffec(int* ani, int* ani_time, bool del, int timing)
 	{
 		//弾丸はアニメーション無し
 		//リソース弾丸位置
-		RECT_F bullet = { 0.0f,0.0f,2560.0f,128.0f };
+		RECT_F bullet = { 0.0f,0.0f,0.0f,0.0f };
 		rect = bullet;
 	}
 

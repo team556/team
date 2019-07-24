@@ -56,6 +56,8 @@ private:
 	int   m_is_top_or_bottom;	//メッセージウインドウ位置変更用(0:下に表示　1:上に表示)
 
 	int   m_message_window_num;	//メッセージウインドウ登録番号格納用
+	int   m_yamada_window_num;	//山田ウインドウ登録番号格納用
+	int	  m_black_out_num;		//画面全体やや暗転画像登録番号格納用
 	
 
 	//▼基本的にはtrue。メッセージ終了 or メッセージ途中にプレイヤーに何か操作させたい時にfalseにする。
