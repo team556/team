@@ -273,6 +273,9 @@ void CSceneFight::InitScene()
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
+	//ボロ画像を読み込み122番に登録
+	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 

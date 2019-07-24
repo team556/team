@@ -158,7 +158,7 @@ extern int g_Aluminum_num;		//アルミニウム
 extern int g_gus_num;			//ガス
 
 //▼セーブ必要性無し
-extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
+extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星　5:チュートリアル惑星)
 extern bool g_help_f;				//ヘルプ画面表示フラグ(true:ヘルプ画面表示　false:ヘルプ画面非表示)
 
 //▼定数

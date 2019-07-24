@@ -247,7 +247,7 @@ void CObjFight::Action()
 
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
-		{					
+		{				
 			CObjFightClear* crer = new CObjFightClear(3000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
@@ -273,6 +273,13 @@ void CObjFight::Action()
 		if (g_Challenge_enemy == 4)									
 		{
 			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 80, 0);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		//チュートリアル
+		if (g_Challenge_enemy == 5)
+		{
+			//エラーを回避するために木材を0個獲得するようにしている
+			CObjFightClear* crer = new CObjFightClear(1000, 20, L"なし", &g_Wood_num, 0, 4);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}

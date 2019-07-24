@@ -20,6 +20,7 @@ using namespace GameL;
 #define THI_DELAY (105)
 #define FOU_DELAY (120)
 #define FIV_DELAY (105)
+#define SIX_DELAY (200)
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
 #define MOAI_NAM (2)	//モアイの番号type設定(仮
@@ -135,12 +136,19 @@ void CObjPlanet::Init()
 		m_size = 150;
 		m_siz_max = 150;
 	}
-	else  //(m_type == 5)   //ボス惑星
+	else  if(m_type == 5)   //ボス惑星
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;
 		m_size = 500;
 		m_siz_max = 500;
+	}
+	else //(m_type == 6)	//チュートリアル惑星
+	{
+		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
+		m_img_nam = 122;
+		m_size = 50;
+		m_siz_max = 50;
 	}
 }
 
@@ -355,31 +363,40 @@ void CObjPlanet::Action()
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
-			//ポッドが与えれるダメージ量をRocket.cppからグローバル変数で引っ張ってきた
-			//ダメージ量は「(敵攻撃力 * 3.6 [リミットブレイクすれば更に1.5倍]」
-			if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
-			{
-				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
-			{
-				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
-			{
-				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
-			}
-			else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
-			{
-				m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
-			}
-			else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
-			{
-				m_size -= 3;	//サイズ(HP)減少
-			}
+			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+			//敵がチュートリアル惑星かつ自分のHPが50以上の時
+			if (ene->GetType() == 6 && m_size > 50.0f) {
+				//ポッドが与えれるダメージ量をRocket.cppからグローバル変数で引っ張ってきた
+				//ダメージ量は「(敵攻撃力 * 3.6 [リミットブレイクすれば更に1.5倍]」
+				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
+				{
+					m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)	//スピードポッドHIT時の処理
+				{
+					m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)	//ディフェンスポッドHIT時の処理
+				{
+					m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
+				}
+				else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//バランスポッドHIT時の処理
+				{
+					m_size -= g_P_Planet_damage * 3.6f * damage_buff[1];	//サイズ(HP)減少
+				}
+				else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//ミサイルHIT時の処理
+				{
+					m_size -= 3;	//サイズ(HP)減少
+				}
 
 
-			m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
+				m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
+
+				//敵がチュートリアル惑星かつ自分のHPが50以下になった時に自分のHPを50にする
+				if (m_type == 0 && ene->GetType() == 6 && m_size < 50.0f) {
+					m_size = 50.0f;
+				}
+			}
 		}
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
@@ -449,7 +466,7 @@ void CObjPlanet::Action()
 		//▼敵行動パターン決め
 		if (m_time <= 0)
 		{
-			int Enemy_Fight_type[6][5][6] =   //敵攻撃用の配列作成
+			int Enemy_Fight_type[7][5][6] =   //敵攻撃用の配列作成
 			{
 				//m_type==0 これは呼び出されない
 				{
@@ -504,6 +521,15 @@ void CObjPlanet::Action()
 					{ 3,5,4,3,3,0 }, //2番目
 					{ 4,2,5,4,4,0 }, //3番目
 					{ 5,1,1,5,5,0 }, //4番目
+				},
+				//m_type == 6(チュートリアル惑星)
+				{
+					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+					{ 1,2,3,4,5,0 }, //0番目
+					{ 1,2,3,4,5,0 }, //1番目
+					{ 1,2,3,4,5,0 }, //2番目
+					{ 1,2,3,4,5,0 }, //3番目
+					{ 1,2,3,4,5,0 }, //4番目
 				},
 				/*
 				　攻撃パターン追加する際は、上の配列の数字を変え
@@ -560,11 +586,11 @@ void CObjPlanet::Action()
 				int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
 				{
 					//1:上レーン　2:中レーン　3:下レーン
-					{ 3,2,1,1,2,0 }, //0番目
-					{ 2,3,2,3,1,0 }, //1番目
-					{ 1,2,3,2,2,0 }, //2番目
-					{ 2,1,1,2,3,0 }, //3番目
-					{ 1,3,2,2,1,0 }, //4番目
+						{ 3,2,1,1,2,0 }, //0番目
+						{ 2,3,2,3,1,0 }, //1番目
+						{ 1,2,3,2,2,0 }, //2番目
+						{ 2,1,1,2,3,0 }, //3番目
+						{ 1,3,2,2,1,0 }, //4番目
 
 					/*
 					レーン選択パターン追加する際は、上の配列の数字を変え
@@ -619,6 +645,9 @@ void CObjPlanet::Action()
 			case 5:
 				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
+			case 6:
+				m_time = SIX_DELAY * m_enemy_recast_buff;
+				break;
 			}
 		}
 		else if (m_attackf == 2 && m_time <= 0 && m_type != 0)//青色ポッド
@@ -643,6 +672,9 @@ void CObjPlanet::Action()
 				break;
 			case 5:
 				m_time = FIV_DELAY * m_enemy_recast_buff;
+				break;
+			case 6:
+				m_time = SIX_DELAY * m_enemy_recast_buff;
 				break;
 			}
 		}
@@ -669,6 +701,9 @@ void CObjPlanet::Action()
 			case 5:
 				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
+			case 6:
+				m_time = SIX_DELAY * m_enemy_recast_buff;
+				break;
 			}
 		}
 		else if (m_attackf == 4 && m_time <= 0 && m_type != 0)//灰色ポッド(今は黄色)
@@ -694,6 +729,9 @@ void CObjPlanet::Action()
 			case 5:
 				m_time = FIV_DELAY * m_enemy_recast_buff;
 				break;
+			case 6:
+				m_time = SIX_DELAY * m_enemy_recast_buff;
+				break;
 			}
 		}
 		else if (m_attackf == 5 && m_time <= 0 && m_type != 0)//ミサイル
@@ -718,6 +756,9 @@ void CObjPlanet::Action()
 				break;
 			case 5:
 				m_time = FIV_DELAY * m_enemy_recast_buff;
+				break;
+			case 6:
+				m_time = SIX_DELAY * m_enemy_recast_buff;
 				break;
 			}
 
