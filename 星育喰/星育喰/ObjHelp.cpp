@@ -363,8 +363,8 @@ void CObjHelp::Draw()
 			//▼ページを戻すボタン表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = -128.0f;
-			src.m_bottom = 128.0f;
+			src.m_right = -256.0f;
+			src.m_bottom = 256.0f;
 
 			dst.m_top = 330.0f;
 			dst.m_left = 30.0f;
@@ -375,8 +375,8 @@ void CObjHelp::Draw()
 			//▼ページを進めるボタン表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 128.0f;
-			src.m_bottom = 128.0f;
+			src.m_right = 256.0f;
+			src.m_bottom = 256.0f;
 
 			dst.m_top = 330.0f;
 			dst.m_left = 1120.0f;

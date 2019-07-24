@@ -66,6 +66,8 @@ int g_gus_num		= 0;
 
 int g_Challenge_enemy = 0;
 bool g_help_f = false;
+int  g_tutorial_progress = 0;
+bool g_is_operatable = true;
 
 //イニシャライズ
 void CObjTitle::Init()

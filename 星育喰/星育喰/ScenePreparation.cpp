@@ -193,6 +193,9 @@ void CScenePreparation::InitScene()
 	//メッセージウィンドウ01画像90番に登録
 	Draw::LoadImage(L"メッセージウィンドウ01.png", 90, TEX_SIZE_512);
 
+	//ポーズ画面背景(画面暗転用)を読み込み91番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 91, TEX_SIZE_512);
+
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
@@ -202,6 +205,17 @@ void CScenePreparation::InitScene()
 
 	//モアイ正面画像を読み込み128番に登録
 	Draw::LoadImage(L"モアイ正面.png", 128, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
+
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);

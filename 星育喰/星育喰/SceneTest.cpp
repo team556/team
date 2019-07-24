@@ -42,17 +42,20 @@ void CSceneTest::InitScene()
 	//ウインドウ01を読み込み3番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 3, TEX_SIZE_512);
 
-	//戦闘員x10(山田)を読み込み4番に登録
-	Draw::LoadImage(L"戦闘員x10.png", 4, TEX_SIZE_512);
-
 	//ポーズ画面背景(画面暗転用)を読み込み5番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 5, TEX_SIZE_512);
 
-	//矢印画像を読み込み6番に登録
-	Draw::LoadImage(L"矢印.png", 6, TEX_SIZE_512);
-
 	//白文字集を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+	
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
 
 	////10番に登録
 	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);
