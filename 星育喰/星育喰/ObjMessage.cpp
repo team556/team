@@ -640,12 +640,12 @@ void CObjMessage::Draw()
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 36.0f;
-		src.m_bottom = 36.0f;
+		src.m_bottom = 35.0f;
 
-		dst.m_top = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
-		dst.m_left = 255.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
-		dst.m_right = 255.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
-		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
+		dst.m_top = window_pos_y[m_is_top_or_bottom] + 57.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
+		dst.m_left = 264.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
+		dst.m_right = 246.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
+		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 39.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
 		Draw::Draw(189, &src, &dst, d, 0.0f);
 	}
 
