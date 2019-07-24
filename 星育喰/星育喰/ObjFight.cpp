@@ -248,7 +248,7 @@ void CObjFight::Action()
 		//ç∂Ç©ÇÁÇPî‘ñ⁄
 		if (g_Challenge_enemy == 0)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(8000, 100, L"ñÿçﬁ", &g_Wood_num, 50, L"ìS", &g_Iron_num, 70, 2);
+			CObjFightClear* crer = new CObjFightClear(10000, 100, L"ñÿçﬁ", &g_Wood_num, 50, L"ìS", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ç∂Ç©ÇÁÇQî‘ñ⁄
