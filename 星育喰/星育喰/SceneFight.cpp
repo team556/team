@@ -126,7 +126,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み33番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 33, TEX_SIZE_512);
+	Draw::LoadImage(L"メッセージウィンドウ.png", 33, TEX_SIZE_512);
 
 	//汗を読み込み34番に登録
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
@@ -275,6 +275,19 @@ void CSceneFight::InitScene()
 
 	//ボロ画像を読み込み122番に登録
 	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
+
+	//ポッドレーザー読み込み123番に登録
+	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);

@@ -168,11 +168,11 @@ void CObjRocket::Init()
 			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD2, OBJ_PODD, 1); break;
 			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD3, OBJ_PODD, 1); break;
 			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD4, OBJ_PODD, 1); break;
-			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODP, 1); break;
-			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODP, 1); break;
-			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODP, 1); break;
-			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODP, 1); break;
-			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODD, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODD, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODD, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODD, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODD, 1); break;
 			}
 		}
 		else if (ButtonUP == 3)
@@ -183,11 +183,11 @@ void CObjRocket::Init()
 			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD2, OBJ_PODS, 1); break;
 			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD3, OBJ_PODS, 1); break;
 			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD4, OBJ_PODS, 1); break;
-			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODP, 1); break;
-			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODP, 1); break;
-			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODP, 1); break;
-			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODP, 1); break;
-			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODS, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODS, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODS, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODS, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODS, 1); break;
 			}
 		}
 		else if (ButtonUP == 4)
@@ -198,11 +198,11 @@ void CObjRocket::Init()
 			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD2, OBJ_PODB, 1); break;
 			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD3, OBJ_PODB, 1); break;
 			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD4, OBJ_PODB, 1); break;
-			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODP, 1); break;
-			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODP, 1); break;
-			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODP, 1); break;
-			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODP, 1); break;
-			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODB, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODB, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODB, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODB, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODB, 1); break;
 			}
 		}
 		else if (ButtonUP == 5)
@@ -222,34 +222,79 @@ void CObjRocket::Init()
 		m_x -= 100;
 		if (ButtonUE == 1)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODP, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODP, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODP, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODP, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODP, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODP, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODP, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODP, 1); break;
+			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODD, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODD, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODD, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODD, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODD, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODD, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODD, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODD, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODD, 1); break;
+			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODS, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODS, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODS, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODS, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODS, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODS, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODS, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODS, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODS, 1); break;
+			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 4)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODB, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODB, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODB, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODB, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODB, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODB, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODB, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODB, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODB, 1); break;
+			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
-		}
-		if (ButtonUP != 5) {
-			e_pnam++;
 		}
 		if (e_pnam == 9)
 			e_pnam = 0;
@@ -267,6 +312,7 @@ void CObjRocket::Init()
 
 	m_a = 1.0f;
 	m_bom = 0.3f;
+
 
 	//ポッドのHPを決める
 	if (ButtonU == 5)			//ポッドがミサイルの時のみHPを1にする
@@ -286,7 +332,7 @@ void CObjRocket::Init()
 		m_pod_max_hp = 20.0f;
 	}
 	else if (m_type == 4) {
-		m_pod_max_hp = 15.0f;
+		m_pod_max_hp = 17.0f;
 	}
 	else if (m_type == 5) {
 		m_pod_max_hp = 30.0f;
@@ -394,10 +440,13 @@ void CObjRocket::Action()
 		m_del = true;
 	}
 
+
 	//ポッド同士の戦闘時にHitBox位置とサイズを変更する
 	if (m_type == 0)
-		if (ButtonU == 5) {//ロケットのみ通常で更新
+		if (ButtonU == 5) {		//ロケット更新
 			hit->SetPos(m_x, m_y,m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x + m_size * m_schange, m_y + m_size * m_schange, m_size, m_size);//戦闘時変更
 		}
 		else
 		{
@@ -407,9 +456,17 @@ void CObjRocket::Action()
 		}
 	else
 	{
-		hit->SetPos(m_x, m_y, m_size, m_size);			//HitBox更新
-		if(m_fight == true)				
-			hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
+		if (ButtonU == 5) {		//ロケット更新
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x - m_size * m_schange, m_y - m_size * m_schange, m_size, m_size);//戦闘時変更
+		}
+		else
+		{
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
+		}
 	}
 
 	if (m_fight == true)
@@ -423,6 +480,8 @@ void CObjRocket::Action()
 			m_atk_cnt++;//カウント
 		}
 	}
+	else
+		m_atk_cnt = 0;
 
 	//if (m_pstop == true)		//ポッド停止フラグON時
 	//{
@@ -533,16 +592,16 @@ void CObjRocket::Action()
 					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
 					m_fight = true;
-				else if ((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_pnam == 0) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_pnam == 1) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_pnam == 2) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_pnam == 3) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_pnam == 4) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_pnam == 5) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_pnam == 6) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_pnam == 7) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_pnam == 8) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_pnam == 9))
+				else if((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
 					m_fight = true;
 				else
 					m_fight = false;
@@ -575,25 +634,25 @@ void CObjRocket::Action()
 				m_stop_f = false;
 		}
 		else {
-			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_pnam >= 1 && m_pnam <= 3))
+			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_pnam >= 2 && m_pnam <= 4))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_pnam >= 3 && m_pnam <= 5))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_pnam >= 4 && m_pnam <= 6))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_pnam >= 5 && m_pnam <= 7))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_pnam >= 6 && m_pnam <= 8))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_pnam >= 7 && m_pnam <= 9))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_pnam >= 8 || m_pnam <= 0))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_pnam >= 9 || m_pnam <= 1))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_pnam >= 0 || m_pnam <= 2))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
 				m_stop_f = true;
 			else if (m_fight == false)
 				m_stop_f = false;
@@ -694,7 +753,7 @@ void CObjRocket::Action()
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
+						m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 2)	//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
@@ -742,8 +801,8 @@ void CObjRocket::Action()
 				{
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
-
-					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
+					
+						m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 3)	//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
@@ -791,8 +850,8 @@ void CObjRocket::Action()
 				{
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
-
-					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
+					
+						m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 4)	//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
@@ -841,7 +900,7 @@ void CObjRocket::Action()
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 					
-					m_podhp -= (m_pod_max_hp * 0.85) * m_One_pat_dem;//最大HP*0.85倍のダメージを与える
+						m_podhp -= (m_pod_max_hp * 0.85) * m_One_pat_dem;//最大HP*0.85倍のダメージを与える
 				}
 			}
 			else if (ButtonUE == 5)	//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
@@ -854,11 +913,23 @@ void CObjRocket::Action()
 			m_fight = false;
 			m_stop_cnt = 0;
 		}
-		
+		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+			//m_stop_f = false;
+		else if(m_type != 0)
+			m_stop_f = false;
 
 		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
 		//※プレイヤーがダメージを受ける時の処理
-		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && m_type == 0)
+		if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true) && m_type == 0)
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
@@ -898,7 +969,7 @@ void CObjRocket::Action()
 					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
 
 					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
-
+					
 					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
@@ -1027,7 +1098,10 @@ void CObjRocket::Action()
 			m_stop_cnt = 0;
 		
 		}
-
+		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+			//m_stop_f = false;
+		else if (m_type == 0)
+			m_stop_f = false;
 
 		if (m_podhp <= 0)//両ポッドHPでの削除
 		{
@@ -1035,6 +1109,7 @@ void CObjRocket::Action()
 		}
 	}
 
+	
 	
 }
 

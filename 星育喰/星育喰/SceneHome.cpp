@@ -60,7 +60,10 @@ void CSceneHome::InitScene()
 
 	//ウインドウ01を読み込み7番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 7, TEX_SIZE_512);
-	
+
+	//ポーズ画面背景(画面暗転用)を読み込み8番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 8, TEX_SIZE_512);
+
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
 
@@ -86,10 +89,19 @@ void CSceneHome::InitScene()
 
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
-
 	
 	//現在装備中のスペシャル技文字画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
 
 
 	//音楽読み込み

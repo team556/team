@@ -113,7 +113,7 @@ void CObjMessage::Init()
 	//テスト
 	wchar_t strr[20] = L"きになあ";
 
-	//テスト
+	//○○画面メッセージ文設定＆画像登録番号設定
 	if (m_Scene_id == 0)
 	{
 		swprintf_s(m_font[0], L"ＲあかあかＢきくＧきく＿かうい～かかかかかかかかきなきなにあ￥にあまむまむ￥テスト１２３￥２１３２３１２￥１３１２１３２");//メッセージ１
@@ -124,11 +124,36 @@ void CObjMessage::Init()
 		swprintf_s(m_font[5], L"|");					//メッセージ６
 
 		m_message_window_num = 2;
+		m_yamada_window_num = 3;
+		m_black_out_num = 5;
 	}
-	//テスト
+	//ホーム
 	else if (m_Scene_id == 1)
 	{
-		m_message_window_num = 2;
+		m_message_window_num = 6;
+		m_yamada_window_num = 7;
+		m_black_out_num = 8;
+	}
+	//戦闘準備画面
+	else if (m_Scene_id == 2)
+	{
+		m_message_window_num = 55;
+		m_yamada_window_num = 89;
+		m_black_out_num = 91;
+	}
+	//戦闘画面
+	else if (m_Scene_id == 3)
+	{
+		m_message_window_num = 33;
+		m_yamada_window_num = 79;
+		m_black_out_num = 20;
+	}
+	//育成画面
+	else if (m_Scene_id == 4)
+	{
+		m_message_window_num = 21;
+		m_yamada_window_num = 20;
+		m_black_out_num = 135;
 	}
 }
 
@@ -221,6 +246,7 @@ void CObjMessage::Action()
 			m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
 
 
+			m_fast_f = false;//描画速度高速化停止
 			m_key_f = true;//キーフラグを立てる
 			m_reminder_f = false;//クリック催促画像非表示
 
@@ -506,7 +532,7 @@ void CObjMessage::Draw()
 		dst.m_left = 0.0f;
 		dst.m_right = 1200.0f;
 		dst.m_bottom = 700.0f;
-		Draw::Draw(5, &src, &dst, blackout, 0.0f);
+		Draw::Draw(m_black_out_num, &src, &dst, blackout, 0.0f);
 	}
 
 	//▽ウインドウ表示左上 
@@ -591,7 +617,7 @@ void CObjMessage::Draw()
 	dst.m_left = 20.0f;
 	dst.m_right = 220.0f;
 	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 200.0f;
-	Draw::Draw(3, &src, &dst, d, 0.0f);
+	Draw::Draw(m_yamada_window_num, &src, &dst, d, 0.0f);
 
 	//▼山田表示
 	src.m_top = 0.0f;
@@ -603,7 +629,7 @@ void CObjMessage::Draw()
 	dst.m_left = 40.0f;
 	dst.m_right = 200.0f;
 	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 180.0f;
-	Draw::Draw(4, &src, &dst, d, 0.0f);
+	Draw::Draw(190, &src, &dst, d, 0.0f);
 
 	//▼山田文字画像表示
 	FontDraw(L"山田", 255.0f, window_pos_y[m_is_top_or_bottom] + 8.0f, 36.0f, 36.0f, orange, false);
@@ -613,14 +639,14 @@ void CObjMessage::Draw()
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 160.0f;
-		src.m_bottom = 240.0f;
+		src.m_right = 36.0f;
+		src.m_bottom = 35.0f;
 
-		dst.m_top = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
-		dst.m_left = 255.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
-		dst.m_right = 255.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
-		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
-		Draw::Draw(4, &src, &dst, d, 0.0f);
+		dst.m_top = window_pos_y[m_is_top_or_bottom] + 57.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
+		dst.m_left = 264.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
+		dst.m_right = 246.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
+		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 39.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
+		Draw::Draw(189, &src, &dst, d, 0.0f);
 	}
 
 	//▼矢印表示
@@ -643,7 +669,7 @@ void CObjMessage::Draw()
 		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x + m_swing_vec;
 		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y;
 	}
-	Draw::Draw(6, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
+	Draw::Draw(191, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
 
 
 	//現在メッセージの文字列の長さが取得出来ていれば実行される
