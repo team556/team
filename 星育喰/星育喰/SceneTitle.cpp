@@ -69,6 +69,10 @@ void CSceneTitle::InitScene()
 	////音楽スタート
 	Audio::Start(0);
 
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
+
+
 }
 
 //ゲームメイン実行中メソッド

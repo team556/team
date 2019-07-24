@@ -954,7 +954,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (80 < m_mou_x && m_mou_x < 130 && 80 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
+		if (80 < m_mou_x && m_mou_x < 130 && 74 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 

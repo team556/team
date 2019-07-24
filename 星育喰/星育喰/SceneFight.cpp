@@ -273,6 +273,9 @@ void CSceneFight::InitScene()
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
+	//ボロ画像を読み込み122番に登録
+	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
 
