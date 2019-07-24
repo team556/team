@@ -21,8 +21,8 @@ void CObjBarracks::Init()
 	m_Back_Button_color = INI_COLOR;
 	m_Bar_color = INI_COLOR;
 	m_Bar_Lvup_color = INI_COLOR;
-	m_Yes_Button_color = 0.0f;
-	m_No_Button_color = 0.0f;
+	m_Yes_Button_color = 1.0f;
+	m_No_Button_color = 1.0f;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -105,7 +105,7 @@ void CObjBarracks::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら兵舎レベルUP処理を行い、このウインドウを閉じる
 				//左クリック入力時
@@ -148,7 +148,7 @@ void CObjBarracks::Action()
 							Audio::Start(3);
 						}
 						
-						m_Yes_Button_color = 0.0f;
+						m_Yes_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -161,7 +161,7 @@ void CObjBarracks::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
@@ -907,10 +907,10 @@ void CObjBarracks::Draw()
 	};
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
+	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
 
 	//簡易メッセージ画像用
 	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
