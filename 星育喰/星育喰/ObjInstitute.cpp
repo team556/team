@@ -1699,7 +1699,7 @@ void CObjInstitute::Draw()
 		Draw::Draw(64, &src, &dst, white, 0.0f);
 
 		//▼研究所レベルUP文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 930.0f;
 		src.m_bottom = 117.0f;
@@ -1957,7 +1957,7 @@ void CObjInstitute::Draw()
 			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
 
 			//▼素材消費して文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 0.0f;
 			src.m_right = 717.0f;
 			src.m_bottom = 112.0f;
@@ -1969,7 +1969,7 @@ void CObjInstitute::Draw()
 			Draw::Draw(72, &src, &dst, black, 0.0f);
 
 			//▼レベルアップしますか？文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 717.0f;
 			src.m_right = 2017.0f;
 			src.m_bottom = 112.0f;
@@ -2494,7 +2494,7 @@ void CObjInstitute::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 313.0f;
+				src.m_right = 311.0f;
 				src.m_bottom = 107.0f;
 
 				dst.m_top = 250 + (i * 150);
@@ -2520,7 +2520,7 @@ void CObjInstitute::Draw()
 
 			//▼ブルー文字画像表示
 			src.m_top = 2.0f;
-			src.m_left = 0.0f;
+			src.m_left = 2.0f;
 			src.m_right = 352.0f;
 			src.m_bottom = 112.0f;
 
@@ -2532,7 +2532,7 @@ void CObjInstitute::Draw()
 
 			//▼グリーン文字画像表示
 			src.m_top = 2.0f;
-			src.m_left = 2.0f;
+			src.m_left = 4.0f;
 			src.m_right = 472.0f;
 			src.m_bottom = 110.0f;
 
@@ -2663,7 +2663,7 @@ void CObjInstitute::Draw()
 				Draw::Draw(20, &src, &dst, white, 0.0f);
 
 				//▼素材消費してレベルアップしますか？文字画像表示
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 2017.0f;
 				src.m_bottom = 112.0f;
@@ -2672,10 +2672,10 @@ void CObjInstitute::Draw()
 				dst.m_left = 345.0f;
 				dst.m_right = 855.0f;
 				dst.m_bottom = 280.0f;
-				Draw::Draw(72, &src, &dst, black, 0.0f);
+				Draw::Draw(72, &src, &dst, white, 0.0f);
 
 				//▼※研究員は失われません文字画像表示
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 1304.0f;
 				src.m_bottom = 112.0f;
@@ -2684,7 +2684,7 @@ void CObjInstitute::Draw()
 				dst.m_left = 347.0f;
 				dst.m_right = 707.0f;
 				dst.m_bottom = 330.0f;
-				Draw::Draw(87, &src, &dst, black, 0.0f);
+				Draw::Draw(87, &src, &dst, white, 0.0f);
 
 				//▼はい文字画像表示
 				src.m_top = 0.0f;
@@ -3082,7 +3082,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 
 		//切り取り位置を設定する
 		m_message_clip_right = 1057.0f;
-		m_message_clip_bottom = 112.0f;
+		m_message_clip_bottom = 110.0f;
 
 		//描画位置を設定する
 		m_message_draw_left = -110.0f;

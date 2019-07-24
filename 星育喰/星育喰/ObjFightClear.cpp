@@ -416,7 +416,7 @@ void CObjFightClear::Draw()
 			//dst.m_bottom = 530.0f;
 			//Draw::Draw(77, &src, &dst, c[1], 0.0f);
 
-			//▼ウインドウ表示右下
+			//▼ウインドウ表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 1200.0f;
@@ -444,10 +444,10 @@ void CObjFightClear::Draw()
 
 
 			//住民
-			src.m_top = 5.0f;
-			src.m_left = 5.0f;
-			src.m_right = 232.0f;
-			src.m_bottom = 112.0f;
+			src.m_top = 2.0f;
+			src.m_left = 2.0f;
+			src.m_right = 230.0f;
+			src.m_bottom = 110.0f;
 
 			dst.m_top = FONT_Y;
 			dst.m_left = FONT_X;
@@ -547,9 +547,9 @@ void CObjFightClear::Draw()
 
 
 			//サイズ(HP)
-			src.m_top = 5.0f;
+			src.m_top = 2.0f;
 			src.m_left = 5.0f;
-			src.m_right = 412.0f;
+			src.m_right = 410.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = FONT_Y + 50.0f;
@@ -558,7 +558,7 @@ void CObjFightClear::Draw()
 			dst.m_bottom = FONT_Y + 90.0f;
 			Draw::Draw(55, &src, &dst, c[3], 0.0f);
 
-			src.m_top = 1250.0f;
+			src.m_top = 1260.0f;
 			src.m_left = 250.0f;
 			src.m_right = 375.0f;
 			src.m_bottom = 1375.0f;
@@ -572,10 +572,10 @@ void CObjFightClear::Draw()
 			
 			//惑星取得HP表示------------------------------------------------------------------
 			//+
-			src.m_top = 1250.0f;
+			src.m_top = 1245.0f;
 			src.m_left = 375.0f;
-			src.m_right = 500.0f;
-			src.m_bottom = 1375.0f;
+			src.m_right = 498.0f;
+			src.m_bottom = 1373.0f;
 
 			dst.m_top = FONT_Y + 50.0f;
 			dst.m_left = FONT_X + 300.0f;
@@ -618,16 +618,16 @@ void CObjFightClear::Draw()
 			//dst.m_right = FONT_X + 400.0f;
 			//dst.m_bottom = FONT_Y + 90.0f;
 			//Draw::Draw(41, &src, &dst, c[3], 0.0f);
-			FontDraw(NumConversion(m_large), FONT_X + 340, FONT_Y + 50, 20, 40, c[3], false);
+			FontDraw(NumConversion(m_large), FONT_X + 340, FONT_Y + 48, 20, 40, c[3], false);
 			//swprintf_s(str, L"＋%d", m_large);
 			//Font::StrDraw(str, FONT_X + 300, FONT_Y + 50, 40, c[3]);
 			//--------------------------------------------------------------------------------
 
 			//資材
-			src.m_top = 5.0f;
-			src.m_left = 5.0f;
+			src.m_top = 2.0f;
+			src.m_left = 2.0f;
 			src.m_right = 232.0f;
-			src.m_bottom = 112.0f;
+			src.m_bottom = 110.0f;
 
 			dst.m_top = FONT_Y + 100.0f;
 			dst.m_left = FONT_X;
@@ -653,9 +653,9 @@ void CObjFightClear::Draw()
 				//木材
 				if (m_mat_type[0] == &g_Wood_num)
 				{
-					src.m_top = 0.0f;
+					src.m_top = 2.0f;
 					src.m_left = 0.0f;
-					src.m_right = 232.0f;
+					src.m_right = 230.0f;
 					src.m_bottom = 112.0f;
 
 					dst.m_top = FONT_Y + 150;
@@ -803,10 +803,10 @@ void CObjFightClear::Draw()
 			//鉄
 			else if (m_mat_type[1] == &g_Iron_num)
 			{
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
-				src.m_right = 112.0f;
-				src.m_bottom = 112.0f;
+				src.m_right = 110.0f;
+				src.m_bottom = 110.0f;
 
 				dst.m_top = FONT_Y + 200;
 				dst.m_left = FONT_X;
@@ -876,7 +876,7 @@ void CObjFightClear::Draw()
 			if (m_mat_num[1] != NULL)//資材数BがNULL(0)の時は描画しない
 			{
 				//+
-				src.m_top = 1250.0f;
+				src.m_top = 1252.0f;
 				src.m_left = 375.0f;
 				src.m_right = 500.0f;
 				src.m_bottom = 1375.0f;
@@ -919,10 +919,10 @@ void CObjFightClear::Draw()
 			if (m_skill != 0)
 			{
 				//スペシャル技
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 712.0f;
-				src.m_bottom = 112.0f;
+				src.m_bottom = 110.0f;
 
 				dst.m_top = FONT_Y + 250.0f;
 				dst.m_left = FONT_X;
@@ -961,8 +961,8 @@ void CObjFightClear::Draw()
 					//Font::StrDraw(L"Explosion GET!",			FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
 				case 2:
 					//フラクチャーレイ
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
 					src.m_right = 952.0f;
 					src.m_bottom = 112.0f;
 

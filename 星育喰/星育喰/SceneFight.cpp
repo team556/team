@@ -286,6 +286,9 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
 
 
+	//ポッドレーザー読み込み123番に登録
+	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);
+
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
 

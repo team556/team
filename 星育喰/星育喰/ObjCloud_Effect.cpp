@@ -186,10 +186,10 @@ void CObjCloud_Effect::Draw()
 
 
 	//▼ホワイトアウト中のフォント画像(惑星発展度UP！)表示
-	src.m_top = 0.0f;
+	src.m_top = 2.0f;
 	src.m_left = 0.0f;
 	src.m_right = 891.0f;
-	src.m_bottom = 117.0f;
+	src.m_bottom = 115.0f;
 
 	dst.m_top = 275.0f;
 	dst.m_left = 200.0f;

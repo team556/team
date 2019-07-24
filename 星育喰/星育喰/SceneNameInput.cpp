@@ -29,8 +29,24 @@ void CSceneNameInput::InitScene()
 	//仮画像を一番目に登録
 	Draw::LoadImage(L"名前.png", 1, TEX_SIZE_64);
 
+	//仮画像を一番目に登録
+	Draw::LoadImage(L"クリア.png", 2, TEX_SIZE_64);
+
+	//仮画像を一番目に登録
+	Draw::LoadImage(L"決定.png", 3, TEX_SIZE_64);
+
+	//仮画像を一番目に登録
+	Draw::LoadImage(L"惑星.png", 4, TEX_SIZE_64);
+
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	//ウィンドウ画像89番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
+	//はい文字画像読み込み66番に登録
+	Draw::LoadImage(L"はい.png", 66, TEX_SIZE_512);
+
+	//いいえ文字画像読み込み67番に登録
+	Draw::LoadImage(L"いいえ.png", 67, TEX_SIZE_512);
 
 	CObjNameInput*obj = new CObjNameInput();
 	Objs::InsertObj(obj, OBJ_NAME_INPUT, 1);
