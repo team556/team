@@ -22,7 +22,7 @@ private:
 	float m_vx;		//ベクトルX
 	float m_vy;		//ベクトルY
 	float m_size;	//ミサイルのサイズ
-	float m_schange;//サイズチェンジ用(3~4)
+	float m_schange;//サイズチェンジ用
 
 	float m_r;		//角度変更用(+で左回転)
 	float m_mov;	//

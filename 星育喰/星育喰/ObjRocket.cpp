@@ -236,6 +236,7 @@ void CObjRocket::Init()
 			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 2)
 		{
@@ -253,6 +254,7 @@ void CObjRocket::Init()
 			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 3)
 		{
@@ -270,6 +272,7 @@ void CObjRocket::Init()
 			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 4)
 		{
@@ -287,13 +290,11 @@ void CObjRocket::Init()
 			}
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
 			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
-		}
-		if (ButtonUP != 5) {
-			e_pnam++;
 		}
 		if (e_pnam == 9)
 			e_pnam = 0;
@@ -307,14 +308,11 @@ void CObjRocket::Init()
 	m_ani_max = 1;
 	m_ani_time = 0;
 	m_del = false;
-	m_mf = false;
 	m_vx = 0.0f;
 
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
-	m_del_cnt = 0;
-	m_dcnt_max = 80;
 
 	//ポッドのHPを決める
 	if (ButtonU == 5)			//ポッドがミサイルの時のみHPを1にする
@@ -438,9 +436,10 @@ void CObjRocket::Action()
 
 	//ポッド同士の戦闘時にHitBox位置とサイズを変更する
 	if (m_type == 0)
-		if (ButtonU == 5) {//ロケットのみ通常で更新
+		if (ButtonU == 5) {		//ロケット更新
 			hit->SetPos(m_x, m_y,m_size, m_size);		//HitBox更新
-			m_stop_f = false;//ロケットは止めない
+			if (m_fight == true)
+				hit->SetPos(m_x + m_size * m_schange, m_y + m_size * m_schange, m_size, m_size);//戦闘時変更
 		}
 		else
 		{
@@ -450,9 +449,17 @@ void CObjRocket::Action()
 		}
 	else
 	{
-		hit->SetPos(m_x, m_y, m_size, m_size);			//HitBox更新
-		if(m_fight == true)				
-			hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
+		if (ButtonU == 5) {		//ロケット更新
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x - m_size * m_schange, m_y - m_size * m_schange, m_size, m_size);//戦闘時変更
+		}
+		else
+		{
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
+		}
 	}
 
 	if (m_fight == true)
@@ -578,16 +585,16 @@ void CObjRocket::Action()
 					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
 					m_fight = true;
-				else if ((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_pnam == 0) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_pnam == 1) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_pnam == 2) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_pnam == 3) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_pnam == 4) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_pnam == 5) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_pnam == 6) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_pnam == 7) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_pnam == 8) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_pnam == 9))
+				else if((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
 					m_fight = true;
 				else
 					m_fight = false;
@@ -620,25 +627,25 @@ void CObjRocket::Action()
 				m_stop_f = false;
 		}
 		else {
-			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_pnam >= 1 && m_pnam <= 3))
+			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_pnam >= 2 && m_pnam <= 4))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_pnam >= 3 && m_pnam <= 5))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_pnam >= 4 && m_pnam <= 6))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_pnam >= 5 && m_pnam <= 7))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_pnam >= 6 && m_pnam <= 8))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_pnam >= 7 && m_pnam <= 9))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_pnam >= 8 || m_pnam <= 0))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_pnam >= 9 || m_pnam <= 1))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
 				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_pnam >= 0 || m_pnam <= 2))
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
 				m_stop_f = true;
 			else if (m_fight == false)
 				m_stop_f = false;
@@ -899,9 +906,10 @@ void CObjRocket::Action()
 			m_fight = false;
 			m_stop_cnt = 0;
 		}
-		else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+			//m_stop_f = false;
+		else if(m_type != 0)
 			m_stop_f = false;
-		
 
 		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
 		//※プレイヤーがダメージを受ける時の処理
@@ -1083,7 +1091,9 @@ void CObjRocket::Action()
 			m_stop_cnt = 0;
 		
 		}
-		else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+			//m_stop_f = false;
+		else if (m_type == 0)
 			m_stop_f = false;
 
 		if (m_podhp <= 0)//両ポッドHPでの削除
@@ -1091,6 +1101,8 @@ void CObjRocket::Action()
 			m_del = true;
 		}
 	}
+
+	
 	
 }
 

@@ -204,25 +204,25 @@ void CObjRktHit::Action()
 
 	else if (m_type == true && hit->CheckElementHit(ELEMENT_NULL) == true)	//this‚ª“G ‚©‚ÂHitBox‚É“–‚½‚Á‚½Žž
 	{
-		if (hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && (m_pnam >= 1 && m_pnam <= 3))
+		if (hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && (m_enam >= 1 && m_enam <= 3))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && (m_pnam >= 2 && m_pnam <= 4))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && (m_enam >= 2 && m_enam <= 4))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && (m_pnam >= 3 && m_pnam <= 5))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && (m_enam >= 3 && m_enam <= 5))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && (m_pnam >= 4 && m_pnam <= 6))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && (m_enam >= 4 && m_enam <= 6))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && (m_pnam >= 5 && m_pnam <= 7))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && (m_enam >= 5 && m_enam <= 7))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && (m_pnam >= 6 && m_pnam <= 8))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && (m_enam >= 6 && m_enam <= 8))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && (m_pnam >= 7 && m_pnam <= 9))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && (m_enam >= 7 && m_enam <= 9))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && (m_pnam >= 8 || m_pnam <= 0))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && (m_enam >= 8 || m_enam <= 0))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && (m_pnam >= 9 || m_pnam <= 1))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && (m_enam >= 9 || m_enam <= 1))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && (m_pnam >= 0 || m_pnam <= 2))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && (m_enam >= 0 || m_enam <= 2))
 			m_stop_f = true;
 		else
 			m_stop_f = false;
