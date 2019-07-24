@@ -1031,14 +1031,14 @@ void CObjBarracks::Draw()
 			src.m_right = 508.0f;
 			src.m_bottom = 117.0f;
 
-			dst.m_top = m_mou_y - 45.0f;
-			dst.m_left = m_mou_x - 75.0f;
-			dst.m_right = m_mou_x + 40.0f;
-			dst.m_bottom = m_mou_y - 15.0f;
+			dst.m_top = m_mou_y - 43.0f;//-2
+			dst.m_left = m_mou_x - 70.0f;//-5
+			dst.m_right = m_mou_x + 35.0f;//5
+			dst.m_bottom = m_mou_y - 18.0f;//2
 			Draw::Draw(116, &src, &dst, white, 0.0f);
 
 			//▼兵舎レベル
-			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 55.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
+			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 45.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
 
 			////▼フォント表示
 			////兵舎レベル

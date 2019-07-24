@@ -546,10 +546,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 242.0f;
 			src.m_bottom = 117.0f;
 
-			dst.m_top = m_mou_y - 45.0f;
+			dst.m_top = m_mou_y - 43.0f;
 			dst.m_left = m_mou_x - 30.0f;
-			dst.m_right = m_mou_x + 30.0f;
-			dst.m_bottom = m_mou_y - 15.0f;
+			dst.m_right = m_mou_x + 20.0f;
+			dst.m_bottom = m_mou_y - 18.0f;
 			Draw::Draw(88, &src, &dst, white, 0.0f);
 		}
 }
