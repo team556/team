@@ -328,7 +328,7 @@ void CObjPreparation::Action()
 			{
 				g_destroy_progress[g_Challenge_enemy] = true;
 			}
-
+			g_Challenge_enemy = 5;
 			Scene::SetScene(new CSceneFight());//í“¬‰æ–Ê‚ÖƒV[ƒ“ˆÚs
 		}
 		

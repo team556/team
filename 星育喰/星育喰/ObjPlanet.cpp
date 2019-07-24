@@ -104,6 +104,9 @@ void CObjPlanet::Init()
 
 	m_subsize = 0.0f;
 
+	m_inject_f = true;
+	if(m_inject_f == 6)//チュートリアル惑星のみ(最初から打てない設定にするとki用)
+		m_inject_f = false;
 	//m_img_nam = 0;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
@@ -173,7 +176,7 @@ void CObjPlanet::Action()
 		|| (hit->CheckElementHit(ELEMENT_PLAYER) == true))	//お互い当たっているかつ
 		&& (m_cnt < (2.5 * 60) * m_mov_spd)) {		//2.5秒カウントしてない場合
 		m_cnt++;
-	}	
+	}
 
 	//-------------------------------------------------アニメーション、星の動き
 	if (m_ani_time == 60) {	//フレーム切り替え時間
@@ -219,7 +222,7 @@ void CObjPlanet::Action()
 	if (m_cnt < (2.5 * 60) * m_mov_spd)	//カウントし終わってない場合
 		if (m_type == 0)//------(戦闘中)
 		{
-			if(hit->CheckElementHit(ELEMENT_LINE) != true)
+			if (hit->CheckElementHit(ELEMENT_LINE) != true)
 				m_px -= m_mov_spd;	//自星の動き
 			else
 			{
@@ -230,15 +233,16 @@ void CObjPlanet::Action()
 		{
 			if (m_type >= 1)
 			{
-				if(hit->CheckElementHit(ELEMENT_LINE) != true)
-				m_px += m_mov_spd;	//敵星の動き
+				if (hit->CheckElementHit(ELEMENT_LINE) != true)
+					m_px += m_mov_spd;	//敵星の動き
 				else
-				{}
+				{
+				}
 			}
 		}
 	else { 						//カウントし終わった後 (停止後)
 		if (m_ani_time == 0) {					//timeでループ制御☆
-			
+
 			//▼戦闘終了時処理
 			//プレイヤー惑星、敵惑星のサイズ(現在HPと最大HP)をそれぞれ取得し、勝敗判定を行う
 			//※惑星サイズが大きい方の勝利。
@@ -249,7 +253,7 @@ void CObjPlanet::Action()
 				{
 					m_get_siz = ene->GetSiz();
 					m_get_max_siz = ene->GetMaxSiz();
-				}	
+				}
 			}
 			else {
 				CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
@@ -260,7 +264,7 @@ void CObjPlanet::Action()
 				}
 			}
 			if (m_type == 0) {
-				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz)) 
+				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz))
 				{
 					m_eat_f = true;		//喰うフラグ有効
 				}
@@ -286,7 +290,7 @@ void CObjPlanet::Action()
 			m_size = m_siz_max;//m_size(HP)を満タンに設定
 			m_siz_change_range *= 1.5f;//その後、1.5倍化する
 			m_r = 0.0f;
-			
+
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				ene->SetDelF();
@@ -298,7 +302,7 @@ void CObjPlanet::Action()
 				pla->SetDelF();
 				Audio::Start(9);
 
-			}	
+			}
 		}
 	}
 	else
@@ -350,22 +354,22 @@ void CObjPlanet::Action()
 
 	//-------------------------------------------------------------
 
-	
+
 	hit->SetPos(m_px + m_scale_down_move - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range),	//HitBox更新
-				m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range),
-				(MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range)) * 2,
-				(MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range)) * 2);
+		m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range),
+		(MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range)) * 2,
+		(MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range)) * 2);
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
 	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_size > 0))
-	{							
+	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
 		{
 			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
-			//敵がチュートリアル惑星かつ自分のHPが50以上の時
-			if (ene->GetType() == 6 && m_size > 50.0f) {
+			//敵がチュートリアル惑星以外の時
+			if (ene->GetType() != 6) {
 				//ポッドが与えれるダメージ量をRocket.cppからグローバル変数で引っ張ってきた
 				//ダメージ量は「(敵攻撃力 * 3.6 [リミットブレイクすれば更に1.5倍]」
 				if (hit->CheckObjNameHit(OBJ_PODP) != nullptr)//パワーポッドHIT時の処理
@@ -391,11 +395,6 @@ void CObjPlanet::Action()
 
 
 				m_scale_down_move = -((1 - (m_size / m_siz_max)) * m_siz_change_range);	//縮む分だけ左に移動
-
-				//敵がチュートリアル惑星かつ自分のHPが50以下になった時に自分のHPを50にする
-				if (m_type == 0 && ene->GetType() == 6 && m_size < 50.0f) {
-					m_size = 50.0f;
-				}
 			}
 		}
 	}
@@ -458,143 +457,81 @@ void CObjPlanet::Action()
 		Hits::DeleteHitBox(this);//HitBox削除
 	}
 
-	
-
-	//▼敵惑星攻撃パターン
-	if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
-	{
-		//▼敵行動パターン決め
-		if (m_time <= 0)
-		{
-			int Enemy_Fight_type[7][5][6] =   //敵攻撃用の配列作成
-			{
-				//m_type==0 これは呼び出されない
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 2,3,2,2,5,0 }, //0番目
-					{ 2,2,2,4,2,0 }, //1番目
-					{ 2,5,3,2,4,0 }, //2番目
-					{ 5,2,3,2,2,0 }, //3番目
-					{ 2,1,2,5,6,0 }, //4番目
-				},
-				//m_type==1
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 2,3,2,2,5,0 }, //0番目
-					{ 1,2,2,4,2,0 }, //1番目
-					{ 2,5,3,2,4,0 }, //2番目
-					{ 5,2,3,2,2,0 }, //3番目
-					{ 2,1,2,5,6,0 }, //4番目
-				},
-				//m_type==2
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 1,3,1,1,5,0 }, //0番目
-					{ 2,1,1,4,1,0 }, //1番目
-					{ 1,5,3,1,4,0 }, //2番目
-					{ 5,1,3,1,1,0 }, //3番目
-					{ 1,2,1,5,6,0 }, //4番目
-				},
-				//m_type==3
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 4,3,4,4,5,0 }, //0番目
-					{ 2,4,4,2,4,0 }, //1番目
-					{ 4,5,3,4,2,0 }, //2番目
-					{ 5,4,3,4,4,0 }, //3番目
-					{ 4,1,4,5,6,0 }, //4番目
-				},
-				//m_type==4
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 3,2,3,3,5,0 }, //0番目
-					{ 2,3,3,4,3,0 }, //1番目
-					{ 3,5,2,3,4,0 }, //2番目
-					{ 5,3,2,3,3,0 }, //3番目
-					{ 3,1,3,5,6,0 }, //4番目
-				},
-				//m_type==5
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 1,5,2,1,1,0 }, //0番目
-					{ 2,6,3,2,2,0 }, //1番目
-					{ 3,5,4,3,3,0 }, //2番目
-					{ 4,2,5,4,4,0 }, //3番目
-					{ 5,1,1,5,5,0 }, //4番目
-				},
-				//m_type == 6(チュートリアル惑星)
-				{
-					//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
-					{ 1,2,3,4,5,0 }, //0番目
-					{ 1,2,3,4,5,0 }, //1番目
-					{ 1,2,3,4,5,0 }, //2番目
-					{ 1,2,3,4,5,0 }, //3番目
-					{ 1,2,3,4,5,0 }, //4番目
-				},
-				/*
-				　攻撃パターン追加する際は、上の配列の数字を変え
-				  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
-				{,,,,,}, //5番目
-				{,,,,,}, //6番目
-				{,,,,,}, //7番目
-				{,,,,,}, //8番目
-				*/
-			};
-
-			m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
-			if (m_attackf == 0)//--------配列が最後に行ったとき(0の時)
-			{
-				Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
-				//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
-				srand(time(NULL));
-				Enemy_Attack_pattern_y = rand() % 5;
-				//↓m_attackに攻撃パターンを入れる処理
-				m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
-				Enemy_Attack_pattern_x++;
-			}
-			else
-			{
-				Enemy_Attack_pattern_x++;
-			}
-		}
-
+	if (m_inject_f == true) {
 		//▼敵惑星攻撃パターン
 		if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 		{
-			//敵の発動するスペシャル技を決める(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
-			switch (m_type) {
-			case 1:
-				Special->SetSpecial_Equip(2);
-				break;
-			case 2:
-				Special->SetSpecial_Equip(1);
-				break;
-			case 3:
-				Special->SetSpecial_Equip(5);
-				break;
-			case 4:
-				Special->SetSpecial_Equip(3);
-				break;
-			case 5:
-				Special->SetSpecial_Equip(4);
-				break;
-			}
-
-			//▼敵レーン選択パターン決め
+			//▼敵行動パターン決め
 			if (m_time <= 0)
 			{
-				int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
+				int Enemy_Fight_type[7][5][6] =   //敵攻撃用の配列作成
 				{
-					//1:上レーン　2:中レーン　3:下レーン
-						{ 3,2,1,1,2,0 }, //0番目
-						{ 2,3,2,3,1,0 }, //1番目
-						{ 1,2,3,2,2,0 }, //2番目
-						{ 2,1,1,2,3,0 }, //3番目
-						{ 1,3,2,2,1,0 }, //4番目
-
+					//m_type==0 これは呼び出されない
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 2,3,2,2,5,0 }, //0番目
+						{ 2,2,2,4,2,0 }, //1番目
+						{ 2,5,3,2,4,0 }, //2番目
+						{ 5,2,3,2,2,0 }, //3番目
+						{ 2,1,2,5,6,0 }, //4番目
+					},
+					//m_type==1
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 2,3,2,2,5,0 }, //0番目
+						{ 1,2,2,4,2,0 }, //1番目
+						{ 2,5,3,2,4,0 }, //2番目
+						{ 5,2,3,2,2,0 }, //3番目
+						{ 2,1,2,5,6,0 }, //4番目
+					},
+					//m_type==2
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 1,3,1,1,5,0 }, //0番目
+						{ 2,1,1,4,1,0 }, //1番目
+						{ 1,5,3,1,4,0 }, //2番目
+						{ 5,1,3,1,1,0 }, //3番目
+						{ 1,2,1,5,6,0 }, //4番目
+					},
+					//m_type==3
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 4,3,4,4,5,0 }, //0番目
+						{ 2,4,4,2,4,0 }, //1番目
+						{ 4,5,3,4,2,0 }, //2番目
+						{ 5,4,3,4,4,0 }, //3番目
+						{ 4,1,4,5,6,0 }, //4番目
+					},
+					//m_type==4
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 3,2,3,3,5,0 }, //0番目
+						{ 2,3,3,4,3,0 }, //1番目
+						{ 3,5,2,3,4,0 }, //2番目
+						{ 5,3,2,3,3,0 }, //3番目
+						{ 3,1,3,5,6,0 }, //4番目
+					},
+					//m_type==5
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 1,5,2,1,1,0 }, //0番目
+						{ 2,6,3,2,2,0 }, //1番目
+						{ 3,5,4,3,3,0 }, //2番目
+						{ 4,2,5,4,4,0 }, //3番目
+						{ 5,1,1,5,5,0 }, //4番目
+					},
+					//m_type == 6(チュートリアル惑星)
+					{
+						//1=赤,2=青,3=緑,4=灰色,5=ミサイル,6=スペシャル技
+						{ 1,2,3,4,5,0 }, //0番目
+						{ 1,2,3,4,5,0 }, //1番目
+						{ 1,2,3,4,5,0 }, //2番目
+						{ 1,2,3,4,5,0 }, //3番目
+						{ 1,2,3,4,5,0 }, //4番目
+					},
 					/*
-					レーン選択パターン追加する際は、上の配列の数字を変え
-					下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
+					　攻撃パターン追加する際は、上の配列の数字を変え
+					  下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
 					{,,,,,}, //5番目
 					{,,,,,}, //6番目
 					{,,,,,}, //7番目
@@ -602,180 +539,242 @@ void CObjPlanet::Action()
 					*/
 				};
 
-				m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
-				if (m_get_line == 0)//--------配列が最後に行ったとき(0の時)
+				m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+				if (m_attackf == 0)//--------配列が最後に行ったとき(0の時)
 				{
-					Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
-											 //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
+					Enemy_Attack_pattern_x = 0;//配列一番左の状態に戻す
+					//↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 					srand(time(NULL));
-					Enemy_Line_pattern_x = rand() % 5;
+					Enemy_Attack_pattern_y = rand() % 5;
 					//↓m_attackに攻撃パターンを入れる処理
-					m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
-					Enemy_Line_pattern_x++;
+					m_attackf = Enemy_Fight_type[m_type][Enemy_Attack_pattern_y][Enemy_Attack_pattern_x];
+					Enemy_Attack_pattern_x++;
 				}
 				else
 				{
-					Enemy_Line_pattern_x++;
+					Enemy_Attack_pattern_x++;
 				}
 			}
-		}
 
-		//▼ミサイルポッド作成X位置を設定
-		if (m_attackf == 1 && m_time <= 0 && m_type != 0)//赤色ポッド
-		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,1);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-
-
-			switch (m_type)
+			//▼敵惑星攻撃パターン
+			if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 			{
+				//敵の発動するスペシャル技を決める(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
+				switch (m_type) {
+				case 1:
+					Special->SetSpecial_Equip(2);
+					break;
+				case 2:
+					Special->SetSpecial_Equip(1);
+					break;
+				case 3:
+					Special->SetSpecial_Equip(5);
+					break;
+				case 4:
+					Special->SetSpecial_Equip(3);
+					break;
+				case 5:
+					Special->SetSpecial_Equip(4);
+					break;
+				}
 
-			case 1:
-				m_time = ONE_DELAY * m_enemy_recast_buff;
-				break;
-			case 2:
-				m_time = SEC_DELAY * m_enemy_recast_buff;
-				break;
-			case 3:
-				m_time = THI_DELAY * m_enemy_recast_buff;
-				break;
-			case 4:
-				m_time = FOU_DELAY * m_enemy_recast_buff;
-				break;
-			case 5:
-				m_time = FIV_DELAY * m_enemy_recast_buff;
-				break;
-			case 6:
-				m_time = SIX_DELAY * m_enemy_recast_buff;
-				break;
-			}
-		}
-		else if (m_attackf == 2 && m_time <= 0 && m_type != 0)//青色ポッド
-		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,2);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			/*m_time = 100 * m_enemy_recast_buff;*/
-			switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
-			{
+				//▼敵レーン選択パターン決め
+				if (m_time <= 0)
+				{
+					int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
+					{
+						//1:上レーン　2:中レーン　3:下レーン
+							{ 3,2,1,1,2,0 }, //0番目
+							{ 2,3,2,3,1,0 }, //1番目
+							{ 1,2,3,2,2,0 }, //2番目
+							{ 2,1,1,2,3,0 }, //3番目
+							{ 1,3,2,2,1,0 }, //4番目
 
-			case 1:
-				m_time = ONE_DELAY * m_enemy_recast_buff;
-				break;
-			case 2:
-				m_time = SEC_DELAY * m_enemy_recast_buff;
-				break;
-			case 3:
-				m_time = THI_DELAY * m_enemy_recast_buff;
-				break;
-			case 4:
-				m_time = FOU_DELAY * m_enemy_recast_buff;
-				break;
-			case 5:
-				m_time = FIV_DELAY * m_enemy_recast_buff;
-				break;
-			case 6:
-				m_time = SIX_DELAY * m_enemy_recast_buff;
-				break;
-			}
-		}
-		else if (m_attackf == 3 && m_time <= 0 && m_type != 0)//緑色ポッド
-		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,3);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-		/*	m_time = 100 * m_enemy_recast_buff;*/
-			switch (m_type)
-			{
+						/*
+						レーン選択パターン追加する際は、上の配列の数字を変え
+						下のコメントアウトを取って、出したい種類の数字をカンマごとに順番に入れてください。
+						{,,,,,}, //5番目
+						{,,,,,}, //6番目
+						{,,,,,}, //7番目
+						{,,,,,}, //8番目
+						*/
+					};
 
-			case 1:
-				m_time = ONE_DELAY * m_enemy_recast_buff;
-				break;
-			case 2:
-				m_time = SEC_DELAY * m_enemy_recast_buff;
-				break;
-			case 3:
-				m_time = THI_DELAY * m_enemy_recast_buff;
-				break;
-			case 4:
-				m_time = FOU_DELAY * m_enemy_recast_buff;
-				break;
-			case 5:
-				m_time = FIV_DELAY * m_enemy_recast_buff;
-				break;
-			case 6:
-				m_time = SIX_DELAY * m_enemy_recast_buff;
-				break;
-			}
-		}
-		else if (m_attackf == 4 && m_time <= 0 && m_type != 0)//灰色ポッド(今は黄色)
-		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type,4);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			//m_time = 100 * m_enemy_recast_buff;
-			switch (m_type)
-			{
-
-			case 1:
-				m_time = ONE_DELAY * m_enemy_recast_buff;
-				break;
-			case 2:
-				m_time = SEC_DELAY * m_enemy_recast_buff;
-				break;
-			case 3:
-				m_time = THI_DELAY * m_enemy_recast_buff;
-				break;
-			case 4:
-				m_time = FOU_DELAY * m_enemy_recast_buff;
-				break;
-			case 5:
-				m_time = FIV_DELAY * m_enemy_recast_buff;
-				break;
-			case 6:
-				m_time = SIX_DELAY * m_enemy_recast_buff;
-				break;
-			}
-		}
-		else if (m_attackf == 5 && m_time <= 0 && m_type != 0)//ミサイル
-		{
-			CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 5);//オブジェクト作成
-			Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			//m_time = 100 * m_enemy_recast_buff;
-			switch (m_type)
-			{
-
-			case 1:
-				m_time = ONE_DELAY * m_enemy_recast_buff;
-				break;
-			case 2:
-				m_time = SEC_DELAY * m_enemy_recast_buff;
-				break;
-			case 3:
-				m_time = THI_DELAY * m_enemy_recast_buff;
-				break;
-			case 4:
-				m_time = FOU_DELAY * m_enemy_recast_buff;
-				break;
-			case 5:
-				m_time = FIV_DELAY * m_enemy_recast_buff;
-				break;
-			case 6:
-				m_time = SIX_DELAY * m_enemy_recast_buff;
-				break;
+					m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+					if (m_get_line == 0)//--------配列が最後に行ったとき(0の時)
+					{
+						Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
+												 //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
+						srand(time(NULL));
+						Enemy_Line_pattern_x = rand() % 5;
+						//↓m_attackに攻撃パターンを入れる処理
+						m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
+						Enemy_Line_pattern_x++;
+					}
+					else
+					{
+						Enemy_Line_pattern_x++;
+					}
+				}
 			}
 
-		}
-		else if (m_attackf == 6 && m_time <= 0 && m_type != 0)//スペシャル技
-		{
-			//敵がスペシャル技を使用済(true)である場合、
-			//リキャストタイムを元に戻さず、再度行動パターン決めを行う
-			//未使用(false)であれば、以下の処理を行う
-			if (Special->GetEnemy_Used_Special() == false)
+			//▼ミサイルポッド作成X位置を設定
+			if (m_attackf == 1 && m_time <= 0 && m_type != 0)//赤色ポッド
 			{
-				Special->SetSpecial_Start();	//スペシャル技を発動させる
-				m_time = 100 * m_enemy_recast_buff;
-			}
-		}
+				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 1);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
 
-		m_time--;
+
+				switch (m_type)
+				{
+
+				case 1:
+					m_time = ONE_DELAY * m_enemy_recast_buff;
+					break;
+				case 2:
+					m_time = SEC_DELAY * m_enemy_recast_buff;
+					break;
+				case 3:
+					m_time = THI_DELAY * m_enemy_recast_buff;
+					break;
+				case 4:
+					m_time = FOU_DELAY * m_enemy_recast_buff;
+					break;
+				case 5:
+					m_time = FIV_DELAY * m_enemy_recast_buff;
+					break;
+				case 6:
+					m_time = SIX_DELAY * m_enemy_recast_buff;
+					break;
+				}
+			}
+			else if (m_attackf == 2 && m_time <= 0 && m_type != 0)//青色ポッド
+			{
+				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 2);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
+				/*m_time = 100 * m_enemy_recast_buff;*/
+				switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
+				{
+
+				case 1:
+					m_time = ONE_DELAY * m_enemy_recast_buff;
+					break;
+				case 2:
+					m_time = SEC_DELAY * m_enemy_recast_buff;
+					break;
+				case 3:
+					m_time = THI_DELAY * m_enemy_recast_buff;
+					break;
+				case 4:
+					m_time = FOU_DELAY * m_enemy_recast_buff;
+					break;
+				case 5:
+					m_time = FIV_DELAY * m_enemy_recast_buff;
+					break;
+				case 6:
+					m_time = SIX_DELAY * m_enemy_recast_buff;
+					break;
+				}
+			}
+			else if (m_attackf == 3 && m_time <= 0 && m_type != 0)//緑色ポッド
+			{
+				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 3);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
+			/*	m_time = 100 * m_enemy_recast_buff;*/
+				switch (m_type)
+				{
+
+				case 1:
+					m_time = ONE_DELAY * m_enemy_recast_buff;
+					break;
+				case 2:
+					m_time = SEC_DELAY * m_enemy_recast_buff;
+					break;
+				case 3:
+					m_time = THI_DELAY * m_enemy_recast_buff;
+					break;
+				case 4:
+					m_time = FOU_DELAY * m_enemy_recast_buff;
+					break;
+				case 5:
+					m_time = FIV_DELAY * m_enemy_recast_buff;
+					break;
+				case 6:
+					m_time = SIX_DELAY * m_enemy_recast_buff;
+					break;
+				}
+			}
+			else if (m_attackf == 4 && m_time <= 0 && m_type != 0)//灰色ポッド(今は黄色)
+			{
+				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 4);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
+				//m_time = 100 * m_enemy_recast_buff;
+				switch (m_type)
+				{
+
+				case 1:
+					m_time = ONE_DELAY * m_enemy_recast_buff;
+					break;
+				case 2:
+					m_time = SEC_DELAY * m_enemy_recast_buff;
+					break;
+				case 3:
+					m_time = THI_DELAY * m_enemy_recast_buff;
+					break;
+				case 4:
+					m_time = FOU_DELAY * m_enemy_recast_buff;
+					break;
+				case 5:
+					m_time = FIV_DELAY * m_enemy_recast_buff;
+					break;
+				case 6:
+					m_time = SIX_DELAY * m_enemy_recast_buff;
+					break;
+				}
+			}
+			else if (m_attackf == 5 && m_time <= 0 && m_type != 0)//ミサイル
+			{
+				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 5);//オブジェクト作成
+				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
+				//m_time = 100 * m_enemy_recast_buff;
+				switch (m_type)
+				{
+
+				case 1:
+					m_time = ONE_DELAY * m_enemy_recast_buff;
+					break;
+				case 2:
+					m_time = SEC_DELAY * m_enemy_recast_buff;
+					break;
+				case 3:
+					m_time = THI_DELAY * m_enemy_recast_buff;
+					break;
+				case 4:
+					m_time = FOU_DELAY * m_enemy_recast_buff;
+					break;
+				case 5:
+					m_time = FIV_DELAY * m_enemy_recast_buff;
+					break;
+				case 6:
+					m_time = SIX_DELAY * m_enemy_recast_buff;
+					break;
+				}
+
+			}
+			else if (m_attackf == 6 && m_time <= 0 && m_type != 0)//スペシャル技
+			{
+				//敵がスペシャル技を使用済(true)である場合、
+				//リキャストタイムを元に戻さず、再度行動パターン決めを行う
+				//未使用(false)であれば、以下の処理を行う
+				if (Special->GetEnemy_Used_Special() == false)
+				{
+					Special->SetSpecial_Start();	//スペシャル技を発動させる
+					m_time = 100 * m_enemy_recast_buff;
+				}
+			}
+
+			m_time--;
+		}
 	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
