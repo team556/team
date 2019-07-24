@@ -1031,10 +1031,10 @@ void CObjBarracks::Draw()
 			src.m_right = 508.0f;
 			src.m_bottom = 117.0f;
 
-			dst.m_top = m_mou_y - 43.0f;//-2
-			dst.m_left = m_mou_x - 70.0f;//-5
-			dst.m_right = m_mou_x + 35.0f;//5
-			dst.m_bottom = m_mou_y - 18.0f;//2
+			dst.m_top = m_mou_y - 43.0f;
+			dst.m_left = m_mou_x - 70.0f;
+			dst.m_right = m_mou_x + 35.0f;
+			dst.m_bottom = m_mou_y - 18.0f;
 			Draw::Draw(116, &src, &dst, white, 0.0f);
 
 			//Å•ï∫é…ÉåÉxÉã
