@@ -1209,22 +1209,14 @@ void CObjRocket::Draw()
 	
 
 	//爆発エフェクト
-	//左斜め上
-	if (m_bom== 0) 
+	if (m_del == 1)
 	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 2560.0f;
-		src.m_bottom = 128.0f;
-
 		dst.m_top = -48.0f + m_y;
 		dst.m_left = -48.0f + m_x;
 		dst.m_right = 80.0f + m_x;
 		dst.m_bottom = 80.0f + m_y;
+		Draw::Draw(16, &m_eff, &dst, c, 0.0f);
 	}
-
-	if (m_del == true) 
-		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 
 	//敵PODの体力とHPを表示する(デバッグ用)
 	//wchar_t test_mou[256];
