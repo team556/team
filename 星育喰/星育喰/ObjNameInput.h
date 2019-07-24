@@ -35,4 +35,6 @@ private:
 	int m_Yes_Button_color;
 	int m_No_Button_color;
 	bool m_key_f;
+
+	char *c[5];
 };

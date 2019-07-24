@@ -17,7 +17,7 @@ using namespace GameL;
 //É}ÉNÉç
 #define ONE_DELAY (150)
 #define SEC_DELAY (120)
-#define THI_DELAY (105)
+#define THI_DELAY (135)
 #define FOU_DELAY (120)
 #define FIV_DELAY (105)
 #define SIX_DELAY (200)
