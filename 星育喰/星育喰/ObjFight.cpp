@@ -427,19 +427,19 @@ void CObjFight::Draw()
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=260.0f;
-	Draw::Draw(5, &src, &dst, d0, 0.0f);
+	Draw::Draw(118, &src, &dst, d0, 0.0f);
 
 	dst.m_top   =310.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=370.0f;
-	Draw::Draw(6, &src, &dst, d1, 0.0f);
+	Draw::Draw(119, &src, &dst, d1, 0.0f);
 
 	dst.m_top   =420.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=480.0f;
-	Draw::Draw(7, &src, &dst, d2, 0.0f);
+	Draw::Draw(120, &src, &dst, d2, 0.0f);
 
 	if (battle_end == false) {
 		//ポッドやミサイルのキーボード選択用画像
