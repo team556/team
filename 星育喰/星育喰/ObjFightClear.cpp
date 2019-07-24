@@ -295,10 +295,10 @@ void CObjFightClear::Draw()
 	{ 
 		{ 1.0f,1.0f,0.0f,m_result_a },			//捕食成功フォントは黄色
 		{ 1.0f,1.0f,1.0f,m_result_a - 1.0f },	//ウインドウ表示用
-		{ 1.0f,1.0f,1.0f,m_result_a - 2.0f },	//住民フォントは黒色
-		{ 1.0f,1.0f,1.0f,m_result_a - 3.0f },	//サイズ(HP)フォントは黒色
-		{ 1.0f,1.0f,1.0f,m_result_a - 4.0f },	//資材フォントは黒色
-		{ 1.0f,1.0f,1.0f,m_result_a - 5.0f },	//スペシャル技フォントは黒色
+		{ 1.0f,1.0f,1.0f,m_result_a - 2.0f },	//住民フォントは白色
+		{ 1.0f,1.0f,1.0f,m_result_a - 3.0f },	//サイズ(HP)フォントは白色
+		{ 1.0f,1.0f,1.0f,m_result_a - 4.0f },	//資材フォントは白色
+		{ 1.0f,1.0f,1.0f,m_result_a - 5.0f },	//スペシャル技フォントは白色
 	};
 
 	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	//画面全体暗転画像用
