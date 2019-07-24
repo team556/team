@@ -14,6 +14,7 @@ public:
 	void Init();     //イニシャライズ
 	void Action();   //アクション
 	void Draw();     //ドロー
+
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -23,10 +24,11 @@ private:
 	int word_x[100];
 	int word_y[100];
 	int word[100][100];
-	bool word_w[50][50];
+	int word_w[50];
 	int click_cut;
 	float click_win[5];
-	int m_tex_discri[50];
+	int m_tex_discri[5];
 	bool m_tex_clar;
 	bool m_f;
+	int m_cut;
 };
