@@ -97,6 +97,7 @@ void CObjNameInput::Init()
 	{
 		word_w[i]=i;
 	}
+	m_finalcheck_f = false;
 
 }
 
@@ -805,6 +806,12 @@ void CObjNameInput::Action()
 	{
 		m_tex_clar = false;
 	}
+	if (m_mou_x > 1000 && m_mou_x < 1200 && 250 < m_mou_y && 300 > m_mou_y)
+	{
+		m_finalcheck_f = true;
+		Scene::SetScene(new CSceneTraining());//育成画面へシーン移行
+	}
+
 
 
 }
@@ -817,7 +824,8 @@ void CObjNameInput::Draw()
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 
-	FontDraw(L"文字クリア", 10.0f, 250.0, 30.0f, 30.0f, c, false);
+	FontDraw(L"文字クリア",   10.0f, 250.0, 30.0f, 30.0f, c, false);
+	FontDraw(L"文字決定"  , 1000.0f, 250.0, 30.0f, 30.0f, c, false);
 
 	if(m_tex_clar==true)
 	{ 
@@ -833,22 +841,10 @@ void CObjNameInput::Draw()
 
 		for (int i = 0; i < 5; i++)
 		{
-			
-				if (m_tex_discri[i] != 99)
-				{
-					FontDraw(str[m_tex_discri[i]], 300+(i * 50), 100.0, 50.0f, 50.0f, c, true);
-				}
-			
-
-
-			/*if (word_w[0][i] == true&&i!=5)
+			if (m_tex_discri[i] != 99)
 			{
-				FontDraw(str[i], click_win[m_tex_discri[i]], 100.0, 50.0f, 50.0f, c, true);
+				FontDraw(str[m_tex_discri[i]], 300+(i * 50), 100.0, 50.0f, 50.0f, c, true);
 			}
-			if (word_w[0 < m_cut][i] == true && i != 5)
-			{
-				FontDraw(str[i], click_win[m_tex_discri[i]], 100.0, 50.0f, 50.0f, c, true);
-			}*/
 		}
 
 	}

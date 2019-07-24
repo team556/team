@@ -31,4 +31,5 @@ private:
 	bool m_tex_clar;
 	bool m_f;
 	int m_cut;
+	bool m_finalcheck_f;
 };
