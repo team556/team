@@ -50,12 +50,12 @@ int g_Pod_equip_Lv_achieve	= 1;
 float g_Player_max_size = 100.0f;
 int g_Special_equipment = 0;//装備中のスペシャル技
 bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
-int g_Power_num		= 0;
-int g_Defense_num	= 0;
-int g_Speed_num		= 0;
-int g_Balance_num	= 0;
+int g_Power_num		= 2000;
+int g_Defense_num	= 2000;
+int g_Speed_num		= 2000;
+int g_Balance_num	= 2000;
 int g_Research_num	= 0;
-int g_Remain_num	= 0;
+int g_Remain_num	= 2000;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 
@@ -201,12 +201,14 @@ void CObjTitle::Action()
 				{
 					m_key_f = false;
 
-					//▼ここに消去したい処理等を書く
+					//▼ここに消去したい処理等を書く(見ての通りまだ何も書いてない)
 
 
 
 
 					m_Yes_Button_color = 1.0f;
+
+					m_del_alpha = 1.5f;//データ消去完了通知画像を表示する
 
 					//最終確認ウインドウを非表示にする
 					m_del_f = false;
@@ -383,6 +385,12 @@ void CObjTitle::Action()
 		m_black_out_a -= 0.01f;
 	}
 
+	//データ消去完了通知画像表示時、透過度を下げて非表示にする処理
+	if (m_del_alpha >= 0.0f)
+	{
+		m_del_alpha -= 0.01f;
+	}
+
 	//Zキーを押している間、敵惑星(背景)の移動速度が速くなる(デバッグ用)
 	//元々はデバッグのみの使用だったが、隠し要素という感じで残しておいても良いかも。
 	if (Input::GetVKey('Z') == true)
@@ -407,6 +415,12 @@ void CObjTitle::Draw()
 
 	//黄色(☆育喰)[シーン移行時フェードアウト]
 	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
+
+	//赤色
+	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
+
+	//データ消去完了通知画像用
+	float notify[4] = { 1.0f,0.0f,0.0f,m_del_alpha };
 
 	//データ消去ボタン用
 	float Delete[4] = { m_del_color,m_del_color,m_del_color,m_alpha };
@@ -581,9 +595,7 @@ void CObjTitle::Draw()
 	Draw::Draw(54, &src, &dst, Delete, 0.0f);
 
 	//データ消去完了フォント画像表示
-	//FontDraw(L"データ消去完了");←m_del_alphaはここで使用
-	//あと、m_del_alphaを徐々に非表示にする処理をアクションに追加しておく。
-
+	FontDraw(L"データ消去完了", m_mou_x - 122.5f, m_mou_y - 40.0f, 35.0f, 35.0f, notify, false);
 
 	//▼画面全体暗転用画像表示
 	//※blackoutの透過度の値で「表示/非表示」が切り替えられる
@@ -618,46 +630,10 @@ void CObjTitle::Draw()
 		dst.m_left = 320.0f;
 		dst.m_right = 880.0f;
 		dst.m_bottom = 480.0f;
-		Draw::Draw(20, &src, &dst, d, 0.0f);
+		Draw::Draw(57, &src, &dst, d, 0.0f);
 
-		//▼惑星HP文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 412.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 250.0f;
-		dst.m_left = 345.0f;
-		dst.m_right = 465.0f;
-		dst.m_bottom = 280.0f;
-		Draw::Draw(67, &src, &dst, d, 0.0f);
-
-		//「と」の文字画像をFontDraw関数にて表示
-		FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, d, false);
-
-		//▼素材消費して文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 717.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 250.0f;
-		dst.m_left = 497.0f;
-		dst.m_right = 677.0f;
-		dst.m_bottom = 280.0f;
-		Draw::Draw(72, &src, &dst, d, 0.0f);
-
-		//▼レベルアップしますか？文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 717.0f;
-		src.m_right = 2017.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 300.0f;
-		dst.m_left = 520.0f;
-		dst.m_right = 850.0f;
-		dst.m_bottom = 330.0f;
-		Draw::Draw(72, &src, &dst, d, 0.0f);
+		//データを消去しますか？
+		FontDraw(L"デ－タを消去しますか？", 360.0f, 250.0f, 45.0f, 45.0f, red, false);
 
 		//▼はい文字画像表示
 		src.m_top = 0.0f;
@@ -669,7 +645,7 @@ void CObjTitle::Draw()
 		dst.m_left = 410.0f;
 		dst.m_right = 510.0f;
 		dst.m_bottom = 460.0f;
-		Draw::Draw(73, &src, &dst, Yes, 0.0f);
+		Draw::Draw(55, &src, &dst, Yes, 0.0f);
 
 		//▼いいえ文字画像表示
 		src.m_top = 0.0f;
@@ -681,7 +657,7 @@ void CObjTitle::Draw()
 		dst.m_left = 650.0f;
 		dst.m_right = 800.0f;
 		dst.m_bottom = 460.0f;
-		Draw::Draw(74, &src, &dst, No, 0.0f);
+		Draw::Draw(56, &src, &dst, No, 0.0f);
 	}
 
 

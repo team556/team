@@ -62,6 +62,15 @@ void CSceneTitle::InitScene()
 	//データ消去ボタン画像を54番に登録
 	Draw::LoadImage(L"データ消去ボタン.png", 54, TEX_SIZE_512);
 
+	//はい文字画像読み込み55番に登録
+	Draw::LoadImage(L"はい.png", 55, TEX_SIZE_512);
+
+	//いいえ文字画像読み込み56番に登録
+	Draw::LoadImage(L"いいえ.png", 56, TEX_SIZE_512);
+
+	//ウインドウ01を読み込み57番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 57, TEX_SIZE_512);
+
 	//白文字集を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
