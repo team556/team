@@ -55,7 +55,7 @@ int g_Defense_num	= 2000;
 int g_Speed_num		= 2000;
 int g_Balance_num	= 2000;
 int g_Research_num	= 2500;
-int g_Remain_num	= 0;
+int g_Remain_num	= 10000;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 

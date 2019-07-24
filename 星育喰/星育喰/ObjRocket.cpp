@@ -335,7 +335,7 @@ void CObjRocket::Init()
 		m_pod_max_hp = 13.0f;
 	}
 	else if (m_type == 5) {
-		m_pod_max_hp = 30.0f;
+		m_pod_max_hp = 21.0f;
 	}
 	else if (m_type == 6) {
 		m_pod_max_hp = 10.0f;
@@ -398,8 +398,8 @@ void CObjRocket::Init()
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
-		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 10.0f;
+		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
+		m_Player_damage = 12.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 4:
@@ -409,7 +409,7 @@ void CObjRocket::Init()
 		break;
 	case 5:
 		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-		m_Player_damage = 12.0f;
+		m_Player_damage = 11.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 6:
