@@ -68,7 +68,7 @@ int g_gus_num		= 0;
 
 int g_Challenge_enemy = 0;
 bool g_help_f = false;
-int  g_tutorial_progress = 0;
+int  g_tutorial_progress = 20;//デバッグ。チュートリアル完成後、0にするように。
 bool g_is_operatable = true;
 
 //イニシャライズ
@@ -300,7 +300,7 @@ void CObjTitle::Action()
 
 			m_alpha = 0.0f;//タイトルロゴ、後ろ敵惑星等を非表示にすると同時に次の処理へのフラグとしている。
 		}
-		else if (m_des_a > 5.0f)
+		else if (m_des_a > 6.0f)
 		{
 			//世界観説明全て表示から少し経った後、
 			//その全て表示した説明を画面外の上の方に移動させる。
@@ -438,9 +438,9 @@ void CObjTitle::Draw()
 	float description[4][4] =
 	{
 		{ 1.0f,1.0f,1.0f,m_des_a },			//フォント色は全て白色
-		{ 1.0f,1.0f,1.0f,m_des_a - 1.2f },
-		{ 1.0f,1.0f,1.0f,m_des_a - 2.4f },
-		{ 1.0f,1.0f,1.0f,m_des_a - 3.6f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 1.5f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 3.0f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 4.5f },
 	};
 
 	RECT_F src;//描画元切り取り位置
@@ -611,10 +611,10 @@ void CObjTitle::Draw()
 	Draw::Draw(2, &src, &dst, blackout, 0.0f);
 
 	//世界観説明フォント画像表示
-	FontDraw(L"意思を持つ惑星達が互いの生存をかけて喰らい合う弱肉強食の宇宙……。", 200.0f, m_des_y, 20.0f, 20.0f, description[0], false);
-	FontDraw(L"喰うか喰われるか――", 200.0f, m_des_y + 150.0f, 50.0f, 50.0f, description[1], false);
-	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 200.0f, m_des_y + 300.0f, 50.0f, 50.0f, description[2], false);
-	FontDraw(L"その惑星の名は……？", 200.0f, m_des_y + 450.0f, 50.0f, 50.0f, description[3], false);
+	FontDraw(L"意思を持つ惑星達が互いの生存をかけて喰らい合う弱肉強食の宇宙……。", 35.0f, m_des_y, 35.0f, 35.0f, description[0], false);
+	FontDraw(L"喰うか喰われるか――", 35.0f, m_des_y + 100.0f, 35.0f, 35.0f, description[1], false);
+	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 35.0f, m_des_y + 200.0f, 35.0f, 35.0f, description[2], false);
+	FontDraw(L"その惑星の名は……？", 35.0f, m_des_y + 300.0f, 35.0f, 35.0f, description[3], false);
 
 
 	//▼データ消去最終確認ウインドウ表示管理フラグがtrueの時、描画。
@@ -633,7 +633,7 @@ void CObjTitle::Draw()
 		Draw::Draw(57, &src, &dst, d, 0.0f);
 
 		//データを消去しますか？
-		FontDraw(L"デ－タを消去しますか？", 360.0f, 250.0f, 45.0f, 45.0f, red, false);
+		FontDraw(L"データを消去しますか？", 360.0f, 250.0f, 45.0f, 45.0f, red, false);
 
 		//▼はい文字画像表示
 		src.m_top = 0.0f;

@@ -105,7 +105,7 @@ void CObjPlanet::Init()
 	m_subsize = 0.0f;
 
 	m_inject_f = true;
-	if(m_inject_f == 6)//チュートリアル惑星のみ(最初から打てない設定にするとki用)
+	if(m_type == 6)//チュートリアル惑星のみ(最初から打てない設定にするとき用)
 		m_inject_f = false;
 	//m_img_nam = 0;
 	
@@ -196,7 +196,7 @@ void CObjPlanet::Action()
 
 				//戦闘音楽を破棄し勝利音楽再生
 				Audio::Stop(0);
-				Audio::Start(1);
+				Audio::Start(4);
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合

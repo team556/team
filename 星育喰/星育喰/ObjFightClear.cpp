@@ -79,8 +79,12 @@ void CObjFightClear::Init()
 		g_destroy_progress[2] == true &&
 		g_destroy_progress[3] == true)	
 	{
-		g_Stage_progress++;	//ステージを進める
-
+		//チュートリアル惑星を倒してもステージ数を進めないようにする処理。
+		if (g_tutorial_progress >= 20)
+		{
+			g_Stage_progress++;	//ステージを進める
+		}
+		
 		for (int i = 0; i < 4; i++)
 		{
 			g_destroy_progress[i] = false;//敵の撃破状態をすべて戻す
