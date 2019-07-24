@@ -24,6 +24,10 @@ private:
 	float m_mov_spd;//動くスピード
 	float m_size;	//縦横サイズ(50)
 
+	int m_ani_time;
+	int m_ani[4];
+	int m_ani_frame;
+
 	float m_pod_nam;//残りポッドの住民総数 / 1200
 
 	int m_get_line;	//戦闘シーンからGetしたline
@@ -34,4 +38,5 @@ private:
 	bool m_stop_f;	//止める用(true = 停止)
 	bool m_type;	//タイプ(true = 敵)
 	bool m_del_f;	//削除フラグ(true = 削除)
+	bool m_fight;	//アニメーション用
 };

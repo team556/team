@@ -54,6 +54,7 @@ private:
 	int m_ani;			//着弾アニメーション
 	int m_ani_max;
 	int m_ani_time;		//着弾アニメーション間隔タイム
+
 	bool m_del;			//削除チェック
 	RECT_F m_eff;		//着弾エフェクト描画用
 
