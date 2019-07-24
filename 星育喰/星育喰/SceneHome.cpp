@@ -55,11 +55,12 @@ void CSceneHome::InitScene()
 	//ヘルプ画像を読み込み5番に登録
 	Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
 
-	////メッセージウインドウを読み込み6番に登録
-	//Draw::LoadImage(L"メッセージウインドウ(仮).png", 6, TEX_SIZE_512);
-	//メッセージウインドウを読み込み21番に登録
+	//メッセージウインドウを読み込み6番に登録
 	Draw::LoadImage(L"メッセージウィンドウ.png", 6, TEX_SIZE_512);
 
+	//ウインドウ01を読み込み7番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 7, TEX_SIZE_512);
+	
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
 

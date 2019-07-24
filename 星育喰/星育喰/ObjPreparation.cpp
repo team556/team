@@ -1224,7 +1224,7 @@ void CObjPreparation::Draw()
 	{
 		//¥‹­‘å‚È˜f¯ Ú‹ß‚Ü‚Å•¶š‰æ‘œ•\¦
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_left = 2.0f;
 		src.m_right = 1132.0f;
 		src.m_bottom = 112.0f;
 
@@ -1251,7 +1251,7 @@ void CObjPreparation::Draw()
 	{
 		//¥‹­‘å‚È˜f¯ Ú‹ß‚Ü‚Å•¶š‰æ‘œ•\¦
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_left = 2.0f;
 		src.m_right = 1132.0f;
 		src.m_bottom = 112.0f;
 
@@ -1278,7 +1278,7 @@ void CObjPreparation::Draw()
 	{
 		//¥‹­‘å‚È˜f¯ Ú‹ß‚Ü‚Å•¶š‰æ‘œ•\¦
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_left = 2.0f;
 		src.m_right = 1132.0f;
 		src.m_bottom = 112.0f;
 
@@ -1305,7 +1305,7 @@ void CObjPreparation::Draw()
 	{
 		//¥‹­‘å‚È˜f¯ Ú‹ß‚Ü‚Å•¶š‰æ‘œ•\¦
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_left = 2.0f;
 		src.m_right = 1132.0f;
 		src.m_bottom = 112.0f;
 

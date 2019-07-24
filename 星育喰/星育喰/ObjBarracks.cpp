@@ -1297,7 +1297,7 @@ void CObjBarracks::Draw()
 		}
 
 		//▼兵舎 Lv文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 508.0f;
 		src.m_bottom = 117.0f;
@@ -1648,13 +1648,13 @@ void CObjBarracks::Draw()
 			dst.m_left = 345.0f;
 			dst.m_right = 465.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(67, &src, &dst, black, 0.0f);
+			Draw::Draw(67, &src, &dst, white, 0.0f);
 
 			//「と」の文字画像をFontDraw関数にて表示
-			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, white, false);
 
 			//▼素材消費して文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 0.0f;
 			src.m_right = 717.0f;
 			src.m_bottom = 112.0f;
@@ -1663,10 +1663,10 @@ void CObjBarracks::Draw()
 			dst.m_left = 497.0f;
 			dst.m_right = 677.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼レベルアップしますか？文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 717.0f;
 			src.m_right = 2017.0f;
 			src.m_bottom = 112.0f;
@@ -1675,7 +1675,7 @@ void CObjBarracks::Draw()
 			dst.m_left = 520.0f;
 			dst.m_right = 850.0f;
 			dst.m_bottom = 330.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼はい文字画像表示
 			src.m_top = 0.0f;

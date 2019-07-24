@@ -756,18 +756,6 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		////▼白色ウィンドウ表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 100.0f;
-		//src.m_bottom = 100.0f;
-
-		//dst.m_top = 100.0f;
-		//dst.m_left = 100.0f;
-		//dst.m_right = 1100.0f;
-		//dst.m_bottom = 600.0f;
-		//Draw::Draw(32, &src, &dst, it, 0.0f);
-
 		//▼木材表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -781,9 +769,9 @@ void CObjWarehouse::Draw()
 		Draw::Draw(33, &src, &dst, it, 0.0f);
 
 		//▼木材文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
-		src.m_right = 232.0f;
+		src.m_right = 230.0f;
 		src.m_bottom = 112.0f;
 
 		dst.m_top = 250.0f;
@@ -809,10 +797,10 @@ void CObjWarehouse::Draw()
 		Draw::Draw(34, &src, &dst, it, 0.0f);
 
 		//▼鉄文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
-		src.m_right = 112.0f;
-		src.m_bottom = 112.0f;
+		src.m_right = 110.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 250.0f;
 		dst.m_left = 540.0f;
@@ -837,10 +825,10 @@ void CObjWarehouse::Draw()
 		Draw::Draw(35, &src, &dst, it, 0.0f);
 
 		//▼銀文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 112.0f;
-		src.m_bottom = 112.0f;
+		src.m_top = 2.0f;
+		src.m_left = 2.0f;
+		src.m_right = 110.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 250.0f;
 		dst.m_left = 910.0f;
@@ -853,9 +841,9 @@ void CObjWarehouse::Draw()
 		//Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
 		//▼プラスチック表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
+		src.m_right = 62.0f;
 		src.m_bottom = 64.0f;
 
 		dst.m_top = 380.0f;
@@ -865,10 +853,10 @@ void CObjWarehouse::Draw()
 		Draw::Draw(36, &src, &dst, it, 0.0f);
 
 		//▼プラスチック文字画像表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
+		src.m_top = 2.0f;
+		src.m_left = 2.0f;
 		src.m_right = 712.0f;
-		src.m_bottom = 112.0f;
+		src.m_bottom = 110.0f;
 
 		dst.m_top = 500.0f;
 		dst.m_left = 140.0f;
@@ -910,7 +898,7 @@ void CObjWarehouse::Draw()
 		//Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
 
 		//▼ガス表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
@@ -922,7 +910,7 @@ void CObjWarehouse::Draw()
 		Draw::Draw(38, &src, &dst, it, 0.0f);
 
 		//▼ガス文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 232.0f;
 		src.m_bottom = 116.0f;
@@ -976,18 +964,6 @@ void CObjWarehouse::Draw()
 		dst.m_right = 130.0f;
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
-
-		////▼白色ウィンドウ表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 100.0f;
-		//src.m_bottom = 100.0f;
-
-		//dst.m_top = 100.0f;
-		//dst.m_left = 100.0f;
-		//dst.m_right = 1100.0f;
-		//dst.m_bottom = 600.0f;
-		//Draw::Draw(32, &src, &dst, it, 0.0f);
 		
 		//▼残り住民数がいません(住民数だけ)文字画像を表示
 		src.m_top = 0.0f;
@@ -1223,24 +1199,6 @@ void CObjWarehouse::Draw()
 		dst.m_right = 130.0f;
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
-
-		////▼白色ウィンドウ表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 100.0f;
-		//src.m_bottom = 100.0f;
-
-		//dst.m_top = 100.0f;
-		//dst.m_left = 100.0f;
-		//dst.m_right = 1100.0f;
-		//dst.m_bottom = 600.0f;
-		//Draw::Draw(32, &src, &dst, it, 0.0f);
-
-		////スペシャル技1メッセージウィンドウ表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 800.0f;
-		//src.m_bottom = 800.0f;
 
 		for (int i = 0; i < 5; i++)//メッセージウィンドウを適切な位置に５回表示させる
 		{
@@ -1622,18 +1580,6 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		////▼白色ウィンドウ表示
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 100.0f;
-		//src.m_bottom = 100.0f;
-
-		//dst.m_top = 100.0f;
-		//dst.m_left = 100.0f;
-		//dst.m_right = 1100.0f;
-		//dst.m_bottom = 600.0f;
-		//Draw::Draw(32, &src, &dst, it, 0.0f);
-
 		//▼未装備(装備だけ)文字画像を表示
 		src.m_top = 0.0f;
 		src.m_left = 120.0f;
@@ -1641,8 +1587,8 @@ void CObjWarehouse::Draw()
 		src.m_bottom = 117.0f;
 
 		dst.m_top = 110.0f;
-		dst.m_left = 500.0f;
-		dst.m_right = 650.0f;
+		dst.m_left = 525.0f;
+		dst.m_right = 625.0f;
 		dst.m_bottom = 160.0f;
 		Draw::Draw(105, &src, &dst, black, 0.0f);
 
