@@ -38,6 +38,9 @@ void CSceneNameInput::InitScene()
 	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
 	Draw::LoadImage(L"˜f¯.png", 4, TEX_SIZE_64);
 
+	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
+	Draw::LoadImage(L"w.png", 5, TEX_SIZE_64);
+
 	//”’•¶š‰æ‘œ‚ğ“Ç‚İ‚İ121”Ô‚É“o˜^
 	Draw::LoadImage(L"”’•¶šW.png", 121, TEX_SIZE_512);
 	//ƒEƒBƒ“ƒhƒE‰æ‘œ89”Ô‚É“o˜^
