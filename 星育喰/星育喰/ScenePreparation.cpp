@@ -98,7 +98,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
 	
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み47番に登録
 	Draw::LoadImage(L"P惑星_Lv1修正.png", 47, TEX_SIZE_512);
@@ -193,6 +193,9 @@ void CScenePreparation::InitScene()
 	//メッセージウィンドウ01画像90番に登録
 	Draw::LoadImage(L"メッセージウィンドウ01.png", 90, TEX_SIZE_512);
 
+	//ポーズ画面背景(画面暗転用)を読み込み91番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 91, TEX_SIZE_512);
+
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
@@ -203,13 +206,24 @@ void CScenePreparation::InitScene()
 	//モアイ正面画像を読み込み128番に登録
 	Draw::LoadImage(L"モアイ正面.png", 128, TEX_SIZE_512);
 
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
+
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
 	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
 	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
+	float v = Audio::VolumeMaster(0);
+	v = Audio::VolumeMaster((0.0 - v));
 
 	//SE読み込み
 	//選択

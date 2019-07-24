@@ -224,7 +224,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"スペシャル技メッセージウィンドウ.png", 45, TEX_SIZE_512);
 
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//ヘルプボタンを読み込み47番に登録
 	Draw::LoadImage(L"ヘルプボタン.png", 47, TEX_SIZE_512);
@@ -454,7 +454,7 @@ void CSceneTraining::InitScene()
 	//ポッド強化ボタンLv3を130番に登録
 	Draw::LoadImage(L"ポッド強化ボタンLv3.png", 130, TEX_SIZE_512);
 
-	//これ以上レベルUP出来ませんメッセージウィンドウ01
+	//これ以上レベルUP出来ませんを131番に登録
 	Draw::LoadImage(L"これ以上レベルUP出来ません.png", 131, TEX_SIZE_512);
 
 	//メッセージウィンドウ01を132番に登録
@@ -465,6 +465,19 @@ void CSceneTraining::InitScene()
 
 	//ウインドウ02を134番に登録
 	Draw::LoadImage(L"ウインドウ02.png", 134, TEX_SIZE_512);
+
+	//ポーズ画面背景(画面暗転用)を読み込み135番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 135, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
 
 
 	//音楽読み込み

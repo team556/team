@@ -37,6 +37,7 @@ public:
 	void SetEmF() { m_eat_me = true; } //セット喰われるフラグ
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
+	void SetInjF(bool inject) { m_inject_f = inject; }//セットチュートリアル射出フラグ(trueで打つようになる)
 private:
 
 	float m_px;			//星座標X
@@ -66,7 +67,7 @@ private:
 	int m_attackf;		//敵の攻撃タイプ
 
 	int m_ani[4];
-	int m_mani[6];
+	int m_mani[6];		//モアイ
 	int m_ani_time;
 	int m_ani_frame[2];	//[0] = 通常ani用、[1] = 特殊ani用
 
@@ -89,6 +90,8 @@ private:
 	int Enemy_Line_pattern_y;	////敵攻撃パターンの縦軸読み込む用
 
 	int m_get_line;				//取得したラインナンバー
+
+	bool m_inject_f;	//チュートリアル惑星の攻撃制御用(true = 撃つ)
 
 	//メモ：↓m_rはモアイ用角度が使っており被っていたので、仮でm_r2としておきました。(後庵)
 	float m_r2;			//体力減少時の汗の動き用変数

@@ -53,15 +53,6 @@ void CSceneFight::InitScene()
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
-	//上レーン画像を5番に登録
-	Draw::LoadImage(L"上レーン.png", 5, TEX_SIZE_512);
-
-	//中央レーン画像を6番に登録
-	Draw::LoadImage(L"中央レーン.png", 6, TEX_SIZE_512);
-
-	//下レーン画像を7番に登録
-	Draw::LoadImage(L"下レーン.png", 7, TEX_SIZE_512);
-
 	//ポッドLv.1を8番に登録
 	Draw::LoadImage(L"ポッド1.png", 8, TEX_SIZE_512);
 
@@ -135,7 +126,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み33番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 33, TEX_SIZE_512);
+	Draw::LoadImage(L"メッセージウィンドウ.png", 33, TEX_SIZE_512);
 
 	//汗を読み込み34番に登録
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
@@ -258,20 +249,45 @@ void CSceneFight::InitScene()
 	//白ポッドレベル3を76番目に登録
 	Draw::LoadImage(L"ポッド白Lv3.png", 76, TEX_SIZE_512);
 
-	//メッセージウィンドウ01を読み込み77番に登録
-	Draw::LoadImage(L"メッセージウィンドウ01.png", 77, TEX_SIZE_512);
+	////メッセージウィンドウを読み込み77番に登録
+	//Draw::LoadImage(L"メッセージウィンドウ.png", 77, TEX_SIZE_512);
 
 	//ポッドレーザーを読み込み78番に登録
 	Draw::LoadImage(L"ポッドレーザー.png", 78, TEX_SIZE_512);
 
-	//メッセージウィンドウ01画像79番に登録
-	Draw::LoadImage(L"メッセージウィンドウ01.png", 79, TEX_SIZE_512);
+	//ウインドウ01画像79番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 79, TEX_SIZE_512);
 
 	//新三すくみを80番に登録
 	Draw::LoadImage(L"新三すくみ.png", 80, TEX_SIZE_512);
 
+	//上レーン画像を118番に登録
+	Draw::LoadImage(L"上レーン.png", 118, TEX_SIZE_512);
+
+	//中央レーン画像を119番に登録
+	Draw::LoadImage(L"中央レーン.png", 119, TEX_SIZE_512);
+
+	//下レーン画像を120番に登録
+	Draw::LoadImage(L"下レーン.png", 120, TEX_SIZE_512);
+
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+
+	//ボロ画像を読み込み122番に登録
+	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
+
+	//ポッドレーザー読み込み123番に登録
+	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);

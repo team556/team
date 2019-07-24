@@ -273,8 +273,8 @@ void CObjSpecialButton::Draw()
 			//▼スペシャル技(プレイヤー)表示
 			//エクスプロージョン
 			if (g_Special_equipment == 1) {
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
+				src.m_top = 2.0f;
+				src.m_left = 2.0f;
 				src.m_right = 1072.0f;
 				src.m_bottom = 112.0f;
 
@@ -286,8 +286,8 @@ void CObjSpecialButton::Draw()
 			}
 			//フラクチャーレイ
 			else if (g_Special_equipment == 2) {
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
+				src.m_top = 2.0f;
+				src.m_left = 2.0f;
 				src.m_right = 952.0f;
 				src.m_bottom = 112.0f;
 
@@ -299,8 +299,8 @@ void CObjSpecialButton::Draw()
 			}
 			//イモータリティ
 			else if (g_Special_equipment == 3) {
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
+				src.m_top = 2.0f;
+				src.m_left = 2.0f;
 				src.m_right = 817.0f;
 				src.m_bottom = 112.0f;
 
@@ -312,8 +312,8 @@ void CObjSpecialButton::Draw()
 			}
 			//オーバーワーク
 			else if (g_Special_equipment == 4) {
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
+				src.m_top = 2.0f;
+				src.m_left = 2.0f;
 				src.m_right = 832.0f;
 				src.m_bottom = 112.0f;
 
@@ -325,8 +325,8 @@ void CObjSpecialButton::Draw()
 			}
 			//リミットブレイク
 			else if (g_Special_equipment == 5) {
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
+				src.m_top = 2.0f;
+				src.m_left = 2.0f;
 				src.m_right = 952.0f;
 				src.m_bottom = 112.0f;
 

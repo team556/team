@@ -247,8 +247,8 @@ void CObjFight::Action()
 
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
-		{					
-			CObjFightClear* crer = new CObjFightClear(3000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
+		{				
+			CObjFightClear* crer = new CObjFightClear(10000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
@@ -273,6 +273,13 @@ void CObjFight::Action()
 		if (g_Challenge_enemy == 4)									
 		{
 			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 80, 0);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		//チュートリアル
+		if (g_Challenge_enemy == 5)
+		{
+			//エラーを回避するために木材を0個獲得するようにしている
+			CObjFightClear* crer = new CObjFightClear(5000, 20, L"なし", &g_Wood_num, 0, 4);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
@@ -427,19 +434,19 @@ void CObjFight::Draw()
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=260.0f;
-	Draw::Draw(5, &src, &dst, d0, 0.0f);
+	Draw::Draw(118, &src, &dst, d0, 0.0f);
 
 	dst.m_top   =310.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=370.0f;
-	Draw::Draw(6, &src, &dst, d1, 0.0f);
+	Draw::Draw(119, &src, &dst, d1, 0.0f);
 
 	dst.m_top   =420.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=480.0f;
-	Draw::Draw(7, &src, &dst, d2, 0.0f);
+	Draw::Draw(120, &src, &dst, d2, 0.0f);
 
 	if (battle_end == false) {
 		//ポッドやミサイルのキーボード選択用画像

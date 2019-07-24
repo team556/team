@@ -210,9 +210,9 @@ void CObjHome::Action()
 				m_Tra_flag = true;
 
 				//ObjHelpにシーン移行演出を伝える
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetMig_stageF();
-				help->SetTra_EatF(true);
+				//CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				//help->SetMig_stageF();
+				//help->SetTra_EatF(true);
 
 				//選択音
 				Audio::Start(1);
@@ -244,9 +244,9 @@ void CObjHome::Action()
 				m_Eat_flag = true;
 
 				//ObjHelpにシーン移行演出を伝える
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetMig_stageF();
-				help->SetTra_EatF(false);
+				//CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				//help->SetMig_stageF();
+				//help->SetTra_EatF(false);
 
 				//選択音
 				Audio::Start(1);
@@ -526,77 +526,89 @@ void CObjHome::Draw()
 	//プレイヤー惑星ステータス表示(フラグtrue時のみ描画)
 	if (m_status_flag == true)
 	{
-		//▽ウインドウ表示左上 
+		////▽ウインドウ表示左上 
+		//src.m_top = 0.0f;
+		//src.m_left = 0.0f;
+		//src.m_right = 800.0f;
+		//src.m_bottom = 790.0f;
+
+		//dst.m_top = m_mou_y - 125.0f;
+		//dst.m_left = m_mou_x + 20.0f;
+		//dst.m_right = m_mou_x + 120.0f;
+		//dst.m_bottom = m_mou_y - 65.0f;
+		//Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		////▽ウインドウ表示左下
+		//src.m_top = 30.0f;
+		//src.m_left = 800.0f;
+		//src.m_right = 1600.0f;
+		//src.m_bottom = 795.0f;
+
+		//dst.m_top = m_mou_y - 65.0f;
+		//dst.m_left = m_mou_x + 20.0f;
+		//dst.m_right = m_mou_x + 120.0f;
+		//dst.m_bottom = m_mou_y + 45.0f;
+		//Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		////▽ウインドウ表示中央上 
+		//src.m_top = 0.0f;
+		//src.m_left = 1600.0f;
+		//src.m_right = 2400.0f;
+		//src.m_bottom = 795.0f;
+
+		//dst.m_top = m_mou_y - 125.0f;
+		//dst.m_left = m_mou_x + 120.0f;
+		//dst.m_right = m_mou_x + 220.0f;
+		//dst.m_bottom = m_mou_y - 65.0f;
+		//Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		////▽ウインドウ表示中央下 
+		//src.m_top = 5.0f;
+		//src.m_left = 2400.0f;
+		//src.m_right = 3200.0f;
+		//src.m_bottom = 800.0f;
+
+		//dst.m_top = m_mou_y - 65.0f;
+		//dst.m_left = m_mou_x + 120.0f;
+		//dst.m_right = m_mou_x + 220.0f;
+		//dst.m_bottom = m_mou_y + 45.0f;
+		//Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		////▼ウインドウ右上
+		//src.m_top = 0.0f;
+		//src.m_left = 4000.0f;
+		//src.m_right = 4800.0f;
+		//src.m_bottom = 795.0f;
+
+		//dst.m_top = m_mou_y - 125.0f;
+		//dst.m_left = m_mou_x + 220.0f;
+		//dst.m_right = m_mou_x + 320.0f;
+		//dst.m_bottom = m_mou_y - 65.0f;
+		//Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		////▼ウインドウ右下
+		//src.m_top = 5.0f;
+		//src.m_left = 4800.0f;
+		//src.m_right = 5600.0f;
+		//src.m_bottom = 800.0f;
+
+		//dst.m_top = m_mou_y - 65.0f;
+		//dst.m_left = m_mou_x + 220.0f;
+		//dst.m_right = m_mou_x + 320.0f;
+		//dst.m_bottom = m_mou_y + 45.0f;
+		//Draw::Draw(6, &src, &dst, d, 0.0f);
+
+		//▼ウインドウ
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 800.0f;
-		src.m_bottom = 790.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
 
 		dst.m_top = m_mou_y - 125.0f;
 		dst.m_left = m_mou_x + 20.0f;
-		dst.m_right = m_mou_x + 120.0f;
-		dst.m_bottom = m_mou_y - 65.0f;
-		Draw::Draw(6, &src, &dst, d, 0.0f);
-
-		//▽ウインドウ表示左下
-		src.m_top = 30.0f;
-		src.m_left = 800.0f;
-		src.m_right = 1600.0f;
-		src.m_bottom = 795.0f;
-
-		dst.m_top = m_mou_y - 65.0f;
-		dst.m_left = m_mou_x + 20.0f;
-		dst.m_right = m_mou_x + 120.0f;
-		dst.m_bottom = m_mou_y + 45.0f;
-		Draw::Draw(6, &src, &dst, d, 0.0f);
-
-		//▽ウインドウ表示中央上 
-		src.m_top = 0.0f;
-		src.m_left = 1600.0f;
-		src.m_right = 2400.0f;
-		src.m_bottom = 795.0f;
-
-		dst.m_top = m_mou_y - 125.0f;
-		dst.m_left = m_mou_x + 120.0f;
-		dst.m_right = m_mou_x + 220.0f;
-		dst.m_bottom = m_mou_y - 65.0f;
-		Draw::Draw(6, &src, &dst, d, 0.0f);
-
-		//▽ウインドウ表示中央下 
-		src.m_top = 5.0f;
-		src.m_left = 2400.0f;
-		src.m_right = 3200.0f;
-		src.m_bottom = 800.0f;
-
-		dst.m_top = m_mou_y - 65.0f;
-		dst.m_left = m_mou_x + 120.0f;
-		dst.m_right = m_mou_x + 220.0f;
-		dst.m_bottom = m_mou_y + 45.0f;
-		Draw::Draw(6, &src, &dst, d, 0.0f);
-
-		//▼ウインドウ右上
-		src.m_top = 0.0f;
-		src.m_left = 4000.0f;
-		src.m_right = 4800.0f;
-		src.m_bottom = 795.0f;
-
-		dst.m_top = m_mou_y - 125.0f;
-		dst.m_left = m_mou_x + 220.0f;
-		dst.m_right = m_mou_x + 320.0f;
-		dst.m_bottom = m_mou_y - 65.0f;
-		Draw::Draw(6, &src, &dst, d, 0.0f);
-
-		//▼ウインドウ右下
-		src.m_top = 5.0f;
-		src.m_left = 4800.0f;
-		src.m_right = 5600.0f;
-		src.m_bottom = 800.0f;
-
-		dst.m_top = m_mou_y - 65.0f;
-		dst.m_left = m_mou_x + 220.0f;
 		dst.m_right = m_mou_x + 320.0f;
 		dst.m_bottom = m_mou_y + 45.0f;
-		Draw::Draw(6, &src, &dst, d, 0.0f);
+		Draw::Draw(7, &src, &dst, d, 0.0f);
 
 		//▽フォント画像表示
 		//惑星HP文字画像表示

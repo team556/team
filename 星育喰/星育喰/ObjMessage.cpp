@@ -3,8 +3,10 @@
 #include "GameL\DrawFont.h"//デバッグ用
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -18,6 +20,11 @@ void CObjMessage::Init()
 		m_font_line[i] = 0;
 		m_font_draw_x[i] = 0;
 		m_font_draw_y[i] = 0;
+
+		for (int j = 0; j < 4; j++)
+		{
+			m_font_color[i][j] = 1.0f;
+		}
 	}
 
 	m_time = 0;
@@ -32,6 +39,18 @@ void CObjMessage::Init()
 	m_mou_r = false;
 	m_mou_l = false;
 	m_key_f = false;
+
+	m_arrow_display_f = 0;
+	m_arrow_angle_f = 0;
+	m_arrow_x = 0.0f;
+	m_arrow_y = 0.0f;
+	
+	m_swing_vec = 0.0f;
+	m_swing_r = 0.0f;
+
+	m_black_out_f = false;
+	m_reminder_f = false;
+	m_is_top_or_bottom = 0;
 
 	m_run_switch = true;
 
@@ -51,9 +70,9 @@ void CObjMessage::Init()
 		{ L'ら',L'り',L'る',L'れ',L'ろ',L'ラ',L'リ',L'ル',L'レ',L'ロ' },
 		{ L'わ',L'を',L'ん',L'ワ',L'ヲ',L'ン',L'プ',L'ッ' },
 		{ L'×',L'※',L'：',L'＋',L'－',L'…',L'。',L'！',L'？',L'、',L'＆',L'．',L'＝',L'０',L'１',L'２',L'３',L'４',L'５',L'６',L'７',L'８',L'９',L'一',L'二',L'三',L'四',L'五',L'六',L'七',L'八',L'九',L'零' },
-		{ L'今',L'日',L'人',L'類',L'統',L'括',L'山',L'田',L'先',L'敵',L'惑',L'星',L'情',L'報',L'不',L'意',L'打',L'喰',L'前',L'行',L'鉄',L'木',L'／' },
+		{ L'今',L'日',L'人',L'類',L'統',L'括',L'山',L'田',L'先',L'敵',L'惑',L'星',L'情',L'報',L'不',L'意',L'打',L'喰',L'前',L'行',L'鉄',L'木',L'／',L'達',L'互',L'生',L'存',L'合',L'弱',L'肉',L'名',L'─' },
 		{ L'聞',L'強',L'来',L'思',L'準',L'備',L'越',L'手',L'入',L'見',L'攻',L'撃',L'傾',L'向',L'戦',L'闘',L'必',L'殺',L'技',L'持',L'捕',L'食',L'奪' },
-		{ L'直',L'結',L'負',L'無',L'気',L'仕',L'方',L'下',L'出',L'押',L'命',L'令',L'住',L'最',L'初',L'回',L'目',L'時',L'間',L'属',L'性' },
+		{ L'直',L'結',L'負',L'無',L'気',L'仕',L'方',L'下',L'出',L'押',L'命',L'令',L'住',L'最',L'初',L'回',L'目',L'時',L'間',L'属',L'性',L'消',L'去',L'完',L'了' },
 		{ L'有',L'利',L'不',L'利',L'赤',L'青',L'緑',L'灰',L'色',L'対',L'等',L'察',L'簡',L'単',L'活',L'用',L'数',L'字',L'上',L'真',L'中',L'線' },
 		{ L'吸',L'寄',L'逆',L'自',L'分',L'同',L'士',L'引',L'力',L'衝',L'突',L'大',L'小',L'宇',L'宙',L'常',L'識',L'覚',L'習',L'慣',L'考' },
 		{ L'素',L'材',L'移',L'所',L'配',L'置',L'便',L'番',L'最',L'高',L'体',L'成',L'果',L'勝',L'昇',L'多',L'書',L'材',L'限',L'後' },
@@ -79,32 +98,62 @@ void CObjMessage::Init()
 	//半角文字、フォントデータに登録されてない文字等は使用不可なので注意。(入力すると空白扱いとなる)
 	//▽特殊処理について
 	//以下の全角文字を打ち込むと、それぞれ特殊処理が行われます。
+	//「Ｒ」……赤文字化
+	//「Ｇ」……緑文字化
+	//「Ｂ」……青文字化
+	//「Ｗ」……白文字化
 	//「＿」……空白
 	//「￥」……改行
+	//「～」……文章途中のクリック要求
 	//「｜」……メッセージ表示機能停止
 	//※全てのメッセージ終了後、
 	//またはメッセージ途中にプレイヤーに
 	//何か操作させたい時にこの全角文字を書いて下さい。
 
-	//テスト(名前入力が完成したという報告あれば取り掛かってみる。＆を入れれば、その文字が途中に入る。)
-	//wchar_t strr[20] = L"きになあ";
-
 	//テスト
+	wchar_t strr[20] = L"きになあ";
+
+	//○○画面メッセージ文設定＆画像登録番号設定
 	if (m_Scene_id == 0)
 	{
-		swprintf_s(m_font[0], L"あかあかきくきく＿かうい￥テスト１２３２１３２３１２１３１２１３２");//メッセージ１
+		swprintf_s(m_font[0], L"ＲあかあかＢきくＧきく＿かうい～かかかかかかかかきなきなにあ￥にあまむまむ￥テスト１２３￥２１３２３１２￥１３１２１３２");//メッセージ１
 		swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展");	//メッセージ２
-		swprintf_s(m_font[2], L"うか１２２２３");		//メッセージ３
+		swprintf_s(m_font[2], L"テスト：%s：テスト",strr);		//メッセージ３
 		swprintf_s(m_font[3], L"|");					//メッセージ４
 		swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
 		swprintf_s(m_font[5], L"|");					//メッセージ６
 
 		m_message_window_num = 2;
+		m_yamada_window_num = 3;
+		m_black_out_num = 5;
 	}
-	//テスト
+	//ホーム
 	else if (m_Scene_id == 1)
 	{
-		m_message_window_num = 2;
+		m_message_window_num = 6;
+		m_yamada_window_num = 7;
+		m_black_out_num = 8;
+	}
+	//戦闘準備画面
+	else if (m_Scene_id == 2)
+	{
+		m_message_window_num = 55;
+		m_yamada_window_num = 89;
+		m_black_out_num = 91;
+	}
+	//戦闘画面
+	else if (m_Scene_id == 3)
+	{
+		m_message_window_num = 33;
+		m_yamada_window_num = 79;
+		m_black_out_num = 20;
+	}
+	//育成画面
+	else if (m_Scene_id == 4)
+	{
+		m_message_window_num = 21;
+		m_yamada_window_num = 20;
+		m_black_out_num = 135;
 	}
 }
 
@@ -178,10 +227,120 @@ void CObjMessage::Action()
 		m_key_f = false;
 	}
 
+
+	//▼文章途中のクリック要求処理
+	if (m_font[m_progress][m_font_count] == L'～')
+	{
+		m_reminder_f = true;//クリック催促画像表示
+
+		//現在のメッセージが最後まで表示されていなくとも、
+		//'～'を書けばクリックするまでメッセージを止める事が出来る。
+		//この処理に入っている時に、左クリックする事でメッセージの続きが見れる。
+		//※スキップフラグON時はクリックせずとも、勝手に処理が進む。
+		if (m_mou_l == true && m_key_f == false || m_skip_f == true)
+		{
+			//現在のフォント描画位置Xをそのまま次のフォント描画位置Xに入れる
+			//※'Ｒ'等の文字は内部処理の命令文であり、描画する訳ではないため。
+			m_font_draw_x[m_font_count + 1] = m_font_draw_x[m_font_count];
+
+			m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
+
+
+			m_fast_f = false;//描画速度高速化停止
+			m_key_f = true;//キーフラグを立てる
+			m_reminder_f = false;//クリック催促画像非表示
+
+			//選択音
+			Audio::Start(1);
+		}
+
+		return;
+	}
+
+	//▼メッセージカラー変更処理
+	if (m_font[m_progress][m_font_count] == L'Ｒ' || m_font[m_progress][m_font_count] == L'Ｇ' ||
+		m_font[m_progress][m_font_count] == L'Ｂ' || m_font[m_progress][m_font_count] == L'Ｗ')
+	{
+		if (m_font[m_progress][m_font_count] == L'Ｒ')
+		{
+			//Ｒ宣言の後ろにあるフォント全てを赤色に変更する
+			for (int i = m_font_count; i <= m_length; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					if (j != 0)
+					{
+						m_font_color[i][j] = 0.0f;
+					}
+					else
+					{
+						m_font_color[i][j] = 1.0f;
+					}
+				}
+			}
+		}
+		else if (m_font[m_progress][m_font_count] == L'Ｇ')
+		{
+			//Ｇ宣言の後ろにあるフォント全てを緑色に変更する
+			for (int i = m_font_count; i <= m_length; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					if (j != 1)
+					{
+						m_font_color[i][j] = 0.0f;
+					}
+					else
+					{
+						m_font_color[i][j] = 1.0f;
+					}
+				}
+			}
+		}
+		else if (m_font[m_progress][m_font_count] == L'Ｂ')
+		{
+			//Ｂ宣言の後ろにあるフォント全てを青色に変更する
+			for (int i = m_font_count; i <= m_length; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					if (j != 2)
+					{
+						m_font_color[i][j] = 0.0f;
+					}
+					else
+					{
+						m_font_color[i][j] = 1.0f;
+					}
+				}
+			}
+		}
+		else  //(m_font[m_progress][m_font_count] == L'Ｗ')
+		{
+			//Ｗ宣言の後ろにあるフォント全てを白色に変更する
+			for (int i = m_font_count; i <= m_length; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					m_font_color[i][j] = 1.0f;
+				}
+			}
+		}
+
+		//現在のフォント描画位置Xをそのまま次のフォント描画位置Xに入れる
+		//※'Ｒ'等の文字は内部処理の命令文であり、描画する訳ではないため。
+		m_font_draw_x[m_font_count + 1] = m_font_draw_x[m_font_count];
+
+		m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
+
+		return;
+	}
 	
 	//▼メッセージ表示＆終了処理
 	if (m_font[m_progress][m_font_count] == L'；' || m_skip_f == true)
 	{
+		m_reminder_f = true;//クリック催促画像表示
+
 		//▽メッセージ終了の処理
 		//現在のメッセージが最後まで表示されると、この処理が実行される。
 		//この状態の時に、左クリックする事で次のメッセージへと移行する。
@@ -196,6 +355,11 @@ void CObjMessage::Action()
 				m_font_line[i] = 0;
 				m_font_draw_x[i] = 0;
 				m_font_draw_y[i] = 0;
+
+				for (int j = 0; j < 4; j++)
+				{
+					m_font_color[i][j] = 1.0f;
+				}
 			}
 
 			m_time = 0;
@@ -204,7 +368,11 @@ void CObjMessage::Action()
 			m_fast_f = false;
 
 			m_key_f = true;//キーフラグを立てる
+			m_reminder_f = false;//クリック催促画像非表示
 			m_progress++;//メッセージ進行度を増加させ、次のメッセージへと移行。
+
+			//選択音
+			Audio::Start(1);
 		}
 	}
 	else if (m_time <= 0 || m_fast_f == true)
@@ -311,25 +479,198 @@ void CObjMessage::Draw()
 		return;
 	}
 
+	//メッセージウインドウ描画位置情報配列
+	float window_pos_y[2] = { 480.0f,20.0f };
+	
+	//矢印サイズ情報管理配列
+	float arrow_size[2] = { 0.0f,64.0f };
+	
+	//矢印角度情報管理配列
+	float arrow_angle[4] = { 0.0f,180.0f,90.0f,270.0f };
+
 
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };//フォント画像用
+	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };//画面全体やや暗転画像用
+	float orange[4] = { 1.0f,0.5f,0.0f,1.0f };//山田文字画像用
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
 
-	//▼メッセージウインドウ表示
+	//▼m_swing_vecの値を増減させる処理
+	//※常にこの処理は実行されている。
+	//その為、この変数を描画位置等に組み込むと
+	//往復アニメーションさせる事が出来るという訳である。
+
+	//角度加算
+	m_swing_r += 2.0f;
+
+	//360°で初期値に戻す
+	if (m_swing_r > 360.0f)
+	{
+		m_swing_r = 0.0f;
+	}
+
+	//移動方向
+	m_swing_vec = sin(3.14f / 90 * m_swing_r);
+
+	//速度付ける
+	m_swing_vec *= 10.0f;
+
+
+
+	//▼画面全体やや暗転画像
+	if (m_black_out_f == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
+
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = 1200.0f;
+		dst.m_bottom = 700.0f;
+		Draw::Draw(m_black_out_num, &src, &dst, blackout, 0.0f);
+	}
+
+	//▽ウインドウ表示左上 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 64.0f;
+	src.m_right = 800.0f;
+	src.m_bottom = 790.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom];
+	dst.m_left = 230.0f;
+	dst.m_right = 540.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 100.0f;
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+
+	//▽ウインドウ表示左下
+	src.m_top = 30.0f;
+	src.m_left = 800.0f;
+	src.m_right = 1600.0f;
+	src.m_bottom = 795.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom] + 100.0f;
+	dst.m_left = 230.0f;
+	dst.m_right = 540.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 200.0f;
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+
+	//▽ウインドウ表示中央上 
+	src.m_top = 0.0f;
+	src.m_left = 1600.0f;
+	src.m_right = 2400.0f;
+	src.m_bottom = 795.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom];
+	dst.m_left = 530.0f;
+	dst.m_right = 860.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 100.0f;
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+
+	//▽ウインドウ表示中央下 
+	src.m_top = 5.0f;
+	src.m_left = 2400.0f;
+	src.m_right = 3200.0f;
+	src.m_bottom = 800.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom] + 100.0f;
+	dst.m_left = 540.0f;
+	dst.m_right = 860.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 200.0f;
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+
+	//▼ウインドウ右上
+	src.m_top = 0.0f;
+	src.m_left = 4000.0f;
+	src.m_right = 4800.0f;
+	src.m_bottom = 795.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom];
+	dst.m_left = 860.0f;
+	dst.m_right = 1180.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 100.0f;
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+
+	//▼ウインドウ右下
+	src.m_top = 5.0f;
+	src.m_left = 4801.0f;
+	src.m_right = 5600.0f;
+	src.m_bottom = 800.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom] + 100.0f;
+	dst.m_left = 850.0f;
+	dst.m_right = 1180.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 200.0f;
+	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+
+	//▼山田ウインドウ表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom];
+	dst.m_left = 20.0f;
+	dst.m_right = 220.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 200.0f;
+	Draw::Draw(m_yamada_window_num, &src, &dst, d, 0.0f);
+
+	//▼山田表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 160.0f;
+	src.m_bottom = 240.0f;
+
+	dst.m_top = window_pos_y[m_is_top_or_bottom] + 20.0f;
+	dst.m_left = 40.0f;
+	dst.m_right = 200.0f;
+	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 180.0f;
+	Draw::Draw(190, &src, &dst, d, 0.0f);
+
+	//▼山田文字画像表示
+	FontDraw(L"山田", 255.0f, window_pos_y[m_is_top_or_bottom] + 8.0f, 36.0f, 36.0f, orange, false);
+
+	//▼クリック催促画像
+	if (m_reminder_f == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 36.0f;
+		src.m_bottom = 35.0f;
+
+		dst.m_top = window_pos_y[m_is_top_or_bottom] + 57.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
+		dst.m_left = 264.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
+		dst.m_right = 246.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
+		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 39.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
+		Draw::Draw(189, &src, &dst, d, 0.0f);
+	}
+
+	//▼矢印表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 32.0f;
 	src.m_bottom = 64.0f;
 
-	dst.m_top = 630.0f;
-	dst.m_left = 20.0f;
-	dst.m_right = 1180.0f;
-	dst.m_bottom = 680.0f;
-	Draw::Draw(m_message_window_num, &src, &dst, d, 0.0f);
+	if (m_arrow_angle_f <= 1)//上、下向き
+	{
+		dst.m_top = m_arrow_y + m_swing_vec;
+		dst.m_left = m_arrow_x;
+		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x;
+		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y + m_swing_vec;
+	}
+	else					 //左、右向き
+	{
+		dst.m_top = m_arrow_y;
+		dst.m_left = m_arrow_x + m_swing_vec;
+		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x + m_swing_vec;
+		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y;
+	}
+	Draw::Draw(191, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
+
 
 	//現在メッセージの文字列の長さが取得出来ていれば実行される
 	if (m_length != 0)
@@ -344,10 +685,10 @@ void CObjMessage::Draw()
 			src.m_right = FONT_CLIP_SIZE * m_font_column[i];
 			src.m_bottom = FONT_CLIP_SIZE * m_font_line[i];
 
-			dst.m_top = 500.0f + (FONT_DRAW_SIZE * m_font_draw_y[i]);
-			dst.m_left = 50.0f + (FONT_DRAW_SIZE * m_font_draw_x[i]);
-			dst.m_right = 50.0f + (FONT_DRAW_SIZE * (m_font_draw_x[i] + 1));
-			dst.m_bottom = 500.0f + (FONT_DRAW_SIZE * (m_font_draw_y[i] + 1));
+			dst.m_top = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * m_font_draw_y[i]);
+			dst.m_left = 255.0f + (FONT_DRAW_SIZE * m_font_draw_x[i]);
+			dst.m_right = 255.0f + (FONT_DRAW_SIZE * (m_font_draw_x[i] + 1));
+			dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * (m_font_draw_y[i] + 1));
 
 			//以下はフォント切り取り位置(列、行)のどちらかに0が入力されていた場合、
 			//そのフォントを表示しない処理。
@@ -364,7 +705,7 @@ void CObjMessage::Draw()
 				dst.m_bottom = 0.0f;
 			}
 
-			Draw::Draw(3, &src, &dst, d, 0.0f);
+			Draw::Draw(121, &src, &dst, m_font_color[i], 0.0f);
 		}
 	}
 

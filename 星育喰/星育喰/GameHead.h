@@ -158,8 +158,10 @@ extern int g_Aluminum_num;		//アルミニウム
 extern int g_gus_num;			//ガス
 
 //▼セーブ必要性無し
-extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星)
+extern int g_Challenge_enemy;		//戦闘を行う敵惑星識別番号(0:左から1番目の敵惑星　1:左から2番目の敵惑星　2:左から3番目の敵惑星　3:左から4番目の敵惑星　4:ボス惑星　5:チュートリアル惑星)
 extern bool g_help_f;				//ヘルプ画面表示フラグ(true:ヘルプ画面表示　false:ヘルプ画面非表示)
+extern int  g_tutorial_progress;	//現在のチュートリアル進行度
+extern bool g_is_operatable;		//チュートリアルにて操作可能か確認フラグ(true:操作可能　false;操作不可)[メッセージを読み進める時に後ろのボタン等が反応しないようにする為に使用]
 
 //▼定数
 #define CUT_ZERO 1625		//文字集で数字を切り取るときの0の位置

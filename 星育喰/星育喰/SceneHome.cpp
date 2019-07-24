@@ -33,9 +33,9 @@ void CSceneHome::InitScene()
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
-	//ヘルプオブジェクト
-	CObjHelp* help = new CObjHelp(1);     //ヘルプオブジェクト作成
-	Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
+	////ヘルプオブジェクト
+	//CObjHelp* help = new CObjHelp(1);     //ヘルプオブジェクト作成
+	//Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
 	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
@@ -55,10 +55,14 @@ void CSceneHome::InitScene()
 	//ヘルプ画像を読み込み5番に登録
 	Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
 
-	////メッセージウインドウを読み込み6番に登録
-	//Draw::LoadImage(L"メッセージウインドウ(仮).png", 6, TEX_SIZE_512);
-	//メッセージウインドウを読み込み21番に登録
+	//メッセージウインドウを読み込み6番に登録
 	Draw::LoadImage(L"メッセージウィンドウ.png", 6, TEX_SIZE_512);
+
+	//ウインドウ01を読み込み7番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 7, TEX_SIZE_512);
+
+	//ポーズ画面背景(画面暗転用)を読み込み8番に登録
+	Draw::LoadImage(L"ポーズ画面背景.png", 8, TEX_SIZE_512);
 
 	//雲を読み込み15番に登録
 	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
@@ -66,7 +70,7 @@ void CSceneHome::InitScene()
 	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
 
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン(仮).png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み50番に登録
 	Draw::LoadImage(L"P惑星_Lv1修正.png", 50, TEX_SIZE_512);
@@ -85,10 +89,19 @@ void CSceneHome::InitScene()
 
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
-
 	
 	//現在装備中のスペシャル技文字画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
 
 
 	//音楽読み込み

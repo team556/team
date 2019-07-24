@@ -28,6 +28,10 @@ CObjRocket::CObjRocket(float x, float y, int type,int n)
 //イニシャライズ
 void CObjRocket::Init()
 {
+	if (ButtonU != 5) {
+		
+	}
+
 	//▼ワンパターンデメリット処理
 	//▽プレイヤーの処理
 	if (m_type == 0)
@@ -164,11 +168,11 @@ void CObjRocket::Init()
 			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD2, OBJ_PODD, 1); break;
 			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD3, OBJ_PODD, 1); break;
 			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD4, OBJ_PODD, 1); break;
-			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODP, 1); break;
-			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODP, 1); break;
-			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODP, 1); break;
-			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODP, 1); break;
-			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODD, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODD, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODD, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODD, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODD, 1); break;
 			}
 		}
 		else if (ButtonUP == 3)
@@ -179,11 +183,11 @@ void CObjRocket::Init()
 			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD2, OBJ_PODS, 1); break;
 			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD3, OBJ_PODS, 1); break;
 			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD4, OBJ_PODS, 1); break;
-			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODP, 1); break;
-			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODP, 1); break;
-			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODP, 1); break;
-			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODP, 1); break;
-			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODS, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODS, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODS, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODS, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODS, 1); break;
 			}
 		}
 		else if (ButtonUP == 4)
@@ -194,19 +198,22 @@ void CObjRocket::Init()
 			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD2, OBJ_PODB, 1); break;
 			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD3, OBJ_PODB, 1); break;
 			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD4, OBJ_PODB, 1); break;
-			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODP, 1); break;
-			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODP, 1); break;
-			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODP, 1); break;
-			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODP, 1); break;
-			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD5, OBJ_PODB, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD6, OBJ_PODB, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD7, OBJ_PODB, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD8, OBJ_PODB, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD9, OBJ_PODB, 1); break;
 			}
 		}
 		else if (ButtonUP == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
 		}
-		if(ButtonUP != 5)
+		if (ButtonUP != 5) {
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
 			p_pnam++;
+		}
 		if (p_pnam == 9)
 			p_pnam = 0;
 	}
@@ -215,26 +222,80 @@ void CObjRocket::Init()
 		m_x -= 100;
 		if (ButtonUE == 1)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODP, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODP, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODP, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODP, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODP, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODP, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODP, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODP, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODP, 1); break;
+			}
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 2)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODD, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODP, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODD, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODD, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODD, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODD, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODD, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODD, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODD, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODD, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODD, 1); break;
+			}
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 3)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODS, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODS, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODS, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODS, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODS, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODS, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODS, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODS, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODS, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODS, 1); break;
+			}
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 4)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1);
+			switch (e_pnam) {
+			case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_PODB, 1); break;
+			case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD1, OBJ_PODB, 1); break;
+			case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD2, OBJ_PODB, 1); break;
+			case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD3, OBJ_PODB, 1); break;
+			case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD4, OBJ_PODB, 1); break;
+			case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD5, OBJ_PODB, 1); break;
+			case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD6, OBJ_PODB, 1); break;
+			case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD7, OBJ_PODB, 1); break;
+			case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD8, OBJ_PODB, 1); break;
+			case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD9, OBJ_PODB, 1); break;
+			}
+			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
+			Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+			e_pnam++;
 		}
 		else if (ButtonUE == 5)
 		{
 			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
 		}
-		if (ButtonUP != 5)
-			e_pnam++;
 		if (e_pnam == 9)
 			e_pnam = 0;
 	}
@@ -252,6 +313,7 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
+
 	//ポッドのHPを決める
 	if (ButtonU == 5)			//ポッドがミサイルの時のみHPを1にする
 	{
@@ -264,16 +326,19 @@ void CObjRocket::Init()
 		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 2) {
-		m_pod_max_hp = 20.0f;
+		m_pod_max_hp = 22.0f;
 	}
 	else if (m_type == 3) {
-		m_pod_max_hp = 20.0f;
+		m_pod_max_hp = 22.0f;
 	}
 	else if (m_type == 4) {
 		m_pod_max_hp = 17.0f;
 	}
 	else if (m_type == 5) {
 		m_pod_max_hp = 30.0f;
+	}
+	else if (m_type == 6) {
+		m_pod_max_hp = 10.0f;
 	}
 
 	m_podhp = m_pod_max_hp;
@@ -329,31 +394,28 @@ void CObjRocket::Init()
 		break;
 	case 2:
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 10.0f;
+		m_Player_damage = 7.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 15.0f;
+		m_Player_damage = 10.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 4:
 		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-		m_Player_damage = 8.0f;
+		m_Player_damage = 5.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 5:
 		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-		m_Player_damage = 17.0f;
+		m_Player_damage = 12.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
-	}
-
-
-
-	if (ButtonU != 5) {
-		CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
-		Objs::InsertObj(RH, OBJ_RKTHIT, 15);				//オブジェクト登録
+	case 6:
+		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
+		m_Player_damage = 2.0f;
+		g_P_Planet_damage = m_Player_damage;
 	}
 }
 
@@ -378,10 +440,13 @@ void CObjRocket::Action()
 		m_del = true;
 	}
 
+
 	//ポッド同士の戦闘時にHitBox位置とサイズを変更する
 	if (m_type == 0)
-		if (ButtonU == 5) {//ロケットのみ通常で更新
+		if (ButtonU == 5) {		//ロケット更新
 			hit->SetPos(m_x, m_y,m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x + m_size * m_schange, m_y + m_size * m_schange, m_size, m_size);//戦闘時変更
 		}
 		else
 		{
@@ -391,9 +456,17 @@ void CObjRocket::Action()
 		}
 	else
 	{
-		hit->SetPos(m_x, m_y, m_size, m_size);			//HitBox更新
-		if(m_fight == true)				
-			hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
+		if (ButtonU == 5) {		//ロケット更新
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x - m_size * m_schange, m_y - m_size * m_schange, m_size, m_size);//戦闘時変更
+		}
+		else
+		{
+			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
+			if (m_fight == true)
+				hit->SetPos(m_x, m_y, m_size, m_size * m_schange);				//戦闘時変更
+		}
 	}
 
 	if (m_fight == true)
@@ -407,6 +480,8 @@ void CObjRocket::Action()
 			m_atk_cnt++;//カウント
 		}
 	}
+	else
+		m_atk_cnt = 0;
 
 	//if (m_pstop == true)		//ポッド停止フラグON時
 	//{
@@ -437,7 +512,7 @@ void CObjRocket::Action()
 				m_stop_cnt = 0;
 			}
 		}
-		else//停止時以外、移動ベクトル加算
+		else if(m_del == false)//停止時以外、移動ベクトル加算
 		{
 			m_fight = false;
 			m_mov += m_mov_spd / 2;
@@ -500,38 +575,87 @@ void CObjRocket::Action()
 		}
 	}
 	
-	//▼ポッドのダメージ処理
-	//※戦闘終了後は以下のポッドのダメージ処理は行わない
+	//▼ポッドの当たり判定処理
+	//※戦闘終了後は以下のポッドの処理は行わない
 	if (battle_end == false)
 	{
 		if (ButtonU != 5) {		//ミサイル以外のストップ処理
-			if (hit->CheckElementHit(ELEMENT_NULL) == true && m_type != 0)//Hit用OBJに当たった場合
-				if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||
-					hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr )
+			if (hit->CheckElementHit(ELEMENT_NULL) == true && m_type == 0)//Hit用OBJに当たった場合
+				if ((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0)||
+					(hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr && m_pnam == 1) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr && m_pnam == 2) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr && m_pnam == 3) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT4) != nullptr && m_pnam == 4) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT5) != nullptr && m_pnam == 5) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
+					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
 					m_fight = true;
-				else if ((hit->CheckElementHit(ELEMENT_POD) == true||
-					hit->CheckElementHit(ELEMENT_POD1) == true ||
-					hit->CheckElementHit(ELEMENT_POD2) == true ||
-					hit->CheckElementHit(ELEMENT_POD3) == true ||
-					hit->CheckElementHit(ELEMENT_POD4) == true ||
-					hit->CheckElementHit(ELEMENT_POD5) == true ||
-					hit->CheckElementHit(ELEMENT_POD6) == true ||
-					hit->CheckElementHit(ELEMENT_POD7) == true ||
-					hit->CheckElementHit(ELEMENT_POD8) == true ||
-					hit->CheckElementHit(ELEMENT_POD9) == true) && m_type != 1)
+				else if((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
 					m_fight = true;
 				else
 					m_fight = false;
 			else
 				m_fight = false;		//進める
+		}
+
+		if (m_type == 0) {	//同じタイプ同士での、衝突ストップ判定
+			if (hit->CheckElementHit(ELEMENT_POD) == true && (m_pnam >= 1 && m_pnam <= 3))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD1) == true && (m_pnam >= 2 && m_pnam <= 4))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD2) == true && (m_pnam >= 3 && m_pnam <= 5))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD3) == true && (m_pnam >= 4 && m_pnam <= 6))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD4) == true && (m_pnam >= 5 && m_pnam <= 7))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD5) == true && (m_pnam >= 6 && m_pnam <= 8))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD6) == true && (m_pnam >= 7 && m_pnam <= 9))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD7) == true && (m_pnam >= 8 || m_pnam <= 0))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD8) == true && (m_pnam >= 9 || m_pnam <= 1))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_POD9) == true && (m_pnam >= 0 || m_pnam <= 2))
+				m_stop_f = true;
+			else if(m_fight == false)
+				m_stop_f = false;
+		}
+		else {
+			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
+				m_stop_f = true;
+			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
+				m_stop_f = true;
+			else if (m_fight == false)
+				m_stop_f = false;
 		}
 
 		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
@@ -556,12 +680,14 @@ void CObjRocket::Action()
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
+			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)	//敵の惑星に当たった時かつ自弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
+			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
 
@@ -627,7 +753,7 @@ void CObjRocket::Action()
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
+						m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 2)	//敵の種類２(ディフェンス)がプレイヤーのポッドと当たった場合
@@ -675,8 +801,8 @@ void CObjRocket::Action()
 				{
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
-
-					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
+					
+						m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 3)	//敵の種類３(スピード)がプレイヤーのポッドと当たった場合
@@ -724,8 +850,8 @@ void CObjRocket::Action()
 				{
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
-
-					m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
+					
+						m_podhp -= (m_Enemy_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
 			else if (ButtonUE == 4)	//敵の種類４(バランス)がプレイヤーのポッドとミサイルに当たった場合
@@ -774,7 +900,7 @@ void CObjRocket::Action()
 					//m_Enemy_damage = 3.0f;//ミサイルの時は火力3固定
 					//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 					
-					m_podhp -= (m_pod_max_hp * 0.85) * m_One_pat_dem;//最大HP*0.85倍のダメージを与える
+						m_podhp -= (m_pod_max_hp * 0.85) * m_One_pat_dem;//最大HP*0.85倍のダメージを与える
 				}
 			}
 			else if (ButtonUE == 5)	//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
@@ -787,11 +913,23 @@ void CObjRocket::Action()
 			m_fight = false;
 			m_stop_cnt = 0;
 		}
-		
+		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+			//m_stop_f = false;
+		else if(m_type != 0)
+			m_stop_f = false;
 
 		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
 		//※プレイヤーがダメージを受ける時の処理
-		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && m_type == 0)
+		if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true) && m_type == 0)
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
@@ -831,7 +969,7 @@ void CObjRocket::Action()
 					//m_Player_damage = 3.0f;//ミサイルの時は火力3固定
 
 					//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
-
+					
 					m_podhp -= (m_Player_damage + 1.0f) * m_One_pat_dem;
 				}
 			}
@@ -960,7 +1098,10 @@ void CObjRocket::Action()
 			m_stop_cnt = 0;
 		
 		}
-
+		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
+			//m_stop_f = false;
+		else if (m_type == 0)
+			m_stop_f = false;
 
 		if (m_podhp <= 0)//両ポッドHPでの削除
 		{
@@ -968,33 +1109,8 @@ void CObjRocket::Action()
 		}
 	}
 
-	if (m_type == 0) {	//同じタイプ同士での、衝突ストップ判定
-		if (hit->CheckElementHit(ELEMENT_POD) == true && (m_pnam >= 1 && m_pnam <= 3))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD1) == true && (m_pnam >= 2 && m_pnam <= 4))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD2) == true && (m_pnam >= 3 && m_pnam <= 5))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD3) == true && (m_pnam >= 4 && m_pnam <= 6))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD4) == true && (m_pnam >= 5 && m_pnam <= 7))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD5) == true && (m_pnam >= 6 && m_pnam <= 8))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD6) == true && (m_pnam >= 7 && m_pnam <= 9))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD7) == true && (m_pnam >= 8 || m_pnam <= 0))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD8) == true && (m_pnam >= 9 || m_pnam <= 1))
-			m_stop_f = true;
-		else if (hit->CheckElementHit(ELEMENT_POD9) == true && (m_pnam >= 0 || m_pnam <= 2))
-			m_stop_f = true;
-		else
-			m_stop_f = false;
-	}
-	else {
-
-	}
+	
+	
 }
 
 //ドロー
@@ -1011,146 +1127,147 @@ void CObjRocket::Draw()
 
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
-
-	if (m_type == 0)
-	{
-		if (m_stop_f == false /*&& m_pstop == false*/)
+	if (m_ani < 10) {		//着弾アニメーションの途中まで描画
+		if (m_type == 0)
 		{
-			switch (m_get_line) {
-			case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
-			case 2:m_r -= 0.08 + m_mov_spd * 2; break;
+			if (m_stop_f == false /*&& m_pstop == false*/)
+			{
+				switch (m_get_line) {
+				case 0:m_r += 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
+				case 2:m_r -= 0.08 + m_mov_spd * 2; break;
+				}
+			}
+
+			if (ButtonUP >= 1 && ButtonUP <= 4)
+			{
+				//ポッドの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = -64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y + m_size;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y;
+			}
+			else
+			{
+				//ミサイルの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y + m_size;
+			}
+
+			//-----------ボタン赤・青・緑を分ける判定
+
+
+
+			switch (ButtonUP) {
+			case 1:
+				if (m_get_line == 1) { Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//赤色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 2:
+				if (m_get_line == 1) { Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//青色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 3:
+				if (m_get_line == 1) { Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//緑色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 4:
+				if (m_get_line == 1) { Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//原色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
+				else { Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
+				break;
+			case 5:
+				if (m_get_line == 1) { Draw::Draw(17, &src, &dst, d, m_r + 45); }//ミサイルの
+				else if (m_get_line == 2) { Draw::Draw(17, &src, &dst, d, m_r + 65); }//各ラインの角度調整
+				else { Draw::Draw(17, &src, &dst, d, m_r + 25); }
+				//else if ();
+				break;
+			}
+			//Draw::Draw(10, &src, &dst, d, m_r - 15);
+		}
+
+		if (m_type != 0)
+		{
+			if (m_stop_f == false/* && m_pstop == false*/)
+			{
+				switch (m_get_line) {
+				case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
+				case 2:m_r += 0.08 + m_mov_spd * 2; break;
+				case 3:m_r -= 0.08 + m_mov_spd * 2; break;
+				}
+			}
+
+			//敵ポッドの1～4の番号(ポッド)の描画情報
+			if (ButtonUE >= 1 && ButtonUE <= 4)
+			{
+				//ポッドの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = -64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y + m_size;
+			}
+			else  //------------敵ミサイルの描画用
+			{
+				//ミサイルの描画情報
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y + m_size;
+			}
+
+			switch (ButtonUE) {
+			case 1://---------ランダムの情報が1なら
+				if (m_get_line == 1) { Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//赤色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 2://---------ランダムの情報が2なら
+				if (m_get_line == 1) { Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//青色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 3://---------ランダムの情報が3なら
+				if (m_get_line == 1) { Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//緑色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 4://---------ランダムの情報が4なら
+				if (m_get_line == 1) { Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//原色ポッドの
+				else if (m_get_line == 2) { Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
+				else { Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
+				break;
+			case 5://---------ランダムの情報が5なら
+				if (m_get_line == 1) { Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
+				else if (m_get_line == 2) { Draw::Draw(17, &src, &dst, d, m_r - 155); }//ミサイルの
+				else { Draw::Draw(17, &src, &dst, d, m_r - 115); }
+				break;
 			}
 		}
-		
-		if (ButtonUP >= 1 && ButtonUP <= 4)
-		{
-			//ポッドの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = -64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y + m_size;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y;
-		}
-		else
-		{
-			//ミサイルの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
-		}
-
-		 //-----------ボタン赤・青・緑を分ける判定
-		
-
-		switch (ButtonUP) {
-		case 1:
-			if (m_get_line == 1)		{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//赤色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(65 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 2:
-			if (m_get_line == 1)		{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//青色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(68 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 3:
-			if (m_get_line == 1)		{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//緑色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(71 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 4:
-			if (m_get_line == 1)		{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 180); }//原色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 160); }//各ラインの角度調整
-			else						{ Draw::Draw(74 + (g_Pod_equip_Level - 1), &src, &dst, d, m_r - 200); }
-			break;
-		case 5:
-			if (m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r + 45); }//ミサイルの
-			else if (m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r + 65); }//各ラインの角度調整
-			else						{ Draw::Draw(17, &src, &dst, d, m_r + 25); }
-			//else if ();
-			break;
-		}
-		//Draw::Draw(10, &src, &dst, d, m_r - 15);
 	}
-
-	if(m_type != 0)
-	{
-		if (m_stop_f == false/* && m_pstop == false*/)
-		{
-			switch (m_get_line) {
-			case 0:m_r -= 0.08 + m_mov_spd * 2; break;//ミサイル角度加算
-			case 2:m_r += 0.08 + m_mov_spd * 2; break;
-			case 3:m_r -= 0.08 + m_mov_spd * 2; break;
-			}
-		}
-
-		//敵ポッドの1～4の番号(ポッド)の描画情報
-		if (ButtonUE >= 1 && ButtonUE <= 4)
-		{
-			//ポッドの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = -64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
-		}
-		else  //------------敵ミサイルの描画用
-		{
-			//ミサイルの描画情報
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 64.0f;
-			src.m_bottom = 64.0f;
-
-			dst.m_top = m_y;
-			dst.m_left = m_x;
-			dst.m_right = m_x + m_size;
-			dst.m_bottom = m_y + m_size;
-		}
-
-		switch (ButtonUE) {
-		case 1://---------ランダムの情報が1なら
-			if (m_get_line == 1)		{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//赤色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(65 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 2://---------ランダムの情報が2なら
-			if (m_get_line == 1)		{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//青色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(68 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 3://---------ランダムの情報が3なら
-			if (m_get_line == 1)		{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//緑色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(71 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 4://---------ランダムの情報が4なら
-			if (m_get_line == 1)		{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r); }//原色ポッドの
-			else if (m_get_line == 2)	{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r - 20); }//各ラインの角度調整
-			else						{ Draw::Draw(74 + (m_Enemy_Pod_Level - 1), &src, &dst, d, m_r + 20); }
-			break;
-		case 5://---------ランダムの情報が5なら
-			 if(m_get_line == 1)		{ Draw::Draw(17, &src, &dst, d, m_r - 135); }//各ラインの角度調整
-			else if(m_get_line == 2)	{ Draw::Draw(17, &src, &dst, d, m_r - 155); }//ミサイルの
-			else						{ Draw::Draw(17, &src, &dst, d, m_r - 115); }
-			break;
-		}
-	}
-
 	//HPゲージ表示(ミサイル以外かつ破壊されていない時に表示される)
 	if (ButtonU != 5 && m_del == false)
 	{
@@ -1174,22 +1291,14 @@ void CObjRocket::Draw()
 	
 
 	//爆発エフェクト
-	//左斜め上
-	if (m_bom== 0) 
+	if (m_del == 1)
 	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 2560.0f;
-		src.m_bottom = 128.0f;
-
 		dst.m_top = -48.0f + m_y;
 		dst.m_left = -48.0f + m_x;
 		dst.m_right = 80.0f + m_x;
 		dst.m_bottom = 80.0f + m_y;
+		Draw::Draw(16, &m_eff, &dst, c, 0.0f);
 	}
-
-	if (m_del == true) 
-		Draw::Draw(16, &m_eff, &dst, c, 180.0f);
 
 	//敵PODの体力とHPを表示する(デバッグ用)
 	//wchar_t test_mou[256];
