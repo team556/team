@@ -50,12 +50,12 @@ int g_Pod_equip_Lv_achieve	= 1;
 float g_Player_max_size = 100.0f;
 int g_Special_equipment = 0;//装備中のスペシャル技
 bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
-int g_Power_num		= 2000;
-int g_Defense_num	= 2000;
-int g_Speed_num		= 2000;
-int g_Balance_num	= 2000;
+int g_Power_num		= 0;
+int g_Defense_num	= 0;
+int g_Speed_num		= 0;
+int g_Balance_num	= 0;
 int g_Research_num	= 0;
-int g_Remain_num	= 2000;
+int g_Remain_num	= 0;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 
@@ -152,19 +152,19 @@ void CObjTitle::Init()
 		g_Special_mastering[i] = false;
 	}
 
-	g_Power_num = 1000;
-	g_Defense_num = 1000;
-	g_Speed_num = 1000;
-	g_Balance_num = 1000;
-	g_Research_num = 0;
-	g_Remain_num = 0;
+	g_Power_num		= 1500;
+	g_Defense_num	= 1500;
+	g_Speed_num		= 1500;
+	g_Balance_num	= 1500;
+	g_Research_num	= 0;
+	g_Remain_num	= 0;
 
-	g_Iron_num = 0;
-	g_Wood_num = 0;
-	g_Silver_num = 0;
-	g_Plastic_num = 0;
-	g_Aluminum_num = 0;
-	g_gus_num = 0;
+	g_Iron_num		= 0;
+	g_Wood_num		= 0;
+	g_Silver_num	= 0;
+	g_Plastic_num	= 0;
+	g_Aluminum_num	= 0;
+	g_gus_num		= 0;
 }
 
 //アクション

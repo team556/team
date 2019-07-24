@@ -55,9 +55,6 @@ void CSceneHome::InitScene()
 	//ヘルプ画像を読み込み5番に登録
 	Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
 
-	////メッセージウインドウを読み込み6番に登録
-	//Draw::LoadImage(L"メッセージウインドウ(仮).png", 6, TEX_SIZE_512);
-
 	//メッセージウインドウを読み込み6番に登録
 	Draw::LoadImage(L"メッセージウィンドウ.png", 6, TEX_SIZE_512);
 

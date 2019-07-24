@@ -31,10 +31,19 @@ void CObjRktHit::Init()
 	m_mov	= 0.0f;
 	m_size = 50.0f;
 	m_del_cnt = 0;
+
+	m_ani[0] = 0;
+	m_ani[1] = 1;
+	m_ani[2] = 2;
+	m_ani[3] = 3;
+	m_ani_frame = 0;
+	m_ani_time = 0;
+
 	m_pnam = p_pnam;
 	m_enam = e_pnam;
 	m_stop_f = false;
 	m_del_f = false;
+	m_fight = false;
 
 	m_pod_nam = (g_Power_num + g_Defense_num + g_Speed_num + g_Balance_num) / 1200;//Šeƒ|ƒbƒh‚ÌZ–¯‘”
 
@@ -173,6 +182,7 @@ void CObjRktHit::Action()
 			hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr)
 		{
 			m_stop_f = true;
+			m_fight = true;
 			if (hit->CheckElementHit(ELEMENT_POD) == false &&
 				hit->CheckElementHit(ELEMENT_POD1) == false &&
 				hit->CheckElementHit(ELEMENT_POD2) == false &&
@@ -185,32 +195,34 @@ void CObjRktHit::Action()
 				hit->CheckElementHit(ELEMENT_POD9) == false) {
 				m_del_f = true;	//íœ
 			}
-			else
+			else 
 				m_del_f = false;
 		}
-		
+		else
+			m_fight = false;
 	}
+
 	else if (m_type == true && hit->CheckElementHit(ELEMENT_NULL) == true)	//this‚ª“G ‚©‚ÂHitBox‚É“–‚½‚Á‚½Žž
 	{
-		if (hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && (m_pnam >= 1 && m_pnam <= 3))
+		if (hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && (m_enam >= 1 && m_enam <= 3))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && (m_pnam >= 2 && m_pnam <= 4))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && (m_enam >= 2 && m_enam <= 4))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && (m_pnam >= 3 && m_pnam <= 5))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && (m_enam >= 3 && m_enam <= 5))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && (m_pnam >= 4 && m_pnam <= 6))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && (m_enam >= 4 && m_enam <= 6))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && (m_pnam >= 5 && m_pnam <= 7))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && (m_enam >= 5 && m_enam <= 7))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && (m_pnam >= 6 && m_pnam <= 8))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && (m_enam >= 6 && m_enam <= 8))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && (m_pnam >= 7 && m_pnam <= 9))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && (m_enam >= 7 && m_enam <= 9))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && (m_pnam >= 8 || m_pnam <= 0))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && (m_enam >= 8 || m_enam <= 0))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && (m_pnam >= 9 || m_pnam <= 1))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && (m_enam >= 9 || m_enam <= 1))
 			m_stop_f = true;
-		else if (hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && (m_pnam >= 0 || m_pnam <= 2))
+		else if (hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && (m_enam >= 0 || m_enam <= 2))
 			m_stop_f = true;
 		else
 			m_stop_f = false;
@@ -227,6 +239,7 @@ void CObjRktHit::Action()
 			hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr)
 		{
 			m_stop_f = true;
+			m_fight = true;
 			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == false &&
 				hit->CheckElementHit(ELEMENT_ENEMYPOD1) == false &&
 				hit->CheckElementHit(ELEMENT_ENEMYPOD2) == false &&
@@ -242,6 +255,8 @@ void CObjRktHit::Action()
 			else
 				m_del_f = false;
 		}
+		else
+			m_fight = false;
 	}
 	else
 		m_stop_f = false;

@@ -67,7 +67,7 @@ private:
 	int m_attackf;		//敵の攻撃タイプ
 
 	int m_ani[4];
-	int m_mani[6];
+	int m_mani[6];		//モアイ
 	int m_ani_time;
 	int m_ani_frame[2];	//[0] = 通常ani用、[1] = 特殊ani用
 
