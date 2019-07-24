@@ -1051,7 +1051,7 @@ void CObjFightClear::Draw()
 			//▼プレイヤー惑星表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 2240.0f;
+			src.m_right = 448.0f;
 			src.m_bottom = 448.0f;
 
 			dst.m_top = 250.0f;
