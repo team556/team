@@ -210,9 +210,9 @@ void CObjHome::Action()
 				m_Tra_flag = true;
 
 				//ObjHelpにシーン移行演出を伝える
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetMig_stageF();
-				help->SetTra_EatF(true);
+				//CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				//help->SetMig_stageF();
+				//help->SetTra_EatF(true);
 
 				//選択音
 				Audio::Start(1);
@@ -244,9 +244,9 @@ void CObjHome::Action()
 				m_Eat_flag = true;
 
 				//ObjHelpにシーン移行演出を伝える
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetMig_stageF();
-				help->SetTra_EatF(false);
+				//CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				//help->SetMig_stageF();
+				//help->SetTra_EatF(false);
 
 				//選択音
 				Audio::Start(1);

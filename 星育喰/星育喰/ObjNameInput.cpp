@@ -21,18 +21,18 @@ void CObjNameInput::Init()
 	m_mou_l = false;//左クリック
 	m_f = true;
 	//クリックされた時の場所
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		if (i == 0)
 		{
-			click_win[i] = 250;
+			click_win[i] = 500;
 		}
 		else
 		{
-			click_win[i] = 250 + 63 * i;
+			click_win[i] =500+64*i;
 		}
 	}
-
+	//テキストのx軸の当たり判定場所作成
 	for (int i = 0; i < 13; i++)
 	{
 		if(i==0)
@@ -41,58 +41,50 @@ void CObjNameInput::Init()
 		}
 		else
 		{
-			word_x[i] =250 + 63*i;
+			word_x[i] =250 + 64*i;
 		}
 	}
-	//for (int j = 0; j < 9; j++)
-	//{
-	//	if (j % 2== 0)
-	//	{
-	//		word_x[j] = 300+30;
-	//	}
-	//	else
-	//	{
-	//		word_x[j] = 250 + 50 * j;
-	//	}
-	//}
+	//テキストのy軸の当たり判定場所作成
 	for (int i = 0; i < 9; i++)
 	{
-			switch (i)
-			{
-			case 0:
-				word_y[i] = 245;
-				break;
-			case 1:
-				word_y[i] = 300;
-				break;
-			case 2:
-				word_y[i] = 330;
-				break;
-			case 3:
-				word_y[i] = 385;
-				break;
-			case 4:
-				word_y[i] = 415;
-				break;
-			case 5:
-				word_y[i] = 470;
-				break;
-			case 6:
-				word_y[i] = 500;
-				break;
-			case 7:
-				word_y[i] = 555;
-				break;
-			case 8:
-				word_y[i] = 585;
-				break;
-			default:
-				break;
-				
-			}
-		
+		switch (i)
+		{
+		case 0:
+			word_y[i] = 245;
+			break;
+		case 1:
+			word_y[i] = 300;
+			break;
+		case 2:
+			word_y[i] = 330;
+			break;
+		case 3:
+			word_y[i] = 385;
+			break;
+		case 4:
+			word_y[i] = 415;
+			break;
+		case 5:
+			word_y[i] = 470;
+			break;
+		case 6:
+			word_y[i] = 500;
+			break;
+		case 7:
+			word_y[i] = 555;
+			break;
+		case 8:
+			word_y[i] = 585;
+			break;
+		default:
+			break;
+
+		}
+
 	}
 	click_cut=0;
+
+	m_tex_clar = true;
 
 }
 
@@ -112,42 +104,139 @@ void CObjNameInput::Action()
 	word_y[100];
 
 	//名前入力の処理
-	if (word_y[0] < m_mou_y&& m_mou_y < word_y[1])
+	//一列目のY列---------------------------------------------------------
+	if (word_y[0] < m_mou_y&& m_mou_y < word_y[1] && click_cut!=5)
 	{
 		//あ
 		if (m_mou_l == true && word_x[0] < m_mou_x&&m_mou_x < word_x[1])
 		{
+			//クリックした判定を一回だけにするif文
 			if (m_f == false)
 			{
-				word_w[0][0] = true;
-				click_cut++;
+				word_w[0][0] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[0] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//い
+		else if (m_mou_l == true && word_x[1] < m_mou_x&&m_mou_x < word_x[2])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][1] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[1] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//う
+		else if (m_mou_l == true && word_x[2] < m_mou_x&&m_mou_x < word_x[3])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][2] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[2] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//え
+		else if (m_mou_l == true && word_x[3] < m_mou_x&&m_mou_x < word_x[4])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][3] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[3] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//お
+		else if (m_mou_l == true && word_x[4] < m_mou_x&&m_mou_x < word_x[5])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][4] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[4] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//は
+		else if (m_mou_l == true && word_x[6] < m_mou_x&&m_mou_x < word_x[7])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][6] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[6] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//ひ
+		else if (m_mou_l == true && word_x[7] < m_mou_x&&m_mou_x < word_x[8])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][7] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[7] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//ふ
+		else if (m_mou_l == true && word_x[8] < m_mou_x&&m_mou_x < word_x[9])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][8] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[8] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//へ
+		else if (m_mou_l == true && word_x[9] < m_mou_x&&m_mou_x < word_x[10])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][9] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[9] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
+				m_f = true;
+			}
+		}
+		//ほ
+		else if (m_mou_l == true && word_x[10] < m_mou_x&&m_mou_x < word_x[11])
+		{
+			//クリックした判定を一回だけにするif文
+			if (m_f == false)
+			{
+				word_w[0][10] = true;			//文字配列のフラグをtrueにする
+				m_tex_discri[10] = click_cut;	//click_cutをm_tex_discriに入れて表示させる位置を決める
+				click_cut++;					//クリックされたよ～ってことをカウント
 				m_f = true;
 			}
 		}
 		else
-			m_f = false;
-		//い
-		if (m_mou_l == true && word_x[1] < m_mou_x&&m_mou_x < word_x[2])
 		{
-			word_w[0][1] = true;
-			click_cut++;
+			m_f = false;
 		}
 	}
 
-
-
-	////テスト条件が入ったら育成画面に飛ぶようにした
-	//if (m_mou_x > 500 && m_mou_l == true)
-	//{
-	//	Scene::SetScene(new CSceneHome());//育成画面へシーン移行
-	//}
-
-	//if ((m_mou_x > 337 && m_mou_x<357)&&m_mou_l==true)
-	//{
-	//	Scene::SetScene(new CSceneHome());//育成画面へシーン移行
-	//}
-
-
+	if (m_mou_x > 10 && m_mou_x < 120 && 250 < m_mou_y && 300 > m_mou_y)
+	{
+		m_tex_clar = false;
+	}
 
 
 }
@@ -160,16 +249,63 @@ void CObjNameInput::Draw()
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
 
-	/*FontDraw(L"と", 0.0f, 250.0, 30.0f, 30.0f, c, false);*/
+	FontDraw(L"文字クリア", 10.0f, 250.0, 30.0f, 30.0f, c, false);
 
-	//↓クリックされた時の描画----------------------------------
-	if (word_w[0][0] == true)
-	{
-		FontDraw(L"あ", click_win[click_cut], 100.0, 30.0f, 30.0f, c, false);
+	if(m_tex_clar==true)
+	{ 
+		//↓クリックされた時の描画----------------------------------
+		if (word_w[0][0] == true)
+		{
+			FontDraw(L"あ", click_win[m_tex_discri[0]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][1] == true)
+		{
+			FontDraw(L"い", click_win[m_tex_discri[1]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][2] == true)
+		{
+			FontDraw(L"う", click_win[m_tex_discri[2]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][3] == true)
+		{
+			FontDraw(L"え", click_win[m_tex_discri[3]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][4] == true)
+		{
+			FontDraw(L"お", click_win[m_tex_discri[4]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][6] == true)
+		{
+			FontDraw(L"は", click_win[m_tex_discri[6]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][7] == true)
+		{
+			FontDraw(L"ひ", click_win[m_tex_discri[7]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][8] == true)
+		{
+			FontDraw(L"ふ", click_win[m_tex_discri[8]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][9] == true)
+		{
+			FontDraw(L"へ", click_win[m_tex_discri[9]], 100.0, 50.0f, 50.0f, c, true);
+		}
+		if (word_w[0][10] == true)
+		{
+			FontDraw(L"ほ", click_win[m_tex_discri[10]], 100.0, 50.0f, 50.0f, c, true);
+		}
 	}
-	if (word_w[0][1] == true)
+	else if(m_tex_clar == false)
 	{
-		FontDraw(L"い", click_win[click_cut], 100.0, 30.0f, 30.0f, c, false);
+		for (int i = 0;i < 50;i++)
+		{
+			for (int j = 0;j < 50;j++)
+			{
+				word_w[i][j] = false;
+			}
+		}
+		click_cut=0;
+		m_tex_clar = true;
 	}
 	//-----------------------------------------------------------
 

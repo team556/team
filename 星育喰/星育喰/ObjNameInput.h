@@ -25,6 +25,8 @@ private:
 	int word[100][100];
 	bool word_w[50][50];
 	int click_cut;
-	float click_win[50];
+	float click_win[5];
+	int m_tex_discri[50];
+	bool m_tex_clar;
 	bool m_f;
 };
