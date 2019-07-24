@@ -34,8 +34,8 @@ void CObjInstitute::Init()
 	m_Human_down_color = INI_COLOR;
 	m_Mis_Button_color = INI_COLOR;
 	m_Equ_Button_color = INI_COLOR;
-	m_Yes_Button_color = 0.0f;
-	m_No_Button_color = 0.0f;
+	m_Yes_Button_color = 1.0f;
+	m_No_Button_color = 1.0f;
 
 	m_equip_id = 0;
 	m_Lv_id = 0;
@@ -303,7 +303,7 @@ void CObjInstitute::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら研究所レベルUP処理を行い、このウインドウを閉じる
 				//左クリック入力時
@@ -365,13 +365,13 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -380,7 +380,7 @@ void CObjInstitute::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -396,7 +396,7 @@ void CObjInstitute::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -412,7 +412,7 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
@@ -849,7 +849,7 @@ void CObjInstitute::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら武器ポッドレベルUP処理を行い、このウインドウを閉じる
 				//左クリック入力時
@@ -883,7 +883,7 @@ void CObjInstitute::Action()
 						m_Equ_pic_blue_color[*finalcheck_Lvup_achieve - 2 + finalcheck_Lvup_type * 3] = 0.5f;
 
 
-						m_Yes_Button_color = 0.0f;
+						m_Yes_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -899,13 +899,13 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -914,7 +914,7 @@ void CObjInstitute::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -930,7 +930,7 @@ void CObjInstitute::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -946,7 +946,7 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
@@ -1267,10 +1267,10 @@ void CObjInstitute::Draw()
 	float Equ_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
+	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
 
 	//簡易メッセージ(エラーメッセージ、レベルUP表示等)用
 	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
@@ -1951,10 +1951,10 @@ void CObjInstitute::Draw()
 			dst.m_left = 345.0f;
 			dst.m_right = 465.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(67, &src, &dst, black, 0.0f);
+			Draw::Draw(67, &src, &dst, white, 0.0f);
 
 			//「と」の文字画像をFontDraw関数にて表示
-			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, white, false);
 
 			//▼素材消費して文字画像表示
 			src.m_top = 2.0f;
@@ -1966,7 +1966,7 @@ void CObjInstitute::Draw()
 			dst.m_left = 497.0f;
 			dst.m_right = 677.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼レベルアップしますか？文字画像表示
 			src.m_top = 2.0f;
@@ -1978,7 +1978,7 @@ void CObjInstitute::Draw()
 			dst.m_left = 520.0f;
 			dst.m_right = 850.0f;
 			dst.m_bottom = 330.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼はい文字画像表示
 			src.m_top = 0.0f;

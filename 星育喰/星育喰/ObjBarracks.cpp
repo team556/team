@@ -167,7 +167,7 @@ void CObjBarracks::Action()
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -176,7 +176,7 @@ void CObjBarracks::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -192,7 +192,7 @@ void CObjBarracks::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -208,7 +208,7 @@ void CObjBarracks::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
