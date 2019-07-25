@@ -25,7 +25,7 @@ private:
 	float m_size;	//縦横サイズ(50)
 
 	int m_ani_time;
-	int m_ani[4];
+	int m_ani[8];
 	int m_ani_frame;
 
 	float m_pod_nam;//残りポッドの住民総数 / 1200
