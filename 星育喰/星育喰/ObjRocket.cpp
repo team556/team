@@ -128,7 +128,7 @@ void CObjRocket::Init()
 
 	m_vx = 0.0f;	//ƒxƒNƒgƒ‹
 	m_vy = 0.0f;
-	m_schange = 3.0f;
+	m_schange = 2.0f;
 	m_mov = 0;
 	
 	m_r = 0.0f;		//Šp“x
@@ -326,13 +326,13 @@ void CObjRocket::Init()
 		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 2) {
-		m_pod_max_hp = 18.5f;
+		m_pod_max_hp = 18.0f;
 	}
 	else if (m_type == 3) {
-		m_pod_max_hp = 22.0f;
+		m_pod_max_hp = 21.0f;
 	}
 	else if (m_type == 4) {
-		m_pod_max_hp = 13.0f;
+		m_pod_max_hp = 12.0f;
 	}
 	else if (m_type == 5) {
 		m_pod_max_hp = 21.0f;
@@ -394,7 +394,7 @@ void CObjRocket::Init()
 		break;
 	case 2:
 		m_Enemy_Pod_Level = 2;		//ƒ|ƒbƒhƒŒƒxƒ‹Ý’è
-		m_Player_damage = 9.0f;
+		m_Player_damage = 10.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
@@ -471,6 +471,8 @@ void CObjRocket::Action()
 
 	if (m_fight == true)
 	{
+		if(m_atk_cnt == 0 && ButtonU != 5)
+			Audio::Start(11);
 		if (m_atk_cnt > m_atk_cnt_max)//max‚ð’´‚¦‚½Žž
 		{
 			m_atk_cnt = 0;//0‚ÉƒŠƒZƒbƒg
@@ -580,8 +582,9 @@ void CObjRocket::Action()
 	if (battle_end == false)
 	{
 		if (ButtonU != 5) {		//ƒ~ƒTƒCƒ‹ˆÈŠO‚ÌƒXƒgƒbƒvˆ—
-			if (hit->CheckElementHit(ELEMENT_NULL) == true && m_type == 0)//Hit—pOBJ‚É“–‚½‚Á‚½ê‡
-				if ((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0)||
+			if (hit->CheckElementHit(ELEMENT_NULL) == true)//Hit—pOBJ‚É“–‚½‚Á‚½ê‡
+			{
+				if (((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr && m_pnam == 1) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr && m_pnam == 2) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr && m_pnam == 3) ||
@@ -590,23 +593,26 @@ void CObjRocket::Action()
 					(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
+					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9)) && m_type == 0)
+				{
 					m_fight = true;
-				else if((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
+				}
+				if (((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9)) && m_type != 0)
+				{
 					m_fight = true;
-				else
-					m_fight = false;
+				}
+			}
 			else
-				m_fight = false;		//i‚ß‚é
+				m_fight = false;		//ƒ~ƒTƒCƒ‹
 		}
 
 		
@@ -629,14 +635,14 @@ void CObjRocket::Action()
 			Audio::Start(5);
 		}
 
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)		//˜f¯‚É“–‚½‚Á‚½Žž‚©‚Â“G’e
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)	//˜f¯‚É“–‚½‚Á‚½Žž‚©‚Â“G’e
 		{
 			//˜f¯‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)	//“G‚Ì˜f¯‚É“–‚½‚Á‚½Žž‚©‚ÂŽ©’e
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)//“G‚Ì˜f¯‚É“–‚½‚Á‚½Žž‚©‚ÂŽ©’e
 		{
 			//˜f¯‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
 			m_del = true;
@@ -858,14 +864,15 @@ void CObjRocket::Action()
 			}
 			else if (ButtonUE == 5)	//“G‚ÌŽí—Þ‚T(ƒ~ƒTƒCƒ‹)‚ªƒvƒŒƒCƒ„[‚Ìƒ|ƒbƒh‚É“–‚½‚Á‚½ê‡
 			{
-				m_del = true;				//Á–Åˆ—ƒtƒ‰ƒOON
+				m_del = true;					//Á–Åˆ—ƒtƒ‰ƒOON
+				hit->SetInvincibility(true);	//HitBox‚Ì”»’è–³Œø
 				Audio::Start(5);
 			}
 		}
-		else if (m_type != 0 && m_stop_cnt == 10) {	//“G‚©‚ÂA’âŽ~Žž
-			m_fight = false;
-			m_stop_cnt = 0;
-		}
+		//else if (m_type != 0 && m_stop_cnt == 10) {	//“G‚©‚ÂA’âŽ~Žž
+		//	m_fight = false;
+		//	m_stop_cnt = 0;
+		//}
 		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
 			//m_stop_f = false;
 		else if(m_type != 0)
@@ -886,7 +893,6 @@ void CObjRocket::Action()
 		{
 			m_fight = true;	//Õ“Ë’†ƒtƒ‰ƒO‚n‚m
 			m_stop_f = true;
-			Audio::Start(5);
 			
 			if (ButtonUP == 1)		//Ž©•ª‚ÌŽí—Þ‚P(ƒpƒ[)‚ª“G‚Ìƒ|ƒbƒh‚Æ“–‚½‚Á‚½ê‡
 			{
@@ -1041,16 +1047,17 @@ void CObjRocket::Action()
 			}
 			else if (ButtonUP == 5)//Ž©•ª‚ÌŽí—Þ‚T(ƒ~ƒTƒCƒ‹)‚ª“G‚Ìƒ|ƒbƒh‚Æƒ~ƒTƒCƒ‹‚É“–‚½‚Á‚½ê‡
 			{
-				m_del = true;				//Á–Åˆ—ƒtƒ‰ƒOON
+				m_del = true;					//Á–Åˆ—ƒtƒ‰ƒOON
+				hit->SetInvincibility(true);	//HitBox‚Ì”»’è–³Œø
 				Audio::Start(5);
 			}
 			
 		}
-		else if (m_type == 0 && m_stop_cnt == 10) {	//–¡•û‚©‚ÂAŽ~‚Ü‚Á‚Ä‚éŽž
-			m_fight = false;
-			m_stop_cnt = 0;
-		
-		}
+		//else if (m_type == 0 && m_stop_cnt == 10) {	//–¡•û‚©‚ÂAŽ~‚Ü‚Á‚Ä‚éŽž
+		//	m_fight = false;
+		//	m_stop_cnt = 0;
+		//
+		//}
 		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
 			//m_stop_f = false;
 		else if (m_type == 0)
@@ -1059,6 +1066,7 @@ void CObjRocket::Action()
 		if (m_podhp <= 0)//—¼ƒ|ƒbƒhHP‚Å‚Ìíœ
 		{
 			m_del = true;
+			hit->SetInvincibility(true);//HitBox‚Ì”»’è–³Œø
 		}
 	}
 

@@ -36,6 +36,10 @@ void CObjRktHit::Init()
 	m_ani[1] = 1;
 	m_ani[2] = 2;
 	m_ani[3] = 3;
+	m_ani[4] = 4;
+	m_ani[5] = 5;
+	m_ani[6] = 6;
+	m_ani[7] = 7;
 	m_ani_frame = 0;
 	m_ani_time = 0;
 
@@ -105,8 +109,18 @@ void CObjRktHit::Action()
 	hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	
 
+	if (m_fight == true) {
+		m_ani_time++;								//アニメーション処理
+		if (m_ani_time == 5) {		//フレーム切り替えタイミング
+			m_ani_time = 0;
+			m_ani_frame++;
+			if (m_ani_frame == 8) {	//フレームループ値
+				m_ani_frame = 0;
+				m_fight = false;
+			}
+		}
+	}
 	
 
 	if (m_stop_f == true)	//ポッド戦闘中
@@ -261,6 +275,30 @@ void CObjRktHit::Action()
 	else
 		m_stop_f = false;
 
+	if ((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr ||//敵HitBoxに当たった時
+		hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr ||
+		hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr)&&
+		(hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr ||//味方HitBoxに当たった時
+		hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT4) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT5) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr ||
+		hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr))
+	{
+		m_fight = true;
+	}
+
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == true)		//惑星に当たった時かつ敵弾
 	{
 		this->SetStatus(false);
@@ -275,7 +313,7 @@ void CObjRktHit::Action()
 	if (m_del_f == true || battle_end == true)	//削除フラグ
 	{
 		m_del_cnt++;
-		if (m_del_cnt == 7)//削除
+		if (m_del_cnt == 4)//削除
 		{
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
@@ -284,20 +322,32 @@ void CObjRktHit::Action()
 	else
 		m_del_cnt = 0;
 
-	//(hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr ||//敵HitBoxに当たった時
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr ||
-	//	hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr)
+	
 }
 
 //ドロー
 void CObjRktHit::Draw()
 {
-	;
+	float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };
+	RECT_F src;
+	RECT_F dst;
+
+	//切り取り位置
+	src.m_top   =  0.0f;
+	src.m_left  = m_ani[m_ani_frame] * 24.0f;
+	src.m_right = m_ani[m_ani_frame] * 24.0f + 24.0f;
+	src.m_bottom= 32.0f;
+	//表示位置
+	
+	dst.m_top    = m_y;
+	dst.m_left   = m_x;
+	dst.m_right  = m_x + 50.0f;
+	dst.m_bottom = m_y + 50.0f;
+	if (m_type == true) {
+		dst.m_left  = m_x + 50.0f;
+		dst.m_right = m_x;
+	}
+
+	if(m_fight == true)
+		Draw::Draw(123, &src, &dst, d, 0.0f);
 }
