@@ -128,7 +128,7 @@ void CObjRocket::Init()
 
 	m_vx = 0.0f;	//ベクトル
 	m_vy = 0.0f;
-	m_schange = 3.0f;
+	m_schange = 2.0f;
 	m_mov = 0;
 	
 	m_r = 0.0f;		//角度
@@ -471,6 +471,8 @@ void CObjRocket::Action()
 
 	if (m_fight == true)
 	{
+		if(m_atk_cnt == 0 && ButtonU != 5)
+			Audio::Start(11);
 		if (m_atk_cnt > m_atk_cnt_max)//maxを超えた時
 		{
 			m_atk_cnt = 0;//0にリセット
@@ -606,7 +608,7 @@ void CObjRocket::Action()
 				else
 					m_fight = false;
 			else
-				m_fight = false;		//進める
+				m_fight = false;		//ミサイル
 		}
 
 		
@@ -887,7 +889,6 @@ void CObjRocket::Action()
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
-			Audio::Start(5);
 			
 			if (ButtonUP == 1)		//自分の種類１(パワー)が敵のポッドと当たった場合
 			{
