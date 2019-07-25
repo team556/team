@@ -629,14 +629,14 @@ void CObjRocket::Action()
 			Audio::Start(5);
 		}
 
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)		//˜f¯‚É“–‚½‚Á‚½Žž‚©‚Â“G’e
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0 && m_fight == false)	//˜f¯‚É“–‚½‚Á‚½Žž‚©‚Â“G’e
 		{
 			//˜f¯‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)	//“G‚Ì˜f¯‚É“–‚½‚Á‚½Žž‚©‚ÂŽ©’e
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0 && m_fight == false)//“G‚Ì˜f¯‚É“–‚½‚Á‚½Žž‚©‚ÂŽ©’e
 		{
 			//˜f¯‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
 			m_del = true;
@@ -858,14 +858,15 @@ void CObjRocket::Action()
 			}
 			else if (ButtonUE == 5)	//“G‚ÌŽí—Þ‚T(ƒ~ƒTƒCƒ‹)‚ªƒvƒŒƒCƒ„[‚Ìƒ|ƒbƒh‚É“–‚½‚Á‚½ê‡
 			{
-				m_del = true;				//Á–Åˆ—ƒtƒ‰ƒOON
+				m_del = true;					//Á–Åˆ—ƒtƒ‰ƒOON
+				hit->SetInvincibility(true);	//HitBox‚Ì”»’è–³Œø
 				Audio::Start(5);
 			}
 		}
-		else if (m_type != 0 && m_stop_cnt == 10) {	//“G‚©‚ÂA’âŽ~Žž
-			m_fight = false;
-			m_stop_cnt = 0;
-		}
+		//else if (m_type != 0 && m_stop_cnt == 10) {	//“G‚©‚ÂA’âŽ~Žž
+		//	m_fight = false;
+		//	m_stop_cnt = 0;
+		//}
 		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
 			//m_stop_f = false;
 		else if(m_type != 0)
@@ -1041,16 +1042,17 @@ void CObjRocket::Action()
 			}
 			else if (ButtonUP == 5)//Ž©•ª‚ÌŽí—Þ‚T(ƒ~ƒTƒCƒ‹)‚ª“G‚Ìƒ|ƒbƒh‚Æƒ~ƒTƒCƒ‹‚É“–‚½‚Á‚½ê‡
 			{
-				m_del = true;				//Á–Åˆ—ƒtƒ‰ƒOON
+				m_del = true;					//Á–Åˆ—ƒtƒ‰ƒOON
+				hit->SetInvincibility(true);	//HitBox‚Ì”»’è–³Œø
 				Audio::Start(5);
 			}
 			
 		}
-		else if (m_type == 0 && m_stop_cnt == 10) {	//–¡•û‚©‚ÂAŽ~‚Ü‚Á‚Ä‚éŽž
-			m_fight = false;
-			m_stop_cnt = 0;
-		
-		}
+		//else if (m_type == 0 && m_stop_cnt == 10) {	//–¡•û‚©‚ÂAŽ~‚Ü‚Á‚Ä‚éŽž
+		//	m_fight = false;
+		//	m_stop_cnt = 0;
+		//
+		//}
 		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
 			//m_stop_f = false;
 		else if (m_type == 0)
@@ -1059,6 +1061,7 @@ void CObjRocket::Action()
 		if (m_podhp <= 0)//—¼ƒ|ƒbƒhHP‚Å‚Ìíœ
 		{
 			m_del = true;
+			hit->SetInvincibility(true);//HitBox‚Ì”»’è–³Œø
 		}
 	}
 
