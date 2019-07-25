@@ -576,7 +576,7 @@ void CObjFightClear::Draw()
 			
 			//惑星取得HP表示------------------------------------------------------------------
 			//+
-			src.m_top = 1245.0f;
+			src.m_top = 1250.0f;
 			src.m_left = 375.0f;
 			src.m_right = 498.0f;
 			src.m_bottom = 1373.0f;
@@ -699,10 +699,10 @@ void CObjFightClear::Draw()
 				//プラスチック
 				else if (m_mat_type[0] == &g_Plastic_num)
 				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
 					src.m_right = 712.0f;
-					src.m_bottom = 112.0f;
+					src.m_bottom = 110.0f;
 
 					dst.m_top = FONT_Y + 150;
 					dst.m_left = FONT_X;
@@ -863,7 +863,7 @@ void CObjFightClear::Draw()
 			//ガス
 			else if (m_mat_type[1] == &g_gus_num)
 			{
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 232.0f;
 				src.m_bottom = 112.0f;
@@ -951,8 +951,8 @@ void CObjFightClear::Draw()
 				{
 				case 1:
 					//エクスプロージョン
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
 					src.m_right = 1072.0f;
 					src.m_bottom = 112.0f;
 
