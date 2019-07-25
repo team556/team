@@ -582,8 +582,9 @@ void CObjRocket::Action()
 	if (battle_end == false)
 	{
 		if (ButtonU != 5) {		//ミサイル以外のストップ処理
-			if (hit->CheckElementHit(ELEMENT_NULL) == true && m_type == 0)//Hit用OBJに当たった場合
-				if ((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0)||
+			if (hit->CheckElementHit(ELEMENT_NULL) == true)//Hit用OBJに当たった場合
+			{
+				if (((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr && m_pnam == 1) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr && m_pnam == 2) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr && m_pnam == 3) ||
@@ -592,21 +593,24 @@ void CObjRocket::Action()
 					(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
+					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9)) && m_type == 0)
+				{
 					m_fight = true;
-				else if((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
+				}
+				if (((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9)) && m_type != 0)
+				{
 					m_fight = true;
-				else
-					m_fight = false;
+				}
+			}
 			else
 				m_fight = false;		//ミサイル
 		}
@@ -631,14 +635,14 @@ void CObjRocket::Action()
 			Audio::Start(5);
 		}
 
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0 )	//惑星に当たった時かつ敵弾
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)	//惑星に当たった時かつ敵弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0 )//敵の惑星に当たった時かつ自弾
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)//敵の惑星に当たった時かつ自弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;

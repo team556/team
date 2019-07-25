@@ -313,7 +313,7 @@ void CObjRktHit::Action()
 	if (m_del_f == true || battle_end == true)	//íœƒtƒ‰ƒO
 	{
 		m_del_cnt++;
-		if (m_del_cnt == 7)//íœ
+		if (m_del_cnt == 4)//íœ
 		{
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
