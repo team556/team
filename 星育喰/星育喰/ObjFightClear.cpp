@@ -73,6 +73,8 @@ void CObjFightClear::Init()
 
 	m_c_p = 0;		//クリア画面住民位置調整用
 
+	m_tuto_f = false;
+
 	//ステージクリアした場合
 	if (g_destroy_progress[0] == true &&	
 		g_destroy_progress[1] == true &&
@@ -138,6 +140,22 @@ void CObjFightClear::Action()
 		//▼戦闘結果表示終了後の処理
 		if (m_result_a >= 6.0f)
 		{
+			//チュートリアル説明中はホーム画面に戻れない処理
+			if (g_tutorial_progress == 6 && m_tuto_f == true)
+			{
+				return;
+			}
+			else if (g_tutorial_progress == 6)
+			{
+				//ObjMessageのメッセージ進行度を増加させる
+				CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+				message->Setprogress(41);
+
+				m_tuto_f = true;//フラグON
+
+				return;
+			}
+
 			////マウスの位置を取得
 			//m_mou_x = (float)Input::GetPosX();
 			//m_mou_y = (float)Input::GetPosY();

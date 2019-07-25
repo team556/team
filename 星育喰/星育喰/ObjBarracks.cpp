@@ -76,7 +76,8 @@ void CObjBarracks::Init()
 void CObjBarracks::Action()
 {
 	//ホワイトアウト演出中は操作不能にする処理
-	if (white_out_f == true)
+	//※チュートリアル中も操作不能にする。
+	if (white_out_f == true || g_is_operatable == false)
 	{
 		return;
 	}
@@ -810,47 +811,51 @@ void CObjBarracks::Action()
 	//dst.m_bottom = 630.0f;
 
 	//兵舎選択範囲
-	if (
-		((g_Bar_Level == 1) &&(450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520))||		//兵舎レベル1の時の判定処理
-		((g_Bar_Level == 2) && 420 < m_mou_x && m_mou_x < 650 && 270 < m_mou_y && m_mou_y < 520&&!(472< m_mou_x&& m_mou_x <671&& 276 < m_mou_y && m_mou_y <400))||	//兵舎レベル2の時の判定処理
-		((g_Bar_Level == 3) && (420 < m_mou_x && m_mou_x < 778 && 270 < m_mou_y && m_mou_y < 520) && !(472< m_mou_x&& m_mou_x <789 && 264 < m_mou_y && m_mou_y <394))		//兵舎レベル3の時の判定処理
-		)
+	if (g_tutorial_progress >= 9)//チュートリアル中は選択不可
 	{
-		m_introduce_f = true;	//施設紹介ウインドウを表示する
-		m_Bar_color = 1.0f;
-
-		//左クリックされたらフラグを立て、兵舎ウインドウを開く
-		if (m_mou_l == true)
+		if (
+			((g_Bar_Level == 1) && (450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520)) ||		//兵舎レベル1の時の判定処理
+			((g_Bar_Level == 2) && 420 < m_mou_x && m_mou_x < 650 && 270 < m_mou_y && m_mou_y < 520 && !(472< m_mou_x&& m_mou_x <671 && 276 < m_mou_y && m_mou_y <400)) ||	//兵舎レベル2の時の判定処理
+			((g_Bar_Level == 3) && (420 < m_mou_x && m_mou_x < 778 && 270 < m_mou_y && m_mou_y < 520) && !(472< m_mou_x&& m_mou_x <789 && 264 < m_mou_y && m_mou_y <394))		//兵舎レベル3の時の判定処理
+			)
 		{
-			//左クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
+			m_introduce_f = true;	//施設紹介ウインドウを表示する
+			m_Bar_color = 1.0f;
+
+			//左クリックされたらフラグを立て、兵舎ウインドウを開く
+			if (m_mou_l == true)
 			{
-				m_key_lf = false;
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
 
-				m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ閉じた時に一瞬映り込むため)
+					m_introduce_f = false;//施設紹介ウインドウを非表示にする(兵舎ウインドウ閉じた時に一瞬映り込むため)
 
-				//"兵舎ウインドウを開いている状態"フラグを立てる
-				window_start_manage = Barracks;
+										  //"兵舎ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Barracks;
 
-				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetOperatable(false);
-				help->SetAlpha(0.0f);
+					//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
+					help->SetAlpha(0.0f);
 
-				//選択音
-				Audio::Start(1);
+					//選択音
+					Audio::Start(1);
+				}
+			}
+			else
+			{
+				m_key_lf = true;
 			}
 		}
 		else
 		{
-			m_key_lf = true;
+			m_introduce_f = false;//施設紹介ウインドウを非表示にする
+			m_Bar_color = INI_COLOR;
 		}
 	}
-	else
-	{
-		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Bar_color = INI_COLOR;
-	}
+
 }
 
 //ドロー

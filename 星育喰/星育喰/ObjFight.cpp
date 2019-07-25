@@ -163,8 +163,9 @@ void CObjFight::Action()
 
 	m_line = 6;//常に選択前ラインを初期化
 
+
 	//チュートリアル中は操作出来ないようにする条件文
-	if (g_tutorial_progress >= 5)
+	if (g_tutorial_progress >= 6)
 	{
 		//ラインを矢印キーで選択するときの処理
 		if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
@@ -234,6 +235,17 @@ void CObjFight::Action()
 
 			m_key_D_f = false;
 
+		}
+	}
+	//以下の処理はチュートリアル中のみ実行される。
+	else if (g_tutorial_progress == 5)
+	{
+		if (400 <= m_mou_x && m_mou_x <= 800) {
+
+			if (200 <= m_mou_y && m_mou_y <= 250) {
+				if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
+				else { m_line = 0; }
+			}
 		}
 	}
 	

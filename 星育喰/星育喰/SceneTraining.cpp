@@ -84,6 +84,13 @@ void CSceneTraining::InitScene()
 	CObjHelp* help = new CObjHelp(2);     //ヘルプオブジェクト作成
 	Objs::InsertObj(help, OBJ_HELP, 90);  //ヘルプオブジェクト登録
 
+	//メッセージ表示(チュートリアル)オブジェクト作成
+	if (g_tutorial_progress < 20)
+	{
+		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
+		Objs::InsertObj(message, OBJ_MESSAGE, 95);	//メッセージ表示オブジェクト登録
+	}
+
 
 	//背景Lv1(背景レベル＝プレイヤー惑星レベル)を読み込み0番に登録
 	Draw::LoadImage(L"育成画面Lv1.png", 0, TEX_SIZE_512);

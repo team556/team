@@ -112,7 +112,7 @@ void CObjRocketButton::Action()
 	m_key_push_f = false;//二回連続でリキャストに入らないためにfalseに変更する。
 
 	//チュートリアル中は操作出来ないようにする条件文
-	if (g_tutorial_progress == 3 && Button_num != 5 || g_tutorial_progress >= 4)
+	if (g_tutorial_progress == 3 && Button_num != 5 || g_tutorial_progress == 4 && Button_num == 5 || g_tutorial_progress >= 6)
 	{
 		//各押された時のボタンナンバーを設定と1～5が押されたフラグをtrueにする
 		if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true) {
@@ -248,23 +248,24 @@ void CObjRocketButton::Action()
 		}
 		else {}//何もしない
 
-		//ミサイルボタン以外のリキャストタイムの制御
-		if (m_mou_f == true && m_is_empty == false && Button_num != 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
-			m_cnt++;			//カウントする
-			if (m_cnt >= RECAST_COMPLETE_POD_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
-				m_mou_f = false;							//クリックできるようにする。
-				m_cnt = 0;
-				m_a = 1.0f;		//不透明化
-			}
+	}
+
+	//ミサイルボタン以外のリキャストタイムの制御
+	if (m_mou_f == true && m_is_empty == false && Button_num != 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
+		m_cnt++;			//カウントする
+		if (m_cnt >= RECAST_COMPLETE_POD_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
+			m_mou_f = false;							//クリックできるようにする。
+			m_cnt = 0;
+			m_a = 1.0f;		//不透明化
 		}
-		//ミサイルのリキャストタイム制御
-		else if (m_mou_f == true && m_is_empty == false && Button_num == 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
-			m_cnt++;			//カウントする
-			if (m_cnt >= RECAST_COMPLETE_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
-				m_mou_f = false;							//クリックできるようにする。
-				m_cnt = 0;
-				m_a = 1.0f;		//不透明化
-			}
+	}
+	//ミサイルのリキャストタイム制御
+	else if (m_mou_f == true && m_is_empty == false && Button_num == 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
+		m_cnt++;			//カウントする
+		if (m_cnt >= RECAST_COMPLETE_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
+			m_mou_f = false;							//クリックできるようにする。
+			m_cnt = 0;
+			m_a = 1.0f;		//不透明化
 		}
 	}
 

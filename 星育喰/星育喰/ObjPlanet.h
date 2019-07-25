@@ -37,7 +37,7 @@ public:
 	void SetEmF() { m_eat_me = true; } //セット喰われるフラグ
 
 	void SetDelF() { m_del_f = true; }//セット消すフラグ
-	void SetInjF(bool inject) { m_inject_f = inject; }//セットチュートリアル射出フラグ(trueで打つようになる)
+	//void SetInjF(bool inject) { m_inject_f = inject; }//セットチュートリアル射出フラグ(trueで打つようになる)[どういう訳か、trueにしてもfalseになってしまい、原因がよく分からなかったので別の方法でチュートリアル惑星を撃つようにしました。(後庵)]
 private:
 
 	float m_px;			//星座標X

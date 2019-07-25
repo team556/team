@@ -262,6 +262,12 @@ void CObjInstitute::Init()
 //アクション
 void CObjInstitute::Action()
 {
+	//チュートリアル説明中は操作不能にする処理
+	if (g_is_operatable == false)
+	{
+		return;
+	}
+
 	//ホワイトアウト演出中は操作不能にする処理
 	//※ただしミサイルリキャストレベルUPチェックだけは行う。
 	//※マウス位置取得はミサイルリキャストタイムレベルUPチェックに必要なので入れてる。

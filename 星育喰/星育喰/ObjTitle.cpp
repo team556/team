@@ -201,9 +201,9 @@ void CObjTitle::Action()
 				{
 					m_key_f = false;
 
-					//▼ここに消去したい処理等を書く(見ての通りまだ何も書いてない)
-
-
+					//▼ここに消去したい処理等を書く(これで足りてるか、デバッグで確かめたい。)
+					g_tutorial_progress = 0;//チュートリアル進行度を初期化
+					after_once = false;		//二回目以降か記憶してる変数を初期化
 
 
 					m_Yes_Button_color = 1.0f;
