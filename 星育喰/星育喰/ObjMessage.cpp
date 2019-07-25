@@ -183,8 +183,7 @@ void CObjMessage::Init()
 	//戦闘画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	else if (m_Scene_id == 2)
 	{
-		swprintf_s(m_font[0], L"戦闘が始まったな。");
-		swprintf_s(m_font[1], L"せんとうが始まったな。");
+		swprintf_s(m_font[1], L"戦闘が始まったな。");
 		swprintf_s(m_font[2], L"右が見てわかる通り%sだな。",strr);	
 		swprintf_s(m_font[3], L"それで左が敵の惑星だ。");
 		swprintf_s(m_font[4], L"テスト");
@@ -202,8 +201,8 @@ void CObjMessage::Init()
 		m_yamada_window_num = 79;
 		m_black_out_num = 20;
 
-		g_is_operatable = false;//操作不能に(ObjMessageしか動かない)
-		m_black_out_f = true;//徐々に暗転
+		g_is_operatable = true;//操作可能に(ObjFightではbattle_startで停止をするので、そもそも使用しない)
+		m_black_out_f = false;//明転状態から始める
 	}
 	//育成画面
 	else if (m_Scene_id == 4)
@@ -336,12 +335,10 @@ void CObjMessage::Action()
 		}
 
 		//戦闘画面1回目
-		else if (m_Scene_id == 2 && m_progress == 0)
-		{
-			m_black_out_a = 0.0f;//画面明転状態にしておく
-		}
 		else if (m_Scene_id == 2 && m_progress == 1)
 		{
+			m_black_out_f = true;//画面暗転
+
 			//完全暗転後、メッセージ処理開始
 			if (m_black_out_a >= 0.5f)
 			{
