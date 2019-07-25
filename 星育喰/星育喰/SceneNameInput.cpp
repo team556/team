@@ -29,8 +29,27 @@ void CSceneNameInput::InitScene()
 	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
 	Draw::LoadImage(L"–¼‘O.png", 1, TEX_SIZE_64);
 
+	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
+	Draw::LoadImage(L"ƒNƒŠƒA.png", 2, TEX_SIZE_64);
+
+	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
+	Draw::LoadImage(L"Œˆ’è.png", 3, TEX_SIZE_64);
+
+	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
+	Draw::LoadImage(L"˜f¯.png", 4, TEX_SIZE_64);
+
+	//‰¼‰æ‘œ‚ğˆê”Ô–Ú‚É“o˜^
+	Draw::LoadImage(L"w.png", 5, TEX_SIZE_64);
+
 	//”’•¶š‰æ‘œ‚ğ“Ç‚İ‚İ121”Ô‚É“o˜^
 	Draw::LoadImage(L"”’•¶šW.png", 121, TEX_SIZE_512);
+	//ƒEƒBƒ“ƒhƒE‰æ‘œ89”Ô‚É“o˜^
+	Draw::LoadImage(L"ƒEƒCƒ“ƒhƒE01.png", 89, TEX_SIZE_512);
+	//‚Í‚¢•¶š‰æ‘œ“Ç‚İ‚İ66”Ô‚É“o˜^
+	Draw::LoadImage(L"‚Í‚¢.png", 66, TEX_SIZE_512);
+
+	//‚¢‚¢‚¦•¶š‰æ‘œ“Ç‚İ‚İ67”Ô‚É“o˜^
+	Draw::LoadImage(L"‚¢‚¢‚¦.png", 67, TEX_SIZE_512);
 
 	CObjNameInput*obj = new CObjNameInput();
 	Objs::InsertObj(obj, OBJ_NAME_INPUT, 1);

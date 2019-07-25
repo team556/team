@@ -21,8 +21,8 @@ void CObjBarracks::Init()
 	m_Back_Button_color = INI_COLOR;
 	m_Bar_color = INI_COLOR;
 	m_Bar_Lvup_color = INI_COLOR;
-	m_Yes_Button_color = 0.0f;
-	m_No_Button_color = 0.0f;
+	m_Yes_Button_color = 1.0f;
+	m_No_Button_color = 1.0f;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -51,7 +51,7 @@ void CObjBarracks::Init()
 	m_alpha = INI_ALPHA;
 
 	//▼兵舎の次のLVUPに必要なサイズ(HP)の住民数設定
-	m_Facility_next_Size_num[0] = 20.0f; //レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[0] = 70.0f; //レベルが1の時の必要サイズ(HP)
 	m_Facility_next_Size_num[1] = 150.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼兵舎の次のLVUPに必要な素材の名前設定
@@ -105,7 +105,7 @@ void CObjBarracks::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら兵舎レベルUP処理を行い、このウインドウを閉じる
 				//左クリック入力時
@@ -148,7 +148,7 @@ void CObjBarracks::Action()
 							Audio::Start(3);
 						}
 						
-						m_Yes_Button_color = 0.0f;
+						m_Yes_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -161,13 +161,13 @@ void CObjBarracks::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -176,7 +176,7 @@ void CObjBarracks::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -192,7 +192,7 @@ void CObjBarracks::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -208,7 +208,7 @@ void CObjBarracks::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
@@ -222,7 +222,7 @@ void CObjBarracks::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で兵舎ウインドウを閉じる
-		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
+		if (70 < m_mou_x && m_mou_x < 120 && 56 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -907,10 +907,10 @@ void CObjBarracks::Draw()
 	};
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
+	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
 
 	//簡易メッセージ画像用
 	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
@@ -1031,14 +1031,14 @@ void CObjBarracks::Draw()
 			src.m_right = 508.0f;
 			src.m_bottom = 117.0f;
 
-			dst.m_top = m_mou_y - 45.0f;
-			dst.m_left = m_mou_x - 75.0f;
-			dst.m_right = m_mou_x + 40.0f;
-			dst.m_bottom = m_mou_y - 15.0f;
+			dst.m_top = m_mou_y - 43.0f;
+			dst.m_left = m_mou_x - 70.0f;
+			dst.m_right = m_mou_x + 35.0f;
+			dst.m_bottom = m_mou_y - 18.0f;
 			Draw::Draw(116, &src, &dst, white, 0.0f);
 
 			//▼兵舎レベル
-			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 55.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
+			FontDraw(NumConversion(g_Bar_Level), m_mou_x + 45.0f, m_mou_y - 45.5f, 30.0f, 30.0f, white, true);
 
 			////▼フォント表示
 			////兵舎レベル
@@ -1297,7 +1297,7 @@ void CObjBarracks::Draw()
 		}
 
 		//▼兵舎 Lv文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 508.0f;
 		src.m_bottom = 117.0f;
@@ -1648,13 +1648,13 @@ void CObjBarracks::Draw()
 			dst.m_left = 345.0f;
 			dst.m_right = 465.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(67, &src, &dst, black, 0.0f);
+			Draw::Draw(67, &src, &dst, white, 0.0f);
 
 			//「と」の文字画像をFontDraw関数にて表示
-			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, white, false);
 
 			//▼素材消費して文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 0.0f;
 			src.m_right = 717.0f;
 			src.m_bottom = 112.0f;
@@ -1663,10 +1663,10 @@ void CObjBarracks::Draw()
 			dst.m_left = 497.0f;
 			dst.m_right = 677.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼レベルアップしますか？文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 717.0f;
 			src.m_right = 2017.0f;
 			src.m_bottom = 112.0f;
@@ -1675,7 +1675,7 @@ void CObjBarracks::Draw()
 			dst.m_left = 520.0f;
 			dst.m_right = 850.0f;
 			dst.m_bottom = 330.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼はい文字画像表示
 			src.m_top = 0.0f;

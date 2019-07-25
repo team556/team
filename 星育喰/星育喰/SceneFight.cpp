@@ -53,15 +53,6 @@ void CSceneFight::InitScene()
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
 
-	//上レーン画像を5番に登録
-	Draw::LoadImage(L"上レーン.png", 5, TEX_SIZE_512);
-
-	//中央レーン画像を6番に登録
-	Draw::LoadImage(L"中央レーン.png", 6, TEX_SIZE_512);
-
-	//下レーン画像を7番に登録
-	Draw::LoadImage(L"下レーン.png", 7, TEX_SIZE_512);
-
 	//ポッドLv.1を8番に登録
 	Draw::LoadImage(L"ポッド1.png", 8, TEX_SIZE_512);
 
@@ -135,7 +126,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"HPゲージ.png", 32, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み33番に登録
-	Draw::LoadImage(L"メッセージウインドウ(仮).png", 33, TEX_SIZE_512);
+	Draw::LoadImage(L"メッセージウィンドウ.png", 33, TEX_SIZE_512);
 
 	//汗を読み込み34番に登録
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
@@ -258,20 +249,45 @@ void CSceneFight::InitScene()
 	//白ポッドレベル3を76番目に登録
 	Draw::LoadImage(L"ポッド白Lv3.png", 76, TEX_SIZE_512);
 
-	//メッセージウィンドウ01を読み込み77番に登録
-	Draw::LoadImage(L"メッセージウィンドウ01.png", 77, TEX_SIZE_512);
+	////メッセージウィンドウを読み込み77番に登録
+	//Draw::LoadImage(L"メッセージウィンドウ.png", 77, TEX_SIZE_512);
 
 	//ポッドレーザーを読み込み78番に登録
 	Draw::LoadImage(L"ポッドレーザー.png", 78, TEX_SIZE_512);
 
-	//メッセージウィンドウ01画像79番に登録
-	Draw::LoadImage(L"メッセージウィンドウ01.png", 79, TEX_SIZE_512);
+	//ウインドウ01画像79番に登録
+	Draw::LoadImage(L"ウインドウ01.png", 79, TEX_SIZE_512);
 
 	//新三すくみを80番に登録
 	Draw::LoadImage(L"新三すくみ.png", 80, TEX_SIZE_512);
 
+	//上レーン画像を118番に登録
+	Draw::LoadImage(L"上レーン.png", 118, TEX_SIZE_512);
+
+	//中央レーン画像を119番に登録
+	Draw::LoadImage(L"中央レーン.png", 119, TEX_SIZE_512);
+
+	//下レーン画像を120番に登録
+	Draw::LoadImage(L"下レーン.png", 120, TEX_SIZE_512);
+
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+
+	//ボロ画像を読み込み122番に登録
+	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+
+
+	//ポッドレーザー読み込み123番に登録
+	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
@@ -311,6 +327,13 @@ void CSceneFight::InitScene()
 	CObjSpecialButton* special = new CObjSpecialButton(1000.0f, 20.0f, 114.0f, 175.0f);	//オブジェクト作成
 	Objs::InsertObj(special, OBJ_SPECIAL, 90);											//オブジェクト登録
 
+	//メッセージ表示(チュートリアル)オブジェクト作成
+	if (g_tutorial_progress < 20)
+	{
+		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
+		Objs::InsertObj(message, OBJ_MESSAGE, 95);	//メッセージ表示オブジェクト登録
+	}
+
 	//戦闘前演出オブジェクト
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect(false);	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);					//戦闘前演出オブジェクト登録
@@ -318,14 +341,18 @@ void CSceneFight::InitScene()
 	//音楽読み込み
 	Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
 
-	//勝利
-	Audio::LoadAudio(1, L"Sunset.wav", BACK_MUSIC);
+	//決定音(ObjMessage用)
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
 
 	//敗北
 	Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
 
 	//SE読み込み
 	Audio::LoadAudio(3, L"選択＆振り分けアップ３.wav", EFFECT);
+
+	//勝利
+	Audio::LoadAudio(4, L"Sunset.wav", BACK_MUSIC);
+
 	Audio::LoadAudio(5, L"大きい爆発.wav", EFFECT);
 
 	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay
@@ -337,6 +364,8 @@ void CSceneFight::InitScene()
 	Audio::LoadAudio(9, L"食べる音.wav", EFFECT);
 
 	Audio::LoadAudio(10, L"スぺシャル技発動音.wav", EFFECT);
+
+	Audio::LoadAudio(11, L"ポッドレーザー.wav", EFFECT);
 
 	//音楽スタート
 	Audio::Start(0);

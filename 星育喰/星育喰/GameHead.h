@@ -149,6 +149,7 @@ extern float g_Recast_time;			//ƒ~ƒTƒCƒ‹‚ÌƒŠƒLƒƒƒXƒgƒ^ƒCƒ€—p
 //extern int g_E_Planet_damage;					//
 extern float g_P_Planet_damage;					//“Gƒ|ƒbƒh‚ª˜f¯‚É—^‚¦‚éƒ_ƒ[ƒW•Û‘¶—p
 //extern int g_Enemy_Pod_LV;			//ƒeƒXƒg—p“Gƒ|ƒbƒhƒŒƒxƒ‹
+extern char g_test[5];
 //--------------------------------------------------‘Œ¹----
 extern int g_Iron_num;				//“S‚ÌŠ”
 extern int g_Wood_num;				//–Ø‚ÌŠ”
@@ -158,8 +159,10 @@ extern int g_Aluminum_num;		//ƒAƒ‹ƒ~ƒjƒEƒ€
 extern int g_gus_num;			//ƒKƒX
 
 //¥ƒZ[ƒu•K—v«–³‚µ
-extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯@1:¶‚©‚ç2”Ô–Ú‚Ì“G˜f¯@2:¶‚©‚ç3”Ô–Ú‚Ì“G˜f¯@3:¶‚©‚ç4”Ô–Ú‚Ì“G˜f¯@4:ƒ{ƒX˜f¯)
+extern int g_Challenge_enemy;		//í“¬‚ğs‚¤“G˜f¯¯•Ê”Ô†(0:¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯@1:¶‚©‚ç2”Ô–Ú‚Ì“G˜f¯@2:¶‚©‚ç3”Ô–Ú‚Ì“G˜f¯@3:¶‚©‚ç4”Ô–Ú‚Ì“G˜f¯@4:ƒ{ƒX˜f¯@5:ƒ`ƒ…[ƒgƒŠƒAƒ‹˜f¯)
 extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒv‰æ–Ê”ñ•\¦)
+extern int  g_tutorial_progress;	//Œ»İ‚Ìƒ`ƒ…[ƒgƒŠƒAƒ‹is“x
+extern bool g_is_operatable;		//ƒ`ƒ…[ƒgƒŠƒAƒ‹‚É‚Ä‘€ì‰Â”\‚©Šm”Fƒtƒ‰ƒO(true:‘€ì‰Â”\@false;‘€ì•s‰Â)[ƒƒbƒZ[ƒW‚ğ“Ç‚İi‚ß‚é‚ÉŒã‚ë‚Ìƒ{ƒ^ƒ““™‚ª”½‰‚µ‚È‚¢‚æ‚¤‚É‚·‚éˆ×‚Ég—p]
 
 //¥’è”
 #define CUT_ZERO 1625		//•¶šW‚Å”š‚ğØ‚èæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
@@ -214,8 +217,8 @@ extern bool g_help_f;				//ƒwƒ‹ƒv‰æ–Ê•\¦ƒtƒ‰ƒO(true:ƒwƒ‹ƒv‰æ–Ê•\¦@false:ƒwƒ‹ƒ
 
 //ƒV[ƒ“ƒXƒ^[ƒgƒNƒ‰ƒX---------------------------
 //ƒQ[ƒ€ŠJn‚ÌƒV[ƒ“ƒNƒ‰ƒX“o˜^
-#define SET_GAME_START CSceneTitle
-//#define SET_GAME_START CSceneHome
+//#define SET_GAME_START CSceneTitle
+#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
 //#define SET_GAME_START CSceneGameClear

@@ -96,7 +96,8 @@ void CObjRocketButton::Init()
 void CObjRocketButton::Action()
 {
 	//▼戦闘開始前は操作不能にする処理
-	if (battle_start == false)
+	//※チュートリアルの処理中でも操作不能に出来るようにもしてる。
+	if (battle_start == false || g_is_operatable == false)
 	{
 		return;
 	}
@@ -110,158 +111,163 @@ void CObjRocketButton::Action()
 
 	m_key_push_f = false;//二回連続でリキャストに入らないためにfalseに変更する。
 
-	//各押された時のボタンナンバーを設定と1～5が押されたフラグをtrueにする
-	if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true) {
-
-		//powボタン
-		m_key_push = 1;
-		m_key_push_f = true;
-	}
-	if (Input::GetVKey('3') == true || Input::GetVKey(VK_NUMPAD3) == true) {
-
-		//defボタン
-		m_key_push = 2;
-		m_key_push_f = true;
-	}
-	if (Input::GetVKey('4') == true || Input::GetVKey(VK_NUMPAD4) == true) {
-
-		//speボタン
-		m_key_push = 3;
-		m_key_push_f = true;
-	}
-	if (Input::GetVKey('5') == true || Input::GetVKey(VK_NUMPAD5) == true) {
-
-		//balボタン
-		m_key_push = 4;
-		m_key_push_f = true;
-	}
-	if (Input::GetVKey('1') == true || Input::GetVKey(VK_NUMPAD1) == true) {
-
-		//misボタン
-		m_key_push = 5;
-		m_key_push_f = true;
-	}
-
-	//マウスでボタン選択中、カラー明度変更し、選択出来ているか分かり易くする処理
-	//※リキャスト中、人数不足等の場合は実行されない。
-	if (m_x <= m_mou_x && m_mou_x <= (m_x + m_w) && m_y <= m_mou_y && m_mou_y <= (m_y + m_h) && //選択範囲
-		m_mou_f == false)//リキャスト中、人数不足等でないかチェック
+	//チュートリアル中は操作出来ないようにする条件文
+	if (g_tutorial_progress == 3 && Button_num != 5 || g_tutorial_progress >= 4)
 	{
-		m_button_color = 1.0f;
-	}
-	else if(m_mou_f == false)//リキャスト中、人数不足等でないかチェック
-	{
-		m_button_color = INI_COLOR;
-	}
+		//各押された時のボタンナンバーを設定と1～5が押されたフラグをtrueにする
+		if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true) {
 
-	//マウス座標がボタンの上かつ、クリックされているとき
-	if (((m_x <= m_mou_x && m_mou_x <= (m_x + m_w)) && (m_y <= m_mou_y && m_mou_y <= (m_y + m_h)) && m_mou_l == true) ||	
-		//ボタンが押されているかつ、その番号が自分のナンバーと同じとき
-		((Button_num == m_key_push) && m_key_push_f == true))
-		 {
-		if (m_mou_f == false) {
-			//自惑星の位置とサイズを取る
-			CObjPlanet* objp = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-			if (objp->GetType() == 0)
-			{
-				m_px = objp->GetX() + objp->GetScale_down_move();
-				//m_py = objp->GetY();
-				m_size = objp->GetSiz();
-			}
+			//powボタン
+			m_key_push = 1;
+			m_key_push_f = true;
+		}
+		if (Input::GetVKey('3') == true || Input::GetVKey(VK_NUMPAD3) == true) {
 
-			if ((Button_num == 1 && g_Power_num > 0))//パワーボタンかつ、パワーユニット数がある場合
-			{
-				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 1);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
+			//defボタン
+			m_key_push = 2;
+			m_key_push_f = true;
+		}
+		if (Input::GetVKey('4') == true || Input::GetVKey(VK_NUMPAD4) == true) {
 
-				g_Power_num -= UNIT_CONSUME_NUM;	//パワーユニット数消費
+			//speボタン
+			m_key_push = 3;
+			m_key_push_f = true;
+		}
+		if (Input::GetVKey('5') == true || Input::GetVKey(VK_NUMPAD5) == true) {
 
-				//ユニット数が空(0以下)かチェック処理
-				if (g_Power_num <= 0)
+			//balボタン
+			m_key_push = 4;
+			m_key_push_f = true;
+		}
+		if (Input::GetVKey('1') == true || Input::GetVKey(VK_NUMPAD1) == true) {
+
+			//misボタン
+			m_key_push = 5;
+			m_key_push_f = true;
+		}
+
+		//マウスでボタン選択中、カラー明度変更し、選択出来ているか分かり易くする処理
+		//※リキャスト中、人数不足等の場合は実行されない。
+		if (m_x <= m_mou_x && m_mou_x <= (m_x + m_w) && m_y <= m_mou_y && m_mou_y <= (m_y + m_h) && //選択範囲
+			m_mou_f == false)//リキャスト中、人数不足等でないかチェック
+		{
+			m_button_color = 1.0f;
+		}
+		else if (m_mou_f == false)//リキャスト中、人数不足等でないかチェック
+		{
+			m_button_color = INI_COLOR;
+		}
+
+		//マウス座標がボタンの上かつ、クリックされているとき
+		if (((m_x <= m_mou_x && m_mou_x <= (m_x + m_w)) && (m_y <= m_mou_y && m_mou_y <= (m_y + m_h)) && m_mou_l == true) ||
+			//ボタンが押されているかつ、その番号が自分のナンバーと同じとき
+			((Button_num == m_key_push) && m_key_push_f == true))
+		{
+			if (m_mou_f == false) {
+				//自惑星の位置とサイズを取る
+				CObjPlanet* objp = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+				if (objp->GetType() == 0)
 				{
-					g_Power_num = 0;//0未満になっていた場合、0に戻す。
-					m_is_empty = true;//空フラグON
+					m_px = objp->GetX() + objp->GetScale_down_move();
+					//m_py = objp->GetY();
+					m_size = objp->GetSiz();
 				}
-			}
-			else if (Button_num == 2 && g_Defense_num > 0)//ディフェンスボタンかつ、ディフェンスユニット数がある場合
-			{
-				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 2);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
-				g_Defense_num -= UNIT_CONSUME_NUM;	//ディフェンスユニット数消費
-
-				//ユニット数が空(0以下)かチェック処理
-				if (g_Defense_num <= 0)
+				if ((Button_num == 1 && g_Power_num > 0))//パワーボタンかつ、パワーユニット数がある場合
 				{
-					g_Defense_num = 0;//0未満になっていた場合、0に戻す。
-					m_is_empty = true;//空フラグON
+					//オブジェクト作成
+					CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 1);//オブジェクト作成
+					Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
+
+					g_Power_num -= UNIT_CONSUME_NUM;	//パワーユニット数消費
+
+					//ユニット数が空(0以下)かチェック処理
+					if (g_Power_num <= 0)
+					{
+						g_Power_num = 0;//0未満になっていた場合、0に戻す。
+						m_is_empty = true;//空フラグON
+					}
 				}
-			}
-			else if (Button_num == 3 && g_Speed_num > 0)//スピードボタンかつ、スピードユニット数がある場合
-			{
-				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 3);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
-
-				g_Speed_num -= UNIT_CONSUME_NUM;	//スピードユニット数消費
-
-				//ユニット数が空(0以下)かチェック処理
-				if (g_Speed_num <= 0)
+				else if (Button_num == 2 && g_Defense_num > 0)//ディフェンスボタンかつ、ディフェンスユニット数がある場合
 				{
-					g_Speed_num = 0;//0未満になっていた場合、0に戻す。
-					m_is_empty = true;//空フラグON
+					//オブジェクト作成
+					CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 2);//オブジェクト作成
+					Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
+
+					g_Defense_num -= UNIT_CONSUME_NUM;	//ディフェンスユニット数消費
+
+					//ユニット数が空(0以下)かチェック処理
+					if (g_Defense_num <= 0)
+					{
+						g_Defense_num = 0;//0未満になっていた場合、0に戻す。
+						m_is_empty = true;//空フラグON
+					}
 				}
-			}
-			else if (Button_num == 4 && g_Balance_num > 0)//バランスボタンかつ、バランスユニット数がある場合
-			{
-				//オブジェクト作成
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 4);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
-
-				g_Balance_num -= UNIT_CONSUME_NUM;	//バランスユニット数消費
-
-				//ユニット数が空(0以下)かチェック処理
-				if (g_Balance_num <= 0)
+				else if (Button_num == 3 && g_Speed_num > 0)//スピードボタンかつ、スピードユニット数がある場合
 				{
-					g_Balance_num = 0;//0未満になっていた場合、0に戻す。
-					m_is_empty = true;//空フラグON
+					//オブジェクト作成
+					CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 3);//オブジェクト作成
+					Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
+
+					g_Speed_num -= UNIT_CONSUME_NUM;	//スピードユニット数消費
+
+					//ユニット数が空(0以下)かチェック処理
+					if (g_Speed_num <= 0)
+					{
+						g_Speed_num = 0;//0未満になっていた場合、0に戻す。
+						m_is_empty = true;//空フラグON
+					}
 				}
-			}
-			else if (Button_num == 5)//ミサイルボタンの場合
-			{
-				CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 5);//オブジェクト作成
-				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-			}
+				else if (Button_num == 4 && g_Balance_num > 0)//バランスボタンかつ、バランスユニット数がある場合
+				{
+					//オブジェクト作成
+					CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 4);//オブジェクト作成
+					Objs::InsertObj(M, OBJ_ROCKET, 15);		//オブジェクト登録
 
-			m_mou_f = true;
-			m_a = 0.3f;		//透明化
+					g_Balance_num -= UNIT_CONSUME_NUM;	//バランスユニット数消費
 
-			//ポッド選択音
-			Audio::Start(3);
+					//ユニット数が空(0以下)かチェック処理
+					if (g_Balance_num <= 0)
+					{
+						g_Balance_num = 0;//0未満になっていた場合、0に戻す。
+						m_is_empty = true;//空フラグON
+					}
+				}
+				else if (Button_num == 5)//ミサイルボタンの場合
+				{
+					CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 5);//オブジェクト作成
+					Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
+				}
+
+				m_mou_f = true;
+				m_a = 0.3f;		//透明化
+
+				//ポッド選択音
+				Audio::Start(3);
+			}
+		}
+		else {}//何もしない
+
+		//ミサイルボタン以外のリキャストタイムの制御
+		if (m_mou_f == true && m_is_empty == false && Button_num != 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
+			m_cnt++;			//カウントする
+			if (m_cnt >= RECAST_COMPLETE_POD_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
+				m_mou_f = false;							//クリックできるようにする。
+				m_cnt = 0;
+				m_a = 1.0f;		//不透明化
+			}
+		}
+		//ミサイルのリキャストタイム制御
+		else if (m_mou_f == true && m_is_empty == false && Button_num == 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
+			m_cnt++;			//カウントする
+			if (m_cnt >= RECAST_COMPLETE_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
+				m_mou_f = false;							//クリックできるようにする。
+				m_cnt = 0;
+				m_a = 1.0f;		//不透明化
+			}
 		}
 	}
-	else{}//何もしない
 
-	//ミサイルボタン以外のリキャストタイムの制御
-	if (m_mou_f == true && m_is_empty == false && Button_num != 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
-		m_cnt++;			//カウントする
-		if (m_cnt >= RECAST_COMPLETE_POD_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
-			m_mou_f = false;							//クリックできるようにする。
-			m_cnt = 0;
-			m_a = 1.0f;		//不透明化
-		}
-	}
-	//ミサイルのリキャストタイム制御
-	else if (m_mou_f == true && m_is_empty == false && Button_num == 5) {	//クリックした後の処理(ユニット数が空の場合、実行されない)
-		m_cnt++;			//カウントする
-		if (m_cnt >= RECAST_COMPLETE_TIME * m_player_recast_buff) {	//グローバル変数分カウントする
-			m_mou_f = false;							//クリックできるようにする。
-			m_cnt = 0;
-			m_a = 1.0f;		//不透明化
-		}
-	}
 
 	CObjFight* obj = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 	if (battle_end == true) {	//時間切れで

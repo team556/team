@@ -77,6 +77,12 @@ void CObjHelp::Init()
 //アクション
 void CObjHelp::Action()
 {
+	//チュートリアル中は操作不可にする
+	if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
+	{
+		return;
+	}
+
 	//▼シーン移行演出処理(ヘルプボタン非表示処理)
 	//※なお、各シーン毎にヘルプボタンの非表示方法は違う。
 	if (m_mig_staging_f == true)
@@ -317,18 +323,21 @@ void CObjHelp::Draw()
 	RECT_F dst;//表示位置
 	
 
-	//▼ヘルプボタン表示
-	src.m_top   =  0.0f;
-	src.m_left  =  0.0f;
-	src.m_right =128.0f;
-	src.m_bottom=128.0f;
-	
-	dst.m_top   = m_py;
-	dst.m_left  = m_px;
-	dst.m_right = m_px + HELP_SIZE;
-	dst.m_bottom= m_py + HELP_SIZE;
-	Draw::Draw(m_help_reg_num, &src, &dst, help, 0.0f);
+	//チュートリアル中は表示しない
+	if (!(g_tutorial_progress == 1 || g_tutorial_progress == 2))
+	{
+		//▼ヘルプボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 128.0f;
 
+		dst.m_top = m_py;
+		dst.m_left = m_px;
+		dst.m_right = m_px + HELP_SIZE;
+		dst.m_bottom = m_py + HELP_SIZE;
+		Draw::Draw(m_help_reg_num, &src, &dst, help, 0.0f);
+	}
 
 	//ヘルプ表示時、以下のものを描画する
 	if (g_help_f == true)
@@ -363,8 +372,8 @@ void CObjHelp::Draw()
 			//▼ページを戻すボタン表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = -128.0f;
-			src.m_bottom = 128.0f;
+			src.m_right = -256.0f;
+			src.m_bottom = 256.0f;
 
 			dst.m_top = 330.0f;
 			dst.m_left = 30.0f;
@@ -375,8 +384,8 @@ void CObjHelp::Draw()
 			//▼ページを進めるボタン表示
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
-			src.m_right = 128.0f;
-			src.m_bottom = 128.0f;
+			src.m_right = 256.0f;
+			src.m_bottom = 256.0f;
 
 			dst.m_top = 330.0f;
 			dst.m_left = 1120.0f;

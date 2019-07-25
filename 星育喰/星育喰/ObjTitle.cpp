@@ -7,6 +7,7 @@
 
 #include "GameHead.h"
 #include "Call_Planet.h"
+#include "UtilityModule.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -20,6 +21,7 @@ using namespace GameL;
 #define ENEMY_PLANET2_START_TIME (800)  //敵惑星2(背景)の開始時間
 #define ENEMY_PLANET3_START_TIME (300)  //敵惑星3(背景)の開始時間
 #define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
+#define INI_COLOR (0.9f) //透過度(アルファ値)の初期値
 
 //static変数の定義
 bool CObjTitle::after_once = false;
@@ -45,27 +47,29 @@ int g_Bal_equip_Level		= 1;
 int g_Bal_equip_Lv_achieve	= 1;
 int g_Pod_equip_Level		= 1;
 int g_Pod_equip_Lv_achieve	= 1;
-float g_Player_max_size = 100.0f;
+float g_Player_max_size = 250.0f;//100.0f;
 int g_Special_equipment = 0;//装備中のスペシャル技
 bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
 int g_Power_num		= 2000;
 int g_Defense_num	= 2000;
 int g_Speed_num		= 2000;
 int g_Balance_num	= 2000;
-int g_Research_num	= 0;
-int g_Remain_num	= 2000;
+int g_Research_num	= 2500;
+int g_Remain_num	= 10000;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 
-int g_Iron_num		= 0;
-int g_Wood_num		= 0;
+int g_Iron_num		= 1000;
+int g_Wood_num		= 50;
 int g_Silver_num	= 0;
 int g_Plastic_num	= 0;
-int g_Aluminum_num	= 0;
+int g_Aluminum_num	= 100;
 int g_gus_num		= 0;
 
-int g_Challenge_enemy = 0;
+int g_Challenge_enemy = 0;//デバッグ。0に戻すべし。
 bool g_help_f = false;
+int  g_tutorial_progress = 20;//デバッグ。チュートリアル完成後、0にするように。
+bool g_is_operatable = true;
 
 //イニシャライズ
 void CObjTitle::Init()
@@ -81,7 +85,14 @@ void CObjTitle::Init()
 	m_Planet_id = 0;
 	m_speed = 0;
 
+	m_Yes_Button_color = 1.0f;
+	m_No_Button_color = 1.0f;
+	m_del_color = INI_COLOR;
+	m_del_alpha = 0.0f;
+	m_del_f = false;
+
 	m_flag  = false;
+	m_key_f = false;
 	m_alpha = INI_ALPHA;
 
 	//▼二回目以降訪れた時の演出
@@ -99,6 +110,10 @@ void CObjTitle::Init()
 	{
 		m_black_out_a = 0.0f;
 	}
+
+	m_des_y = 200.0f;
+	m_des_vec = 1.0f;
+	m_des_a = 0.0f;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -137,66 +152,243 @@ void CObjTitle::Init()
 		g_Special_mastering[i] = false;
 	}
 
-	g_Power_num = 1000;
-	g_Defense_num = 1000;
-	g_Speed_num = 1000;
-	g_Balance_num = 1000;
-	g_Research_num = 0;
-	g_Remain_num = 0;
+	g_Power_num		= 1500;
+	g_Defense_num	= 1500;
+	g_Speed_num		= 1500;
+	g_Balance_num	= 1500;
+	g_Research_num	= 0;
+	g_Remain_num	= 0;
 
-	g_Iron_num = 0;
-	g_Wood_num = 0;
-	g_Silver_num = 0;
-	g_Plastic_num = 0;
-	g_Aluminum_num = 0;
-	g_gus_num = 0;
+	g_Iron_num		= 0;
+	g_Wood_num		= 0;
+	g_Silver_num	= 0;
+	g_Plastic_num	= 0;
+	g_Aluminum_num	= 0;
+	g_gus_num		= 0;
 }
 
 //アクション
 void CObjTitle::Action()
 {
-	//画面暗転状態の場合、明転する処理
-	if (m_black_out_a >= 0.0f)
-	{
-		m_black_out_a -= 0.01f;
-	}
-
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//▼キーフラグ
+	//※左クリックを制御している
+	if (m_mou_l == false)
+	{
+		m_key_f = true;//キーフラグON(ONの時に左クリック出来る)
+	}
+
+	//▼データ消去最終確認ウインドウ表示時の処理
+	if (m_del_f == true)
+	{
+		//最終確認[はい]ボタン
+		if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
+		{
+			m_Yes_Button_color = 0.0f;
+
+			//▼クリックされたらデータ消去し、このウインドウを閉じる
+			//左クリック入力時
+			if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_f == true)
+				{
+					m_key_f = false;
+
+					//▼ここに消去したい処理等を書く(見ての通りまだ何も書いてない)
+
+
+
+
+					m_Yes_Button_color = 1.0f;
+
+					m_del_alpha = 1.5f;//データ消去完了通知画像を表示する
+
+					//最終確認ウインドウを非表示にする
+					m_del_f = false;
+
+					//データを食べる音
+					Audio::Start(3);
+				}
+			}
+		}
+		else
+		{
+			m_Yes_Button_color = 1.0f;
+		}
+
+		//最終確認[いいえ]ボタン
+		if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
+		{
+			m_No_Button_color = 0.0f;
+
+			//▼クリックされたら、このウインドウを閉じる
+			//右クリック入力時
+			if (m_mou_r == true)
+			{
+				m_No_Button_color = 1.0f;
+
+				//最終確認ウインドウを非表示にする
+				m_del_f = false;
+
+				//戻るボタン音
+				Audio::Start(2);
+			}
+			//左クリック入力時
+			else if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_f == true)
+				{
+					m_key_f = false;
+
+					m_No_Button_color = 1.0f;
+
+					//最終確認ウインドウを非表示にする
+					m_del_f = false;
+
+					//戻るボタン音
+					Audio::Start(2);
+				}
+			}
+		}
+		else
+		{
+			m_No_Button_color = 1.0f;
+		}
+
+
+		return;
+	}
+
+
 	
-	//左クリックもしくは右クリックでホーム画面へシーン移行
-	if (m_flag == true)
+	//左クリックもしくは右クリックでホーム画面へシーン移行(初回時の処理)
+	if (m_flag == true && after_once == false)
+	{
+		//下から上に順に実行されていく
+
+		/*if ()
+		{
+			名前入力のグローバル変数に何かしら入力されたのを確認(!= nullptr)、
+			もしくは何か名前入力側から情報を送ってもらい、それを条件文に入れる。
+
+			その後、この条件文の中で
+			チュートリアルをスキップするかしないかを最終確認ウインドウのヤツで聞く。
+
+			確認後、スキップしない処理、スキップする処理に分岐し、
+			値とかいろいろ入れた後に
+			m_black_out_a -= 0.01f;//画面徐々に明転
+			を実行し、完全明転後、以下の処理を実行する。
+			//after_once = true;//「一度タイトル画面を訪れた」と記憶
+
+			//Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
+		}
+		else */if (m_alpha == 0.0f)
+		{
+			//名前入力中はObjTitleでは何も動作させない。
+		}
+		else if (m_des_y <= -550.0f)
+		{
+			//名前入力のオブジェクトを呼び出す
+
+			m_alpha = 0.0f;//タイトルロゴ、後ろ敵惑星等を非表示にすると同時に次の処理へのフラグとしている。
+		}
+		else if (m_des_a > 6.0f)
+		{
+			//世界観説明全て表示から少し経った後、
+			//その全て表示した説明を画面外の上の方に移動させる。
+			m_des_vec *= 1.01f;
+			m_des_y -= m_des_vec;
+
+			//クリックで移動速度上昇
+			if (m_mou_l == true)
+			{
+				m_des_y -= m_des_vec * 10;
+			}
+		}
+		else if (m_black_out_a > 1.2f)
+		{
+			m_des_a += 0.01f;//暗転後、徐々に世界観説明を表示していく。
+
+			//クリックで表示速度上昇
+			if (m_mou_l == true)
+			{
+				m_des_a += 0.05f;
+			}
+		}
+		else
+		{
+			m_black_out_a += 0.01f;//画面徐々に暗転
+		}
+
+		return;
+	}
+	//左クリックもしくは右クリックでホーム画面へシーン移行(二回目以降の処理)
+	else if (m_flag == true)
 	{
 		m_alpha -= 0.01f;
-		
+
 		if (m_alpha <= 0.0f)
 		{
-			after_once = true;//「一度タイトル画面を訪れた」と記憶
 			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 		}
 
 		return;
 	}
-	else if (m_mou_l == true || m_mou_r == true)
+	
+	//データ消去ボタン
+	if (20 < m_mou_x && m_mou_x < 120 && 20 < m_mou_y && m_mou_y < 120)
 	{
-		if (m_key_f == true)
+		m_del_color = 1.0f;
+
+		if (m_mou_l == true && m_key_f == true)
 		{
-			m_flag = true;
-			//選択音
+			m_del_f = true;//最終確認ウインドウを表示
+
+			m_del_alpha = 0.0f;//データ消去完了通知画像を非表示
+
+			m_del_color = INI_COLOR;
+
+			//選択ボタン音
 			Audio::Start(1);
+
+			return;
 		}
 	}
-	//ゲームオーバー画面からタイトルに戻ってくる際、
-	//クリック押したままの状態で戻ってくる為、
-	//クリックせずともホーム画面にシーン移行してしまうのを防ぐために
-	//ここでキーフラグの処理を行う。
-	else //左クリックも右クリックもされていない時に実行
+	//データ消去ボタン以外の場所を左クリックするとシーン移行処理を行う。
+	else if (m_mou_l == true && m_key_f == true)
 	{
-		m_key_f = true;//キーフラグを立てる
+		m_del_color = INI_COLOR;
+
+		m_key_f = false;//キーフラグOFF
+
+		m_flag = true;//シーン移行処理フラグON
+
+		//選択音
+		Audio::Start(1);
+	}
+	else
+	{
+		m_del_color = INI_COLOR;
+	}
+
+	//画面暗転状態の場合、明転する処理
+	if (m_black_out_a >= 0.0f)
+	{
+		m_black_out_a -= 0.01f;
+	}
+
+	//データ消去完了通知画像表示時、透過度を下げて非表示にする処理
+	if (m_del_alpha >= 0.0f)
+	{
+		m_del_alpha -= 0.01f;
 	}
 
 	//Zキーを押している間、敵惑星(背景)の移動速度が速くなる(デバッグ用)
@@ -223,9 +415,33 @@ void CObjTitle::Draw()
 
 	//黄色(☆育喰)[シーン移行時フェードアウト]
 	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
+
+	//赤色
+	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
+
+	//データ消去完了通知画像用
+	float notify[4] = { 1.0f,0.0f,0.0f,m_del_alpha };
+
+	//データ消去ボタン用
+	float Delete[4] = { m_del_color,m_del_color,m_del_color,m_alpha };
 	
+	//最終確認[はい]ボタン用
+	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
+
+	//最終確認[いいえ]ボタン用
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
+
 	//画面全体暗転画像用
 	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	
+
+	//世界観説明フォント画像用
+	float description[4][4] =
+	{
+		{ 1.0f,1.0f,1.0f,m_des_a },			//フォント色は全て白色
+		{ 1.0f,1.0f,1.0f,m_des_a - 1.5f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 3.0f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 4.5f },
+	};
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -364,8 +580,22 @@ void CObjTitle::Draw()
 	dst.m_left = 350.0f;
 	dst.m_right = 851.0f;
 	dst.m_bottom = 280.0f;
-	Draw::Draw(1, &src, &dst, w, 0.0);
+	Draw::Draw(1, &src, &dst, w, 0.0f);
 
+	//データ消去ボタン表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 522.0f;
+	src.m_bottom = 390.0f;
+
+	dst.m_top = 20.0f;
+	dst.m_left = 20.0f;
+	dst.m_right = 120.0f;
+	dst.m_bottom = 120.0f;
+	Draw::Draw(54, &src, &dst, Delete, 0.0f);
+
+	//データ消去完了フォント画像表示
+	FontDraw(L"データ消去完了", m_mou_x - 122.5f, m_mou_y - 40.0f, 35.0f, 35.0f, notify, false);
 
 	//▼画面全体暗転用画像表示
 	//※blackoutの透過度の値で「表示/非表示」が切り替えられる
@@ -379,6 +609,56 @@ void CObjTitle::Draw()
 	dst.m_right = 1200.0f;
 	dst.m_bottom = 700.0f;
 	Draw::Draw(2, &src, &dst, blackout, 0.0f);
+
+	//世界観説明フォント画像表示
+	FontDraw(L"意思を持つ惑星達が互いの生存をかけて喰らい合う弱肉強食の宇宙……。", 35.0f, m_des_y, 35.0f, 35.0f, description[0], false);
+	FontDraw(L"喰うか喰われるか――", 35.0f, m_des_y + 100.0f, 35.0f, 35.0f, description[1], false);
+	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 35.0f, m_des_y + 200.0f, 35.0f, 35.0f, description[2], false);
+	FontDraw(L"その惑星の名は……？", 35.0f, m_des_y + 300.0f, 35.0f, 35.0f, description[3], false);
+
+
+	//▼データ消去最終確認ウインドウ表示管理フラグがtrueの時、描画。
+	if (m_del_f == true)
+	{
+		//▼最終確認ウインドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
+
+		dst.m_top = 220.0f;
+		dst.m_left = 320.0f;
+		dst.m_right = 880.0f;
+		dst.m_bottom = 480.0f;
+		Draw::Draw(57, &src, &dst, d, 0.0f);
+
+		//データを消去しますか？
+		FontDraw(L"データを消去しますか？", 360.0f, 250.0f, 45.0f, 45.0f, red, false);
+
+		//▼はい文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 232.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 410.0f;
+		dst.m_right = 510.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(55, &src, &dst, Yes, 0.0f);
+
+		//▼いいえ文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 650.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(56, &src, &dst, No, 0.0f);
+	}
 
 
 

@@ -42,17 +42,20 @@ void CSceneTest::InitScene()
 	//ウインドウ01を読み込み3番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 3, TEX_SIZE_512);
 
-	//戦闘員x10(山田)を読み込み4番に登録
-	Draw::LoadImage(L"戦闘員x10.png", 4, TEX_SIZE_512);
-
 	//ポーズ画面背景(画面暗転用)を読み込み5番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 5, TEX_SIZE_512);
 
-	//矢印画像を読み込み6番に登録
-	Draw::LoadImage(L"矢印.png", 6, TEX_SIZE_512);
-
 	//白文字集を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+
+	//会話矢印を読み込み189番に登録
+	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+	
+	//戦闘員x10(山田)を読み込み190番に登録
+	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+
+	//矢印画像を読み込み191番に登録
+	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
 
 	////10番に登録
 	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);
@@ -76,8 +79,8 @@ void CSceneTest::InitScene()
 	//CObjHelp* help = new CObjHelp(1);		//ヘルプオブジェクト作成
 	//Objs::InsertObj(help, OBJ_HELP, 10);	//ヘルプオブジェクト登録
 
-	//メッセージ表示オブジェクト作成
-	CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
+	//メッセージ表示(チュートリアル)オブジェクト作成
+	CObjMessage* message = new CObjMessage(30);	//メッセージ表示オブジェクト作成
 	Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
 
 

@@ -34,8 +34,8 @@ void CObjInstitute::Init()
 	m_Human_down_color = INI_COLOR;
 	m_Mis_Button_color = INI_COLOR;
 	m_Equ_Button_color = INI_COLOR;
-	m_Yes_Button_color = 0.0f;
-	m_No_Button_color = 0.0f;
+	m_Yes_Button_color = 1.0f;
+	m_No_Button_color = 1.0f;
 
 	m_equip_id = 0;
 	m_Lv_id = 0;
@@ -171,10 +171,10 @@ void CObjInstitute::Init()
 	m_Equ_next_Hum_num[2][0] = 1500;  //レベルが1の時の必要研究員数
 	m_Equ_next_Hum_num[2][1] = 7000; //レベルが2の時の必要研究員数
 	//▽バランス武器
-	m_Equ_next_Hum_num[3][0] = 1500;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[3][0] = 2500;  //レベルが1の時の必要研究員数
 	m_Equ_next_Hum_num[3][1] = 7000; //レベルが2の時の必要研究員数
 	//▽ポッド
-	m_Equ_next_Hum_num[4][0] = 1000;  //レベルが1の時の必要研究員数
+	m_Equ_next_Hum_num[4][0] = 2000;  //レベルが1の時の必要研究員数
 	m_Equ_next_Hum_num[4][1] = 5000; //レベルが2の時の必要研究員数
 
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
@@ -233,7 +233,7 @@ void CObjInstitute::Init()
 //-----------------------------------------------------------------------------------------------------
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
-	m_Facility_next_Size_num[0] = 30.0f;	//レベルが1の時の必要サイズ(HP)
+	m_Facility_next_Size_num[0] = 80.0f;	//レベルが1の時の必要サイズ(HP)
 	m_Facility_next_Size_num[1] = 200.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
@@ -303,7 +303,7 @@ void CObjInstitute::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら研究所レベルUP処理を行い、このウインドウを閉じる
 				//左クリック入力時
@@ -365,13 +365,13 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -380,7 +380,7 @@ void CObjInstitute::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -396,7 +396,7 @@ void CObjInstitute::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -412,7 +412,7 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
@@ -849,7 +849,7 @@ void CObjInstitute::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら武器ポッドレベルUP処理を行い、このウインドウを閉じる
 				//左クリック入力時
@@ -883,7 +883,7 @@ void CObjInstitute::Action()
 						m_Equ_pic_blue_color[*finalcheck_Lvup_achieve - 2 + finalcheck_Lvup_type * 3] = 0.5f;
 
 
-						m_Yes_Button_color = 0.0f;
+						m_Yes_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -899,13 +899,13 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -914,7 +914,7 @@ void CObjInstitute::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -930,7 +930,7 @@ void CObjInstitute::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -946,7 +946,7 @@ void CObjInstitute::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
@@ -954,7 +954,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事でこのウインドウを閉じる
-		if (80 < m_mou_x && m_mou_x < 130 && 80 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
+		if (80 < m_mou_x && m_mou_x < 130 && 74 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
 
@@ -1267,10 +1267,10 @@ void CObjInstitute::Draw()
 	float Equ_message_window[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
+	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
 
 	//簡易メッセージ(エラーメッセージ、レベルUP表示等)用
 	float message[4] = { m_message_red_color,m_message_green_color,m_message_blue_color,m_alpha };
@@ -1411,7 +1411,7 @@ void CObjInstitute::Draw()
 			src.m_left = 0.0f;
 			src.m_right = 607.0f;
 			src.m_bottom = 112.0f;
-
+			
 			dst.m_top = m_mou_y - 43.0f;
 			dst.m_left = m_mou_x - 90.0f;
 			dst.m_right = m_mou_x + 40.0f;
@@ -1699,7 +1699,7 @@ void CObjInstitute::Draw()
 		Draw::Draw(64, &src, &dst, white, 0.0f);
 
 		//▼研究所レベルUP文字画像表示
-		src.m_top = 0.0f;
+		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 930.0f;
 		src.m_bottom = 117.0f;
@@ -1951,13 +1951,13 @@ void CObjInstitute::Draw()
 			dst.m_left = 345.0f;
 			dst.m_right = 465.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(67, &src, &dst, black, 0.0f);
+			Draw::Draw(67, &src, &dst, white, 0.0f);
 
 			//「と」の文字画像をFontDraw関数にて表示
-			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, black, false);
+			FontDraw(L"と", 466.0f, 250.0, 30.0f, 30.0f, white, false);
 
 			//▼素材消費して文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 0.0f;
 			src.m_right = 717.0f;
 			src.m_bottom = 112.0f;
@@ -1966,10 +1966,10 @@ void CObjInstitute::Draw()
 			dst.m_left = 497.0f;
 			dst.m_right = 677.0f;
 			dst.m_bottom = 280.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼レベルアップしますか？文字画像表示
-			src.m_top = 0.0f;
+			src.m_top = 2.0f;
 			src.m_left = 717.0f;
 			src.m_right = 2017.0f;
 			src.m_bottom = 112.0f;
@@ -1978,7 +1978,7 @@ void CObjInstitute::Draw()
 			dst.m_left = 520.0f;
 			dst.m_right = 850.0f;
 			dst.m_bottom = 330.0f;
-			Draw::Draw(72, &src, &dst, black, 0.0f);
+			Draw::Draw(72, &src, &dst, white, 0.0f);
 
 			//▼はい文字画像表示
 			src.m_top = 0.0f;
@@ -2494,7 +2494,7 @@ void CObjInstitute::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 313.0f;
+				src.m_right = 311.0f;
 				src.m_bottom = 107.0f;
 
 				dst.m_top = 250 + (i * 150);
@@ -2520,7 +2520,7 @@ void CObjInstitute::Draw()
 
 			//▼ブルー文字画像表示
 			src.m_top = 2.0f;
-			src.m_left = 0.0f;
+			src.m_left = 2.0f;
 			src.m_right = 352.0f;
 			src.m_bottom = 112.0f;
 
@@ -2532,7 +2532,7 @@ void CObjInstitute::Draw()
 
 			//▼グリーン文字画像表示
 			src.m_top = 2.0f;
-			src.m_left = 2.0f;
+			src.m_left = 4.0f;
 			src.m_right = 472.0f;
 			src.m_bottom = 110.0f;
 
@@ -2577,7 +2577,7 @@ void CObjInstitute::Draw()
 			dst.m_left = m_mou_x - m_Equ_message_window_x_size;
 			dst.m_right = m_mou_x + m_Equ_message_window_x_size;
 			dst.m_bottom = m_mou_y + 0.0f;
-			Draw::Draw(20, &src, &dst, Equ_message_window, 0.0f);
+			Draw::Draw(134, &src, &dst, Equ_message_window, 0.0f);
 
 			//▼LvUP条件　所持必要文字画像表示
 			src.m_top = 0.0f;
@@ -2663,7 +2663,7 @@ void CObjInstitute::Draw()
 				Draw::Draw(20, &src, &dst, white, 0.0f);
 
 				//▼素材消費してレベルアップしますか？文字画像表示
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 2017.0f;
 				src.m_bottom = 112.0f;
@@ -2672,10 +2672,10 @@ void CObjInstitute::Draw()
 				dst.m_left = 345.0f;
 				dst.m_right = 855.0f;
 				dst.m_bottom = 280.0f;
-				Draw::Draw(72, &src, &dst, black, 0.0f);
+				Draw::Draw(72, &src, &dst, white, 0.0f);
 
 				//▼※研究員は失われません文字画像表示
-				src.m_top = 0.0f;
+				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 1304.0f;
 				src.m_bottom = 112.0f;
@@ -2684,7 +2684,7 @@ void CObjInstitute::Draw()
 				dst.m_left = 347.0f;
 				dst.m_right = 707.0f;
 				dst.m_bottom = 330.0f;
-				Draw::Draw(87, &src, &dst, black, 0.0f);
+				Draw::Draw(87, &src, &dst, white, 0.0f);
 
 				//▼はい文字画像表示
 				src.m_top = 0.0f;
@@ -3082,7 +3082,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 
 		//切り取り位置を設定する
 		m_message_clip_right = 1057.0f;
-		m_message_clip_bottom = 112.0f;
+		m_message_clip_bottom = 110.0f;
 
 		//描画位置を設定する
 		m_message_draw_left = -110.0f;

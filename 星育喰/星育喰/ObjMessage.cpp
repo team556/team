@@ -40,6 +40,8 @@ void CObjMessage::Init()
 	m_mou_l = false;
 	m_key_f = false;
 
+	m_count = 0;
+
 	m_arrow_display_f = 0;
 	m_arrow_angle_f = 0;
 	m_arrow_x = 0.0f;
@@ -48,11 +50,16 @@ void CObjMessage::Init()
 	m_swing_vec = 0.0f;
 	m_swing_r = 0.0f;
 
+	m_black_out_a = 0.0f;
 	m_black_out_f = false;
 	m_reminder_f = false;
 	m_is_top_or_bottom = 0;
 
-	m_run_switch = true;
+	m_message_window_num = 0;
+	m_yamada_window_num = 0;
+	m_black_out_num = 0;
+
+	m_run_switch = false;
 
 
 	//フォントデータ情報
@@ -70,14 +77,14 @@ void CObjMessage::Init()
 		{ L'ら',L'り',L'る',L'れ',L'ろ',L'ラ',L'リ',L'ル',L'レ',L'ロ' },
 		{ L'わ',L'を',L'ん',L'ワ',L'ヲ',L'ン',L'プ',L'ッ' },
 		{ L'×',L'※',L'：',L'＋',L'－',L'…',L'。',L'！',L'？',L'、',L'＆',L'．',L'＝',L'０',L'１',L'２',L'３',L'４',L'５',L'６',L'７',L'８',L'９',L'一',L'二',L'三',L'四',L'五',L'六',L'七',L'八',L'九',L'零' },
-		{ L'今',L'日',L'人',L'類',L'統',L'括',L'山',L'田',L'先',L'敵',L'惑',L'星',L'情',L'報',L'不',L'意',L'打',L'喰',L'前',L'行',L'鉄',L'木',L'／' },
-		{ L'聞',L'強',L'来',L'思',L'準',L'備',L'越',L'手',L'入',L'見',L'攻',L'撃',L'傾',L'向',L'戦',L'闘',L'必',L'殺',L'技',L'持',L'捕',L'食',L'奪' },
-		{ L'直',L'結',L'負',L'無',L'気',L'仕',L'方',L'下',L'出',L'押',L'命',L'令',L'住',L'最',L'初',L'回',L'目',L'時',L'間',L'属',L'性' },
+		{ L'今',L'日',L'人',L'類',L'統',L'括',L'山',L'田',L'先',L'敵',L'惑',L'星',L'情',L'報',L'不',L'意',L'打',L'喰',L'前',L'行',L'鉄',L'木',L'／',L'達',L'互',L'生',L'存',L'合',L'弱',L'肉',L'名',L'─' },
+		{ L'聞',L'強',L'来',L'思',L'準',L'備',L'越',L'手',L'入',L'見',L'攻',L'撃',L'傾',L'向',L'戦',L'闘',L'必',L'殺',L'技',L'持',L'捕',L'食',L'奪',L'両',L'Ｈ',L'Ｐ',L'何',L'ポ',L'受',L'与' },
+		{ L'直',L'結',L'負',L'無',L'気',L'仕',L'方',L'下',L'出',L'押',L'命',L'令',L'住',L'最',L'初',L'回',L'目',L'時',L'間',L'属',L'性',L'消',L'去',L'完',L'了',L'以',L'降' },
 		{ L'有',L'利',L'不',L'利',L'赤',L'青',L'緑',L'灰',L'色',L'対',L'等',L'察',L'簡',L'単',L'活',L'用',L'数',L'字',L'上',L'真',L'中',L'線' },
 		{ L'吸',L'寄',L'逆',L'自',L'分',L'同',L'士',L'引',L'力',L'衝',L'突',L'大',L'小',L'宇',L'宙',L'常',L'識',L'覚',L'習',L'慣',L'考' },
 		{ L'素',L'材',L'移',L'所',L'配',L'置',L'便',L'番',L'最',L'高',L'体',L'成',L'果',L'勝',L'昇',L'多',L'書',L'材',L'限',L'後' },
-		{ L'次',L'獲',L'得',L'集',L'切',L'札',L'乗',L'詳',L'内',L'容',L'説',L'明',L'欲',L'把',L'握',L'残',L'秘',L'訣',L'油',L'断',L'優' },
-		{ L'方',L'法',L'教',L'育',L'画',L'面',L'研',L'究',L'民',L'術',L'耐',L'久',L'増',L'員',L'割',L'振',L'再',L'産',L'早',L'武',L'器' },
+		{ L'次',L'獲',L'得',L'集',L'切',L'札',L'乗',L'詳',L'内',L'容',L'説',L'明',L'欲',L'把',L'握',L'残',L'秘',L'訣',L'油',L'断',L'優',L'始',L'っ',L'例',L'ー',L'ペ',L'ェ',L'ャ' },
+		{ L'方',L'法',L'教',L'育',L'画',L'面',L'研',L'究',L'民',L'術',L'耐',L'久',L'増',L'員',L'割',L'振',L'再',L'産',L'早',L'武',L'器',L'ゃ',L'使',L'左',L'右',L'通' },
 		{ L'製',L'作',L'実',L'際',L'度',L'当',L'滅',L'表',L'示',L'少',L'遅',L'戻',L'兵',L'舎',L'化',L'他',L'資',L'飛',L'相',L'的',L'込' },
 		{ L'参',L'加',L'割',L'振',L'分',L'中',L'色',L'出',L'撃',L'要',L'注',L'条',L'件',L'載',L'倉',L'庫',L'装',L'現',L'在',L'旦',L'定' },
 		{ L'発',L'展',L'黒',L'整',L'物',L'光',L'銀',L'河',L'盛',L'奇',L'跡',L'朗',L'報',L'帯',L'安',L'心',L'休',L'遊',L'暗' },
@@ -110,25 +117,110 @@ void CObjMessage::Init()
 	//またはメッセージ途中にプレイヤーに
 	//何か操作させたい時にこの全角文字を書いて下さい。
 
-	//テスト
-	wchar_t strr[20] = L"きになあ";
+	//自分の惑星名(テスト用)
+	wchar_t strr[20] = L"ふおると";
 
-	//テスト
+	//○○画面メッセージ文設定＆画像登録番号設定
+	//if (m_Scene_id == 30)
+	//{
+	//	swprintf_s(m_font[1], L"");
+	//	swprintf_s(m_font[2], L"", strr);
+	//	swprintf_s(m_font[3], L"");
+	//	swprintf_s(m_font[4], L"");
+	//	swprintf_s(m_font[5], L"");
+	//	swprintf_s(m_font[6], L"");
+	//	swprintf_s(m_font[7], L"");
+	//	swprintf_s(m_font[8], L"");
+	//	swprintf_s(m_font[9], L"");
+	//	swprintf_s(m_font[10], L"");
+	//	swprintf_s(m_font[11], L"");
+	//	swprintf_s(m_font[12], L"");
+	//	swprintf_s(m_font[13], L"");
+
+
+	//	swprintf_s(m_font[0], L"ＲあかあかＢきくＧきく＿かうい～かかかかかかかかきなきなにあ￥にあまむまむ￥テスト１２３￥２１３２３１２￥１３１２１３２");//メッセージ１
+	//	swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展");	//メッセージ２
+	//	swprintf_s(m_font[2], L"テスト：%s：テスト",strr);		//メッセージ３
+	//	swprintf_s(m_font[3], L"｜");					//メッセージ４
+	//	swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
+	//	swprintf_s(m_font[5], L"｜");					//メッセージ６
+
+	//	m_message_window_num = 2;
+	//	m_yamada_window_num = 3;
+	//	m_black_out_num = 5;
+	//}
+	//ホーム画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	if (m_Scene_id == 0)
 	{
-		swprintf_s(m_font[0], L"ＲあかあかＢきくＧきく＿かうい～かかかかかかかかきなきなにあ￥にあまむまむ￥テスト１２３￥２１３２３１２￥１３１２１３２");//メッセージ１
-		swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展");	//メッセージ２
-		swprintf_s(m_font[2], L"テスト：%s：テスト",strr);		//メッセージ３
-		swprintf_s(m_font[3], L"|");					//メッセージ４
-		swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
-		swprintf_s(m_font[5], L"|");					//メッセージ６
+		swprintf_s(m_font[0], L"よう。￥今日から%s星、人類統括になった山田だ。", strr);
+		swprintf_s(m_font[1], L"%s、生まれたてでいきなりなんだが￥敵惑星が攻めてくるって情報が入ったぜ。", strr);
+		swprintf_s(m_font[2], L"不意打ち食らう前に戦いに行こうぜ！");
+		swprintf_s(m_font[3], L"｜");
 
-		m_message_window_num = 2;
+		m_message_window_num = 6;
+		m_yamada_window_num = 7;
+		m_black_out_num = 8;
+
+		g_is_operatable = false;//操作不能に(ObjMessageしか動かない)
+		m_black_out_f = true;//徐々に暗転
 	}
-	//テスト
+	//戦闘準備画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	else if (m_Scene_id == 1)
 	{
-		m_message_window_num = 2;
+		swprintf_s(m_font[1], L"これが例の敵惑星か。～￥攻めてくるって聞いたから、￥強いのが来るかと思ったけど￥思ってたよりもだいぶ弱そうだな！");
+		swprintf_s(m_font[2], L"まあ弱そうだけど準備するに越したことはねえ！￥%s！￥敵惑星にマウスカーソルを合わせてみな！", strr);
+		swprintf_s(m_font[3], L"｜");
+		swprintf_s(m_font[4], L"よし、カーソルを合わせたな！～￥敵にカーソルを合わせると敵の情報が見れるぜ！￥手に入る資材や敵の攻撃傾向がわかるから￥戦う前にしっかりチェックしておけよ！");
+		swprintf_s(m_font[5], L"あ、そうそう。￥敵の情報にオーバーワークって書いてあるだろ？～￥あれはスペシャル技といって、￥要は敵が持っている必殺技みたいなもんだ。");
+		swprintf_s(m_font[6], L"今%sはスペシャル技を持ってはいないが￥敵を捕食すると敵が持っているスペシャル技を￥奪って使えるようになるからな。～￥じゃあ戦闘にいってみるか。",strr);
+		swprintf_s(m_font[7], L"｜");
+
+		m_message_window_num = 55;
+		m_yamada_window_num = 89;
+		m_black_out_num = 91;
+
+		g_is_operatable = true;//操作可能に
+		m_black_out_f = false;//明転状態から始める
+	}
+	//戦闘画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
+	else if (m_Scene_id == 2)
+	{
+		swprintf_s(m_font[1], L"戦闘が始まったな。");
+		swprintf_s(m_font[2], L"右が見てわかる通り%sだな。",strr);	
+		swprintf_s(m_font[3], L"それで左が敵の惑星だ。");
+		swprintf_s(m_font[4], L"両方の惑星の下に緑色のバーがあるだろ？～￥この下のバーが惑星のＨＰゲージになってるぜ。");
+		swprintf_s(m_font[5], L"ＨＰゲージは惑星のサイズに直結していて、￥このゲージがゼロになると￥戦いに負けてしまうからな。～￥ＨＰゲージが無くならないように気をつけろよ。");
+		swprintf_s(m_font[6], L"次は戦闘の仕方についてだな。");
+		swprintf_s(m_font[7], L"下に五つのボタンがあるだろ？");
+		swprintf_s(m_font[8], L"この内の右の四つのボタンのどれかを押してみろ。");
+		swprintf_s(m_font[9], L"｜");
+		swprintf_s(m_font[10], L"ボタンを押したら何か出てきたろ？￥これがポッドだぜ。～￥ボタンを押すと住人が命令を受けて、￥１００人がポッドに乗り込んで攻撃しに行っているんだ。");
+		swprintf_s(m_font[11], L"最初は準備しているから￥すぐに出撃することができるが、￥二回目以降は準備に時間がかかるから気をつけろよ。");
+		swprintf_s(m_font[12], L"ポッドには属性があって有利不利があるんだ。～￥赤色は緑色に強く緑は青に強いそして青は赤に強い、￥灰色はすべての色に対して少し強いが￥ミサイルに対してはすごく弱い……ってかんじでな。");
+		swprintf_s(m_font[13], L"ポッドは惑星に当たるとダメージを与えて、￥惑星のサイズをちっさくできるぜ。～￥敵も攻撃をしてくるから敵の攻撃に合わせて￥ポッドを出撃させるのも手だな。");				
+		swprintf_s(m_font[14], L"次はミサイルについての説明だ。");
+		swprintf_s(m_font[15], L"このボタンを押してみな。");
+		swprintf_s(m_font[16], L"｜");
+		swprintf_s(m_font[17], L"");
+		swprintf_s(m_font[18], L"");
+		swprintf_s(m_font[19], L"");
+		swprintf_s(m_font[20], L"");
+		swprintf_s(m_font[21], L"");
+		swprintf_s(m_font[22], L"");
+
+		m_message_window_num = 33;
+		m_yamada_window_num = 79;
+		m_black_out_num = 20;
+
+		g_is_operatable = true;//操作可能に
+		m_black_out_f = false;//明転状態から始める
+	}
+	//育成画面
+	else if (m_Scene_id == 4)
+	{
+		m_message_window_num = 21;
+		m_yamada_window_num = 20;
+		m_black_out_num = 135;
 	}
 }
 
@@ -142,6 +234,106 @@ void CObjMessage::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//メッセージ表示機能動作中の処理
+	if (m_run_switch == true)
+	{
+		//戦闘画面1回目
+		if (m_Scene_id == 2 && m_progress == 2)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 915.0f;
+			m_arrow_y = 120.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 3)
+		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 225.0f;
+			m_arrow_y = 120.0f;
+		}
+		else if (m_Scene_id == 2 && (m_progress == 4 || m_progress == 5))
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_y = 480.0f;
+
+			m_count++;//時間計測
+
+			if (m_count >= 240)
+			{
+				m_count = 0;//m_countを初期化
+			}
+			else if (m_count >= 120)
+			{
+				m_arrow_x = 225.0f;
+			}
+			else
+			{
+				m_arrow_x = 915.0f;
+			}
+		}
+		else if (m_Scene_id == 2 && m_progress == 6)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 0.0f;
+			m_arrow_y = 0.0f;
+			
+			m_count = 0;//m_countを初期化
+		}
+		else if (m_Scene_id == 2 && m_progress == 8)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 455.0f + m_swing_r * 1.5;
+			m_arrow_y = 410.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 12)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 2;
+			m_arrow_x = 250.0f;
+			m_arrow_y = 50.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 13)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
+		}
+		else if (m_Scene_id == 2 && m_progress == 14)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+		}
+		else if (m_Scene_id == 2 && m_progress == 15)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+		}
+	}
 	//▼メッセージ表示機能が停止した時の処理
 	//※メッセージ表示機能停止時はこの処理の中に入り、
 	//この処理以降の処理は実行されない。
@@ -151,20 +343,187 @@ void CObjMessage::Action()
 	//「m_progress++」「m_run_switch = true」する事で動作させる事が出来る。
 	//※「m_progress++」する意味は、メッセージ進行度を次に進めないと、
 	//また「｜」が読み込まれてしまうため。
-	if (m_run_switch == false)
+	else if (m_run_switch == false)
 	{
-		if (m_Scene_id == 0 && m_progress == 3)
+		//ホーム画面1回目
+		if (m_Scene_id == 0 && m_progress == 0)
 		{
-			if (Input::GetVKey('A') == true)
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
 			{
-				m_progress++;
-				m_run_switch = true;
+				m_run_switch = true;//メッセージ表示機能動作開始
 			}
 		}
-		else if (m_Scene_id == 1 && m_progress == 0)
+		else if (m_Scene_id == 0 && m_progress == 3)
 		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 1050.0f;
+			m_arrow_y = 340.0f;
 
+			g_is_operatable = true;//操作可能に
+			m_black_out_f = false;//画面明転
+			g_tutorial_progress = 1;//チュートリアル進行度を1にする
+
+			if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680 && m_mou_l == true)
+			{
+				m_arrow_display_f = 0;//喰ボタンクリックされたら矢印非表示
+				m_progress = 4;//進行度上昇させてこの処理から抜ける
+			}
 		}
+
+		//戦闘準備画面1回目
+		else if (m_Scene_id == 1 && m_progress == 1)
+		{
+			m_black_out_f = true;//徐々に暗転
+			
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
+			{
+				m_run_switch = true;//メッセージ表示機能動作開始
+			}
+		}
+		else if (m_Scene_id == 1 && m_progress == 3)
+		{
+			if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 || m_arrow_display_f == 0 && m_arrow_angle_f == 2)
+			{
+				m_arrow_display_f = 0;//マウスカーソル合わさったら矢印非表示
+				g_is_operatable = false;//操作不可に
+				m_black_out_f = true;//画面暗転
+
+				//完全暗転後、メッセージ処理開始
+				if (m_black_out_a >= 0.5f)
+				{
+					m_run_switch = true;//メッセージ表示機能動作開始
+					m_progress = 4;//進行度上昇させてこの処理から抜ける
+				}
+
+				return;
+			}
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 2;
+			m_arrow_x = 800.0f;
+			m_arrow_y = 250.0f;
+
+			g_is_operatable = true;//操作可能に
+			m_black_out_f = false;//画面明転
+		}
+		else if (m_Scene_id == 1 && m_progress == 7)
+		{
+			g_tutorial_progress = 2;//チュートリアル進行度を2にする
+		}
+
+		//戦闘画面1回目
+		else if (m_Scene_id == 2 && m_progress == 1)
+		{
+			m_count++;//時間計測開始
+
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
+			{
+				m_run_switch = true;//メッセージ表示機能動作開始
+				m_count = 0;//m_countを初期化
+			}
+			//戦闘開始1秒後、画面暗転処理開始
+			else if (m_count >= 60 * 1)
+			{
+				m_black_out_f = true;//画面暗転
+			}
+		}
+		else if (m_Scene_id == 2 && m_progress == 9)
+		{
+			//戦闘処理を再開させる
+			/*CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+			fight->SetBattle_start(true);*/
+			
+			//ポッドが何かしら１つ出れば、この処理に入る
+			if (m_arrow_display_f == 0)
+			{
+				m_count++;//時間計測開始
+
+				//完全暗転後、メッセージ処理開始
+				if (m_black_out_a >= 0.5f)
+				{
+					//戦闘処理を一時停止させる
+					CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+					fight->SetBattle_start(false);
+
+					m_run_switch = true;//メッセージ表示機能動作開始
+					m_count = 0;//m_countを初期化
+					m_progress = 10;//進行度上昇させてこの処理から抜ける
+				}
+				//戦闘開始1秒後、画面暗転処理開始
+				else if (m_count >= 60 * 1)
+				{
+					m_black_out_f = true;//画面暗転
+				}
+
+				return;
+			}
+
+			//ポッドボタンの範囲でクリックしたら処理に入る
+			if (550 <= m_mou_y && m_mou_y <= 650)
+			{
+				if (500 <= m_mou_x && m_mou_x <= 600 || 650 <= m_mou_x && m_mou_x <= 750 || 800 <= m_mou_x && m_mou_x <= 900 || 950 <= m_mou_x && m_mou_x <= 1050)
+				{
+					if (m_mou_l == true)
+					{
+						g_is_operatable = false;//操作不能にする
+
+						m_arrow_display_f = 0;//矢印非表示
+					}
+				}
+			}
+
+			//ポッド射出ボタンを押したら処理に入る
+			if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true)
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+			if (Input::GetVKey('3') == true || Input::GetVKey(VK_NUMPAD3) == true) 
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+			if (Input::GetVKey('4') == true || Input::GetVKey(VK_NUMPAD4) == true) 
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+			if (Input::GetVKey('5') == true || Input::GetVKey(VK_NUMPAD5) == true) 
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+
+			//矢印表示
+			m_arrow_x = 455.0f + m_swing_r * 1.5;
+			m_arrow_y = 410.0f;
+
+			g_tutorial_progress = 3;//チュートリアル進行度を3に設定	
+		}
+
+
+		//else if (m_Scene_id == 30 && m_progress == 3)
+		//{
+		//	if (Input::GetVKey('A') == true)
+		//	{
+		//		m_progress++;
+		//		m_run_switch = true;
+		//	}
+		//}
+		//else if (m_Scene_id == 1 && m_progress == 0)
+		//{
+
+		//}
 
 		return;
 	}
@@ -172,7 +531,7 @@ void CObjMessage::Action()
 	//▼メッセージ表示機能停止処理
 	//※「｜(メッセージ表示機能停止)」が書かれていれば、
 	//この処理が実行される。
-	else if (m_font[m_progress][m_font_count] == L'|')
+	if (m_font[m_progress][m_font_count] == L'｜')
 	{
 		m_run_switch = false;
 		m_skip_f = false;//スキップフラグOFF(再び動作状態となった時、スキップされるのを防ぐため)
@@ -221,6 +580,7 @@ void CObjMessage::Action()
 			m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
 
 
+			m_fast_f = false;//描画速度高速化停止
 			m_key_f = true;//キーフラグを立てる
 			m_reminder_f = false;//クリック催促画像非表示
 
@@ -378,7 +738,8 @@ void CObjMessage::Action()
 			m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
 
 			//改行以降のフォント描画位置Yを下にずらす
-			for (int i = m_font_count; i <= m_length; i++)
+			//※m_length + 1の理由は、クリック催促画像も下にずらしたいため。
+			for (int i = m_font_count; i <= m_length + 1; i++)
 			{
 				m_font_draw_y[i]++;
 			}
@@ -447,12 +808,6 @@ void CObjMessage::Action()
 //ドロー
 void CObjMessage::Draw()
 {
-	//▼メッセージ表示機能OFF時はドロー処理を実行しない処理
-	if (m_run_switch == false)
-	{
-		return;
-	}
-
 	//メッセージウインドウ描画位置情報配列
 	float window_pos_y[2] = { 480.0f,20.0f };
 	
@@ -465,12 +820,28 @@ void CObjMessage::Draw()
 
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };//フォント画像用
-	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };//画面全体やや暗転画像用
+	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };//画面全体やや暗転画像用
 	float orange[4] = { 1.0f,0.5f,0.0f,1.0f };//山田文字画像用
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
+
+	//▼画面徐々に暗転＆徐々に明転処理
+	if (m_black_out_f == true)
+	{
+		if (m_black_out_a < 0.5f)
+		{
+			m_black_out_a += 0.01f;
+		}
+	}
+	else
+	{
+		if (m_black_out_a > 0.0f)
+		{
+			m_black_out_a -= 0.01f;
+		}
+	}
 
 	//▼m_swing_vecの値を増減させる処理
 	//※常にこの処理は実行されている。
@@ -495,18 +866,44 @@ void CObjMessage::Draw()
 
 
 	//▼画面全体やや暗転画像
-	if (m_black_out_f == true)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 1200.0f;
-		dst.m_bottom = 700.0f;
-		Draw::Draw(5, &src, &dst, blackout, 0.0f);
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(m_black_out_num, &src, &dst, blackout, 0.0f);
+
+	//▼矢印表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 32.0f;
+	src.m_bottom = 64.0f;
+
+	if (m_arrow_angle_f <= 1)//上、下向き
+	{
+		dst.m_top = m_arrow_y + m_swing_vec;
+		dst.m_left = m_arrow_x;
+		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x;
+		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y + m_swing_vec;
+	}
+	else					 //左、右向き
+	{
+		dst.m_top = m_arrow_y;
+		dst.m_left = m_arrow_x + m_swing_vec;
+		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x + m_swing_vec;
+		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y;
+	}
+	Draw::Draw(191, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
+
+
+	//▼メッセージ表示機能OFF時は以下のドロー処理を実行しない処理
+	if (m_run_switch == false)
+	{
+		return;
 	}
 
 	//▽ウインドウ表示左上 
@@ -591,7 +988,7 @@ void CObjMessage::Draw()
 	dst.m_left = 20.0f;
 	dst.m_right = 220.0f;
 	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 200.0f;
-	Draw::Draw(3, &src, &dst, d, 0.0f);
+	Draw::Draw(m_yamada_window_num, &src, &dst, d, 0.0f);
 
 	//▼山田表示
 	src.m_top = 0.0f;
@@ -603,7 +1000,7 @@ void CObjMessage::Draw()
 	dst.m_left = 40.0f;
 	dst.m_right = 200.0f;
 	dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 180.0f;
-	Draw::Draw(4, &src, &dst, d, 0.0f);
+	Draw::Draw(190, &src, &dst, d, 0.0f);
 
 	//▼山田文字画像表示
 	FontDraw(L"山田", 255.0f, window_pos_y[m_is_top_or_bottom] + 8.0f, 36.0f, 36.0f, orange, false);
@@ -613,37 +1010,15 @@ void CObjMessage::Draw()
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 160.0f;
-		src.m_bottom = 240.0f;
+		src.m_right = 36.0f;
+		src.m_bottom = 35.0f;
 
-		dst.m_top = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
-		dst.m_left = 255.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
-		dst.m_right = 255.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
-		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 48.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
-		Draw::Draw(4, &src, &dst, d, 0.0f);
+		dst.m_top = window_pos_y[m_is_top_or_bottom] + 57.0f + (FONT_DRAW_SIZE * m_font_draw_y[m_font_count]) + m_swing_vec;
+		dst.m_left = 264.0f + (FONT_DRAW_SIZE * m_font_draw_x[m_font_count]);
+		dst.m_right = 246.0f + (FONT_DRAW_SIZE * (m_font_draw_x[m_font_count] + 1));
+		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 39.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
+		Draw::Draw(189, &src, &dst, d, 0.0f);
 	}
-
-	//▼矢印表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 32.0f;
-	src.m_bottom = 64.0f;
-
-	if (m_arrow_angle_f <= 1)//上、下向き
-	{
-		dst.m_top = m_arrow_y + m_swing_vec;
-		dst.m_left = m_arrow_x;
-		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x;
-		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y + m_swing_vec;
-	}
-	else					 //左、右向き
-	{
-		dst.m_top = m_arrow_y;
-		dst.m_left = m_arrow_x + m_swing_vec;
-		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x + m_swing_vec;
-		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y;
-	}
-	Draw::Draw(6, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
 
 
 	//現在メッセージの文字列の長さが取得出来ていれば実行される

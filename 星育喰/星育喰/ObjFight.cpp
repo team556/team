@@ -104,6 +104,13 @@ void CObjFight::Action()
 			m_start_count = 60 * 3;
 
 			battle_start = true;//戦闘開始フラグを立てる
+
+			if (g_tutorial_progress == 2)
+			{
+				//ObjMessageのメッセージ進行度を増加させる
+				CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+				message->Setprogress(1);
+			}
 		}
 		else if (m_start_count_f == true)
 		{
@@ -126,8 +133,12 @@ void CObjFight::Action()
 		battle_end = true;	//戦闘終了フラグを立てる
 	}
 
-	if (m_cnt > 0)	//0より大きい時
-		m_cnt--;	//カウントダウン
+	//チュートリアル中は戦闘時間が減少しない
+	if (!(2 <= g_tutorial_progress && g_tutorial_progress <= 5))
+	{
+		if (m_cnt > 0)	//0より大きい時
+			m_cnt--;	//カウントダウン
+	}
 
 	//背景拡大処理
 	//※戦闘終了後は実際されない。
@@ -152,76 +163,81 @@ void CObjFight::Action()
 
 	m_line = 6;//常に選択前ラインを初期化
 
-	//ラインを矢印キーで選択するときの処理
-	if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
+	//チュートリアル中は操作出来ないようにする条件文
+	if (g_tutorial_progress >= 5)
+	{
+		//ラインを矢印キーで選択するときの処理
+		if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
 
-		//選択中のラインが一番上に来た時に下に移動させる
-		if (m_line_choice <= 0) {
-			m_line_choice = 2;
+			//選択中のラインが一番上に来た時に下に移動させる
+			if (m_line_choice <= 0) {
+				m_line_choice = 2;
+			}
+			else {
+				m_line_choice--;
+			}
+			m_key_U_f = true;
 		}
-		else {
-			m_line_choice--;
-		}
-		m_key_U_f = true;
-	}
 
-	if (m_key_D_f == false && Input::GetVKey(VK_DOWN) == true) {
+		if (m_key_D_f == false && Input::GetVKey(VK_DOWN) == true) {
 
-		//選択中のラインが一番下に来た時に上に移動させる
-		if (m_line_choice >= 2) {
-			m_line_choice = 0;
+			//選択中のラインが一番下に来た時に上に移動させる
+			if (m_line_choice >= 2) {
+				m_line_choice = 0;
+			}
+			else {
+				m_line_choice++;
+			}
+			m_key_D_f = true;
 		}
-		else {
-			m_line_choice++;
-		}
-		m_key_D_f = true;
-	}
 
-	//選択ラインのX軸幅内にマウスカーソルがある且つ、上下のキーが入力されていないとき
-	//※キーを押してる間はマウスに反応させないため
-	if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
+		//選択ラインのX軸幅内にマウスカーソルがある且つ、上下のキーが入力されていないとき
+		//※キーを押してる間はマウスに反応させないため
+		if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
 
-		if (200 <= m_mou_y && m_mou_y <= 250 ) {
-			if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
-			else { m_line = 0; }
-		}
-		else if (310 <= m_mou_y && m_mou_y <= 340) {
-			if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
-			else { m_line = 1; }
-		}
-		else if (420 <= m_mou_y && m_mou_y <= 470 ) {
-			if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
-			else { m_line = 2; }
-		}
-		else {};//ライン外何もしない
+			if (200 <= m_mou_y && m_mou_y <= 250) {
+				if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
+				else { m_line = 0; }
+			}
+			else if (310 <= m_mou_y && m_mou_y <= 340) {
+				if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
+				else { m_line = 1; }
+			}
+			else if (420 <= m_mou_y && m_mou_y <= 470) {
+				if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
+				else { m_line = 2; }
+			}
+			else {};//ライン外何もしない
 
-	}
-	else if(m_key_U_f == true || m_key_D_f == true){
-		if (m_line_choice == 0) {
-			m_line_nam = 0;
 		}
-		else if (m_line_choice == 1) {
-			m_line_nam = 1;
+		else if (m_key_U_f == true || m_key_D_f == true) {
+			if (m_line_choice == 0) {
+				m_line_nam = 0;
+			}
+			else if (m_line_choice == 1) {
+				m_line_nam = 1;
+			}
+			else if (m_line_choice == 2) {
+				m_line_nam = 2;
+			}
 		}
-		else if (m_line_choice == 2) {
-			m_line_nam = 2;
+
+
+		//キーフラグ制御---------------
+		if (Input::GetVKey(VK_UP) == false) {
+
+			m_key_U_f = false;
+
 		}
-	}
 
+		if (Input::GetVKey(VK_DOWN) == false) {
 
-	//キーフラグ制御---------------
-	if (Input::GetVKey(VK_UP) == false) {
+			m_key_D_f = false;
 
-		m_key_U_f = false;
-
+		}
 	}
 	
-	if (Input::GetVKey(VK_DOWN) == false) {
 
-		m_key_D_f = false;
-
-	}
-	
 
 	//▼クリア処理
 	//エネミー毎に取得出来る資源等は違うため、
@@ -247,8 +263,8 @@ void CObjFight::Action()
 
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
-		{					
-			CObjFightClear* crer = new CObjFightClear(3000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
+		{				
+			CObjFightClear* crer = new CObjFightClear(5000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
@@ -273,6 +289,13 @@ void CObjFight::Action()
 		if (g_Challenge_enemy == 4)									
 		{
 			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 80, 0);
+			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+		//チュートリアル
+		if (g_Challenge_enemy == 5)
+		{
+			//エラーを回避するために木材を0個獲得するようにしている
+			CObjFightClear* crer = new CObjFightClear(5000, 20, L"なし", &g_Wood_num, 0, 4);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
@@ -427,19 +450,19 @@ void CObjFight::Draw()
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=260.0f;
-	Draw::Draw(5, &src, &dst, d0, 0.0f);
+	Draw::Draw(118, &src, &dst, d0, 0.0f);
 
 	dst.m_top   =310.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=370.0f;
-	Draw::Draw(6, &src, &dst, d1, 0.0f);
+	Draw::Draw(119, &src, &dst, d1, 0.0f);
 
 	dst.m_top   =420.0f;
 	dst.m_left  =400.0f;
 	dst.m_right =800.0f;
 	dst.m_bottom=480.0f;
-	Draw::Draw(7, &src, &dst, d2, 0.0f);
+	Draw::Draw(120, &src, &dst, d2, 0.0f);
 
 	if (battle_end == false) {
 		//ポッドやミサイルのキーボード選択用画像
@@ -448,39 +471,39 @@ void CObjFight::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-	//ミサイルキー描画
-	dst.m_top = 647.0f;
-	dst.m_left = 230.0f;
-	dst.m_right = 262.0f;
-	dst.m_bottom = 679.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+		//ミサイルキー描画
+		dst.m_top = 655.0f;
+		dst.m_left = 230.0f;
+		dst.m_right = 262.0f;
+		dst.m_bottom = 680.0f;
+		Draw::Draw(35, &src, &dst, d, 0.0f);
 
 		//赤ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 531.0f;
 		dst.m_right = 563.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(36, &src, &dst, d, 0.0f);
 
 		//青ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 681.0f;
 		dst.m_right = 713.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(37, &src, &dst, d, 0.0f);
 
 		//緑ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 838.0f;
 		dst.m_right = 870.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(38, &src, &dst, d, 0.0f);
 
 		//灰ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 979.0f;
 		dst.m_right = 1011.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(39, &src, &dst, d, 0.0f);
 
 		//スペシャル技を装備しているときはアイコンを出す

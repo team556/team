@@ -153,7 +153,9 @@
     <ClCompile Include="ObjRocketButton.cpp" />
     <ClCompile Include="ObjSpecialButton.cpp" />
     <ClCompile Include="ObjTest.cpp" />
-    <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="ObjTitle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjTraining.cpp" />
     <ClCompile Include="ObjHelp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -214,7 +216,9 @@
     <ClInclude Include="ObjRocketButton.h" />
     <ClInclude Include="ObjSpecialButton.h" />
     <ClInclude Include="ObjTest.h" />
-    <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="ObjTitle.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="ObjTraining.h" />
     <ClInclude Include="ObjHelp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
