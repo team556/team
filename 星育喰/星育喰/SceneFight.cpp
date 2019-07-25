@@ -327,6 +327,13 @@ void CSceneFight::InitScene()
 	CObjSpecialButton* special = new CObjSpecialButton(1000.0f, 20.0f, 114.0f, 175.0f);	//オブジェクト作成
 	Objs::InsertObj(special, OBJ_SPECIAL, 90);											//オブジェクト登録
 
+	//メッセージ表示(チュートリアル)オブジェクト作成
+	if (g_tutorial_progress < 20)
+	{
+		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
+		Objs::InsertObj(message, OBJ_MESSAGE, 95);	//メッセージ表示オブジェクト登録
+	}
+
 	//戦闘前演出オブジェクト
 	CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect(false);	//戦闘前演出オブジェクト作成
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);					//戦闘前演出オブジェクト登録
@@ -334,14 +341,18 @@ void CSceneFight::InitScene()
 	//音楽読み込み
 	Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
 
-	//勝利
-	Audio::LoadAudio(1, L"Sunset.wav", BACK_MUSIC);
+	//決定音(ObjMessage用)
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
 
 	//敗北
 	Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
 
 	//SE読み込み
 	Audio::LoadAudio(3, L"選択＆振り分けアップ３.wav", EFFECT);
+
+	//勝利
+	Audio::LoadAudio(4, L"Sunset.wav", BACK_MUSIC);
+
 	Audio::LoadAudio(5, L"大きい爆発.wav", EFFECT);
 
 	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay

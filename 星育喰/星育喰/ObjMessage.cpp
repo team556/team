@@ -48,11 +48,16 @@ void CObjMessage::Init()
 	m_swing_vec = 0.0f;
 	m_swing_r = 0.0f;
 
+	m_black_out_a = 0.0f;
 	m_black_out_f = false;
 	m_reminder_f = false;
 	m_is_top_or_bottom = 0;
 
-	m_run_switch = true;
+	m_message_window_num = 0;
+	m_yamada_window_num = 0;
+	m_black_out_num = 0;
+
+	m_run_switch = false;
 
 
 	//フォントデータ情報
@@ -110,43 +115,94 @@ void CObjMessage::Init()
 	//またはメッセージ途中にプレイヤーに
 	//何か操作させたい時にこの全角文字を書いて下さい。
 
-	//テスト
-	wchar_t strr[20] = L"きになあ";
+	//自分の惑星名(テスト用)
+	wchar_t strr[20] = L"ふおると";
 
 	//○○画面メッセージ文設定＆画像登録番号設定
+	//if (m_Scene_id == 30)
+	//{
+	//	swprintf_s(m_font[1], L"");
+	//	swprintf_s(m_font[2], L"", strr);
+	//	swprintf_s(m_font[3], L"");
+	//	swprintf_s(m_font[4], L"");
+	//	swprintf_s(m_font[5], L"");
+	//	swprintf_s(m_font[6], L"");
+	//	swprintf_s(m_font[7], L"");
+	//	swprintf_s(m_font[8], L"");
+	//	swprintf_s(m_font[9], L"");
+	//	swprintf_s(m_font[10], L"");
+	//	swprintf_s(m_font[11], L"");
+	//	swprintf_s(m_font[12], L"");
+	//	swprintf_s(m_font[13], L"");
+
+
+	//	swprintf_s(m_font[0], L"ＲあかあかＢきくＧきく＿かうい～かかかかかかかかきなきなにあ￥にあまむまむ￥テスト１２３￥２１３２３１２￥１３１２１３２");//メッセージ１
+	//	swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展");	//メッセージ２
+	//	swprintf_s(m_font[2], L"テスト：%s：テスト",strr);		//メッセージ３
+	//	swprintf_s(m_font[3], L"｜");					//メッセージ４
+	//	swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
+	//	swprintf_s(m_font[5], L"｜");					//メッセージ６
+
+	//	m_message_window_num = 2;
+	//	m_yamada_window_num = 3;
+	//	m_black_out_num = 5;
+	//}
+	//ホーム画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	if (m_Scene_id == 0)
 	{
-		swprintf_s(m_font[0], L"ＲあかあかＢきくＧきく＿かうい～かかかかかかかかきなきなにあ￥にあまむまむ￥テスト１２３￥２１３２３１２￥１３１２１３２");//メッセージ１
-		swprintf_s(m_font[1], L"あいうかきく１２３今日人類発展");	//メッセージ２
-		swprintf_s(m_font[2], L"テスト：%s：テスト",strr);		//メッセージ３
-		swprintf_s(m_font[3], L"|");					//メッセージ４
-		swprintf_s(m_font[4], L"うか１２２２３");		//メッセージ５
-		swprintf_s(m_font[5], L"|");					//メッセージ６
+		swprintf_s(m_font[0], L"よう。￥今日から%s星、人類統括になった山田だ。", strr);
+		swprintf_s(m_font[1], L"%s、生まれたてでいきなりなんだが￥敵惑星が攻めてくるって情報が入ったぜ。", strr);
+		swprintf_s(m_font[2], L"不意打ち食らう前に戦いに行こうぜ！");
+		swprintf_s(m_font[3], L"｜");
 
-		m_message_window_num = 2;
-		m_yamada_window_num = 3;
-		m_black_out_num = 5;
-	}
-	//ホーム
-	else if (m_Scene_id == 1)
-	{
 		m_message_window_num = 6;
 		m_yamada_window_num = 7;
 		m_black_out_num = 8;
+
+		g_is_operatable = false;//操作不能に(ObjMessageしか動かない)
+		m_black_out_f = true;//徐々に暗転
 	}
-	//戦闘準備画面
-	else if (m_Scene_id == 2)
+	//戦闘準備画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
+	else if (m_Scene_id == 1)
 	{
+		swprintf_s(m_font[1], L"これが例の敵惑星か。～￥攻めてくるって聞いたから、￥強いのが来るかと思ったけど￥思ってたよりもだいぶ弱そうだな！");
+		swprintf_s(m_font[2], L"まあ弱そうだけど準備するに越したことはねえ！￥%s！￥敵惑星にマウスカーソルを合わせてみな！", strr);
+		swprintf_s(m_font[3], L"｜");
+		swprintf_s(m_font[4], L"よし、カーソルを合わせたな！～￥敵にカーソルを合わせると敵の情報が見れるぜ！￥手に入る資材や敵の攻撃傾向がわかるから￥戦う前にしっかりチェックしておけよ！");
+		swprintf_s(m_font[5], L"あ、そうそう。￥敵の情報にオーバーワークって書いてあるだろ？～￥あれはスペシャル技といって、￥要は敵が持っている必殺技みたいなもんだ。");
+		swprintf_s(m_font[6], L"今%sはスペシャル技を持ってはいないが￥敵を捕食すると敵が持っているスペシャル技を￥奪って使えるようになるからな。～￥じゃあ戦闘にいってみるか。",strr);
+		swprintf_s(m_font[7], L"｜");
+
 		m_message_window_num = 55;
 		m_yamada_window_num = 89;
 		m_black_out_num = 91;
+
+		g_is_operatable = true;//操作可能に
+		m_black_out_f = false;//明転状態から始める
 	}
-	//戦闘画面
-	else if (m_Scene_id == 3)
+	//戦闘画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
+	else if (m_Scene_id == 2)
 	{
+		swprintf_s(m_font[1], L"戦闘が始まったな。");
+		swprintf_s(m_font[2], L"右が見てわかる通り%sだな。",strr);	
+		swprintf_s(m_font[3], L"それで左が敵の惑星だ。");
+		swprintf_s(m_font[4], L"テスト");
+		swprintf_s(m_font[5], L"");
+		swprintf_s(m_font[6], L"");
+		swprintf_s(m_font[7], L"");
+		swprintf_s(m_font[8], L"");
+		swprintf_s(m_font[9], L"");
+		swprintf_s(m_font[10], L"");
+		swprintf_s(m_font[11], L"");
+		swprintf_s(m_font[12], L"");
+		swprintf_s(m_font[13], L"");				
+
 		m_message_window_num = 33;
 		m_yamada_window_num = 79;
 		m_black_out_num = 20;
+
+		g_is_operatable = true;//操作可能に(ObjFightではbattle_startで停止をするので、そもそも使用しない)
+		m_black_out_f = false;//明転状態から始める
 	}
 	//育成画面
 	else if (m_Scene_id == 4)
@@ -167,6 +223,35 @@ void CObjMessage::Action()
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
 
+	//メッセージ表示機能動作中の処理
+	if (m_run_switch == true)
+	{
+		//戦闘画面1回目
+		if (m_Scene_id == 2 && m_progress == 2)
+		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 1000.0f;
+			m_arrow_y = 40.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 3)
+		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 200.0f;
+			m_arrow_y = 40.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 4)
+		{
+			//矢印非表示
+			m_arrow_display_f = 0;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 0.0f;
+			m_arrow_y = 0.0f;
+		}
+	}
 	//▼メッセージ表示機能が停止した時の処理
 	//※メッセージ表示機能停止時はこの処理の中に入り、
 	//この処理以降の処理は実行されない。
@@ -176,20 +261,104 @@ void CObjMessage::Action()
 	//「m_progress++」「m_run_switch = true」する事で動作させる事が出来る。
 	//※「m_progress++」する意味は、メッセージ進行度を次に進めないと、
 	//また「｜」が読み込まれてしまうため。
-	if (m_run_switch == false)
+	else if (m_run_switch == false)
 	{
-		if (m_Scene_id == 0 && m_progress == 3)
+		//ホーム画面1回目
+		if (m_Scene_id == 0 && m_progress == 0)
 		{
-			if (Input::GetVKey('A') == true)
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
 			{
-				m_progress++;
 				m_run_switch = true;
 			}
 		}
-		else if (m_Scene_id == 1 && m_progress == 0)
+		else if (m_Scene_id == 0 && m_progress == 3)
 		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 1050.0f;
+			m_arrow_y = 340.0f;
 
+			g_is_operatable = true;//操作可能に
+			m_black_out_f = false;//画面明転
+			g_tutorial_progress = 1;//チュートリアル進行度を1にする
+
+			if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680 && m_mou_l == true)
+			{
+				m_arrow_display_f = 0;//喰ボタンクリックされたら矢印非表示
+				m_progress = 4;//進行度上昇させてこの処理から抜ける
+			}
 		}
+
+		//戦闘準備画面1回目
+		else if (m_Scene_id == 1 && m_progress == 1)
+		{
+			m_black_out_f = true;//徐々に暗転
+			
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
+			{
+				m_run_switch = true;
+			}
+		}
+		else if (m_Scene_id == 1 && m_progress == 3)
+		{
+			if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 || m_arrow_display_f == 0 && m_arrow_angle_f == 2)
+			{
+				m_arrow_display_f = 0;//マウスカーソル合わさったら矢印非表示
+				g_is_operatable = false;//操作不可に
+				m_black_out_f = true;//画面暗転
+
+				//完全暗転後、メッセージ処理開始
+				if (m_black_out_a >= 0.5f)
+				{
+					m_run_switch = true;
+					m_progress = 4;//進行度上昇させてこの処理から抜ける
+				}
+
+				return;
+			}
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 2;
+			m_arrow_x = 800.0f;
+			m_arrow_y = 250.0f;
+
+			g_is_operatable = true;//操作可能に
+			m_black_out_f = false;//画面明転
+		}
+		else if (m_Scene_id == 1 && m_progress == 7)
+		{
+			g_tutorial_progress = 2;//チュートリアル進行度を2にする
+		}
+
+		//戦闘画面1回目
+		else if (m_Scene_id == 2 && m_progress == 1)
+		{
+			m_black_out_f = true;//画面暗転
+
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
+			{
+				m_run_switch = true;
+			}
+		}
+
+
+		//else if (m_Scene_id == 30 && m_progress == 3)
+		//{
+		//	if (Input::GetVKey('A') == true)
+		//	{
+		//		m_progress++;
+		//		m_run_switch = true;
+		//	}
+		//}
+		//else if (m_Scene_id == 1 && m_progress == 0)
+		//{
+
+		//}
 
 		return;
 	}
@@ -197,7 +366,7 @@ void CObjMessage::Action()
 	//▼メッセージ表示機能停止処理
 	//※「｜(メッセージ表示機能停止)」が書かれていれば、
 	//この処理が実行される。
-	else if (m_font[m_progress][m_font_count] == L'|')
+	if (m_font[m_progress][m_font_count] == L'｜')
 	{
 		m_run_switch = false;
 		m_skip_f = false;//スキップフラグOFF(再び動作状態となった時、スキップされるのを防ぐため)
@@ -404,7 +573,8 @@ void CObjMessage::Action()
 			m_font_count++;	//表示しようとしている文字を次のフォント情報へ変更する
 
 			//改行以降のフォント描画位置Yを下にずらす
-			for (int i = m_font_count; i <= m_length; i++)
+			//※m_length + 1の理由は、クリック催促画像も下にずらしたいため。
+			for (int i = m_font_count; i <= m_length + 1; i++)
 			{
 				m_font_draw_y[i]++;
 			}
@@ -473,12 +643,6 @@ void CObjMessage::Action()
 //ドロー
 void CObjMessage::Draw()
 {
-	//▼メッセージ表示機能OFF時はドロー処理を実行しない処理
-	if (m_run_switch == false)
-	{
-		return;
-	}
-
 	//メッセージウインドウ描画位置情報配列
 	float window_pos_y[2] = { 480.0f,20.0f };
 	
@@ -491,12 +655,28 @@ void CObjMessage::Draw()
 
 	//▽描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };//フォント画像用
-	float blackout[4] = { 1.0f,1.0f,1.0f,0.5f };//画面全体やや暗転画像用
+	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };//画面全体やや暗転画像用
 	float orange[4] = { 1.0f,0.5f,0.0f,1.0f };//山田文字画像用
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
+
+	//▼画面徐々に暗転＆徐々に明転処理
+	if (m_black_out_f == true)
+	{
+		if (m_black_out_a < 0.5f)
+		{
+			m_black_out_a += 0.01f;
+		}
+	}
+	else
+	{
+		if (m_black_out_a > 0.0f)
+		{
+			m_black_out_a -= 0.01f;
+		}
+	}
 
 	//▼m_swing_vecの値を増減させる処理
 	//※常にこの処理は実行されている。
@@ -521,18 +701,44 @@ void CObjMessage::Draw()
 
 
 	//▼画面全体やや暗転画像
-	if (m_black_out_f == true)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1200.0f;
+	src.m_bottom = 700.0f;
 
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 1200.0f;
-		dst.m_bottom = 700.0f;
-		Draw::Draw(m_black_out_num, &src, &dst, blackout, 0.0f);
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(m_black_out_num, &src, &dst, blackout, 0.0f);
+
+	//▼矢印表示
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 32.0f;
+	src.m_bottom = 64.0f;
+
+	if (m_arrow_angle_f <= 1)//上、下向き
+	{
+		dst.m_top = m_arrow_y + m_swing_vec;
+		dst.m_left = m_arrow_x;
+		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x;
+		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y + m_swing_vec;
+	}
+	else					 //左、右向き
+	{
+		dst.m_top = m_arrow_y;
+		dst.m_left = m_arrow_x + m_swing_vec;
+		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x + m_swing_vec;
+		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y;
+	}
+	Draw::Draw(191, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
+
+
+	//▼メッセージ表示機能OFF時は以下のドロー処理を実行しない処理
+	if (m_run_switch == false)
+	{
+		return;
 	}
 
 	//▽ウインドウ表示左上 
@@ -648,28 +854,6 @@ void CObjMessage::Draw()
 		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 39.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
 		Draw::Draw(189, &src, &dst, d, 0.0f);
 	}
-
-	//▼矢印表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 32.0f;
-	src.m_bottom = 64.0f;
-
-	if (m_arrow_angle_f <= 1)//上、下向き
-	{
-		dst.m_top = m_arrow_y + m_swing_vec;
-		dst.m_left = m_arrow_x;
-		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x;
-		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y + m_swing_vec;
-	}
-	else					 //左、右向き
-	{
-		dst.m_top = m_arrow_y;
-		dst.m_left = m_arrow_x + m_swing_vec;
-		dst.m_right = arrow_size[m_arrow_display_f] + m_arrow_x + m_swing_vec;
-		dst.m_bottom = arrow_size[m_arrow_display_f] * 2.0f + m_arrow_y;
-	}
-	Draw::Draw(191, &src, &dst, d, arrow_angle[m_arrow_angle_f]);
 
 
 	//現在メッセージの文字列の長さが取得出来ていれば実行される

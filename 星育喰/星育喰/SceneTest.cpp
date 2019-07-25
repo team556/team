@@ -79,8 +79,8 @@ void CSceneTest::InitScene()
 	//CObjHelp* help = new CObjHelp(1);		//ヘルプオブジェクト作成
 	//Objs::InsertObj(help, OBJ_HELP, 10);	//ヘルプオブジェクト登録
 
-	//メッセージ表示オブジェクト作成
-	CObjMessage* message = new CObjMessage(0);	//メッセージ表示オブジェクト作成
+	//メッセージ表示(チュートリアル)オブジェクト作成
+	CObjMessage* message = new CObjMessage(30);	//メッセージ表示オブジェクト作成
 	Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
 
 

@@ -104,6 +104,15 @@ void CObjFight::Action()
 			m_start_count = 60 * 3;
 
 			battle_start = true;//戦闘開始フラグを立てる
+
+			if (g_tutorial_progress == 2)
+			{
+				battle_start = false;//一時停止
+
+				//ObjMessageのメッセージ進行度を増加させる
+				CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+				message->Setprogress(1);
+			}
 		}
 		else if (m_start_count_f == true)
 		{
@@ -126,8 +135,12 @@ void CObjFight::Action()
 		battle_end = true;	//戦闘終了フラグを立てる
 	}
 
-	if (m_cnt > 0)	//0より大きい時
-		m_cnt--;	//カウントダウン
+	//チュートリアル中は戦闘時間が減少しない
+	if (!(2 <= g_tutorial_progress && g_tutorial_progress <= 2))
+	{
+		if (m_cnt > 0)	//0より大きい時
+			m_cnt--;	//カウントダウン
+	}
 
 	//背景拡大処理
 	//※戦闘終了後は実際されない。
@@ -248,7 +261,7 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(10000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
+			CObjFightClear* crer = new CObjFightClear(5000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目

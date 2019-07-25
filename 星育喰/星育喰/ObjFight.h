@@ -20,6 +20,7 @@ public:
 	void SetEndCount() { m_cnt = 60; }	//戦闘終了カウント数に設定する
 	void SetStart_Count() { m_start_count_f = true; }//戦闘開始カウントを動作させる
 	void SetEnd() { m_end_f = true; }	//クリア画面作成
+	void SetBattle_start(bool start) { battle_start = start; }
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y

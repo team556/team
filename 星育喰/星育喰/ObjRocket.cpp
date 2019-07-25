@@ -326,16 +326,16 @@ void CObjRocket::Init()
 		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 2) {
-		m_pod_max_hp = 22.0f;
+		m_pod_max_hp = 18.5f;
 	}
 	else if (m_type == 3) {
 		m_pod_max_hp = 22.0f;
 	}
 	else if (m_type == 4) {
-		m_pod_max_hp = 17.0f;
+		m_pod_max_hp = 13.0f;
 	}
 	else if (m_type == 5) {
-		m_pod_max_hp = 30.0f;
+		m_pod_max_hp = 21.0f;
 	}
 	else if (m_type == 6) {
 		m_pod_max_hp = 10.0f;
@@ -394,22 +394,22 @@ void CObjRocket::Init()
 		break;
 	case 2:
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 7.0f;
+		m_Player_damage = 9.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
-		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 10.0f;
+		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
+		m_Player_damage = 12.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 4:
 		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-		m_Player_damage = 5.0f;
+		m_Player_damage = 6.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 5:
 		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-		m_Player_damage = 12.0f;
+		m_Player_damage = 11.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 6:
@@ -609,54 +609,7 @@ void CObjRocket::Action()
 				m_fight = false;		//進める
 		}
 
-		if (m_type == 0) {	//同じタイプ同士での、衝突ストップ判定
-			if (hit->CheckElementHit(ELEMENT_POD) == true && (m_pnam >= 1 && m_pnam <= 3))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD1) == true && (m_pnam >= 2 && m_pnam <= 4))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD2) == true && (m_pnam >= 3 && m_pnam <= 5))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD3) == true && (m_pnam >= 4 && m_pnam <= 6))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD4) == true && (m_pnam >= 5 && m_pnam <= 7))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD5) == true && (m_pnam >= 6 && m_pnam <= 8))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD6) == true && (m_pnam >= 7 && m_pnam <= 9))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD7) == true && (m_pnam >= 8 || m_pnam <= 0))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD8) == true && (m_pnam >= 9 || m_pnam <= 1))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD9) == true && (m_pnam >= 0 || m_pnam <= 2))
-				m_stop_f = true;
-			else if(m_fight == false)
-				m_stop_f = false;
-		}
-		else {
-			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
-				m_stop_f = true;
-			else if (m_fight == false)
-				m_stop_f = false;
-		}
+		
 
 		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
 		//HPの状態に関わらず消滅処理へと移行する
@@ -1109,7 +1062,54 @@ void CObjRocket::Action()
 		}
 	}
 
-	
+	if (m_type == 0) {	//同じタイプ同士での、衝突ストップ判定
+		if (hit->CheckElementHit(ELEMENT_POD) == true && (m_pnam >= 1 && m_pnam <= 3))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD1) == true && (m_pnam >= 2 && m_pnam <= 4))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD2) == true && (m_pnam >= 3 && m_pnam <= 5))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD3) == true && (m_pnam >= 4 && m_pnam <= 6))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD4) == true && (m_pnam >= 5 && m_pnam <= 7))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD5) == true && (m_pnam >= 6 && m_pnam <= 8))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD6) == true && (m_pnam >= 7 && m_pnam <= 9))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD7) == true && (m_pnam >= 8 || m_pnam <= 0))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD8) == true && (m_pnam >= 9 || m_pnam <= 1))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD9) == true && (m_pnam >= 0 || m_pnam <= 2))
+			m_stop_f = true;
+		else if (m_fight == false)
+			m_stop_f = false;
+	}
+	else {
+		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
+			m_stop_f = true;
+		else if (m_fight == false)
+			m_stop_f = false;
+	}
 	
 }
 

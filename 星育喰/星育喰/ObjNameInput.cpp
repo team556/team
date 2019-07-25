@@ -94,6 +94,7 @@ void CObjNameInput::Init()
 	for (int i = 0; i < 5; i++)
 	{
 		m_tex_discri[i] = 99;
+		
 	}
 	for (int i = 0; i < 50; i++)
 	{
@@ -133,8 +134,9 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[0];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
-					m_f = true;
+					c[m_cut] = "あ";
 					m_cut++;
+					m_f = true;
 				}
 			}
 			//い
@@ -147,8 +149,9 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[1];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
-					m_f = true;
+					c[m_cut] = "い";
 					m_cut++;
+					m_f = true;
 				}
 			}
 			//う
@@ -871,7 +874,11 @@ void CObjNameInput::Draw()
 		{
 			if (m_tex_discri[i] != 99)
 			{
-				FontDraw(str[m_tex_discri[i]], 300+(i * 50), 100.0, 50.0f, 50.0f, c, true);
+				FontDraw(str[m_tex_discri[i]], 590+(i * 60), 100.0, 60.0f, 60.0f, c, true);
+			}
+			else if (m_tex_discri[i] == 99)
+			{
+				FontDraw(L"．", 590 + (i * 60), 100.0, 60.0f, 60.0f, c, true);
 			}
 		}
 
@@ -884,6 +891,7 @@ void CObjNameInput::Draw()
 		}
 		click_cut=0;
 		m_tex_clar = true;
+		m_cut = 0;
 	}
 	//-----------------------------------------------------------
 
@@ -924,16 +932,55 @@ void CObjNameInput::Draw()
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//惑星
-	//src.m_top = 0.0f;
-	//src.m_left = 0.0f;
-	//src.m_right = 242.0f;
-	//src.m_bottom = 117.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 242.0f;
+	src.m_bottom = 117.0f;
 
-	//dst.m_top = 250.0f;
-	//dst.m_left = 250.0f;
-	//dst.m_right = 950.0f;
-	//dst.m_bottom = 650.0f;
-	//Draw::Draw(4, &src, &dst, c, 0.0f);
+	dst.m_top =102.0f;
+	dst.m_left = 350.0f;
+	dst.m_right = 450.0f;
+	dst.m_bottom = 160.0f;
+	Draw::Draw(4, &src, &dst, c, 0.0f);
+
+	FontDraw(L"名", 450, 100.0, 60.0f, 60.0f, c, true);
+	//FontDraw(L"一", 570,  95.0, 340.0f, 30.0f, c, true);
+	//FontDraw(L"一", 570, 185.0, 340.0f, 30.0f, c, true);
+	//FontDraw(L"一", 570,  95.0, 3.0f,  90.0f, c, true);
+	//FontDraw(L"一", 910,  95.0, 3.0f, 90.0f, c, true);
+
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 32.0f;
+	src.m_bottom = 32.0f;
+
+	//右縦
+	dst.m_top = 80.0f;
+	dst.m_left = 330.0f;
+	dst.m_right = 335.0f;
+	dst.m_bottom = 185.0f;
+	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+	//左縦
+	dst.m_top = 80.0f;
+	dst.m_left = 910.0f;
+	dst.m_right = 915.0f;
+	dst.m_bottom = 189.0f;
+	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+	//上横
+	dst.m_top = 80.0f;
+	dst.m_left = 330.0f;
+	dst.m_right = 910.0f;
+	dst.m_bottom = 85.0f;
+	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+	//下横
+	dst.m_top = 185.0f;
+	dst.m_left = 330.0f;
+	dst.m_right = 910.0f;
+	dst.m_bottom = 190.0f;
+	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	if (m_finalcheck_f == true)
 	{

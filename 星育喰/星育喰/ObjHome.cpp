@@ -70,8 +70,8 @@ void CObjHome::Init()
 //アクション
 void CObjHome::Action()
 {
-	//ヘルプ画面が表示されている時は操作を受け付けないようにする。
-	if (g_help_f == true)
+	//チュートリアル中は操作を受け付けないようにする。
+	if (g_is_operatable == false)
 	{
 		return;
 	}
@@ -189,13 +189,13 @@ void CObjHome::Action()
 	m_mou_l = Input::GetMouButtonL();
 
 	//育喰アイコン、敵惑星(背景)を徐々に表示させる
-	if (m_alpha < 1.0f)
+	if (m_alpha < 1.0f && (g_tutorial_progress == 1 || g_tutorial_progress >= 20))
 	{
 		m_alpha += 0.01f;
 	}
 
 	//育アイコン
-	if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680)
+	if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680 && (g_tutorial_progress >= 20))
 	{
 		m_Tra_color = 1.0f;
 
@@ -229,7 +229,7 @@ void CObjHome::Action()
 	}
 
 	//喰アイコン
-	if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680)
+	if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680 && (g_tutorial_progress == 1 || g_tutorial_progress >= 20))
 	{
 		m_Eat_color = 1.0f;
 
@@ -499,29 +499,35 @@ void CObjHome::Draw()
 	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	//▼育アイコン表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 200.0f;
-	src.m_bottom = 200.0f;
+	if (g_tutorial_progress == 2 || g_tutorial_progress >= 20)
+	{
+		//▼育アイコン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 200.0f;
+		src.m_bottom = 200.0f;
 
-	dst.m_top = 480.0f + m_Tra_move;
-	dst.m_left = 20.0f - m_Tra_move;
-	dst.m_right = 220.0f - m_Tra_move;
-	dst.m_bottom = 680.0f + m_Tra_move;
-	Draw::Draw(1, &src, &dst, t, 0.0f);
+		dst.m_top = 480.0f + m_Tra_move;
+		dst.m_left = 20.0f - m_Tra_move;
+		dst.m_right = 220.0f - m_Tra_move;
+		dst.m_bottom = 680.0f + m_Tra_move;
+		Draw::Draw(1, &src, &dst, t, 0.0f);
+	}
 
-	//▼喰アイコン表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 200.0f;
-	src.m_bottom = 200.0f;
+	if (g_tutorial_progress == 1 || g_tutorial_progress >= 20)
+	{
+		//▼喰アイコン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 200.0f;
+		src.m_bottom = 200.0f;
 
-	dst.m_top = 480.0f + m_Eat_move;
-	dst.m_left = 980.0f + m_Eat_move;
-	dst.m_right = 1180.0f + m_Eat_move;
-	dst.m_bottom = 680.0f + m_Eat_move;
-	Draw::Draw(2, &src, &dst, e, 0.0f);
+		dst.m_top = 480.0f + m_Eat_move;
+		dst.m_left = 980.0f + m_Eat_move;
+		dst.m_right = 1180.0f + m_Eat_move;
+		dst.m_bottom = 680.0f + m_Eat_move;
+		Draw::Draw(2, &src, &dst, e, 0.0f);
+	}
 
 	//プレイヤー惑星ステータス表示(フラグtrue時のみ描画)
 	if (m_status_flag == true)

@@ -33,6 +33,13 @@ void CSceneHome::InitScene()
 	CObjHome* obj = new CObjHome();     //ホームオブジェクト作成
 	Objs::InsertObj(obj, OBJ_HOME, 10);  //ホームオブジェクト登録
 
+	//メッセージ表示(チュートリアル)オブジェクト作成
+	if (g_tutorial_progress < 20)
+	{
+		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
+		Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
+	}
+	
 	////ヘルプオブジェクト
 	//CObjHelp* help = new CObjHelp(1);     //ヘルプオブジェクト作成
 	//Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録

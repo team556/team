@@ -107,6 +107,17 @@ void CObjPreparation::Init()
 		}
 	}
 
+	//チュートリアル時のみ特殊処理
+	if (g_tutorial_progress == 1)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			g_destroy_progress[i] = true;
+		}
+
+		m_destroy_count = 4;
+	}
+
 	//▼現在のスペシャル技習得状況、装備状況に応じて
 	//スペシャル技アイコンのカラー明度を以下のように設定していく。
 	//「未習得」……………………………0.0f(黒色)
@@ -340,6 +351,25 @@ void CObjPreparation::Action()
 	//▼操作可能時の処理
 	if (m_is_operatable == true)
 	{
+		//チュートリアル中は操作を受け付けないようにする。
+		if (g_is_operatable == false)
+		{
+			//チュートリアル進行度が2になると、戦闘画面へ強制移行させる
+			if (g_tutorial_progress == 2)
+			{
+				//移行開始フラグ立て
+				m_Go_flag = true;
+
+				g_Challenge_enemy = 5;//戦闘相手をチュートリアル惑星に設定
+
+				//戦闘前演出を行うオブジェクトを生成する
+				CObjBefore_Fight_Effect* before_fight_effect = new CObjBefore_Fight_Effect(true);
+				Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);
+			}
+			
+			return;
+		}
+
 		//マウスの位置を取得
 		m_mou_x = (float)Input::GetPosX();
 		m_mou_y = (float)Input::GetPosY();
@@ -451,50 +481,52 @@ void CObjPreparation::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
-		if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
+		if (g_tutorial_progress != 1)
 		{
-			m_Back_Button_color = 1.0f;
-
-			//▼移行開始フラグを立て、ホーム画面へ演出を交えながらシーン移行
-			//右クリック入力時
-			if (m_mou_r == true)
+			if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 			{
-				//最終確認ウインドウから右クリック押したままの状態では入力出来ないようにしている
-				if (m_key_rf == true)
-				{
-					//移行開始フラグ立て
-					m_Back_flag = true;
+				m_Back_Button_color = 1.0f;
 
-					//戻るボタン音
-					Audio::Start(2);
+				//▼移行開始フラグを立て、ホーム画面へ演出を交えながらシーン移行
+				//右クリック入力時
+				if (m_mou_r == true)
+				{
+					//最終確認ウインドウから右クリック押したままの状態では入力出来ないようにしている
+					if (m_key_rf == true)
+					{
+						//移行開始フラグ立て
+						m_Back_flag = true;
+
+						//戻るボタン音
+						Audio::Start(2);
+					}
 				}
-			}
-			//左クリック入力時
-			else if (m_mou_l == true)
-			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				//左クリック入力時
+				else if (m_mou_l == true)
 				{
-					m_key_lf = false;
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
 
-					//移行開始フラグ立て
-					m_Back_flag = true;
+						//移行開始フラグ立て
+						m_Back_flag = true;
 
-					//戻るボタン音
-					Audio::Start(2);
+						//戻るボタン音
+						Audio::Start(2);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_Back_Button_color = INI_COLOR;
 			}
 		}
-		else
-		{
-			m_Back_Button_color = INI_COLOR;
-		}
-
-
+		
 		//敵惑星1(左から1番目の敵惑星)[未撃破時のみ選択可能]
 		if (147 < m_mou_x && m_mou_x < 346 && 187 < m_mou_y && m_mou_y < 383 && g_destroy_progress[0] == false)
 		{
@@ -524,10 +556,17 @@ void CObjPreparation::Action()
 		}
 
 		//ボス惑星[ボス惑星出現時のみ選択可能]
-		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4)
+		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4 && g_tutorial_progress != 1)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(4);//敵惑星詳細説明表示関数を呼び出す
+		}
+
+		//チュートリアル惑星[チュートリアル惑星出現時のみ選択可能]
+		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4 && g_tutorial_progress == 1)
+		{
+			//▼敵惑星詳細説明を表示
+			Enemy_message(5);//敵惑星詳細説明表示関数を呼び出す
 		}
 
 		//スペシャル技(エクスプロージョン)
@@ -609,6 +648,15 @@ void CObjPreparation::Action()
 					//ObjHelpに操作可能を伝える
 					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
 					help->SetOperatable(true);
+
+					if (g_tutorial_progress == 1)
+					{
+						g_is_operatable = false;//操作不可に
+
+						//ObjMessageのメッセージ進行度を増加させる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setprogress(1);
+					}
 				}
 
 				m_warning_message_skip_f = false;//警告メッセージスキップフラグOFF(スキップ処理が終了した為)
@@ -807,6 +855,15 @@ void CObjPreparation::Action()
 			//ObjHelpに操作可能を伝える
 			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
 			help->SetOperatable(true);
+
+			if (g_tutorial_progress == 1)
+			{
+				g_is_operatable = false;//操作不可に
+
+				//ObjMessageのメッセージ進行度を増加させる
+				CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+				message->Setprogress(1);
+			}
 		}
 	}
 	else if (m_warning_message_alpha >= 1.2f)
@@ -854,7 +911,14 @@ void CObjPreparation::Action()
 		//ボス惑星出現時、以下の処理も行う
 		if (m_destroy_count == 4)
 		{
-			m_Boss_vx[2] -= m_speed * 0.955;
+			if (g_tutorial_progress == 1)
+			{
+				m_Boss_vx[2] -= m_speed * 0.9f;
+			}
+			else
+			{
+				m_Boss_vx[2] -= m_speed * 0.955f;
+			}
 			m_warning_message_x[0] = -130.0f;//ボス出現警告メッセージの初期X位置を変更する
 			m_Boss_clip_pos_x = -600.0f;
 
@@ -952,17 +1016,21 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 700.0f;
 	Draw::Draw(0, &src, &dst, d, 0.0f);
 
-	//▼戻るボタン表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	//チュートリアル中は表示しない
+	if (!(g_tutorial_progress == 1 || g_tutorial_progress == 2))
+	{
+		//▼戻るボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
-	dst.m_top = -60.0f + m_Bvy;
-	dst.m_left = -60.0f + m_Bvx;
-	dst.m_right = -10.0f + m_Bvx;
-	dst.m_bottom = -10.0f + m_Bvy;
-	Draw::Draw(56, &src, &dst, back, 0.0f);
+		dst.m_top = -60.0f + m_Bvy;
+		dst.m_left = -60.0f + m_Bvx;
+		dst.m_right = -10.0f + m_Bvx;
+		dst.m_bottom = -10.0f + m_Bvy;
+		Draw::Draw(56, &src, &dst, back, 0.0f);
+	}
 
 	//未撃破時のみ表示
 	if (g_destroy_progress[1] == false)
@@ -1062,7 +1130,16 @@ void CObjPreparation::Draw()
 	dst.m_left = 1400.0f + m_Boss_vx[2];
 	dst.m_right = 1800.0f + m_Boss_vx[2];
 	dst.m_bottom = 500.0f + m_Boss_vy[2];
-	Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
+	
+	if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
+	{
+		Draw::Draw(6, &src, &dst, d, 0.0f);
+	}
+	else
+	{
+		Draw::Draw(5 + 5 * (g_Stage_progress - 1), &src, &dst, d, 0.0f);
+	}
+	
 
 	//▼プレイヤー惑星表示
 	src.m_top = 0.0f;
@@ -1430,17 +1507,34 @@ void CObjPreparation::Draw()
 	//チュートリアルのグローバルフラグ等で更に分岐させて判断させたい。
 	if (m_level_star_num == 1)
 	{
-		//▼「O阪魂」表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 258.0f;
-		src.m_bottom = 90.0f;
+		if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
+		{
+			//▼「ボロボロン」表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 474.0f;
+			src.m_bottom = 90.0f;
 
-		dst.m_top = m_mou_y + m_detail_message_draw_y;
-		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
-		dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
-		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
-		Draw::Draw(76, &src, &dst, detail_message_font[0], 0.0f);
+			dst.m_top = m_mou_y + m_detail_message_draw_y;
+			dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+			dst.m_right = m_mou_x + m_detail_message_draw_left + 225.0f;
+			dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+			Draw::Draw(75, &src, &dst, detail_message_font[0], 0.0f);
+		}
+		else
+		{
+			//▼「O阪魂」表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 258.0f;
+			src.m_bottom = 90.0f;
+
+			dst.m_top = m_mou_y + m_detail_message_draw_y;
+			dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+			dst.m_right = m_mou_x + m_detail_message_draw_left + 175.0f;
+			dst.m_bottom = m_mou_y + m_detail_message_draw_y + 25.0f;
+			Draw::Draw(76, &src, &dst, detail_message_font[0], 0.0f);
+		}
 	}
 	else if (m_level_star_num == 2)
 	{
@@ -1818,16 +1912,27 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		//▼チュートリアル惑星
 		else if (enemy_id == 5)
 		{
+			//敵惑星詳細説明ウインドウのサイズを設定
+			m_detail_message_window_top = -126.0f;
+			m_detail_message_window_left = 20.0f;
+			m_detail_message_window_right = 320.0f;
+			m_detail_message_window_bottom = 120.0f;
+
+			//敵惑星詳細説明画像の描画位置(right以外)を設定
+			m_detail_message_draw_left = 33.0f;
+			m_detail_message_draw_y = -108.0f;
+
+
 			//▽4行目
-			//敵惑星詳細説明画像を125番に登録	(画像がなかったため適用してない)
-			//Draw::LoadImage(L"", 125, TEX_SIZE_512);
+			//敵惑星詳細説明画像を125番に登録
+			Draw::LoadImage(L"オーバーワーク.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
-			m_detail_message_clip_right[3] = 0.0f;
-			m_detail_message_clip_bottom[3] = 0.0f;
+			m_detail_message_clip_right[3] = 832.0f;
+			m_detail_message_clip_bottom[3] = 112.0f;
 
 			//敵惑星詳細説明画像の描画位置(right)を設定(全角一文字の大きさは25.0f)
-			m_detail_message_draw_right[3] = m_detail_message_draw_left + 0.0f;
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 175.0f;
 
 
 			//▽5行目
@@ -1902,7 +2007,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	m_detail_message_alpha = 1.0f;//敵惑星詳細説明を表示
 
 	//左クリックされたらフラグを立て、最終確認ウインドウを開く
-	if (m_mou_l == true)
+	if (m_mou_l == true && g_tutorial_progress != 1)
 	{
 		//左クリック押したままの状態では入力出来ないようにしている
 		if (m_key_lf == true)
