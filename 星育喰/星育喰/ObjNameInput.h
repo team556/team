@@ -27,7 +27,7 @@ private:
 	int word_w[50];
 	int click_cut;
 	float click_win[5];
-	int m_tex_discri[5];
+	int m_tex_discri[6];
 	bool m_tex_clar;
 	bool m_f;
 	int m_cut;
@@ -35,6 +35,11 @@ private:
 	int m_Yes_Button_color;
 	int m_No_Button_color;
 	bool m_key_f;
+	int m_num_cnt;
 
-	char *c[5];
+	wchar_t g_test[5];
+
+	int m_c_cut; 
+
+	char  m_c[11];
 };

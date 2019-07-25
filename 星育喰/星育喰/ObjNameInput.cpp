@@ -23,6 +23,10 @@ void CObjNameInput::Init()
 	m_cut = 0;
 	m_finalcheck_f = false;
 	m_key_f = false;
+	m_Yes_Button_color=0;
+	m_No_Button_color =0;
+	m_num_cnt = 0;
+	m_c_cut = 0;
 	//クリックされた時の場所
 	for (int i = 0; i < 5; i++)
 	{
@@ -34,6 +38,7 @@ void CObjNameInput::Init()
 		{
 			click_win[i] =500+64*i;
 		}
+		m_c[i] = '?';
 	}
 	//テキストのx軸の当たり判定場所作成
 	for (int i = 0; i < 13; i++)
@@ -91,7 +96,7 @@ void CObjNameInput::Init()
 	click_cut=0;
 
 	m_tex_clar = true;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		m_tex_discri[i] = 99;
 		
@@ -134,7 +139,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[0];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
-					c[m_cut] = "あ";
+					m_c[m_cut] = L'あ';
 					m_cut++;
 					m_f = true;
 				}
@@ -149,7 +154,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[1];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
-					c[m_cut] = "い";
+					m_c[m_cut] = L'い';
 					m_cut++;
 					m_f = true;
 				}
@@ -164,6 +169,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[2];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'う';
 					m_f = true;
 					m_cut++;
 				}
@@ -178,6 +184,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[3];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'え';
 					m_f = true;
 					m_cut++;
 				}
@@ -192,6 +199,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[4];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'お';
 					m_f = true;
 					m_cut++;
 				}
@@ -206,6 +214,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[5];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'は';
 					m_f = true;
 					m_cut++;
 				}
@@ -220,6 +229,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[6];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ひ';
 					m_f = true;
 					m_cut++;
 				}
@@ -234,6 +244,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[7];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ふ';
 					m_f = true;
 					m_cut++;
 				}
@@ -248,6 +259,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[8];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'へ';
 					m_f = true;
 					m_cut++;
 				}
@@ -262,6 +274,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[9];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ほ';
 					m_f = true;
 					m_cut++;
 				}
@@ -284,6 +297,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[10];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'か';
 					m_f = true;
 					m_cut++;
 				}
@@ -298,6 +312,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[11];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'き';
 					m_f = true;
 					m_cut++;
 				}
@@ -312,6 +327,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[12];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'く';
 					m_f = true;
 					m_cut++;
 				}
@@ -326,6 +342,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[13];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'け';
 					m_f = true;
 					m_cut++;
 				}
@@ -340,6 +357,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[14];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'こ';
 					m_f = true;
 					m_cut++;
 				}
@@ -354,6 +372,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[15];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ま';
 					m_f = true;
 					m_cut++;
 				}
@@ -368,6 +387,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[16];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'み';
 					m_f = true;
 					m_cut++;
 				}
@@ -382,6 +402,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[17];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'む';
 					m_f = true;
 					m_cut++;
 				}
@@ -396,6 +417,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[18];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'め';
 					m_f = true;
 					m_cut++;
 				}
@@ -410,6 +432,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[19];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'も';
 					m_f = true;
 					m_cut++;
 				}
@@ -432,6 +455,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[20];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'さ';
 					m_f = true;
 					m_cut++;
 				}
@@ -446,6 +470,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[21];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'し';
 					m_f = true;
 					m_cut++;
 				}
@@ -460,6 +485,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[22];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'す';
 					m_f = true;
 					m_cut++;
 				}
@@ -474,6 +500,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[23];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'せ';
 					m_f = true;
 					m_cut++;
 				}
@@ -488,6 +515,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[24];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'そ';
 					m_f = true;
 					m_cut++;
 				}
@@ -502,6 +530,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[25];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'や';
 					m_f = true;
 					m_cut++;
 				}
@@ -516,6 +545,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[26];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ゆ';
 					m_f = true;
 					m_cut++;
 				}
@@ -530,6 +560,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[27];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'よ';
 					m_f = true;
 					m_cut++;
 				}
@@ -552,6 +583,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[28];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'た';
 					m_f = true;
 					m_cut++;
 				}
@@ -566,6 +598,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[29];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ち';
 					m_f = true;
 					m_cut++;
 				}
@@ -580,6 +613,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[30];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'つ';
 					m_f = true;
 					m_cut++;
 				}
@@ -594,6 +628,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[31];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'て';
 					m_f = true;
 					m_cut++;
 				}
@@ -608,6 +643,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[32];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'と';
 					m_f = true;
 					m_cut++;
 				}
@@ -622,6 +658,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[33];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ら';
 					m_f = true;
 					m_cut++;
 				}
@@ -636,6 +673,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[34];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'り';
 					m_f = true;
 					m_cut++;
 				}
@@ -650,6 +688,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[35];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'る';
 					m_f = true;
 					m_cut++;
 				}
@@ -664,6 +703,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[36];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'れ';
 					m_f = true;
 					m_cut++;
 				}
@@ -678,6 +718,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[37];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ろ';
 					m_f = true;
 					m_cut++;
 				}
@@ -700,6 +741,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[38];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'な';
 					m_f = true;
 					m_cut++;
 				}
@@ -714,6 +756,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[39];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'に';
 					m_f = true;
 					m_cut++;
 				}
@@ -728,6 +771,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[40];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ぬ';
 					m_f = true;
 					m_cut++;
 				}
@@ -742,6 +786,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[41];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'ね';
 					m_f = true;
 					m_cut++;
 				}
@@ -756,6 +801,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[42];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'の';
 					m_f = true;
 					m_cut++;
 				}
@@ -770,6 +816,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[43];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'わ';
 					m_f = true;
 					m_cut++;
 				}
@@ -784,6 +831,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[44];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					m_c[m_cut] = L'を';
 					m_f = true;
 					m_cut++;
 				}
@@ -798,6 +846,11 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[45];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
+					//m_c[m_cut] = L'ん';
+
+					char *tmp = "ん";
+					memcpy(&m_c[m_cut], tmp, 2);
+
 					m_f = true;
 					m_cut++;
 				}
@@ -821,19 +874,20 @@ void CObjNameInput::Action()
 		m_finalcheck_f = true;
 		m_key_f = true;
 	}
+	//最終確認ウィンドウのはいを押したときの処理
 	if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true)
 	{
+		//この下にある文がグローバル変数に文字を入れる処理
+		swprintf_s(g_test, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
 		Scene::SetScene(new CSceneTraining());//育成画面へシーン移行 
 	}
 	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
 	{
-		m_finalcheck_f = false;
 		m_key_f = false;
+		m_finalcheck_f = false;
+		
 	}
-	else
-	{
-
-	}
+	else;
 
 
 }
@@ -863,13 +917,12 @@ void CObjNameInput::Draw()
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
 		{
-		  L"あ",L"い",L"う",L"え",L"お",L"は",L"ひ",L"ふ",L"へ",L"ほ",
-		  L"か",L"き",L"く",L"け",L"こ",L"ま",L"み",L"む",L"め",L"も",
-		  L"さ",L"し",L"す",L"せ",L"そ",L"や",L"ゆ",L"よ",
-		  L"た",L"ち",L"つ",L"て",L"と",L"ら",L"り",L"る",L"れ",L"ろ",
-		  L"な",L"に",L"ぬ",L"ね",L"の",L"わ",L"を",L"ん",
+			L"あ",L"い",L"う",L"え",L"お",L"は",L"ひ",L"ふ",L"へ",L"ほ",
+			L"か",L"き",L"く",L"け",L"こ",L"ま",L"み",L"む",L"め",L"も",
+			L"さ",L"し",L"す",L"せ",L"そ",L"や",L"ゆ",L"よ",
+			L"た",L"ち",L"つ",L"て",L"と",L"ら",L"り",L"る",L"れ",L"ろ",
+			L"な",L"に",L"ぬ",L"ね",L"の",L"わ",L"を",L"ん",
 		};
-
 		for (int i = 0; i < 5; i++)
 		{
 			if (m_tex_discri[i] != 99)
@@ -882,6 +935,7 @@ void CObjNameInput::Draw()
 			}
 		}
 
+		m_num_cnt = 0;
 	}
 	else if(m_tex_clar == false)
 	{
@@ -944,28 +998,25 @@ void CObjNameInput::Draw()
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 
 	FontDraw(L"名", 450, 100.0, 60.0f, 60.0f, c, true);
-	//FontDraw(L"一", 570,  95.0, 340.0f, 30.0f, c, true);
-	//FontDraw(L"一", 570, 185.0, 340.0f, 30.0f, c, true);
-	//FontDraw(L"一", 570,  95.0, 3.0f,  90.0f, c, true);
-	//FontDraw(L"一", 910,  95.0, 3.0f, 90.0f, c, true);
+
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 32.0f;
 	src.m_bottom = 32.0f;
 
-	//右縦
+	//左縦
 	dst.m_top = 80.0f;
 	dst.m_left = 330.0f;
 	dst.m_right = 335.0f;
-	dst.m_bottom = 185.0f;
+	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-	//左縦
+	//右縦
 	dst.m_top = 80.0f;
 	dst.m_left = 910.0f;
 	dst.m_right = 915.0f;
-	dst.m_bottom = 189.0f;
+	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	//上横
@@ -982,15 +1033,59 @@ void CObjNameInput::Draw()
 	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-	if (m_finalcheck_f == true)
+	if (m_finalcheck_f == true && m_cut>=3)
 	{
+		//↓クリックされた時の描画----------------------------------
+		wchar_t str[46][2]
+		{
+			L"あ",L"い",L"う",L"え",L"お",L"は",L"ひ",L"ふ",L"へ",L"ほ",
+			L"か",L"き",L"く",L"け",L"こ",L"ま",L"み",L"む",L"め",L"も",
+			L"さ",L"し",L"す",L"せ",L"そ",L"や",L"ゆ",L"よ",
+			L"た",L"ち",L"つ",L"て",L"と",L"ら",L"り",L"る",L"れ",L"ろ",
+			L"な",L"に",L"ぬ",L"ね",L"の",L"わ",L"を",L"ん",
+		};
+
+		//はいといいえのボタンの上にカーソルを合わすと色が変わる
+		if (m_mou_x > 650 && m_mou_x < 800&&m_mou_y>410&&m_mou_y<460)
+		{
+			//いいえボタンの処理
+			m_No_Button_color = 1;
+		}
+		else if (m_mou_x > 410 && m_mou_x < 510 && m_mou_y>410 && m_mou_y < 460)
+		{
+			//はいボタンの処理
+			m_Yes_Button_color = 1;
+		}
+		else
+		{
+			//それ以外の処理文字を黒くする
+			m_No_Button_color = 0;
+			m_Yes_Button_color = 0;
+		}
+
+		switch (m_cut)
+		{
+		case 3:
+			swprintf_s(g_test, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
+			break;
+		case 4:
+			swprintf_s(g_test, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
+			break;
+		case 5:
+			swprintf_s(g_test, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
+			break;
+		default:
+			;
+		}
+
+		
 		//▼最終確認ウインドウ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 1200.0f;
 		src.m_bottom = 700.0f;
 
-		dst.m_top = 220.0f;
+		dst.m_top = 200.0f;
 		dst.m_left = 320.0f;
 		dst.m_right = 880.0f;
 		dst.m_bottom = 480.0f;
@@ -1019,6 +1114,26 @@ void CObjNameInput::Draw()
 		dst.m_right = 800.0f;
 		dst.m_bottom = 460.0f;
 		Draw::Draw(67, &src, &dst, No, 0.0f);
+
+		FontDraw(g_test, 100, 100, 100, 100, c, false);
+
+		for (int i = 0; i < 6; i++)
+		{
+			if (m_tex_discri[i] != 99 && m_num_cnt < 5)
+				m_num_cnt++;
+		}
+
+
+		for (int i = 0; i < 5; i++)
+		{
+
+			FontDraw(str[m_tex_discri[i]], 600 - (m_num_cnt * 30) + (i * 60), 225.0, 60.0f, 60.0f, c, false);
+			if (m_c[i] == '？')
+			{
+				m_c_cut++;
+			}
+		}
+		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
 
 	//デバッグ用仮マウス位置表示

@@ -149,6 +149,7 @@ extern float g_Recast_time;			//ミサイルのリキャストタイム用
 //extern int g_E_Planet_damage;					//
 extern float g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
 //extern int g_Enemy_Pod_LV;			//テスト用敵ポッドレベル
+extern char g_test[5];
 //--------------------------------------------------資源----
 extern int g_Iron_num;				//鉄の所持数
 extern int g_Wood_num;				//木の所持数
