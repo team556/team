@@ -365,7 +365,7 @@ void CSceneFight::InitScene()
 
 	Audio::LoadAudio(10, L"スぺシャル技発動音.wav", EFFECT);
 
-	Audio::LoadAudio(11, L"スぺシャル技発動音.wav", EFFECT);
+	Audio::LoadAudio(11, L"ポッドレーザー.wav", EFFECT);
 
 	//音楽スタート
 	Audio::Start(0);

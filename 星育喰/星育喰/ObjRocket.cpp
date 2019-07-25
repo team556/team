@@ -886,7 +886,7 @@ void CObjRocket::Action()
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
-			Audio::Start(5);
+			Audio::Start(11);
 			
 			if (ButtonUP == 1)		//自分の種類１(パワー)が敵のポッドと当たった場合
 			{
