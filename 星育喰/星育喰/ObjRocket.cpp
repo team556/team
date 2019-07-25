@@ -326,13 +326,13 @@ void CObjRocket::Init()
 		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 2) {
-		m_pod_max_hp = 18.5f;
+		m_pod_max_hp = 18.0f;
 	}
 	else if (m_type == 3) {
-		m_pod_max_hp = 22.0f;
+		m_pod_max_hp = 21.0f;
 	}
 	else if (m_type == 4) {
-		m_pod_max_hp = 13.0f;
+		m_pod_max_hp = 12.0f;
 	}
 	else if (m_type == 5) {
 		m_pod_max_hp = 21.0f;
@@ -394,7 +394,7 @@ void CObjRocket::Init()
 		break;
 	case 2:
 		m_Enemy_Pod_Level = 2;		//ƒ|ƒbƒhƒŒƒxƒ‹Ý’è
-		m_Player_damage = 9.0f;
+		m_Player_damage = 10.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
@@ -631,14 +631,14 @@ void CObjRocket::Action()
 			Audio::Start(5);
 		}
 
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0 && m_fight == false)	//˜f¯‚É“–‚½‚Á‚½Žž‚©‚Â“G’e
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0 )	//˜f¯‚É“–‚½‚Á‚½Žž‚©‚Â“G’e
 		{
 			//˜f¯‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0 && m_fight == false)//“G‚Ì˜f¯‚É“–‚½‚Á‚½Žž‚©‚ÂŽ©’e
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0 )//“G‚Ì˜f¯‚É“–‚½‚Á‚½Žž‚©‚ÂŽ©’e
 		{
 			//˜f¯‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
 			m_del = true;
