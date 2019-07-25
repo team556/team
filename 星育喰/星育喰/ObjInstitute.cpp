@@ -2577,7 +2577,7 @@ void CObjInstitute::Draw()
 			dst.m_left = m_mou_x - m_Equ_message_window_x_size;
 			dst.m_right = m_mou_x + m_Equ_message_window_x_size;
 			dst.m_bottom = m_mou_y + 0.0f;
-			Draw::Draw(20, &src, &dst, Equ_message_window, 0.0f);
+			Draw::Draw(134, &src, &dst, Equ_message_window, 0.0f);
 
 			//▼LvUP条件　所持必要文字画像表示
 			src.m_top = 0.0f;
