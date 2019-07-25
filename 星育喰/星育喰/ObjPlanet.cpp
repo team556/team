@@ -19,7 +19,7 @@ using namespace GameL;
 #define SEC_DELAY (120)
 #define THI_DELAY (135)
 #define FOU_DELAY (120)
-#define FIV_DELAY (105)
+#define FIV_DELAY (120)
 #define SIX_DELAY (200)
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
@@ -584,8 +584,8 @@ void CObjPlanet::Action()
 					int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
 					{
 						//1:上レーン　2:中レーン　3:下レーン
-							{ 3,2,1,1,2,0 }, //0番目
-							{ 2,3,2,3,1,0 }, //1番目
+							{ 1,2,1,3,2,0 }, //0番目
+							{ 2,3,2,2,1,0 }, //1番目
 							{ 1,2,3,2,2,0 }, //2番目
 							{ 2,1,1,2,3,0 }, //3番目
 							{ 1,3,2,2,1,0 }, //4番目

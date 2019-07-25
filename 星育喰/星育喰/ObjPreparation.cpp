@@ -96,7 +96,7 @@ void CObjPreparation::Init()
 	m_detail_message_alpha = INI_ALPHA;
 	m_level_star_num = 0;
 
-	m_destroy_count = 0;
+	m_destroy_count = 3;
 
 	//Œ»İ‚ÌŒ‚”j”‚ğƒJƒEƒ“ƒg
 	for (int i = 0; i < 4; i++)

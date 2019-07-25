@@ -34,39 +34,39 @@ bool CObjTitle::after_once = false;
 //※余裕あれば、値の部分をマクロ化(出来る部分は)して便利にすべし。
 int g_Stage_progress = 1;
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
-int g_Bar_Level = 1;
-int g_Ins_Level = 1;
-int g_Mis_Recast_Level		= 0;
-int g_Pow_equip_Level		= 1;
-int g_Pow_equip_Lv_achieve	= 1;
-int g_Def_equip_Level		= 1;
-int g_Def_equip_Lv_achieve	= 1;
-int g_Spe_equip_Level		= 1;
-int g_Spe_equip_Lv_achieve	= 1;
-int g_Bal_equip_Level		= 1;
-int g_Bal_equip_Lv_achieve	= 1;
-int g_Pod_equip_Level		= 1;
-int g_Pod_equip_Lv_achieve	= 1;
-float g_Player_max_size = 250.0f;//100.0f;
-int g_Special_equipment = 0;//装備中のスペシャル技
+int g_Bar_Level = 3;
+int g_Ins_Level = 3;
+int g_Mis_Recast_Level		= 3;
+int g_Pow_equip_Level		= 3;
+int g_Pow_equip_Lv_achieve	= 2;
+int g_Def_equip_Level		= 2;
+int g_Def_equip_Lv_achieve	= 2;
+int g_Spe_equip_Level		= 2;
+int g_Spe_equip_Lv_achieve	= 2;
+int g_Bal_equip_Level		= 3;
+int g_Bal_equip_Lv_achieve	= 3;
+int g_Pod_equip_Level		= 2;
+int g_Pod_equip_Lv_achieve	= 2;
+float g_Player_max_size = 150.0f;//100.0f;
+int g_Special_equipment = 4;//装備中のスペシャル技
 bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
-int g_Power_num		= 2000;
-int g_Defense_num	= 2000;
-int g_Speed_num		= 2000;
-int g_Balance_num	= 2000;
-int g_Research_num	= 2500;
-int g_Remain_num	= 10000;
+int g_Power_num		= 2500;
+int g_Defense_num	= 2500;
+int g_Speed_num		= 2500;
+int g_Balance_num	= 2500;
+int g_Research_num	= 6000;
+int g_Remain_num	= 0;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
 
-int g_Iron_num		= 1000;
-int g_Wood_num		= 50;
+int g_Iron_num		= 0;
+int g_Wood_num		= 0;
 int g_Silver_num	= 0;
 int g_Plastic_num	= 0;
-int g_Aluminum_num	= 100;
+int g_Aluminum_num	= 0;
 int g_gus_num		= 0;
 
-int g_Challenge_enemy = 0;//デバッグ。0に戻すべし。
+int g_Challenge_enemy = 4;//デバッグ。0に戻すべし。
 bool g_help_f = false;
 int  g_tutorial_progress = 20;//デバッグ。チュートリアル完成後、0にするように。
 bool g_is_operatable = true;
@@ -128,7 +128,7 @@ void CObjTitle::Init()
 
 	for (int i = 0; i < 4; i++)
 	{
-		g_destroy_progress[i] = false;
+		g_destroy_progress[i] = true;
 	}
 
 	g_Bar_Level = 1;
