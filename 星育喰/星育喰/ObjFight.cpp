@@ -276,25 +276,25 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(5000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
+			CObjFightClear* crer = new CObjFightClear(5500, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(8000, 200, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
+			CObjFightClear* crer = new CObjFightClear(8000, 350, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から３番目
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(12000, 250, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
+			CObjFightClear* crer = new CObjFightClear(12000, 400, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(6000, 150, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
+			CObjFightClear* crer = new CObjFightClear(8000, 200, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ボス
@@ -483,39 +483,39 @@ void CObjFight::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-	//ミサイルキー描画
-	dst.m_top = 647.0f;
-	dst.m_left = 230.0f;
-	dst.m_right = 262.0f;
-	dst.m_bottom = 679.0f;
-	Draw::Draw(35, &src, &dst, d, 0.0f);
+		//ミサイルキー描画
+		dst.m_top = 655.0f;
+		dst.m_left = 230.0f;
+		dst.m_right = 262.0f;
+		dst.m_bottom = 680.0f;
+		Draw::Draw(35, &src, &dst, d, 0.0f);
 
 		//赤ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 531.0f;
 		dst.m_right = 563.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(36, &src, &dst, d, 0.0f);
 
 		//青ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 681.0f;
 		dst.m_right = 713.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(37, &src, &dst, d, 0.0f);
 
 		//緑ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 838.0f;
 		dst.m_right = 870.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(38, &src, &dst, d, 0.0f);
 
 		//灰ポッドキー描画
-		dst.m_top = 647.0f;
+		dst.m_top = 655.0f;
 		dst.m_left = 979.0f;
 		dst.m_right = 1011.0f;
-		dst.m_bottom = 679.0f;
+		dst.m_bottom = 680.0f;
 		Draw::Draw(39, &src, &dst, d, 0.0f);
 
 		//スペシャル技を装備しているときはアイコンを出す

@@ -156,26 +156,26 @@ void CObjInstitute::Init()
 	m_Mis_recast_next_Hum_num[0] = 500;  //ミサイルリキャストレベル(RCLv)が0の時の必要研究員数
 	m_Mis_recast_next_Hum_num[1] = 1200; //RCLvが1の時の必要研究員数
 	m_Mis_recast_next_Hum_num[2] = 3000; //RCLvが2の時の必要研究員数
-	m_Mis_recast_next_Hum_num[3] = 8000;//RCLvが3の時の必要研究員数
+	m_Mis_recast_next_Hum_num[3] = 6000;//RCLvが3の時の必要研究員数
 
 	//-----------------------------------------------------------------------------------------------------
 
 	//▼各武器、ポッドの次のLVUPに必要な研究員の住民数設定
 	//▽パワー武器
 	m_Equ_next_Hum_num[0][0] = 1500;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[0][1] = 7000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[0][1] = 4000; //レベルが2の時の必要研究員数
 	//▽ディフェンス武器
 	m_Equ_next_Hum_num[1][0] = 1500;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[1][1] = 7000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[1][1] = 4000; //レベルが2の時の必要研究員数
 	//▽スピード武器
 	m_Equ_next_Hum_num[2][0] = 1500;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[2][1] = 7000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[2][1] = 4000; //レベルが2の時の必要研究員数
 	//▽バランス武器
 	m_Equ_next_Hum_num[3][0] = 2500;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[3][1] = 7000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[3][1] = 5000; //レベルが2の時の必要研究員数
 	//▽ポッド
 	m_Equ_next_Hum_num[4][0] = 2000;  //レベルが1の時の必要研究員数
-	m_Equ_next_Hum_num[4][1] = 5000; //レベルが2の時の必要研究員数
+	m_Equ_next_Hum_num[4][1] = 4500; //レベルが2の時の必要研究員数
 
 	//▼各武器、ポッドの次のLVUPに必要な素材の名前設定
 	//▽パワー武器
@@ -2583,7 +2583,7 @@ void CObjInstitute::Draw()
 			dst.m_left = m_mou_x - m_Equ_message_window_x_size;
 			dst.m_right = m_mou_x + m_Equ_message_window_x_size;
 			dst.m_bottom = m_mou_y + 0.0f;
-			Draw::Draw(20, &src, &dst, Equ_message_window, 0.0f);
+			Draw::Draw(134, &src, &dst, Equ_message_window, 0.0f);
 
 			//▼LvUP条件　所持必要文字画像表示
 			src.m_top = 0.0f;
