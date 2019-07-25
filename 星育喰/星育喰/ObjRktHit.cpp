@@ -275,29 +275,6 @@ void CObjRktHit::Action()
 	else
 		m_stop_f = false;
 
-	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == true)		//˜f¯‚É“–‚½‚Á‚½‚©‚Â“G’e
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
-	else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == false)//“G¯‚É“–‚½‚Á‚½‚©‚Â©’e
-	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
-
-	if (m_del_f == true || battle_end == true)	//íœƒtƒ‰ƒO
-	{
-		m_del_cnt++;
-		if (m_del_cnt == 7)//íœ
-		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
-	}
-	else
-		m_del_cnt = 0;
-
 	if ((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr ||//“GHitBox‚É“–‚½‚Á‚½
 		hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr ||
 		hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr ||
@@ -321,6 +298,31 @@ void CObjRktHit::Action()
 	{
 		m_fight = true;
 	}
+
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type == true)		//˜f¯‚É“–‚½‚Á‚½‚©‚Â“G’e
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+	else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == false)//“G¯‚É“–‚½‚Á‚½‚©‚Â©’e
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+
+	if (m_del_f == true || battle_end == true)	//íœƒtƒ‰ƒO
+	{
+		m_del_cnt++;
+		if (m_del_cnt == 7)//íœ
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+	}
+	else
+		m_del_cnt = 0;
+
+	
 }
 
 //ƒhƒ[
