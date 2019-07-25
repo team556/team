@@ -324,7 +324,7 @@ void CObjHelp::Draw()
 	
 
 	//チュートリアル中は表示しない
-	if (g_tutorial_progress < 20)
+	if (g_tutorial_progress >= 20)
 	{
 		//▼ヘルプボタン表示
 		src.m_top = 0.0f;
