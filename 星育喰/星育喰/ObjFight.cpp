@@ -107,8 +107,6 @@ void CObjFight::Action()
 
 			if (g_tutorial_progress == 2)
 			{
-				battle_start = false;//一時停止
-
 				//ObjMessageのメッセージ進行度を増加させる
 				CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
 				message->Setprogress(1);
@@ -136,7 +134,7 @@ void CObjFight::Action()
 	}
 
 	//チュートリアル中は戦闘時間が減少しない
-	if (!(2 <= g_tutorial_progress && g_tutorial_progress <= 2))
+	if (!(2 <= g_tutorial_progress && g_tutorial_progress <= 5))
 	{
 		if (m_cnt > 0)	//0より大きい時
 			m_cnt--;	//カウントダウン
@@ -165,76 +163,81 @@ void CObjFight::Action()
 
 	m_line = 6;//常に選択前ラインを初期化
 
-	//ラインを矢印キーで選択するときの処理
-	if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
+	//チュートリアル中は操作出来ないようにする条件文
+	if (g_tutorial_progress >= 5)
+	{
+		//ラインを矢印キーで選択するときの処理
+		if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
 
-		//選択中のラインが一番上に来た時に下に移動させる
-		if (m_line_choice <= 0) {
-			m_line_choice = 2;
+			//選択中のラインが一番上に来た時に下に移動させる
+			if (m_line_choice <= 0) {
+				m_line_choice = 2;
+			}
+			else {
+				m_line_choice--;
+			}
+			m_key_U_f = true;
 		}
-		else {
-			m_line_choice--;
-		}
-		m_key_U_f = true;
-	}
 
-	if (m_key_D_f == false && Input::GetVKey(VK_DOWN) == true) {
+		if (m_key_D_f == false && Input::GetVKey(VK_DOWN) == true) {
 
-		//選択中のラインが一番下に来た時に上に移動させる
-		if (m_line_choice >= 2) {
-			m_line_choice = 0;
+			//選択中のラインが一番下に来た時に上に移動させる
+			if (m_line_choice >= 2) {
+				m_line_choice = 0;
+			}
+			else {
+				m_line_choice++;
+			}
+			m_key_D_f = true;
 		}
-		else {
-			m_line_choice++;
-		}
-		m_key_D_f = true;
-	}
 
-	//選択ラインのX軸幅内にマウスカーソルがある且つ、上下のキーが入力されていないとき
-	//※キーを押してる間はマウスに反応させないため
-	if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
+		//選択ラインのX軸幅内にマウスカーソルがある且つ、上下のキーが入力されていないとき
+		//※キーを押してる間はマウスに反応させないため
+		if (400 <= m_mou_x && m_mou_x <= 800 && m_key_U_f == false && m_key_D_f == false) {
 
-		if (200 <= m_mou_y && m_mou_y <= 250 ) {
-			if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
-			else { m_line = 0; }
-		}
-		else if (310 <= m_mou_y && m_mou_y <= 340) {
-			if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
-			else { m_line = 1; }
-		}
-		else if (420 <= m_mou_y && m_mou_y <= 470 ) {
-			if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
-			else { m_line = 2; }
-		}
-		else {};//ライン外何もしない
+			if (200 <= m_mou_y && m_mou_y <= 250) {
+				if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
+				else { m_line = 0; }
+			}
+			else if (310 <= m_mou_y && m_mou_y <= 340) {
+				if (m_mou_l == true) { m_line_nam = 1; }//中ライン------
+				else { m_line = 1; }
+			}
+			else if (420 <= m_mou_y && m_mou_y <= 470) {
+				if (m_mou_l == true) { m_line_nam = 2; }//下ライン------
+				else { m_line = 2; }
+			}
+			else {};//ライン外何もしない
 
-	}
-	else if(m_key_U_f == true || m_key_D_f == true){
-		if (m_line_choice == 0) {
-			m_line_nam = 0;
 		}
-		else if (m_line_choice == 1) {
-			m_line_nam = 1;
+		else if (m_key_U_f == true || m_key_D_f == true) {
+			if (m_line_choice == 0) {
+				m_line_nam = 0;
+			}
+			else if (m_line_choice == 1) {
+				m_line_nam = 1;
+			}
+			else if (m_line_choice == 2) {
+				m_line_nam = 2;
+			}
 		}
-		else if (m_line_choice == 2) {
-			m_line_nam = 2;
+
+
+		//キーフラグ制御---------------
+		if (Input::GetVKey(VK_UP) == false) {
+
+			m_key_U_f = false;
+
 		}
-	}
 
+		if (Input::GetVKey(VK_DOWN) == false) {
 
-	//キーフラグ制御---------------
-	if (Input::GetVKey(VK_UP) == false) {
+			m_key_D_f = false;
 
-		m_key_U_f = false;
-
+		}
 	}
 	
-	if (Input::GetVKey(VK_DOWN) == false) {
 
-		m_key_D_f = false;
-
-	}
-	
 
 	//▼クリア処理
 	//エネミー毎に取得出来る資源等は違うため、

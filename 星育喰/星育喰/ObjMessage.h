@@ -45,6 +45,8 @@ private:
 	bool  m_mou_l;		//マウスプッシュ確認(左クリック)
 	bool  m_key_f;		//キーフラグ
 
+	int   m_count;		//演出時間調整用
+
 	int	  m_arrow_display_f;//矢印表示フラグ(0:非表示　1:表示)
 	int	  m_arrow_angle_f;	//矢印角度フラグ(0:上向き　1:下向き　2:左向き　3:右向き)
 	float m_arrow_x;		//矢印X位置

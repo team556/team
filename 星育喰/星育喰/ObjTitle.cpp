@@ -66,7 +66,7 @@ int g_Plastic_num	= 0;
 int g_Aluminum_num	= 100;
 int g_gus_num		= 0;
 
-int g_Challenge_enemy = 0;
+int g_Challenge_enemy = 0;//デバッグ。0に戻すべし。
 bool g_help_f = false;
 int  g_tutorial_progress = 20;//デバッグ。チュートリアル完成後、0にするように。
 bool g_is_operatable = true;

@@ -40,6 +40,8 @@ void CObjMessage::Init()
 	m_mou_l = false;
 	m_key_f = false;
 
+	m_count = 0;
+
 	m_arrow_display_f = 0;
 	m_arrow_angle_f = 0;
 	m_arrow_x = 0.0f;
@@ -186,22 +188,31 @@ void CObjMessage::Init()
 		swprintf_s(m_font[1], L"戦闘が始まったな。");
 		swprintf_s(m_font[2], L"右が見てわかる通り%sだな。",strr);	
 		swprintf_s(m_font[3], L"それで左が敵の惑星だ。");
-		swprintf_s(m_font[4], L"テスト");
-		swprintf_s(m_font[5], L"");
-		swprintf_s(m_font[6], L"");
-		swprintf_s(m_font[7], L"");
-		swprintf_s(m_font[8], L"");
-		swprintf_s(m_font[9], L"");
-		swprintf_s(m_font[10], L"");
-		swprintf_s(m_font[11], L"");
-		swprintf_s(m_font[12], L"");
-		swprintf_s(m_font[13], L"");				
+		swprintf_s(m_font[4], L"両方の惑星の下に緑色のバーがあるだろ？～￥この下のバーが惑星のＨＰゲージになってるぜ。");
+		swprintf_s(m_font[5], L"ＨＰゲージは惑星のサイズに直結していて、￥このゲージがゼロになると￥戦いに負けてしまうからな。～￥ＨＰゲージが無くならないように気をつけろよ。");
+		swprintf_s(m_font[6], L"次は戦闘の仕方についてだな。");
+		swprintf_s(m_font[7], L"下に五つのボタンがあるだろ？");
+		swprintf_s(m_font[8], L"この内の右の四つのボタンのどれかを押してみろ。");
+		swprintf_s(m_font[9], L"｜");
+		swprintf_s(m_font[10], L"ボタンを押したら何か出てきたろ？￥これがポッドだぜ。～￥ボタンを押すと住人が命令を受けて、￥１００人がポッドに乗り込んで攻撃しに行っているんだ。");
+		swprintf_s(m_font[11], L"最初は準備しているから￥すぐに出撃することができるが、￥二回目以降は準備に時間がかかるから気をつけろよ。");
+		swprintf_s(m_font[12], L"ポッドには属性があって有利不利があるんだ。～￥赤色は緑色に強く緑は青に強いそして青は赤に強い、￥灰色はすべての色に対して少し強いが￥ミサイルに対してはすごく弱い……ってかんじでな。");
+		swprintf_s(m_font[13], L"ポッドは惑星に当たるとダメージを与えて、￥惑星のサイズをちっさくできるぜ。～￥敵も攻撃をしてくるから敵の攻撃に合わせて￥ポッドを出撃させるのも手だな。");				
+		swprintf_s(m_font[14], L"次はミサイルについての説明だ。");
+		swprintf_s(m_font[15], L"このボタンを押してみな。");
+		swprintf_s(m_font[16], L"｜");
+		swprintf_s(m_font[17], L"");
+		swprintf_s(m_font[18], L"");
+		swprintf_s(m_font[19], L"");
+		swprintf_s(m_font[20], L"");
+		swprintf_s(m_font[21], L"");
+		swprintf_s(m_font[22], L"");
 
 		m_message_window_num = 33;
 		m_yamada_window_num = 79;
 		m_black_out_num = 20;
 
-		g_is_operatable = true;//操作可能に(ObjFightではbattle_startで停止をするので、そもそも使用しない)
+		g_is_operatable = true;//操作可能に
 		m_black_out_f = false;//明転状態から始める
 	}
 	//育成画面
@@ -229,27 +240,98 @@ void CObjMessage::Action()
 		//戦闘画面1回目
 		if (m_Scene_id == 2 && m_progress == 2)
 		{
+			m_black_out_f = false;//徐々に明転
+
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 1;
-			m_arrow_x = 1000.0f;
-			m_arrow_y = 40.0f;
+			m_arrow_x = 915.0f;
+			m_arrow_y = 120.0f;
 		}
 		else if (m_Scene_id == 2 && m_progress == 3)
 		{
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 1;
-			m_arrow_x = 200.0f;
-			m_arrow_y = 40.0f;
+			m_arrow_x = 225.0f;
+			m_arrow_y = 120.0f;
 		}
-		else if (m_Scene_id == 2 && m_progress == 4)
+		else if (m_Scene_id == 2 && (m_progress == 4 || m_progress == 5))
 		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_y = 480.0f;
+
+			m_count++;//時間計測
+
+			if (m_count >= 240)
+			{
+				m_count = 0;//m_countを初期化
+			}
+			else if (m_count >= 120)
+			{
+				m_arrow_x = 225.0f;
+			}
+			else
+			{
+				m_arrow_x = 915.0f;
+			}
+		}
+		else if (m_Scene_id == 2 && m_progress == 6)
+		{
+			m_black_out_f = true;//徐々に暗転
+
 			//矢印非表示
 			m_arrow_display_f = 0;
 			m_arrow_angle_f = 0;
 			m_arrow_x = 0.0f;
 			m_arrow_y = 0.0f;
+			
+			m_count = 0;//m_countを初期化
+		}
+		else if (m_Scene_id == 2 && m_progress == 8)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 455.0f + m_swing_r * 1.5;
+			m_arrow_y = 410.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 12)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 2;
+			m_arrow_x = 250.0f;
+			m_arrow_y = 50.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 13)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
+		}
+		else if (m_Scene_id == 2 && m_progress == 14)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+		}
+		else if (m_Scene_id == 2 && m_progress == 15)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
 		}
 	}
 	//▼メッセージ表示機能が停止した時の処理
@@ -269,7 +351,7 @@ void CObjMessage::Action()
 			//完全暗転後、メッセージ処理開始
 			if (m_black_out_a >= 0.5f)
 			{
-				m_run_switch = true;
+				m_run_switch = true;//メッセージ表示機能動作開始
 			}
 		}
 		else if (m_Scene_id == 0 && m_progress == 3)
@@ -299,7 +381,7 @@ void CObjMessage::Action()
 			//完全暗転後、メッセージ処理開始
 			if (m_black_out_a >= 0.5f)
 			{
-				m_run_switch = true;
+				m_run_switch = true;//メッセージ表示機能動作開始
 			}
 		}
 		else if (m_Scene_id == 1 && m_progress == 3)
@@ -313,7 +395,7 @@ void CObjMessage::Action()
 				//完全暗転後、メッセージ処理開始
 				if (m_black_out_a >= 0.5f)
 				{
-					m_run_switch = true;
+					m_run_switch = true;//メッセージ表示機能動作開始
 					m_progress = 4;//進行度上昇させてこの処理から抜ける
 				}
 
@@ -337,13 +419,96 @@ void CObjMessage::Action()
 		//戦闘画面1回目
 		else if (m_Scene_id == 2 && m_progress == 1)
 		{
-			m_black_out_f = true;//画面暗転
+			m_count++;//時間計測開始
 
 			//完全暗転後、メッセージ処理開始
 			if (m_black_out_a >= 0.5f)
 			{
-				m_run_switch = true;
+				m_run_switch = true;//メッセージ表示機能動作開始
+				m_count = 0;//m_countを初期化
 			}
+			//戦闘開始1秒後、画面暗転処理開始
+			else if (m_count >= 60 * 1)
+			{
+				m_black_out_f = true;//画面暗転
+			}
+		}
+		else if (m_Scene_id == 2 && m_progress == 9)
+		{
+			//戦闘処理を再開させる
+			/*CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+			fight->SetBattle_start(true);*/
+			
+			//ポッドが何かしら１つ出れば、この処理に入る
+			if (m_arrow_display_f == 0)
+			{
+				m_count++;//時間計測開始
+
+				//完全暗転後、メッセージ処理開始
+				if (m_black_out_a >= 0.5f)
+				{
+					//戦闘処理を一時停止させる
+					CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+					fight->SetBattle_start(false);
+
+					m_run_switch = true;//メッセージ表示機能動作開始
+					m_count = 0;//m_countを初期化
+					m_progress = 10;//進行度上昇させてこの処理から抜ける
+				}
+				//戦闘開始1秒後、画面暗転処理開始
+				else if (m_count >= 60 * 1)
+				{
+					m_black_out_f = true;//画面暗転
+				}
+
+				return;
+			}
+
+			//ポッドボタンの範囲でクリックしたら処理に入る
+			if (550 <= m_mou_y && m_mou_y <= 650)
+			{
+				if (500 <= m_mou_x && m_mou_x <= 600 || 650 <= m_mou_x && m_mou_x <= 750 || 800 <= m_mou_x && m_mou_x <= 900 || 950 <= m_mou_x && m_mou_x <= 1050)
+				{
+					if (m_mou_l == true)
+					{
+						g_is_operatable = false;//操作不能にする
+
+						m_arrow_display_f = 0;//矢印非表示
+					}
+				}
+			}
+
+			//ポッド射出ボタンを押したら処理に入る
+			if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true)
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+			if (Input::GetVKey('3') == true || Input::GetVKey(VK_NUMPAD3) == true) 
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+			if (Input::GetVKey('4') == true || Input::GetVKey(VK_NUMPAD4) == true) 
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+			if (Input::GetVKey('5') == true || Input::GetVKey(VK_NUMPAD5) == true) 
+			{
+				g_is_operatable = false;//操作不能にする
+
+				m_arrow_display_f = 0;//矢印非表示
+			}
+
+			//矢印表示
+			m_arrow_x = 455.0f + m_swing_r * 1.5;
+			m_arrow_y = 410.0f;
+
+			g_tutorial_progress = 3;//チュートリアル進行度を3に設定	
 		}
 
 
