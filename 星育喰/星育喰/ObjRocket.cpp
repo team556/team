@@ -128,7 +128,7 @@ void CObjRocket::Init()
 
 	m_vx = 0.0f;	//ベクトル
 	m_vy = 0.0f;
-	m_schange = 3.0f;
+	m_schange = 2.0f;
 	m_mov = 0;
 	
 	m_r = 0.0f;		//角度
@@ -326,13 +326,13 @@ void CObjRocket::Init()
 		m_pod_max_hp = 10.0f;
 	}
 	else if (m_type == 2) {
-		m_pod_max_hp = 18.5f;
+		m_pod_max_hp = 18.0f;
 	}
 	else if (m_type == 3) {
-		m_pod_max_hp = 22.0f;
+		m_pod_max_hp = 21.0f;
 	}
 	else if (m_type == 4) {
-		m_pod_max_hp = 13.0f;
+		m_pod_max_hp = 12.0f;
 	}
 	else if (m_type == 5) {
 		m_pod_max_hp = 21.0f;
@@ -394,7 +394,7 @@ void CObjRocket::Init()
 		break;
 	case 2:
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 9.0f;
+		m_Player_damage = 10.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3:
@@ -471,6 +471,8 @@ void CObjRocket::Action()
 
 	if (m_fight == true)
 	{
+		if(m_atk_cnt == 0 && ButtonU != 5)
+			Audio::Start(11);
 		if (m_atk_cnt > m_atk_cnt_max)//maxを超えた時
 		{
 			m_atk_cnt = 0;//0にリセット
@@ -580,8 +582,9 @@ void CObjRocket::Action()
 	if (battle_end == false)
 	{
 		if (ButtonU != 5) {		//ミサイル以外のストップ処理
-			if (hit->CheckElementHit(ELEMENT_NULL) == true && m_type == 0)//Hit用OBJに当たった場合
-				if ((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0)||
+			if (hit->CheckElementHit(ELEMENT_NULL) == true)//Hit用OBJに当たった場合
+			{
+				if (((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr && m_pnam == 1) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr && m_pnam == 2) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr && m_pnam == 3) ||
@@ -590,73 +593,29 @@ void CObjRocket::Action()
 					(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
 					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
+					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9)) && m_type == 0)
+				{
 					m_fight = true;
-				else if((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
+				}
+				if (((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+					(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9)) && m_type != 0)
+				{
 					m_fight = true;
-				else
-					m_fight = false;
+				}
+			}
 			else
-				m_fight = false;		//進める
+				m_fight = false;		//ミサイル
 		}
 
-		if (m_type == 0) {	//同じタイプ同士での、衝突ストップ判定
-			if (hit->CheckElementHit(ELEMENT_POD) == true && (m_pnam >= 1 && m_pnam <= 3))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD1) == true && (m_pnam >= 2 && m_pnam <= 4))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD2) == true && (m_pnam >= 3 && m_pnam <= 5))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD3) == true && (m_pnam >= 4 && m_pnam <= 6))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD4) == true && (m_pnam >= 5 && m_pnam <= 7))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD5) == true && (m_pnam >= 6 && m_pnam <= 8))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD6) == true && (m_pnam >= 7 && m_pnam <= 9))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD7) == true && (m_pnam >= 8 || m_pnam <= 0))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD8) == true && (m_pnam >= 9 || m_pnam <= 1))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_POD9) == true && (m_pnam >= 0 || m_pnam <= 2))
-				m_stop_f = true;
-			else if(m_fight == false)
-				m_stop_f = false;
-		}
-		else {
-			if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
-				m_stop_f = true;
-			else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
-				m_stop_f = true;
-			else if (m_fight == false)
-				m_stop_f = false;
-		}
+		
 
 		//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
 		//HPの状態に関わらず消滅処理へと移行する
@@ -676,14 +635,14 @@ void CObjRocket::Action()
 			Audio::Start(5);
 		}
 
-		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)		//惑星に当たった時かつ敵弾
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)	//惑星に当たった時かつ敵弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)	//敵の惑星に当たった時かつ自弾
+		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)//敵の惑星に当たった時かつ自弾
 		{
 			//惑星と接触しているかどうかを調べる
 			m_del = true;
@@ -905,14 +864,15 @@ void CObjRocket::Action()
 			}
 			else if (ButtonUE == 5)	//敵の種類５(ミサイル)がプレイヤーのポッドに当たった場合
 			{
-				m_del = true;				//消滅処理フラグON
+				m_del = true;					//消滅処理フラグON
+				hit->SetInvincibility(true);	//HitBoxの判定無効
 				Audio::Start(5);
 			}
 		}
-		else if (m_type != 0 && m_stop_cnt == 10) {	//敵かつ、停止時
-			m_fight = false;
-			m_stop_cnt = 0;
-		}
+		//else if (m_type != 0 && m_stop_cnt == 10) {	//敵かつ、停止時
+		//	m_fight = false;
+		//	m_stop_cnt = 0;
+		//}
 		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
 			//m_stop_f = false;
 		else if(m_type != 0)
@@ -933,7 +893,6 @@ void CObjRocket::Action()
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
-			Audio::Start(5);
 			
 			if (ButtonUP == 1)		//自分の種類１(パワー)が敵のポッドと当たった場合
 			{
@@ -1088,16 +1047,17 @@ void CObjRocket::Action()
 			}
 			else if (ButtonUP == 5)//自分の種類５(ミサイル)が敵のポッドとミサイルに当たった場合
 			{
-				m_del = true;				//消滅処理フラグON
+				m_del = true;					//消滅処理フラグON
+				hit->SetInvincibility(true);	//HitBoxの判定無効
 				Audio::Start(5);
 			}
 			
 		}
-		else if (m_type == 0 && m_stop_cnt == 10) {	//味方かつ、止まってる時
-			m_fight = false;
-			m_stop_cnt = 0;
-		
-		}
+		//else if (m_type == 0 && m_stop_cnt == 10) {	//味方かつ、止まってる時
+		//	m_fight = false;
+		//	m_stop_cnt = 0;
+		//
+		//}
 		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
 			//m_stop_f = false;
 		else if (m_type == 0)
@@ -1106,10 +1066,58 @@ void CObjRocket::Action()
 		if (m_podhp <= 0)//両ポッドHPでの削除
 		{
 			m_del = true;
+			hit->SetInvincibility(true);//HitBoxの判定無効
 		}
 	}
 
-	
+	if (m_type == 0) {	//同じタイプ同士での、衝突ストップ判定
+		if (hit->CheckElementHit(ELEMENT_POD) == true && (m_pnam >= 1 && m_pnam <= 3))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD1) == true && (m_pnam >= 2 && m_pnam <= 4))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD2) == true && (m_pnam >= 3 && m_pnam <= 5))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD3) == true && (m_pnam >= 4 && m_pnam <= 6))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD4) == true && (m_pnam >= 5 && m_pnam <= 7))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD5) == true && (m_pnam >= 6 && m_pnam <= 8))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD6) == true && (m_pnam >= 7 && m_pnam <= 9))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD7) == true && (m_pnam >= 8 || m_pnam <= 0))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD8) == true && (m_pnam >= 9 || m_pnam <= 1))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_POD9) == true && (m_pnam >= 0 || m_pnam <= 2))
+			m_stop_f = true;
+		else if (m_fight == false)
+			m_stop_f = false;
+	}
+	else {
+		if (hit->CheckElementHit(ELEMENT_ENEMYPOD) == true && (m_enam >= 1 && m_enam <= 3))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD1) == true && (m_enam >= 2 && m_enam <= 4))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true && (m_enam >= 3 && m_enam <= 5))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true && (m_enam >= 4 && m_enam <= 6))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true && (m_enam >= 5 && m_enam <= 7))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true && (m_enam >= 6 && m_enam <= 8))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true && (m_enam >= 7 && m_enam <= 9))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true && (m_enam >= 8 || m_enam <= 0))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true && (m_enam >= 9 || m_enam <= 1))
+			m_stop_f = true;
+		else if (hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true && (m_enam >= 0 || m_enam <= 2))
+			m_stop_f = true;
+		else if (m_fight == false)
+			m_stop_f = false;
+	}
 	
 }
 
