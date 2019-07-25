@@ -71,8 +71,8 @@ void CObjPreparation::Init()
 	m_is_operatable = false;
 
 	m_Back_Button_color = INI_COLOR;
-	m_Yes_Button_color = INI_COLOR;
-	m_No_Button_color = INI_COLOR;
+	m_Yes_Button_color = 1.0f;
+	m_No_Button_color = 1.0f;
 
 	m_Back_flag = false;
 	m_Go_flag = false;
@@ -361,7 +361,7 @@ void CObjPreparation::Action()
 			//最終確認[はい]ボタン
 			if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 			{
-				m_Yes_Button_color = 1.0f;
+				m_Yes_Button_color = 0.0f;
 
 				//▼クリックされたら移行開始フラグを立て、
 				//演出を交えながら、戦闘画面にシーン移行する
@@ -373,7 +373,7 @@ void CObjPreparation::Action()
 					{
 						m_key_lf = false;
 
-						m_Yes_Button_color = 0.0f;
+						m_Yes_Button_color = 1.0f;
 
 						//移行開始フラグ立て
 						m_Go_flag = true;
@@ -396,13 +396,13 @@ void CObjPreparation::Action()
 			}
 			else
 			{
-				m_Yes_Button_color = 0.0f;
+				m_Yes_Button_color = 1.0f;
 			}
 
 			//最終確認[いいえ]ボタン
 			if (648 < m_mou_x && m_mou_x < 789 && 407 < m_mou_y && m_mou_y < 450 || m_mou_r == true)
 			{
-				m_No_Button_color = 1.0f;
+				m_No_Button_color = 0.0f;
 
 				//▼クリックされたら、このウインドウを閉じる
 				//右クリック入力時
@@ -411,7 +411,7 @@ void CObjPreparation::Action()
 					//ウインドウ閉じた後、続けて戻るボタンを入力出来ないようにする
 					m_key_rf = false;
 
-					m_No_Button_color = 0.0f;
+					m_No_Button_color = 1.0f;
 
 					//最終確認ウインドウを非表示にする
 					m_finalcheck_f = false;
@@ -427,7 +427,7 @@ void CObjPreparation::Action()
 					{
 						m_key_lf = false;
 
-						m_No_Button_color = 0.0f;
+						m_No_Button_color = 1.0f;
 
 						//最終確認ウインドウを非表示にする
 						m_finalcheck_f = false;
@@ -443,7 +443,7 @@ void CObjPreparation::Action()
 			}
 			else
 			{
-				m_No_Button_color = 0.0f;
+				m_No_Button_color = 1.0f;
 			}
 
 
@@ -912,10 +912,10 @@ void CObjPreparation::Draw()
 	};
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
+	float Yes[4] = {1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
 
 	//その他画像用
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -1525,7 +1525,7 @@ void CObjPreparation::Draw()
 		dst.m_left = 460.0f;
 		dst.m_right = 760.0f;
 		dst.m_bottom = 350.0f;
-		Draw::Draw(65, &src, &dst, black, 0.0f);
+		Draw::Draw(65, &src, &dst, d, 0.0f);
 
 		//▼はい文字画像表示
 		src.m_top = 0.0f;
