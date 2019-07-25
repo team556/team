@@ -630,7 +630,7 @@ void CObjFightClear::Draw()
 			//資材
 			src.m_top = 2.0f;
 			src.m_left = 2.0f;
-			src.m_right = 232.0f;
+			src.m_right = 230.0f;
 			src.m_bottom = 110.0f;
 
 			dst.m_top = FONT_Y + 100.0f;
@@ -671,10 +671,10 @@ void CObjFightClear::Draw()
 				//鉄
 				else if (m_mat_type[0] == &g_Iron_num)
 				{
-					src.m_top = 0.0f;
+					src.m_top = 2.0f;
 					src.m_left = 0.0f;
-					src.m_right = 112.0f;
-					src.m_bottom = 112.0f;
+					src.m_right = 110.0f;
+					src.m_bottom = 110.0f;
 
 					dst.m_top = FONT_Y + 150;
 					dst.m_left = FONT_X;
@@ -685,8 +685,8 @@ void CObjFightClear::Draw()
 				//銀
 				else if (m_mat_type[0] == &g_Silver_num)
 				{
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
 					src.m_right = 112.0f;
 					src.m_bottom = 112.0f;
 
@@ -821,8 +821,8 @@ void CObjFightClear::Draw()
 			//銀
 			else if (m_mat_type[1] == &g_Silver_num)
 			{
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
+				src.m_top = 2.0f;
+				src.m_left = 2.0f;
 				src.m_right = 112.0f;
 				src.m_bottom = 112.0f;
 
@@ -851,7 +851,7 @@ void CObjFightClear::Draw()
 			{
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
-				src.m_right = 352.0f;
+				src.m_right = 350.0f;
 				src.m_bottom = 112.0f;
 
 				dst.m_top = FONT_Y + 200;
@@ -968,7 +968,7 @@ void CObjFightClear::Draw()
 					src.m_top = 2.0f;
 					src.m_left = 2.0f;
 					src.m_right = 952.0f;
-					src.m_bottom = 112.0f;
+					src.m_bottom = 110.0f;
 
 					dst.m_top = FONT_Y + 250.0f;
 					dst.m_left = FONT_X + 300.0f;
@@ -979,8 +979,8 @@ void CObjFightClear::Draw()
 					//Font::StrDraw(L"Fracture Ray GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
 				case 3:
 					//イモータリティ
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
 					src.m_right = 817.0f;
 					src.m_bottom = 112.0f;
 
@@ -1007,10 +1007,10 @@ void CObjFightClear::Draw()
 					//Font::StrDraw(L"リミットブレイク GET!",	FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
 				case 5:
 					//リミットブレイク
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
 					src.m_right = 952.0f;
-					src.m_bottom = 112.0f;
+					src.m_bottom = 110.0f;
 
 					dst.m_top = FONT_Y + 250.0f;
 					dst.m_left = FONT_X + 300.0f;
