@@ -1067,6 +1067,7 @@ void CObjRocket::Action()
 
 		if (m_podhp <= 0)//—¼ƒ|ƒbƒhHP‚Å‚Ìíœ
 		{
+			Audio::Start(5);
 			m_del = true;
 			hit->SetInvincibility(true);//HitBox‚Ì”»’è–³Œø
 		}
