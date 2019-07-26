@@ -200,7 +200,7 @@ void CObjFight::Action()
 				if (m_mou_l == true) { m_line_nam = 0; }//ãƒ‰ƒCƒ“------
 				else { m_line = 0; }
 			}
-			else if (310 <= m_mou_y && m_mou_y <= 340) {
+			else if (310 <= m_mou_y && m_mou_y <= 360) {
 				if (m_mou_l == true) { m_line_nam = 1; }//’†ƒ‰ƒCƒ“------
 				else { m_line = 1; }
 			}
