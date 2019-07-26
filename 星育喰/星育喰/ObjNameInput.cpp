@@ -29,6 +29,7 @@ void CObjNameInput::Init()
 	m_No_Button_color =0;
 	m_num_cnt = 0;
 	m_c_cut = 0;
+	m_alpha = 0.0f;
 	//クリックされた時の場所
 	for (int i = 0; i < 5; i++)
 	{
@@ -888,7 +889,8 @@ void CObjNameInput::Action()
 			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
 			break;
 		}
-		Scene::SetScene(new CSceneHome());//育成画面へシーン移行 
+		m_finalcheck_f_yes = true;
+		//Scene::SetScene(new CSceneHome());//育成画面へシーン移行 
 	}
 	//最終確認ウィンドウのいいえを押したときの処理
 	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
@@ -897,8 +899,15 @@ void CObjNameInput::Action()
 		m_finalcheck_f = false;
 	}
 	else;
+	if (m_finalcheck_f_yes == true) {
+		if (m_alpha <= 1.0f) {
+			m_alpha += 0.007f;
+		}
+		else {
+			Scene::SetScene(new CSceneHome());
+		}
 
-
+	}
 }
 //ドロー
 void CObjNameInput::Draw()
@@ -918,8 +927,13 @@ void CObjNameInput::Draw()
 	//最終確認[いいえ]ボタン用
 	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
 
+	//暗転用
+	float blackout[4] = { 0.0f,0.0f,0.0f,m_alpha };
+
 	RECT_F src;//切り取り位置
 	RECT_F dst;//表示位置
+
+
 
 	if(m_tex_clar==true)
 	{ 
@@ -957,6 +971,7 @@ void CObjNameInput::Draw()
 		m_cut = 0;
 	}
 	//-----------------------------------------------------------
+
 
 	//名前を入力してもらう画像の適用
 	src.m_top = 0.0f;
@@ -1170,6 +1185,19 @@ void CObjNameInput::Draw()
 		}
 
 	}
+
+	//フェードインフェードアウト
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
+	src.m_bottom = 64.0f;
+
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 1200.0f;
+	dst.m_bottom = 700.0f;
+	Draw::Draw(5, &src, &dst, blackout, 0.0f);
+
 	//デバッグ用仮マウス位置表示
 	//wchar_t test_mou[256];
 	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
