@@ -878,14 +878,25 @@ void CObjNameInput::Action()
 	if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true)
 	{
 		//この下にある文がグローバル変数に文字を入れる処理
-		swprintf_s(g_test, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
+		switch (m_cut)
+		{
+		case 3:
+			swprintf_s(g_Pleyr_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
+			break;
+		case 4:
+			swprintf_s(g_Pleyr_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
+			break;
+		case 5:
+			swprintf_s(g_Pleyr_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
+			break;
+		}
 		Scene::SetScene(new CSceneTraining());//育成画面へシーン移行 
 	}
+	//最終確認ウィンドウのいいえを押したときの処理
 	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
 	{
 		m_key_f = false;
 		m_finalcheck_f = false;
-		
 	}
 	else;
 
@@ -1063,21 +1074,6 @@ void CObjNameInput::Draw()
 			m_Yes_Button_color = 0;
 		}
 
-		switch (m_cut)
-		{
-		case 3:
-			swprintf_s(g_test, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
-			break;
-		case 4:
-			swprintf_s(g_test, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
-			break;
-		case 5:
-			swprintf_s(g_test, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
-			break;
-		default:
-			;
-		}
-
 		
 		//▼最終確認ウインドウ表示
 		src.m_top = 0.0f;
@@ -1115,19 +1111,21 @@ void CObjNameInput::Draw()
 		dst.m_bottom = 460.0f;
 		Draw::Draw(67, &src, &dst, No, 0.0f);
 
-		FontDraw(g_test, 100, 100, 100, 100, c, false);
-
+		//プレイヤー名を描画する際の位置調整をするためのカウント
 		for (int i = 0; i < 6; i++)
 		{
 			if (m_tex_discri[i] != 99 && m_num_cnt < 5)
 				m_num_cnt++;
 		}
 
-
+		//最終確認ウィンドウが表示された時に入力されたプレイヤー名を描画する
 		for (int i = 0; i < 5; i++)
 		{
-
-			FontDraw(str[m_tex_discri[i]], 600 - (m_num_cnt * 30) + (i * 60), 225.0, 60.0f, 60.0f, c, false);
+			//m_tex_discri[i]の中の値が99出なければ描画（99の理由は初期化する際に99を代入しているから）
+			if (m_tex_discri[i] != 99)
+			{
+				FontDraw(str[m_tex_discri[i]], 600 - (m_num_cnt * 30) + (i * 60), 225.0, 60.0f, 60.0f, c, false);
+			}
 			if (m_c[i] == '？')
 			{
 				m_c_cut++;
@@ -1135,7 +1133,44 @@ void CObjNameInput::Draw()
 		}
 		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
+	//決定ボタンをおした時m_cutが三以下なら警告文を出させる
+	else if (m_finalcheck_f == true && m_cut < 3)
+	{
+		//↓クリックされた時の描画----------------------------------
+		wchar_t str[46][2]
+		{
+			L"あ",L"い",L"う",L"え",L"お",L"は",L"ひ",L"ふ",L"へ",L"ほ",
+			L"か",L"き",L"く",L"け",L"こ",L"ま",L"み",L"む",L"め",L"も",
+			L"さ",L"し",L"す",L"せ",L"そ",L"や",L"ゆ",L"よ",
+			L"た",L"ち",L"つ",L"て",L"と",L"ら",L"り",L"る",L"れ",L"ろ",
+			L"な",L"に",L"ぬ",L"ね",L"の",L"わ",L"を",L"ん",
+		};
 
+		//▼最終確認ウインドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
+
+		dst.m_top = 200.0f;
+		dst.m_left = 320.0f;
+		dst.m_right = 880.0f;
+		dst.m_bottom = 480.0f;
+		Draw::Draw(89, &src, &dst, c, 0.0f);
+
+		FontDraw(L"名前を三文字以上入力してください", 375, 325.0, 30.0f, 30.0f, c, false);
+		if (m_mou_l == false)
+		{
+			m_f = true;
+		}
+		if (m_mou_l == true&&m_f==true)
+		{
+			m_finalcheck_f = false;
+			m_f = false;
+			m_key_f = false;
+		}
+
+	}
 	//デバッグ用仮マウス位置表示
 	wchar_t test_mou[256];
 	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);

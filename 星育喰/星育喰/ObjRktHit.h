@@ -39,4 +39,5 @@ private:
 	bool m_type;	//タイプ(true = 敵)
 	bool m_del_f;	//削除フラグ(true = 削除)
 	bool m_fight;	//アニメーション用
+	//bool m_audio_f;	//オーディオ一回再生フラグ
 };
