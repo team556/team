@@ -1433,7 +1433,7 @@ void CObjMessage::Draw()
 	}
 
 	//デバッグ用仮マウス位置表示
-	wchar_t mou[256];
-	swprintf_s(mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(mou, 20.0f, 20.0f, 12.0f, d);
+	//wchar_t mou[256];
+	//swprintf_s(mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(mou, 20.0f, 20.0f, 12.0f, d);
 }
