@@ -299,6 +299,7 @@ void CObjTitle::Action()
 			//名前入力のオブジェクトを呼び出す
 
 			m_alpha = 0.0f;//タイトルロゴ、後ろ敵惑星等を非表示にすると同時に次の処理へのフラグとしている。
+			Scene::SetScene(new CSceneNameInput());
 		}
 		else if (m_des_a > 6.0f)
 		{
@@ -659,7 +660,6 @@ void CObjTitle::Draw()
 		dst.m_bottom = 460.0f;
 		Draw::Draw(56, &src, &dst, No, 0.0f);
 	}
-
 
 
 	//デバッグ用仮マウス位置表示
