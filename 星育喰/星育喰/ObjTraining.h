@@ -65,6 +65,7 @@ protected:
 	int *m_Facility_next_Mat_type[FACILITY_MAX_LV - 1];		//施設(兵舎、研究所)の次のLVUPに必要な素材種類とその素材の所持数を管理するポインタ
 	int  m_Facility_next_Mat_num[FACILITY_MAX_LV - 1];		//施設(兵舎、研究所)の次のLVUPに必要な素材数管理用(仮で必要素材1種類として考えている。2種類以上ならその分Mat_typeとMat_numを配列構造体に入れて増やす予定)
 
+	wchar_t m_mmmmm[50];
 
 	static bool scene_change_start;	//シーン切り替え演出開始を伝えるフラグ
 	static bool white_out_f;		//ホワイトアウト演出フラグ[true:ホワイトアウト演出実行中　false:ホワイトアウト演出を実行してない状態]
