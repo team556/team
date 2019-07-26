@@ -508,7 +508,7 @@ void CObjRocket::Action()
 		{
 			m_stop_cnt++;
 			if (m_stop_cnt == 8) {
-				m_fight = true;
+				//m_fight = true;
 			}
 			else if (m_stop_cnt == 11) {
 				m_stop_cnt = 0;
