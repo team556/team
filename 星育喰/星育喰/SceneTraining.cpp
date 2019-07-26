@@ -527,6 +527,9 @@ void CSceneTraining::InitScene()
 	//ホワイトアウトの音
 	Audio::LoadAudio(4, L"ホワイトアウト音.wav", EFFECT);
 
+	//選択
+	Audio::LoadAudio(5, L"住民振り分けアップ用.wav", EFFECT);
+
 	//音楽スタート
 	Audio::Start(0);
 }

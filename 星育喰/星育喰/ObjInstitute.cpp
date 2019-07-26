@@ -639,7 +639,7 @@ void CObjInstitute::Action()
 					g_Pod_equip_Level = Equip_Lvup_check(4, g_Pod_equip_Level, g_Pod_equip_Lv_achieve);
 
 					//U‚è•ª‚¯ƒ{ƒ^ƒ“‰¹
-					Audio::Start(1);
+					Audio::Start(5);
 				}
 				else
 				{

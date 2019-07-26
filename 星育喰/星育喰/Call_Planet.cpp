@@ -43,17 +43,17 @@ void Call_Planet(int group, int select)
 		if (select == 1)
 		{
 			//ìGòfêØ1Çì«Ç›çûÇ›22î‘Ç…ìoò^
-			Draw::LoadImage(L"ÉÇÉAÉC.png", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ÉÇÉAÉCê≥ñ .png", 22, TEX_SIZE_512);
 		}
 		else if (select == 2)
 		{
 			//ìGòfêØ2Çì«Ç›çûÇ›22î‘Ç…ìoò^
-			Draw::LoadImage(L"ÉÇÉAÉC.png", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ÉÇÉAÉCê≥ñ .png", 22, TEX_SIZE_512);
 		}
 		else if (select == 3)
 		{
 			//ìGòfêØ3Çì«Ç›çûÇ›22î‘Ç…ìoò^
-			Draw::LoadImage(L"ÉÇÉAÉC.png", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ÉÇÉAÉCê≥ñ .png", 22, TEX_SIZE_512);
 		}
 		else  //(select == 4)
 		{
