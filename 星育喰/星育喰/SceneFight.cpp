@@ -328,7 +328,7 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(special, OBJ_SPECIAL, 90);											//オブジェクト登録
 
 	//メッセージ表示(チュートリアル)オブジェクト作成
-	if (g_tutorial_progress < 20)
+	if (g_tutorial_progress < 8)
 	{
 		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
 		Objs::InsertObj(message, OBJ_MESSAGE, 95);	//メッセージ表示オブジェクト登録

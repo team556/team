@@ -311,7 +311,7 @@ void CObjWarehouse::Action()
 	}
 
 	//倉庫選択
-	if (g_tutorial_progress >= 10)//チュートリアル中は選択不可
+	if (g_tutorial_progress >= 8)//チュートリアル中は選択不可
 	{
 		if (850 < m_mou_x && m_mou_x < 1250 && 430 < m_mou_y && m_mou_y < 550)
 		{
@@ -321,7 +321,7 @@ void CObjWarehouse::Action()
 			if (m_mou_l == true)
 			{
 				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_key_lf == true || g_tutorial_progress == 13)
 				{
 					m_key_lf = false;
 
