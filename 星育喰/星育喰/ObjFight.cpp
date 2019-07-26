@@ -486,36 +486,36 @@ void CObjFight::Draw()
 		//ミサイルキー描画
 		dst.m_top = 655.0f;
 		dst.m_left = 230.0f;
-		dst.m_right = 262.0f;
-		dst.m_bottom = 680.0f;
+		dst.m_right = 260.0f;
+		dst.m_bottom = 685.0f;
 		Draw::Draw(35, &src, &dst, d, 0.0f);
 
 		//赤ポッドキー描画
 		dst.m_top = 655.0f;
-		dst.m_left = 531.0f;
-		dst.m_right = 563.0f;
-		dst.m_bottom = 680.0f;
+		dst.m_left = 535.0f;
+		dst.m_right = 565.0f;
+		dst.m_bottom = 685.0f;
 		Draw::Draw(36, &src, &dst, d, 0.0f);
 
 		//青ポッドキー描画
 		dst.m_top = 655.0f;
-		dst.m_left = 681.0f;
-		dst.m_right = 713.0f;
-		dst.m_bottom = 680.0f;
+		dst.m_left = 685.0f;
+		dst.m_right = 715.0f;
+		dst.m_bottom = 685.0f;
 		Draw::Draw(37, &src, &dst, d, 0.0f);
 
 		//緑ポッドキー描画
 		dst.m_top = 655.0f;
-		dst.m_left = 838.0f;
-		dst.m_right = 870.0f;
-		dst.m_bottom = 680.0f;
+		dst.m_left = 837.0f;
+		dst.m_right = 867.0f;
+		dst.m_bottom = 685.0f;
 		Draw::Draw(38, &src, &dst, d, 0.0f);
 
 		//灰ポッドキー描画
 		dst.m_top = 655.0f;
-		dst.m_left = 979.0f;
-		dst.m_right = 1011.0f;
-		dst.m_bottom = 680.0f;
+		dst.m_left = 985.0f;
+		dst.m_right = 1015.0f;
+		dst.m_bottom = 685.0f;
 		Draw::Draw(39, &src, &dst, d, 0.0f);
 
 		//スペシャル技を装備しているときはアイコンを出す
@@ -625,7 +625,7 @@ void CObjFight::Draw()
 
 
 	//デバッグ用仮マウス位置表示
-	wchar_t test_mou[256];
-	swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
+	//wchar_t test_mou[256];
+	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
+	//Font::StrDraw(test_mou, 20.0f, 20.0f, 12.0f, d);
 }

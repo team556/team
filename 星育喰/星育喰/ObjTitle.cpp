@@ -34,8 +34,8 @@ bool CObjTitle::after_once = false;
 //※余裕あれば、値の部分をマクロ化(出来る部分は)して便利にすべし。
 int g_Stage_progress = 1;
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
-int g_Bar_Level = 1;
-int g_Ins_Level = 1;
+int g_Bar_Level = 2;
+int g_Ins_Level = 2;
 int g_Mis_Recast_Level		= 1;
 int g_Pow_equip_Level		= 1;
 int g_Pow_equip_Lv_achieve	= 1;
