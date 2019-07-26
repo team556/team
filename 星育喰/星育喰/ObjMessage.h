@@ -5,7 +5,7 @@
 using namespace GameL;
 
 //マクロ
-#define MES_MAX (30)			//メッセージ最大格納数
+#define MES_MAX (55)			//メッセージ最大格納数
 #define FONT_MAX (100)			//フォント格納最大数
 #define FONT_DATA_X (33)		//フォントデータX
 #define FONT_DATA_Y (22)		//フォントデータY
@@ -70,9 +70,4 @@ private:
 	
 	//▼シーンID管理用
 	int	m_Scene_id;//(0:ホーム画面1回目　1:戦闘準備画面1回目　2:戦闘画面1回目)
-
-
-	//▽メモ
-	//シーンによっては初回に訪れた時だけでなく、２度目に訪れた時に発動するチュートリアルもあるので、
-	//それに関しては、staticで訪れた数記憶させておき、それで判断させるべし！
 };

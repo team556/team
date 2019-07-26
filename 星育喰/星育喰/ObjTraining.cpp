@@ -55,6 +55,12 @@ void CObjTraining::Init()
 //アクション
 void CObjTraining::Action()
 {
+	//チュートリアル説明中は操作不能にする処理
+	if (g_is_operatable == false)
+	{
+		return;
+	}
+
 	//戻るボタンクリック、もしくは右クリック(どこでも)時実行
 	if (window_start_manage == BackButton)
 	{
@@ -126,55 +132,58 @@ void CObjTraining::Action()
 	}
 
 	//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
-	if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
+	if (g_tutorial_progress >= 11)//チュートリアル中は選択不可
 	{
-		m_Back_Button_color = 1.0f;
-
-		//▼移行フラグを立て、ホーム画面へ演出を交えながらシーン移行
-		//右クリック入力時
-		if (m_mou_r == true)
+		if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 		{
-			//前シーン(兵舎ウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
-			if (m_key_rf == true)
+			m_Back_Button_color = 1.0f;
+
+			//▼移行フラグを立て、ホーム画面へ演出を交えながらシーン移行
+			//右クリック入力時
+			if (m_mou_r == true)
 			{
-				//雲演出INを行う
-				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
-				obj_cloud->SetCheck(true);
+				//前シーン(兵舎ウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
+				if (m_key_rf == true)
+				{
+					//雲演出INを行う
+					CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
+					obj_cloud->SetCheck(true);
 
-				//移行フラグ立て
-				window_start_manage = BackButton;
+					//移行フラグ立て
+					window_start_manage = BackButton;
 
-				//戻るボタン音
-				Audio::Start(2);
+					//戻るボタン音
+					Audio::Start(2);
+				}
 			}
-		}
-		//左クリック入力時
-		else if (m_mou_l == true)
-		{
-			//左クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
+			//左クリック入力時
+			else if (m_mou_l == true)
 			{
-				m_key_lf = false;
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
 
-				//雲演出INを行う
-				CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
-				obj_cloud->SetCheck(true);
+					//雲演出INを行う
+					CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
+					obj_cloud->SetCheck(true);
 
-				//移行フラグ立て
-				window_start_manage = BackButton;
+					//移行フラグ立て
+					window_start_manage = BackButton;
 
-				//戻るボタン音
-				Audio::Start(2);
+					//戻るボタン音
+					Audio::Start(2);
+				}
+			}
+			else
+			{
+				m_key_lf = true;
 			}
 		}
 		else
 		{
-			m_key_lf = true;
+			m_Back_Button_color = INI_COLOR;
 		}
-	}
-	else
-	{
-		m_Back_Button_color = INI_COLOR;
 	}
 }
 

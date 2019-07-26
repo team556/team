@@ -163,8 +163,9 @@ void CObjFight::Action()
 
 	m_line = 6;//常に選択前ラインを初期化
 
+
 	//チュートリアル中は操作出来ないようにする条件文
-	if (g_tutorial_progress >= 5)
+	if (g_tutorial_progress >= 6)
 	{
 		//ラインを矢印キーで選択するときの処理
 		if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
@@ -236,6 +237,17 @@ void CObjFight::Action()
 
 		}
 	}
+	//以下の処理はチュートリアル中のみ実行される。
+	else if (g_tutorial_progress == 5)
+	{
+		if (400 <= m_mou_x && m_mou_x <= 800) {
+
+			if (200 <= m_mou_y && m_mou_y <= 250) {
+				if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
+				else { m_line = 0; }
+			}
+		}
+	}
 	
 
 
@@ -264,25 +276,25 @@ void CObjFight::Action()
 		//左から１番目
 		if (g_Challenge_enemy == 0)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(5000, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
+			CObjFightClear* crer = new CObjFightClear(5500, 100, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から２番目
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(8000, 200, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
+			CObjFightClear* crer = new CObjFightClear(8000, 350, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から３番目
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(12000, 250, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
+			CObjFightClear* crer = new CObjFightClear(12000, 400, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(6000, 150, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
+			CObjFightClear* crer = new CObjFightClear(8000, 200, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//ボス

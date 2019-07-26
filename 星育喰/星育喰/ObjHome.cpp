@@ -189,13 +189,13 @@ void CObjHome::Action()
 	m_mou_l = Input::GetMouButtonL();
 
 	//育喰アイコン、敵惑星(背景)を徐々に表示させる
-	if (m_alpha < 1.0f && (g_tutorial_progress == 1 || g_tutorial_progress >= 20))
+	if (m_alpha < 1.0f && (g_tutorial_progress == 1 || g_tutorial_progress == 8 || g_tutorial_progress >= 20))
 	{
 		m_alpha += 0.01f;
 	}
 
 	//育アイコン
-	if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680 && (g_tutorial_progress >= 20))
+	if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680 && (g_tutorial_progress == 8 || g_tutorial_progress >= 20))
 	{
 		m_Tra_color = 1.0f;
 
@@ -499,7 +499,7 @@ void CObjHome::Draw()
 	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	if (g_tutorial_progress == 2 || g_tutorial_progress >= 20)
+	if (g_tutorial_progress == 8 || g_tutorial_progress >= 20)
 	{
 		//▼育アイコン表示
 		src.m_top = 0.0f;

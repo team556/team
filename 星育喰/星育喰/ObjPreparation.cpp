@@ -1153,43 +1153,71 @@ void CObjPreparation::Draw()
 	dst.m_bottom = 1250.0f + m_Pvy + m_Psize;
 	Draw::Draw(47 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	//▼下のウインドウ01表示
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1200.0f;
-	src.m_bottom = 700.0f;
-
-	dst.m_top = 940.0f + m_Svy;
-	dst.m_left = 360.0f;
-	dst.m_right = 860.0f;
-	dst.m_bottom = 1100.0f + m_Svy;
-	Draw::Draw(89, &src, &dst, d, 0.0f);
-
-	//▽ウインドウ表示左上 
-	src.m_top = 0.0f;
-	src.m_left = -20.0f;
-	src.m_right = 800.0f;
-	src.m_bottom = 790.0f;
-
-	dst.m_top = 905.0f + m_Svy;
-	dst.m_left = 420.0f;
-	dst.m_right = 470.0f;
-	dst.m_bottom = 955.0 + m_Svy;
-	Draw::Draw(55, &src, &dst, d, 0.0f);
-
-	//▽ウインドウ表示左下
-	src.m_top = 30.0f;
-	src.m_left = 780.0f;
-	src.m_right = 1600.0f;
-	src.m_bottom = 795.0f;
-
-	dst.m_top = 920.0f + m_Svy;
-	dst.m_left = 420.0f;
-	dst.m_right = 470.0f;
-	dst.m_bottom = 970.0 + m_Svy;
-	Draw::Draw(55, &src, &dst, d, 0.0f);
-	for (int i = 0;i < 5;i++)
+	//チュートリアル中は表示しない
+	if (!(g_tutorial_progress == 1 || g_tutorial_progress == 2))
 	{
+		//▼下のウインドウ01表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
+
+		dst.m_top = 940.0f + m_Svy;
+		dst.m_left = 360.0f;
+		dst.m_right = 860.0f;
+		dst.m_bottom = 1100.0f + m_Svy;
+		Draw::Draw(89, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示左上 
+		src.m_top = 0.0f;
+		src.m_left = -20.0f;
+		src.m_right = 800.0f;
+		src.m_bottom = 790.0f;
+
+		dst.m_top = 905.0f + m_Svy;
+		dst.m_left = 420.0f;
+		dst.m_right = 470.0f;
+		dst.m_bottom = 955.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示左下
+		src.m_top = 30.0f;
+		src.m_left = 780.0f;
+		src.m_right = 1600.0f;
+		src.m_bottom = 795.0f;
+
+		dst.m_top = 920.0f + m_Svy;
+		dst.m_left = 420.0f;
+		dst.m_right = 470.0f;
+		dst.m_bottom = 970.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+		for (int i = 0; i < 5; i++)
+		{
+			//▽ウインドウ表示中央上 
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 795.0f;
+
+			dst.m_top = 905.0f + m_Svy;
+			dst.m_left = 470.0f + (i * 50);
+			dst.m_right = 520.0f + (i * 50);
+			dst.m_bottom = 955.0f + m_Svy;
+			Draw::Draw(55, &src, &dst, d, 0.0f);
+
+			//▽ウインドウ表示中央下 
+			src.m_top = 5.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 920.0f + m_Svy;
+			dst.m_left = 470.0f + (i * 50);
+			dst.m_right = 520.0f + (i * 50);
+			dst.m_bottom = 970.0f + m_Svy;
+			Draw::Draw(55, &src, &dst, d, 0.0f);
+		}
+
 		//▽ウインドウ表示中央上 
 		src.m_top = 0.0f;
 		src.m_left = 1600.0f;
@@ -1197,8 +1225,8 @@ void CObjPreparation::Draw()
 		src.m_bottom = 795.0f;
 
 		dst.m_top = 905.0f + m_Svy;
-		dst.m_left = 470.0f + (i * 50);
-		dst.m_right = 520.0f + (i * 50);
+		dst.m_left = 690.0f;
+		dst.m_right = 740.0f;
 		dst.m_bottom = 955.0f + m_Svy;
 		Draw::Draw(55, &src, &dst, d, 0.0f);
 
@@ -1209,87 +1237,63 @@ void CObjPreparation::Draw()
 		src.m_bottom = 800.0f;
 
 		dst.m_top = 920.0f + m_Svy;
-		dst.m_left = 470.0f + (i * 50);
-		dst.m_right = 520.0f + (i * 50);
+		dst.m_left = 690.0f;
+		dst.m_right = 740.0f;
 		dst.m_bottom = 970.0f + m_Svy;
 		Draw::Draw(55, &src, &dst, d, 0.0f);
-	}
 
-	//▽ウインドウ表示中央上 
-	src.m_top = 0.0f;
-	src.m_left = 1600.0f;
-	src.m_right = 2400.0f;
-	src.m_bottom = 795.0f;
-
-	dst.m_top = 905.0f + m_Svy;
-	dst.m_left = 690.0f;
-	dst.m_right = 740.0f;
-	dst.m_bottom = 955.0f + m_Svy;
-	Draw::Draw(55, &src, &dst, d, 0.0f);
-
-	//▽ウインドウ表示中央下 
-	src.m_top = 5.0f;
-	src.m_left = 2400.0f;
-	src.m_right = 3200.0f;
-	src.m_bottom = 800.0f;
-
-	dst.m_top = 920.0f + m_Svy;
-	dst.m_left = 690.0f;
-	dst.m_right = 740.0f;
-	dst.m_bottom = 970.0f + m_Svy;
-	Draw::Draw(55, &src, &dst, d, 0.0f);
-
-	//▼ウインドウ右上
-	src.m_top = 0.0f;
-	src.m_left = 4000.0f;
-	src.m_right = 4800.0f;
-	src.m_bottom = 795.0f;
-
-	dst.m_top = 905.0f + m_Svy;
-	dst.m_left = 740.0f;
-	dst.m_right = 790.0f;
-	dst.m_bottom = 955.0 + m_Svy;
-	Draw::Draw(55, &src, &dst, d, 0.0f);
-
-	//▼ウインドウ右下
-	src.m_top = 5.0f;
-	src.m_left = 4800.0f;
-	src.m_right = 5600.0f;
-	src.m_bottom = 800.0f;
-
-	dst.m_top = 920.0f + m_Svy;
-	dst.m_left = 740.0f;
-	dst.m_right = 790.0f;
-	dst.m_bottom = 970.0 + m_Svy;
-	Draw::Draw(55, &src, &dst, d, 0.0f);
-
-
-	//▼スペシャル技アイコン集表示
-	for (int i = 0; i < 5; i++)
-	{
+		//▼ウインドウ右上
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 130.0f;
-		src.m_bottom = 130.0f;
+		src.m_left = 4000.0f;
+		src.m_right = 4800.0f;
+		src.m_bottom = 795.0f;
 
-		dst.m_top = 985.0f + m_Svy;
-		dst.m_left = 380.0f + i * 95.0f;
-		dst.m_right = 460.0f + i * 95.0f;
-		dst.m_bottom = 1065.0f + m_Svy;
-		Draw::Draw(57 + i, &src, &dst, Special_icon[i], 0.0f);
+		dst.m_top = 905.0f + m_Svy;
+		dst.m_left = 740.0f;
+		dst.m_right = 790.0f;
+		dst.m_bottom = 955.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+		//▼ウインドウ右下
+		src.m_top = 5.0f;
+		src.m_left = 4800.0f;
+		src.m_right = 5600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 920.0f + m_Svy;
+		dst.m_left = 740.0f;
+		dst.m_right = 790.0f;
+		dst.m_bottom = 970.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+
+		//▼スペシャル技アイコン集表示
+		for (int i = 0; i < 5; i++)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 130.0f;
+			src.m_bottom = 130.0f;
+
+			dst.m_top = 985.0f + m_Svy;
+			dst.m_left = 380.0f + i * 95.0f;
+			dst.m_right = 460.0f + i * 95.0f;
+			dst.m_bottom = 1065.0f + m_Svy;
+			Draw::Draw(57 + i, &src, &dst, Special_icon[i], 0.0f);
+		}
+
+		//▼スペシャル技選択文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 1.0f;
+		src.m_right = 952.0f;
+		src.m_bottom = 111.0f;
+
+		dst.m_top = 915.0f + m_Svy;
+		dst.m_left = 445.0f;
+		dst.m_right = 765.0f;
+		dst.m_bottom = 955.0f + m_Svy;
+		Draw::Draw(68, &src, &dst, d, 0.0f);
 	}
-
-	//▼スペシャル技選択文字画像表示
-	src.m_top = 0.0f;
-	src.m_left = 1.0f;
-	src.m_right = 952.0f;
-	src.m_bottom = 111.0f;
-
-	dst.m_top = 915.0f + m_Svy;
-	dst.m_left = 445.0f;
-	dst.m_right = 765.0f;
-	dst.m_bottom = 955.0f + m_Svy;
-	Draw::Draw(68, &src, &dst, d, 0.0f);
 
 	//ボス出現警告メッセージ
 	//Font::StrDraw(文字列,X軸,Y軸,一文字当たりのサイズ,色);
@@ -2038,6 +2042,12 @@ void CObjPreparation::Enemy_message(int enemy_id)
 //それに対応するスペシャル技詳細説明を表示する。
 void CObjPreparation::Special_message(int special_id)
 {
+	//チュートリアル中は実行しない
+	if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
+	{
+		return;
+	}
+
 	//▼スペシャル技アイコンが黒色(未習得)の時の処理
 	if (m_Special_icon_color[special_id] == 0.0f)
 	{

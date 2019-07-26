@@ -41,6 +41,12 @@ void CObjWarehouse::Init()
 //アクション
 void CObjWarehouse::Action()
 {
+	//チュートリアル説明中は操作不能にする処理
+	if (g_is_operatable == false)
+	{
+		return;
+	}
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -305,41 +311,44 @@ void CObjWarehouse::Action()
 	}
 
 	//倉庫選択
-	if (850 < m_mou_x && m_mou_x < 1250 && 430 < m_mou_y && m_mou_y < 550)
+	if (g_tutorial_progress >= 10)//チュートリアル中は選択不可
 	{
-		m_introduce_f = true;	//施設紹介ウィンドウを表示する
-		m_Ware_color = 1.0f;
-		//左クリックされたらフラグを立て、倉庫ウインドウを開く
-		if (m_mou_l == true)
+		if (850 < m_mou_x && m_mou_x < 1250 && 430 < m_mou_y && m_mou_y < 550)
 		{
-			//クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
+			m_introduce_f = true;	//施設紹介ウィンドウを表示する
+			m_Ware_color = 1.0f;
+			//左クリックされたらフラグを立て、倉庫ウインドウを開く
+			if (m_mou_l == true)
 			{
-				m_key_lf = false;
+				//クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
 
-				m_introduce_f = false;//施設紹介ウィンドウを非表示にする
+					m_introduce_f = false;//施設紹介ウィンドウを非表示にする
 
-				//倉庫をクリックすると、倉庫が開かれる
-				window_start_manage = Warehouse;
+					//倉庫をクリックすると、倉庫が開かれる
+					window_start_manage = Warehouse;
 
-				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetOperatable(false);
-				help->SetAlpha(0.0f);
+					//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
+					help->SetAlpha(0.0f);
 
-				//選択音
-				Audio::Start(1);
+					//選択音
+					Audio::Start(1);
+				}
+			}
+			else
+			{
+				m_key_lf = true;
 			}
 		}
 		else
 		{
-			m_key_lf = true;
+			m_introduce_f = false;//施設紹介ウインドウを非表示にする
+			m_Ware_color = INI_COLOR;
 		}
-	}
-	else
-	{
-		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Ware_color = INI_COLOR;
 	}
 }
 

@@ -19,7 +19,7 @@ using namespace GameL;
 #define SEC_DELAY (120)
 #define THI_DELAY (135)
 #define FOU_DELAY (120)
-#define FIV_DELAY (105)
+#define FIV_DELAY (120)
 #define SIX_DELAY (200)
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
@@ -158,6 +158,11 @@ void CObjPlanet::Init()
 //アクション
 void CObjPlanet::Action()
 {
+	if (g_tutorial_progress == 6)
+	{
+		m_inject_f = true;//チュートリアル惑星も攻撃してくるようにする処理
+	}
+
 	CObjSpecialButton* Special = (CObjSpecialButton*)Objs::GetObj(OBJ_SPECIAL);
 
 	//▼戦闘開始前は戦闘処理(敵惑星の行動等)を実行しないようにする
@@ -192,6 +197,16 @@ void CObjPlanet::Action()
 			if (m_type == 0) {		//主人公の場合
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
+
+				if (g_tutorial_progress == 6)
+				{
+					//ObjMessageのメッセージ進行度を増加させる
+					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+					message->Setprogress(37);
+
+					return;
+				}
+
 				fit->SetEnd();
 
 				//戦闘音楽を破棄し勝利音楽再生
@@ -247,6 +262,7 @@ void CObjPlanet::Action()
 			//プレイヤー惑星、敵惑星のサイズ(現在HPと最大HP)をそれぞれ取得し、勝敗判定を行う
 			//※惑星サイズが大きい方の勝利。
 			//また、サイズ(HP)が高い方の惑星画像が手前に来るようにする
+			//※同HPならプレイヤーの勝利となる。
 			if (m_type == 0) {
 				CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 				if (ene != nullptr)
@@ -584,8 +600,8 @@ void CObjPlanet::Action()
 					int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
 					{
 						//1:上レーン　2:中レーン　3:下レーン
-							{ 3,2,1,1,2,0 }, //0番目
-							{ 2,3,2,3,1,0 }, //1番目
+							{ 1,2,1,3,2,0 }, //0番目
+							{ 2,3,2,2,1,0 }, //1番目
 							{ 1,2,3,2,2,0 }, //2番目
 							{ 2,1,1,2,3,0 }, //3番目
 							{ 1,3,2,2,1,0 }, //4番目
