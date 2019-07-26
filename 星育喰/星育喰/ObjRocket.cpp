@@ -1123,6 +1123,9 @@ void CObjRocket::Action()
 		else if (m_fight == false)
 			m_stop_f = false;
 	}
+
+	if (ButtonU == 5)
+		m_stop_f = false;;
 	
 }
 

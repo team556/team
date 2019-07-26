@@ -228,11 +228,14 @@ void CScenePreparation::InitScene()
 	//説明文戦闘2を読み込み130番に登録
 	Draw::LoadImage(L"説明文戦闘2.png", 132, TEX_SIZE_512);
 
+	//説明文スペシャル技を読み込み130番に登録
+	Draw::LoadImage(L"説明文スペシャル技.png", 133, TEX_SIZE_512);
+
 	//説明文三竦みを読み込み130番に登録
-	Draw::LoadImage(L"説明文三竦み.png", 133, TEX_SIZE_512);
+	Draw::LoadImage(L"説明文三竦み.png", 134, TEX_SIZE_512);
 
 	//説明文戦闘デメリットを読み込み130番に登録
-	Draw::LoadImage(L"説明文戦闘デメリット.png", 134, TEX_SIZE_512);
+	Draw::LoadImage(L"説明文戦闘デメリット.png", 135, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
