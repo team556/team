@@ -112,7 +112,6 @@ void CSceneHome::InitScene()
 	//float v = Audio::VolumeMaster(0);
 	//v = Audio::VolumeMaster((0.0 - v));
 
-
 	//‰¹Šy“Ç‚İ‚İ
 	Audio::LoadAudio(0, L"—û‚ÌR.wav", BACK_MUSIC);
 
