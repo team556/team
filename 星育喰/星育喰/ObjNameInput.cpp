@@ -126,6 +126,7 @@ void CObjNameInput::Action()
 	word[100][100];
 	word_y[100];
 
+	//m_key_fがfalseの時だけ入るようにする
 	if (m_key_f == false)
 	{
 		//名前入力の処理
@@ -879,13 +880,13 @@ void CObjNameInput::Action()
 		//この下にある文がグローバル変数に文字を入れる処理
 		switch (m_cut)
 		{
-		case 3:
+		case 3://入力された値が3の時
 			swprintf_s(g_Player_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
 			break;
-		case 4:
+		case 4://入力された値が4の時
 			swprintf_s(g_Player_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
 			break;
-		case 5:
+		case 5://入力された値が5の時
 			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
 			break;
 		}
@@ -948,10 +949,12 @@ void CObjNameInput::Draw()
 		};
 		for (int i = 0; i < 5; i++)
 		{
+			//文字が入力された時に入力された文字を上に表示する処理
 			if (m_tex_discri[i] != 99)
 			{
 				FontDraw(str[m_tex_discri[i]], 590+(i * 60), 100.0, 60.0f, 60.0f, c, true);
 			}
+			//文字が入力されていないときは（.）を文字の代わりに表示する
 			else if (m_tex_discri[i] == 99)
 			{
 				FontDraw(L"．", 590 + (i * 60), 100.0, 60.0f, 60.0f, c, true);
@@ -960,13 +963,16 @@ void CObjNameInput::Draw()
 
 		m_num_cnt = 0;
 	}
+	//文字クリアをクリックされた時は文字入力された値を初期化する
 	else if(m_tex_clar == false)
 	{
 		for (int i = 0;i < 5;i++)
 		{
 			m_tex_discri[i]=99;
 		}
+		//クリックカウントを0に戻す
 		click_cut=0;
+		//テキストクリアもtrueに戻す
 		m_tex_clar = true;
 		m_cut = 0;
 	}
@@ -1020,7 +1026,7 @@ void CObjNameInput::Draw()
 	dst.m_right = 450.0f;
 	dst.m_bottom = 160.0f;
 	Draw::Draw(4, &src, &dst, c, 0.0f);
-
+	//惑星名って画像がなかったのでめんどくさくなって関数で出している
 	FontDraw(L"名", 450, 100.0, 60.0f, 60.0f, c, true);
 
 
@@ -1173,10 +1179,12 @@ void CObjNameInput::Draw()
 		Draw::Draw(89, &src, &dst, c, 0.0f);
 
 		FontDraw(L"名前を三文字以上入力してください", 375, 325.0, 30.0f, 30.0f, c, false);
+		//描画されるのを止める処理
 		if (m_mou_l == false)
 		{
 			m_f = true;
 		}
+		//もう一回クリックするとすべてが消える
 		if (m_mou_l == true&&m_f==true)
 		{
 			m_finalcheck_f = false;

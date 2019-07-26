@@ -68,7 +68,7 @@ int g_gus_num		= 0;
 
 int g_Challenge_enemy = 0;//デバッグ。0に戻すべし。
 bool g_help_f = false;
-int  g_tutorial_progress = 8;//デバッグ。チュートリアル完成後、0にするように。
+int  g_tutorial_progress = 0;//デバッグ。チュートリアル完成後、0にするように。
 bool g_is_operatable = true;
 
 //イニシャライズ

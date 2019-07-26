@@ -285,6 +285,8 @@ void CSceneFight::InitScene()
 	//矢印画像を読み込み191番に登録
 	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
 
+	//Thank You for Playing!!!読み込み187番に登録
+	Draw::LoadImage(L"Thank You for Playing!!!.png", 187, TEX_SIZE_512);
 
 	//ポッドレーザー読み込み123番に登録
 	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);

@@ -103,9 +103,6 @@ void CObjFightClear::Init()
 		m_Game_Clear_f = true;
 	}
 
-	//デバッグ
-	//m_Game_Clear_f = true;
-
 	//▼獲得したものをグローバル変数に代入する
 	g_Remain_num += m_people;		//獲得住民数を加算
 	g_Player_max_size += m_large;	//獲得サイズ(HP)数を加算
@@ -246,7 +243,7 @@ void CObjFightClear::Action()
 			m_mou_l = Input::GetMouButtonL();
 
 			
-			if (m_clear_a >= 2.0f)
+			if (m_clear_a >= 3.0f)
 			{
 				Scene::SetScene(new CSceneGameClear());	//シーン移行
 			}
@@ -1146,6 +1143,23 @@ void CObjFightClear::Draw()
 	dst.m_right = 1200.0f;
 	dst.m_bottom = 700.0f;
 	Draw::Draw(20, &src, &dst, blackout, 0.0f);
+
+
+
+	if (g_tutorial_progress == 31)
+	{
+		//▼Thank You for Playing!!!
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 2875.0f;
+		src.m_bottom = 375.0f;
+
+		dst.m_top = 50.0f;
+		dst.m_left = 50.0f;
+		dst.m_right = 1150.0f;
+		dst.m_bottom = 650.0f;
+		Draw::Draw(187, &src, &dst, clear[0], 0.0f);
+	}	
 }
 
 
