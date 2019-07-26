@@ -37,9 +37,9 @@ private:
 	bool m_key_f;
 	int m_num_cnt;
 
-	wchar_t g_test[5];
+	wchar_t g_Pleyr_Name[6];
 
 	int m_c_cut; 
 
-	char  m_c[11];
+	wchar_t  m_c[6];
 };
