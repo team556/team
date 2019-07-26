@@ -12,6 +12,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+wchar_t g_Player_Name[6];
+
 //イニシャライズ
 void CObjNameInput::Init()
 {
@@ -881,13 +883,13 @@ void CObjNameInput::Action()
 		switch (m_cut)
 		{
 		case 3:
-			swprintf_s(g_Pleyr_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
+			swprintf_s(g_Player_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
 			break;
 		case 4:
-			swprintf_s(g_Pleyr_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
+			swprintf_s(g_Player_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
 			break;
 		case 5:
-			swprintf_s(g_Pleyr_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
+			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
 			break;
 		}
 		Scene::SetScene(new CSceneTraining());//育成画面へシーン移行 
