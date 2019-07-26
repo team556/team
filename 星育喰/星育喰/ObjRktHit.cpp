@@ -49,7 +49,7 @@ void CObjRktHit::Init()
 	m_stop_f = false;
 	m_del_f = false;
 	m_fight = false;
-	m_audio_f = false;
+	//m_audio_f = false;
 
 	m_pod_nam = (g_Power_num + g_Defense_num + g_Speed_num + g_Balance_num) / 1200;//各ポッドの住民総数
 
@@ -114,6 +114,8 @@ void CObjRktHit::Action()
 
 	if (m_fight == true) {
 		m_ani_time++;								//アニメーション処理
+		if(m_ani_frame == 0 && m_ani_time == 1)
+			Audio::Start(11);
 		if (m_ani_time == 6) {		//フレーム切り替えタイミング
 			m_ani_time = 0;
 			m_ani_frame++;
@@ -122,15 +124,15 @@ void CObjRktHit::Action()
 				m_fight = false;
 			}
 		}
-		if (m_audio_f == false) {
+		/*if (m_audio_f == false) {
 			Audio::Start(11);
 			m_audio_f = true;
-		}
+		}*/
 	}
 	else {
 		m_ani_time = 0;
 		m_ani_frame = 0;
-		m_audio_f = false;
+		//m_audio_f = false;
 	}
 	
 

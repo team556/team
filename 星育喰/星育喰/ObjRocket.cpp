@@ -557,6 +557,7 @@ void CObjRocket::Action()
 		hit->SetInvincibility(true);		//HitBoxの判定無効
 		if (m_ani == 20 && m_bom == 0)
 		{
+			
 			//[スペシャル技:ステロイド投与]発動中に実行
 			//ポッドが破壊される度にその数をカウントする
 			//※戦闘終了時は実行しない
@@ -1070,6 +1071,7 @@ void CObjRocket::Action()
 			Audio::Start(5);
 			m_del = true;
 			hit->SetInvincibility(true);//HitBoxの判定無効
+			m_podhp = 1;
 		}
 	}
 
