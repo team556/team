@@ -4,6 +4,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjRktHit.h"
@@ -48,6 +49,7 @@ void CObjRktHit::Init()
 	m_stop_f = false;
 	m_del_f = false;
 	m_fight = false;
+	//m_audio_f = false;
 
 	m_pod_nam = (g_Power_num + g_Defense_num + g_Speed_num + g_Balance_num) / 1200;//各ポッドの住民総数
 
@@ -57,16 +59,16 @@ void CObjRktHit::Init()
 		m_get_line = fit->GetLine();//選択Line取得
 
 		switch (m_pnam) {
-		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT, 1); break;
-		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT1, 1); break;
-		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT2, 1); break;
-		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT3, 1); break;
-		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT4, 1); break;
-		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT5, 1); break;
-		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT6, 1); break;
-		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT7, 1); break;
-		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT8, 1); break;
-		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_RKTHIT9, 1); break;
+		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT, 1); break;
+		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT1, 1); break;
+		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT2, 1); break;
+		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT3, 1); break;
+		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT4, 1); break;
+		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT5, 1); break;
+		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT6, 1); break;
+		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT7, 1); break;
+		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT8, 1); break;
+		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT9, 1); break;
 		}
 	}
 	else
@@ -75,16 +77,16 @@ void CObjRktHit::Init()
 		m_get_line = ene->GetLine();//選択Line取得
 
 		switch (m_enam) {
-		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT, 1); break;
-		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT1, 1); break;
-		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT2, 1); break;
-		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT3, 1); break;
-		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT4, 1); break;
-		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT5, 1); break;
-		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT6, 1); break;
-		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT7, 1); break;
-		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT8, 1); break;
-		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_NULL, OBJ_eRKTHIT9, 1); break;
+		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT, 1); break;
+		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT1, 1); break;
+		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT2, 1); break;
+		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT3, 1); break;
+		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT4, 1); break;
+		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT5, 1); break;
+		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT6, 1); break;
+		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT7, 1); break;
+		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT8, 1); break;
+		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT9, 1); break;
 		}
 	}
 
@@ -112,7 +114,9 @@ void CObjRktHit::Action()
 
 	if (m_fight == true) {
 		m_ani_time++;								//アニメーション処理
-		if (m_ani_time == 5) {		//フレーム切り替えタイミング
+		if(m_ani_frame == 0 && m_ani_time == 1)
+			Audio::Start(11);
+		if (m_ani_time == 6) {		//フレーム切り替えタイミング
 			m_ani_time = 0;
 			m_ani_frame++;
 			if (m_ani_frame == 8) {	//フレームループ値
@@ -120,6 +124,15 @@ void CObjRktHit::Action()
 				m_fight = false;
 			}
 		}
+		/*if (m_audio_f == false) {
+			Audio::Start(11);
+			m_audio_f = true;
+		}*/
+	}
+	else {
+		m_ani_time = 0;
+		m_ani_frame = 0;
+		//m_audio_f = false;
 	}
 	
 
@@ -158,6 +171,21 @@ void CObjRktHit::Action()
 		}
 	}
 
+	//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+	//HPの状態に関わらず消滅処理へと移行する
+	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
+		m_type == false)										//プレイヤーの射出したポッドである場合、実行
+	{
+		m_del_f = true;				//消滅処理フラグON
+	}
+
+	//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+	//HPの状態に関わらず消滅処理へと移行する
+	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 0) != nullptr && //プレイヤーのスペシャル技にHITかつ、
+		m_type == true)											//エネミーの射出したポッドである場合、実行
+	{
+		m_del_f = true;				//消滅処理フラグON
+	}
 	
 	if (m_type == false && hit->CheckElementHit(ELEMENT_NULL) == true)		//thisが味方 かつHitBoxに当たった時
 	{
@@ -339,7 +367,7 @@ void CObjRktHit::Draw()
 	src.m_bottom= 32.0f;
 	//表示位置
 	
-	dst.m_top    = m_y;
+	dst.m_top    = m_y +22.0f;
 	dst.m_left   = m_x;
 	dst.m_right  = m_x + 50.0f;
 	dst.m_bottom = m_y + 50.0f;

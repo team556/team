@@ -91,6 +91,7 @@ enum HIT_ELEMENTS
 	ELEMENT_POD7,
 	ELEMENT_POD8,
 	ELEMENT_POD9,
+	ELEMENT_RKT,
 	ELEMENT_ENEMYPOD,
 	ELEMENT_ENEMYPOD1,
 	ELEMENT_ENEMYPOD2,
@@ -101,6 +102,7 @@ enum HIT_ELEMENTS
 	ELEMENT_ENEMYPOD7,
 	ELEMENT_ENEMYPOD8,
 	ELEMENT_ENEMYPOD9,
+	ELEMENT_ENEMYRKT,
 	ELEMENT_P_MIS,		//プレイヤーと
 	ELEMENT_E_MIS,		//敵のミサイル
 	ELEMENT_LINE,
@@ -149,7 +151,7 @@ extern float g_Recast_time;			//ミサイルのリキャストタイム用
 //extern int g_E_Planet_damage;					//
 extern float g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
 //extern int g_Enemy_Pod_LV;			//テスト用敵ポッドレベル
-extern char g_test[5];
+extern wchar_t g_Player_Name[6];
 //--------------------------------------------------資源----
 extern int g_Iron_num;				//鉄の所持数
 extern int g_Wood_num;				//木の所持数

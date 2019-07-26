@@ -207,7 +207,7 @@ void CObjRocket::Init()
 		}
 		else if (ButtonUP == 5)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_POD, OBJ_ROCKET, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_RKT, OBJ_ROCKET, 1);
 		}
 		if (ButtonUP != 5) {
 			CObjRktHit* RH = new CObjRktHit(m_x, m_y, m_type);	//ヒットボックス用Obj作成
@@ -294,7 +294,7 @@ void CObjRocket::Init()
 		}
 		else if (ButtonUE == 5)
 		{
-			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYPOD, OBJ_ROCKET, 1);
+			Hits::SetHitBox(this, m_x, m_y, m_size, m_size, ELEMENT_ENEMYRKT, OBJ_ROCKET, 1);
 		}
 		if (e_pnam == 9)
 			e_pnam = 0;
@@ -446,7 +446,7 @@ void CObjRocket::Action()
 		if (ButtonU == 5) {		//ロケット更新
 			hit->SetPos(m_x, m_y,m_size, m_size);		//HitBox更新
 			if (m_fight == true)
-				hit->SetPos(m_x + m_size * m_schange, m_y + m_size * m_schange, m_size, m_size);//戦闘時変更
+				hit->SetPos(m_x + (m_size * (m_schange - 1)), m_y, m_size, m_size);//戦闘時変更
 		}
 		else
 		{
@@ -459,7 +459,7 @@ void CObjRocket::Action()
 		if (ButtonU == 5) {		//ロケット更新
 			hit->SetPos(m_x, m_y, m_size, m_size);		//HitBox更新
 			if (m_fight == true)
-				hit->SetPos(m_x - m_size * m_schange, m_y - m_size * m_schange, m_size, m_size);//戦闘時変更
+				hit->SetPos(m_x - (m_size * (m_schange - 1)), m_y, m_size, m_size);//戦闘時変更
 		}
 		else
 		{
@@ -471,8 +471,8 @@ void CObjRocket::Action()
 
 	if (m_fight == true)
 	{
-		if(m_atk_cnt == 0 && ButtonU != 5)
-			Audio::Start(11);
+		/*if(m_atk_cnt == 0 && ButtonU != 5)
+			Audio::Start(11);*/
 		if (m_atk_cnt > m_atk_cnt_max)//maxを超えた時
 		{
 			m_atk_cnt = 0;//0にリセット
@@ -557,6 +557,7 @@ void CObjRocket::Action()
 		hit->SetInvincibility(true);		//HitBoxの判定無効
 		if (m_ani == 20 && m_bom == 0)
 		{
+			
 			//[スペシャル技:ステロイド投与]発動中に実行
 			//ポッドが破壊される度にその数をカウントする
 			//※戦闘終了時は実行しない
@@ -594,7 +595,7 @@ void CObjRocket::Action()
 						(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
 						(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
 						(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
-						(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
+						(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9 || ButtonU == 5))
 					{
 						m_fight = true;
 						/*if ()
@@ -612,7 +613,7 @@ void CObjRocket::Action()
 						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
 						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
 						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
-						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
+						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9 || ButtonU == 5))
 					{
 						m_fight = true;
 						/*if ()
@@ -670,7 +671,8 @@ void CObjRocket::Action()
 			hit->CheckElementHit(ELEMENT_POD6) == true || 
 			hit->CheckElementHit(ELEMENT_POD7) == true || 
 			hit->CheckElementHit(ELEMENT_POD8) == true || 
-			hit->CheckElementHit(ELEMENT_POD9) == true )&& m_type != 0)
+			hit->CheckElementHit(ELEMENT_POD9) == true ||
+			hit->CheckElementHit(ELEMENT_RKT) == true)&& m_type != 0)
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
@@ -878,14 +880,10 @@ void CObjRocket::Action()
 				Audio::Start(5);
 			}
 		}
-		//else if (m_type != 0 && m_stop_cnt == 10) {	//敵かつ、停止時
-		//	m_fight = false;
-		//	m_stop_cnt = 0;
-		//}
-		//else if(hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
-			//m_stop_f = false;
-		else if(m_type != 0)
+		else if (m_type != 0)
+		{
 			m_stop_f = false;
+		}
 
 		//プレイヤーのポッドが敵のポッドとぶつかった時の判定
 		//※プレイヤーがダメージを受ける時の処理
@@ -898,7 +896,8 @@ void CObjRocket::Action()
 			hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true ||
 			hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true ||
 			hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true ||
-			hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true) && m_type == 0)
+			hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true ||
+			hit->CheckElementHit(ELEMENT_ENEMYRKT) == true) && m_type == 0)
 		{
 			m_fight = true;	//衝突中フラグＯＮ
 			m_stop_f = true;
@@ -1062,20 +1061,17 @@ void CObjRocket::Action()
 			}
 			
 		}
-		//else if (m_type == 0 && m_stop_cnt == 10) {	//味方かつ、止まってる時
-		//	m_fight = false;
-		//	m_stop_cnt = 0;
-		//
-		//}
-		//else if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)
-			//m_stop_f = false;
 		else if (m_type == 0)
+		{
 			m_stop_f = false;
+		}
 
 		if (m_podhp <= 0)//両ポッドHPでの削除
 		{
+			Audio::Start(5);
 			m_del = true;
 			hit->SetInvincibility(true);//HitBoxの判定無効
+			m_podhp = 1;
 		}
 	}
 
@@ -1127,6 +1123,9 @@ void CObjRocket::Action()
 		else if (m_fight == false)
 			m_stop_f = false;
 	}
+
+	if (ButtonU == 5)
+		m_stop_f = false;;
 	
 }
 

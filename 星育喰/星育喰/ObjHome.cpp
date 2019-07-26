@@ -617,6 +617,9 @@ void CObjHome::Draw()
 		Draw::Draw(7, &src, &dst, d, 0.0f);
 
 		//▽フォント画像表示
+		//プレイヤー名の表示
+		FontDraw(g_Player_Name, m_mou_x + 33.0f, m_mou_y - 113.0f, 30.0f, 25.0f, d, false);
+
 		//惑星HP文字画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;

@@ -234,7 +234,7 @@ void CObjInstitute::Init()
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
 	m_Facility_next_Size_num[0] = 80.0f;	//レベルが1の時の必要サイズ(HP)
-	m_Facility_next_Size_num[1] = 200.0f;	//レベルが2の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 250.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");//レベルが1の時の必要素材名
@@ -640,23 +640,23 @@ void CObjInstitute::Action()
 						g_Bal_equip_Level = Equip_Lvup_check(3, g_Bal_equip_Level, g_Bal_equip_Lv_achieve);
 						g_Pod_equip_Level = Equip_Lvup_check(4, g_Pod_equip_Level, g_Pod_equip_Lv_achieve);
 
-						//振り分けボタン音
-						Audio::Start(1);
-					}
-					else
-					{
-						m_con_alo_f = true;//連続振り分けフラグON
-						m_next_time--;//次の住民振り分けまでの時間減少処理
-						m_key_lf = true;//キーフラグON
-					}
+					//振り分けボタン音
+					Audio::Start(5);
 				}
 				else
 				{
-					m_con_alo_f = false;//連続振り分けフラグOFF
-					m_next_time = 0;//次の住民振り分けまでの時間を初期化
+					m_con_alo_f = true;//連続振り分けフラグON
+					m_next_time--;//次の住民振り分けまでの時間減少処理
 					m_key_lf = true;//キーフラグON
 				}
 			}
+			else
+			{
+				m_con_alo_f = false;//連続振り分けフラグOFF
+				m_next_time = 0;//次の住民振り分けまでの時間を初期化
+				m_key_lf = true;//キーフラグON
+			}
+		}
 
 			//研究員住民振り分けDOWN
 			else if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
@@ -2693,7 +2693,7 @@ void CObjInstitute::Draw()
 				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 1304.0f;
-				src.m_bottom = 112.0f;
+				src.m_bottom = 110.0f;
 
 				dst.m_top = 300.0f;
 				dst.m_left = 347.0f;

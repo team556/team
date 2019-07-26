@@ -98,14 +98,14 @@ void CScenePreparation::InitScene()
 	//戦闘画面移行演出(黒星)を読み込み18番に登録
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み21番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 21, TEX_SIZE_512);
+	////ヘルプボタンを読み込み21番に登録
+	//Draw::LoadImage(L"ヘルプボタン.png", 21, TEX_SIZE_512);
 
-	//ヘルプ画像を読み込み22番に登録
-	Draw::LoadImage(L"ヘルプ戦闘準備.png", 22, TEX_SIZE_512);
+	////ヘルプ画像を読み込み22番に登録
+	//Draw::LoadImage(L"ヘルプ戦闘準備.png", 22, TEX_SIZE_512);
 
-	//ヘルプ画像を読み込み23番に登録
-	Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
+	////ヘルプ画像を読み込み23番に登録
+	//Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
 	
 	//ページを進めるボタンを読み込み46番に登録
 	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
@@ -215,6 +215,27 @@ void CScenePreparation::InitScene()
 
 	//モアイ正面画像を読み込み128番に登録
 	Draw::LoadImage(L"モアイ正面.png", 128, TEX_SIZE_512);
+
+	//ヘルプボタンを読み込み129番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 129, TEX_SIZE_512);
+
+	//説明文準備画面を読み込み130番に登録
+	Draw::LoadImage(L"説明文準備画面.png", 130, TEX_SIZE_512);
+
+	//説明文戦闘1を読み込み131番に登録
+	Draw::LoadImage(L"説明文戦闘1.png", 131, TEX_SIZE_512);
+
+	//説明文戦闘2を読み込み130番に登録
+	Draw::LoadImage(L"説明文戦闘2.png", 132, TEX_SIZE_512);
+
+	//説明文スペシャル技を読み込み130番に登録
+	Draw::LoadImage(L"説明文スペシャル技.png", 133, TEX_SIZE_512);
+
+	//説明文三竦みを読み込み130番に登録
+	Draw::LoadImage(L"説明文三竦み.png", 134, TEX_SIZE_512);
+
+	//説明文戦闘デメリットを読み込み130番に登録
+	Draw::LoadImage(L"説明文戦闘デメリット.png", 135, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);

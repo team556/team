@@ -358,8 +358,9 @@ void CObjPlanet::Action()
 		if (ene != nullptr) {
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
 			{
-				m_px -= 2.2f;
-				m_size -= 1.5f;
+				m_px -= 2.3f;
+				if(m_size >= -120.0f)
+					m_size -= 1.8f;
 				if (m_py < 365)
 					m_vy += 0.1f;
 				else
@@ -379,7 +380,9 @@ void CObjPlanet::Action()
 
 	//▼ダメージ処理
 	//▽プレイヤーのダメージ処理(ミサイルポッドHIT時)
-	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true) && (m_type == 0) && (m_size > 0))
+	if ((hit->CheckElementHit(ELEMENT_ENEMYPOD) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD1) || hit->CheckElementHit(ELEMENT_ENEMYPOD2) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD3) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD4) == true
+		|| hit->CheckElementHit(ELEMENT_ENEMYPOD5) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD6) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD7) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD8) == true || hit->CheckElementHit(ELEMENT_ENEMYPOD9) == true || hit->CheckElementHit(ELEMENT_ENEMYRKT) == true) 
+		&& (m_type == 0) && (m_size > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
 		if (m_invincible_f == false)
@@ -417,7 +420,7 @@ void CObjPlanet::Action()
 	}
 	//▽エネミーのダメージ処理(ミサイルポッドHIT時)
 	else if ((hit->CheckElementHit(ELEMENT_POD) == true || hit->CheckElementHit(ELEMENT_POD1) == true || hit->CheckElementHit(ELEMENT_POD2) == true || hit->CheckElementHit(ELEMENT_POD3) == true || hit->CheckElementHit(ELEMENT_POD4) == true
-		|| hit->CheckElementHit(ELEMENT_POD5) == true || hit->CheckElementHit(ELEMENT_POD6) == true || hit->CheckElementHit(ELEMENT_POD7) == true || hit->CheckElementHit(ELEMENT_POD8) == true || hit->CheckElementHit(ELEMENT_POD9) == true)
+		|| hit->CheckElementHit(ELEMENT_POD5) == true || hit->CheckElementHit(ELEMENT_POD6) == true || hit->CheckElementHit(ELEMENT_POD7) == true || hit->CheckElementHit(ELEMENT_POD8) == true || hit->CheckElementHit(ELEMENT_POD9) == true || hit->CheckElementHit(ELEMENT_RKT) == true)
 		&& (m_type != 0) && (m_size > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす

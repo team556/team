@@ -345,7 +345,6 @@ void CObjTraining::Facility_message(int Facility_Level)
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-
 	//▼LvUP条件　所持必要文字画像表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;

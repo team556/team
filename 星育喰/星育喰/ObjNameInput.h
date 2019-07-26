@@ -5,6 +5,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+
+
 //オブジェクト：タイトル
 class CObjNameInput :public CObj
 {
@@ -37,9 +39,8 @@ private:
 	bool m_key_f;
 	int m_num_cnt;
 
-	wchar_t g_test[5];
 
 	int m_c_cut; 
 
-	char  m_c[11];
+	wchar_t  m_c[6];
 };

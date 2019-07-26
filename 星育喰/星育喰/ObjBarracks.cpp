@@ -421,7 +421,7 @@ void CObjBarracks::Action()
 					g_Power_num = Allocation(g_Power_num, +1);//振り分け関数を呼び出す
 
 					//振り分けボタン音
-					Audio::Start(1);
+					Audio::Start(5);
 				}
 				else
 				{
@@ -470,7 +470,7 @@ void CObjBarracks::Action()
 					g_Defense_num = Allocation(g_Defense_num, +1);//振り分け関数を呼び出す
 
 					//振り分けボタン音
-					Audio::Start(1);
+					Audio::Start(5);
 				}
 				else
 				{
@@ -519,7 +519,7 @@ void CObjBarracks::Action()
 					g_Speed_num = Allocation(g_Speed_num, +1);//振り分け関数を呼び出す
 
 					//振り分けボタン音
-					Audio::Start(1);
+					Audio::Start(5);
 				}
 				else
 				{
@@ -568,7 +568,7 @@ void CObjBarracks::Action()
 					g_Balance_num = Allocation(g_Balance_num, +1);//振り分け関数を呼び出す
 
 					//振り分けボタン音
-					Audio::Start(1);
+					Audio::Start(5);
 				}
 				else
 				{
