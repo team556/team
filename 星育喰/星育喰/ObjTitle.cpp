@@ -128,7 +128,7 @@ void CObjTitle::Init()
 
 	for (int i = 0; i < 4; i++)
 	{
-		g_destroy_progress[i] = true;
+		g_destroy_progress[i] = false;
 	}
 
 	g_Bar_Level = 1;
