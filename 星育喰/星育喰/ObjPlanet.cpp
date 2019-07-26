@@ -357,8 +357,9 @@ void CObjPlanet::Action()
 		if (ene != nullptr) {
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//“G‚ÌXÀ•W‚æ‚èŽ©˜f¯‚ª‘å‚«‚­‚È‚é‚ÆˆÚ“®‚ðŽ~‚ß‚é
 			{
-				m_px -= 2.2f;
-				m_size -= 1.5f;
+				m_px -= 2.3f;
+				if(m_size <= 0)
+					m_size -= 1.5f;
 				if (m_py < 365)
 					m_vy += 0.1f;
 				else
