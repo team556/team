@@ -203,15 +203,16 @@ void CObjPlanet::Action()
 					//ObjMessage‚ÌƒƒbƒZ[ƒWis“x‚ð‘‰Á‚³‚¹‚é
 					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
 					message->Setprogress(37);
-
-					return;
 				}
 
-				fit->SetEnd();
+				if (g_tutorial_progress != 6)
+				{
+					fit->SetEnd();
 
-				//í“¬‰¹Šy‚ð”jŠü‚µŸ—˜‰¹ŠyÄ¶
-				Audio::Stop(0);
-				Audio::Start(4);
+					//í“¬‰¹Šy‚ð”jŠü‚µŸ—˜‰¹ŠyÄ¶
+					Audio::Stop(0);
+					Audio::Start(4);
+				}
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//“G‚Ìê‡
@@ -358,7 +359,7 @@ void CObjPlanet::Action()
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//“G‚ÌXÀ•W‚æ‚èŽ©˜f¯‚ª‘å‚«‚­‚È‚é‚ÆˆÚ“®‚ðŽ~‚ß‚é
 			{
 				m_px -= 2.3f;
-				if(m_size >= -60.0f)
+				if(m_size >= -120.0f)
 					m_size -= 1.8f;
 				if (m_py < 365)
 					m_vy += 0.1f;

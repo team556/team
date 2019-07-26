@@ -59,16 +59,16 @@ void CObjRktHit::Init()
 		m_get_line = fit->GetLine();//‘I‘ðLineŽæ“¾
 
 		switch (m_pnam) {
-		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT, 1); break;
-		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT1, 1); break;
-		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT2, 1); break;
-		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT3, 1); break;
-		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT4, 1); break;
-		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT5, 1); break;
-		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT6, 1); break;
-		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT7, 1); break;
-		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT8, 1); break;
-		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 0.2, ELEMENT_NULL, OBJ_RKTHIT9, 1); break;
+		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT, 1); break;
+		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT1, 1); break;
+		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT2, 1); break;
+		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT3, 1); break;
+		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT4, 1); break;
+		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT5, 1); break;
+		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT6, 1); break;
+		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT7, 1); break;
+		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT8, 1); break;
+		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size - 1, ELEMENT_NULL, OBJ_RKTHIT9, 1); break;
 		}
 	}
 	else
@@ -77,16 +77,16 @@ void CObjRktHit::Init()
 		m_get_line = ene->GetLine();//‘I‘ðLineŽæ“¾
 
 		switch (m_enam) {
-		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT, 1); break;
-		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT1, 1); break;
-		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT2, 1); break;
-		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT3, 1); break;
-		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT4, 1); break;
-		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT5, 1); break;
-		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT6, 1); break;
-		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT7, 1); break;
-		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT8, 1); break;
-		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 0.2, ELEMENT_NULL, OBJ_eRKTHIT9, 1); break;
+		case 0:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT, 1); break;
+		case 1:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT1, 1); break;
+		case 2:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT2, 1); break;
+		case 3:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT3, 1); break;
+		case 4:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT4, 1); break;
+		case 5:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT5, 1); break;
+		case 6:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT6, 1); break;
+		case 7:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT7, 1); break;
+		case 8:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT8, 1); break;
+		case 9:Hits::SetHitBox(this, m_x, m_y, m_size, m_size + 1, ELEMENT_NULL, OBJ_eRKTHIT9, 1); break;
 		}
 	}
 

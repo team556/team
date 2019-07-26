@@ -34,11 +34,13 @@ private:
 	bool m_f;
 	int m_cut;
 	bool m_finalcheck_f;
+	bool m_finalcheck_f_yes;	//
 	int m_Yes_Button_color;
 	int m_No_Button_color;
 	bool m_key_f;
 	int m_num_cnt;
 
+	float m_alpha;
 
 	int m_c_cut; 
 
