@@ -203,15 +203,16 @@ void CObjPlanet::Action()
 					//ObjMessageのメッセージ進行度を増加させる
 					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
 					message->Setprogress(37);
-
-					return;
 				}
 
-				fit->SetEnd();
+				if (g_tutorial_progress != 6)
+				{
+					fit->SetEnd();
 
-				//戦闘音楽を破棄し勝利音楽再生
-				Audio::Stop(0);
-				Audio::Start(4);
+					//戦闘音楽を破棄し勝利音楽再生
+					Audio::Stop(0);
+					Audio::Start(4);
+				}
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合

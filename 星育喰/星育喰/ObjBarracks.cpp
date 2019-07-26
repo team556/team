@@ -811,7 +811,7 @@ void CObjBarracks::Action()
 	//dst.m_bottom = 630.0f;
 
 	//兵舎選択範囲
-	if (g_tutorial_progress >= 9)//チュートリアル中は選択不可
+	if (g_tutorial_progress == 12 || g_tutorial_progress >= 8)//チュートリアル中は選択不可
 	{
 		if (
 			((g_Bar_Level == 1) && (450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520)) ||		//兵舎レベル1の時の判定処理
@@ -826,7 +826,7 @@ void CObjBarracks::Action()
 			if (m_mou_l == true)
 			{
 				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				if (m_key_lf == true || g_tutorial_progress == 12)
 				{
 					m_key_lf = false;
 
