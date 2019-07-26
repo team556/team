@@ -29,7 +29,6 @@ void CObjNameInput::Init()
 	m_No_Button_color =0;
 	m_num_cnt = 0;
 	m_c_cut = 0;
-	g_Pleyer_Name[6];
 	//クリックされた時の場所
 	for (int i = 0; i < 5; i++)
 	{
@@ -849,11 +848,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[45];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
-					//m_c[m_cut] = L'ん';
-
-					char *tmp = "ん";
-					memcpy(&m_c[m_cut], tmp, 2);
-
+					m_c[m_cut] = L'ん';
 					m_f = true;
 					m_cut++;
 				}
