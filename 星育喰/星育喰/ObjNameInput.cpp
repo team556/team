@@ -7,7 +7,7 @@
 
 #include "GameHead.h"
 #include "ObjNameInput.h"
-#include"UtilityModule.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -29,6 +29,7 @@ void CObjNameInput::Init()
 	m_No_Button_color =0;
 	m_num_cnt = 0;
 	m_c_cut = 0;
+	g_Pleyer_Name[6];
 	//クリックされた時の場所
 	for (int i = 0; i < 5; i++)
 	{
@@ -892,7 +893,7 @@ void CObjNameInput::Action()
 			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
 			break;
 		}
-		Scene::SetScene(new CSceneTraining());//育成画面へシーン移行 
+		Scene::SetScene(new CSceneHome());//育成画面へシーン移行 
 	}
 	//最終確認ウィンドウのいいえを押したときの処理
 	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
@@ -1133,6 +1134,7 @@ void CObjNameInput::Draw()
 				m_c_cut++;
 			}
 		}
+		
 		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
 	//決定ボタンをおした時m_cutが三以下なら警告文を出させる

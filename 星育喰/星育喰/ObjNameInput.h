@@ -39,7 +39,6 @@ private:
 	bool m_key_f;
 	int m_num_cnt;
 
-	
 
 	int m_c_cut; 
 
