@@ -233,11 +233,11 @@ void CSceneTraining::InitScene()
 	//ページを進めるボタンを読み込み46番に登録
 	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み47番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 47, TEX_SIZE_512);
+	////ヘルプボタンを読み込み47番に登録
+	//Draw::LoadImage(L"ヘルプボタン.png", 47, TEX_SIZE_512);
 
-	//ヘルプ画像を読み込み48番に登録
-	Draw::LoadImage(L"ヘルプ育成画面.png", 48, TEX_SIZE_512);
+	////ヘルプ画像を読み込み48番に登録
+	//Draw::LoadImage(L"ヘルプ育成画面.png", 48, TEX_SIZE_512);
 
 	//ポッドコア赤Lv1の画像を読み込み49番に登録
 	Draw::LoadImage(L"ポッドコア赤Lv1.png", 49, TEX_SIZE_512);
@@ -475,6 +475,30 @@ void CSceneTraining::InitScene()
 
 	//ポーズ画面背景(画面暗転用)を読み込み135番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 135, TEX_SIZE_512);
+
+	//ヘルプボタンを読み込み136番に登録
+	Draw::LoadImage(L"ヘルプボタン.png", 136, TEX_SIZE_512);
+
+	//説明文育成画面を134番に登録
+	Draw::LoadImage(L"説明文育成画面.png", 137, TEX_SIZE_512);
+
+	//説明文研究所を134番に登録
+	Draw::LoadImage(L"説明文研究所.png", 138, TEX_SIZE_512);
+
+	//説明文ミサイル画面を134番に登録
+	Draw::LoadImage(L"説明文ミサイル画面.png", 139, TEX_SIZE_512);
+
+	//説明文コアについてを134番に登録
+	Draw::LoadImage(L"説明文コアについて.png", 140, TEX_SIZE_512);
+
+	//説明文ポッドについてを134番に登録
+	Draw::LoadImage(L"説明文ポッドについて.png", 141, TEX_SIZE_512);
+
+	//説明文兵舎を134番に登録
+	Draw::LoadImage(L"説明文兵舎.png", 142, TEX_SIZE_512);
+
+	//説明文倉庫を134番に登録
+	Draw::LoadImage(L"説明文倉庫.png", 143, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);

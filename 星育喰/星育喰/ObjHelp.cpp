@@ -52,8 +52,8 @@ void CObjHelp::Init()
 	}
 	else if (m_Scene_num == 2)//育成	2
 	{
-		m_page_max = 1;
-		m_help_reg_num = 47;
+		m_page_max = 7;
+		m_help_reg_num = 136;
 		m_Back_reg_num = 1;
 
 		//ついでにヘルプボタン表示処理を1回のみ行うように準備しておく
@@ -61,8 +61,8 @@ void CObjHelp::Init()
 	}
 	else  //(m_Scene_num == 3)//準備	3
 	{
-		m_page_max = 2;
-		m_help_reg_num = 21;
+		m_page_max = 5;
+		m_help_reg_num = 129;
 		m_Back_reg_num = 56;
 
 		//ついでにこのタイミングでシーン移行演出用の座標変更等もしておく
@@ -343,10 +343,10 @@ void CObjHelp::Draw()
 	if (g_help_f == true)
 	{
 		//▼ヘルプ画像表示
-		src.m_top   = 150.0f;
+		src.m_top   = 152.0f;
 		src.m_left  =   0.0f;
 		src.m_right =1280.0f;
-		src.m_bottom= 870.0f;
+		src.m_bottom= 868.0f;
 			
 		dst.m_top   =  20.0f;
 		dst.m_left  =  20.0f;
