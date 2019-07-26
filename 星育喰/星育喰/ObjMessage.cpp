@@ -1139,7 +1139,7 @@ void CObjMessage::Action()
 		else if (m_Scene_id == 30 && m_progress == 4)
 		{
 			g_is_operatable = true;//操作可能に
-			//m_black_out_f = false;//画面明転
+			m_black_out_f = false;//画面明転
 
 			g_tutorial_progress = 31;//エンディングへ。
 		}
