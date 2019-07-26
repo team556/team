@@ -45,6 +45,8 @@ private:
 
 	bool m_tuto_f;//二回以上実行されないようにする為のフラグ(チュートリアルにて使用)
 
+	bool m_end_f;//エンディングフラグ
+
 	//int m_cnt;		//カウント
 	//int m_cnt_max;	//カウントマックス
 

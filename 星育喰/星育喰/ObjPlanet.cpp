@@ -203,15 +203,16 @@ void CObjPlanet::Action()
 					//ObjMessageのメッセージ進行度を増加させる
 					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
 					message->Setprogress(37);
-
-					return;
 				}
 
-				fit->SetEnd();
+				if (g_tutorial_progress != 6)
+				{
+					fit->SetEnd();
 
-				//戦闘音楽を破棄し勝利音楽再生
-				Audio::Stop(0);
-				Audio::Start(4);
+					//戦闘音楽を破棄し勝利音楽再生
+					Audio::Stop(0);
+					Audio::Start(4);
+				}
 			}
 			else {
 				CObjFightOver* over = new CObjFightOver();	//敵の場合
@@ -358,8 +359,8 @@ void CObjPlanet::Action()
 			if (m_px > ene->GetX() + ene->GetScale_down_move() - pla->GetScale_down_move())		//敵のX座標より自惑星が大きくなると移動を止める
 			{
 				m_px -= 2.3f;
-				if(m_size <= 0)
-					m_size -= 1.5f;
+				if(m_size >= -120.0f)
+					m_size -= 1.8f;
 				if (m_py < 365)
 					m_vy += 0.1f;
 				else

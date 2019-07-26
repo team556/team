@@ -234,7 +234,7 @@ void CObjInstitute::Init()
 
 	//▼研究所の次のLVUPに必要なサイズ(HP)の住民数設定
 	m_Facility_next_Size_num[0] = 80.0f;	//レベルが1の時の必要サイズ(HP)
-	m_Facility_next_Size_num[1] = 200.0f;	//レベルが2の時の必要サイズ(HP)
+	m_Facility_next_Size_num[1] = 250.0f;	//レベルが2の時の必要サイズ(HP)
 
 	//▼研究所の次のLVUPに必要な素材の名前設定
 	swprintf_s(m_Facility_next_Mat_name[0], L"鉄");//レベルが1の時の必要素材名
@@ -432,211 +432,213 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
-		if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
+		if (g_tutorial_progress >= 8)
 		{
-			m_Back_Button_color = 1.0f;
-
-			//▼クリックされたらフラグを立て、研究所ウインドウを閉じる
-			//右クリック入力時
-			if (m_mou_r == true)
+			if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 			{
-				//前シーン(ミサイルウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
-				if (m_key_rf == true)
+				m_Back_Button_color = 1.0f;
+
+				//▼クリックされたらフラグを立て、研究所ウインドウを閉じる
+				//右クリック入力時
+				if (m_mou_r == true)
 				{
-					//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
-					m_key_rf = false;
-
-					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
-
-					//"どのウインドウも開いていない状態"フラグを立てる
-					window_start_manage = Default;
-
-					//ObjHelpを操作可能にする & 透過度1.0fにして表示する
-					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-					help->SetOperatable(true);
-					help->SetAlpha(1.0f);
-
-					//戻るボタン音
-					Audio::Start(2);
-				}
-			}
-			//左クリック入力時
-			else if (m_mou_l == true)
-			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
-				{
-					m_key_lf = false;
-
-					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
-
-					//"どのウインドウも開いていない状態"フラグを立てる
-					window_start_manage = Default;
-
-					//戻るボタン音
-					Audio::Start(2);
-				}
-			}
-			else
-			{
-				m_key_lf = true;
-			}
-		}
-		else
-		{
-			m_Back_Button_color = INI_COLOR;
-		}
-
-		//研究所レベルUP
-		if (30 < m_mou_x && m_mou_x < 148 && 465 < m_mou_y && m_mou_y < 610)
-		{
-			m_Ins_Lvup_color = 1.0f;
-
-			//左クリックされたらLvUP条件を満たしているかチェックを行い、
-			//満たしていれば、研究所LvUPの処理を行う。
-			//満たしていなければ、エラーメッセージを表示する。
-			if (m_mou_l == true)
-			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
-				{
-					m_key_lf = false;
-
-					m_Ins_Lvup_color = 0.0f;
-
-					//▼研究所レベルUP可能チェック処理
-					if (g_Ins_Level == FACILITY_MAX_LV)
+					//前シーン(ミサイルウインドウ等)から右クリック押したままの状態では入力出来ないようにしている
+					if (m_key_rf == true)
 					{
-						//▽レベルMAX時の処理
-						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
-						//LvUP出来ません文字画像を読み込み127番に登録
-						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+						//ウインドウ閉じた後、続けて戻るボタンを入力しないようにstatic変数にfalseを入れて制御
+						m_key_rf = false;
 
-						//切り取り位置を設定する
-						m_message_clip_right = 937.0f;
-						m_message_clip_bottom = 112.0f;
-
-						//描画位置を設定する
-						m_message_draw_left = -100.0f;
-						m_message_draw_right = 100.0f;
-
-						//簡易メッセージのカラーを赤色にする
-						m_message_red_color = 1.0f;
-						m_message_green_color = 0.0f;
-						m_message_blue_color = 0.0f;
-
-						//簡易メッセージを表示する
-						m_alpha = 1.0f;
-					}
-					else if (g_Player_max_size > m_Facility_next_Size_num[g_Ins_Level - 1] &&
-						*m_Facility_next_Mat_type[g_Ins_Level - 1] >= m_Facility_next_Mat_num[g_Ins_Level - 1])
-					{
-						//▽レベルUP可能時の処理
-						//左クリックされたらフラグを立て、最終確認ウインドウを開く
-						m_finalcheck_f = true;//最終確認ウインドウを表示する
-
-						//簡易メッセージを非表示にする
+						//エラーメッセージを非表示にするため、透過度を0.0fにする
 						m_alpha = 0.0f;
 
-						m_Ins_Lvup_color = INI_COLOR;
+						//"どのウインドウも開いていない状態"フラグを立てる
+						window_start_manage = Default;
 
-						//レベルアップ音
-						Audio::Start(1);
+						//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+						CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+						help->SetOperatable(true);
+						help->SetAlpha(1.0f);
 
-						return;
+						//戻るボタン音
+						Audio::Start(2);
 					}
-					else
+				}
+				//左クリック入力時
+				else if (m_mou_l == true)
+				{
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
 					{
-						//▽レベルUP不可時の処理
-						//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
-						//LvUP出来ません文字画像を読み込み127番に登録
-						Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+						m_key_lf = false;
 
-						//切り取り位置を設定する
-						m_message_clip_right = 937.0f;
-						m_message_clip_bottom = 112.0f;
+						//エラーメッセージを非表示にするため、透過度を0.0fにする
+						m_alpha = 0.0f;
 
-						//描画位置を設定する
-						m_message_draw_left = -100.0f;
-						m_message_draw_right = 100.0f;
+						//"どのウインドウも開いていない状態"フラグを立てる
+						window_start_manage = Default;
 
-						//簡易メッセージのカラーを赤色にする
-						m_message_red_color = 1.0f;
-						m_message_green_color = 0.0f;
-						m_message_blue_color = 0.0f;
-
-						//簡易メッセージを表示する
-						m_alpha = 1.0f;
+						//戻るボタン音
+						Audio::Start(2);
 					}
-
-					//選択音
-					Audio::Start(1);
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_Back_Button_color = INI_COLOR;
 			}
-		}
-		else
-		{
-			m_Ins_Lvup_color = INI_COLOR;
-		}
 
-
-		//▼住民振り分け
-
-		//住民振り分けアイコンカラー明度を毎回初期化する
-		m_Human_up_color = INI_COLOR;
-		m_Human_down_color = INI_COLOR;
-
-		//研究員住民振り分けUP
-		if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
-		{
-			m_Human_up_color = 1.0f;
-
-			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
-			//※左クリックを押し続けると、自動で連続振り分け可能。
-			if (m_mou_l == true)
+			//研究所レベルUP
+			if (30 < m_mou_x && m_mou_x < 148 && 465 < m_mou_y && m_mou_y < 610)
 			{
-				if (m_next_time <= 0)
+				m_Ins_Lvup_color = 1.0f;
+
+				//左クリックされたらLvUP条件を満たしているかチェックを行い、
+				//満たしていれば、研究所LvUPの処理を行う。
+				//満たしていなければ、エラーメッセージを表示する。
+				if (m_mou_l == true)
 				{
-					//キーフラグOFFの時は以下の処理を実行させない
-					if (m_key_lf == false)
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
 					{
-						return;
+						m_key_lf = false;
+
+						m_Ins_Lvup_color = 0.0f;
+
+						//▼研究所レベルUP可能チェック処理
+						if (g_Ins_Level == FACILITY_MAX_LV)
+						{
+							//▽レベルMAX時の処理
+							//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+							//LvUP出来ません文字画像を読み込み127番に登録
+							Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+							//切り取り位置を設定する
+							m_message_clip_right = 937.0f;
+							m_message_clip_bottom = 112.0f;
+
+							//描画位置を設定する
+							m_message_draw_left = -100.0f;
+							m_message_draw_right = 100.0f;
+
+							//簡易メッセージのカラーを赤色にする
+							m_message_red_color = 1.0f;
+							m_message_green_color = 0.0f;
+							m_message_blue_color = 0.0f;
+
+							//簡易メッセージを表示する
+							m_alpha = 1.0f;
+						}
+						else if (g_Player_max_size > m_Facility_next_Size_num[g_Ins_Level - 1] &&
+							*m_Facility_next_Mat_type[g_Ins_Level - 1] >= m_Facility_next_Mat_num[g_Ins_Level - 1])
+						{
+							//▽レベルUP可能時の処理
+							//左クリックされたらフラグを立て、最終確認ウインドウを開く
+							m_finalcheck_f = true;//最終確認ウインドウを表示する
+
+							//簡易メッセージを非表示にする
+							m_alpha = 0.0f;
+
+							m_Ins_Lvup_color = INI_COLOR;
+
+							//レベルアップ音
+							Audio::Start(1);
+
+							return;
+						}
+						else
+						{
+							//▽レベルUP不可時の処理
+							//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
+							//LvUP出来ません文字画像を読み込み127番に登録
+							Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+							//切り取り位置を設定する
+							m_message_clip_right = 937.0f;
+							m_message_clip_bottom = 112.0f;
+
+							//描画位置を設定する
+							m_message_draw_left = -100.0f;
+							m_message_draw_right = 100.0f;
+
+							//簡易メッセージのカラーを赤色にする
+							m_message_red_color = 1.0f;
+							m_message_green_color = 0.0f;
+							m_message_blue_color = 0.0f;
+
+							//簡易メッセージを表示する
+							m_alpha = 1.0f;
+						}
+
+						//選択音
+						Audio::Start(1);
 					}
-					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
-					else if (m_con_alo_f == false)
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+			}
+			else
+			{
+				m_Ins_Lvup_color = INI_COLOR;
+			}
+
+
+			//▼住民振り分け
+
+			//住民振り分けアイコンカラー明度を毎回初期化する
+			m_Human_up_color = INI_COLOR;
+			m_Human_down_color = INI_COLOR;
+
+			//研究員住民振り分けUP
+			if (695 < m_mou_x && m_mou_x < 793 && 118 < m_mou_y && m_mou_y < 218)
+			{
+				m_Human_up_color = 1.0f;
+
+				//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+				//※左クリックを押し続けると、自動で連続振り分け可能。
+				if (m_mou_l == true)
+				{
+					if (m_next_time <= 0)
 					{
-						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
-					}
-					//二回目以降はこの処理に入る
-					else
-					{
-						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
-					}
+						//キーフラグOFFの時は以下の処理を実行させない
+						if (m_key_lf == false)
+						{
+							return;
+						}
+						//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+						else if (m_con_alo_f == false)
+						{
+							m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+						}
+						//二回目以降はこの処理に入る
+						else
+						{
+							m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
+						}
 
-					m_Human_up_color = 0.5f;
+						m_Human_up_color = 0.5f;
 
-					g_Research_num = Allocation(g_Research_num, +1);//振り分け関数を呼び出す
+						g_Research_num = Allocation(g_Research_num, +1);//振り分け関数を呼び出す
 
-					//▼ミサイルリキャストレベルUPチェック
-					//レベルUP条件を満たしているかチェックし、
-					//満たしていればレベルUPさせる。
-					Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
+						//▼ミサイルリキャストレベルUPチェック
+						//レベルUP条件を満たしているかチェックし、
+						//満たしていればレベルUPさせる。
+						Missile_Lvup_check();//ミサイルリキャストレベルUPチェック関数を呼び出す
 
-					//▼武器ポッドレベルUPチェック
-					//既にレベルUP済みの武器ポッドの現在の研究員数をチェックし、
-					//装備可能な研究員数に達していれば、レベルUPさせる。
-					//▽それぞれ武器ポッドレベルUPチェック関数を呼び出す
-					g_Pow_equip_Level = Equip_Lvup_check(0, g_Pow_equip_Level, g_Pow_equip_Lv_achieve);
-					g_Def_equip_Level = Equip_Lvup_check(1, g_Def_equip_Level, g_Def_equip_Lv_achieve);
-					g_Spe_equip_Level = Equip_Lvup_check(2, g_Spe_equip_Level, g_Spe_equip_Lv_achieve);
-					g_Bal_equip_Level = Equip_Lvup_check(3, g_Bal_equip_Level, g_Bal_equip_Lv_achieve);
-					g_Pod_equip_Level = Equip_Lvup_check(4, g_Pod_equip_Level, g_Pod_equip_Lv_achieve);
+						//▼武器ポッドレベルUPチェック
+						//既にレベルUP済みの武器ポッドの現在の研究員数をチェックし、
+						//装備可能な研究員数に達していれば、レベルUPさせる。
+						//▽それぞれ武器ポッドレベルUPチェック関数を呼び出す
+						g_Pow_equip_Level = Equip_Lvup_check(0, g_Pow_equip_Level, g_Pow_equip_Lv_achieve);
+						g_Def_equip_Level = Equip_Lvup_check(1, g_Def_equip_Level, g_Def_equip_Lv_achieve);
+						g_Spe_equip_Level = Equip_Lvup_check(2, g_Spe_equip_Level, g_Spe_equip_Lv_achieve);
+						g_Bal_equip_Level = Equip_Lvup_check(3, g_Bal_equip_Level, g_Bal_equip_Lv_achieve);
+						g_Pod_equip_Level = Equip_Lvup_check(4, g_Pod_equip_Level, g_Pod_equip_Lv_achieve);
 
 					//振り分けボタン音
 					Audio::Start(5);
@@ -656,193 +658,198 @@ void CObjInstitute::Action()
 			}
 		}
 
-		//研究員住民振り分けDOWN
-		else if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
-		{
-			m_Human_down_color = 1.0f;
-
-			//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
-			//※左クリックを押し続けると、自動で連続振り分け可能。
-			if (m_mou_l == true)
+			//研究員住民振り分けDOWN
+			else if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
 			{
-				if (m_next_time <= 0)
+				m_Human_down_color = 1.0f;
+
+				//左クリックされたら振り分け関数を呼び出し、住民振り分けの処理を行う
+				//※左クリックを押し続けると、自動で連続振り分け可能。
+				if (m_mou_l == true)
 				{
-					//キーフラグOFFの時は以下の処理を実行させない
-					if (m_key_lf == false)
+					if (m_next_time <= 0)
 					{
-						return;
-					}
-					//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
-					else if (m_con_alo_f == false)
-					{
-						m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
-					}
-					//二回目以降はこの処理に入る
-					else
-					{
-						m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
-					}
-
-					m_Human_down_color = 0.5f;
-
-					g_Research_num = Allocation(g_Research_num, -1);//振り分け関数を呼び出す
-
-					//▼ミサイルリキャストレベルDOWNチェック
-					//レベルDOWN条件を満たしているかチェックし、
-					//満たしていればレベルDOWNさせる。
-					if (g_Mis_Recast_Level == 0)
-					{
-						;//初期レベルの時はこのチェック処理を飛ばす
-					}
-					else if (g_Research_num < m_Mis_recast_next_Hum_num[g_Mis_Recast_Level - 1])
-					{
-						g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
-
-						switch (g_Mis_Recast_Level)
+						//キーフラグOFFの時は以下の処理を実行させない
+						if (m_key_lf == false)
 						{
-						case 0:g_Recast_time = MIS_LV_1; break;
-						case 1:g_Recast_time = MIS_LV_2; break;//6秒
-						case 2:g_Recast_time = MIS_LV_3; break;//5秒
-						case 3:g_Recast_time = MIS_LV_4; break;//4秒
-						case 4:g_Recast_time = MIS_LV_5; break;//3秒
+							return;
+						}
+						//初回はこの処理に入る[左クリックを押すのをやめるとm_con_alo_fが"false"に戻り初回判定となる]
+						else if (m_con_alo_f == false)
+						{
+							m_next_time = CON_PRE_TIME;//連続振り分け前の次住民振り分け時間が入る(最初のみ振り分け時間間隔が長い)
+						}
+						//二回目以降はこの処理に入る
+						else
+						{
+							m_next_time = CON_MID_TIME;//連続振り分け中の次住民振り分け時間が入る(振り分け時間間隔が最初より短くなる)
 						}
 
-						//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
-						
-						//ミサイルリキャストレベルDOWN…文字画像を読み込み127番に登録
-						Draw::LoadImage(L"ミサイルリキャストレベルDOWN….png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+						m_Human_down_color = 0.5f;
 
-						//切り取り位置を設定する
-						m_message_clip_right = 1919.0f;
-						m_message_clip_bottom = 112.0f;
+						g_Research_num = Allocation(g_Research_num, -1);//振り分け関数を呼び出す
 
-						//描画位置を設定する
-						m_message_draw_left = -200.0f;
-						m_message_draw_right = 200.0f;
+						//▼ミサイルリキャストレベルDOWNチェック
+						//レベルDOWN条件を満たしているかチェックし、
+						//満たしていればレベルDOWNさせる。
+						if (g_Mis_Recast_Level == 0)
+						{
+							;//初期レベルの時はこのチェック処理を飛ばす
+						}
+						else if (g_Research_num < m_Mis_recast_next_Hum_num[g_Mis_Recast_Level - 1])
+						{
+							g_Mis_Recast_Level--;//条件を満たしているのでレベルDOWN
 
-						//リキャストレベルDOWNメッセージのカラーを水色にする
-						m_message_red_color = 0.0f;
-						m_message_green_color = 1.0f;
-						m_message_blue_color = 1.0f;
+							switch (g_Mis_Recast_Level)
+							{
+							case 0:g_Recast_time = MIS_LV_1; break;
+							case 1:g_Recast_time = MIS_LV_2; break;//6秒
+							case 2:g_Recast_time = MIS_LV_3; break;//5秒
+							case 3:g_Recast_time = MIS_LV_4; break;//4秒
+							case 4:g_Recast_time = MIS_LV_5; break;//3秒
+							}
 
-						m_alpha = 1.0f;		//リキャストレベルDOWNメッセージを表示するため、透過度を1.0fにする
+							//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
+
+							//ミサイルリキャストレベルDOWN…文字画像を読み込み127番に登録
+							Draw::LoadImage(L"ミサイルリキャストレベルDOWN….png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+
+							//切り取り位置を設定する
+							m_message_clip_right = 1919.0f;
+							m_message_clip_bottom = 112.0f;
+
+							//描画位置を設定する
+							m_message_draw_left = -200.0f;
+							m_message_draw_right = 200.0f;
+
+							//リキャストレベルDOWNメッセージのカラーを水色にする
+							m_message_red_color = 0.0f;
+							m_message_green_color = 1.0f;
+							m_message_blue_color = 1.0f;
+
+							m_alpha = 1.0f;		//リキャストレベルDOWNメッセージを表示するため、透過度を1.0fにする
+						}
+
+						//▼武器ポッドレベルDOWNチェック
+						//既にレベルUP済みの武器ポッドの現在の研究員数をチェックし、
+						//装備不可な研究員数に達していれば、レベルDOWNさせる。
+						//▽それぞれ武器ポッドレベルDOWNチェック関数を呼び出す
+						g_Pow_equip_Level = Equip_Lvdown_check(0, g_Pow_equip_Level);
+						g_Def_equip_Level = Equip_Lvdown_check(1, g_Def_equip_Level);
+						g_Spe_equip_Level = Equip_Lvdown_check(2, g_Spe_equip_Level);
+						g_Bal_equip_Level = Equip_Lvdown_check(3, g_Bal_equip_Level);
+						g_Pod_equip_Level = Equip_Lvdown_check(4, g_Pod_equip_Level);
+
+						//振り分けダウン音
+						Audio::Start(2);
 					}
-
-					//▼武器ポッドレベルDOWNチェック
-					//既にレベルUP済みの武器ポッドの現在の研究員数をチェックし、
-					//装備不可な研究員数に達していれば、レベルDOWNさせる。
-					//▽それぞれ武器ポッドレベルDOWNチェック関数を呼び出す
-					g_Pow_equip_Level = Equip_Lvdown_check(0, g_Pow_equip_Level);
-					g_Def_equip_Level = Equip_Lvdown_check(1, g_Def_equip_Level);
-					g_Spe_equip_Level = Equip_Lvdown_check(2, g_Spe_equip_Level);
-					g_Bal_equip_Level = Equip_Lvdown_check(3, g_Bal_equip_Level);
-					g_Pod_equip_Level = Equip_Lvdown_check(4, g_Pod_equip_Level);
-
-					//振り分けダウン音
-					Audio::Start(2);
+					else
+					{
+						m_con_alo_f = true;//連続振り分けフラグON
+						m_next_time--;//次の住民振り分けまでの時間減少処理
+						m_key_lf = true;//キーフラグON
+					}
 				}
 				else
 				{
-					m_con_alo_f = true;//連続振り分けフラグON
-					m_next_time--;//次の住民振り分けまでの時間減少処理
+					m_con_alo_f = false;//連続振り分けフラグOFF
+					m_next_time = 0;//次の住民振り分けまでの時間を初期化
 					m_key_lf = true;//キーフラグON
 				}
 			}
+
+			//上記の範囲外にマウスカーソルがある場合の処理
 			else
 			{
-				m_con_alo_f = false;//連続振り分けフラグOFF
-				m_next_time = 0;//次の住民振り分けまでの時間を初期化
-				m_key_lf = true;//キーフラグON
+				//範囲外にマウスカーソルがいっても左クリックを離さなければ、
+				//連続振り分け状態を解除しないように設定している。
+				if (m_mou_l == false)
+				{
+					m_con_alo_f = false;//連続振り分けフラグOFF
+					m_next_time = 0;//次の住民振り分けまでの時間を初期化
+					m_key_lf = true;//キーフラグON
+				}
 			}
 		}
-
-		//上記の範囲外にマウスカーソルがある場合の処理
-		else
-		{
-			//範囲外にマウスカーソルがいっても左クリックを離さなければ、
-			//連続振り分け状態を解除しないように設定している。
-			if (m_mou_l == false)
-			{
-				m_con_alo_f = false;//連続振り分けフラグOFF
-				m_next_time = 0;//次の住民振り分けまでの時間を初期化
-				m_key_lf = true;//キーフラグON
-			}
-		}
-
 
 		//ミサイルボタン
-		if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473)
+		if (g_tutorial_progress == 10 || g_tutorial_progress >= 8)
 		{
-			m_Mis_Button_color = 1.0f;
-
-			//左クリックされたらフラグを立て、ミサイルウインドウを開く
-			if (m_mou_l == true)
+			if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				m_Mis_Button_color = 1.0f;
+
+				//左クリックされたらフラグを立て、ミサイルウインドウを開く
+				if (m_mou_l == true)
 				{
-					m_key_lf = false;
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true || g_tutorial_progress == 10)
+					{
+						m_key_lf = false;
 
-					m_Mis_Button_color = 0.0f;
+						m_Mis_Button_color = 0.0f;
 
-					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+						//エラーメッセージを非表示にするため、透過度を0.0fにする
+						m_alpha = 0.0f;
 
-					//"ミサイルウインドウを開いている状態"フラグを立てる
-					window_start_manage = Missile;
+						//"ミサイルウインドウを開いている状態"フラグを立てる
+						window_start_manage = Missile;
 
-					//選択音
-					Audio::Start(1);
+						//選択音
+						Audio::Start(1);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_Mis_Button_color = INI_COLOR;
 			}
 		}
-		else
-		{
-			m_Mis_Button_color = INI_COLOR;
-		}
-		
+
 		//武器ポッドボタン
-		if (515 < m_mou_x && m_mou_x < 1120 && 493 < m_mou_y && m_mou_y < 641)
+		if (g_tutorial_progress == 11 || g_tutorial_progress >= 8)
 		{
-			m_Equ_Button_color = 1.0f;
-
-			//左クリックされたらフラグを立て、武器ポッドウインドウを開く
-			if (m_mou_l == true)
+			if (515 < m_mou_x && m_mou_x < 1120 && 493 < m_mou_y && m_mou_y < 641)
 			{
-				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				m_Equ_Button_color = 1.0f;
+
+				//左クリックされたらフラグを立て、武器ポッドウインドウを開く
+				if (m_mou_l == true)
 				{
-					m_key_lf = false;
+					//左クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true || g_tutorial_progress == 11)
+					{
+						m_key_lf = false;
 
-					m_Equ_Button_color = 0.0f;
+						m_Equ_Button_color = 0.0f;
 
-					//エラーメッセージを非表示にするため、透過度を0.0fにする
-					m_alpha = 0.0f;
+						//エラーメッセージを非表示にするため、透過度を0.0fにする
+						m_alpha = 0.0f;
 
-					//▼武器ポッドLvUP可能チェック
-					Equip_Lvup_possible_check();//武器ポッドレベルUP可能チェック関数を呼び出す
-		
-					//"武器ポッドウインドウを開いている状態"フラグを立てる
-					window_start_manage = Equipment;
+						//▼武器ポッドLvUP可能チェック
+						Equip_Lvup_possible_check();//武器ポッドレベルUP可能チェック関数を呼び出す
 
-					//選択音
-					Audio::Start(1);
+						//"武器ポッドウインドウを開いている状態"フラグを立てる
+						window_start_manage = Equipment;
+
+						//選択音
+						Audio::Start(1);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_Equ_Button_color = INI_COLOR;
 			}
 		}
-		else
-		{
-			m_Equ_Button_color = INI_COLOR;
-		}
-
 
 		return;
 	}
@@ -1141,48 +1148,50 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (
-		((g_Ins_Level==1)&&120 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550)||	//研究所のレベル1の時の選択範囲
-		((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y>320&& m_mou_y<450&& m_mou_x>1&& m_mou_x<117))||//研究所のレベル2の時の選択範囲
-		((g_Ins_Level == 3) && ((1 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550) || (220 <= m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575) || (220 <= m_mou_x && m_mou_x < 293 && 428 < m_mou_y && m_mou_y < 482)) && !(m_mou_y>320 && m_mou_y<450 && m_mou_x>1 && m_mou_x<117) )//研究所のレベル3の時の選択範囲
-	)
+	if (g_tutorial_progress == 9 || g_tutorial_progress >= 8)//チュートリアル中は選択不可
 	{
-		m_introduce_f = true;	//施設紹介ウインドウを表示する
-		m_Ins_color = 1.0f;
-
-		//左クリックされたらフラグを立て、研究所ウインドウを開く
-		if (m_mou_l == true)
+		if (
+			((g_Ins_Level == 1) && 120 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550) ||	//研究所のレベル1の時の選択範囲
+			((g_Ins_Level == 2) && 1 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550 && !(m_mou_y > 320 && m_mou_y < 450 && m_mou_x>1 && m_mou_x < 117)) ||//研究所のレベル2の時の選択範囲
+			((g_Ins_Level == 3) && ((1 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550) || (220 <= m_mou_x && m_mou_x < 338 && 476 < m_mou_y && m_mou_y < 575) || (220 <= m_mou_x && m_mou_x < 293 && 428 < m_mou_y && m_mou_y < 482)) && !(m_mou_y > 320 && m_mou_y < 450 && m_mou_x>1 && m_mou_x < 117))//研究所のレベル3の時の選択範囲
+			)
 		{
-			//左クリック押したままの状態では入力出来ないようにしている
-			if (m_key_lf == true)
+			m_introduce_f = true;	//施設紹介ウインドウを表示する
+			m_Ins_color = 1.0f;
+
+			//左クリックされたらフラグを立て、研究所ウインドウを開く
+			if (m_mou_l == true)
 			{
-				m_key_lf = false;
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true || g_tutorial_progress == 9)
+				{
+					m_key_lf = false;
 
-				m_introduce_f = false;//施設紹介ウインドウを非表示にする(研究所ウインドウ閉じた時に一瞬映り込むため)
+					m_introduce_f = false;//施設紹介ウインドウを非表示にする(研究所ウインドウ閉じた時に一瞬映り込むため)
 
-				//"研究所ウインドウを開いている状態"フラグを立てる
-				window_start_manage = Institute;
+					//"研究所ウインドウを開いている状態"フラグを立てる
+					window_start_manage = Institute;
 
-				//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
-				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-				help->SetOperatable(false);
-				help->SetAlpha(0.0f);
+					//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
+					help->SetAlpha(0.0f);
 
-				//選択音
-				Audio::Start(1);
+					//選択音
+					Audio::Start(1);
+				}
+			}
+			else
+			{
+				m_key_lf = true;
 			}
 		}
 		else
 		{
-			m_key_lf = true;
+			m_introduce_f = false;//施設紹介ウインドウを非表示にする
+			m_Ins_color = INI_COLOR;
 		}
 	}
-	else
-	{
-		m_introduce_f = false;//施設紹介ウインドウを非表示にする
-		m_Ins_color = INI_COLOR;
-	}
-
 }
 
 //ドロー

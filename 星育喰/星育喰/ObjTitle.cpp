@@ -34,8 +34,8 @@ bool CObjTitle::after_once = false;
 //※余裕あれば、値の部分をマクロ化(出来る部分は)して便利にすべし。
 int g_Stage_progress = 1;
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
-int g_Bar_Level = 2;
-int g_Ins_Level = 2;
+int g_Bar_Level = 1;
+int g_Ins_Level = 1;
 int g_Mis_Recast_Level		= 1;
 int g_Pow_equip_Level		= 1;
 int g_Pow_equip_Lv_achieve	= 1;
@@ -49,7 +49,7 @@ int g_Pod_equip_Level		= 1;
 int g_Pod_equip_Lv_achieve	= 1;
 float g_Player_max_size = 100.0f;//100.0f;
 int g_Special_equipment = 0;//装備中のスペシャル技
-bool g_Special_mastering[5] = { true,true,true,true,true };//スペシャル技の習得状態
+bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
 int g_Power_num		= 3000;
 int g_Defense_num	= 3000;
 int g_Speed_num		= 3000;
@@ -68,7 +68,7 @@ int g_gus_num		= 0;
 
 int g_Challenge_enemy = 0;//デバッグ。0に戻すべし。
 bool g_help_f = false;
-int  g_tutorial_progress = 20;//デバッグ。チュートリアル完成後、0にするように。
+int  g_tutorial_progress = 0;//デバッグ。チュートリアル完成後、0にするように。
 bool g_is_operatable = true;
 
 //イニシャライズ
