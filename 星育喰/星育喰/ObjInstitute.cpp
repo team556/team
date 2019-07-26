@@ -2684,7 +2684,7 @@ void CObjInstitute::Draw()
 				src.m_top = 2.0f;
 				src.m_left = 0.0f;
 				src.m_right = 1304.0f;
-				src.m_bottom = 112.0f;
+				src.m_bottom = 110.0f;
 
 				dst.m_top = 300.0f;
 				dst.m_left = 347.0f;
