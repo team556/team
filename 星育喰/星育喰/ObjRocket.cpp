@@ -584,31 +584,40 @@ void CObjRocket::Action()
 		if (ButtonU != 5) {		//ミサイル以外のストップ処理
 			if (hit->CheckElementHit(ELEMENT_NULL) == true)//Hit用OBJに当たった場合
 			{
-				if (((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr && m_pnam == 1) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr && m_pnam == 2) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr && m_pnam == 3) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT4) != nullptr && m_pnam == 4) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT5) != nullptr && m_pnam == 5) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
-					(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9)) && m_type == 0)
-				{
-					m_fight = true;
+				if (m_type == 0) {
+					if ((hit->CheckObjNameHit(OBJ_RKTHIT) != nullptr && m_pnam == 0) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT1) != nullptr && m_pnam == 1) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT2) != nullptr && m_pnam == 2) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT3) != nullptr && m_pnam == 3) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT4) != nullptr && m_pnam == 4) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT5) != nullptr && m_pnam == 5) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT6) != nullptr && m_pnam == 6) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT7) != nullptr && m_pnam == 7) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT8) != nullptr && m_pnam == 8) ||
+						(hit->CheckObjNameHit(OBJ_RKTHIT9) != nullptr && m_pnam == 9))
+					{
+						m_fight = true;
+						/*if ()
+							m_fight = false;*/
+					}
 				}
-				if (((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
-					(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9)) && m_type != 0)
+				else
 				{
-					m_fight = true;
+					if ((hit->CheckObjNameHit(OBJ_eRKTHIT) != nullptr && m_enam == 0) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT1) != nullptr && m_enam == 1) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT2) != nullptr && m_enam == 2) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT3) != nullptr && m_enam == 3) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT4) != nullptr && m_enam == 4) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT5) != nullptr && m_enam == 5) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT6) != nullptr && m_enam == 6) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT7) != nullptr && m_enam == 7) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT8) != nullptr && m_enam == 8) ||
+						(hit->CheckObjNameHit(OBJ_eRKTHIT9) != nullptr && m_enam == 9))
+					{
+						m_fight = true;
+						/*if ()
+							m_fight = false;*/
+					}
 				}
 			}
 			else
