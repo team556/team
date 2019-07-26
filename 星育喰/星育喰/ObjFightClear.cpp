@@ -75,6 +75,8 @@ void CObjFightClear::Init()
 
 	m_tuto_f = false;
 
+	m_end_f = false;
+
 	//ステージクリアした場合
 	if (g_destroy_progress[0] == true &&	
 		g_destroy_progress[1] == true &&
@@ -82,7 +84,7 @@ void CObjFightClear::Init()
 		g_destroy_progress[3] == true)	
 	{
 		//チュートリアル惑星を倒してもステージ数を進めないようにする処理。
-		if (g_tutorial_progress >= 20)
+		if (g_tutorial_progress >= 8)
 		{
 			g_Stage_progress++;	//ステージを進める
 		}
@@ -101,6 +103,8 @@ void CObjFightClear::Init()
 		m_Game_Clear_f = true;
 	}
 
+	//デバッグ
+	//m_Game_Clear_f = true;
 
 	//▼獲得したものをグローバル変数に代入する
 	g_Remain_num += m_people;		//獲得住民数を加算
@@ -231,8 +235,8 @@ void CObjFightClear::Action()
 		//ゲームクリア(エンディング)画面にシーン移行する。
 
 
-		//全てのクリアメッセージ表示後の処理
-		if (m_clear_a >= 3.0f)
+
+		if (g_tutorial_progress == 31)
 		{
 			////マウスの位置を取得
 			//m_mou_x = (float)Input::GetPosX();
@@ -241,48 +245,81 @@ void CObjFightClear::Action()
 			//m_mou_r = Input::GetMouButtonR();
 			m_mou_l = Input::GetMouButtonL();
 
-			//▼キーフラグ
-			//※左クリック押しっぱなしの状態で、この処理に入った時、
-			//そのままホーム画面移行処理に入らないようにする処理。
-			if (m_mou_l == false)
+			
+			if (m_clear_a >= 2.0f)
 			{
-				m_key_f = true;
+				Scene::SetScene(new CSceneGameClear());	//シーン移行
 			}
-
-			m_click_a_f = true;			//フラグ有効
-
-			//左クリックした場合、実行(一度クリックすると以後、クリックせずともこの処理に入る)
-			if (m_mou_l == true && m_key_f == true || m_black_out_a != 0.0f)
+			else if (m_black_out_a >= 1.0f)
 			{
-				//クリック音を鳴らす(1度のみしか実行されない)
-				if (m_black_out_a == 0.0f)
-				{
-					Audio::Start(3);
-				}
-
-				//画面暗転透過度を徐々に増加させ、画面全体を暗転させた後、
-				//フラグを立て、ゲームクリア画面に移行する
-				if (m_black_out_a >= 1.0f)
-				{
-					Scene::SetScene(new CSceneGameClear());	//シーン移行
-				}
-				else
-				{
-					m_black_out_a += 0.01f;//画面暗転
-					m_click_a -= 0.03f;	   //クリック催促フォントを徐々に非表示に。
-				}
-
-				m_click_a_f = false;//フラグ無効
+				m_clear_a += 0.01f;
+			}
+			else
+			{
+				m_black_out_a += 0.01f;
 			}
 		}
-		//全てのクリアメッセージ表示前の処理
-		else
+		else if (m_end_f == false)
 		{
-			//クリアメッセージフォントの透過度増加し、
-			//順にクリアメッセージを表示していく。
-			//※全て表示後、このelse文を抜ける。
-			m_clear_a += 0.01f;
+			CObjMessage* message = new CObjMessage(30);	//メッセージ表示オブジェクト作成
+			Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
+
+			m_end_f = true;
 		}
+
+
+		////全てのクリアメッセージ表示後の処理
+		//if (m_clear_a >= 3.0f)
+		//{
+		//	////マウスの位置を取得
+		//	//m_mou_x = (float)Input::GetPosX();
+		//	//m_mou_y = (float)Input::GetPosY();
+		//	////マウスのボタンの状態
+		//	//m_mou_r = Input::GetMouButtonR();
+		//	m_mou_l = Input::GetMouButtonL();
+
+		//	//▼キーフラグ
+		//	//※左クリック押しっぱなしの状態で、この処理に入った時、
+		//	//そのままホーム画面移行処理に入らないようにする処理。
+		//	if (m_mou_l == false)
+		//	{
+		//		m_key_f = true;
+		//	}
+
+		//	m_click_a_f = true;			//フラグ有効
+
+		//	//左クリックした場合、実行(一度クリックすると以後、クリックせずともこの処理に入る)
+		//	if (m_mou_l == true && m_key_f == true || m_black_out_a != 0.0f)
+		//	{
+		//		//クリック音を鳴らす(1度のみしか実行されない)
+		//		if (m_black_out_a == 0.0f)
+		//		{
+		//			Audio::Start(3);
+		//		}
+
+		//		//画面暗転透過度を徐々に増加させ、画面全体を暗転させた後、
+		//		//フラグを立て、ゲームクリア画面に移行する
+		//		if (m_black_out_a >= 1.0f)
+		//		{
+		//			Scene::SetScene(new CSceneGameClear());	//シーン移行
+		//		}
+		//		else
+		//		{
+		//			m_black_out_a += 0.01f;//画面暗転
+		//			m_click_a -= 0.03f;	   //クリック催促フォントを徐々に非表示に。
+		//		}
+
+		//		m_click_a_f = false;//フラグ無効
+		//	}
+		//}
+		////全てのクリアメッセージ表示前の処理
+		//else
+		//{
+		//	//クリアメッセージフォントの透過度増加し、
+		//	//順にクリアメッセージを表示していく。
+		//	//※全て表示後、このelse文を抜ける。
+		//	m_clear_a += 0.01f;
+		//}
 	}
 
 	//▼「クリックでホーム画面」＆「クリックで進める」の文字点滅処理
@@ -1087,12 +1124,12 @@ void CObjFightClear::Draw()
 	else
 	{
 		//▼ゲームクリアメッセージ表示
-		Font::StrDraw(L"CONGRATULATIONS!!", 180, 50, 100, clear[0]);
-		Font::StrDraw(L"すべての惑星を捕食した", 200, 250, 70, clear[1]);
-		Font::StrDraw(L"この銀河のトップに君臨した", 130, 350, 70, clear[2]);
+		//Font::StrDraw(L"CONGRATULATIONS!!", 180, 50, 100, clear[0]);
+		//Font::StrDraw(L"すべての惑星を捕食した", 200, 250, 70, clear[1]);
+		//Font::StrDraw(L"この銀河のトップに君臨した", 130, 350, 70, clear[2]);
 
 		//▼クリック催促フォント表示
-		Font::StrDraw(L"クリックで進む", 400, 600, 50, c0);
+		//Font::StrDraw(L"クリックで進む", 400, 600, 50, c0);
 	}
 
 

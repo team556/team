@@ -132,7 +132,7 @@ void CObjTraining::Action()
 	}
 
 	//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
-	if (g_tutorial_progress >= 11)//チュートリアル中は選択不可
+	if (g_tutorial_progress >= 8)//チュートリアル中は選択不可
 	{
 		if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 		{
