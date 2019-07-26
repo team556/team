@@ -171,6 +171,21 @@ void CObjRktHit::Action()
 		}
 	}
 
+	//プレイヤーのミサイルポッドがエネミーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+	//HPの状態に関わらず消滅処理へと移行する
+	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 1) != nullptr && //エネミーのスペシャル技にHITかつ、
+		m_type == false)										//プレイヤーの射出したポッドである場合、実行
+	{
+		m_del_f = true;				//消滅処理フラグON
+	}
+
+	//エネミーのミサイルポッドがプレイヤーのスペシャル技(FRACTURE_RAY)のオブジェクトHIT時、
+	//HPの状態に関わらず消滅処理へと移行する
+	if (hit->CheckObjNameHit(OBJ_FRACTURE_RAY, 0) != nullptr && //プレイヤーのスペシャル技にHITかつ、
+		m_type == true)											//エネミーの射出したポッドである場合、実行
+	{
+		m_del_f = true;				//消滅処理フラグON
+	}
 	
 	if (m_type == false && hit->CheckElementHit(ELEMENT_NULL) == true)		//thisが味方 かつHitBoxに当たった時
 	{
@@ -352,7 +367,7 @@ void CObjRktHit::Draw()
 	src.m_bottom= 32.0f;
 	//表示位置
 	
-	dst.m_top    = m_y;
+	dst.m_top    = m_y +22.0f;
 	dst.m_left   = m_x;
 	dst.m_right  = m_x + 50.0f;
 	dst.m_bottom = m_y + 50.0f;
