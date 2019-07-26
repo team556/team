@@ -616,7 +616,13 @@ void CObjHome::Draw()
 		dst.m_bottom = m_mou_y + 45.0f;
 		Draw::Draw(7, &src, &dst, d, 0.0f);
 
+
+	/*	FontDraw(&g_Player_Name[0], m_mou_x + 33.0f, m_mou_y - 90, 20, 20, d, false);*/
+
 		//▽フォント画像表示
+
+		FontDraw(g_Player_Name, m_mou_x + 33.0f, m_mou_y - 113.0f, 30.0f, 25.0f, d, false);
+
 		//惑星HP文字画像表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;

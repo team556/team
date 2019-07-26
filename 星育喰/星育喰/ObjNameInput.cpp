@@ -7,10 +7,12 @@
 
 #include "GameHead.h"
 #include "ObjNameInput.h"
-#include"UtilityModule.h"
+#include "UtilityModule.h"
 
 //使用するネームスペース
 using namespace GameL;
+
+wchar_t g_Player_Name[6];
 
 //イニシャライズ
 void CObjNameInput::Init()
@@ -846,11 +848,7 @@ void CObjNameInput::Action()
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
 					m_tex_discri[click_cut] = word_w[45];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
-					//m_c[m_cut] = L'ん';
-
-					char *tmp = "ん";
-					memcpy(&m_c[m_cut], tmp, 2);
-
+					m_c[m_cut] = L'ん';
 					m_f = true;
 					m_cut++;
 				}
@@ -881,16 +879,16 @@ void CObjNameInput::Action()
 		switch (m_cut)
 		{
 		case 3:
-			swprintf_s(g_Pleyr_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
+			swprintf_s(g_Player_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
 			break;
 		case 4:
-			swprintf_s(g_Pleyr_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
+			swprintf_s(g_Player_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
 			break;
 		case 5:
-			swprintf_s(g_Pleyr_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
+			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
 			break;
 		}
-		Scene::SetScene(new CSceneTraining());//育成画面へシーン移行 
+		Scene::SetScene(new CSceneHome());//育成画面へシーン移行 
 	}
 	//最終確認ウィンドウのいいえを押したときの処理
 	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
@@ -1131,6 +1129,7 @@ void CObjNameInput::Draw()
 				m_c_cut++;
 			}
 		}
+		
 		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
 	//決定ボタンをおした時m_cutが三以下なら警告文を出させる
