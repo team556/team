@@ -75,7 +75,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッドボタン白.png", 14, TEX_SIZE_512);
 
 	//15番に登録
-	Draw::LoadImage(L"ミサイルボタン.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイルボタン.png", 15, TEX_SIZE_512);
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
@@ -87,7 +87,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 
 	//スペシャル技ボタンを読み込み19番に登録
-	Draw::LoadImage(L"スペシャル技ボタン.png", 19, TEX_SIZE_512);
+	Draw::LoadImage(L"スペシャル技ボタン.png", 19, TEX_SIZE_512);
 
 	//ポーズ画面背景を読み込み20番に登録
 	Draw::LoadImage(L"ポーズ画面背景.png", 20, TEX_SIZE_512);
@@ -105,7 +105,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"リミブレ02.png", 24, TEX_SIZE_512);
 
 	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
-	Draw::LoadImage(L"オーバーワーク.png", 25, TEX_SIZE_512);
+	Draw::LoadImage(L"オーバーワークアイコン.png", 25, TEX_SIZE_512);
 
 	Draw::LoadImage(L"lv1x3修正.png", 26, TEX_SIZE_512);
 
@@ -274,7 +274,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
 	//ボロ画像を読み込み122番に登録
-	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
