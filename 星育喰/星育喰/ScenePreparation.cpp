@@ -63,7 +63,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"lv4x3.png", 5, TEX_SIZE_512);
 
 	//チュートリアル惑星を読み込み6番に登録
-	Draw::LoadImage(L"ボロ.png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"ボロ.png", 6, TEX_SIZE_512);
 	
 	//敵惑星1(2ステージ)を読み込み6番に登録
 	//Draw::LoadImage(L"Enemy_Planet_Test.jpg", 6, TEX_SIZE_512);

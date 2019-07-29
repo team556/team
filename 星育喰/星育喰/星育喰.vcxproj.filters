@@ -38,15 +38,6 @@
     <Filter Include="リソースファイル">
       <UniqueIdentifier>{1aa15e5f-86de-44d6-9ef2-0a67c22275a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\施設">
-      <UniqueIdentifier>{d4beac71-c53c-4d33-9b74-a02abd43ec21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\施設\兵舎">
-      <UniqueIdentifier>{50982f9b-7ba7-48be-a34c-9dcbbae78234}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\施設\倉庫">
-      <UniqueIdentifier>{39e2be09-f1ec-4fa0-a04d-57663fe60b15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\シーン\戦闘準備画面">
       <UniqueIdentifier>{410b8348-2b14-4cfc-8f81-474c2078c90e}</UniqueIdentifier>
     </Filter>
@@ -62,8 +53,17 @@
     <Filter Include="ソース ファイル\チュートリアル">
       <UniqueIdentifier>{e706e60f-7f8d-4f4d-bb2f-e44c0fbe13e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\施設\研究所">
+    <Filter Include="ソース ファイル\関数/演出\施設">
+      <UniqueIdentifier>{d4beac71-c53c-4d33-9b74-a02abd43ec21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\関数/演出\施設\研究所">
       <UniqueIdentifier>{70f8d219-31ee-4717-9d97-f6f4fa933c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\関数/演出\施設\兵舎">
+      <UniqueIdentifier>{50982f9b-7ba7-48be-a34c-9dcbbae78234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\関数/演出\施設\倉庫">
+      <UniqueIdentifier>{39e2be09-f1ec-4fa0-a04d-57663fe60b15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -137,10 +137,10 @@
       <Filter>ソース ファイル\関数/演出</Filter>
     </ClCompile>
     <ClCompile Include="ObjWarehouse.cpp">
-      <Filter>ソース ファイル\施設\倉庫</Filter>
+      <Filter>ソース ファイル\関数/演出\施設\倉庫</Filter>
     </ClCompile>
     <ClCompile Include="ObjInstitute.cpp">
-      <Filter>ソース ファイル\施設\研究所</Filter>
+      <Filter>ソース ファイル\関数/演出\施設\研究所</Filter>
     </ClCompile>
     <ClCompile Include="ObjHome.cpp">
       <Filter>ソース ファイル\シーン\ホーム</Filter>
@@ -164,7 +164,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ObjBarracks.cpp">
-      <Filter>ソース ファイル\施設\兵舎</Filter>
+      <Filter>ソース ファイル\関数/演出\施設\兵舎</Filter>
     </ClCompile>
     <ClCompile Include="ObjPreparation.cpp">
       <Filter>ソース ファイル\シーン\戦闘準備画面</Filter>
@@ -277,10 +277,10 @@
       <Filter>ソース ファイル\対戦用</Filter>
     </ClInclude>
     <ClInclude Include="ObjWarehouse.h">
-      <Filter>ソース ファイル\施設\倉庫</Filter>
+      <Filter>ソース ファイル\関数/演出\施設\倉庫</Filter>
     </ClInclude>
     <ClInclude Include="ObjInstitute.h">
-      <Filter>ソース ファイル\施設\研究所</Filter>
+      <Filter>ソース ファイル\関数/演出\施設\研究所</Filter>
     </ClInclude>
     <ClInclude Include="ObjTraining.h">
       <Filter>ソース ファイル\シーン\育成画面</Filter>
@@ -313,7 +313,7 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjBarracks.h">
-      <Filter>ソース ファイル\施設\兵舎</Filter>
+      <Filter>ソース ファイル\関数/演出\施設\兵舎</Filter>
     </ClInclude>
     <ClInclude Include="ObjBarracks.h">
       <Filter>ソース ファイル\施設\兵舎</Filter>
