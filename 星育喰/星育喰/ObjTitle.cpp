@@ -611,7 +611,7 @@ void CObjTitle::Draw()
 
 	//世界観説明フォント画像表示
 	FontDraw(L"意思を持つ惑星達が互いの生存をかけて喰らい合う弱肉強食の宇宙……。", 35.0f, m_des_y, 35.0f, 35.0f, description[0], false);
-	FontDraw(L"喰うか喰われるか――", 35.0f, m_des_y + 100.0f, 35.0f, 35.0f, description[1], false);
+	FontDraw(L"喰うか喰われるか－－", 35.0f, m_des_y + 100.0f, 35.0f, 35.0f, description[1], false);
 	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 35.0f, m_des_y + 200.0f, 35.0f, 35.0f, description[2], false);
 	FontDraw(L"その惑星の名は……？", 35.0f, m_des_y + 300.0f, 35.0f, 35.0f, description[3], false);
 
