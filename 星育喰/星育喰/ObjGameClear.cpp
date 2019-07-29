@@ -73,11 +73,11 @@ void CObjGameClear::Action()
 		m_speed = 10;
 		m_right_alpha -= 0.1f;//右クリックを押すと透過速度が早くなる
 	}
-	else if (m_mou_l == true && m_end_f == false)
-	{
-		m_speed = -10;
-		m_right_alpha -= 0.1f;//右クリックを押すと透過速度が早くなる
-	}
+	//else if (m_mou_l == true && m_end_f == false)
+	//{
+	//	m_speed = -10;
+	//	m_right_alpha -= 0.1f;//右クリックを押すと透過速度が早くなる
+	//}
 	else
 	{
 		m_speed = 0;

@@ -112,7 +112,7 @@ void CObjFight::Action()
 				message->Setprogress(1);
 			}
 		}
-		else if (m_start_count_f == true)
+		else if (m_start_count_f == true && g_is_operatable == true)
 		{
 			m_start_count--;//戦闘開始カウントダウン
 		}
@@ -240,11 +240,23 @@ void CObjFight::Action()
 	//以下の処理はチュートリアル中のみ実行される。
 	else if (g_tutorial_progress == 5)
 	{
-		if (400 <= m_mou_x && m_mou_x <= 800) {
+		if (400 <= m_mou_x && m_mou_x <= 800) 
+		{
+			if (200 <= m_mou_y && m_mou_y <= 250) 
+			{	
+				//上ライン------
+				if (m_mou_l == true) 
+				{ 
+					//矢印を非表示にさせる
+					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+					message->Setarrow(0);
 
-			if (200 <= m_mou_y && m_mou_y <= 250) {
-				if (m_mou_l == true) { m_line_nam = 0; }//上ライン------
-				else { m_line = 0; }
+					m_line_nam = 0; 
+				}
+				else 
+				{ 
+					m_line = 0; 
+				}
 			}
 		}
 	}

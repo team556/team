@@ -330,10 +330,15 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(special, OBJ_SPECIAL, 90);											//オブジェクト登録
 
 	//メッセージ表示(チュートリアル)オブジェクト作成
-	if (g_tutorial_progress < 8)
+	if (g_tutorial_progress < 8 || g_tutorial_progress == 16 && g_Special_equipment != 0)
 	{
 		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
 		Objs::InsertObj(message, OBJ_MESSAGE, 95);	//メッセージ表示オブジェクト登録
+	}
+
+	if (g_tutorial_progress == 17 && g_Special_equipment != 0)
+	{
+		g_tutorial_progress = 18;//スペシャル技使用したと判定
 	}
 
 	//戦闘前演出オブジェクト

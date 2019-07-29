@@ -649,7 +649,7 @@ void CObjPreparation::Action()
 					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
 					help->SetOperatable(true);
 
-					if (g_tutorial_progress == 1)
+					if (g_tutorial_progress <= 15)
 					{
 						g_is_operatable = false;//‘€ì•s‰Â‚É
 
@@ -856,7 +856,7 @@ void CObjPreparation::Action()
 			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
 			help->SetOperatable(true);
 
-			if (g_tutorial_progress == 1)
+			if (g_tutorial_progress <= 15)
 			{
 				g_is_operatable = false;//‘€ì•s‰Â‚É
 

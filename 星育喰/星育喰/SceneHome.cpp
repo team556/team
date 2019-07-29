@@ -100,6 +100,9 @@ void CSceneHome::InitScene()
 	//現在装備中のスペシャル技文字画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
 
+	//惑星名を読み込み128番に登録
+	Draw::LoadImage(L"惑星名.png", 128, TEX_SIZE_512);
+
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
 

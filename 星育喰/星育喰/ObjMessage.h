@@ -23,6 +23,10 @@ public:
 	void Draw();     //ドロー
 
 	void Setprogress(int progress) { m_progress = progress; }//外部からm_progress変更出来るように
+	void Setarrow(int arrow) { m_arrow_display_f = arrow; }//外部からm_arrow_display_f変更出来るように
+	void Setarrow_angle(int angle) { m_arrow_angle_f = angle; }//外部からm_arrow_angle_f変更出来るように
+	void Setarrow_x(float x) { m_arrow_x = x; }//外部からm_arrow_x変更出来るように
+	void Setarrow_y(float y) { m_arrow_y = y; }//外部からm_arrow_y変更出来るように
 private:
 	wchar_t m_font_data[FONT_DATA_Y][FONT_DATA_X];	//フォントデータ(画像のどの位置にどの文字があるのか管理している)
 	wchar_t m_font[MES_MAX][FONT_MAX];	//フォント情報管理配列[メッセージ格納数][フォントデータ格納数]

@@ -187,6 +187,13 @@ void CObjRocketButton::Action()
 						g_Power_num = 0;//0未満になっていた場合、0に戻す。
 						m_is_empty = true;//空フラグON
 					}
+
+					if (g_tutorial_progress == 3)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
+					}
 				}
 				else if (Button_num == 2 && g_Defense_num > 0)//ディフェンスボタンかつ、ディフェンスユニット数がある場合
 				{
@@ -201,6 +208,13 @@ void CObjRocketButton::Action()
 					{
 						g_Defense_num = 0;//0未満になっていた場合、0に戻す。
 						m_is_empty = true;//空フラグON
+					}
+
+					if (g_tutorial_progress == 3)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
 					}
 				}
 				else if (Button_num == 3 && g_Speed_num > 0)//スピードボタンかつ、スピードユニット数がある場合
@@ -217,6 +231,13 @@ void CObjRocketButton::Action()
 						g_Speed_num = 0;//0未満になっていた場合、0に戻す。
 						m_is_empty = true;//空フラグON
 					}
+
+					if (g_tutorial_progress == 3)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
+					}
 				}
 				else if (Button_num == 4 && g_Balance_num > 0)//バランスボタンかつ、バランスユニット数がある場合
 				{
@@ -232,11 +253,25 @@ void CObjRocketButton::Action()
 						g_Balance_num = 0;//0未満になっていた場合、0に戻す。
 						m_is_empty = true;//空フラグON
 					}
+
+					if (g_tutorial_progress == 3)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
+					}
 				}
 				else if (Button_num == 5)//ミサイルボタンの場合
 				{
 					CObjRocket* M = new CObjRocket(m_px - (190.0f + ((m_size / g_Player_max_size) * 60.0f)), 225, 0, 5);//オブジェクト作成
 					Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
+
+					if (g_tutorial_progress == 4)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
+					}
 				}
 
 				m_mou_f = true;

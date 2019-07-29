@@ -107,7 +107,7 @@ void CObjMessage::Init()
 	//以下の全角文字を打ち込むと、それぞれ特殊処理が行われます。
 	//「Ｒ」……赤文字化
 	//「Ｇ」……緑文字化
-	//「Ｂ」……青文字化
+	//「Ｙ」……黄文字化
 	//「Ｗ」……白文字化
 	//「＿」……空白
 	//「￥」……改行
@@ -152,8 +152,8 @@ void CObjMessage::Init()
 	//ホーム画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	if (m_Scene_id == 0)
 	{
-		swprintf_s(m_font[0], L"よう。￥今日から%s星、人類統括になった山田だ。", g_Player_Name);
-		swprintf_s(m_font[1], L"%s、生まれたてでいきなりなんだが￥敵惑星が攻めてくるって情報が入ったぜ。", g_Player_Name);
+		swprintf_s(m_font[0], L"よう。￥今日からＹ%s星Ｗ、人類統括になった山田だ。", g_Player_Name);
+		swprintf_s(m_font[1], L"Ｙ%sＷ、生まれたてでいきなりなんだが￥敵惑星が攻めてくるって情報が入ったぜ。", g_Player_Name);
 		swprintf_s(m_font[2], L"不意打ち食らう前に戦いに行こうぜ！");
 		swprintf_s(m_font[3], L"｜");
 
@@ -168,11 +168,11 @@ void CObjMessage::Init()
 	else if (m_Scene_id == 1)
 	{
 		swprintf_s(m_font[1], L"これが例の敵惑星か。～￥攻めてくるって聞いたから、￥強いのが来るかと思ったけど￥思ってたよりもだいぶ弱そうだな！");
-		swprintf_s(m_font[2], L"まあ弱そうだけど準備するに越したことはねえ！￥%s！￥敵惑星にマウスカーソルを合わせてみな！", g_Player_Name);
+		swprintf_s(m_font[2], L"まあ弱そうだけど準備するに越したことはねえな！￥Ｙ%sＷ！￥敵惑星にマウスカーソルを合わせてみな！", g_Player_Name);
 		swprintf_s(m_font[3], L"｜");
 		swprintf_s(m_font[4], L"よし、カーソルを合わせたな！～￥敵にカーソルを合わせると敵の情報が見れるぜ！￥手に入る資材や敵の攻撃傾向がわかるから￥戦う前にしっかりチェックしておけよ！");
 		swprintf_s(m_font[5], L"あ、そうそう。￥敵の情報にオーバーワークって書いてあるだろ？～￥あれはスペシャル技といって、￥要は敵が持っている必殺技みたいなもんだ。");
-		swprintf_s(m_font[6], L"今%sはスペシャル技を持ってはいないが￥敵を捕食すると敵が持っているスペシャル技を￥奪って使えるようになるからな。～￥じゃあ戦闘にいってみるか。",g_Player_Name);
+		swprintf_s(m_font[6], L"今Ｙ%sＷはスペシャル技を持ってはいないが￥敵を捕食すると敵が持っているスペシャル技を￥奪って使えるようになるからな。～￥じゃあ戦闘にいってみるか。",g_Player_Name);
 		swprintf_s(m_font[7], L"｜");
 
 		m_message_window_num = 55;
@@ -186,7 +186,7 @@ void CObjMessage::Init()
 	else if (m_Scene_id == 2)
 	{
 		swprintf_s(m_font[1], L"戦闘が始まったな。");
-		swprintf_s(m_font[2], L"右が見てわかる通り%sだな。",g_Player_Name);	
+		swprintf_s(m_font[2], L"右が見てわかる通りＹ%sＷだな。",g_Player_Name);	
 		swprintf_s(m_font[3], L"それで左が敵の惑星だ。");
 		swprintf_s(m_font[4], L"両方の惑星の下に緑色のバーがあるだろ？～￥この下のバーが惑星のＨＰゲージになってるぜ。");
 		swprintf_s(m_font[5], L"ＨＰゲージは惑星のサイズに直結していて、￥このゲージがゼロになると￥戦いに負けてしまうからな。～￥ＨＰゲージが無くならないように気をつけろよ。");
@@ -224,8 +224,8 @@ void CObjMessage::Init()
 		swprintf_s(m_font[38], L"時間切れにならなくても￥敵惑星の体力を削りきると￥惑星が吸い寄せられて捕食できるぜ。～￥逆に削りきられると自分が食われちまうからな。");
 		swprintf_s(m_font[39], L"｜");
 		swprintf_s(m_font[42], L"よし！戦いに勝って捕食することができたな。～￥捕食すると能力や素材を奪うことができるんだ。￥最高だろ？～￥さて今回の成果を見ていこうぜ。");
-		swprintf_s(m_font[43], L"一番上が%sに移住した住人の数だな。～￥こいつらは兵士や研究員にしたりと￥色んな所に配置できるから便利だぜ。",g_Player_Name);
-		swprintf_s(m_font[44], L"二番目に書いているのは惑星を食べたことで￥どれだけ%sの最大ＨＰが￥上昇したかを表す数字だな。",g_Player_Name);
+		swprintf_s(m_font[43], L"一番上がＹ%sＷに移住した住人の数だな。～￥こいつらは兵士や研究員にしたりと￥色んな所に配置できるから便利だぜ。",g_Player_Name);
+		swprintf_s(m_font[44], L"二番目に書いているのは惑星を食べたことで￥どれだけＹ%sＷの最大ＨＰが￥上昇したかを表す数字だな。",g_Player_Name);
 		swprintf_s(m_font[45], L"ＨＰがあればあるほど￥戦いは負けにくくなるから、￥多いに越したことはねえな。");
 		swprintf_s(m_font[46], L"その下は獲得した資材のことを書いてあるぜ。～￥まあ今回は資材を獲得できなかったみたいだけどな。～￥次からの戦いからは集められる資材のことも考えろよ。￥資材は有限だからな。");
 		swprintf_s(m_font[47], L"これが最後だな。￥スペシャル技ってやつだ。￥名前がダサいのは気にすんな。");
@@ -243,17 +243,16 @@ void CObjMessage::Init()
 	//ホーム画面2回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	if (m_Scene_id == 7)
 	{
-		swprintf_s(m_font[0], L"戦いに勝ててよかったぜ。￥……だけど油断はするなよ。￥この宇宙は弱い奴には優しくないからな。");
-		swprintf_s(m_font[1], L"これからも戦いに勝っていくためには、￥自分を強くすることも大切だぜ！");
-		swprintf_s(m_font[2], L"育ボタンで育成して、喰ボタンで戦闘する……￥それをくりかえして￥この弱肉強食の宇宙で生き残ろうぜ！");
-		swprintf_s(m_font[3], L"あ、そうそう。￥分からないことがあれば、￥右上の？ボタンを押してくれ。");
-		swprintf_s(m_font[4], L"オレが説明したことも、説明してないことも￥たくさん載ってるからな！");
-		swprintf_s(m_font[5], L"｜");
-
-		//(作りかけ)
 		//swprintf_s(m_font[0], L"戦いに勝ててよかったぜ。￥……だけど油断はするなよ。￥この宇宙は弱い奴には優しくないからな。");
-		//swprintf_s(m_font[1], L"これからも戦いに勝っていくためには、￥自分を強くすることも大切だぜ！～￥……ってことで強くなる方法を教えてやるぜ！");
-		//swprintf_s(m_font[2], L"｜");
+		//swprintf_s(m_font[1], L"これからも戦いに勝っていくためには、￥自分を強くすることも大切だぜ！");
+		//swprintf_s(m_font[2], L"育ボタンで育成して、喰ボタンで戦闘する……￥それをくりかえして￥この弱肉強食の宇宙で生き残ろうぜ！");
+		//swprintf_s(m_font[3], L"あ、そうそう。￥分からないことがあれば、￥右上の？ボタンを押してくれ。");
+		//swprintf_s(m_font[4], L"オレが説明したことも、説明してないことも￥たくさん載ってるからな！");
+		//swprintf_s(m_font[5], L"｜");
+
+		swprintf_s(m_font[0], L"戦いに勝ててよかったぜ。￥……だけど油断はするなよ。￥この宇宙は弱い奴には優しくないからな。");
+		swprintf_s(m_font[1], L"これからも戦いに勝っていくためには、￥自分を強くすることも大切だぜ！～￥……ってことで強くなる方法を教えてやるぜ！");
+		swprintf_s(m_font[2], L"｜");
 
 		m_message_window_num = 6;
 		m_yamada_window_num = 7;
@@ -269,45 +268,47 @@ void CObjMessage::Init()
 		swprintf_s(m_font[1], L"まずはここをクリックしてみな。");
 		swprintf_s(m_font[2], L"｜");
 		swprintf_s(m_font[3], L"ここは研究所だ。～￥研究所を強化すると住民の技術が上がって￥ポッドの耐久力が増すぜ。");
-		swprintf_s(m_font[4], L"左下のボタンを押すと￥研究所を強化することができるぞ。～￥ただし%sのＨＰと￥他の星から奪った資材が必要だけどな。",g_Player_Name);
+		swprintf_s(m_font[4], L"左下のボタンを押すと￥研究所を強化することができるぞ。～￥ただしＹ%sＷのＨＰと￥他の星から奪った資材が必要だけどな。",g_Player_Name);
 		swprintf_s(m_font[5], L"右上のボタンで住民を研究員に割り振れるぜ。～￥割り振るとミサイルの再生産を早めたり￥コアを製作することができるぜ。");
 		swprintf_s(m_font[6], L"おっと、コアについての説明がまだだったな。");
 		swprintf_s(m_font[7], L"ポッドはコアに蓄積された￥コスモパワーって言うエネルギーを￥動力源として動いたり￥攻撃するエネルギー弾になったりしてるんだ。");
 		swprintf_s(m_font[8], L"コアを強化することによって￥蓄積できるコスモパワーが増えて￥攻撃力が上がるぜ。");
 		swprintf_s(m_font[9], L"ちなみにさっきの戦闘で話した￥ポッドが三すくみになっている理由や￥戦闘中に同じレーンを撃ちつづけると￥防御力が下がる理由はコスモパワーが原因なんだぜ。");
 		swprintf_s(m_font[10], L"つづけて撃つと￥コスモパワー自体の生産量が追いつかなかったり…￥コスモパワー自体が属性を持っているから￥……ってかんじでな。");
-		swprintf_s(m_font[11], L"白色のポッドはすげえんだぜ。￥何たってすべてのコスモパワーを￥詰め込んでるからな。～￥だから、他のポッドより強いんだぜ。");
+		swprintf_s(m_font[11], L"白色のポッドはすげえんだぜ。￥何たってすべてのコスモパワーを￥つめ込んでるからな。～￥だから、他のポッドより強いんだぜ。");
 		swprintf_s(m_font[12], L"しかしそれに対抗するために生まれたのが￥コスモパワーを乱せる￥ジャマー搭載ミサイルってわけだ！");
 		swprintf_s(m_font[13], L"コスモパワーをすべて持つ￥白色ポッドには効果抜群なんだぜ！");
 		swprintf_s(m_font[14], L"……っと、つい熱く話してしまった。￥本題へ戻ろう。");
 		swprintf_s(m_font[15], L"次はこのボタンをクリックしてくれ。");
 		swprintf_s(m_font[16], L"｜");
 		swprintf_s(m_font[17], L"ここではミサイルについての情報が見れるぜ。～￥ミサイルの再生産スピードは￥研究員を増やすと早くなっていくぜ。～￥研究所自体のレベルも上げないと意味はないけどな。");
-		swprintf_s(m_font[18], L"詳しい条件は一番下のウインドウに載っているぜ。");//勝手に戻す
+		swprintf_s(m_font[18], L"詳しい条件は一番下のウインドウに載っているぜ。");
 		swprintf_s(m_font[19], L"次はこのボタンをクリックしてくれ。");
 		swprintf_s(m_font[20], L"｜");
 		swprintf_s(m_font[21], L"ここではコアやポッドを作ることができるぜ。～￥今は資材が何もないから何も作ることはできないが、￥作るときには研究員と資材が必要だぜ。～￥制作時に研究員は減らないから安心しな。");
 		swprintf_s(m_font[22], L"コアを作成すると、￥蓄積できるコスモパワーが増えて￥攻撃力が上がるぜ。");
-		swprintf_s(m_font[23], L"ポッドを作成すると、￥ポッドの装甲が強化されて￥耐久力があがるぜ。");//育成画面トップに勝手に戻す
+		swprintf_s(m_font[23], L"ポッドを作成すると、￥ポッドの装甲が強化されて￥耐久力があがるぜ。");
 		swprintf_s(m_font[24], L"次はここをクリックしてみな。");
 		swprintf_s(m_font[25], L"｜");
 		swprintf_s(m_font[26], L"ここは兵舎だ。～￥兵舎を強化すると質のいい訓練になって￥ポッドの攻撃力を上げることができるぜ。");
 		swprintf_s(m_font[27], L"ポッドには住民が乗り込んで攻撃するだろ？～￥住民を強化することによって￥ポッドの攻撃力も相対的に上がるってことだな。");
-		swprintf_s(m_font[28], L"左下のボタンを押すと￥兵舎を強化することができるぞ。～￥ただし兵舎も%sのＨＰと￥他の星から奪った資材が必要だけどな。",g_Player_Name);
+		swprintf_s(m_font[28], L"左下のボタンを押すと￥兵舎を強化することができるぞ。～￥ただし兵舎もＹ%sＷのＨＰと￥他の星から奪った資材が必要だけどな。",g_Player_Name);
 		swprintf_s(m_font[29], L"右上のボタンで住民を兵士に割り振れるぜ。～￥ポッド一つにつき￥１００人乗せて飛んでいくんだ。");
-		swprintf_s(m_font[30], L"もちろん住民の振り分けを￥行っていない色のポッドは￥戦闘中に出撃することは￥できないからそこは要注意だぜ。");//育成画面トップに勝手に戻す
+		swprintf_s(m_font[30], L"もちろん住民の振り分けを￥行っていない色のポッドは￥戦闘中に出撃することは￥できないからそこは要注意だぜ。");
 		swprintf_s(m_font[31], L"次はここをクリックしてみな。");
 		swprintf_s(m_font[32], L"｜");
 		swprintf_s(m_font[33], L"ここは倉庫だ。～￥色んな情報を見れるぜ。");
 		swprintf_s(m_font[34], L"左上の素材ウインドウは￥現在持っている素材を見れたり……");
 		swprintf_s(m_font[35], L"右上の住民ウインドウは￥兵舎と研究所で割り振った住民と￥割り振られていない住民の数が確認できたり……");
 		swprintf_s(m_font[36], L"左下のスペシャル技ウインドウは￥現在取得しているスペシャル技の効果を￥詳しく確認できたり……。");
-		swprintf_s(m_font[37], L"右下の装備ウインドウは￥現在装備しているコアとポッドが確認できたり……￥ってかんじでな。");//育成画面トップに戻す
-		swprintf_s(m_font[38], L"最後に補足なんだが、￥研究所や兵舎を強化していくと￥惑星が発展していくぜ！～￥だからどんどん強化してくれよ！");
-		swprintf_s(m_font[39], L"よし、これで説明は以上だ。～￥まずは今説明したことを基に￥すきなように住民を￥割り振ってみるのがいいかもな。");
-		swprintf_s(m_font[40], L"それで準備が出来たら、￥次はこっちから他の惑星を攻めにいこうぜ！～￥強くなるためには資材が必要だが、￥今はその資材がまったくないからな。");
-		swprintf_s(m_font[41], L"攻めにいく方法は、￥左上の戻るボタンを押すか、右クリックを押して￥その後に喰ボタンだぜ！");
-		swprintf_s(m_font[42], L"｜");
+		swprintf_s(m_font[37], L"右下の装備ウインドウは￥現在装備しているコアとポッドが確認できたり……￥ってかんじでな。");
+		swprintf_s(m_font[38], L"よし、それじゃあここをクリックするか、￥右クリックを押して倉庫から出てくれ。");
+		swprintf_s(m_font[39], L"｜");
+		swprintf_s(m_font[40], L"最後に補足なんだが、￥研究所や兵舎を強化していくと￥惑星が発展していくぜ！～￥だからどんどん強化してくれよ！");
+		swprintf_s(m_font[41], L"よし、これで説明は以上だ。～￥まずは今説明したことを基に￥すきなように住民を￥割り振ってみるのがいいかもな。");
+		swprintf_s(m_font[42], L"それで準備が出来たら、￥次はこっちから他の惑星を攻めにいこうぜ！～￥強くなるためには資材が必要だが、￥今はその資材がまったくないからな。");
+		swprintf_s(m_font[43], L"攻めにいく方法は、￥左上の戻るボタンを押すか、右クリックを押して￥その後に喰ボタンだぜ！");
+		swprintf_s(m_font[44], L"｜");
 
 		m_message_window_num = 21;
 		m_yamada_window_num = 20;
@@ -319,12 +320,56 @@ void CObjMessage::Init()
 		//メッセージウインドウ位置変更
 		m_is_top_or_bottom = 1;
 	}
+	//戦闘準備画面2回目メッセージ文設定＆画像登録番号、グローバル変数設定
+	else if (m_Scene_id == 15)
+	{
+		swprintf_s(m_font[1], L"よう、下のところを見てみな。～￥さっきまでなかったものが増えているだろ。");
+		swprintf_s(m_font[2], L"ここでスペシャル技の装備ができるぜ。～￥今はまだ一つしかスペシャル技がないが￥敵を食べることで増えていくからな。");
+		swprintf_s(m_font[3], L"さて、ここからはＹ%sＷが￥戦いたい惑星を選んで戦うんだ。～￥戦いたい惑星をクリックすると￥戦うかどうか選べるからな。",g_Player_Name);
+		swprintf_s(m_font[4], L"｜");
+
+		m_message_window_num = 55;
+		m_yamada_window_num = 89;
+		m_black_out_num = 91;
+
+		g_is_operatable = true;//操作可能に
+		m_black_out_f = false;//明転状態から始める
+
+		//メッセージウインドウ位置変更
+		m_is_top_or_bottom = 1;
+	}
+	//戦闘画面2回目メッセージ文設定＆画像登録番号、グローバル変数設定
+	else if (m_Scene_id == 16)
+	{
+		swprintf_s(m_font[0], L"おっと、￥スペシャル技の発動の仕方を教えてなかったな。");
+		swprintf_s(m_font[1], L"発動は簡単だぜ。￥右上のボタンを押せばいいだけだからな。");
+		swprintf_s(m_font[2], L"ただし戦闘中に一回しか￥発動することができねえから￥発動タイミングを見極めな。");
+		swprintf_s(m_font[3], L"ちなみにスペシャル技は￥Ｓキーでも発動できるからな。");
+		swprintf_s(m_font[4], L"｜");
+
+		m_message_window_num = 33;
+		m_yamada_window_num = 79;
+		m_black_out_num = 20;
+
+		g_is_operatable = false;//操作不能に
+		m_black_out_f = true;//徐々に暗転
+	}
 	//エンディングメッセージ文設定
 	else if (m_Scene_id == 30)
 	{
 		swprintf_s(m_font[0], L"よお、久しぶりだな。～￥今回の敵は物凄く強かったな。");
-		swprintf_s(m_font[1], L"成長したとはいえ、￥つい最近まで生まれたてだった￥%sがよく勝てたもんだ。～￥勝てたことが本当に奇跡だぜ。",g_Player_Name);
-		swprintf_s(m_font[2], L"……。～￥おい、朗報だぜ。～￥どうやら%sとさっきの強い惑星が￥ここら一帯の惑星を食い尽くしたみたいだ。", g_Player_Name);
+		
+		//スペシャル技を一切使わなかった場合、セリフが若干変わる。
+		if (g_tutorial_progress == 16 || g_tutorial_progress == 17)
+		{
+			swprintf_s(m_font[1], L"しかしずっとスペシャル技を使わずに￥勝ちつづけるとは……。～￥Ｙ%sＷ、おまえホントに生まれたてか？￥そう思うくらいすげえよ。", g_Player_Name);
+		}
+		else
+		{
+			swprintf_s(m_font[1], L"成長したとはいえ、￥つい最近まで生まれたてだった￥Ｙ%sＷがよく勝てたもんだ。～￥勝てたことが本当に奇跡だぜ。", g_Player_Name);
+		}
+		
+		swprintf_s(m_font[2], L"……。～￥おい、朗報だぜ。～￥どうやらＹ%sＷとさっきの強い惑星が￥ここら一帯の惑星を食い尽くしたみたいだ。", g_Player_Name);
 		swprintf_s(m_font[3], L"だから今は安心して休みな。～￥なんたって今はお前が銀河最強なんだからな。");
 		swprintf_s(m_font[4], L"｜");
 
@@ -346,6 +391,14 @@ void CObjMessage::Action()
 	//マウスのボタンの状態
 	m_mou_r = Input::GetMouButtonR();
 	m_mou_l = Input::GetMouButtonL();
+
+	//▼キーフラグ
+	//※左クリックPush状態→左クリック未Push状態になるまで、
+	//再度左クリックする事は出来ない処理。
+	if (m_mou_l == false)
+	{
+		m_key_f = false;
+	}
 
 	//メッセージ表示機能動作中の処理
 	if (m_run_switch == true)
@@ -541,25 +594,71 @@ void CObjMessage::Action()
 			m_arrow_x = 140.0f;
 			m_arrow_y = 520.0f;
 		}
+		else if (m_Scene_id == 8 && m_progress == 4)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 70.0f;
+			m_arrow_y = 340.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 5)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 3;
+			m_arrow_x = 510.0f;
+			m_arrow_y = 15.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 6)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
+		}
 		else if (m_Scene_id == 8 && m_progress == 15)
 		{
 			m_black_out_f = false;//徐々に明転
 
 			//矢印表示
 			m_arrow_display_f = 1;
-			m_arrow_angle_f = 0;
-			m_arrow_x = 0.0f;
-			m_arrow_y = 0.0f;	
+			m_arrow_angle_f = 3;
+			m_arrow_x = 450.0f;
+			m_arrow_y = 340.0f;	
+		}
+		else if (m_Scene_id == 8 && m_progress == 18)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 3;
+			m_arrow_x = 640.0f;
+			m_arrow_y = 440.0f;
 		}
 		else if (m_Scene_id == 8 && m_progress == 19)
 		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
 			m_black_out_f = false;//徐々に明転
 
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 0;
-			m_arrow_x = 0.0f;
-			m_arrow_y = 0.0f;
+			m_arrow_x = 75.0f;
+			m_arrow_y = 130.0f;
 		}
 		else if (m_Scene_id == 8 && m_progress == 24)
 		{
@@ -568,8 +667,34 @@ void CObjMessage::Action()
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 0;
-			m_arrow_x = 0.0f;
-			m_arrow_y = 0.0f;
+			m_arrow_x = 75.0f;
+			m_arrow_y = 130.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 28)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+
+			m_black_out_f = false;//徐々に明転
+			
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 70.0f;
+			m_arrow_y = 340.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 29)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 3;
+			m_arrow_x = 510.0f;
+			m_arrow_y = 15.0f;
 		}
 		else if (m_Scene_id == 8 && m_progress == 31)
 		{
@@ -578,8 +703,114 @@ void CObjMessage::Action()
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 0;
-			m_arrow_x = 0.0f;
-			m_arrow_y = 0.0f;
+			m_arrow_x = 65.0f;
+			m_arrow_y = 120.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 34)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 325.0f;
+			m_arrow_y = 350.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 35)
+		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 850.0f;
+			m_arrow_y = 350.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 36)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 1;
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 325.0f;
+			m_arrow_y = 270.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 37)
+		{
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 850.0f;
+			m_arrow_y = 270.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 38)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 65.0f;
+			m_arrow_y = 120.0f;
+		}
+		else if (m_Scene_id == 8 && m_progress == 43)
+		{
+			//メッセージウインドウ位置変更
+			m_is_top_or_bottom = 0;
+
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 5.0f;
+			m_arrow_y = 60.0f;
+		}
+
+
+		//▼戦闘準備画面2回目
+		else if (m_Scene_id == 15 && m_progress == 2)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 570.0f;
+			m_arrow_y = 370.0f;
+		}
+		else if (m_Scene_id == 15 && m_progress == 3)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
+		}
+
+
+		//▼戦闘画面2回目
+		else if (m_Scene_id == 16 && m_progress == 1)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 0;
+			m_arrow_x = 1060.0f;
+			m_arrow_y = 140.0f;
+		}
+		else if (m_Scene_id == 16 && m_progress == 2)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
 		}
 	}
 	//▼メッセージ表示機能が停止した時の処理
@@ -604,6 +835,13 @@ void CObjMessage::Action()
 		}
 		else if (m_Scene_id == 0 && m_progress == 3)
 		{
+			if (m_arrow_display_f == 0 && m_arrow_angle_f == 1)
+			{
+				m_progress = 4;//進行度上昇させてこの処理から抜ける
+
+				return;
+			}
+
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 1;
@@ -613,12 +851,6 @@ void CObjMessage::Action()
 			g_is_operatable = true;//操作可能に
 			m_black_out_f = false;//画面明転
 			g_tutorial_progress = 1;//チュートリアル進行度を1にする
-
-			if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680 && m_mou_l == true)
-			{
-				m_arrow_display_f = 0;//喰ボタンクリックされたら矢印非表示
-				m_progress = 4;//進行度上昇させてこの処理から抜ける
-			}
 		}
 
 
@@ -690,6 +922,8 @@ void CObjMessage::Action()
 			{
 				m_count++;//時間計測開始
 
+				g_is_operatable = false;//操作不能にする
+
 				//完全暗転後、メッセージ処理開始
 				if (m_black_out_a >= 0.5f)
 				{
@@ -710,46 +944,6 @@ void CObjMessage::Action()
 				return;
 			}
 
-			//ポッドボタンの範囲でクリックしたら処理に入る
-			if (550 <= m_mou_y && m_mou_y <= 650)
-			{
-				if (500 <= m_mou_x && m_mou_x <= 600 || 650 <= m_mou_x && m_mou_x <= 750 || 800 <= m_mou_x && m_mou_x <= 900 || 950 <= m_mou_x && m_mou_x <= 1050)
-				{
-					if (m_mou_l == true)
-					{
-						g_is_operatable = false;//操作不能にする
-
-						m_arrow_display_f = 0;//矢印非表示
-					}
-				}
-			}
-
-			//ポッド射出ボタンを押したら処理に入る
-			if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true)
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
-			}
-			else if (Input::GetVKey('3') == true || Input::GetVKey(VK_NUMPAD3) == true) 
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
-			}
-			else if (Input::GetVKey('4') == true || Input::GetVKey(VK_NUMPAD4) == true)
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
-			}
-			else if (Input::GetVKey('5') == true || Input::GetVKey(VK_NUMPAD5) == true)
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
-			}
-
 			//矢印表示
 			m_arrow_x = 455.0f + m_swing_r * 1.5;
 			m_arrow_y = 410.0f;
@@ -766,6 +960,8 @@ void CObjMessage::Action()
 			if (m_arrow_display_f == 0)
 			{
 				m_count++;//時間計測開始
+
+				g_is_operatable = false;//操作不能にする
 
 				//完全暗転後、メッセージ処理開始
 				if (m_black_out_a >= 0.5f)
@@ -787,20 +983,6 @@ void CObjMessage::Action()
 				return;
 			}
 
-			if (150 <= m_mou_x && m_mou_x <= 350 && 550 <= m_mou_y && m_mou_y <= 650 && m_mou_l == true)
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
-			}
-
-			if (Input::GetVKey('1') == true || Input::GetVKey(VK_NUMPAD1) == true)
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
-			}
-
 			//矢印表示
 			m_arrow_x = 220.0f;
 			m_arrow_y = 410.0f;
@@ -818,6 +1000,8 @@ void CObjMessage::Action()
 			{
 				m_count++;//時間計測開始
 
+				g_is_operatable = false;//操作不能にする
+
 				//完全暗転後、メッセージ処理開始
 				if (m_black_out_a >= 0.5f)
 				{
@@ -834,13 +1018,8 @@ void CObjMessage::Action()
 				{
 					m_black_out_f = true;//画面暗転
 				}
-			}
 
-			if (400 <= m_mou_x && m_mou_x <= 800 && 200 <= m_mou_y && m_mou_y <= 250 && m_mou_l == true)
-			{
-				g_is_operatable = false;//操作不能にする
-
-				m_arrow_display_f = 0;//矢印非表示
+				return;
 			}
 
 			//矢印表示
@@ -918,27 +1097,28 @@ void CObjMessage::Action()
 				m_run_switch = true;//メッセージ表示機能動作開始
 			}
 		}
-		else if (m_Scene_id == 7 && m_progress == 5)
+		else if (m_Scene_id == 7 && m_progress == 2)
 		{
-			////矢印表示
-			//m_arrow_display_f = 1;
-			//m_arrow_angle_f = 1;
-			//m_arrow_x = 90.0f;
-			//m_arrow_y = 340.0f;
+			if (m_arrow_display_f == 0 && m_arrow_angle_f == 1)
+			{
+				m_progress = 3;//進行度上昇させてこの処理から抜ける
+
+				return;
+			}
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 1;
+			m_arrow_x = 90.0f;
+			m_arrow_y = 340.0f;
 
 			g_is_operatable = true;//操作可能に
 			m_black_out_f = false;//画面明転
 			g_tutorial_progress = 8;//チュートリアル進行度を8にする
-
-			//if (20 < m_mou_x && m_mou_x < 220 && 480 < m_mou_y && m_mou_y < 680 && m_mou_l == true)
-			//{
-			//	m_arrow_display_f = 0;//育ボタンクリックされたら矢印非表示
-			//	m_progress = 3;//進行度上昇させてこの処理から抜ける
-			//}
 		}
 
 
-		//▼育成画面(作りかけ。色々バグ有。)
+		//▼育成画面
 		else if (m_Scene_id == 8 && m_progress == 0)
 		{
 			m_count++;//時間計測開始
@@ -979,11 +1159,6 @@ void CObjMessage::Action()
 				return;
 			}
 
-			if (120 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550 && m_mou_l == true)
-			{
-				m_arrow_display_f = 0;//クリックされたら矢印非表示
-			}
-
 			g_tutorial_progress = 9;//チュートリアル進行度を9にする
 
 			g_is_operatable = true;//操作可能に
@@ -1012,12 +1187,7 @@ void CObjMessage::Action()
 				return;
 			}
 
-			if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473 && m_mou_l == true)
-			{
-				m_arrow_display_f = 0;//クリックされたら矢印非表示
-			}
-
-			g_tutorial_progress = 10;//チュートリアル進行度を9にする
+			g_tutorial_progress = 10;//チュートリアル進行度を10にする
 
 			g_is_operatable = true;//操作可能に
 		}
@@ -1034,7 +1204,7 @@ void CObjMessage::Action()
 				{
 					m_run_switch = true;//メッセージ表示機能動作開始
 					m_count = 0;//m_countを初期化
-					m_progress = 22;//進行度上昇させてこの処理から抜ける
+					m_progress = 21;//進行度上昇させてこの処理から抜ける
 				}
 				//0.5秒後、画面暗転処理開始
 				else if (m_count >= 60 * 0.5)
@@ -1043,11 +1213,6 @@ void CObjMessage::Action()
 				}
 
 				return;
-			}
-
-			if (515 < m_mou_x && m_mou_x < 1120 && 493 < m_mou_y && m_mou_y < 641 && m_mou_l == true)
-			{
-				m_arrow_display_f = 0;//クリックされたら矢印非表示
 			}
 
 			g_tutorial_progress = 11;//チュートリアル進行度を11にする
@@ -1067,7 +1232,7 @@ void CObjMessage::Action()
 				{
 					m_run_switch = true;//メッセージ表示機能動作開始
 					m_count = 0;//m_countを初期化
-					m_progress = 25;//進行度上昇させてこの処理から抜ける
+					m_progress = 26;//進行度上昇させてこの処理から抜ける
 				}
 				//0.5秒後、画面暗転処理開始
 				else if (m_count >= 60 * 0.5)
@@ -1076,11 +1241,6 @@ void CObjMessage::Action()
 				}
 
 				return;
-			}
-
-			if (450 < m_mou_x && m_mou_x < 650 && 395 < m_mou_y && m_mou_y < 520 && m_mou_l == true)
-			{
-				m_arrow_display_f = 0;//クリックされたら矢印非表示
 			}
 
 			g_is_operatable = true;//操作可能に
@@ -1100,7 +1260,7 @@ void CObjMessage::Action()
 				{
 					m_run_switch = true;//メッセージ表示機能動作開始
 					m_count = 0;//m_countを初期化
-					m_progress = 32;//進行度上昇させてこの処理から抜ける
+					m_progress = 33;//進行度上昇させてこの処理から抜ける
 				}
 				//0.5秒後、画面暗転処理開始
 				else if (m_count >= 60 * 0.5)
@@ -1111,23 +1271,94 @@ void CObjMessage::Action()
 				return;
 			}
 
-			if (850 < m_mou_x && m_mou_x < 1250 && 430 < m_mou_y && m_mou_y < 550 && m_mou_l == true)
-			{
-				m_arrow_display_f = 0;//クリックされたら矢印非表示
-			}
-
 			g_is_operatable = true;//操作可能に
 
 			g_tutorial_progress = 13;//チュートリアル進行度を13にする
 		}
-		else if (m_Scene_id == 8 && m_progress == 42)
+		else if (m_Scene_id == 8 && m_progress == 39)
+		{
+			if (m_arrow_display_f == 0)
+			{
+				m_count++;//時間計測開始
+
+				g_is_operatable = false;//操作不能に
+
+				//メッセージウインドウ位置変更
+				m_is_top_or_bottom = 1;
+
+				//完全暗転後、メッセージ処理開始
+				if (m_black_out_a >= 0.5f)
+				{
+					m_run_switch = true;//メッセージ表示機能動作開始
+					m_count = 0;//m_countを初期化
+					m_progress = 40;//進行度上昇させてこの処理から抜ける
+				}
+				//0.5秒後、画面暗転処理開始
+				else if (m_count >= 60 * 0.5)
+				{
+					m_black_out_f = true;//画面暗転
+				}
+
+				return;
+			}
+
+			g_is_operatable = true;//操作可能に
+
+			g_tutorial_progress = 14;//チュートリアル進行度を14にする
+		}
+		else if (m_Scene_id == 8 && m_progress == 44)
 		{
 			m_black_out_f = false;//徐々に明転
 
-			g_tutorial_progress = 14;//チュートリアル進行度を14にする
+			g_tutorial_progress = 15;//チュートリアル進行度を15にする
+
+			m_arrow_display_f = 0;//矢印非表示
 
 			g_is_operatable = true;//操作可能に
 		}
+
+
+		//▼戦闘準備画面2回目
+		else if (m_Scene_id == 15 && m_progress == 1)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
+			{
+				m_run_switch = true;//メッセージ表示機能動作開始
+			}
+		}
+		else if (m_Scene_id == 15 && m_progress == 4)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			g_tutorial_progress = 16;//チュートリアル進行度を16にする
+
+			g_is_operatable = true;//操作可能に
+		}
+
+
+		//戦闘画面2回目
+		else if (m_Scene_id == 16 && m_progress == 0 && g_tutorial_progress != 31)
+		{
+			//完全暗転後、メッセージ処理開始
+			if (m_black_out_a >= 0.5f)
+			{
+				m_run_switch = true;//メッセージ表示機能動作開始
+			}
+		}
+		else if (m_Scene_id == 16 && m_progress == 4 && g_tutorial_progress != 31)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			g_tutorial_progress = 18;//チュートリアル進行度を18(最大値)にする
+
+			g_is_operatable = true;//操作可能に
+		}
+
+
+		//▼エンディング画面
 		else if (m_Scene_id == 30 && m_progress == 0)
 		{
 			//完全暗転後、メッセージ処理開始
@@ -1143,19 +1374,6 @@ void CObjMessage::Action()
 
 			g_tutorial_progress = 31;//エンディングへ。
 		}
-
-		//else if (m_Scene_id == 30 && m_progress == 3)
-		//{
-		//	if (Input::GetVKey('A') == true)
-		//	{
-		//		m_progress++;
-		//		m_run_switch = true;
-		//	}
-		//}
-		//else if (m_Scene_id == 1 && m_progress == 0)
-		//{
-
-		//}
 
 		return;
 	}
@@ -1184,15 +1402,6 @@ void CObjMessage::Action()
 			m_length = i;
 		}
 	}
-
-	//▼キーフラグ
-	//※左クリックPush状態→左クリック未Push状態になるまで、
-	//再度左クリックする事は出来ない処理。
-	if (m_mou_l == false)
-	{
-		m_key_f = false;
-	}
-
 
 	//▼文章途中のクリック要求処理
 	if (m_font[m_progress][m_font_count] == L'～')
@@ -1225,7 +1434,7 @@ void CObjMessage::Action()
 
 	//▼メッセージカラー変更処理
 	if (m_font[m_progress][m_font_count] == L'Ｒ' || m_font[m_progress][m_font_count] == L'Ｇ' ||
-		m_font[m_progress][m_font_count] == L'Ｂ' || m_font[m_progress][m_font_count] == L'Ｗ')
+		m_font[m_progress][m_font_count] == L'Ｙ' || m_font[m_progress][m_font_count] == L'Ｗ')
 	{
 		if (m_font[m_progress][m_font_count] == L'Ｒ')
 		{
@@ -1263,20 +1472,20 @@ void CObjMessage::Action()
 				}
 			}
 		}
-		else if (m_font[m_progress][m_font_count] == L'Ｂ')
+		else if (m_font[m_progress][m_font_count] == L'Ｙ')
 		{
-			//Ｂ宣言の後ろにあるフォント全てを青色に変更する
+			//Ｙ宣言の後ろにあるフォント全てを青色に変更する
 			for (int i = m_font_count; i <= m_length; i++)
 			{
 				for (int j = 0; j < 3; j++)
 				{
 					if (j != 2)
 					{
-						m_font_color[i][j] = 0.0f;
+						m_font_color[i][j] = 1.0f;
 					}
 					else
 					{
-						m_font_color[i][j] = 1.0f;
+						m_font_color[i][j] = 0.0f;
 					}
 				}
 			}
@@ -1430,11 +1639,11 @@ void CObjMessage::Action()
 		m_key_f = true;//キーフラグを立てる
 	}
 	//メッセージ表示中にCTRLキーが入力されたら
-	//メッセージ表示機能停止までのメッセージを全て飛ばすフラグを立てる(デバッグ用。必ずコメントアウトしておく。)
-	//else if (Input::GetVKey(VK_CONTROL) == true)
-	//{
-	//	m_skip_f = true;
-	//}
+	//メッセージ表示機能停止までのメッセージを全て飛ばすフラグを立てる
+	else if (Input::GetVKey(VK_CONTROL) == true)
+	{
+		m_skip_f = true;
+	}
 }
 
 //ドロー

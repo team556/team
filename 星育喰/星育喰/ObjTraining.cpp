@@ -116,6 +116,30 @@ void CObjTraining::Action()
 	}
 
 
+	//チュートリアル中に表示する矢印
+	if (g_tutorial_progress == 12)
+	{
+		//矢印の角度、位置を変更する
+		CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+		message->Setarrow_angle(0);
+		message->Setarrow_x(540.0f);
+		message->Setarrow_y(530.0f);
+	}
+	else if (g_tutorial_progress == 13)
+	{
+		//矢印の角度、位置を変更する
+		CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+		message->Setarrow_angle(0);
+		message->Setarrow_x(1050.0f);
+		message->Setarrow_y(550.0f);
+	}
+	else if (g_tutorial_progress == 14)
+	{
+		//矢印を非表示にさせる
+		CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+		message->Setarrow(0);
+	}
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -132,7 +156,7 @@ void CObjTraining::Action()
 	}
 
 	//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
-	if (g_tutorial_progress >= 8)//チュートリアル中は選択不可
+	if (g_tutorial_progress >= 15)//チュートリアル中は選択不可
 	{
 		if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 		{

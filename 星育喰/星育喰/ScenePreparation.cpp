@@ -38,7 +38,7 @@ void CScenePreparation::InitScene()
 	Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//メッセージ表示(チュートリアル)オブジェクト作成
-	if (g_tutorial_progress < 8)
+	if (g_tutorial_progress < 16)
 	{
 		CObjMessage* message = new CObjMessage(g_tutorial_progress);	//メッセージ表示オブジェクト作成
 		Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録

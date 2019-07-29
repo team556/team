@@ -51,6 +51,13 @@ void CSceneNameInput::InitScene()
 	//いいえ文字画像読み込み67番に登録
 	Draw::LoadImage(L"いいえ.png", 67, TEX_SIZE_512);
 
+	//SE読み込み
+	//選択
+	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+
+	//戻る
+	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
+
 	CObjNameInput*obj = new CObjNameInput();
 	Objs::InsertObj(obj, OBJ_NAME_INPUT, 1);
 }

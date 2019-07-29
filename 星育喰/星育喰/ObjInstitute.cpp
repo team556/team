@@ -303,6 +303,23 @@ void CObjInstitute::Action()
 	//▼研究所ウインドウ表示時の処理
 	if (window_start_manage == Institute)
 	{
+		if (g_tutorial_progress == 11)
+		{
+			//矢印の角度、位置を変更する
+			CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+			message->Setarrow_angle(3);
+			message->Setarrow_x(450.0f);
+			message->Setarrow_y(510.0f);
+		}
+		else if (g_tutorial_progress == 12)
+		{
+			//矢印の角度、位置を変更する
+			CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+			message->Setarrow_angle(0);
+			message->Setarrow_x(65.0f);
+			message->Setarrow_y(120.0f);
+		}
+
 		//▼(研究所)最終確認ウインドウ表示時の処理
 		if (m_finalcheck_f == true)
 		{
@@ -432,7 +449,7 @@ void CObjInstitute::Action()
 		}
 
 		//戻るボタン左クリック、もしくは右クリック(どこでも)する事で研究所ウインドウを閉じる
-		if (g_tutorial_progress >= 8)
+		if (g_tutorial_progress >= 12)
 		{
 			if (70 < m_mou_x && m_mou_x < 120 && 60 < m_mou_y && m_mou_y < 110 || m_mou_r == true)
 			{
@@ -477,6 +494,11 @@ void CObjInstitute::Action()
 						//"どのウインドウも開いていない状態"フラグを立てる
 						window_start_manage = Default;
 
+						//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+						CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+						help->SetOperatable(true);
+						help->SetAlpha(1.0f);
+
 						//戻るボタン音
 						Audio::Start(2);
 					}
@@ -490,6 +512,10 @@ void CObjInstitute::Action()
 			{
 				m_Back_Button_color = INI_COLOR;
 			}
+		}
+
+		if (g_tutorial_progress >= 15)
+		{
 
 			//研究所レベルUP
 			if (30 < m_mou_x && m_mou_x < 148 && 465 < m_mou_y && m_mou_y < 610)
@@ -640,23 +666,23 @@ void CObjInstitute::Action()
 						g_Bal_equip_Level = Equip_Lvup_check(3, g_Bal_equip_Level, g_Bal_equip_Lv_achieve);
 						g_Pod_equip_Level = Equip_Lvup_check(4, g_Pod_equip_Level, g_Pod_equip_Lv_achieve);
 
-					//振り分けボタン音
-					Audio::Start(5);
+						//振り分けボタン音
+						Audio::Start(5);
+					}
+					else
+					{
+						m_con_alo_f = true;//連続振り分けフラグON
+						m_next_time--;//次の住民振り分けまでの時間減少処理
+						m_key_lf = true;//キーフラグON
+					}
 				}
 				else
 				{
-					m_con_alo_f = true;//連続振り分けフラグON
-					m_next_time--;//次の住民振り分けまでの時間減少処理
+					m_con_alo_f = false;//連続振り分けフラグOFF
+					m_next_time = 0;//次の住民振り分けまでの時間を初期化
 					m_key_lf = true;//キーフラグON
 				}
 			}
-			else
-			{
-				m_con_alo_f = false;//連続振り分けフラグOFF
-				m_next_time = 0;//次の住民振り分けまでの時間を初期化
-				m_key_lf = true;//キーフラグON
-			}
-		}
 
 			//研究員住民振り分けDOWN
 			else if (802 < m_mou_x && m_mou_x < 902 && 118 < m_mou_y && m_mou_y < 218)
@@ -773,7 +799,7 @@ void CObjInstitute::Action()
 		}
 
 		//ミサイルボタン
-		if (g_tutorial_progress == 10 || g_tutorial_progress >= 8)
+		if (g_tutorial_progress == 10 || g_tutorial_progress >= 14)
 		{
 			if (515 < m_mou_x && m_mou_x < 1120 && 325 < m_mou_y && m_mou_y < 473)
 			{
@@ -783,11 +809,11 @@ void CObjInstitute::Action()
 				if (m_mou_l == true)
 				{
 					//左クリック押したままの状態では入力出来ないようにしている
-					if (m_key_lf == true || g_tutorial_progress == 10)
+					if (m_key_lf == true)
 					{
 						m_key_lf = false;
 
-						m_Mis_Button_color = 0.0f;
+						m_Mis_Button_color = 0.9f;
 
 						//エラーメッセージを非表示にするため、透過度を0.0fにする
 						m_alpha = 0.0f;
@@ -797,6 +823,13 @@ void CObjInstitute::Action()
 
 						//選択音
 						Audio::Start(1);
+
+						if (g_tutorial_progress == 10)
+						{
+							//矢印を非表示にさせる
+							CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+							message->Setarrow(0);
+						}
 					}
 				}
 				else
@@ -811,7 +844,7 @@ void CObjInstitute::Action()
 		}
 
 		//武器ポッドボタン
-		if (g_tutorial_progress == 11 || g_tutorial_progress >= 8)
+		if (g_tutorial_progress == 11 || g_tutorial_progress >= 14)
 		{
 			if (515 < m_mou_x && m_mou_x < 1120 && 493 < m_mou_y && m_mou_y < 641)
 			{
@@ -821,11 +854,11 @@ void CObjInstitute::Action()
 				if (m_mou_l == true)
 				{
 					//左クリック押したままの状態では入力出来ないようにしている
-					if (m_key_lf == true || g_tutorial_progress == 11)
+					if (m_key_lf == true)
 					{
 						m_key_lf = false;
 
-						m_Equ_Button_color = 0.0f;
+						m_Equ_Button_color = 0.9f;
 
 						//エラーメッセージを非表示にするため、透過度を0.0fにする
 						m_alpha = 0.0f;
@@ -838,6 +871,13 @@ void CObjInstitute::Action()
 
 						//選択音
 						Audio::Start(1);
+
+						if (g_tutorial_progress == 11)
+						{
+							//矢印を非表示にさせる
+							CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+							message->Setarrow(0);
+						}
 					}
 				}
 				else
@@ -1148,7 +1188,7 @@ void CObjInstitute::Action()
 	}
 
 	//研究所選択範囲
-	if (g_tutorial_progress == 9 || g_tutorial_progress >= 8)//チュートリアル中は選択不可
+	if (g_tutorial_progress == 9 || g_tutorial_progress >= 14)//チュートリアル中は選択不可
 	{
 		if (
 			((g_Ins_Level == 1) && 120 < m_mou_x && m_mou_x <= 220 && 340 < m_mou_y && m_mou_y < 550) ||	//研究所のレベル1の時の選択範囲
@@ -1163,7 +1203,7 @@ void CObjInstitute::Action()
 			if (m_mou_l == true)
 			{
 				//左クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true || g_tutorial_progress == 9)
+				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
@@ -1179,6 +1219,13 @@ void CObjInstitute::Action()
 
 					//選択音
 					Audio::Start(1);
+
+					if (g_tutorial_progress == 9)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
+					}
 				}
 			}
 			else

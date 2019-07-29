@@ -12,8 +12,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-wchar_t g_Player_Name[6];
-
 //イニシャライズ
 void CObjNameInput::Init()
 {
@@ -24,6 +22,8 @@ void CObjNameInput::Init()
 	m_f = true;
 	m_cut = 0;
 	m_finalcheck_f = false;
+	m_finalcheck_f_yes = false;
+	m_scene_move = false;
 	m_key_f = false;
 	m_Yes_Button_color=0;
 	m_No_Button_color =0;
@@ -126,8 +126,134 @@ void CObjNameInput::Action()
 	word[100][100];
 	word_y[100];
 
+
+	//キーフラグ
+	if (m_mou_l == false)
+	{
+		m_key_f = false;
+	}
+
+	//シーン移行処理
+	if (m_scene_move == true)
+	{
+		if (m_alpha <= 1.0f)
+		{
+			m_alpha += 0.007f;
+		}
+		else
+		{
+			Scene::SetScene(new CSceneHome());
+		}
+
+		return;
+	}
+
+	//▼チュートリアルスキップチェック後、ホーム画面移行
+	if (m_finalcheck_f_yes == true)
+	{
+		//最終確認ウィンドウのはいを押したときの処理
+		if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true)
+		{
+			if (m_key_f == true)
+			{
+				return;
+			}
+
+			g_tutorial_progress = 17;//チュートリアルスキップの値とする。
+
+			//ボロボロン報酬をスキップする為、受け取っておく処理
+			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
+			g_Player_max_size += 20;//HP取得
+			g_Special_mastering[3] = true;//オーバーワーク取得
+
+			m_scene_move = true;//シーン移行フラグON
+
+			//決定ボタン音
+			Audio::Start(1);
+		}
+		//最終確認ウィンドウのいいえを押したときの処理
+		if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
+		{
+			if (m_key_f == true)
+			{
+				return;
+			}
+
+			g_tutorial_progress = 0;//チュートリアルの値とする。
+
+			m_scene_move = true;//シーン移行フラグON
+
+			//戻るボタン音
+			Audio::Start(2);
+		}
+
+
+		return;
+	}
+
+	//文字クリアの判定
+	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 300 < m_mou_y && 400 > m_mou_y && m_key_f == false)
+	{
+		m_tex_clar = false;
+
+		m_key_f = true;
+
+		//戻るボタン音
+		Audio::Start(2);
+
+		return;
+	}
+	//文字決定を押したときの処理
+	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y && m_key_f == false)
+	{
+		m_finalcheck_f = true;
+		m_key_f = true;
+
+		//決定ボタン音
+		Audio::Start(1);
+
+		return;
+	}
+	//最終確認ウィンドウのはいを押したときの処理
+	if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true && m_key_f == false)
+	{
+		m_key_f = true;
+
+		//この下にある文がグローバル変数に文字を入れる処理
+		switch (m_cut)
+		{
+		case 3://入力された値が3の時
+			swprintf_s(g_Player_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
+			break;
+		case 4://入力された値が4の時
+			swprintf_s(g_Player_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
+			break;
+		case 5://入力された値が5の時
+			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
+			break;
+		}
+		m_finalcheck_f_yes = true;
+		//Scene::SetScene(new CSceneHome());//育成画面へシーン移行 
+
+		//決定ボタン音
+		Audio::Start(1);
+
+		return;
+	}
+	//最終確認ウィンドウのいいえを押したときの処理
+	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true && m_key_f == false)
+	{
+		m_key_f = true;
+		m_finalcheck_f = false;
+
+		//戻るボタン音
+		Audio::Start(2);
+
+		return;
+	}
+
 	//m_key_fがfalseの時だけ入るようにする
-	if (m_key_f == false)
+	if (m_key_f == false && m_finalcheck_f == false)
 	{
 		//名前入力の処理
 		//一列目のY列---------------------------------------------------------
@@ -863,52 +989,6 @@ void CObjNameInput::Action()
 	}
 	else
 	{ }
-	//文字クリアの判定
-	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 300 < m_mou_y && 400 > m_mou_y)
-	{
-		m_tex_clar = false;
-	}
-	//文字決定を押したときの処理
-	if (m_mou_l==true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y)
-	{
-		m_finalcheck_f = true;
-		m_key_f = true;
-	}
-	//最終確認ウィンドウのはいを押したときの処理
-	if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true)
-	{
-		//この下にある文がグローバル変数に文字を入れる処理
-		switch (m_cut)
-		{
-		case 3://入力された値が3の時
-			swprintf_s(g_Player_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
-			break;
-		case 4://入力された値が4の時
-			swprintf_s(g_Player_Name, L"%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3]);
-			break;
-		case 5://入力された値が5の時
-			swprintf_s(g_Player_Name, L"%c%c%c%c%c", m_c[0], m_c[1], m_c[2], m_c[3], m_c[4]);
-			break;
-		}
-		m_finalcheck_f_yes = true;
-		//Scene::SetScene(new CSceneHome());//育成画面へシーン移行 
-	}
-	//最終確認ウィンドウのいいえを押したときの処理
-	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
-	{
-		m_key_f = false;
-		m_finalcheck_f = false;
-	}
-	else;
-	if (m_finalcheck_f_yes == true) {
-		if (m_alpha <= 1.0f) {
-			m_alpha += 0.007f;
-		}
-		else {
-			Scene::SetScene(new CSceneHome());
-		}
-
-	}
 }
 //ドロー
 void CObjNameInput::Draw()
@@ -923,10 +1003,10 @@ void CObjNameInput::Draw()
 	float black[4] = { 0.0f,0.0f,0.0f,1.0f };
 
 	//最終確認[はい]ボタン用
-	float Yes[4] = { m_Yes_Button_color,0.0f,0.0f,1.0f };
+	float Yes[4] = { 1.0f,m_Yes_Button_color,m_Yes_Button_color,1.0f };
 
 	//最終確認[いいえ]ボタン用
-	float No[4] = { 0.0f,0.0f,m_No_Button_color,1.0f };
+	float No[4] = { m_No_Button_color,m_No_Button_color,1.0f,1.0f };
 
 	//暗転用
 	float blackout[4] = { 0.0f,0.0f,0.0f,m_alpha };
@@ -1063,7 +1143,7 @@ void CObjNameInput::Draw()
 	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-	if (m_finalcheck_f == true && m_cut>=3)
+	if (m_finalcheck_f == true && m_cut>=3 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1079,18 +1159,18 @@ void CObjNameInput::Draw()
 		if (m_mou_x > 650 && m_mou_x < 800&&m_mou_y>410&&m_mou_y<460)
 		{
 			//いいえボタンの処理
-			m_No_Button_color = 1;
+			m_No_Button_color = 0;
 		}
 		else if (m_mou_x > 410 && m_mou_x < 510 && m_mou_y>410 && m_mou_y < 460)
 		{
 			//はいボタンの処理
-			m_Yes_Button_color = 1;
+			m_Yes_Button_color = 0;
 		}
 		else
 		{
-			//それ以外の処理文字を黒くする
-			m_No_Button_color = 0;
-			m_Yes_Button_color = 0;
+			//それ以外の処理文字を白くする
+			m_No_Button_color = 1;
+			m_Yes_Button_color = 1;
 		}
 
 		
@@ -1154,7 +1234,7 @@ void CObjNameInput::Draw()
 		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
 	//決定ボタンをおした時m_cutが三以下なら警告文を出させる
-	else if (m_finalcheck_f == true && m_cut < 3)
+	else if (m_finalcheck_f == true && m_cut < 3 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1178,7 +1258,7 @@ void CObjNameInput::Draw()
 		dst.m_bottom = 480.0f;
 		Draw::Draw(89, &src, &dst, c, 0.0f);
 
-		FontDraw(L"名前を三文字以上入力してください", 375, 325.0, 30.0f, 30.0f, c, false);
+		FontDraw(L"名前を三文字以上入力してください", 357.5f, 325.0f, 30.0f, 30.0f, c, false);
 		//描画されるのを止める処理
 		if (m_mou_l == false)
 		{
@@ -1193,6 +1273,73 @@ void CObjNameInput::Draw()
 		}
 
 	}
+
+
+
+	//チュートリアルスキップチェック画像
+	if (m_finalcheck_f_yes == true)
+	{
+		//▼最終確認ウインドウ表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 700.0f;
+
+		dst.m_top = 200.0f;
+		dst.m_left = 320.0f;
+		dst.m_right = 880.0f;
+		dst.m_bottom = 480.0f;
+		Draw::Draw(89, &src, &dst, c, 0.0f);
+
+		//▼はい文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 232.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 410.0f;
+		dst.m_right = 510.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(66, &src, &dst, Yes, 0.0f);
+
+		//▼いいえ文字画像表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 352.0f;
+		src.m_bottom = 112.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 650.0f;
+		dst.m_right = 800.0f;
+		dst.m_bottom = 460.0f;
+		Draw::Draw(67, &src, &dst, No, 0.0f);
+
+		FontDraw(L"チュートリアルを", 375.0f, 245.0f, 40.0f, 40.0f, c, false);
+		FontDraw(L"スキップしますか？", 465.0f, 295.0f, 40.0f, 40.0f, c, false);
+
+		if (m_scene_move == false)
+		{
+			//はいといいえのボタンの上にカーソルを合わすと色が変わる
+			if (m_mou_x > 650 && m_mou_x < 800 && m_mou_y>410 && m_mou_y < 460)
+			{
+				//いいえボタンの処理
+				m_No_Button_color = 0;
+			}
+			else if (m_mou_x > 410 && m_mou_x < 510 && m_mou_y>410 && m_mou_y < 460)
+			{
+				//はいボタンの処理
+				m_Yes_Button_color = 0;
+			}
+			else
+			{
+				//それ以外の処理文字を白くする
+				m_No_Button_color = 1;
+				m_Yes_Button_color = 1;
+			}
+		}
+	}
+
 
 	//フェードインフェードアウト
 	src.m_top = 0.0f;

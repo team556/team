@@ -107,6 +107,11 @@ void CObjWarehouse::Action()
 					//"どのウインドウも開いていない状態"フラグを立てる
 					window_start_manage = Default;
 
+					//ObjHelpを操作可能にする & 透過度1.0fにして表示する
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(true);
+					help->SetAlpha(1.0f);
+
 					//戻るボタン音
 					Audio::Start(2);
 				}
@@ -122,127 +127,130 @@ void CObjWarehouse::Action()
 			m_Back_Button_color = INI_COLOR;
 		}
 
-		//資材ボタン選択
-		if (110 < m_mou_x && m_mou_x < 610 && 110 < m_mou_y && m_mou_y < 360)
+		if (g_tutorial_progress >= 15)
 		{
-			m_object_ma = 1.0f;
-			//左クリックされたらフラグを立て、資材ウインドウを開く
-			if (m_mou_l == true)
+			//資材ボタン選択
+			if (110 < m_mou_x && m_mou_x < 610 && 110 < m_mou_y && m_mou_y < 360)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				m_object_ma = 1.0f;
+				//左クリックされたらフラグを立て、資材ウインドウを開く
+				if (m_mou_l == true)
 				{
-					m_key_lf = false;
+					//クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
 
-					//"資材ウィンドウを開いている状態"フラグを立てる
-					window_start_manage = Materials;
+						//"資材ウィンドウを開いている状態"フラグを立てる
+						window_start_manage = Materials;
 
-					//選択音
-					Audio::Start(1);
+						//選択音
+						Audio::Start(1);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
+				}
+
+			}
+			else
+			{
+				m_object_ma = INI_COLOR;
+
+			}
+
+			//住民ボタン選択
+			if (620 < m_mou_x && m_mou_x < 1120 && 110 < m_mou_y && m_mou_y < 360)
+			{
+				m_object_re = 1.0f;
+				//左クリックされたらフラグを立て、住民ウインドウを開く
+				if (m_mou_l == true)
+				{
+					//クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
+
+						//"住民ウィンドウを開いている状態"フラグを立てる
+						window_start_manage = Residents;
+
+						//選択音
+						Audio::Start(1);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_object_re = INI_COLOR;
+
 			}
 
-		}
-		else
-		{
-			m_object_ma = INI_COLOR;
-
-		}
-
-		//住民ボタン選択
-		if (620 < m_mou_x && m_mou_x < 1120 && 110 < m_mou_y && m_mou_y < 360)
-		{
-			m_object_re = 1.0f;
-			//左クリックされたらフラグを立て、住民ウインドウを開く
-			if (m_mou_l == true)
+			//スペシャル技ボタン選択
+			if (110 < m_mou_x && m_mou_x < 610 && 370 < m_mou_y && m_mou_y < 620)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				m_object_sp = 1.0f;
+				//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
+				if (m_mou_l == true)
 				{
-					m_key_lf = false;
+					//クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
 
-					//"住民ウィンドウを開いている状態"フラグを立てる
-					window_start_manage = Residents;
+						//"スペシャル技ウィンドウを開いている状態"フラグを立てる
+						window_start_manage = Specialskill;
 
-					//選択音
-					Audio::Start(1);
+						//選択音
+						Audio::Start(1);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_object_sp = INI_COLOR;
+
 			}
-		}
-		else
-		{
-			m_object_re = INI_COLOR;
 
-		}
-
-		//スペシャル技ボタン選択
-		if (110 < m_mou_x && m_mou_x < 610 && 370 < m_mou_y && m_mou_y < 620)
-		{
-			m_object_sp = 1.0f;
-			//左クリックされたらフラグを立て、スペシャル技ウインドウを開く
-			if (m_mou_l == true)
+			//装備ボタン選択
+			if (620 < m_mou_x && m_mou_x < 1120 && 370 < m_mou_y && m_mou_y < 620)
 			{
-				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
+				m_object_eq = 1.0f;
+				//左クリックされたらフラグを立て、装備ウインドウを開く
+				if (m_mou_l == true)
 				{
-					m_key_lf = false;
+					//クリック押したままの状態では入力出来ないようにしている
+					if (m_key_lf == true)
+					{
+						m_key_lf = false;
 
-					//"スペシャル技ウィンドウを開いている状態"フラグを立てる
-					window_start_manage = Specialskill;
+						//"装備ウィンドウを開いている状態"フラグを立てる
+						window_start_manage = Soubicheck;
 
-					//選択音
-					Audio::Start(1);
+						//選択音
+						Audio::Start(1);
+					}
+				}
+				else
+				{
+					m_key_lf = true;
 				}
 			}
 			else
 			{
-				m_key_lf = true;
+				m_object_eq = INI_COLOR;
 			}
+
+			return;
 		}
-		else
-		{
-			m_object_sp = INI_COLOR;
-
-		}
-
-		//装備ボタン選択
-		if (620 < m_mou_x && m_mou_x < 1120 && 370 < m_mou_y && m_mou_y < 620)
-		{
-			m_object_eq = 1.0f;
-			//左クリックされたらフラグを立て、装備ウインドウを開く
-			if (m_mou_l == true)
-			{
-				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true)
-				{
-					m_key_lf = false;
-
-					//"装備ウィンドウを開いている状態"フラグを立てる
-					window_start_manage = Soubicheck;
-
-					//選択音
-					Audio::Start(1);
-				}
-			}
-			else
-			{
-				m_key_lf = true;
-			}
-		}
-		else
-		{
-			m_object_eq = INI_COLOR;
-		}
-
-		return;
 	}
 
 	//資材、住民、スペシャル技、装備画面の戻るボタン
@@ -311,7 +319,7 @@ void CObjWarehouse::Action()
 	}
 
 	//倉庫選択
-	if (g_tutorial_progress >= 8)//チュートリアル中は選択不可
+	if (g_tutorial_progress >= 13)//チュートリアル中は選択不可
 	{
 		if (850 < m_mou_x && m_mou_x < 1250 && 430 < m_mou_y && m_mou_y < 550)
 		{
@@ -321,7 +329,7 @@ void CObjWarehouse::Action()
 			if (m_mou_l == true)
 			{
 				//クリック押したままの状態では入力出来ないようにしている
-				if (m_key_lf == true || g_tutorial_progress == 13)
+				if (m_key_lf == true)
 				{
 					m_key_lf = false;
 
@@ -337,6 +345,13 @@ void CObjWarehouse::Action()
 
 					//選択音
 					Audio::Start(1);
+
+					if (g_tutorial_progress == 13)
+					{
+						//矢印を非表示にさせる
+						CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+						message->Setarrow(0);
+					}
 				}
 			}
 			else

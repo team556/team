@@ -60,6 +60,7 @@ void CObjFightClear::Init()
 	m_result_a = 0.0f;
 	m_black_out_a = 0.0f;
 	m_clear_a = 0.0f;
+	m_clear_a_vec = 0.0f;
 
 	m_scene_migration_f = false;
 
@@ -227,35 +228,38 @@ void CObjFightClear::Action()
 	else //(m_Game_Clear_f == true)
 	{
 		//▽ゲームクリア時の処理
-		//徐々にゲームクリアメッセージを見せていき、
-		//全てのクリアメッセージ表示後、クリックを促し
-		//ゲームクリア(エンディング)画面にシーン移行する。
+		//山田との会話→クリアメッセージを見せた後に
+		//自動でゲームクリア(エンディング)画面にシーン移行する。
 
 
-
+		//以下は山田会話終了後実行される処理。
 		if (g_tutorial_progress == 31)
 		{
-			////マウスの位置を取得
-			//m_mou_x = (float)Input::GetPosX();
-			//m_mou_y = (float)Input::GetPosY();
-			////マウスのボタンの状態
-			//m_mou_r = Input::GetMouButtonR();
-			m_mou_l = Input::GetMouButtonL();
+			if (m_black_out_a >= 1.0f)
+			{
+				if (m_clear_a <= 1.0)			//1.0で切り替えて、クリアメッセージ演出のalpha調整
+				{
+					m_clear_a_vec += 0.0005f;	//ベクトルに加算
+				}
+				else
+				{
+					m_clear_a_vec -= 0.0003f;	//ベクトルに減算
+				}
 
-			
-			if (m_clear_a >= 3.0f)
-			{
-				Scene::SetScene(new CSceneGameClear());	//シーン移行
-			}
-			else if (m_black_out_a >= 1.0f)
-			{
-				m_clear_a += 0.01f;
+				m_clear_a += m_clear_a_vec;	//ベクトルを反映
+
+				//クリアメッセージ演出処理終了時点でエンディングへシーン移行
+				if (m_clear_a <= 0.0f)
+				{
+					Scene::SetScene(new CSceneGameClear());	//シーン移行
+				}
 			}
 			else
 			{
 				m_black_out_a += 0.01f;
 			}
 		}
+		//m_end_fを使い、一度のみObjMessage(Scene_id = 30)を呼び出す。
 		else if (m_end_f == false)
 		{
 			CObjMessage* message = new CObjMessage(30);	//メッセージ表示オブジェクト作成
@@ -264,7 +268,9 @@ void CObjFightClear::Action()
 			m_end_f = true;
 		}
 
+		return;
 
+		//▼以前のクリアメッセージ処理
 		////全てのクリアメッセージ表示後の処理
 		//if (m_clear_a >= 3.0f)
 		//{
@@ -360,12 +366,7 @@ void CObjFightClear::Draw()
 	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	//画面全体暗転画像用
 
 	//クリアメッセージフォント用
-	float clear[3][4] =
-	{
-		{ 1.0f,1.0f,0.0f,m_clear_a },			//フォント色は全て黄色
-		{ 1.0f,1.0f,0.0f,m_clear_a - 1.0f },
-		{ 1.0f,1.0f,0.0f,m_clear_a - 2.0f },
-	};
+	float clear[4] = { 1.0f,1.0f,0.0f,m_clear_a };
 
 
 	float d[4] = { 1.0f,1.0f, 1.0f, 1.0f };//その他画像用
@@ -1145,7 +1146,7 @@ void CObjFightClear::Draw()
 	Draw::Draw(20, &src, &dst, blackout, 0.0f);
 
 
-
+	//ゲームクリア時のみ表示
 	if (g_tutorial_progress == 31)
 	{
 		//▼Thank You for Playing!!!
@@ -1158,7 +1159,7 @@ void CObjFightClear::Draw()
 		dst.m_left = 50.0f;
 		dst.m_right = 1150.0f;
 		dst.m_bottom = 650.0f;
-		Draw::Draw(187, &src, &dst, clear[0], 0.0f);
+		Draw::Draw(187, &src, &dst, clear, 0.0f);
 	}	
 }
 

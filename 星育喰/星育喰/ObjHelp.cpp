@@ -78,7 +78,7 @@ void CObjHelp::Init()
 void CObjHelp::Action()
 {
 	//チュートリアル中は操作不可にする
-	if (g_tutorial_progress < 8)
+	if (g_tutorial_progress < 14)
 	{
 		return;
 	}
@@ -324,7 +324,7 @@ void CObjHelp::Draw()
 	
 
 	//チュートリアル中は表示しない
-	if (g_tutorial_progress >= 8)
+	if (g_tutorial_progress >= 14)
 	{
 		//▼ヘルプボタン表示
 		src.m_top = 0.0f;

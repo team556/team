@@ -214,6 +214,13 @@ void CObjHome::Action()
 				//help->SetMig_stageF();
 				//help->SetTra_EatF(true);
 
+				if (g_tutorial_progress == 8)
+				{
+					//矢印を非表示にさせる
+					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+					message->Setarrow(0);
+				}
+
 				//選択音
 				Audio::Start(1);
 			}
@@ -229,7 +236,7 @@ void CObjHome::Action()
 	}
 
 	//喰アイコン
-	if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680 && (g_tutorial_progress == 1 || g_tutorial_progress >= 8))
+	if (980 < m_mou_x && m_mou_x < 1180 && 480 < m_mou_y && m_mou_y < 680 && (g_tutorial_progress == 1 || g_tutorial_progress >= 15))
 	{
 		m_Eat_color = 1.0f;
 
@@ -247,6 +254,13 @@ void CObjHome::Action()
 				//CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
 				//help->SetMig_stageF();
 				//help->SetTra_EatF(false);
+
+				if (g_tutorial_progress == 1)
+				{
+					//矢印を非表示にさせる
+					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+					message->Setarrow(0);
+				}
 
 				//選択音
 				Audio::Start(1);
@@ -499,7 +513,7 @@ void CObjHome::Draw()
 	dst.m_bottom = 550.0f + m_Pvy + m_size;
 	Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
 
-	if (g_tutorial_progress == 8 || g_tutorial_progress >= 8)
+	if (g_tutorial_progress >= 8)
 	{
 		//▼育アイコン表示
 		src.m_top = 0.0f;
@@ -514,7 +528,7 @@ void CObjHome::Draw()
 		Draw::Draw(1, &src, &dst, t, 0.0f);
 	}
 
-	if (g_tutorial_progress == 1 || g_tutorial_progress >= 8)
+	if (g_tutorial_progress == 1 || g_tutorial_progress >= 15)
 	{
 		//▼喰アイコン表示
 		src.m_top = 0.0f;
@@ -617,8 +631,20 @@ void CObjHome::Draw()
 		Draw::Draw(7, &src, &dst, d, 0.0f);
 
 		//▽フォント画像表示
+		//「惑星名：」表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 342.0f;
+		src.m_bottom = 90.0f;
+
+		dst.m_top = m_mou_y - 113.0f;
+		dst.m_left = m_mou_x + 33.0f;
+		dst.m_right = m_mou_x + 122.0f;
+		dst.m_bottom = m_mou_y - 88.0f;
+		Draw::Draw(128, &src, &dst, status_font_color[0], 0.0f);
+
 		//プレイヤー名の表示
-		FontDraw(g_Player_Name, m_mou_x + 33.0f, m_mou_y - 113.0f, 30.0f, 25.0f, d, false);
+		FontDraw(g_Player_Name, m_mou_x + 128.0f, m_mou_y - 113.0f, 25.0f, 25.0f, status_font_color[0], false);
 
 		//惑星HP文字画像表示
 		src.m_top = 0.0f;

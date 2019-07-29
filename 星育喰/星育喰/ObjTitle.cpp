@@ -36,7 +36,7 @@ int g_Stage_progress = 1;
 bool g_destroy_progress[4] = { false,false,false,false };//敵の撃破状態
 int g_Bar_Level = 1;
 int g_Ins_Level = 1;
-int g_Mis_Recast_Level		= 1;
+int g_Mis_Recast_Level		= 0;
 int g_Pow_equip_Level		= 1;
 int g_Pow_equip_Lv_achieve	= 1;
 int g_Def_equip_Level		= 1;
@@ -49,15 +49,16 @@ int g_Pod_equip_Level		= 1;
 int g_Pod_equip_Lv_achieve	= 1;
 float g_Player_max_size = 100.0f;//100.0f;
 int g_Special_equipment = 0;//装備中のスペシャル技
-bool g_Special_mastering[5] = { false,false,false,true,false };//スペシャル技の習得状態
-int g_Power_num		= 3000;
-int g_Defense_num	= 3000;
-int g_Speed_num		= 3000;
-int g_Balance_num	= 3000;
-int g_Research_num	=  500;
+bool g_Special_mastering[5] = { false,false,false,false,false };//スペシャル技の習得状態
+int g_Power_num		= 1500;
+int g_Defense_num	= 1500;
+int g_Speed_num		= 1500;
+int g_Balance_num	= 1500;
+int g_Research_num	=  0;
 int g_Remain_num	= 0;
 float g_Recast_time = 3.0f;
 float g_P_Planet_damage = 0.0f;
+wchar_t g_Player_Name[6];
 
 int g_Iron_num		= 0;
 int g_Wood_num		= 0;
@@ -147,7 +148,7 @@ void CObjTitle::Init()
 	g_Player_max_size = 100.0f;
 	g_Special_equipment = 0;
 
-	for (int i = 0; i < 5 && i != 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		g_Special_mastering[i] = false;
 	}
@@ -158,6 +159,7 @@ void CObjTitle::Init()
 	g_Balance_num	= 1500;
 	g_Research_num	= 0;
 	g_Remain_num	= 0;
+	g_Recast_time	= 3.0f;
 
 	g_Iron_num		= 0;
 	g_Wood_num		= 0;
@@ -187,6 +189,12 @@ void CObjTitle::Action()
 	//▼データ消去最終確認ウインドウ表示時の処理
 	if (m_del_f == true)
 	{
+		//画面暗転状態の場合、明転する処理
+		if (m_black_out_a >= 0.0f)
+		{
+			m_black_out_a -= 0.01f;
+		}
+
 		//最終確認[はい]ボタン
 		if (410 < m_mou_x && m_mou_x < 502 && 407 < m_mou_y && m_mou_y < 450)
 		{
@@ -201,10 +209,10 @@ void CObjTitle::Action()
 				{
 					m_key_f = false;
 
-					//▼ここに消去したい処理等を書く(これで足りてるか、デバッグで確かめたい。)
+					//▼消去処理
 					g_tutorial_progress = 0;//チュートリアル進行度を初期化
 					after_once = false;		//二回目以降か記憶してる変数を初期化
-
+					swprintf_s(g_Player_Name,L"");//名前を初期化
 
 					m_Yes_Button_color = 1.0f;
 
@@ -273,34 +281,11 @@ void CObjTitle::Action()
 	if (m_flag == true && after_once == false)
 	{
 		//下から上に順に実行されていく
-
-		/*if ()
-		{
-			名前入力のグローバル変数に何かしら入力されたのを確認(!= nullptr)、
-			もしくは何か名前入力側から情報を送ってもらい、それを条件文に入れる。
-
-			その後、この条件文の中で
-			チュートリアルをスキップするかしないかを最終確認ウインドウのヤツで聞く。
-
-			確認後、スキップしない処理、スキップする処理に分岐し、
-			値とかいろいろ入れた後に
-			m_black_out_a -= 0.01f;//画面徐々に明転
-			を実行し、完全明転後、以下の処理を実行する。
-			//after_once = true;//「一度タイトル画面を訪れた」と記憶
-
-			//Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
-		}
-		else */if (m_alpha == 0.0f)
-		{
-			//名前入力中はObjTitleでは何も動作させない。
-		}
-		else if (m_des_y <= -550.0f)
+		if (m_des_y <= -550.0f)
 		{
 			after_once = true;//「一度タイトル画面を訪れた」と記憶
 
-			//名前入力のオブジェクトを呼び出す
-
-			m_alpha = 0.0f;//タイトルロゴ、後ろ敵惑星等を非表示にすると同時に次の処理へのフラグとしている。
+			//名前入力のシーンへ移行
 			Scene::SetScene(new CSceneNameInput());
 		}
 		else if (m_des_a > 6.0f)
@@ -338,8 +323,19 @@ void CObjTitle::Action()
 	{
 		m_alpha -= 0.01f;
 
+		//画面暗転状態の場合、明転する処理
+		if (m_black_out_a >= 0.0f)
+		{
+			m_black_out_a -= 0.03f;
+		}
+
 		if (m_alpha <= 0.0f)
 		{
+			//ボロボロン報酬をスキップする為、受け取っておく処理
+			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
+			g_Player_max_size += 20;//HP取得
+			g_Special_mastering[3] = true;//オーバーワーク取得
+
 			Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 		}
 

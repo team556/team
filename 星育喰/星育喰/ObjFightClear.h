@@ -31,6 +31,7 @@ private:
 	float m_result_a;		//alpha(透過度)(戦闘結果フォント用)
 	float m_black_out_a;	//画面暗転透過度
 	float m_clear_a;		//alpha(透過度)(クリアメッセージのフォント用)
+	float m_clear_a_vec;	//クリアメッセージ透過度ベクトル
 
 	bool  m_scene_migration_f;//シーン移行演出フラグ(true = ホーム画面にいる感じとなる。※実際にはこの時点ではまだ移行していない)
 
