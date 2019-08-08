@@ -494,11 +494,14 @@ void CSceneTraining::InitScene()
 	//説明文ポッドについてを134番に登録
 	Draw::LoadImage(L"説明文ポッドについて.png", 141, TEX_SIZE_512);
 
+	//説明文三竦みを読み込み130番に登録
+	Draw::LoadImage(L"説明文三竦み.png", 142, TEX_SIZE_512);
+
 	//説明文兵舎を134番に登録
-	Draw::LoadImage(L"説明文兵舎.png", 142, TEX_SIZE_512);
+	Draw::LoadImage(L"説明文兵舎.png", 143, TEX_SIZE_512);
 
 	//説明文倉庫を134番に登録
-	Draw::LoadImage(L"説明文倉庫.png", 143, TEX_SIZE_512);
+	Draw::LoadImage(L"説明文倉庫.png", 144, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
