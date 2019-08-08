@@ -479,29 +479,39 @@ void CSceneTraining::InitScene()
 	//ヘルプボタンを読み込み136番に登録
 	Draw::LoadImage(L"ヘルプボタン.png", 136, TEX_SIZE_512);
 
-	//説明文育成画面を134番に登録
+	//説明文育成画面を137番に登録
 	Draw::LoadImage(L"説明文育成画面.png", 137, TEX_SIZE_512);
 
-	//説明文研究所を134番に登録
+	//説明文研究所を138番に登録
 	Draw::LoadImage(L"説明文研究所.png", 138, TEX_SIZE_512);
 
-	//説明文ミサイル画面を134番に登録
+	//説明文ミサイル画面を139番に登録
 	Draw::LoadImage(L"説明文ミサイル画面.png", 139, TEX_SIZE_512);
 
-	//説明文コアについてを134番に登録
+	//説明文コアについてを140番に登録
 	Draw::LoadImage(L"説明文コアについて.png", 140, TEX_SIZE_512);
 
-	//説明文ポッドについてを134番に登録
+	//説明文ポッドについてを141番に登録
 	Draw::LoadImage(L"説明文ポッドについて.png", 141, TEX_SIZE_512);
 
-	//説明文三竦みを読み込み130番に登録
+	//説明文三竦みを読み込み142番に登録
 	Draw::LoadImage(L"説明文三竦み.png", 142, TEX_SIZE_512);
 
-	//説明文兵舎を134番に登録
+	//説明文兵舎を143番に登録
 	Draw::LoadImage(L"説明文兵舎.png", 143, TEX_SIZE_512);
 
-	//説明文倉庫を134番に登録
+	//説明文倉庫を144番に登録
 	Draw::LoadImage(L"説明文倉庫.png", 144, TEX_SIZE_512);
+
+	//コア文字画像を読み込み145番に登録
+	Draw::LoadImage(L"コア文字画像.png", 145, TEX_SIZE_512);
+
+	//資材文字画像を読み込み147番に登録
+	Draw::LoadImage(L"資材.png", 147, TEX_SIZE_512);
+
+	//スペシャル技文字画像を読み込み148番に登録
+	Draw::LoadImage(L"スペシャル技.png", 148, TEX_SIZE_512);
+
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
@@ -511,7 +521,6 @@ void CSceneTraining::InitScene()
 
 	//矢印画像を読み込み191番に登録
 	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
-
 
 
 	//音楽読み込み

@@ -246,15 +246,8 @@ void CScenePreparation::InitScene()
 	//矢印画像を読み込み191番に登録
 	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
 
-
-
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
-
-	//▼音楽消したい時はここのコメントアウト外せば音量0の命令となり、消せる。
-	//ただし、最後のプッシュ前には必ずコメントアウトし直して音楽流れる状態に戻すように！
-	//float v = Audio::VolumeMaster(0);
-	//v = Audio::VolumeMaster((0.0 - v));
 
 	//SE読み込み
 	//選択

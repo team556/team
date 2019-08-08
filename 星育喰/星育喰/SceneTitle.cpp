@@ -74,7 +74,8 @@ void CSceneTitle::InitScene()
 	//白文字集を読み込み121番に登録
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
-
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
