@@ -55,6 +55,8 @@ void CObjMessage::Init()
 	m_reminder_f = false;
 	m_is_top_or_bottom = 0;
 
+	m_ignore_alpha = 0.0f;
+
 	m_message_window_num = 0;
 	m_yamada_window_num = 0;
 	m_black_out_num = 0;
@@ -163,6 +165,7 @@ void CObjMessage::Init()
 
 		g_is_operatable = false;//操作不能に(ObjMessageしか動かない)
 		m_black_out_f = true;//徐々に暗転
+		m_ignore_alpha = 1.0f;//山田無視可能を知らせるフォント画像を表示
 	}
 	//戦闘準備画面1回目メッセージ文設定＆画像登録番号、グローバル変数設定
 	else if (m_Scene_id == 1)
@@ -403,6 +406,27 @@ void CObjMessage::Action()
 	//メッセージ表示機能動作中の処理
 	if (m_run_switch == true)
 	{
+		//▼ホーム画面1回目
+		if (m_Scene_id == 0 && 0 <= m_progress && m_progress <= 2)
+		{
+			//完全非表示後は何の処理も行わないようにする。
+			if (m_ignore_alpha <= 0.0f)
+			{
+				;//何も行わない
+			}
+			//5秒後、山田無視可能を知らせるフォント画像を徐々に非表示にする
+			else if (m_count >= 60 * 5 || m_ignore_alpha != 1.0f)
+			{
+				m_count = 0;//m_countを初期化
+				m_ignore_alpha -= 0.01f;//山田無視可能を知らせるフォント画像を徐々に非表示にする
+			}
+			else
+			{
+				m_count++;//時間計測開始	
+			}
+		}
+
+
 		//▼戦闘画面1回目
 		if (m_Scene_id == 2 && m_progress == 2)
 		{
@@ -867,9 +891,8 @@ void CObjMessage::Action()
 		}
 		else if (m_Scene_id == 1 && m_progress == 3)
 		{
-			if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 || m_arrow_display_f == 0 && m_arrow_angle_f == 2)
+			if (m_arrow_display_f == 0 && m_arrow_angle_f == 2)
 			{
-				m_arrow_display_f = 0;//マウスカーソル合わさったら矢印非表示
 				g_is_operatable = false;//操作不可に
 				m_black_out_f = true;//画面暗転
 
@@ -1445,7 +1468,7 @@ void CObjMessage::Action()
 				{
 					if (j != 0)
 					{
-						m_font_color[i][j] = 0.0f;
+						m_font_color[i][j] = 0.2f;
 					}
 					else
 					{
@@ -1663,6 +1686,7 @@ void CObjMessage::Draw()
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };//フォント画像用
 	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };//画面全体やや暗転画像用
 	float orange[4] = { 1.0f,0.5f,0.0f,1.0f };//山田文字画像用
+	float ignore[4] = { 1.0f,1.0f,0.0f,m_ignore_alpha };//山田無視可能知らせる文字画像用
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -1860,6 +1884,10 @@ void CObjMessage::Draw()
 		dst.m_bottom = window_pos_y[m_is_top_or_bottom] + 39.0f + (FONT_DRAW_SIZE * (m_font_draw_y[m_font_count] + 1)) + m_swing_vec;
 		Draw::Draw(189, &src, &dst, d, 0.0f);
 	}
+
+	//▼山田無視可能を知らせるフォント画像
+	FontDraw(L"ＣＴＲＬキーで山田の話を無視する", 670.0f, 430.0f + m_swing_vec, 30.0f, 30.0f, ignore, false);
+
 
 
 	//現在メッセージの文字列の長さが取得出来ていれば実行される

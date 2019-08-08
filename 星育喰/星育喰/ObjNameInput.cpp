@@ -192,7 +192,7 @@ void CObjNameInput::Action()
 	}
 
 	//•¶ŽšƒNƒŠƒA‚Ì”»’è
-	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 300 < m_mou_y && 400 > m_mou_y && m_key_f == false)
+	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 300 < m_mou_y && 400 > m_mou_y && m_key_f == false && m_finalcheck_f == false)
 	{
 		m_tex_clar = false;
 
@@ -204,7 +204,7 @@ void CObjNameInput::Action()
 		return;
 	}
 	//•¶ŽšŒˆ’è‚ð‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
-	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y && m_key_f == false)
+	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y && m_key_f == false && m_finalcheck_f == false)
 	{
 		m_finalcheck_f = true;
 		m_key_f = true;

@@ -567,6 +567,10 @@ void CObjPreparation::Action()
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(5);//敵惑星詳細説明表示関数を呼び出す
+
+			//矢印を非表示にさせる
+			CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
+			message->Setarrow(0);
 		}
 
 		//スペシャル技(エクスプロージョン)
@@ -1506,9 +1510,8 @@ void CObjPreparation::Draw()
 	}
 
 	//▼敵惑星名を表示　[難易度★数を基にどの惑星か判断する]
-	//※チュートリアル惑星名を表示する処理はまだ作っていない。
-	//チュートリアル惑星はm_level_star_num == 1の処理の中に、
-	//チュートリアルのグローバルフラグ等で更に分岐させて判断させたい。
+	//※チュートリアル惑星はm_level_star_num == 1の処理の中に、
+	//チュートリアルのグローバルフラグ等で更に分岐させて判断させている。
 	if (m_level_star_num == 1)
 	{
 		if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
