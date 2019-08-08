@@ -132,22 +132,22 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
 
 	//ミサイルキーボード用画像
-	Draw::LoadImage(L"1選択アイコン.png", 35, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンz.png", 35, TEX_SIZE_512);
 
 	//赤ポッドキーボード用画像
-	Draw::LoadImage(L"2選択アイコン.png", 36, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンx.png", 36, TEX_SIZE_512);
 
 	//青ポッドキーボード用画像
-	Draw::LoadImage(L"3選択アイコン.png", 37, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンc.png", 37, TEX_SIZE_512);
 
 	//緑キーボード用画像
-	Draw::LoadImage(L"4選択アイコン.png", 38, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンv.png", 38, TEX_SIZE_512);
 
 	//灰色キーボード用画像
-	Draw::LoadImage(L"5選択アイコン.png", 39, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンb.png", 39, TEX_SIZE_512);
 
 	//スペシャル技キーボード用画像
-	Draw::LoadImage(L"s選択アイコン.png", 40, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンenter.png", 40, TEX_SIZE_512);
 
 	//白文字のフォントを41番に登録
 	Draw::LoadImage(L"白文字集.png", 41, TEX_SIZE_512);

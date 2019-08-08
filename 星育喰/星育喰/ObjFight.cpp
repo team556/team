@@ -492,8 +492,8 @@ void CObjFight::Draw()
 		//ポッドやミサイルのキーボード選択用画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 96.0f;
+		src.m_bottom = 96.0f;
 
 		//ミサイルキー描画
 		dst.m_top = 655.0f;
@@ -533,6 +533,13 @@ void CObjFight::Draw()
 		//スペシャル技を装備しているときはアイコンを出す
 		if (g_Special_equipment != 0)
 		{
+			//ポッドやミサイルのキーボード選択用画像
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 288.0f;
+			src.m_bottom = 96.0f;
+
+
 			dst.m_top = 60.0f;
 			dst.m_left = 950.0f;
 			dst.m_right = 990.0f;
