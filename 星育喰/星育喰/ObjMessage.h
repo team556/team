@@ -64,6 +64,8 @@ private:
 	bool  m_reminder_f;			//クリック催促画像表示フラグ(true:表示　false:非表示)
 	int   m_is_top_or_bottom;	//メッセージウインドウ位置変更用(0:下に表示　1:上に表示)
 
+	float m_ignore_alpha;		//山田無視可能を知らせるフォント画像の透過度
+
 	int   m_message_window_num;	//メッセージウインドウ登録番号格納用
 	int   m_yamada_window_num;	//山田ウインドウ登録番号格納用
 	int	  m_black_out_num;		//画面全体やや暗転画像登録番号格納用

@@ -5,6 +5,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
+#include "UtilityModule.h"
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
@@ -502,7 +503,7 @@ void CObjPlanet::Action()
 						{ 1,2,2,4,2,0 }, //1番目
 						{ 2,5,3,2,4,0 }, //2番目
 						{ 5,2,3,2,2,0 }, //3番目
-						{ 2,1,2,5,6,0 }, //4番目
+						{ 2,1,2,5,2,0 }, //4番目
 					},
 					//m_type==2
 					{
@@ -511,7 +512,7 @@ void CObjPlanet::Action()
 						{ 2,1,1,4,1,0 }, //1番目
 						{ 1,5,3,1,4,0 }, //2番目
 						{ 5,1,3,1,1,0 }, //3番目
-						{ 1,2,1,5,6,0 }, //4番目
+						{ 1,2,1,5,1,0 }, //4番目
 					},
 					//m_type==3
 					{
@@ -520,7 +521,7 @@ void CObjPlanet::Action()
 						{ 2,4,4,2,4,0 }, //1番目
 						{ 4,5,3,4,2,0 }, //2番目
 						{ 5,4,3,4,4,0 }, //3番目
-						{ 4,1,4,5,6,0 }, //4番目
+						{ 4,1,4,5,4,0 }, //4番目
 					},
 					//m_type==4
 					{
@@ -529,7 +530,7 @@ void CObjPlanet::Action()
 						{ 2,3,3,4,3,0 }, //1番目
 						{ 3,5,2,3,4,0 }, //2番目
 						{ 5,3,2,3,3,0 }, //3番目
-						{ 3,1,3,5,6,0 }, //4番目
+						{ 3,1,3,5,3,0 }, //4番目
 					},
 					//m_type==5
 					{
@@ -576,6 +577,54 @@ void CObjPlanet::Action()
 				}
 			}
 
+
+			CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+			if (m_type != 0 && Special->GetEnemy_Used_Special() == false) {
+				switch (m_type) {
+				case 1://大阪のフラクチャーレイ
+					//自惑星のＨＰが80％以下
+					if (m_size / m_siz_max <= 0.8) {
+						m_attackf = 6;
+					}
+					break;
+				case 2://アモイのエクスプロージョン
+					//自惑星のＨＰが30％以下且つ敵が無敵でないとき
+					if ((m_size / m_siz_max <= 0.3) && (pla->GetSiz() / pla->GetMaxSiz() >= 0.7)
+						&& (pla->GetInvincible() != true)) {
+						m_attackf = 6;
+					}
+					//敵惑星のＨＰが50％以下になった時
+					if (pla->GetSiz() / pla->GetMaxSiz() <= 0.5) {
+						m_attackf = 6;
+					}
+					break;
+				case 3://コワモーテのリミットブレイク
+					//自惑星のＨＰが70％以下になった時
+					if (m_size / m_siz_max <= 0.7) {
+						m_attackf = 6;
+					}
+					//敵惑星のＨＰが50％以下になった時
+					if (pla->GetSiz() / pla->GetMaxSiz() <= 0.5) {
+						m_attackf = 6;
+					}
+					break;
+				case 4://再星のイモータリティ
+					//敵はエクスプロージョンを打った時
+					if (g_Special_equipment == 1 && Special->GetPlayer_Used_Special() == true) {
+						m_attackf = 6;
+					}
+					//自惑星のＨＰが30％以下になった時
+					if (m_size / m_siz_max <= 0.3) {
+						m_attackf = 6;
+					}
+					break;
+				case 5://アマテラスのオーバーワーク
+					//無条件で速攻使う
+					m_attackf = 6;
+					break;
+				}
+			}
+
 			//▼敵惑星攻撃パターン
 			if (m_type >= 1 && battle_end == false)//惑星が敵の時のみ弾を発射し、戦闘終了時に弾を打たないようにする。
 			{
@@ -603,12 +652,12 @@ void CObjPlanet::Action()
 				{
 					int Enemy_Fight_line[5][6] =   //敵攻撃用の配列作成
 					{
-						//1:上レーン　2:中レーン　3:下レーン
-							{ 1,2,1,3,2,0 }, //0番目
-							{ 2,3,2,2,1,0 }, //1番目
-							{ 1,2,3,2,2,0 }, //2番目
+						//0,3:上レーン　1:中レーン　2:下レーン
+							{ 3,2,1,3,2,0 }, //0番目
+							{ 2,3,2,3,1,0 }, //1番目
+							{ 1,2,3,2,3,0 }, //2番目
 							{ 2,1,1,2,3,0 }, //3番目
-							{ 1,3,2,2,1,0 }, //4番目
+							{ 1,3,2,3,1,0 }, //4番目
 
 						/*
 						レーン選択パターン追加する際は、上の配列の数字を変え
@@ -626,10 +675,14 @@ void CObjPlanet::Action()
 						Enemy_Line_pattern_x = 0;//配列一番左の状態に戻す
 												 //↓行動パターンを決める,ランダムを割っている数字と配列の種類を増やすと攻撃パターンが増える	
 						srand(time(NULL));
-						Enemy_Line_pattern_x = rand() % 5;
 						//↓m_attackに攻撃パターンを入れる処理
 						m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
-						Enemy_Line_pattern_x++;
+						if (Enemy_Line_pattern_y <= 3) {
+							Enemy_Line_pattern_y++;
+						}
+						else {
+							Enemy_Line_pattern_y = rand() % 5;
+						}
 					}
 					else
 					{

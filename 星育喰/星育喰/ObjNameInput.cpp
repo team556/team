@@ -148,11 +148,26 @@ void CObjNameInput::Action()
 		return;
 	}
 
-	//▼チュートリアルスキップチェック後、ホーム画面移行
+	//▼チュートリアル見るor見ないチェック後、ホーム画面移行
 	if (m_finalcheck_f_yes == true)
 	{
 		//最終確認ウィンドウのはいを押したときの処理
 		if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true)
+		{
+			if (m_key_f == true)
+			{
+				return;
+			}
+
+			g_tutorial_progress = 0;//チュートリアルの値とする。
+
+			m_scene_move = true;//シーン移行フラグON
+
+			//決定ボタン音
+			Audio::Start(1);
+		}
+		//最終確認ウィンドウのいいえを押したときの処理
+		if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
 		{
 			if (m_key_f == true)
 			{
@@ -168,21 +183,6 @@ void CObjNameInput::Action()
 
 			m_scene_move = true;//シーン移行フラグON
 
-			//決定ボタン音
-			Audio::Start(1);
-		}
-		//最終確認ウィンドウのいいえを押したときの処理
-		if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true)
-		{
-			if (m_key_f == true)
-			{
-				return;
-			}
-
-			g_tutorial_progress = 0;//チュートリアルの値とする。
-
-			m_scene_move = true;//シーン移行フラグON
-
 			//戻るボタン音
 			Audio::Start(2);
 		}
@@ -192,7 +192,7 @@ void CObjNameInput::Action()
 	}
 
 	//文字クリアの判定
-	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 300 < m_mou_y && 400 > m_mou_y && m_key_f == false)
+	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 300 < m_mou_y && 400 > m_mou_y && m_key_f == false && m_finalcheck_f == false)
 	{
 		m_tex_clar = false;
 
@@ -204,7 +204,7 @@ void CObjNameInput::Action()
 		return;
 	}
 	//文字決定を押したときの処理
-	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y && m_key_f == false)
+	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y && m_key_f == false && m_finalcheck_f == false)
 	{
 		m_finalcheck_f = true;
 		m_key_f = true;
@@ -1315,8 +1315,8 @@ void CObjNameInput::Draw()
 		dst.m_bottom = 460.0f;
 		Draw::Draw(67, &src, &dst, No, 0.0f);
 
-		FontDraw(L"チュートリアルを", 375.0f, 245.0f, 40.0f, 40.0f, c, false);
-		FontDraw(L"スキップしますか？", 465.0f, 295.0f, 40.0f, 40.0f, c, false);
+		FontDraw(L"チュートリアルを", 402.5f, 230.0f, 50.0f, 50.0f, c, false);
+		FontDraw(L"見ますか？", 480.0f, 300.0f, 50.0f, 50.0f, c, false);
 
 		if (m_scene_move == false)
 		{
