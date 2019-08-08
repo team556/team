@@ -75,7 +75,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッドボタン白.png", 14, TEX_SIZE_512);
 
 	//15番に登録
-	Draw::LoadImage(L"ミサイルボタン.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイル選択.png", 15, TEX_SIZE_512);
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
@@ -322,7 +322,7 @@ void CSceneFight::InitScene()
 	CObjRocketButton* obj5 = new CObjRocketButton(950, 550, 100, 100, 4);	//オブジェクト作成
 	Objs::InsertObj(obj5, OBJ_POD_BUTTON4, 10);						//オブジェクト登録
 
-	CObjRocketButton* obj6 = new CObjRocketButton(150, 550, 100, 200, 5);	//オブジェクト作成
+	CObjRocketButton* obj6 = new CObjRocketButton(350, 550, 100, 100, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_MISSILE_BUTTON, 10);						//オブジェクト登録
 
 	//スペシャル技ボタン

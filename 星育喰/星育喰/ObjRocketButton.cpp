@@ -115,31 +115,31 @@ void CObjRocketButton::Action()
 	if (g_tutorial_progress == 3 && Button_num != 5 || g_tutorial_progress == 4 && Button_num == 5 || g_tutorial_progress >= 6)
 	{
 		//各押された時のボタンナンバーを設定と1～5が押されたフラグをtrueにする
-		if (Input::GetVKey('2') == true || Input::GetVKey(VK_NUMPAD2) == true) {
+		if (Input::GetVKey('X') == true || Input::GetVKey('x') == true) {
 
 			//powボタン
 			m_key_push = 1;
 			m_key_push_f = true;
 		}
-		if (Input::GetVKey('3') == true || Input::GetVKey(VK_NUMPAD3) == true) {
+		if (Input::GetVKey('C') == true || Input::GetVKey('c') == true) {
 
 			//defボタン
 			m_key_push = 2;
 			m_key_push_f = true;
 		}
-		if (Input::GetVKey('4') == true || Input::GetVKey(VK_NUMPAD4) == true) {
+		if (Input::GetVKey('V') == true || Input::GetVKey('v') == true) {
 
 			//speボタン
 			m_key_push = 3;
 			m_key_push_f = true;
 		}
-		if (Input::GetVKey('5') == true || Input::GetVKey(VK_NUMPAD5) == true) {
+		if (Input::GetVKey('B') == true || Input::GetVKey('b') == true) {
 
 			//balボタン
 			m_key_push = 4;
 			m_key_push_f = true;
 		}
-		if (Input::GetVKey('1') == true || Input::GetVKey(VK_NUMPAD1) == true) {
+		if (Input::GetVKey('Z') == true || Input::GetVKey('z') == true) {
 
 			//misボタン
 			m_key_push = 5;
@@ -329,21 +329,21 @@ void CObjRocketButton::Draw()
 	RECT_F dst;//表示位置
 	
 	//ボタン入力が1～4の時の切り取り位置
-	if (Button_num >= 1 && Button_num <= 4)
+	if (Button_num >= 1 && Button_num <= 5)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 156.0f;
 		src.m_bottom = 156.0f;
 	}
-	//それ以外ならミサイルの切り取り位置
-	else
-	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 300.0f;
-		src.m_bottom = 180.0f;
-	}
+	////それ以外ならミサイルの切り取り位置
+	//else
+	//{
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 300.0f;
+	//	src.m_bottom = 180.0f;
+	//}
 		dst.m_top = m_y;
 		dst.m_left = m_x;
 		dst.m_right = m_x + m_w;
