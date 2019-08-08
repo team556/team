@@ -575,39 +575,39 @@ void CObjFight::Draw()
 
 		//赤ポッドの表示位置
 		dst.m_top = 490.0f;
-		dst.m_left = 25.0f;
-		dst.m_right = 75.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
 		dst.m_bottom = 535.0f;
 		Draw::Draw(65, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Power_num), 80, 490, 45, 45, c, false);
+		FontDraw(NumConversion(g_Power_num), 100, 490, 30, 30, c, false);
 		
 		//青ポッドの表示位置
 		dst.m_top = 545.0f;
-		dst.m_left = 25.0f;
-		dst.m_right = 75.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
 		dst.m_bottom = 590.0f;
 		Draw::Draw(68, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Speed_num), 80, 545, 45, 45, c, false);
+		FontDraw(NumConversion(g_Speed_num), 100, 545, 30, 30, c, false);
 
 		//緑ポッドの表示位置
 		dst.m_top = 600.0f;
-		dst.m_left = 25.0f;
-		dst.m_right = 75.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
 		dst.m_bottom = 645.0f;
 		Draw::Draw(71, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Defense_num), 80, 600, 45, 45, c, false);
+		FontDraw(NumConversion(g_Defense_num), 100, 600, 30, 30, c, false);
 
 		//白ポッドの表示位置
 		dst.m_top = 655.0f;
-		dst.m_left = 25.0f;
-		dst.m_right = 75.0f;
-		dst.m_bottom = 700.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
+		dst.m_bottom = 701.0f;
 		Draw::Draw(74, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Balance_num), 80, 655, 45, 45, c, false);
+		FontDraw(NumConversion(g_Balance_num), 100, 655, 30, 30, c, false);
 
 
 	}
