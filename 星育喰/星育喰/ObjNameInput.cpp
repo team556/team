@@ -148,7 +148,7 @@ void CObjNameInput::Action()
 		return;
 	}
 
-	//▼チュートリアルスキップチェック後、ホーム画面移行
+	//▼チュートリアル見るor見ないチェック後、ホーム画面移行
 	if (m_finalcheck_f_yes == true)
 	{
 		//最終確認ウィンドウのはいを押したときの処理
@@ -159,12 +159,7 @@ void CObjNameInput::Action()
 				return;
 			}
 
-			g_tutorial_progress = 17;//チュートリアルスキップの値とする。
-
-			//ボロボロン報酬をスキップする為、受け取っておく処理
-			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
-			g_Player_max_size += 20;//HP取得
-			g_Special_mastering[3] = true;//オーバーワーク取得
+			g_tutorial_progress = 0;//チュートリアルの値とする。
 
 			m_scene_move = true;//シーン移行フラグON
 
@@ -179,7 +174,12 @@ void CObjNameInput::Action()
 				return;
 			}
 
-			g_tutorial_progress = 0;//チュートリアルの値とする。
+			g_tutorial_progress = 17;//チュートリアルスキップの値とする。
+
+			//ボロボロン報酬をスキップする為、受け取っておく処理
+			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
+			g_Player_max_size += 20;//HP取得
+			g_Special_mastering[3] = true;//オーバーワーク取得
 
 			m_scene_move = true;//シーン移行フラグON
 
@@ -1315,8 +1315,8 @@ void CObjNameInput::Draw()
 		dst.m_bottom = 460.0f;
 		Draw::Draw(67, &src, &dst, No, 0.0f);
 
-		FontDraw(L"チュートリアルを", 375.0f, 245.0f, 40.0f, 40.0f, c, false);
-		FontDraw(L"スキップしますか？", 465.0f, 295.0f, 40.0f, 40.0f, c, false);
+		FontDraw(L"チュートリアルを", 402.5f, 230.0f, 50.0f, 50.0f, c, false);
+		FontDraw(L"見ますか？", 480.0f, 300.0f, 50.0f, 50.0f, c, false);
 
 		if (m_scene_move == false)
 		{
