@@ -5,6 +5,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\Audio.h"
+#include "UtilityModule.h"
 
 #include "GameHead.h"
 #include "ObjPlanet.h"
@@ -385,7 +386,7 @@ void CObjPlanet::Action()
 		&& (m_type == 0) && (m_size > 0))
 	{
 		//無敵フラグがtrueの時は以下のダメージ処理を飛ばす
-		if (m_invincible_f == false)
+		if (m_invincible_f == true)
 		{
 			CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 			//敵がチュートリアル惑星以外の時
@@ -629,7 +630,12 @@ void CObjPlanet::Action()
 						Enemy_Line_pattern_x = rand() % 5;
 						//↓m_attackに攻撃パターンを入れる処理
 						m_get_line = Enemy_Fight_line[Enemy_Line_pattern_y][Enemy_Line_pattern_x];
-						Enemy_Line_pattern_x++;
+						if (Enemy_Line_pattern_y <= 3) {
+							Enemy_Line_pattern_y++;
+						}
+						else {
+							Enemy_Line_pattern_y = rand() % 5;
+						}
 					}
 					else
 					{
@@ -928,6 +934,12 @@ void CObjPlanet::Draw()
 			//汗
 			Draw::Draw(34, &src, &dst, c, 1.0f);
 		}
+	}
+
+	if (m_type != 0) {
+		FontDraw(NumConversion(Enemy_Line_pattern_x), 500, 500, 50, 50, r, true);
+		FontDraw(NumConversion(Enemy_Line_pattern_y), 600, 500, 50, 50, r, true);
+		FontDraw(NumConversion(m_get_line), 700, 500, 50, 50, r, true);
 	}
 
 }

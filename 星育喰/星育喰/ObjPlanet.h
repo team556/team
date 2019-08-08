@@ -2,6 +2,7 @@
 //使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include "ObjFight.h"	//基底クラスとして定義するため読み込む
+#include "UtilityModule.h"
 //使用するネームスペース
 using namespace GameL;
 
