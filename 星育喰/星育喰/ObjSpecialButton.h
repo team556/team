@@ -15,6 +15,7 @@ public:
 	void Action();   //アクション
 	void Draw();     //ドロー
 
+	bool GetPlayer_Used_Special() { return m_is_used_special[0]; }//プレイヤーがスペシャル技を使用したかどうかを返す
 	bool GetEnemy_Used_Special() { return m_is_used_special[1]; }//敵がスペシャル技を使用したかどうかを返す
 	int  GetSpecial_equip() { return m_enemy_special_equipment; }//敵が装備中のスペシャル技を返す
 	bool GetInvocating(int Planet_id) { return m_is_invocating[Planet_id]; }//[プレイヤー or 敵]が現在スペシャル技発動中であるかを返す

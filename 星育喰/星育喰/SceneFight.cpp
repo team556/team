@@ -75,7 +75,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッドボタン白.png", 14, TEX_SIZE_512);
 
 	//15番に登録
-	Draw::LoadImage(L"ミサイルボタン.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"ミサイル選択.png", 15, TEX_SIZE_512);
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
@@ -132,22 +132,22 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
 
 	//ミサイルキーボード用画像
-	Draw::LoadImage(L"1選択アイコン.png", 35, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンz.png", 35, TEX_SIZE_512);
 
 	//赤ポッドキーボード用画像
-	Draw::LoadImage(L"2選択アイコン.png", 36, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンx.png", 36, TEX_SIZE_512);
 
 	//青ポッドキーボード用画像
-	Draw::LoadImage(L"3選択アイコン.png", 37, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンc.png", 37, TEX_SIZE_512);
 
 	//緑キーボード用画像
-	Draw::LoadImage(L"4選択アイコン.png", 38, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンv.png", 38, TEX_SIZE_512);
 
 	//灰色キーボード用画像
-	Draw::LoadImage(L"5選択アイコン.png", 39, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンb.png", 39, TEX_SIZE_512);
 
 	//スペシャル技キーボード用画像
-	Draw::LoadImage(L"s選択アイコン.png", 40, TEX_SIZE_512);
+	Draw::LoadImage(L"選択ボタンenter.png", 40, TEX_SIZE_512);
 
 	//白文字のフォントを41番に登録
 	Draw::LoadImage(L"白文字集.png", 41, TEX_SIZE_512);
@@ -322,7 +322,7 @@ void CSceneFight::InitScene()
 	CObjRocketButton* obj5 = new CObjRocketButton(950, 550, 100, 100, 4);	//オブジェクト作成
 	Objs::InsertObj(obj5, OBJ_POD_BUTTON4, 10);						//オブジェクト登録
 
-	CObjRocketButton* obj6 = new CObjRocketButton(150, 550, 100, 200, 5);	//オブジェクト作成
+	CObjRocketButton* obj6 = new CObjRocketButton(350, 550, 100, 100, 5);	//オブジェクト作成
 	Objs::InsertObj(obj6, OBJ_MISSILE_BUTTON, 10);						//オブジェクト登録
 
 	//スペシャル技ボタン

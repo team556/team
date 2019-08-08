@@ -61,7 +61,11 @@ void CObjFight::Init()
 	m_key_U_f = false;
 	m_key_D_f = false;
 
+	m_special_f = false;
+
 	m_line_choice = 1;
+
+	m_cuta =0;
 
 	//▼以下のstatic変数は他シーンから戦闘画面に入る度に初期化を行う
 	battle_start = false;
@@ -492,13 +496,13 @@ void CObjFight::Draw()
 		//ポッドやミサイルのキーボード選択用画像
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_right = 96.0f;
+		src.m_bottom = 96.0f;
 
 		//ミサイルキー描画
 		dst.m_top = 655.0f;
-		dst.m_left = 230.0f;
-		dst.m_right = 260.0f;
+		dst.m_left = 385.0f;
+		dst.m_right = 415.0f;
 		dst.m_bottom = 685.0f;
 		Draw::Draw(35, &src, &dst, d, 0.0f);
 
@@ -531,13 +535,21 @@ void CObjFight::Draw()
 		Draw::Draw(39, &src, &dst, d, 0.0f);
 
 		//スペシャル技を装備しているときはアイコンを出す
-		if (g_Special_equipment != 0)
+		if (g_Special_equipment != 0 && m_special_f==false)
 		{
+			//ポッドやミサイルのキーボード選択用画像
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 288.0f;
+			src.m_bottom = 96.0f;
+
+
 			dst.m_top = 60.0f;
-			dst.m_left = 950.0f;
+			dst.m_left = 940.0f;
 			dst.m_right = 990.0f;
 			dst.m_bottom = 100.0f;
 			Draw::Draw(40, &src, &dst, d, 0.0f);
+			/*m_special_f = true;*/
 		}
 
 		//三すくみ説明画像描画
@@ -551,6 +563,52 @@ void CObjFight::Draw()
 		dst.m_right = 225.0f;
 		dst.m_bottom = 200.0f;
 		Draw::Draw(80, &src, &dst, d, 0.0f);
+
+
+		FontDraw(L"残り住民数", 20, 455, 25, 25, c, false);
+
+		//ポッド描画の切り取り位置
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		//赤ポッドの表示位置
+		dst.m_top = 490.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
+		dst.m_bottom = 535.0f;
+		Draw::Draw(65, &src, &dst, d, 0.0f);
+		//残り住人数表示用
+		FontDraw(NumConversion(g_Power_num), 100, 490, 30, 30, c, false);
+		
+		//青ポッドの表示位置
+		dst.m_top = 545.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
+		dst.m_bottom = 590.0f;
+		Draw::Draw(68, &src, &dst, d, 0.0f);
+		//残り住人数表示用
+		FontDraw(NumConversion(g_Speed_num), 100, 545, 30, 30, c, false);
+
+		//緑ポッドの表示位置
+		dst.m_top = 600.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
+		dst.m_bottom = 645.0f;
+		Draw::Draw(71, &src, &dst, d, 0.0f);
+		//残り住人数表示用
+		FontDraw(NumConversion(g_Defense_num), 100, 600, 30, 30, c, false);
+
+		//白ポッドの表示位置
+		dst.m_top = 655.0f;
+		dst.m_left = 45.0f;
+		dst.m_right = 95.0f;
+		dst.m_bottom = 701.0f;
+		Draw::Draw(74, &src, &dst, d, 0.0f);
+		//残り住人数表示用
+		FontDraw(NumConversion(g_Balance_num), 100, 655, 30, 30, c, false);
+
 
 	}
 
