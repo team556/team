@@ -122,7 +122,7 @@ void CObjSpecialButton::Action()
 	}
 
 	//▼プレイヤー惑星スペシャル技処理(Sキー)
-	if ((Input::GetVKey('S')) &&						//Sキー
+	if ((Input::GetVKey(VK_RETURN)) &&						//Sキー
 		(g_Special_equipment != 0) &&					//スペシャル技装備してるかチェック
 		(m_is_used_special[PLAYER] == false))			//スペシャル技が未使用であれば実行
 	{

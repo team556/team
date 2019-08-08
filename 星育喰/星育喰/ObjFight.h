@@ -50,8 +50,11 @@ private:
 	bool m_end_f;		//クリア画面作成用
 	bool m_key_U_f;		//UP用キーフラグ
 	bool m_key_D_f;		//DOWN用キーフラグ
+	bool m_special_f;   //スペシャル技を打った時のフラグ
 
 	int m_line_choice;	//ライン選択用
+
+	int m_cuta;
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
