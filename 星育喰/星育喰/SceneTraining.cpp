@@ -539,6 +539,8 @@ void CSceneTraining::InitScene()
 	//–îˆó‰æ‘œ‚ğ“Ç‚İ‚İ191”Ô‚É“o˜^
 	Draw::LoadImage(L"–îˆó.png", 191, TEX_SIZE_512);
 
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	//‰¹Šy“Ç‚İ‚İ
 	Audio::LoadAudio(0, L"‚«‚Á‚Æ‚¢‚¢“ú.wav", BACK_MUSIC);
