@@ -56,7 +56,7 @@ int g_Speed_num		= 1500;
 int g_Balance_num	= 1500;
 int g_Research_num	=  0;
 int g_Remain_num	= 0;
-float g_Recast_time = 3.0f;
+float g_Recast_time = 0.01f;
 float g_P_Planet_damage = 0.0f;
 wchar_t g_Player_Name[6];
 
@@ -69,7 +69,7 @@ int g_gus_num		= 0;
 
 int g_Challenge_enemy = 0;//デバッグ。0に戻すべし。
 bool g_help_f = false;
-int  g_tutorial_progress = 0;//デバッグ。チュートリアル完成後、0にするように。
+int  g_tutorial_progress = 20;//デバッグ。チュートリアル完成後、0にするように。
 bool g_is_operatable = true;
 
 //イニシャライズ
