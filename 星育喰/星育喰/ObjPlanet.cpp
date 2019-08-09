@@ -582,14 +582,14 @@ void CObjPlanet::Action()
 			if (m_type != 0 && Special->GetEnemy_Used_Special() == false) {
 				switch (m_type) {
 				case 1://‘åã‚Ìƒtƒ‰ƒNƒ`ƒƒ[ƒŒƒC
-					//©˜f¯‚Ì‚g‚o‚ª80“ˆÈ‰º
-					if (m_size / m_siz_max <= 0.8) {
+					//©˜f¯‚Ì‚g‚o‚ª60“ˆÈ‰º
+					if (m_size / m_siz_max <= 0.6) {
 						m_attackf = 6;
 					}
 					break;
 				case 2://ƒAƒ‚ƒC‚ÌƒGƒNƒXƒvƒ[ƒWƒ‡ƒ“
-					//©˜f¯‚Ì‚g‚o‚ª30“ˆÈ‰ºŠ‚Â“G‚ª–³“G‚Å‚È‚¢‚Æ‚«
-					if ((m_size / m_siz_max <= 0.3) && (pla->GetSiz() / pla->GetMaxSiz() >= 0.7)
+					//©˜f¯‚Ì‚g‚o‚ª30“ˆÈ‰ºŠ‚Â“G‚ÌHP‚ª70“ˆÈã‚Å–³“G‚Å‚È‚¢‚Æ‚«
+					if ((m_size / m_siz_max <= 0.5) && (pla->GetSiz() / pla->GetMaxSiz() >= 0.7)
 						&& (pla->GetInvincible() != true)) {
 						m_attackf = 6;
 					}
@@ -603,8 +603,8 @@ void CObjPlanet::Action()
 					if (m_size / m_siz_max <= 0.7) {
 						m_attackf = 6;
 					}
-					//“G˜f¯‚Ì‚g‚o‚ª50“ˆÈ‰º‚É‚È‚Á‚½
-					if (pla->GetSiz() / pla->GetMaxSiz() <= 0.5) {
+					//“G˜f¯‚Ì‚g‚o‚ª40“ˆÈ‰º‚É‚È‚Á‚½
+					if (pla->GetSiz() / pla->GetMaxSiz() <= 0.4) {
 						m_attackf = 6;
 					}
 					break;
