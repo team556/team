@@ -589,7 +589,7 @@ void CObjFight::Draw()
 		dst.m_bottom = 590.0f;
 		Draw::Draw(68, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Speed_num), 100, 545, 30, 30, c, false);
+		FontDraw(NumConversion(g_Defense_num), 100, 545, 30, 30, c, false); 
 
 		//緑ポッドの表示位置
 		dst.m_top = 600.0f;
@@ -598,7 +598,7 @@ void CObjFight::Draw()
 		dst.m_bottom = 645.0f;
 		Draw::Draw(71, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Defense_num), 100, 600, 30, 30, c, false);
+		FontDraw(NumConversion(g_Speed_num), 100, 600, 30, 30, c, false);
 
 		//白ポッドの表示位置
 		dst.m_top = 655.0f;
