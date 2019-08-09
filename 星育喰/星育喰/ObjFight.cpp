@@ -694,6 +694,31 @@ void CObjFight::Draw()
 
 
 
+	//▼Explosion表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 1200.0f;
+	//src.m_bottom = 400.0f;
+
+	////▽メモ1：
+	////画像を拡大縮小等と変形する際、
+	////均等にtopとleftとrightとbottomを伸ばさなければ、
+	////その誤差分、画像が引き伸ばされ、
+	////欲しい画像とならないので
+	////基本的にどんな状況でも均等に伸ばさないといけない。
+	////ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
+	////bottomを動かさない分、topを2倍動かす事でこれに対応している。
+	////▽メモ2:
+	////今回の画像は90度&270度回転させて使用している為、
+	////topとbottomの値の差を変動させる事で、
+	////欲しい画像である"左右から徐々に消えていく演出"を行っている。
+	//dst.m_top = Planet[m_Explosion_target[Planet_id]]->GetY() - m_Explosion_size[Planet_id] * 2 - m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
+	//dst.m_left = Planet[m_Explosion_target[Planet_id]]->GetX() - m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
+	//dst.m_right = Planet[m_Explosion_target[Planet_id]]->GetX() + m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
+	//dst.m_bottom = Planet[m_Explosion_target[Planet_id]]->GetY() + m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
+	//Draw::Draw(21, &src, &dst, d, m_Explosion_angle[Planet_id]);
+
+
 	//デバッグ用仮マウス位置表示
 	//wchar_t test_mou[256];
 	//swprintf_s(test_mou, L"x=%f,y=%f", m_mou_x, m_mou_y);
