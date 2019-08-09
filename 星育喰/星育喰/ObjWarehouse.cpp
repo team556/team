@@ -774,10 +774,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 232.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 110.0f;
+		dst.m_top = 80.0f;
 		dst.m_left = 550.0f;
 		dst.m_right = 650.0f;
-		dst.m_bottom = 160.0f;
+		dst.m_bottom = 130.0f;
 		Draw::Draw(147, &src, &dst, black, 0.0f);
 
 		//▼戻るボタン表示
@@ -791,6 +791,8 @@ void CObjWarehouse::Draw()
 		dst.m_right = 130.0f;
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
+
+
 
 		//▼木材表示
 		src.m_top = 0.0f;
@@ -1257,8 +1259,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 800.0f;
 
 			dst.m_top = 140.0f + ( i * 100 );
-			dst.m_left = 220.0f;
-			dst.m_right = 270.0f;
+			dst.m_left = 290.0f;
+			dst.m_right = 340.0f;
 			dst.m_bottom = 190.0f + (i * 100);
 			Draw::Draw(132, &src, &dst, it, 0.0f);
 
@@ -1269,12 +1271,12 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 800.0f;
 
 			dst.m_top = 180.0f + (i * 100);
-			dst.m_left = 220.0f;
-			dst.m_right = 270.0f;
+			dst.m_left = 290.0f;
+			dst.m_right = 340.0f;
 			dst.m_bottom = 230.0f + (i * 100);
 			Draw::Draw(132, &src, &dst, it, 0.0f);
 
-			for (int j = 0; j < 15; j++)
+			for (int j = 0; j < 14; j++)
 			{
 				//スペシャル技メッセージウィンドウ表示中央上
 				src.m_top = -10.0f;
@@ -1283,8 +1285,8 @@ void CObjWarehouse::Draw()
 				src.m_bottom = 800.0f;
 
 				dst.m_top = 140.0f + (i * 100);
-				dst.m_left = 270.0f + (j * 50);
-				dst.m_right = 320.0f + (j * 50);
+				dst.m_left = 340.0f + (j * 50);
+				dst.m_right = 390.0f + (j * 50);
 				dst.m_bottom = 190.0f + (i * 100);
 				Draw::Draw(132, &src, &dst, it, 0.0f);
 
@@ -1295,8 +1297,8 @@ void CObjWarehouse::Draw()
 				src.m_bottom = 800.0f;
 
 				dst.m_top = 180.0f + (i * 100);
-				dst.m_left = 270.0f + (j * 50);
-				dst.m_right = 320.0f + (j * 50);
+				dst.m_left = 340.0f + (j * 50);
+				dst.m_right = 390.0f + (j * 50);
 				dst.m_bottom = 230.0f + (i * 100);
 				Draw::Draw(132, &src, &dst, it, 0.0f);
 
@@ -1309,8 +1311,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 800.0f;
 
 			dst.m_top = 140.0f + (i * 100);
-			dst.m_left = 1020.0f;
-			dst.m_right = 1070.0f;
+			dst.m_left = 1013.0f;
+			dst.m_right = 1063.0f;
 			dst.m_bottom = 190.0f + (i * 100);
 			Draw::Draw(132, &src, &dst, it, 0.0f);
 
@@ -1321,8 +1323,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 800.0f;
 
 			dst.m_top = 180.0f + (i * 100);
-			dst.m_left = 1020.0f;
-			dst.m_right = 1070.0f;
+			dst.m_left = 1013.0f;
+			dst.m_right = 1063.0f;
 			dst.m_bottom = 230.0f + (i * 100);
 			Draw::Draw(132, &src, &dst, it, 0.0f);
 		}
@@ -1344,8 +1346,8 @@ void CObjWarehouse::Draw()
 		//Explosionの判定
 		//まず貼り付け位置を設定する
 		dst.m_top = 122.5f;
-		dst.m_left = 80.0f;
-		dst.m_right = 210.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 260.0f;
 		dst.m_bottom = 252.5f;
 
 		//Explosionを覚えているならば
@@ -1363,20 +1365,20 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 168.5f;
-			dst.m_left = 240.0f;
-			dst.m_right = 450.0f;
+			dst.m_left = 310.0f;
+			dst.m_right = 520.0f;
 			dst.m_bottom = 203.5f;
 			Draw::Draw(95, &src, &dst, black, 0.0f);
 
 			//▼固定ダメージを与える文字画像を表示
 			src.m_top = 2.0f;
 			src.m_left = 0.0f;
-			src.m_right = 1182.0f;
+			src.m_right = 1180.0f;
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 168.5f;
-			dst.m_left = 455.0f;
-			dst.m_right = 805.0f;
+			dst.m_left = 525.0f;
+			dst.m_right = 875.0f;
 			dst.m_bottom = 203.5f;
 			Draw::Draw(96, &src, &dst, black, 0.0f);
 		}
@@ -1394,8 +1396,8 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 222.5f;
-		dst.m_left = 80.0f;
-		dst.m_right = 210.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 260.0f;
 		dst.m_bottom = 352.5f;
 		
 		//Fracture Rayを覚えているならば
@@ -1413,8 +1415,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 268.5f;
-			dst.m_left = 240.0f;
-			dst.m_right = 485.0f;
+			dst.m_left = 310.0f;
+			dst.m_right = 555.0f;
 			dst.m_bottom = 303.5f;
 			Draw::Draw(97, &src, &dst, black, 0.0f);
 
@@ -1425,8 +1427,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 268.5f;
-			dst.m_left = 488.0f;
-			dst.m_right = 873.0f;
+			dst.m_left = 558.0f;
+			dst.m_right = 943.0f;
 			dst.m_bottom = 303.5f;
 			Draw::Draw(98, &src, &dst, black, 0.0f);
 
@@ -1446,8 +1448,8 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 322.5f;
-		dst.m_left = 80.0f;
-		dst.m_right = 210.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 260.0f;
 		dst.m_bottom = 452.5f;
 
 		//Immotalityを覚えているならば
@@ -1465,8 +1467,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 368.5f;
-			dst.m_left = 240.0f;
-			dst.m_right = 415.0f;
+			dst.m_left = 310.0f;
+			dst.m_right = 485.0f;
 			dst.m_bottom = 403.5f;
 			Draw::Draw(99, &src, &dst, black, 0.0f);
 
@@ -1477,8 +1479,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 368.5f;
-			dst.m_left = 418.0f;
-			dst.m_right = 593.0f;
+			dst.m_left = 488.0f;
+			dst.m_right = 663.0f;
 			dst.m_bottom = 403.5f;
 			Draw::Draw(100, &src, &dst, black, 0.0f);
 
@@ -1488,7 +1490,7 @@ void CObjWarehouse::Draw()
 			Draw::Draw(42, &src, &dst, black, 0.0f);
 		}
 
-		//リミットブレイクの判定
+		//オーバーワークの判定
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -1497,11 +1499,11 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 422.5f;
-		dst.m_left = 80.0f;
-		dst.m_right = 210.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 260.0f;
 		dst.m_bottom = 552.5f;
 
-		//リミットブレイクを覚えているならば
+		//オーバーワークを覚えているならば
 		if (g_Special_mastering[3] == true)
 		{
 			if (g_Special_equipment == 4)
@@ -1516,8 +1518,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 466.5f;
-			dst.m_left = 235.0f;
-			dst.m_right = 620.0f;
+			dst.m_left = 305.0f;
+			dst.m_right = 690.0f;
 			dst.m_bottom = 501.5f;
 			Draw::Draw(101, &src, &dst, black, 0.0f);
 
@@ -1528,8 +1530,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 466.5f;
-			dst.m_left = 623.0f;
-			dst.m_right = 973.0f;
+			dst.m_left = 693.0f;
+			dst.m_right = 1043.0f;
 			dst.m_bottom = 501.5f;
 			Draw::Draw(102, &src, &dst, black, 0.0f);
 		}
@@ -1538,7 +1540,7 @@ void CObjWarehouse::Draw()
 			Draw::Draw(43, &src, &dst, black, 0.0f);
 		}
 
-		//オーバーワークの判定
+		//リミットブレイクの判定
 		//スペシャルボタンの共通切り取り位置設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -1547,11 +1549,11 @@ void CObjWarehouse::Draw()
 
 		//まず貼り付け位置を設定する
 		dst.m_top = 522.5f;
-		dst.m_left = 80.0f;
-		dst.m_right = 210.0f;
+		dst.m_left = 130.0f;
+		dst.m_right = 260.0f;
 		dst.m_bottom = 652.5f;
 
-		//オーバーワークを覚えているならば
+		//リミットブレイクを覚えているならば
 		if (g_Special_mastering[4] == true)
 		{
 			if (g_Special_equipment == 6)
@@ -1566,8 +1568,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 566.5f;
-			dst.m_left = 240.0f;
-			dst.m_right = 380.0f;
+			dst.m_left = 310.0f;
+			dst.m_right = 450.0f;
 			dst.m_bottom = 601.5f;
 			Draw::Draw(103, &src, &dst, black, 0.0f);
 
@@ -1578,8 +1580,8 @@ void CObjWarehouse::Draw()
 			src.m_bottom = 112.0f;
 
 			dst.m_top = 566.5f;
-			dst.m_left = 383.0f;
-			dst.m_right = 768.0f;
+			dst.m_left = 453.0f;
+			dst.m_right = 838.0f;
 			dst.m_bottom = 601.5f;
 			Draw::Draw(104, &src, &dst, black, 0.0f);
 		}
@@ -1628,17 +1630,17 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
-		//▼コア文字画像文字画像を表示
+		//▼ポッド文字画像文字画像を表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 186.0f;
-		src.m_bottom = 84.0f;
+		src.m_right = 344.0f;
+		src.m_bottom = 112.0f;
 
 		dst.m_top = 110.0f;
 		dst.m_left = 525.0f;
-		dst.m_right = 625.0f;
+		dst.m_right = 675.0f;
 		dst.m_bottom = 160.0f;
-		Draw::Draw(145, &src, &dst, black, 0.0f);
+		Draw::Draw(149, &src, &dst, black, 0.0f);
 
 		//▼レッド文字画像を表示
 		src.m_top = 0.0f;
