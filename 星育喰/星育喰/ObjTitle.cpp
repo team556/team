@@ -150,7 +150,7 @@ void CObjTitle::Init()
 
 	for (int i = 0; i < 5; i++)
 	{
-		g_Special_mastering[i] = true;
+		g_Special_mastering[i] = false;
 	}
 
 	g_Power_num		= 1500;
