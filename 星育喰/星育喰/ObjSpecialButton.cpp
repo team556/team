@@ -121,8 +121,8 @@ void CObjSpecialButton::Action()
 		m_button_color = INI_COLOR;
 	}
 
-	//▼プレイヤー惑星スペシャル技処理(Sキー)
-	if ((Input::GetVKey(VK_RETURN)) &&						//Sキー
+	//▼プレイヤー惑星スペシャル技処理(Enterキー)
+	if ((Input::GetVKey(VK_RETURN)) &&					//Enterキー
 		(g_Special_equipment != 0) &&					//スペシャル技装備してるかチェック
 		(m_is_used_special[PLAYER] == false))			//スペシャル技が未使用であれば実行
 	{
@@ -500,7 +500,6 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 	//▼スペシャル技発動演出
 	if (m_is_used_special[Planet_id] == false)
 	{
-		SetPrio(90);	//オブジェクト優先順位が変更されていた場合、元に戻す。
 		Special_staging_message(Planet_id, Special_equip);//スペシャル技発動演出メッセージを設定する
 		m_special_staging_f[Planet_id] = true;	//スペシャル技発動演出フラグON
 		battle_start = false;			//戦闘開始フラグをfalseにする事で戦闘全体を一時停止させる
@@ -630,21 +629,17 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		if (m_Explosion_width[Planet_id] >= 860.0f)
 		{
 			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
-			//オブジェクト優先順位を元に戻し、演出終了。
-			SetPrio(90);	//オブジェクト優先順位を元に戻す。
 		}
 		else if (m_Explosion_size[Planet_id] <= -860.0f)
 		{
 			//▽エフェクト画像サイズが画面外(下)に到達すると実行。
 			//サイズ変更(下発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
-			SetPrio(2);//オブジェクト優先順位を変更し、エフェクト画像が相手惑星の後ろにいくようにする
 			m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
 		}
 		else if (m_Explosion_pos[Planet_id] == -1000.0f)
 		{
 			//▽演出準備終了後、実行。
 			//エフェクト画像が画面外(相手惑星の真上)を起点に下へと発射し、相手惑星を貫く。
-			SetPrio(2);//オブジェクト優先順位を変更し、エフェクト画像が相手惑星の後ろにいくようにする
 			m_Explosion_size[Planet_id] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす
 			m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
 		}
@@ -658,6 +653,9 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 			m_Explosion_target[Planet_id] = Opponent_id;//エフェクト対象を相手に設定
 			m_Explosion_angle[Planet_id] = 270.0f;		//エフェクト角度を下に向くように設定
 		}
+
+
+
 		else if (m_Explosion_size[Planet_id] > 800.0f && m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] > 0)
 		{
 			//▽エフェクト画像サイズが画面外(上)に到達すると実行。

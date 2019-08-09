@@ -42,13 +42,16 @@ void CSceneFight::InitScene()
 	//Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み3番に登録
-	Draw::LoadImage(L"P惑星_Lv1修正.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv1修正クチナシ.png", 3, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み4番に登録
-	Draw::LoadImage(L"P惑星_Lv2修正.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv2new.png", 4, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み5番に登録
-	Draw::LoadImage(L"P惑星_Lv3修正.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"P惑星_Lv3new.png", 5, TEX_SIZE_512);
+
+	//プレイヤー惑星口を読み込み6晩に登録
+	Draw::LoadImage(L"P惑星_Lv1修正口のみ.png", 6, TEX_SIZE_512);
 
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);

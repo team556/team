@@ -580,7 +580,7 @@ void CObjFight::Draw()
 		dst.m_bottom = 535.0f;
 		Draw::Draw(65, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Power_num), 100, 500, 30, 30, c, false);
+		FontDraw(NumConversion(g_Power_num), 100, 495, 30, 30, c, false);
 		
 		//青ポッドの表示位置
 		dst.m_top = 545.0f;
@@ -589,7 +589,7 @@ void CObjFight::Draw()
 		dst.m_bottom = 590.0f;
 		Draw::Draw(68, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Defense_num), 100, 535, 30, 30, c, false); 
+		FontDraw(NumConversion(g_Defense_num), 100, 550, 30, 30, c, false); 
 
 		//緑ポッドの表示位置
 		dst.m_top = 600.0f;
@@ -598,7 +598,7 @@ void CObjFight::Draw()
 		dst.m_bottom = 645.0f;
 		Draw::Draw(71, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Speed_num), 100, 610, 30, 30, c, false);
+		FontDraw(NumConversion(g_Speed_num), 100, 605, 30, 30, c, false);
 
 		//白ポッドの表示位置
 		dst.m_top = 655.0f;
@@ -607,7 +607,7 @@ void CObjFight::Draw()
 		dst.m_bottom = 701.0f;
 		Draw::Draw(74, &src, &dst, d, 0.0f);
 		//残り住人数表示用
-		FontDraw(NumConversion(g_Balance_num), 100, 665, 30, 30, c, false);
+		FontDraw(NumConversion(g_Balance_num), 100, 660, 30, 30, c, false);
 
 
 	}
@@ -692,6 +692,31 @@ void CObjFight::Draw()
 	//	Font::StrDraw(L"３", 495, 260, 160, start_font);
 	//}
 
+
+
+	//▼Explosion表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 1200.0f;
+	//src.m_bottom = 400.0f;
+
+	////▽メモ1：
+	////画像を拡大縮小等と変形する際、
+	////均等にtopとleftとrightとbottomを伸ばさなければ、
+	////その誤差分、画像が引き伸ばされ、
+	////欲しい画像とならないので
+	////基本的にどんな状況でも均等に伸ばさないといけない。
+	////ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
+	////bottomを動かさない分、topを2倍動かす事でこれに対応している。
+	////▽メモ2:
+	////今回の画像は90度&270度回転させて使用している為、
+	////topとbottomの値の差を変動させる事で、
+	////欲しい画像である"左右から徐々に消えていく演出"を行っている。
+	//dst.m_top = Planet[m_Explosion_target[Planet_id]]->GetY() - m_Explosion_size[Planet_id] * 2 - m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
+	//dst.m_left = Planet[m_Explosion_target[Planet_id]]->GetX() - m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
+	//dst.m_right = Planet[m_Explosion_target[Planet_id]]->GetX() + m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
+	//dst.m_bottom = Planet[m_Explosion_target[Planet_id]]->GetY() + m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
+	//Draw::Draw(21, &src, &dst, d, m_Explosion_angle[Planet_id]);
 
 
 	//デバッグ用仮マウス位置表示
