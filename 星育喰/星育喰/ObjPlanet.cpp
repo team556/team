@@ -917,7 +917,14 @@ void CObjPlanet::Draw()
 		Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
 	}
 
+	if (m_type == 0) {//プレイヤー惑星の時のみ口をz描画
+		dst.m_top		= m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range);
+		dst.m_left		= m_px - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+		dst.m_right		= m_px + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+		dst.m_bottom	= m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
 
+		Draw::Draw(6, &src, &dst, c, 0.0f);
+	}
 
 
 	//▽HPゲージ表示(戦闘終了後は表示しない)
