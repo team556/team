@@ -21,6 +21,7 @@ public:
 	void SetStart_Count() { m_start_count_f = true; }//戦闘開始カウントを動作させる
 	void SetEnd() { m_end_f = true; }	//クリア画面作成
 	void SetBattle_start(bool start) { battle_start = start; }
+	void SetExplosion_f(int id) { m_Explosion_f[id] = true; }
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -55,6 +56,12 @@ private:
 	int m_line_choice;	//ライン選択用
 
 	int m_cuta;
+
+
+	//▼背面表示させたい演出にて使用する変数等
+	bool  m_Explosion_f[2];		//[スペシャル技:Explosion]発動管理フラグ(true:発動中　false:未発動)
+	float m_Explosion_size[2];	//[スペシャル技:Explosion]エフェクト画像サイズ変更用
+	float m_Explosion_width[2];	//[スペシャル技:Explosion]エフェクト画像の幅変更用
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
