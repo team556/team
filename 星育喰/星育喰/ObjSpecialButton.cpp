@@ -626,36 +626,48 @@ void CObjSpecialButton::Special_process(int Planet_id, int Opponent_id, int Spec
 		m_count[Planet_id]++;//効果時間計測
 
 		//[Explosion]の演出処理(下からの上の順番で徐々に実行される)
-		if (m_Explosion_width[Planet_id] >= 860.0f)
+
+	
+		//▼以下の処理は背面に表示したいため、ObjFightにて行う事に変更。
+
+		//if (m_Explosion_width[Planet_id] >= 860.0f)
+		//{
+		//	//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
+		//}
+		//else if (m_Explosion_size[Planet_id] <= -860.0f)
+		//{
+		//	//▽エフェクト画像サイズが画面外(下)に到達すると実行。
+		//	//サイズ変更(下発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
+		//	m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
+		//}
+		//else if (m_Explosion_pos[Planet_id] == -1000.0f)
+		//{
+		//	//▽演出準備終了後、実行。
+		//	//エフェクト画像が画面外(相手惑星の真上)を起点に下へと発射し、相手惑星を貫く。
+		//	m_Explosion_size[Planet_id] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす
+		//	m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
+		//}
+		//else if (m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] <= 0)
+		//{
+		//	//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
+		//	//次の演出の為の準備を行う
+		//	m_Explosion_size[Planet_id] = 0.0f;			//エフェクト画像サイズを初期値に戻す
+		//	m_Explosion_width[Planet_id] = INI_WIDTH;	//エフェクト画像幅を初期値に戻す
+		//	m_Explosion_pos[Planet_id] = -1000.0f;		//エフェクト画像位置を画面外(上)に移動させる
+		//	m_Explosion_target[Planet_id] = Opponent_id;//エフェクト対象を相手に設定
+		//	m_Explosion_angle[Planet_id] = 270.0f;		//エフェクト角度を下に向くように設定
+		//}
+
+		if (m_Explosion_pos[Planet_id] == -1000.0f)
 		{
-			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
-		}
-		else if (m_Explosion_size[Planet_id] <= -860.0f)
-		{
-			//▽エフェクト画像サイズが画面外(下)に到達すると実行。
-			//サイズ変更(下発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
-			m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
-		}
-		else if (m_Explosion_pos[Planet_id] == -1000.0f)
-		{
-			//▽演出準備終了後、実行。
-			//エフェクト画像が画面外(相手惑星の真上)を起点に下へと発射し、相手惑星を貫く。
-			m_Explosion_size[Planet_id] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす
-			m_Explosion_width[Planet_id] += 10.0f;//エフェクト画像の幅を狭める
+			//何も処理を行わない。
 		}
 		else if (m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] <= 0)
 		{
-			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
-			//次の演出の為の準備を行う
-			m_Explosion_size[Planet_id] = 0.0f;			//エフェクト画像サイズを初期値に戻す
-			m_Explosion_width[Planet_id] = INI_WIDTH;	//エフェクト画像幅を初期値に戻す
-			m_Explosion_pos[Planet_id] = -1000.0f;		//エフェクト画像位置を画面外(上)に移動させる
-			m_Explosion_target[Planet_id] = Opponent_id;//エフェクト対象を相手に設定
-			m_Explosion_angle[Planet_id] = 270.0f;		//エフェクト角度を下に向くように設定
+			FightScene->SetExplosion_f(Planet_id);//ObjFightにて処理を行うように命令する
+
+			m_Explosion_pos[Planet_id] = -1000.0f;		//エフェクト画像位置を画面外(上)に移動させる事で、この処理に何度も入らないようにする。
 		}
-
-
-
 		else if (m_Explosion_size[Planet_id] > 800.0f && m_Explosion_width[Planet_id] + m_Explosion_size[Planet_id] > 0)
 		{
 			//▽エフェクト画像サイズが画面外(上)に到達すると実行。

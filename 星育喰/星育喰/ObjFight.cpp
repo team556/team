@@ -86,6 +86,15 @@ void CObjFight::Init()
 	}
 
 	Hits::SetHitBox(this, 400, 310, 400, 60, ELEMENT_LINE, OBJ_FIGHT, 1);
+
+
+	//▼背面表示させたい演出にて使用する変数の初期化
+	for (int i = 0; i < 2; i++)
+	{
+		m_Explosion_f[i] = false;
+		m_Explosion_size[i] = 0.0f;
+		m_Explosion_width[i] = 200.0f;
+	}
 }
 
 //アクション
@@ -325,6 +334,56 @@ void CObjFight::Action()
 			//エラーを回避するために木材を0個獲得するようにしている
 			CObjFightClear* crer = new CObjFightClear(5000, 20, L"なし", &g_Wood_num, 0, 4);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
+		}
+	}
+
+
+
+	//▼以下の処理は演出上、
+	//各オブジェクトの背面に表示したいものであり、
+	//このObjFightの中で処理する事で、
+	//背面に表示するというのを実現している。
+	
+	//プレイヤーの[Explosion]の演出処理(下からの上の順番で徐々に実行される)
+	if (m_Explosion_f[0] == true)
+	{
+		if (m_Explosion_width[1] >= 860.0f)
+		{
+			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
+			m_Explosion_f[0] = false;
+		}
+		else if (m_Explosion_size[1] <= -860.0f)
+		{
+			//サイズ変更(下発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
+			m_Explosion_width[1] += 10.0f;//エフェクト画像の幅を狭める
+		}
+		else
+		{
+			//エフェクト画像が画面外(相手惑星の真上)を起点に下へと発射し、相手惑星を貫く。
+			m_Explosion_size[1] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす
+			m_Explosion_width[1] += 10.0f;//エフェクト画像の幅を狭める
+		}
+	}
+
+	//エネミーの[Explosion]の演出処理(下からの上の順番で徐々に実行される)
+	if (m_Explosion_f[1] == true)
+	{
+		if (m_Explosion_width[0] >= 860.0f)
+		{
+			//▽エフェクト画像の幅が狭まり、画面から非表示になると実行。
+			m_Explosion_f[1] = false;
+		}
+		else if (m_Explosion_size[0] <= -860.0f)
+		{
+			//▽エフェクト画像サイズが画面外(下)に到達すると実行。
+			//サイズ変更(下発射)をやめて、エフェクト画像の幅を徐々に狭めていく。
+			m_Explosion_width[0] += 10.0f;//エフェクト画像の幅を狭める
+		}
+		else
+		{
+			//エフェクト画像が画面外(相手惑星の真上)を起点に下へと発射し、相手惑星を貫く。
+			m_Explosion_size[0] -= 20.0f;//エフェクト画像サイズを変更し、下方向に画像を伸ばす
+			m_Explosion_width[0] += 10.0f;//エフェクト画像の幅を狭める
 		}
 	}
 }
@@ -694,29 +753,69 @@ void CObjFight::Draw()
 
 
 
-	//▼Explosion表示
-	//src.m_top = 0.0f;
-	//src.m_left = 0.0f;
-	//src.m_right = 1200.0f;
-	//src.m_bottom = 400.0f;
+	//▼以下の処理は演出上、
+	//各オブジェクトの背面に表示したいものであり、
+	//このObjFightの中で処理する事で、
+	//背面に表示するというのを実現している。
 
-	////▽メモ1：
-	////画像を拡大縮小等と変形する際、
-	////均等にtopとleftとrightとbottomを伸ばさなければ、
-	////その誤差分、画像が引き伸ばされ、
-	////欲しい画像とならないので
-	////基本的にどんな状況でも均等に伸ばさないといけない。
-	////ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
-	////bottomを動かさない分、topを2倍動かす事でこれに対応している。
-	////▽メモ2:
-	////今回の画像は90度&270度回転させて使用している為、
-	////topとbottomの値の差を変動させる事で、
-	////欲しい画像である"左右から徐々に消えていく演出"を行っている。
-	//dst.m_top = Planet[m_Explosion_target[Planet_id]]->GetY() - m_Explosion_size[Planet_id] * 2 - m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
-	//dst.m_left = Planet[m_Explosion_target[Planet_id]]->GetX() - m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
-	//dst.m_right = Planet[m_Explosion_target[Planet_id]]->GetX() + m_Explosion_size[Planet_id] + Planet[m_Explosion_target[Planet_id]]->GetScale_down_move();
-	//dst.m_bottom = Planet[m_Explosion_target[Planet_id]]->GetY() + m_Explosion_width[Planet_id] + m_Explosion_pos[Planet_id];
-	//Draw::Draw(21, &src, &dst, d, m_Explosion_angle[Planet_id]);
+	//▽プレイヤーExplosion表示(敵に直撃している演出)
+	if (m_Explosion_f[0] == true)
+	{
+		CObjPlanet* Enemy = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 400.0f;
+
+		//▽メモ1：
+		//画像を拡大縮小等と変形する際、
+		//均等にtopとleftとrightとbottomを伸ばさなければ、
+		//その誤差分、画像が引き伸ばされ、
+		//欲しい画像とならないので
+		//基本的にどんな状況でも均等に伸ばさないといけない。
+		//ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
+		//bottomを動かさない分、topを2倍動かす事でこれに対応している。
+		//▽メモ2:
+		//今回の画像は90度&270度回転させて使用している為、
+		//topとbottomの値の差を変動させる事で、
+		//欲しい画像である"左右から徐々に消えていく演出"を行っている。
+		dst.m_top = Enemy->GetY() - m_Explosion_size[1] * 2 - m_Explosion_width[1] - 1000.0f;
+		dst.m_left = Enemy->GetX() - m_Explosion_size[1] + Enemy->GetScale_down_move();
+		dst.m_right = Enemy->GetX() + m_Explosion_size[1] + Enemy->GetScale_down_move();
+		dst.m_bottom = Enemy->GetY() + m_Explosion_width[1] - 1000.0f;
+		Draw::Draw(21, &src, &dst, d, 270.0f);
+	}
+	
+	//▽エネミーExplosion表示(敵に直撃している演出)
+	if (m_Explosion_f[1] == true)
+	{
+		CObjPlanet* Player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1200.0f;
+		src.m_bottom = 400.0f;
+
+		//▽メモ1：
+		//画像を拡大縮小等と変形する際、
+		//均等にtopとleftとrightとbottomを伸ばさなければ、
+		//その誤差分、画像が引き伸ばされ、
+		//欲しい画像とならないので
+		//基本的にどんな状況でも均等に伸ばさないといけない。
+		//ただ今回はtop方向に画像を伸ばし、bottomの位置は固定としたい為、
+		//bottomを動かさない分、topを2倍動かす事でこれに対応している。
+		//▽メモ2:
+		//今回の画像は90度&270度回転させて使用している為、
+		//topとbottomの値の差を変動させる事で、
+		//欲しい画像である"左右から徐々に消えていく演出"を行っている。
+		dst.m_top = Player->GetY() - m_Explosion_size[0] * 2 - m_Explosion_width[0] - 1000.0f;
+		dst.m_left = Player->GetX() - m_Explosion_size[0] + Player->GetScale_down_move();
+		dst.m_right = Player->GetX() + m_Explosion_size[0] + Player->GetScale_down_move();
+		dst.m_bottom = Player->GetY() + m_Explosion_width[0] - 1000.0f;
+		Draw::Draw(21, &src, &dst, d, 270.0f);
+	}
+
 
 
 	//デバッグ用仮マウス位置表示
