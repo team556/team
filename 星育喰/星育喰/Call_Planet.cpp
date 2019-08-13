@@ -34,7 +34,7 @@ void Call_Planet(int group, int select)
 		else  //(select == 4)
 		{
 			//“G˜f¯4‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"ˆ«˜f¯.png", 20, TEX_SIZE_512);
+			Draw::LoadImage(L"ˆ«˜f¯C³.png", 20, TEX_SIZE_512);
 		}
 	}
 
@@ -58,7 +58,7 @@ void Call_Planet(int group, int select)
 		else  //(select == 4)
 		{
 			//“G˜f¯4‚ğ“Ç‚İ‚İ22”Ô‚É“o˜^
-			Draw::LoadImage(L"ˆ«˜f¯.png", 22, TEX_SIZE_512);
+			Draw::LoadImage(L"ˆ«˜f¯C³.png", 22, TEX_SIZE_512);
 		}
 	}
 
@@ -82,7 +82,7 @@ void Call_Planet(int group, int select)
 		else  //(select == 4)
 		{
 			//“G˜f¯4‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"ˆ«˜f¯.png", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"ˆ«˜f¯C³.png", 24, TEX_SIZE_512);
 		}
 	}
 

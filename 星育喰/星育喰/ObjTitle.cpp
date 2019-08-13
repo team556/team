@@ -22,6 +22,7 @@ using namespace GameL;
 #define ENEMY_PLANET3_START_TIME (300)  //敵惑星3(背景)の開始時間
 #define INI_ALPHA (1.0f) //透過度(アルファ値)の初期値
 #define INI_COLOR (0.9f) //透過度(アルファ値)の初期値
+#define INI_MALPHA (0.0f)
 
 //static変数の定義
 bool CObjTitle::after_once = false;
@@ -95,6 +96,7 @@ void CObjTitle::Init()
 	m_flag  = false;
 	m_key_f = false;
 	m_alpha = INI_ALPHA;
+	m_malpha = INI_MALPHA;
 
 	//▼二回目以降訪れた時の演出
 	//「画面暗転状態→明転する」
@@ -322,14 +324,14 @@ void CObjTitle::Action()
 	else if (m_flag == true)
 	{
 		m_alpha -= 0.01f;
-
+		m_malpha+=0.01f;
 		//画面暗転状態の場合、明転する処理
 		if (m_black_out_a >= 0.0f)
 		{
 			m_black_out_a -= 0.03f;
 		}
 
-		if (m_alpha <= 0.0f)
+		if (m_alpha <= 0.0f||m_malpha>=1.0f)
 		{
 			//ボロボロン報酬をスキップする為、受け取っておく処理
 			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
@@ -411,6 +413,9 @@ void CObjTitle::Draw()
 
 	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードアウト]
 	float w[4] = { 1.0f,1.0f,1.0f,m_alpha };
+
+	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードイン]
+	float z[4] = { 1.0f,1.0f,1.0f,m_malpha };
 
 	//黄色(☆育喰)[シーン移行時フェードアウト]
 	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
@@ -540,8 +545,7 @@ void CObjTitle::Draw()
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
 	dst.m_bottom = 550.0f;
-	Draw::Draw(50, &src, &dst, d, 0.0f);
-	//Draw::Draw(50 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
+	Draw::Draw(50, &src, &dst, z, 0.0f);
 
 	//▼上下ふわふわする"クリックでスタート"を表示
 	//角度加算
@@ -563,10 +567,10 @@ void CObjTitle::Draw()
 	src.m_right  = 373.0f;
 	src.m_bottom =  41.0f;
 
-	dst.m_top    = 600.0f + m_click_vy;
+	dst.m_top    = 620.0f + m_click_vy;
 	dst.m_left   = 450.0f;
 	dst.m_right  = 823.0f;
-	dst.m_bottom = 641.0f + m_click_vy;
+	dst.m_bottom = 661.0f + m_click_vy;
 	Draw::Draw(53, &src, &dst, w, 0.0f);
 
 	//タイトルロゴ描画
@@ -575,10 +579,10 @@ void CObjTitle::Draw()
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 0.0f;
-	dst.m_left = 350.0f;
-	dst.m_right = 851.0f;
-	dst.m_bottom = 280.0f;
+	dst.m_top = 100.0f;
+	dst.m_left = 216.0f;
+	dst.m_right = 935.0f;
+	dst.m_bottom = 550.0f;
 	Draw::Draw(1, &src, &dst, w, 0.0f);
 
 	//データ消去ボタン表示

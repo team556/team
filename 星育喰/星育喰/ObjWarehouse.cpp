@@ -2011,10 +2011,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 130.0f;
 			src.m_bottom = 130.0f;
 
-			dst.m_top = 370.0f;
+			dst.m_top = 380.0f;
 			dst.m_left = 860.0f;
 			dst.m_right = 980.0f;
-			dst.m_bottom = 490.0f;
+			dst.m_bottom = 500.0f;
 			Draw::Draw(128, &src, &dst, white, 0.0f);
 		}
 
@@ -2026,10 +2026,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 130.0f;
 			src.m_bottom = 130.0f;
 
-			dst.m_top = 370.0f;
+			dst.m_top = 380.0f;
 			dst.m_left = 860.0f;
 			dst.m_right = 980.0f;
-			dst.m_bottom = 490.0f;
+			dst.m_bottom = 500.0f;
 			Draw::Draw(129, &src, &dst, white, 0.0f);
 		}
 
@@ -2041,10 +2041,10 @@ void CObjWarehouse::Draw()
 			src.m_right = 130.0f;
 			src.m_bottom = 130.0f;
 
-			dst.m_top = 370.0f;
+			dst.m_top = 380.0f;
 			dst.m_left = 860.0f;
 			dst.m_right = 980.0f;
-			dst.m_bottom = 490.0f;
+			dst.m_bottom = 500.0f;
 			Draw::Draw(130, &src, &dst, white, 0.0f);
 		}
 

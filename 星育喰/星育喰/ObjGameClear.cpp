@@ -149,7 +149,7 @@ void CObjGameClear::Draw()
 	src.m_right = 1606.0f;
 	src.m_bottom = 114.0f;
 
-	dst.m_top = 0.0f + m_cy[0];
+	dst.m_top = -5.0f + m_cy[0];
 	dst.m_left = 350.0f;
 	dst.m_right = 850.0f;
 	dst.m_bottom = 0.0f + m_cy[1];
@@ -341,7 +341,7 @@ void CObjGameClear::Draw()
 	src.m_right = 672.0f;
 	src.m_bottom = 105.0f;
 
-	dst.m_top = 110.0f + m_cy[33];
+	dst.m_top = 105.0f + m_cy[33];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 110.0f + m_cy[34];
@@ -365,10 +365,10 @@ void CObjGameClear::Draw()
 	src.m_right = 10.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 130.0f + m_cy[36];
+	dst.m_top = 120.0f + m_cy[36];
 	dst.m_left = 650.0f;
 	dst.m_right = 550.0f;
-	dst.m_bottom = 130.0f + m_cy[37];
+	dst.m_bottom = 125.0f + m_cy[37];
 	Draw::Draw(35, &src, &dst, w, 0.0);
 
 	//作者名紹介
@@ -377,7 +377,7 @@ void CObjGameClear::Draw()
 	src.m_right = 30.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top =140.0f + m_cy[37];
+	dst.m_top =135.0f + m_cy[37];
 	dst.m_left = 650.0f;
 	dst.m_right = 550.0f;
 	dst.m_bottom = 140.0f + m_cy[38];
@@ -425,7 +425,7 @@ void CObjGameClear::Draw()
 	src.m_right = 795.0f;
 	src.m_bottom = 129.0f;
 
-	dst.m_top = 180.0f + m_cy[46];
+	dst.m_top = 165.0f + m_cy[46];
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
 	dst.m_bottom = 180.0f + m_cy[47];
@@ -438,8 +438,8 @@ void CObjGameClear::Draw()
 	src.m_bottom = 99.0f;
 
 	dst.m_top = 190.0f + m_cy[47];
-	dst.m_left = 550.0f;
-	dst.m_right = 650.0f;
+	dst.m_left = 545.0f;
+	dst.m_right = 655.0f;
 	dst.m_bottom = 190.0f + m_cy[48];
 	Draw::Draw(22, &src, &dst, w, 0.0);
 
@@ -449,7 +449,7 @@ void CObjGameClear::Draw()
 	src.m_right = 490.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 200.0f + m_cy[50];
+	dst.m_top = 195.0f + m_cy[50];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 200.0f + m_cy[51];
@@ -497,7 +497,7 @@ void CObjGameClear::Draw()
 	src.m_right = 674.0f;
 	src.m_bottom = 125.0f;
 
-	dst.m_top = 240.0f + m_cy[56];
+	dst.m_top = 230.0f + m_cy[56];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 240.0f + m_cy[57];
@@ -533,7 +533,7 @@ void CObjGameClear::Draw()
 	src.m_right = 497.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 270.0f + m_cy[61];
+	dst.m_top = 265.0f + m_cy[61];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 270.0f + m_cy[62];
@@ -557,7 +557,7 @@ void CObjGameClear::Draw()
 	src.m_right = 269.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 290.0f + m_cy[71];
+	dst.m_top = 270.0f + m_cy[71];
 	dst.m_left = 525.0f;
 	dst.m_right = 675.0f;
 	dst.m_bottom = 290.0f + m_cy[72];
@@ -569,10 +569,10 @@ void CObjGameClear::Draw()
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 300.0f + m_cy[78];
-	dst.m_left = 300.0f;
-	dst.m_right = 851.0f;
-	dst.m_bottom = 650.0f + m_cy[79];
+	dst.m_top = 275.0f + m_cy[78];
+	dst.m_left = 216.0f;
+	dst.m_right = 935.0f;
+	dst.m_bottom = 725.0f + m_cy[79];
 	Draw::Draw(1, &src, &dst, w, 0.0);
 	
 
@@ -612,6 +612,7 @@ void CObjGameClear::Draw()
 	//エンドフラグがtrueになったら
 	if (m_end_f == true)
 	{
+		//クリックでタイトルに戻る描画
 		src.m_top = 3.0f;
 		src.m_left = 3.0f;
 		src.m_right = 1483.0f;
