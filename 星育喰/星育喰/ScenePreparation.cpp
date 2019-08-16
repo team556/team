@@ -48,19 +48,19 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//敵惑星1(1ステージ)を読み込み1番に登録
-	Draw::LoadImage(L"lv1x3.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"lv1x3修正.png", 1, TEX_SIZE_512);
 
 	//敵惑星2(1ステージ)を読み込み2番に登録
 	Draw::LoadImage(L"モアイ.png", 2, TEX_SIZE_512);
 
 	//敵惑星3(1ステージ)を読み込み3番に登録
-	Draw::LoadImage(L"悪惑星.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"悪惑星修正.png", 3, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み4番に登録
-	Draw::LoadImage(L"lv2x3.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"lv2x3修正.png", 4, TEX_SIZE_512);
 
 	//ボス惑星(1ステージ)を読み込み5番に登録
-	Draw::LoadImage(L"lv4x3.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"lv4x3修正.png", 5, TEX_SIZE_512);
 
 	//チュートリアル惑星を読み込み6番に登録
 	Draw::LoadImage(L"ボロ.png", 6, TEX_SIZE_512);

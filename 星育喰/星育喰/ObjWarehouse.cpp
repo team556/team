@@ -842,7 +842,7 @@ void CObjWarehouse::Draw()
 			dst.m_bottom = 640.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 		}
-		//▼メッセージウインドウ表示5600*800
+		//▼メッセージウインドウ表示右下
 		src.m_top = 0.0f;
 		src.m_left = 4000.0f;
 		src.m_right = 4800.0f;
@@ -854,7 +854,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 395.0f;
 		Draw::Draw(21, &src, &dst, white, 0.0f);
 
-		//▼メッセージウインドウ表示5600*800
+		//▼メッセージウインドウ表示右下
 		src.m_top = 35.0f;
 		src.m_left = 4802.0f;
 		src.m_right = 5600.0f;

@@ -19,17 +19,17 @@ void Call_Planet(int group, int select)
 		if (select == 1)
 		{
 			//“G˜f¯1‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"lv1x3.png", 20, TEX_SIZE_512);	
+			Draw::LoadImage(L"lv1x3C³.png", 20, TEX_SIZE_512);	
 		}
 		else if (select == 2)
 		{
 			//“G˜f¯2‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"lv1x3.png", 20, TEX_SIZE_512);
+			Draw::LoadImage(L"lv1x3C³.png", 20, TEX_SIZE_512);
 		}
 		else if (select == 3)
 		{
 			//“G˜f¯3‚ğ“Ç‚İ‚İ20”Ô‚É“o˜^
-			Draw::LoadImage(L"lv1x3.png", 20, TEX_SIZE_512);
+			Draw::LoadImage(L"lv1x3C³.png", 20, TEX_SIZE_512);
 		}
 		else  //(select == 4)
 		{
@@ -67,17 +67,17 @@ void Call_Planet(int group, int select)
 		if (select == 1)
 		{
 			//“G˜f¯1‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"lv2x3.png", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"lv2x3C³.png", 24, TEX_SIZE_512);
 		}
 		else if (select == 2)
 		{
 			//“G˜f¯2‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"lv2x3.png", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"lv2x3C³.png", 24, TEX_SIZE_512);
 		}
 		else if (select == 3)
 		{
 			//“G˜f¯3‚ğ“Ç‚İ‚İ24”Ô‚É“o˜^
-			Draw::LoadImage(L"lv2x3.png", 24, TEX_SIZE_512);
+			Draw::LoadImage(L"lv2x3C³.png", 24, TEX_SIZE_512);
 		}
 		else  //(select == 4)
 		{
