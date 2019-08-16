@@ -22,6 +22,7 @@ public:
 	float GetSiz() { return m_size; }		//現在サイズ(HP)取得関数
 	float GetMaxSiz() { return m_siz_max; }	//最大サイズ(HP)取得関数
 	float GetScale_down_move() { return m_scale_down_move; }//サイズ縮小分のX座標移動量を返す
+	int   GetAni_frame() { return m_ani_frame[0]; }	//アニメーションフレーム取得用
 	int  GetType() { return m_type; }
 	int  GetLine() { return m_get_line; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す

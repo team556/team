@@ -22,6 +22,7 @@ public:
 	void SetEnd() { m_end_f = true; }	//クリア画面作成
 	void SetBattle_start(bool start) { battle_start = start; }
 	void SetExplosion_f(int id) { m_Explosion_f[id] = true; }
+	void SetPrey_f(bool flag) { m_prey_f = flag; }
 private:
 	float m_mou_x;		//マウスの位置X
 	float m_mou_y;		//マウスの位置Y
@@ -62,6 +63,9 @@ private:
 	bool  m_Explosion_f[2];		//[スペシャル技:Explosion]発動管理フラグ(true:発動中　false:未発動)
 	float m_Explosion_size[2];	//[スペシャル技:Explosion]エフェクト画像サイズ変更用
 	float m_Explosion_width[2];	//[スペシャル技:Explosion]エフェクト画像の幅変更用
+
+	bool  m_prey_f;				//捕食処理中かそうでないか確認用フラグ(true:捕食処理中　false:そうでない)
+	int	  m_ani[4];				//口のアニメーション用
 protected:
 	static bool battle_start;	//戦闘開始フラグ(true:戦闘開始　false:戦闘前 or 一時停止中)
 	static bool battle_end;		//戦闘終了フラグ(true:戦闘終了　false:戦闘中)
