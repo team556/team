@@ -207,7 +207,7 @@ void CObjPlanet::Action()
 				{
 					//ObjMessageのメッセージ進行度を増加させる
 					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
-					message->Setprogress(37);
+					message->Setprogress(38);
 				}
 
 				if (g_tutorial_progress != 6)

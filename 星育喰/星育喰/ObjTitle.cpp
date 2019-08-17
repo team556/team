@@ -114,7 +114,7 @@ void CObjTitle::Init()
 		m_black_out_a = 0.0f;
 	}
 
-	m_des_y = 200.0f;
+	m_des_y = 0.0f;
 	m_des_vec = 1.0f;
 	m_des_a = 0.0f;
 
@@ -283,14 +283,14 @@ void CObjTitle::Action()
 	if (m_flag == true && after_once == false)
 	{
 		//下から上に順に実行されていく
-		if (m_des_y <= -550.0f)
+		if (m_des_y <= -650.0f)
 		{
 			after_once = true;//「一度タイトル画面を訪れた」と記憶
 
 			//名前入力のシーンへ移行
 			Scene::SetScene(new CSceneNameInput());
 		}
-		else if (m_des_a > 6.0f)
+		else if (m_des_a > 9.0f)
 		{
 			//世界観説明全て表示から少し経った後、
 			//その全て表示した説明を画面外の上の方に移動させる。
@@ -439,12 +439,14 @@ void CObjTitle::Draw()
 	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	
 
 	//世界観説明フォント画像用
-	float description[4][4] =
+	float description[6][4] =
 	{
 		{ 1.0f,1.0f,1.0f,m_des_a },			//フォント色は全て白色
 		{ 1.0f,1.0f,1.0f,m_des_a - 1.5f },
 		{ 1.0f,1.0f,1.0f,m_des_a - 3.0f },
 		{ 1.0f,1.0f,1.0f,m_des_a - 4.5f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 6.0f },
+		{ 1.0f,1.0f,1.0f,m_des_a - 7.5f },
 	};
 
 	RECT_F src;//描画元切り取り位置
@@ -614,10 +616,12 @@ void CObjTitle::Draw()
 	Draw::Draw(2, &src, &dst, blackout, 0.0f);
 
 	//世界観説明フォント画像表示
-	FontDraw(L"意思を持つ惑星達が互いの生存をかけて喰らい合う弱肉強食の宇宙……。", 35.0f, m_des_y, 35.0f, 35.0f, description[0], false);
-	FontDraw(L"喰うか喰われるか－－", 35.0f, m_des_y + 100.0f, 35.0f, 35.0f, description[1], false);
-	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 35.0f, m_des_y + 200.0f, 35.0f, 35.0f, description[2], false);
-	FontDraw(L"その惑星の名は……？", 35.0f, m_des_y + 300.0f, 35.0f, 35.0f, description[3], false);
+	FontDraw(L"意思を持つ惑星達が", 35.0f, m_des_y + 80.0f, 35.0f, 35.0f, description[0], false);
+	FontDraw(L"互いの生存をかけて喰らい合う", 350.0f, m_des_y + 180.0f, 35.0f, 35.0f, description[1], false);
+	FontDraw(L"弱肉強食の宇宙……。", 835.0f, m_des_y + 280.0f, 35.0f, 35.0f, description[2], false);
+	FontDraw(L"喰うか喰われるか－－", 135.0f, m_des_y + 400.0f, 35.0f, 35.0f, description[3], false);
+	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 485.0f, m_des_y + 500.0f, 35.0f, 35.0f, description[4], false);
+	FontDraw(L"その惑星の名は……？", 435.0f, m_des_y + 600.0f, 35.0f, 35.0f, description[5], false);
 
 
 	//▼データ消去最終確認ウインドウ表示管理フラグがtrueの時、描画。

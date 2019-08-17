@@ -285,6 +285,18 @@ void CObjInstitute::Action()
 		return;
 	}
 
+	//ヘルプ画面表示中は操作不能にする処理
+	if (g_help_f == true)
+	{
+		//ヘルプ画面の戻るボタンを左クリック(もしくは右クリック)時、
+		//この施設の戻るボタンも同時にクリックされないように、
+		//以下のようにキーフラグをfalseにする事で制御している。
+		m_key_lf = false;
+		m_key_rf = false;
+
+		return;
+	}
+
 	//マウスの位置を取得
 	m_mou_x = (float)Input::GetPosX();
 	m_mou_y = (float)Input::GetPosY();
@@ -471,11 +483,6 @@ void CObjInstitute::Action()
 						//"どのウインドウも開いていない状態"フラグを立てる
 						window_start_manage = Default;
 
-						//ObjHelpを操作可能にする & 透過度1.0fにして表示する
-						CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-						help->SetOperatable(true);
-						help->SetAlpha(1.0f);
-
 						//戻るボタン音
 						Audio::Start(2);
 					}
@@ -493,11 +500,6 @@ void CObjInstitute::Action()
 
 						//"どのウインドウも開いていない状態"フラグを立てる
 						window_start_manage = Default;
-
-						//ObjHelpを操作可能にする & 透過度1.0fにして表示する
-						CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-						help->SetOperatable(true);
-						help->SetAlpha(1.0f);
 
 						//戻るボタン音
 						Audio::Start(2);
@@ -1181,7 +1183,7 @@ void CObjInstitute::Action()
 	}
 	//ホーム画面に戻るボタンが押されたり、
 	//他施設のウインドウを開いている時は操作を受け付けないようにする。
-	else if (window_start_manage != Default || g_help_f == true)
+	else if (window_start_manage != Default)
 	{
 		m_introduce_f = false;	//施設紹介ウインドウを非表示にする(右クリックでホーム画面に戻る際、ウインドウが残らないようにするため)
 		return;
@@ -1211,11 +1213,6 @@ void CObjInstitute::Action()
 
 					//"研究所ウインドウを開いている状態"フラグを立てる
 					window_start_manage = Institute;
-
-					//ObjHelpを操作不能にする & 透過度0.0fにして非表示にする
-					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-					help->SetOperatable(false);
-					help->SetAlpha(0.0f);
 
 					//選択音
 					Audio::Start(1);

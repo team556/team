@@ -197,44 +197,45 @@ void CObjMessage::Init()
 		swprintf_s(m_font[7], L"下に五つのボタンがあるだろ？");
 		swprintf_s(m_font[8], L"この内の右の四つのボタンのどれかを押してみろ。");
 		swprintf_s(m_font[9], L"｜");
-		swprintf_s(m_font[10], L"ボタンを押したら何か出てきたろ？￥これがＲポッドＷだぜ。～￥ボタンを押すと１００人の住人が命令を受けて、￥ポッドに乗り込み、攻撃しに行っているんだ。");
-		swprintf_s(m_font[11], L"最初は準備しているから￥すぐに出撃することができるが、￥Ｒ二回目以降は準備に時間がかかるＷから気をつけろよ。");
-		swprintf_s(m_font[12], L"ポッドにはＲ属性があって有利不利があるＷんだ。～￥赤色は緑色に強く緑は青に強いそして青は赤に強い、￥灰色はすべての色に対して少し強いが￥ミサイルに対してはすごく弱い……ってかんじでな。");
-		swprintf_s(m_font[13], L"ポッドは惑星に当たるとダメージを与えて、￥Ｒ惑星のサイズをちっさくできるＷぜ。～￥敵も攻撃をしてくるから敵の攻撃に合わせて￥ポッドを出撃させるのも手だな。");				
-		swprintf_s(m_font[14], L"次はＲミサイルＷについての説明だ。");
-		swprintf_s(m_font[15], L"このボタンを押してみな。");
-		swprintf_s(m_font[16], L"｜");
-		swprintf_s(m_font[17], L"察しの通り、ミサイルが発射されるぜ。");
-		swprintf_s(m_font[18], L"ミサイルは簡単に言うとジャブみたいなもんだ。～￥ポッドと同じでダメージを与えることができるが￥Ｒ攻撃力が低いＷ。");
-		swprintf_s(m_font[19], L"ただその代わりに、￥Ｒポッドよりも準備する時間が早いＷから￥うまいこと活用してくれ！");
-		swprintf_s(m_font[20], L"ちなみにポッドもミサイルも￥Ｒボタンの下に書いているキーを押しても￥命令できるＷぜ。");
-		swprintf_s(m_font[21], L"真ん中に三つの線があるだろ？～￥この線はポッドやミサイルの￥発射線を可視化したものだぜ。～￥オレ達はこの線のことをＲレーンＷって呼んでる。");
-		swprintf_s(m_font[22], L"んで、このレーンの一番上をクリックしてくれ。");
-		swprintf_s(m_font[23], L"｜");
-		swprintf_s(m_font[24], L"クリックしたレーンが他よりも白くなっているだろ？～￥これがＲレーン選択ができた状態Ｗだ。");
-		swprintf_s(m_font[25], L"さっきのポッドやミサイルは￥Ｒ選択レーン上に射出されるＷから￥状況に応じてレーンを選んで戦っていけよ。");
-		swprintf_s(m_font[26], L"ただし同じレーンで、￥ミサイルやポッドを撃ちすぎると￥Ｒポッドの防御力が下がっちまうデメリットＷがある。");
-		swprintf_s(m_font[27], L"ポッドやミサイルを撃つ度に￥レーンの色が赤くなってるだろ？～￥それはこのデメリット度合いを表してるってわけだ。");
-		swprintf_s(m_font[28], L"要はＲ赤くなればなるほど￥ポッドの防御力が下がってヤバいＷってことだな。");
-		swprintf_s(m_font[29], L"このデメリットは￥他のレーンにポッドやミサイルを出撃させていけば￥次第にＲそのレーンでの￥ポッド防御力がもとに戻るＷぜ。");
-		swprintf_s(m_font[30], L"要はＲ同じレーンに撃ちつづけるのは￥やめた方がいいＷってことだぜ。");
-		swprintf_s(m_font[31], L"あ、ちなみにレーン選択は￥Ｒ方向キーの上下でも操作できるＷからな。");
-		swprintf_s(m_font[32], L"さて、これが戦闘最後の説明だ。");
-		swprintf_s(m_font[33], L"画面上に時間が表示されてるだろ？～￥この時間は惑星同士が引力で引き合って￥衝突するまでの大体の時間だぜ。");
-		swprintf_s(m_font[34], L"時間切れになって衝突したら、￥Ｒ惑星のサイズが大きい方が小さい方を捕食するＷぜ。～￥これがこの宇宙の常識だから覚えとけよ。");
-		swprintf_s(m_font[35], L"まあ習うより慣れろだな。～￥ここからは自分で考えて戦ってみな。￥Ｒ※クリックで戦闘が始まります。");
-		swprintf_s(m_font[36], L"｜");
-		swprintf_s(m_font[38], L"時間切れにならなくても￥Ｒ敵惑星の体力を削りきると￥惑星が吸い寄せられて捕食できるＷぜ。～￥逆にＲ削りきられると自分が食われちまうＷからな。");
-		swprintf_s(m_font[39], L"｜");
-		swprintf_s(m_font[42], L"よし！戦いに勝って捕食することができたな。～￥捕食するとＲ能力や素材を奪うことができるＷんだ。￥最高だろ？～￥さて今回の成果を見ていこうぜ。");
-		swprintf_s(m_font[43], L"一番上がＹ%sＷに移住したＲ住人Ｗの数だな。～￥こいつらはＲ兵士や研究員にしたりと￥色んな所に配置できるＷから便利だぜ。",g_Player_Name);
-		swprintf_s(m_font[44], L"二番目に書いているのは惑星を食べたことで￥どれだけＹ%sＷのＲ最大ＨＰＷが￥上昇したかを表す数字だな。",g_Player_Name);
-		swprintf_s(m_font[45], L"ＲＨＰがあればあるほど￥戦いは負けにくくなるＷから、￥多いに越したことはねえな。");
-		swprintf_s(m_font[46], L"その下は獲得したＲ資材Ｗのことを書いてあるぜ。～￥まあ今回は資材を獲得できなかったみたいだけどな。～￥次の戦いからはＲ集められる資材Ｗのことも考えろよ。￥資材は有限だからな。");
-		swprintf_s(m_font[47], L"これが最後だな。￥さっきも言ったＲスペシャル技Ｗってやつだ。");
-		swprintf_s(m_font[48], L"これはＲ戦闘においての切り札Ｗみたいなもんで￥ピンチを乗り切ったりすることができるぜ。～￥またあとで詳しく説明してやるよ。");
-		swprintf_s(m_font[49], L"説明はこんなもんだな。～￥Ｒ自分が何が欲しいかをしっかり把握して￥どの敵と戦うかを考えていくＷのが￥これから生き残っていく秘訣だぜ。");
-		swprintf_s(m_font[50], L"｜");
+		swprintf_s(m_font[10], L"ボタンを押したら何か出てきたろ？￥これがＲポッドＷだぜ。～￥ボタンを押すと１００人の住民が命令を受けて、￥ポッドに乗り込み、攻撃しに行っているんだ。");
+		swprintf_s(m_font[11], L"んで、左下の数字は￥それぞれのポッドの残り住民数を表してる。～￥Ｒこの数が０になるとそのポッドが￥出撃できなくなるＷから要注意だぜ。");
+		swprintf_s(m_font[12], L"あと、最初は準備しているから￥すぐにポッドを出撃することができるが、￥Ｒ二回目以降は準備に時間がかかるＷから￥そこも気をつけろよ。");
+		swprintf_s(m_font[13], L"ポッドにはＲ属性があって有利不利があるＷんだ。～￥赤色は緑色に強く緑は青に強いそして青は赤に強い、￥灰色はすべての色に対して少し強いが￥ミサイルに対してはすごく弱い……ってかんじでな。");
+		swprintf_s(m_font[14], L"ポッドは惑星に当たるとダメージを与えて、￥Ｒ惑星のサイズをちっさくできるＷぜ。～￥敵も攻撃をしてくるから敵の攻撃に合わせて￥ポッドを出撃させるのも手だな。");				
+		swprintf_s(m_font[15], L"次はＲミサイルＷについての説明だ。");
+		swprintf_s(m_font[16], L"このボタンを押してみな。");
+		swprintf_s(m_font[17], L"｜");
+		swprintf_s(m_font[18], L"察しの通り、ミサイルが発射されるぜ。");
+		swprintf_s(m_font[19], L"ミサイルは簡単に言うとジャブみたいなもんだ。～￥ポッドと同じでダメージを与えることができるが￥Ｒ攻撃力が低いＷ。");
+		swprintf_s(m_font[20], L"ただその代わりに、￥Ｒポッドよりも準備する時間が早いＷから￥うまいこと活用してくれ！");
+		swprintf_s(m_font[21], L"ちなみにポッドもミサイルも￥Ｒボタンの下に書いているキーを押しても￥命令できるＷぜ。");
+		swprintf_s(m_font[22], L"真ん中に三つの線があるだろ？～￥この線はポッドやミサイルの￥発射線を可視化したものだぜ。～￥オレ達はこの線のことをＲレーンＷって呼んでる。");
+		swprintf_s(m_font[23], L"んで、このレーンの一番上をクリックしてくれ。");
+		swprintf_s(m_font[24], L"｜");
+		swprintf_s(m_font[25], L"クリックしたレーンが他よりも白くなっているだろ？～￥これがＲレーン選択ができた状態Ｗだ。");
+		swprintf_s(m_font[26], L"さっきのポッドやミサイルは￥Ｒ選択レーン上に射出されるＷから￥状況に応じてレーンを選んで戦っていけよ。");
+		swprintf_s(m_font[27], L"ただし同じレーンで、￥ミサイルやポッドを撃ちすぎると￥Ｒポッドの防御力が下がっちまうデメリットＷがある。");
+		swprintf_s(m_font[28], L"ポッドやミサイルを撃つ度に￥レーンの色が赤くなってるだろ？～￥それはこのデメリット度合いを表してるってわけだ。");
+		swprintf_s(m_font[29], L"要はＲ赤くなればなるほど￥ポッドの防御力が下がってヤバいＷってことだな。");
+		swprintf_s(m_font[30], L"このデメリットは￥他のレーンにポッドやミサイルを出撃させていけば￥次第にＲそのレーンでの￥ポッド防御力がもとに戻るＷぜ。");
+		swprintf_s(m_font[31], L"要はＲ同じレーンに撃ちつづけるのは￥やめた方がいいＷってことだぜ。");
+		swprintf_s(m_font[32], L"あ、ちなみにレーン選択は￥Ｒ方向キーの上下でも操作できるＷからな。");
+		swprintf_s(m_font[33], L"さて、これが戦闘最後の説明だ。");
+		swprintf_s(m_font[34], L"画面上に時間が表示されてるだろ？～￥この時間は惑星同士が引力で引き合って￥衝突するまでの大体の時間だぜ。");
+		swprintf_s(m_font[35], L"時間切れになって衝突したら、￥Ｒ惑星のサイズが大きい方が小さい方を捕食するＷぜ。～￥これがこの宇宙の常識だから覚えとけよ。");
+		swprintf_s(m_font[36], L"まあ習うより慣れろだな。～￥ここからは自分で考えて戦ってみな。￥Ｒ※クリックで戦闘が始まります。");
+		swprintf_s(m_font[37], L"｜");
+		swprintf_s(m_font[39], L"時間切れにならなくても￥Ｒ敵惑星の体力を削りきると￥惑星が吸い寄せられて捕食できるＷぜ。～￥逆にＲ削りきられると自分が食われちまうＷからな。");
+		swprintf_s(m_font[40], L"｜");
+		swprintf_s(m_font[43], L"よし！戦いに勝って捕食することができたな。～￥捕食するとＲ能力や素材を奪うことができるＷんだ。￥最高だろ？～￥さて今回の成果を見ていこうぜ。");
+		swprintf_s(m_font[44], L"一番上がＹ%sＷに移住したＲ住民Ｗの数だな。～￥こいつらはＲ兵士や研究員にしたりと￥色んな所に配置できるＷから便利だぜ。",g_Player_Name);
+		swprintf_s(m_font[45], L"二番目に書いているのは惑星を食べたことで￥どれだけＹ%sＷのＲ最大ＨＰＷが￥上昇したかを表す数字だな。",g_Player_Name);
+		swprintf_s(m_font[46], L"ＲＨＰがあればあるほど￥戦いは負けにくくなるＷから、￥多いに越したことはねえな。");
+		swprintf_s(m_font[47], L"その下は獲得したＲ資材Ｗのことを書いてあるぜ。～￥まあ今回は資材を獲得できなかったみたいだけどな。～￥次の戦いからはＲ集められる資材Ｗのことも考えろよ。￥資材は有限だからな。");
+		swprintf_s(m_font[48], L"これが最後だな。￥さっきも言ったＲスペシャル技Ｗってやつだ。");
+		swprintf_s(m_font[49], L"これはＲ戦闘においての切り札Ｗみたいなもんで￥ピンチを乗り切ったりすることができるぜ。～￥またあとで詳しく説明してやるよ。");
+		swprintf_s(m_font[50], L"説明はこんなもんだな。～￥Ｒ自分が何が欲しいかをしっかり把握して￥どの敵と戦うかを考えていくＷのが￥これから生き残っていく秘訣だぜ。");
+		swprintf_s(m_font[51], L"｜");
 
 		m_message_window_num = 33;
 		m_yamada_window_num = 79;
@@ -494,10 +495,27 @@ void CObjMessage::Action()
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 1;
-			m_arrow_x = 455.0f + m_swing_r * 1.5;
+			m_arrow_x = 470.0f + m_swing_r * 1.5;
 			m_arrow_y = 410.0f;
 		}
+		else if (m_Scene_id == 2 && m_progress == 11)
+		{
+			m_black_out_f = false;//徐々に明転
+
+			//矢印表示
+			m_arrow_display_f = 1;
+			m_arrow_angle_f = 2;
+			m_arrow_x = 265.0f;
+			m_arrow_y = 528.0f;
+		}
 		else if (m_Scene_id == 2 && m_progress == 12)
+		{
+			m_black_out_f = true;//徐々に暗転
+
+			//矢印非表示
+			m_arrow_display_f = 0;
+		}
+		else if (m_Scene_id == 2 && m_progress == 13)
 		{
 			m_black_out_f = false;//徐々に明転
 
@@ -510,36 +528,36 @@ void CObjMessage::Action()
 			m_arrow_x = 250.0f;
 			m_arrow_y = 50.0f;
 		}
-		else if (m_Scene_id == 2 && m_progress == 13)
+		else if (m_Scene_id == 2 && m_progress == 14)
 		{
 			m_black_out_f = true;//徐々に暗転
 
 			//矢印非表示
 			m_arrow_display_f = 0;
 		}
-		else if (m_Scene_id == 2 && m_progress == 14)
+		else if (m_Scene_id == 2 && m_progress == 15)
 		{
 			//メッセージウインドウ位置変更
 			m_is_top_or_bottom = 1;
 		}
-		else if (m_Scene_id == 2 && m_progress == 15)
+		else if (m_Scene_id == 2 && m_progress == 16)
 		{
 			m_black_out_f = false;//徐々に明転
 
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 1;
-			m_arrow_x = 220.0f;
+			m_arrow_x = 368.5f;
 			m_arrow_y = 410.0f;
 
 			g_is_operatable = true;//操作可能にする
 		}
-		else if (m_Scene_id == 2 && m_progress == 21)
+		else if (m_Scene_id == 2 && m_progress == 22)
 		{
 			//メッセージウインドウ位置変更
 			m_is_top_or_bottom = 0;
 		}
-		else if (m_Scene_id == 2 && m_progress == 22)
+		else if (m_Scene_id == 2 && m_progress == 23)
 		{
 			m_black_out_f = false;//徐々に明転
 
@@ -551,7 +569,7 @@ void CObjMessage::Action()
 
 			g_is_operatable = true;//操作可能にする
 		}
-		else if (m_Scene_id == 2 && m_progress == 33)
+		else if (m_Scene_id == 2 && m_progress == 34)
 		{
 			m_black_out_f = false;//徐々に明転
 
@@ -561,14 +579,14 @@ void CObjMessage::Action()
 			m_arrow_x = 553.5f;
 			m_arrow_y = 100.0f;
 		}
-		else if (m_Scene_id == 2 && m_progress == 34)
+		else if (m_Scene_id == 2 && m_progress == 35)
 		{
 			m_black_out_f = true;//徐々に暗転
 
 			//矢印非表示
 			m_arrow_display_f = 0;
 		}
-		else if (m_Scene_id == 2 && m_progress == 43)
+		else if (m_Scene_id == 2 && m_progress == 44)
 		{
 			m_black_out_f = false;//徐々に明転
 
@@ -578,18 +596,18 @@ void CObjMessage::Action()
 			m_arrow_x = 880.0f;
 			m_arrow_y = 185.0f;
 		}
-		else if (m_Scene_id == 2 && (m_progress == 44 || m_progress == 45))
+		else if (m_Scene_id == 2 && (m_progress == 45 || m_progress == 46))
 		{
 			//矢印表示
 			m_arrow_y = 235.0f;
 		}
-		else if (m_Scene_id == 2 && m_progress == 46)
+		else if (m_Scene_id == 2 && m_progress == 47)
 		{
 			//矢印表示
 			m_arrow_x = 550.0f;
 			m_arrow_y = 310.0f;
 		}
-		else if (m_Scene_id == 2 && (m_progress == 47 || m_progress == 48))
+		else if (m_Scene_id == 2 && (m_progress == 48 || m_progress == 49))
 		{
 			//メッセージウインドウ位置変更
 			m_is_top_or_bottom = 1;
@@ -598,7 +616,7 @@ void CObjMessage::Action()
 			m_arrow_x = 1030.0f;
 			m_arrow_y = 435.0f;
 		}
-		else if (m_Scene_id == 2 && m_progress == 49)
+		else if (m_Scene_id == 2 && m_progress == 50)
 		{
 			m_black_out_f = true;//徐々に暗転
 
@@ -968,7 +986,7 @@ void CObjMessage::Action()
 			}
 
 			//矢印表示
-			m_arrow_x = 455.0f + m_swing_r * 1.5;
+			m_arrow_x = 470.0f + m_swing_r * 1.5;
 			m_arrow_y = 410.0f;
 
 			//戦闘処理を再開させる
@@ -977,7 +995,7 @@ void CObjMessage::Action()
 
 			g_tutorial_progress = 3;//チュートリアル進行度を3に設定	
 		}
-		else if (m_Scene_id == 2 && m_progress == 16)
+		else if (m_Scene_id == 2 && m_progress == 17)
 		{
 			//ミサイルが１つ出れば、この処理に入る
 			if (m_arrow_display_f == 0)
@@ -995,7 +1013,7 @@ void CObjMessage::Action()
 
 					m_run_switch = true;//メッセージ表示機能動作開始
 					m_count = 0;//m_countを初期化
-					m_progress = 17;//進行度上昇させてこの処理から抜ける
+					m_progress = 18;//進行度上昇させてこの処理から抜ける
 				}
 				//1秒後、画面暗転処理開始
 				else if (m_count >= 60 * 1)
@@ -1007,7 +1025,7 @@ void CObjMessage::Action()
 			}
 
 			//矢印表示
-			m_arrow_x = 220.0f;
+			m_arrow_x = 368.5f;
 			m_arrow_y = 410.0f;
 
 			//戦闘処理を再開させる
@@ -1016,7 +1034,7 @@ void CObjMessage::Action()
 
 			g_tutorial_progress = 4;//チュートリアル進行度を4に設定	
 		}
-		else if (m_Scene_id == 2 && m_progress == 23)
+		else if (m_Scene_id == 2 && m_progress == 24)
 		{
 			//レーン選択出来れば、この処理に入る
 			if (m_arrow_display_f == 0)
@@ -1034,7 +1052,7 @@ void CObjMessage::Action()
 
 					m_run_switch = true;//メッセージ表示機能動作開始
 					m_count = 0;//m_countを初期化
-					m_progress = 24;//進行度上昇させてこの処理から抜ける
+					m_progress = 25;//進行度上昇させてこの処理から抜ける
 				}
 				//1秒後、画面暗転処理開始
 				else if (m_count >= 60 * 1)
@@ -1055,7 +1073,7 @@ void CObjMessage::Action()
 
 			g_tutorial_progress = 5;//チュートリアル進行度を5に設定	
 		}
-		else if (m_Scene_id == 2 && m_progress == 36)
+		else if (m_Scene_id == 2 && m_progress == 37)
 		{
 			m_black_out_f = false;//画面明転
 
@@ -1067,7 +1085,7 @@ void CObjMessage::Action()
 
 			g_tutorial_progress = 6;//チュートリアル進行度を6に設定	
 		}
-		else if (m_Scene_id == 2 && m_progress == 37)
+		else if (m_Scene_id == 2 && m_progress == 38)
 		{
 			m_black_out_f = true;//徐々に暗転
 
@@ -1075,10 +1093,10 @@ void CObjMessage::Action()
 			if (m_black_out_a >= 0.5f)
 			{
 				m_run_switch = true;//メッセージ表示機能動作開始
-				m_progress = 38;//進行度上昇させてこの処理から抜ける
+				m_progress = 39;//進行度上昇させてこの処理から抜ける
 			}
 		}
-		else if (m_Scene_id == 2 && m_progress == 39)
+		else if (m_Scene_id == 2 && m_progress == 40)
 		{
 			m_black_out_f = false;//画面明転
 
@@ -1090,9 +1108,9 @@ void CObjMessage::Action()
 			Audio::Stop(0);
 			Audio::Start(4);
 
-			m_progress = 40;//進行度上昇させてこの処理から抜ける
+			m_progress = 41;//進行度上昇させてこの処理から抜ける
 		}
-		else if (m_Scene_id == 2 && m_progress == 41)
+		else if (m_Scene_id == 2 && m_progress == 42)
 		{
 			m_black_out_f = true;//徐々に暗転
 
@@ -1100,10 +1118,10 @@ void CObjMessage::Action()
 			if (m_black_out_a >= 0.5f)
 			{
 				m_run_switch = true;//メッセージ表示機能動作開始
-				m_progress = 42;//進行度上昇させてこの処理から抜ける
+				m_progress = 43;//進行度上昇させてこの処理から抜ける
 			}
 		}
-		else if (m_Scene_id == 2 && m_progress == 50)
+		else if (m_Scene_id == 2 && m_progress == 51)
 		{
 			m_black_out_f = false;//徐々に明転
 
