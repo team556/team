@@ -149,7 +149,7 @@ void CObjGameClear::Draw()
 	src.m_right = 1606.0f;
 	src.m_bottom = 114.0f;
 
-	dst.m_top = -5.0f + m_cy[0];
+	dst.m_top = -10.0f + m_cy[0];
 	dst.m_left = 350.0f;
 	dst.m_right = 850.0f;
 	dst.m_bottom = 0.0f + m_cy[1];
@@ -425,7 +425,7 @@ void CObjGameClear::Draw()
 	src.m_right = 795.0f;
 	src.m_bottom = 129.0f;
 
-	dst.m_top = 165.0f + m_cy[46];
+	dst.m_top = 160.0f + m_cy[46];
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
 	dst.m_bottom = 180.0f + m_cy[47];
@@ -449,7 +449,7 @@ void CObjGameClear::Draw()
 	src.m_right = 490.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 195.0f + m_cy[50];
+	dst.m_top = 190.0f + m_cy[50];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 200.0f + m_cy[51];
@@ -497,7 +497,7 @@ void CObjGameClear::Draw()
 	src.m_right = 674.0f;
 	src.m_bottom = 125.0f;
 
-	dst.m_top = 230.0f + m_cy[56];
+	dst.m_top = 225.0f + m_cy[56];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 240.0f + m_cy[57];
@@ -533,7 +533,7 @@ void CObjGameClear::Draw()
 	src.m_right = 497.0f;
 	src.m_bottom = 100.0f;
 
-	dst.m_top = 265.0f + m_cy[61];
+	dst.m_top = 260.0f + m_cy[61];
 	dst.m_left = 500.0f;
 	dst.m_right = 700.0f;
 	dst.m_bottom = 270.0f + m_cy[62];
@@ -557,7 +557,7 @@ void CObjGameClear::Draw()
 	src.m_right = 269.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 270.0f + m_cy[71];
+	dst.m_top = 265.0f + m_cy[71];
 	dst.m_left = 525.0f;
 	dst.m_right = 675.0f;
 	dst.m_bottom = 290.0f + m_cy[72];
