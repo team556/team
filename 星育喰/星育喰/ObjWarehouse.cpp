@@ -792,6 +792,7 @@ void CObjWarehouse::Draw()
 		dst.m_bottom = 130.0f;
 		Draw::Draw(1, &src, &dst, md, 0.0f);
 
+		//▼大きいウィンドウ
 		//▼メッセージウインドウ表示左上
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -842,7 +843,7 @@ void CObjWarehouse::Draw()
 			dst.m_bottom = 640.0f;
 			Draw::Draw(21, &src, &dst, white, 0.0f);
 		}
-		//▼メッセージウインドウ表示右下
+		//▼メッセージウインドウ表示右上
 		src.m_top = 0.0f;
 		src.m_left = 4000.0f;
 		src.m_right = 4800.0f;
@@ -861,11 +862,244 @@ void CObjWarehouse::Draw()
 		src.m_bottom = 798.0f;
 
 		dst.m_top = 395.0f;
-		dst.m_left = 850.0f;
+		dst.m_left = 860.0f;
 		dst.m_right = 1105.0f;
 		dst.m_bottom = 640.0f;
 		Draw::Draw(21, &src, &dst, white, 0.0f);
 
+		for(int j=0;j<3;j++)
+		{
+			//▼小さいウィンドウ木材・プラスチック
+			//▼メッセージウインドウ表示左上
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 798.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 290.0f + (j * 230);
+			dst.m_left = 130.0f;
+			dst.m_right = 180.0f;
+			dst.m_bottom = 340.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウ表示左下
+			src.m_top = 35.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 340.0f + (j * 230);
+			dst.m_left = 130.0f;
+			dst.m_right = 180.0f;
+			dst.m_bottom = 390.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			for (int i = 0; i<4; i++)
+			{
+				//▼メッセージウインドウ表示中央上
+				src.m_top = 0.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 798.0f;
+
+				dst.m_top = 290.0f + (j * 230);
+				dst.m_left = 180.0f + (i * 50);
+				dst.m_right = 230.0f + (i * 50);
+				dst.m_bottom = 340.0f + (j * 230);
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+
+				//▼メッセージウインドウ表示中央下
+				src.m_top = 2.0f;
+				src.m_left = 2402.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 798.0f;
+
+				dst.m_top = 340.0f + (j * 230);
+				dst.m_left = 180.0f + (i * 50);
+				dst.m_right = 230.0f + (i * 50);
+				dst.m_bottom = 390.0f + (j * 230);
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+			}
+			//▼メッセージウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 290.0f + (j * 230);
+			dst.m_left = 350.0f;
+			dst.m_right = 400.0f;
+			dst.m_bottom = 340.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウ表示右下
+			src.m_top = 35.0f;
+			src.m_left = 4802.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 340.0f + (j * 230);
+			dst.m_left = 350.0f;
+			dst.m_right = 400.0f;
+			dst.m_bottom = 390.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+		}
+
+		for (int j = 0; j<2; j++)
+		{
+			//▼小さいウィンドウ鉄・アルミ
+			//▼メッセージウインドウ表示左上
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 798.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 290.0f + (j * 230);
+			dst.m_left = 520.0f;
+			dst.m_right = 570.0f;
+			dst.m_bottom = 340.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウ表示左下
+			src.m_top = 35.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 340.0f + (j * 230);
+			dst.m_left = 520.0f;
+			dst.m_right = 570.0f;
+			dst.m_bottom = 390.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			for (int i = 0; i<2; i++)
+			{
+				//▼メッセージウインドウ表示中央上
+				src.m_top = 0.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 798.0f;
+
+				dst.m_top = 290.0f + (j * 230);
+				dst.m_left = 570.0f + (i * 50);
+				dst.m_right = 620.0f + (i * 50);
+				dst.m_bottom = 340.0f + (j * 230);
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+
+				//▼メッセージウインドウ表示中央下
+				src.m_top = 2.0f;
+				src.m_left = 2402.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 798.0f;
+
+				dst.m_top = 340.0f + (j * 230);
+				dst.m_left = 570.0f + (i * 50);
+				dst.m_right = 620.0f + (i * 50);
+				dst.m_bottom = 390.0f + (j * 230);
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+			}
+			//▼メッセージウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 290.0f + (j * 230);
+			dst.m_left = 670.0f;
+			dst.m_right = 720.0f;
+			dst.m_bottom = 340.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウ表示右下
+			src.m_top = 35.0f;
+			src.m_left = 4802.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 340.0f + (j * 230);
+			dst.m_left = 670.0f;
+			dst.m_right = 720.0f;
+			dst.m_bottom = 390.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+		}
+
+		for (int j = 0; j<2; j++)
+		{
+			//▼小さいウィンドウ銀・ガス
+			//▼メッセージウインドウ表示左上
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 798.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 290.0f + (j * 230);
+			dst.m_left = 870.0f;
+			dst.m_right = 920.0f;
+			dst.m_bottom = 340.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウ表示左下
+			src.m_top = 35.0f;
+			src.m_left = 800.0f;
+			src.m_right = 1600.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 340.0f + (j * 230);
+			dst.m_left = 870.0f;
+			dst.m_right = 920.0f;
+			dst.m_bottom = 390.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			for (int i = 0; i<2; i++)
+			{
+				//▼メッセージウインドウ表示中央上
+				src.m_top = 0.0f;
+				src.m_left = 1600.0f;
+				src.m_right = 2400.0f;
+				src.m_bottom = 798.0f;
+
+				dst.m_top = 290.0f + (j * 230);
+				dst.m_left = 910.0f + (i * 50);
+				dst.m_right = 960.0f + (i * 50);
+				dst.m_bottom = 340.0f + (j * 230);
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+
+				//▼メッセージウインドウ表示中央下
+				src.m_top = 2.0f;
+				src.m_left = 2402.0f;
+				src.m_right = 3200.0f;
+				src.m_bottom = 798.0f;
+
+				dst.m_top = 340.0f + (j * 230);
+				dst.m_left = 910.0f + (i * 50);
+				dst.m_right = 960.0f + (i * 50);
+				dst.m_bottom = 390.0f + (j * 230);
+				Draw::Draw(21, &src, &dst, white, 0.0f);
+			}
+			//▼メッセージウインドウ表示右上
+			src.m_top = 0.0f;
+			src.m_left = 4000.0f;
+			src.m_right = 4800.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 290.0f + (j * 230);
+			dst.m_left = 1010.0f;
+			dst.m_right = 1060.0f;
+			dst.m_bottom = 340.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+
+			//▼メッセージウインドウ表示右下
+			src.m_top = 35.0f;
+			src.m_left = 4802.0f;
+			src.m_right = 5600.0f;
+			src.m_bottom = 798.0f;
+
+			dst.m_top = 340.0f + (j * 230);
+			dst.m_left = 1010.0f;
+			dst.m_right = 1060.0f;
+			dst.m_bottom = 390.0f + (j * 230);
+			Draw::Draw(21, &src, &dst, white, 0.0f);
+		}
 
 		//▼木材表示
 		src.m_top = 0.0f;
@@ -957,10 +1191,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 62.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 420.0f;
+		dst.m_top = 400.0f;
 		dst.m_left = 200.0f;
 		dst.m_right = 300.0f;
-		dst.m_bottom = 520.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(36, &src, &dst, it, 0.0f);
 
 		//▼プラスチック文字画像表示
@@ -986,10 +1220,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 410.0f;
+		dst.m_top = 400.0f;
 		dst.m_left = 550.0f;
 		dst.m_right = 650.0f;
-		dst.m_bottom = 510.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(37, &src, &dst, it, 0.0f);
 
 		//▼アルミ文字画像表示
@@ -1014,10 +1248,10 @@ void CObjWarehouse::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		dst.m_top = 410.0f;
+		dst.m_top = 400.0f;
 		dst.m_left = 900.0f;
 		dst.m_right = 1000.0f;
-		dst.m_bottom = 510.0f;
+		dst.m_bottom = 500.0f;
 		Draw::Draw(38, &src, &dst, it, 0.0f);
 
 		//▼ガス文字画像表示
