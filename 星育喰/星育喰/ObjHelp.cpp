@@ -58,6 +58,10 @@ void CObjHelp::Init()
 
 		//ついでにヘルプボタン表示処理を1回のみ行うように準備しておく
 		m_Help_Button_alpha = -0.1f;
+
+		//ついでにヘルプボタン位置を変更する
+		m_px = 1100.0f;
+		m_py = 50.0f;
 	}
 	else  //(m_Scene_num == 3)//準備	3
 	{
@@ -78,7 +82,7 @@ void CObjHelp::Init()
 void CObjHelp::Action()
 {
 	//チュートリアル中は操作不可にする
-	if (g_tutorial_progress < 14)
+	if (g_tutorial_progress < 15)
 	{
 		return;
 	}
@@ -324,7 +328,7 @@ void CObjHelp::Draw()
 	
 
 	//チュートリアル中は表示しない
-	if (g_tutorial_progress >= 14)
+	if (g_tutorial_progress >= 15)
 	{
 		//▼ヘルプボタン表示
 		src.m_top = 0.0f;

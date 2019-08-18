@@ -95,6 +95,12 @@ void CObjFight::Init()
 		m_Explosion_size[i] = 0.0f;
 		m_Explosion_width[i] = 200.0f;
 	}
+
+	m_prey_f = false;
+	m_ani[0] = 0;//アニメーションデータの初期化
+	m_ani[1] = 1;
+	m_ani[2] = 2;
+	m_ani[3] = 1;
 }
 
 //アクション
@@ -814,6 +820,26 @@ void CObjFight::Draw()
 		dst.m_right = Player->GetX() + m_Explosion_size[0] + Player->GetScale_down_move();
 		dst.m_bottom = Player->GetY() + m_Explosion_width[0] - 1000.0f;
 		Draw::Draw(21, &src, &dst, d, 270.0f);
+	}
+
+
+	//▽捕食処理時、プレイヤー惑星の口だけを背面に描画
+	if (m_prey_f == true)
+	{
+		CObjPlanet* Player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+	
+		//切り取り位置
+		src.m_top = 0.0f;
+		src.m_left = m_ani[Player->GetAni_frame()] * 448.0f * 2;
+		src.m_right = m_ani[Player->GetAni_frame()] * 448.0f * 2 + 448.0f;
+		src.m_bottom = 448.0f;
+		//表示位置
+		dst.m_top = Player->GetY() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f);
+		dst.m_left = Player->GetX() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f) + Player->GetScale_down_move();
+		dst.m_right = Player->GetX() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f) + Player->GetScale_down_move();
+		dst.m_bottom = Player->GetY() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f);
+
+		Draw::Draw(6, &src, &dst, d, 0.0f);
 	}
 
 

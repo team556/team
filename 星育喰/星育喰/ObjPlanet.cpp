@@ -199,11 +199,15 @@ void CObjPlanet::Action()
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
 
+				//プレイヤー惑星の口(背面)を非表示にする
+				CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+				fight->SetPrey_f(false);
+
 				if (g_tutorial_progress == 6)
 				{
 					//ObjMessageのメッセージ進行度を増加させる
 					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
-					message->Setprogress(37);
+					message->Setprogress(38);
 				}
 
 				if (g_tutorial_progress != 6)
@@ -285,6 +289,10 @@ void CObjPlanet::Action()
 				if ((m_size / m_siz_max) >= (m_get_siz / m_get_max_siz))
 				{
 					m_eat_f = true;		//喰うフラグ有効
+
+					//プレイヤー惑星の口(背面)を描画させる
+					CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+					fight->SetPrey_f(true);
 				}
 			}
 
@@ -915,15 +923,6 @@ void CObjPlanet::Draw()
 	else {
 		//m_img_namの数で、登録したグラフィックをsrc,dst,c情報をもとに描画
 		Draw::Draw(m_img_nam, &src, &dst, c, 0.0f);
-	}
-
-	if (m_type == 0) {//プレイヤー惑星の時のみ口をz描画
-		dst.m_top		= m_py - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range);
-		dst.m_left		= m_px - MIN_SIZE - ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
-		dst.m_right		= m_px + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range) + m_scale_down_move;
-		dst.m_bottom	= m_py + MIN_SIZE + ((m_size / m_siz_max) * m_siz_change_range);
-
-		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
 
 
