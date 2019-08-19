@@ -108,7 +108,7 @@ RECT_F GetPodEffec(int* ani, int* ani_time, bool del, int timing)
 	//返すRECT情報
 	RECT_F rect;
 
-	//ブラグで通常弾眼科着弾アニメーション処理分岐
+	//ブラグで通常弾眼着弾アニメーション処理分岐
 	if (del == true)
 	{
 		//着弾アニメーション

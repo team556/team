@@ -208,12 +208,12 @@ void CObjSpecialButton::Draw()
 		//▼スペシャル技ボタン表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 192.0f;
-		src.m_bottom = 128.0f;
+		src.m_right = 183.0f;
+		src.m_bottom = 122.0f;
 
 		dst.m_top = m_y;
 		dst.m_left = m_x;
-		dst.m_right = m_x + m_w;
+		dst.m_right = m_x + 183;
 		dst.m_bottom = m_y + m_h;
 		Draw::Draw(19, &src, &dst, button, 0.0f);
 	}

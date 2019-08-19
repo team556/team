@@ -186,7 +186,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"スペシャルボタン.png", 30, TEX_SIZE_512);
 
 	//装備ボタン画像読み込み31番に登録
-	Draw::LoadImage(L"装備ボタン.png", 31, TEX_SIZE_512);
+	Draw::LoadImage(L"ポッドボタン.png", 31, TEX_SIZE_512);
 
 	//資材ボタン後の画面背景画像32番に登録
 	Draw::LoadImage(L"w.png", 32 , TEX_SIZE_512);

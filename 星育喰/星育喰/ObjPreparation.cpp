@@ -1160,21 +1160,85 @@ void CObjPreparation::Draw()
 	//チュートリアル中は表示しない
 	if (!(g_tutorial_progress == 1 || g_tutorial_progress == 2))
 	{
-		//▼下のウインドウ01表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
-
-		dst.m_top = 940.0f + m_Svy;
-		dst.m_left = 360.0f;
-		dst.m_right = 860.0f;
-		dst.m_bottom = 1100.0f + m_Svy;
-		Draw::Draw(89, &src, &dst, d, 0.0f);
 
 		//▽ウインドウ表示左上 
 		src.m_top = 0.0f;
-		src.m_left = -20.0f;
+		src.m_left = 0.0f;
+		src.m_right = 800.0f;
+		src.m_bottom = 790.0f;
+
+		dst.m_top = 940.0f + m_Svy;
+		dst.m_left = 360.0f;
+		dst.m_right = 440.0f;
+		dst.m_bottom = 1020.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示左下
+		src.m_top = 0.0f;
+		src.m_left = 800.0f;
+		src.m_right = 1600.0f;
+		src.m_bottom = 795.0f;
+
+		dst.m_top = 1020.0f + m_Svy;
+		dst.m_left = 360.0f;
+		dst.m_right = 440.0f;
+		dst.m_bottom = 1100.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+		for (int i = 0; i < 5; i++)
+		{
+			//▽ウインドウ表示中央上 
+			src.m_top = 0.0f;
+			src.m_left = 1600.0f;
+			src.m_right = 2400.0f;
+			src.m_bottom = 795.0f;
+
+			dst.m_top = 940.0f + m_Svy;
+			dst.m_left = 440.0f + (i * 80);
+			dst.m_right = 520.0f + (i * 80);
+			dst.m_bottom = 1020.0f + m_Svy;
+			Draw::Draw(55, &src, &dst, d, 0.0f);
+
+			//▽ウインドウ表示中央下 
+			src.m_top = 5.0f;
+			src.m_left = 2400.0f;
+			src.m_right = 3200.0f;
+			src.m_bottom = 800.0f;
+
+			dst.m_top = 1020.0f + m_Svy;
+			dst.m_left = 440.0f + (i * 80);
+			dst.m_right = 520.0f + (i * 80);
+			dst.m_bottom = 1100.0f + m_Svy;
+			Draw::Draw(55, &src, &dst, d, 0.0f);
+		}
+
+		//▼ウインドウ右上
+		src.m_top = 0.0f;
+		src.m_left = 4000.0f;
+		src.m_right = 4800.0f;
+		src.m_bottom = 795.0f;
+
+		dst.m_top = 940.0f + m_Svy;
+		dst.m_left = 780.0f;
+		dst.m_right = 860.0f;
+		dst.m_bottom = 1020.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+		//▼ウインドウ右下
+		src.m_top = 5.0f;
+		src.m_left = 4800.0f;
+		src.m_right = 5600.0f;
+		src.m_bottom = 800.0f;
+
+		dst.m_top = 1020.0f + m_Svy;
+		dst.m_left = 780.0f;
+		dst.m_right = 860.0f;
+		dst.m_bottom = 1100.0 + m_Svy;
+		Draw::Draw(55, &src, &dst, d, 0.0f);
+
+		//▽ウインドウ表示左上 
+		src.m_top = 0.0f;
+		src.m_left = -10.0f;
 		src.m_right = 800.0f;
 		src.m_bottom = 790.0f;
 
@@ -1195,7 +1259,8 @@ void CObjPreparation::Draw()
 		dst.m_right = 470.0f;
 		dst.m_bottom = 970.0 + m_Svy;
 		Draw::Draw(55, &src, &dst, d, 0.0f);
-		for (int i = 0; i < 5; i++)
+
+		for (int i = 0; i < 6; i++)
 		{
 			//▽ウインドウ表示中央上 
 			src.m_top = 0.0f;
@@ -1221,30 +1286,6 @@ void CObjPreparation::Draw()
 			dst.m_bottom = 970.0f + m_Svy;
 			Draw::Draw(55, &src, &dst, d, 0.0f);
 		}
-
-		//▽ウインドウ表示中央上 
-		src.m_top = 0.0f;
-		src.m_left = 1600.0f;
-		src.m_right = 2400.0f;
-		src.m_bottom = 795.0f;
-
-		dst.m_top = 905.0f + m_Svy;
-		dst.m_left = 690.0f;
-		dst.m_right = 740.0f;
-		dst.m_bottom = 955.0f + m_Svy;
-		Draw::Draw(55, &src, &dst, d, 0.0f);
-
-		//▽ウインドウ表示中央下 
-		src.m_top = 5.0f;
-		src.m_left = 2400.0f;
-		src.m_right = 3200.0f;
-		src.m_bottom = 800.0f;
-
-		dst.m_top = 920.0f + m_Svy;
-		dst.m_left = 690.0f;
-		dst.m_right = 740.0f;
-		dst.m_bottom = 970.0f + m_Svy;
-		Draw::Draw(55, &src, &dst, d, 0.0f);
 
 		//▼ウインドウ右上
 		src.m_top = 0.0f;
