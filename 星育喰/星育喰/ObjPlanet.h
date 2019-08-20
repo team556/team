@@ -21,6 +21,7 @@ public:
 	//float GetHp() { return m_hp; }	
 	float GetSiz() { return m_size; }		//現在サイズ(HP)取得関数
 	float GetMaxSiz() { return m_siz_max; }	//最大サイズ(HP)取得関数
+	float GetSiz_change_range() { return m_siz_change_range; }//星サイズの変更幅取得用
 	float GetScale_down_move() { return m_scale_down_move; }//サイズ縮小分のX座標移動量を返す
 	int   GetAni_frame() { return m_ani_frame[0]; }	//アニメーションフレーム取得用
 	int  GetType() { return m_type; }
