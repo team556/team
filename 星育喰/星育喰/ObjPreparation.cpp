@@ -973,10 +973,10 @@ void CObjPreparation::Draw()
 	{
 		{ 1.0f,1.0f,1.0f,m_detail_message_alpha },//1行目は白色
 		{ 1.0f,0.0f,0.0f,m_detail_message_alpha },//2行目は赤色
-		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//3行目は黒色
-		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//4行目は黒色
-		{ 0.0f,0.0f,0.0f,m_detail_message_alpha },//5行目は黒色
-		{ 1.0f,1.0f,0.0f,m_detail_message_alpha },//6行目は青色
+		{ 1.0f,1.0f,1.0f,m_detail_message_alpha },//3行目は白色
+		{ 1.0f,1.0f,1.0f,m_detail_message_alpha },//4行目は白色
+		{ 1.0f,1.0f,1.0f,m_detail_message_alpha },//5行目は白色
+		{ 1.0f,1.0f,0.0f,m_detail_message_alpha },//6行目は黄色
 	};
 
 	//最終確認[はい]ボタン用
