@@ -834,10 +834,10 @@ void CObjFight::Draw()
 		src.m_right = m_ani[Player->GetAni_frame()] * 448.0f * 2 + 448.0f;
 		src.m_bottom = 448.0f;
 		//•\Ž¦ˆÊ’u
-		dst.m_top = Player->GetY() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f);
-		dst.m_left = Player->GetX() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f) + Player->GetScale_down_move();
-		dst.m_right = Player->GetX() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f) + Player->GetScale_down_move();
-		dst.m_bottom = Player->GetY() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * 60.0f);
+		dst.m_top = Player->GetY() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range());
+		dst.m_left = Player->GetX() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range()) + Player->GetScale_down_move();
+		dst.m_right = Player->GetX() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range()) + Player->GetScale_down_move();
+		dst.m_bottom = Player->GetY() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range());
 
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 	}
