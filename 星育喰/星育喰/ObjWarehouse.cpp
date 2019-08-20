@@ -1968,7 +1968,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 283.0f;
 		dst.m_right = 358.0f;
 		dst.m_bottom = 237.5f;
-		Draw::Draw(145, &src, &dst, red, 0.0f);
+		Draw::Draw(146, &src, &dst, red, 0.0f);
 
 		if(g_Pow_equip_Level==1)
 		{
@@ -2037,7 +2037,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 283.0f;
 		dst.m_right = 358.0f;
 		dst.m_bottom = 390.0f;
-		Draw::Draw(145, &src, &dst, blue, 0.0f);
+		Draw::Draw(146, &src, &dst, blue, 0.0f);
 
 		if (g_Def_equip_Level == 1)
 		{
@@ -2106,7 +2106,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 318.0f;
 		dst.m_right = 398.0f;
 		dst.m_bottom = 530.0f;
-		Draw::Draw(145, &src, &dst, green, 0.0f);
+		Draw::Draw(146, &src, &dst, green, 0.0f);
 
 		if (g_Spe_equip_Level == 1)
 		{
@@ -2175,7 +2175,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 758.0f;
 		dst.m_right = 838.0f;
 		dst.m_bottom = 320.0f;
-		Draw::Draw(145, &src, &dst, white, 0.0f);
+		Draw::Draw(146, &src, &dst, white, 0.0f);
 
 		if (g_Bal_equip_Level == 1)
 		{

@@ -503,8 +503,11 @@ void CSceneTraining::InitScene()
 	//説明文倉庫を144番に登録
 	Draw::LoadImage(L"説明文倉庫.png", 144, TEX_SIZE_512);
 
-	//コア文字画像を読み込み145番に登録
-	Draw::LoadImage(L"コア文字画像.png", 145, TEX_SIZE_512);
+	//説明文倉庫を145番に登録
+	Draw::LoadImage(L"説明文惑星発展度.png", 145, TEX_SIZE_512);
+
+	//コア文字画像を読み込み146番に登録
+	Draw::LoadImage(L"コア文字画像.png", 146, TEX_SIZE_512);
 
 	//資材文字画像を読み込み147番に登録
 	Draw::LoadImage(L"資材.png", 147, TEX_SIZE_512);
