@@ -32,6 +32,7 @@ private:
 	float m_h;		//スペシャル技ボタンのheight(高さ)
 	float m_w;		//スペシャル技ボタンのwidth(幅)
 	float m_a;		//スペシャル技ボタンのalpha(透過度)
+	float m_a_vec;	//スペシャル技ボタンのalpha(透過度)ベクトル
 
 	float m_button_color;//スペシャルボタンのカラー明度
 

@@ -52,7 +52,7 @@ void CObjHelp::Init()
 	}
 	else if (m_Scene_num == 2)//ˆç¬	2
 	{
-		m_page_max = 8;
+		m_page_max = 9;
 		m_help_reg_num = 136;
 		m_Back_reg_num = 1;
 
@@ -347,10 +347,10 @@ void CObjHelp::Draw()
 	if (g_help_f == true)
 	{
 		//¥ƒwƒ‹ƒv‰æ‘œ•\¦
-		src.m_top   = 152.0f;
+		src.m_top   =	0.0f;
 		src.m_left  =   0.0f;
-		src.m_right =1280.0f;
-		src.m_bottom= 868.0f;
+		src.m_right =1432.0f;
+		src.m_bottom= 872.0f;
 			
 		dst.m_top   =  20.0f;
 		dst.m_left  =  20.0f;
