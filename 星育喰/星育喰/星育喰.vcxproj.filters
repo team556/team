@@ -363,6 +363,7 @@
     <ClInclude Include="ObjNameInput.h">
       <Filter>ソース ファイル\チュートリアル</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl">
@@ -373,5 +374,11 @@
     <Library Include="GameL\DirectXTex.lib">
       <Filter>リソースファイル</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="星育喰.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="picon.ico" />
   </ItemGroup>
 </Project>
