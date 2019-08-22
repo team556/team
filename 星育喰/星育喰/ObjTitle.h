@@ -32,7 +32,6 @@ private:
 	bool  m_flag;		//true=クリックした　false=クリックしてない
 	bool  m_key_f;		//キーフラグ
 	float m_alpha;		//透過度(アルファ値)
-	float m_malpha;		//透過度0.0～1.0に変える
 	float m_black_out_a;//画面暗転透過度
 	float m_des_y;		//世界観説明画像の位置Y
 	float m_des_vec;	//世界観説明画像のベクトル
