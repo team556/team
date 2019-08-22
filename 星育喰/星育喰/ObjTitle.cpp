@@ -56,7 +56,7 @@ int g_Speed_num		= 1500;
 int g_Balance_num	= 1500;
 int g_Research_num	=  0;
 int g_Remain_num	= 0;
-float g_Recast_time = 0.01f;//デバッグ状態。元に戻すように。
+float g_Recast_time = 3.0f;//デバッグ状態。元に戻すように。
 float g_P_Planet_damage = 0.0f;
 wchar_t g_Player_Name[6];
 
