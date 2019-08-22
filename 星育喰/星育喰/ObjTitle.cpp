@@ -541,7 +541,7 @@ void CObjTitle::Draw()
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
 	dst.m_bottom = 550.0f;
-	Draw::Draw(50, &src, &dst, w, 0.0f);
+	Draw::Draw(50, &src, &dst, d, 0.0f);
 
 	//▼上下ふわふわする"クリックでスタート"を表示
 	//角度加算
