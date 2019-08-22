@@ -254,7 +254,9 @@
     <Library Include="GameL\DirectXTex.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="星育喰.rc" />
+    <ResourceCompile Include="星育喰.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="picon.ico" />
