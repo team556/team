@@ -363,7 +363,9 @@
     <ClInclude Include="ObjNameInput.h">
       <Filter>ソース ファイル\チュートリアル</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl">
@@ -380,5 +382,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="picon.ico" />
+    <Image Include="picons.ico" />
   </ItemGroup>
 </Project>
