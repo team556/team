@@ -141,13 +141,13 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み16番に登録
-	Draw::LoadImage(L"P惑星_Lv1修正.png", 16, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv1修正クチナシ.png", 16, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み17番に登録
-	Draw::LoadImage(L"P惑星_Lv2修正.png", 17, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv2new.png", 17, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み18番に登録
-	Draw::LoadImage(L"P惑星_Lv3修正.png", 18, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv3new.png", 18, TEX_SIZE_512);
 
 	//ホワイトアウト演出画像を読み込み19番に登録
 	Draw::LoadImage(L"ホワイトアウト演出画像.png", 19, TEX_SIZE_512);
