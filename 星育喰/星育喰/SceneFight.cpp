@@ -120,7 +120,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"lv2x3修正.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"lv4x3クチナシ.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"lv4x3修正.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"人数不足new.png", 31, TEX_SIZE_512);
