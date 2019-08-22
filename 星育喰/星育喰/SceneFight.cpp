@@ -268,7 +268,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\惑星\\lv1x3口のみ.png", 81, TEX_SIZE_512);
 
 	//lv4口のみを82番に登録
-	Draw::LoadImage(L"lv4口のみ.png", 82, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv4口のみ.png", 82, TEX_SIZE_512);
 
 	//上レーン画像を118番に登録
 	Draw::LoadImage(L"上レーン.png", 118, TEX_SIZE_512);
