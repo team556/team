@@ -56,7 +56,7 @@ int g_Speed_num		= 1500;
 int g_Balance_num	= 1500;
 int g_Research_num	=  0;
 int g_Remain_num	= 0;
-float g_Recast_time = 0.01f;//デバッグ状態。元に戻すように。
+float g_Recast_time = 3.0f;//デバッグ状態。元に戻すように。
 float g_P_Planet_damage = 0.0f;
 wchar_t g_Player_Name[6];
 
@@ -498,8 +498,8 @@ void CObjTitle::Draw()
 	//敵惑星1(背景)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 287.0f;
-	src.m_bottom = 287.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	dst.m_top = m_Ey[0];
 	dst.m_left = 1200.0f - m_time[0];//+4ずつ増加し続ける変数を引く事で、
@@ -510,8 +510,8 @@ void CObjTitle::Draw()
 	//敵惑星2(背景)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 287.0f;
-	src.m_bottom = 287.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	dst.m_top = m_Ey[1];
 	dst.m_left = 1200.0f - m_time[1];//+4ずつ増加し続ける変数を引く事で、
@@ -522,8 +522,8 @@ void CObjTitle::Draw()
 	//敵惑星3(背景)表示
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 287.0f;
-	src.m_bottom = 287.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	dst.m_top = m_Ey[2];
 	dst.m_left = 1200.0f - m_time[2];//+4ずつ増加し続ける変数を引く事で、
@@ -541,7 +541,7 @@ void CObjTitle::Draw()
 	dst.m_left = 450.0f;
 	dst.m_right = 750.0f;
 	dst.m_bottom = 550.0f;
-	Draw::Draw(50, &src, &dst, w, 0.0f);
+	Draw::Draw(50, &src, &dst, d, 0.0f);
 
 	//▼上下ふわふわする"クリックでスタート"を表示
 	//角度加算
