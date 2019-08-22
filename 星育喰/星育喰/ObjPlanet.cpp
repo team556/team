@@ -199,9 +199,9 @@ void CObjPlanet::Action()
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(Zl,Ž‘Þ,ƒXƒLƒ‹,‘å‚«‚³)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//ƒNƒŠƒA‰æ–Ê
 
-				//ƒvƒŒƒCƒ„[˜f¯‚ÌŒû(”w–Ê)‚ð”ñ•\Ž¦‚É‚·‚é
+				//Ÿ—˜˜f¯‚ÌŒû(”w–Ê)‚ð”ñ•\Ž¦‚É‚·‚é
 				CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-				fight->SetPrey_f(false);
+				fight->SetPrey_f(-1);
 
 				if (g_tutorial_progress == 6)
 				{
@@ -290,9 +290,9 @@ void CObjPlanet::Action()
 				{
 					m_eat_f = true;		//‹ò‚¤ƒtƒ‰ƒO—LŒø
 
-					//ƒvƒŒƒCƒ„[˜f¯‚ÌŒû(”w–Ê)‚ð•`‰æ‚³‚¹‚é
+					//Ÿ—˜˜f¯‚ÌŒû(”w–Ê)‚ð•`‰æ‚³‚¹‚é
 					CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
-					fight->SetPrey_f(true);
+					fight->SetPrey_f(m_type);
 				}
 			}
 
@@ -304,6 +304,10 @@ void CObjPlanet::Action()
 
 					CObjPlanet* ene = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
 					ene->SetPrio(11);	//ƒIƒuƒWƒFƒNƒg‚Ì—Dæ‡ˆÊ•ÏX‚µA“G˜f¯‚ªŽè‘O‚É—ˆ‚é‚æ‚¤‚É‚·‚é
+
+					//Ÿ—˜˜f¯‚ÌŒû(”w–Ê)‚ð•`‰æ‚³‚¹‚é
+					CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
+					fight->SetPrey_f(m_type);
 				}
 			}
 		}
