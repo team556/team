@@ -533,8 +533,8 @@ void CSceneTraining::InitScene()
 	//白研究員文字画像を読み込み154番に登録
 	Draw::LoadImage(L"白研究員.png", 154, TEX_SIZE_512);
 
-	//メッセージウィンドウ黄2画像を読み込み155番に登録
-	Draw::LoadImage(L"メッセージウィンドウ黄1.png", 155, TEX_SIZE_512);
+	//メッセージウィンドウ白1画像を読み込み155番に登録
+	Draw::LoadImage(L"メッセージウィンドウ白1.png", 155, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
