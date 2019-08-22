@@ -363,9 +363,7 @@
     <ClInclude Include="ObjNameInput.h">
       <Filter>ソース ファイル\チュートリアル</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\DirectXTex.inl">
