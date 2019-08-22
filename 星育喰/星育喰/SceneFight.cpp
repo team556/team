@@ -110,7 +110,7 @@ void CSceneFight::InitScene()
 	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
 	Draw::LoadImage(L"オーバーワークアイコン.png", 25, TEX_SIZE_512);
 
-	Draw::LoadImage(L"lv1x3修正.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"lv1x3クチナシ.png", 26, TEX_SIZE_512);
 
 	Draw::LoadImage(L"モアイ.png", 27, TEX_SIZE_512);
 
@@ -120,7 +120,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"lv2x3修正.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"lv4x3修正.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"lv4x3クチナシ.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"人数不足new.png", 31, TEX_SIZE_512);
@@ -263,6 +263,12 @@ void CSceneFight::InitScene()
 
 	//新三すくみを80番に登録
 	Draw::LoadImage(L"新三すくみ.png", 80, TEX_SIZE_512);
+
+	//lv1x3口のみを81番に登録
+	Draw::LoadImage(L"lv1x3口のみ.png", 81, TEX_SIZE_512);
+
+	//lv4口のみを82番に登録
+	Draw::LoadImage(L"lv4口のみ.png", 82, TEX_SIZE_512);
 
 	//上レーン画像を118番に登録
 	Draw::LoadImage(L"上レーン.png", 118, TEX_SIZE_512);
