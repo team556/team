@@ -33,6 +33,7 @@
 
 #include "..\GameHead.h"
 #include "..\main.h"
+#include "..\resource.h"
 
 using namespace GameL;
 
@@ -55,8 +56,11 @@ int APIENTRY wWinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR szCmdLi
 	   sizeof(WNDCLASSEX),
 	   CS_HREDRAW | CS_VREDRAW,
 	   WndProc,0, 0,hInstance,
-	   NULL, NULL,(HBRUSH)(COLOR_WINDOW+1),
-	   NULL,name,NULL
+	   LoadIcon(hInstance,MAKEINTRESOURCE(IDI_PICON)),
+	   NULL, (HBRUSH)(COLOR_WINDOW+1),
+	   NULL,
+	   name,
+	   LoadIcon(hInstance,MAKEINTRESOURCE(IDI_SMALL))
 	};
 
 	//ウィンドウクラス作成

@@ -36,6 +36,7 @@ CObjSpecialButton::CObjSpecialButton(float x, float y, float h, float w)
 void CObjSpecialButton::Init()
 {
 	m_a = 1.0f;
+	m_a_vec = 0.0f;
 
 	m_button_color = INI_COLOR;
 
@@ -174,6 +175,21 @@ void CObjSpecialButton::Action()
 		m_a -= 0.03f;				//徐々に透明化する
 		if (m_a > 0.0f)
 			this->SetStatus(false);	//完全透明になった時点で消滅
+	}
+
+	//スペシャル技ボタン点滅処理(発動出来る事を強調する役割)
+	if (m_a != 0.3f && battle_end == false)
+	{
+		if (m_a <= 0.75f)		//0.75で切り替えて、スペシャル技ボタンのalpha調整
+		{
+			m_a_vec += 0.003f;	//ベクトルに加算
+		}
+		else
+		{
+			m_a_vec -= 0.003f;	//ベクトルに減算
+		}
+
+		m_a += m_a_vec;	//ベクトルを反映
 	}
 }
 

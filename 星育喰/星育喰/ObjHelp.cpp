@@ -280,7 +280,7 @@ void CObjHelp::Action()
 		}
 
 		//戻るボタン
-		if (30 < m_mou_x && m_mou_x < 80 && 30 < m_mou_y && m_mou_y < 80 || m_mou_r == true)
+		if (80 < m_mou_x && m_mou_x < 130 && 80 < m_mou_y && m_mou_y < 130 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;//選択中はカラー明度を上げる
 
@@ -364,10 +364,10 @@ void CObjHelp::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom= 64.0f;
 	
-		dst.m_top   = 30.0f;
-		dst.m_left  = 30.0f;
-		dst.m_right = 80.0f;
-		dst.m_bottom= 80.0f;
+		dst.m_top   = 80.0f;
+		dst.m_left  = 80.0f;
+		dst.m_right = 130.0f;
+		dst.m_bottom= 130.0f;
 		Draw::Draw(m_Back_reg_num, &src, &dst, back, 0.0f);			
 
 		//ページ最大数が1でなければ表示する
