@@ -775,7 +775,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 550.0f;
 		dst.m_right = 650.0f;
 		dst.m_bottom = 130.0f;
-		Draw::Draw(147, &src, &dst, black, 0.0f);
+		Draw::Draw(147, &src, &dst, white, 0.0f);
 
 		//▼戻るボタン表示
 		src.m_top = 0.0f;
@@ -800,7 +800,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 105.0f;
 		dst.m_right = 350.0f;
 		dst.m_bottom = 395.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
+		Draw::Draw(155, &src, &dst, white, 0.0f);
 
 		//▼メッセージウインドウ表示左下
 		src.m_top = 35.0f;
@@ -812,7 +812,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 105.0f;
 		dst.m_right = 350.0f;
 		dst.m_bottom = 640.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
+		Draw::Draw(155, &src, &dst, white, 0.0f);
 
 		for(int i=0;i<3;i++)
 		{
@@ -826,7 +826,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = 350.0f + ( i * 245);
 			dst.m_right = 595.0f + ( i * 245);
 			dst.m_bottom = 395.0f;
-			Draw::Draw(21, &src, &dst, white, 0.0f);
+			Draw::Draw(155, &src, &dst, white, 0.0f);
 
 			//▼メッセージウインドウ表示中央下
 			src.m_top = 2.0f;
@@ -838,7 +838,7 @@ void CObjWarehouse::Draw()
 			dst.m_left = 350.0f + (i * 245);
 			dst.m_right = 595.0f + (i * 245);
 			dst.m_bottom = 640.0f;
-			Draw::Draw(21, &src, &dst, white, 0.0f);
+			Draw::Draw(155, &src, &dst, white, 0.0f);
 		}
 		//▼メッセージウインドウ表示右上
 		src.m_top = 0.0f;
@@ -850,7 +850,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 860.0f;
 		dst.m_right = 1105.0f;
 		dst.m_bottom = 395.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
+		Draw::Draw(155, &src, &dst, white, 0.0f);
 
 		//▼メッセージウインドウ表示右下
 		src.m_top = 35.0f;
@@ -862,7 +862,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 860.0f;
 		dst.m_right = 1105.0f;
 		dst.m_bottom = 640.0f;
-		Draw::Draw(21, &src, &dst, white, 0.0f);
+		Draw::Draw(155, &src, &dst, white, 0.0f);
 
 		for(int j=0;j<3;j++)
 		{
@@ -1108,7 +1108,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 200.0f;
 		dst.m_right = 300.0f;
 		dst.m_bottom = 280.0f;
-		Draw::Draw(33, &src, &dst, it, 0.0f);
+		Draw::Draw(33, &src, &dst, white, 0.0f);
 
 		//▼木材文字画像表示
 		src.m_top = 2.0f;
@@ -1120,10 +1120,10 @@ void CObjWarehouse::Draw()
 		dst.m_left = 170.0f;
 		dst.m_right = 250.0f;
 		dst.m_bottom = 340.0f;
-		Draw::Draw(89, &src, &dst, black, 0.0f);
+		Draw::Draw(89, &src, &dst, white, 0.0f);
 
-		FontDraw(NumConversion(g_Wood_num), 270, 340, 30, 40, black, true);
-		FontDraw(L"コ", 315, 360, 15, 20, black, true);
+		FontDraw(NumConversion(g_Wood_num), 270, 340, 30, 40, white, true);
+		FontDraw(L"コ", 315, 360, 15, 20, white, true);
 		//Font::StrDraw(mrl[0], 240.0f, 290.0f, 40.0f, black);
 
 		//▼鉄表示
@@ -1148,10 +1148,10 @@ void CObjWarehouse::Draw()
 		dst.m_left = 540.0f;
 		dst.m_right = 580.0f;
 		dst.m_bottom = 340.0f;
-		Draw::Draw(69, &src, &dst, black, 0.0f);
+		Draw::Draw(69, &src, &dst, white, 0.0f);
 
-		FontDraw(NumConversion(g_Iron_num), 620, 340, 30, 40, black, true);
-		FontDraw(L"コ", 665, 360, 15, 20, black, true);
+		FontDraw(NumConversion(g_Iron_num), 620, 340, 30, 40, white, true);
+		FontDraw(L"コ", 665, 360, 15, 20, white, true);
 		//Font::StrDraw(mrl[1], 580.0f, 290.0f, 40.0f, black);
 
 		//▼銀表示
@@ -1176,10 +1176,10 @@ void CObjWarehouse::Draw()
 		dst.m_left = 910.0f;
 		dst.m_right = 950.0f;
 		dst.m_bottom = 340.0f;
-		Draw::Draw(90, &src, &dst, black, 0.0f);
+		Draw::Draw(90, &src, &dst, white, 0.0f);
 
-		FontDraw(NumConversion(g_Silver_num), 970, 340, 30, 40, black, true);
-		FontDraw(L"コ", 1015, 360, 15, 20, black, true);
+		FontDraw(NumConversion(g_Silver_num), 970, 340, 30, 40, white, true);
+		FontDraw(L"コ", 1015, 360, 15, 20, white, true);
 		//Font::StrDraw(mrl[2], 950.0f, 290.0f, 40.0f, black);
 
 		//▼プラスチック表示
@@ -1204,11 +1204,11 @@ void CObjWarehouse::Draw()
 		dst.m_left = 140.0f;
 		dst.m_right = 380.0f;
 		dst.m_bottom = 570.0f;
-		Draw::Draw(91, &src, &dst, black, 0.0f);
+		Draw::Draw(91, &src, &dst, white, 0.0f);
 
 
-		FontDraw(NumConversion(g_Plastic_num), 270, 570, 30, 40, black, true);
-		FontDraw(L"コ", 315, 590, 15, 20, black, true);
+		FontDraw(NumConversion(g_Plastic_num), 270, 570, 30, 40, white, true);
+		FontDraw(L"コ", 315, 590, 15, 20, white, true);
 		//Font::StrDraw(mrl[3], 240.0f, 540.0f, 40.0f, black);
 
 		//▼アルミニウム画像表示
@@ -1233,10 +1233,10 @@ void CObjWarehouse::Draw()
 		dst.m_left = 530.0f;
 		dst.m_right = 650.0f;
 		dst.m_bottom = 570.0f;
-		Draw::Draw(92, &src, &dst, black, 0.0f);
+		Draw::Draw(92, &src, &dst, white, 0.0f);
 
-		FontDraw(NumConversion(g_Aluminum_num), 620, 570, 30, 40, black, true);
-		FontDraw(L"コ", 665, 590, 15, 20, black, true);
+		FontDraw(NumConversion(g_Aluminum_num), 620, 570, 30, 40, white, true);
+		FontDraw(L"コ", 665, 590, 15, 20, white, true);
 		//Font::StrDraw(mrl[4], 580.0f, 540.0f, 40.0f, black);
 
 		//▼ガス表示
@@ -1261,10 +1261,10 @@ void CObjWarehouse::Draw()
 		dst.m_left = 910.0f;
 		dst.m_right = 990.0f;
 		dst.m_bottom = 570.0f;
-		Draw::Draw(93, &src, &dst, black, 0.0f);
+		Draw::Draw(93, &src, &dst, white, 0.0f);
 
-		FontDraw(NumConversion(g_gus_num), 970, 570, 30, 40, black, true);
-		FontDraw(L"コ", 1015, 590, 15, 20, black, true);
+		FontDraw(NumConversion(g_gus_num), 970, 570, 30, 40, white, true);
+		FontDraw(L"コ", 1015, 590, 15, 20, white, true);
 		//Font::StrDraw(mrl[5], 950.0f, 540.0f, 40.0f, black);
 	}
 
@@ -1317,7 +1317,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 500.0f;
 		dst.m_right = 650.0f;
 		dst.m_bottom = 130.0f;
-		Draw::Draw(94, &src, &dst, black, 0.0f);
+		Draw::Draw(94, &src, &dst, white, 0.0f);
 
 		//▼赤住民画像を表示
 		src.m_top = 0.0f;
@@ -1389,7 +1389,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 560.0f;
 		dst.m_right = 770.0f;
 		dst.m_bottom = 510.0f;
-		Draw::Draw(94, &src, &dst, black, 0.0f);
+		Draw::Draw(94, &src, &dst, white, 0.0f);
 
 		//▼人文字画像表示(pow数)
 		src.m_top = 2.0f;
@@ -1401,7 +1401,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 470.0f;
 		dst.m_right = 510.0f;
 		dst.m_bottom = 240.0f;
-		Draw::Draw(77, &src, &dst, black, 0.0f);
+		Draw::Draw(77, &src, &dst, white, 0.0f);
 
 		//▼人文字画像表示(spe数)
 		src.m_top = 2.0f;
@@ -1413,7 +1413,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 470.0f;
 		dst.m_right = 510.0f;
 		dst.m_bottom = 370.0f;
-		Draw::Draw(77, &src, &dst, black, 0.0f);
+		Draw::Draw(77, &src, &dst, white, 0.0f);
 
 		//▼人文字画像表示(def数)
 		src.m_top = 2.0f;
@@ -1425,7 +1425,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 470.0f;
 		dst.m_right = 510.0f;
 		dst.m_bottom = 510.0f;
-		Draw::Draw(77, &src, &dst, black, 0.0f);
+		Draw::Draw(77, &src, &dst, white, 0.0f);
 
 		//▼人文字画像表示(bal数)
 		src.m_top = 2.0f;
@@ -1437,7 +1437,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 1050.0f;
 		dst.m_right = 1090.0f;
 		dst.m_bottom = 240.0f;
-		Draw::Draw(77, &src, &dst, black, 0.0f);
+		Draw::Draw(77, &src, &dst, white, 0.0f);
 
 		//▼人文字画像表示(研究員数)
 		src.m_top = 2.0f;
@@ -1449,7 +1449,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 1050.0f;
 		dst.m_right = 1090.0f;
 		dst.m_bottom = 370.0f;
-		Draw::Draw(77, &src, &dst, black, 0.0f);
+		Draw::Draw(77, &src, &dst, white, 0.0f);
 
 		//▼残り　　　人(残り)だけ文字画像表示
 		src.m_top = 2.0f;
@@ -1478,23 +1478,23 @@ void CObjWarehouse::Draw()
 		//▼フォント表示
 		//住民ステータス
 		//レッド
-		FontDraw(NumConversion(g_Power_num)   , 440, 200, 30, 40, black, true);
+		FontDraw(NumConversion(g_Power_num)   , 440, 200, 30, 40, white, true);
 		//Font::StrDraw(human_num[0], 355.0f, 200.0f, 35.0f, black);
 
 		//ブルー
-		FontDraw(NumConversion(g_Defense_num) , 440, 330, 30, 40, black, true);
+		FontDraw(NumConversion(g_Defense_num) , 440, 330, 30, 40, white, true);
 		//Font::StrDraw(human_num[1], 355.0f, 330.0f, 35.0f, black);
 
 		//グリーン
-		FontDraw(NumConversion(g_Speed_num)   , 440, 470, 30, 40, black, true);
+		FontDraw(NumConversion(g_Speed_num)   , 440, 470, 30, 40, white, true);
 		//Font::StrDraw(human_num[2], 355.0f, 470.0f, 35.0f, black);
 
 		//ホワイト
-		FontDraw(NumConversion(g_Balance_num) , 1020, 200, 30, 40, black, true);
+		FontDraw(NumConversion(g_Balance_num) , 1020, 200, 30, 40, white, true);
 		//Font::StrDraw(human_num[3], 865.0f, 200.0f, 35.0f, black);
 
 		//研究員
-		FontDraw(NumConversion(g_Research_num), 1020, 330, 30, 40, black, true);
+		FontDraw(NumConversion(g_Research_num), 1020, 330, 30, 40, white, true);
 		//Font::StrDraw(Research_num, 865.0f, 330.0f, 35.0f, black);
 
 		//残りの住民数
@@ -1552,7 +1552,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 405.0f;
 		dst.m_right = 755.0f;
 		dst.m_bottom = 130.0f;
-		Draw::Draw(148, &src, &dst, black, 0.0f);
+		Draw::Draw(148, &src, &dst, white, 0.0f);
 
 		for (int i = 0; i < 5; i++)//メッセージウィンドウを適切な位置に５回表示させる
 		{
@@ -1944,7 +1944,7 @@ void CObjWarehouse::Draw()
 		dst.m_left = 525.0f;
 		dst.m_right = 675.0f;
 		dst.m_bottom = 130.0f;
-		Draw::Draw(149, &src, &dst, black, 0.0f);
+		Draw::Draw(149, &src, &dst, white, 0.0f);
 
 		//▼レッド文字画像を表示
 		src.m_top = 0.0f;

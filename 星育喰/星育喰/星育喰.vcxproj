@@ -233,6 +233,7 @@
     <ClInclude Include="ObjHelp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SceneFight.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneHome.h" />
@@ -251,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="GameL\DirectXTex.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="星育喰.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="picon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

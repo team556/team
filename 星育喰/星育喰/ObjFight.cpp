@@ -96,7 +96,7 @@ void CObjFight::Init()
 		m_Explosion_width[i] = 200.0f;
 	}
 
-	m_prey_f = false;
+	m_prey_f = -1;
 	m_ani[0] = 0;//アニメーションデータの初期化
 	m_ani[1] = 1;
 	m_ani[2] = 2;
@@ -823,23 +823,60 @@ void CObjFight::Draw()
 	}
 
 
-	//▽捕食処理時、プレイヤー惑星の口だけを背面に描画
-	if (m_prey_f == true)
+	//▽捕食処理時、勝利惑星の口だけを背面に描画
+	if (m_prey_f >= 0)
 	{
-		CObjPlanet* Player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
-	
-		//切り取り位置
-		src.m_top = 0.0f;
-		src.m_left = m_ani[Player->GetAni_frame()] * 448.0f * 2;
-		src.m_right = m_ani[Player->GetAni_frame()] * 448.0f * 2 + 448.0f;
-		src.m_bottom = 448.0f;
-		//表示位置
-		dst.m_top = Player->GetY() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range());
-		dst.m_left = Player->GetX() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range()) + Player->GetScale_down_move();
-		dst.m_right = Player->GetX() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range()) + Player->GetScale_down_move();
-		dst.m_bottom = Player->GetY() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range());
+		//▼プレイヤー惑星
+		if (m_prey_f == 0)
+		{
+			CObjPlanet* Player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 
-		Draw::Draw(6, &src, &dst, d, 0.0f);
+			//▽切り取り位置
+			src.m_top = 0.0f;
+			src.m_left = m_ani[Player->GetAni_frame()] * 448.0f * 2;
+			src.m_right = m_ani[Player->GetAni_frame()] * 448.0f * 2 + 448.0f;
+			src.m_bottom = 448.0f;
+
+			//▽表示位置
+			dst.m_top = Player->GetY() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range());
+			dst.m_left = Player->GetX() - 60.0f - ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range()) + Player->GetScale_down_move();
+			dst.m_right = Player->GetX() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range()) + Player->GetScale_down_move();
+			dst.m_bottom = Player->GetY() + 60.0f + ((Player->GetSiz() / Player->GetMaxSiz()) * Player->GetSiz_change_range());
+		}
+		//▼敵惑星
+		else
+		{
+			CObjPlanet* Enemy = (CObjPlanet*)Objs::GetObj(OBJ_ENEMY);
+
+			//▽切り取り位置
+			src.m_top = 0.0f;
+			src.m_left = m_ani[Enemy->GetAni_frame()] * 300.0f;
+			src.m_right = m_ani[Enemy->GetAni_frame()] * 300.0f + 300.0f;
+			src.m_bottom = 300.0f;
+
+			//▽表示位置
+			dst.m_top = Enemy->GetY() - 60.0f - ((Enemy->GetSiz() / Enemy->GetMaxSiz()) * Enemy->GetSiz_change_range());
+			dst.m_left = Enemy->GetX() - 60.0f - ((Enemy->GetSiz() / Enemy->GetMaxSiz()) * Enemy->GetSiz_change_range()) + Enemy->GetScale_down_move();
+			dst.m_right = Enemy->GetX() + 60.0f + ((Enemy->GetSiz() / Enemy->GetMaxSiz()) * Enemy->GetSiz_change_range()) + Enemy->GetScale_down_move();
+			dst.m_bottom = Enemy->GetY() + 60.0f + ((Enemy->GetSiz() / Enemy->GetMaxSiz()) * Enemy->GetSiz_change_range());
+		}
+
+		//▽実際に描画
+		//▼プレイヤー惑星
+		if (m_prey_f == 0)
+		{
+			Draw::Draw(6, &src, &dst, d, 0.0f);
+		}
+		//▼Ｏ阪魂
+		else if (m_prey_f == 1)
+		{
+			Draw::Draw(81, &src, &dst, d, 0.0f);
+		}
+		//▼アマテラス
+		else if (m_prey_f == 5)
+		{
+			Draw::Draw(82, &src, &dst, d, 0.0f);
+		}
 	}
 
 
