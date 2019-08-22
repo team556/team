@@ -42,16 +42,16 @@ void CSceneFight::InitScene()
 	//Draw::LoadImage(L"w.png", 2, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み3番に登録
-	Draw::LoadImage(L"P惑星_Lv1修正クチナシ.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv1修正クチナシ.png", 3, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv2を読み込み4番に登録
-	Draw::LoadImage(L"P惑星_Lv2new.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv2new.png", 4, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv3を読み込み5番に登録
-	Draw::LoadImage(L"P惑星_Lv3new.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv3new.png", 5, TEX_SIZE_512);
 
 	//プレイヤー惑星口を読み込み6晩に登録
-	Draw::LoadImage(L"P惑星_Lv1修正口のみ.png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\P惑星_Lv1修正口のみ.png", 6, TEX_SIZE_512);
 
 	//4番に登録惑星
 	//Draw::LoadImage(L"プレイヤー惑星第二段階.png", 33, TEX_SIZE_512);
@@ -110,17 +110,17 @@ void CSceneFight::InitScene()
 	//スペシャル技[オーバーワーク]画像を読み込み25番に登録
 	Draw::LoadImage(L"オーバーワークアイコン.png", 25, TEX_SIZE_512);
 
-	Draw::LoadImage(L"lv1x3クチナシ.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv1x3クチナシ.png", 26, TEX_SIZE_512);
 
-	Draw::LoadImage(L"モアイ.png", 27, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\モアイ.png", 27, TEX_SIZE_512);
 
-	Draw::LoadImage(L"悪惑星修正.png", 28, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\悪惑星修正.png", 28, TEX_SIZE_512);
 
 	//敵惑星4(1ステージ)を読み込み29番に登録
-	Draw::LoadImage(L"lv2x3修正.png", 29, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv2x3修正.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"lv4x3修正.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv4x3修正.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"人数不足new.png", 31, TEX_SIZE_512);
@@ -265,7 +265,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"新三すくみ.png", 80, TEX_SIZE_512);
 
 	//lv1x3口のみを81番に登録
-	Draw::LoadImage(L"lv1x3口のみ.png", 81, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv1x3口のみ.png", 81, TEX_SIZE_512);
 
 	//lv4口のみを82番に登録
 	Draw::LoadImage(L"lv4口のみ.png", 82, TEX_SIZE_512);
@@ -283,7 +283,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
 
 	//ボロ画像を読み込み122番に登録
-	Draw::LoadImage(L"ボロ.png", 122, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\ボロ.png", 122, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
