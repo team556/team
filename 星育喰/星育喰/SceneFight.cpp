@@ -66,19 +66,19 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"ポッド3.png", 10, TEX_SIZE_512);
 
 	//11番に登録
-	Draw::LoadImage(L"ポッドボタン赤.png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ポッドボタン赤.png", 11, TEX_SIZE_512);
 
 	//12番に登録
-	Draw::LoadImage(L"ポッドボタン青.png", 12, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ポッドボタン青.png", 12, TEX_SIZE_512);
 
 	//13番に登録
-	Draw::LoadImage(L"ポッドボタン緑.png", 13, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ポッドボタン緑.png", 13, TEX_SIZE_512);
 
 	//14番に登録
-	Draw::LoadImage(L"ポッドボタン白.png", 14, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ポッドボタン白.png", 14, TEX_SIZE_512);
 
 	//15番に登録
-	Draw::LoadImage(L"ミサイル選択.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ミサイル選択.png", 15, TEX_SIZE_512);
 
 	//16番に爆発エフェクトを登録
 	Draw::LoadImage(L"爆発エフェクト.png", 16, TEX_SIZE_512);
@@ -135,25 +135,25 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"汗.png", 34, TEX_SIZE_512);
 
 	//ミサイルキーボード用画像
-	Draw::LoadImage(L"選択ボタンz.png", 35, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\選択ボタンz.png", 35, TEX_SIZE_512);
 
 	//赤ポッドキーボード用画像
-	Draw::LoadImage(L"選択ボタンx.png", 36, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\選択ボタンx.png", 36, TEX_SIZE_512);
 
 	//青ポッドキーボード用画像
-	Draw::LoadImage(L"選択ボタンc.png", 37, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\選択ボタンc.png", 37, TEX_SIZE_512);
 
 	//緑キーボード用画像
-	Draw::LoadImage(L"選択ボタンv.png", 38, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\選択ボタンv.png", 38, TEX_SIZE_512);
 
 	//灰色キーボード用画像
-	Draw::LoadImage(L"選択ボタンb.png", 39, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\選択ボタンb.png", 39, TEX_SIZE_512);
 
 	//スペシャル技キーボード用画像
-	Draw::LoadImage(L"選択ボタンenter.png", 40, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\選択ボタンenter.png", 40, TEX_SIZE_512);
 
 	//白文字のフォントを41番に登録
-	Draw::LoadImage(L"白文字集.png", 41, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 41, TEX_SIZE_512);
 
 	//スタート！文字画像を42番に登録
 	Draw::LoadImage(L"スタート！.png", 42, TEX_SIZE_512);
@@ -165,16 +165,16 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"エネミー.png", 44, TEX_SIZE_512);
 
 	//エクスプロージョン文字画像を45番に登録
-	Draw::LoadImage(L"エクスプロージョン.png", 45, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\エクスプロージョン.png", 45, TEX_SIZE_512);
 
 	//フラクチャーレイ文字画像を46番に登録
-	Draw::LoadImage(L"フラクチャーレイ.png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\フラクチャーレイ.png", 46, TEX_SIZE_512);
 
 	//イモータリティ文字画像を47番に登録
-	Draw::LoadImage(L"イモータリティ.png", 47, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\イモータリティ.png", 47, TEX_SIZE_512);
 
 	//オーバーワーク文字画像を48番に登録
-	Draw::LoadImage(L"オーバーワーク.png", 48, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\オーバーワーク.png", 48, TEX_SIZE_512);
 
 	//リミットブレイク文字画像を49番に登録
 	Draw::LoadImage(L"リミットブレイク.png", 49, TEX_SIZE_512);
@@ -186,43 +186,43 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
 	//クリックでホーム画面文字画像を52番に登録
-	Draw::LoadImage(L"クリックでホーム画面.png", 52, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\クリックでホーム画面.png", 52, TEX_SIZE_512);
 
 	//捕食成功！文字画像を53番に登録
-	Draw::LoadImage(L"捕食成功！.png", 53, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\捕食成功！.png", 53, TEX_SIZE_512);
 
 	//スペシャル技文字画像を54番に登録
-	Draw::LoadImage(L"スペシャル技.png", 54, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\スペシャル技.png", 54, TEX_SIZE_512);
 
 	//惑星HP文字画像を55番に登録
-	Draw::LoadImage(L"惑星HP.png", 55, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星HP.png", 55, TEX_SIZE_512);
 
 	//住民文字画像を56番に登録
 	Draw::LoadImage(L"住民.png", 56, TEX_SIZE_512);
 
 	//資材文字画像を57番に登録
-	Draw::LoadImage(L"資材.png", 57, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\資材.png", 57, TEX_SIZE_512);
 
 	//クリックでタイトルに戻る文字画像を５8番に登録
-	Draw::LoadImage(L"GAME_OVER.png", 58, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\GAME_OVER.png", 58, TEX_SIZE_512);
 
 	//木材文字画像を59番に登録
-	Draw::LoadImage(L"木材文字.png", 59, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\木材文字.png", 59, TEX_SIZE_512);
 
 	//鉄文字画像を60番に登録
-	Draw::LoadImage(L"鉄文字.png", 60, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\鉄文字.png", 60, TEX_SIZE_512);
 
 	//銀文字画像を61番に登録
-	Draw::LoadImage(L"銀文字.png", 61, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\銀文字.png", 61, TEX_SIZE_512);
 
 	//プラスチック文字画像を62番に登録
-	Draw::LoadImage(L"プラスチック文字.png", 62, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\プラスチック文字.png", 62, TEX_SIZE_512);
 
 	//アルミ文字画像を63番に登録
-	Draw::LoadImage(L"アルミ.png", 63, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\アルミ.png", 63, TEX_SIZE_512);
 
 	//ガス文字画像を64番に登録
-	Draw::LoadImage(L"ガス文字.png", 64, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\ガス文字.png", 64, TEX_SIZE_512);
 
 	//赤ポッドレベル1を65番目に登録
 	Draw::LoadImage(L"ポッド赤Lv1.png", 65, TEX_SIZE_512);
@@ -280,7 +280,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"下レーン.png", 120, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
-	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
 	//ボロ画像を読み込み122番に登録
 	Draw::LoadImage(L"img\\惑星\\ボロ.png", 122, TEX_SIZE_512);

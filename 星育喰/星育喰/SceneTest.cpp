@@ -46,7 +46,7 @@ void CSceneTest::InitScene()
 	Draw::LoadImage(L"ポーズ画面背景.png", 5, TEX_SIZE_512);
 
 	//白文字集を読み込み121番に登録
-	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
