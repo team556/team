@@ -38,8 +38,8 @@ void CObjFight::Init()
 	m_mou_r = false;//右クリック
 	m_mou_l = false;//左クリック
 	
-	m_line = 3;		//初期値、
-	m_line_nam = 3; //初期値、無選択
+	m_line = 1;		//初期値、
+	m_line_nam = 1; //初期値、真ん中選択
 
 	m_cnt = 60 * 300;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明

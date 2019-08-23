@@ -38,72 +38,72 @@ void CSceneGameClear::InitScene()
 
 	//↓エンディングのテキスト用
 	//END描画登録
-	Draw::LoadImage(L"END.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\END.png", 2, TEX_SIZE_512);
 
 	//使用した音楽描画登録
-	Draw::LoadImage(L"使用した音楽・効果音サイト.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\使用した音楽・効果音サイト.png", 3, TEX_SIZE_512);
 
 	//エンドロールが早く流れます。描画登録
-	Draw::LoadImage(L"右クリックを押し続けると.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\右クリックを押し続けると.png", 4, TEX_SIZE_512);
 
 	//右クリックを押し続けると
-	Draw::LoadImage(L"エンドロールが早く流れます。.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\エンドロールが早く流れます。.png", 5, TEX_SIZE_512);
 
 	//クリックでタイトルに戻る
-	Draw::LoadImage(L"クリックでタイトルに戻る.png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\クリックでタイトルに戻る.png", 6, TEX_SIZE_512);
 
 	//音人
-	Draw::LoadImage(L"音人.png", 7,TEX_SIZE_512);
-	Draw::LoadImage(L"音人_URL.png", 8, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\音人.png", 7,TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\音人_URL.png", 8, TEX_SIZE_512);
 
 	//魔王魂描画登録
-	Draw::LoadImage(L"魔王魂.png", 9, TEX_SIZE_512);
-	Draw::LoadImage(L"魔王魂_URL_1.png", 10, TEX_SIZE_512);
-	Draw::LoadImage(L"魔王魂_URL_2.png", 11, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\魔王魂.png", 9, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\魔王魂_URL_1.png", 10, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\魔王魂_URL_2.png", 11, TEX_SIZE_512);
 
 	//TAMM描画登録
-	Draw::LoadImage(L"TAM_Music_Factory.png", 12, TEX_SIZE_512);
-	Draw::LoadImage(L"TAM_Music_Factory_URL.png", 13, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\TAM_Music_Factory.png", 12, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\TAM_Music_Factory_URL.png", 13, TEX_SIZE_512);
 
 	//DOVA-SYN DROME描画登録
-	Draw::LoadImage(L"DOVA-SYN_DROME.png", 14, TEX_SIZE_512);
-	Draw::LoadImage(L"DOVA-SYN_DROME_URL.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\DOVA-SYN_DROME.png", 14, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\DOVA-SYN_DROME_URL.png", 15, TEX_SIZE_512);
 
 	//無料効果音で遊ぼう描画登録
-	Draw::LoadImage(L"無料効果音で遊ぼう.png", 16, TEX_SIZE_512);
-	Draw::LoadImage(L"無料効果音で遊ぼう_URL.png", 17, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\無料効果音で遊ぼう.png", 16, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\無料効果音で遊ぼう_URL.png", 17, TEX_SIZE_512);
 
 	//効果音ラボ描画登録
-	Draw::LoadImage(L"効果音ラボ.png", 18, TEX_SIZE_512);
-	Draw::LoadImage(L"効果音ラボ_URL.png", 19, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\効果音ラボ.png", 18, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\効果音ラボ_URL.png", 19, TEX_SIZE_512);
 
 	//OtoLogic
-	Draw::LoadImage(L"OtoLogic.png", 20, TEX_SIZE_512);
-	Draw::LoadImage(L"OtoLogic_URL.png", 21, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\OtoLogic.png", 20, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\OtoLogic_URL.png", 21, TEX_SIZE_512);
 
 	//メンバーの名前描画登録
-	Draw::LoadImage(L"池田.png", 22, TEX_SIZE_512);
-	Draw::LoadImage(L"後庵.png", 23, TEX_SIZE_512);
-	Draw::LoadImage(L"木村.png", 24, TEX_SIZE_512);
-	Draw::LoadImage(L"脇田.png", 25, TEX_SIZE_512);
-	Draw::LoadImage(L"柏崎.png", 26, TEX_SIZE_512);
-	Draw::LoadImage(L"坂田.png", 27, TEX_SIZE_512);
-	Draw::LoadImage(L"諏訪.png", 28, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\池田.png", 22, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\後庵.png", 23, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\木村.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\脇田.png", 25, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\柏崎.png", 26, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\坂田.png", 27, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\諏訪.png", 28, TEX_SIZE_512);
 
 	//使用グラフィック紹介
-	Draw::LoadImage(L"弊社サイト.png", 29, TEX_SIZE_512);//
-	Draw::LoadImage(L"よく飛ばない鳥.png", 30, TEX_SIZE_512);//
-	Draw::LoadImage(L"ピリオドフォントURL.png", 31, TEX_SIZE_512);//
-	Draw::LoadImage(L"フォント.png", 32, TEX_SIZE_512);//
-	Draw::LoadImage(L"ピリオドフォント.png", 33, TEX_SIZE_512);//
-	Draw::LoadImage(L"作者.png", 34, TEX_SIZE_512);//
-	Draw::LoadImage(L"作者名.png", 35, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\弊社サイト.png", 29, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\よく飛ばない鳥.png", 30, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\ピリオドフォントURL.png", 31, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\フォント.png", 32, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\ピリオドフォント.png", 33, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\作者.png", 34, TEX_SIZE_512);//
+	Draw::LoadImage(L"img\\テキスト\\Ending\\作者名.png", 35, TEX_SIZE_512);//
 
 	//制作メンバーの役割紹介
-	Draw::LoadImage(L"総合.png", 36, TEX_SIZE_512);
-	Draw::LoadImage(L"プログラマ.png", 37, TEX_SIZE_512);
-	Draw::LoadImage(L"グラフィッカー.png", 38, TEX_SIZE_512);
-	Draw::LoadImage(L"プランナ.png", 39, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\総合.png", 36, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\プログラマ.png", 37, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\グラフィッカー.png", 38, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\プランナ.png", 39, TEX_SIZE_512);
 
 
 
