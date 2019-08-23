@@ -380,5 +380,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="picon.ico" />
+    <Image Include="picons.ico" />
   </ItemGroup>
 </Project>

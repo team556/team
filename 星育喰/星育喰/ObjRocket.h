@@ -61,6 +61,8 @@ private:
 	float m_a;			//alpha(透明度)
 	int m_bom;			//爆発エフェクトのランダム(0～3)
 
+	int m_bom_num;		//爆発エフェクト登録番号格納用
+
 	bool m_fight;		//ポッド同士の衝突中フラグ(交戦時)
 	int m_stop_cnt;	//止めるまでのカウント用
 	bool m_stop_f;		//座標更新を止めるフラグ

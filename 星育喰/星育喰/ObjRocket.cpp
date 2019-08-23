@@ -313,6 +313,8 @@ void CObjRocket::Init()
 	m_a = 1.0f;
 	m_bom = 0.3f;
 
+	m_bom_num = 16;
+
 
 	//ポッドのHPを決める
 	if (ButtonU == 5)			//ポッドがミサイルの時のみHPを1にする
@@ -648,6 +650,7 @@ void CObjRocket::Action()
 		if (hit->CheckElementHit(ELEMENT_PLAYER) == true && m_type != 0)	//惑星に当たった時かつ敵弾
 		{
 			//惑星と接触しているかどうかを調べる
+			m_bom_num = 83;//爆破エフェクトを青色に変更する
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
@@ -655,6 +658,7 @@ void CObjRocket::Action()
 		else if (hit->CheckElementHit(ELEMENT_ENEMY) == true && m_type == 0)//敵の惑星に当たった時かつ自弾
 		{
 			//惑星と接触しているかどうかを調べる
+			m_bom_num = 83;//爆破エフェクトを青色に変更する
 			m_del = true;
 			hit->SetInvincibility(true);
 			Audio::Start(5);
@@ -1313,7 +1317,8 @@ void CObjRocket::Draw()
 		dst.m_left = -48.0f + m_x;
 		dst.m_right = 80.0f + m_x;
 		dst.m_bottom = 80.0f + m_y;
-		Draw::Draw(16, &m_eff, &dst, c, 0.0f);
+
+		Draw::Draw(m_bom_num, &m_eff, &dst, c, 0.0f);
 	}
 
 	//敵PODの体力とHPを表示する(デバッグ用)
