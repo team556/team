@@ -140,10 +140,10 @@ extern int g_Pod_equip_Lv_achieve;	//ポッドレベルの最大到達度
 extern float g_Player_max_size;		//現在のプレイヤー惑星のサイズ(最大HP)
 extern int g_Special_equipment;		//現在装備中のスペシャル技(0:未装備　1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 extern bool g_Special_mastering[5];	//習得済みのスペシャル技[true:習得済  false:未習得](0:Explosion　1:Fracture_Ray　2:Immortality　3:リミットブレイク　4:ステロイド投与)
-extern int g_Power_num;				//パワー住民数
-extern int g_Defense_num;			//ディフェンス住民数
-extern int g_Speed_num;				//スピード住民数
-extern int g_Balance_num;			//バランス住民数
+extern int g_Power_num;				//パワー(レッド)住民数
+extern int g_Defense_num;			//ディフェンス(ブルー)住民数
+extern int g_Speed_num;				//スピード(グリーン)住民数
+extern int g_Balance_num;			//バランス(ホワイト)住民数
 extern int g_Research_num;			//研究員住民数
 extern int g_Remain_num;			//残り住民数
 extern float g_Recast_time;			//ミサイルのリキャストタイム用
