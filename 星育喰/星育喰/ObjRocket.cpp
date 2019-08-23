@@ -391,7 +391,7 @@ void CObjRocket::Init()
 	switch (g_Challenge_enemy + 1) {
 	case 1:
 		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-		m_Player_damage = 3.0f;		//プレイヤーへのポッドによる攻撃力決定
+		m_Player_damage = 1.5f;		//プレイヤーへのポッドによる攻撃力決定
 		g_P_Planet_damage = m_Player_damage;//ObjPlanetに渡す用
 		break;
 	case 2:
@@ -406,7 +406,7 @@ void CObjRocket::Init()
 		break;
 	case 4:
 		m_Enemy_Pod_Level = 1;		//ポッドレベル設定
-		m_Player_damage = 5.0f;
+		m_Player_damage = 3.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 5:

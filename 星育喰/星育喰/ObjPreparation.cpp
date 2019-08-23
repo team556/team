@@ -1725,7 +1725,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//▽4行目
 		//敵惑星詳細説明画像を125番に登録
-		Draw::LoadImage(L"木材50・鉄30.png", 125, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\素材\\木材50・鉄30.png", 125, TEX_SIZE_512);
 
 		//敵惑星詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[3] = 666.0f;
@@ -1737,7 +1737,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//▽5行目
 		//敵惑星詳細説明画像を126番に登録
-		Draw::LoadImage(L"フラクチャーレイ.png", 126, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\フラクチャーレイ.png", 126, TEX_SIZE_512);
 
 		//敵惑星詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[4] = 952.0f;
@@ -1749,7 +1749,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//▽6行目
 		//敵惑星詳細説明画像を127番に登録
-		Draw::LoadImage(L"ブルー重視.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\ブルー重視.png", 127, TEX_SIZE_512);
 
 		//敵惑星詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[5] = 474.0f;
@@ -1776,7 +1776,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//▽4行目
 		//敵惑星詳細説明画像を125番に登録
-		Draw::LoadImage(L"鉄70・アルミ80.png", 125, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\素材\\鉄70・アルミ80.png", 125, TEX_SIZE_512);
 
 		//敵惑星詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[3] = 762.0f;
@@ -1788,7 +1788,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//▽5行目
 		//敵惑星詳細説明画像を126番に登録
-		Draw::LoadImage(L"イモータリティ.png", 126, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\イモータリティ.png", 126, TEX_SIZE_512);
 
 		//敵惑星詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[4] = 817.0f;
@@ -1800,7 +1800,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 		//▽6行目
 		//敵惑星詳細説明画像を127番に登録
-		Draw::LoadImage(L"グリーン重視.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\グリーン重視.png", 127, TEX_SIZE_512);
 
 		//敵惑星詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[5] = 570.0f;
@@ -1833,7 +1833,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		{
 			//▽4行目
 			//敵惑星詳細説明画像を125番に登録
-			Draw::LoadImage(L"プラスチック40・ガス50.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\素材\\プラスチック40・ガス50.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 1147.0f;
@@ -1845,7 +1845,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽5行目
 			//敵惑星詳細説明画像を126番に登録
-			Draw::LoadImage(L"エクスプロージョン.png", 126, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\エクスプロージョン.png", 126, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[4] = 1072.0f;
@@ -1857,7 +1857,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽6行目
 			//敵惑星詳細説明画像を127番に登録
-			Draw::LoadImage(L"レッド重視.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\レッド重視.png", 127, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[5] = 467.0f;
@@ -1876,7 +1876,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		{
 			//▽4行目
 			//敵惑星詳細説明画像を125番に登録	(画像がなかったため適用してない)
-			Draw::LoadImage(L"銀65・ガス50.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\素材\\銀65・ガス50.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 666.0f;
@@ -1900,7 +1900,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽6行目
 			//敵惑星詳細説明画像を127番に登録
-			Draw::LoadImage(L"ホワイト重視.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\ホワイト重視.png", 127, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[5] = 570.0f;
@@ -1919,7 +1919,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		{
 			//▽4行目
 			//敵惑星詳細説明画像を125番に登録
-			Draw::LoadImage(L"無し.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\無し.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 180.0f;
@@ -1931,7 +1931,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽5行目
 			//敵惑星詳細説明画像を126番に登録
-			Draw::LoadImage(L"攻撃傾向.png", 126, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\攻撃傾向.png", 126, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[4] = 378.0f;
@@ -1943,7 +1943,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽6行目
 			//敵惑星詳細説明画像を127番に登録
-			Draw::LoadImage(L"不明.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\不明.png", 127, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[5] = 186.0f;
@@ -1973,7 +1973,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽4行目
 			//敵惑星詳細説明画像を125番に登録
-			Draw::LoadImage(L"オーバーワーク.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\オーバーワーク.png", 125, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 832.0f;
@@ -1997,7 +1997,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽6行目
 			//敵惑星詳細説明画像を127番に登録
-			Draw::LoadImage(L"ホワイト重視.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\ホワイト重視.png", 127, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[5] = 570.0f;
@@ -2017,7 +2017,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 	//▽以下は各敵惑星関係なく行う共通処理
 	//▽1行目
 	//敵惑星詳細説明画像を122番に登録
-	Draw::LoadImage(L"惑星名.png", 122, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星名.png", 122, TEX_SIZE_512);
 
 	//敵惑星詳細説明画像の切り取り位置を設定
 	m_detail_message_clip_right[0] = 342.0f;
@@ -2029,7 +2029,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 	//▽2行目
 	//敵惑星詳細説明画像を123番に登録
-	Draw::LoadImage(L"難易度.png", 123, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\難易度.png", 123, TEX_SIZE_512);
 
 	//敵惑星詳細説明画像の切り取り位置を設定
 	m_detail_message_clip_right[1] = 367.0f;
@@ -2041,7 +2041,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 	//▽3行目
 	//敵惑星詳細説明画像を124番に登録
-	Draw::LoadImage(L"取得可能な資材・技.png", 124, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\取得可能な資材・技.png", 124, TEX_SIZE_512);
 
 	//敵惑星詳細説明画像の切り取り位置を設定
 	m_detail_message_clip_right[2] = 1117.0f;
@@ -2107,7 +2107,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽3行目
 		//スペシャル技詳細説明画像を124番に登録
-		Draw::LoadImage(L"未習得.png", 124, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\未習得.png", 124, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[2] = 352.0f;
@@ -2148,7 +2148,7 @@ void CObjPreparation::Special_message(int special_id)
 		{
 			//▽2行目
 			//スペシャル技詳細説明画像を123番に登録
-			Draw::LoadImage(L"エクスプロージョン.png", 123, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\エクスプロージョン.png", 123, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[1] = 1072.0f;
@@ -2185,7 +2185,7 @@ void CObjPreparation::Special_message(int special_id)
 		{
 			//▽2行目
 			//スペシャル技詳細説明画像を123番に登録
-			Draw::LoadImage(L"フラクチャーレイ.png", 123, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\フラクチャーレイ.png", 123, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[1] = 952.0f;
@@ -2222,7 +2222,7 @@ void CObjPreparation::Special_message(int special_id)
 		{
 			//▽2行目
 			//スペシャル技詳細説明画像を123番に登録
-			Draw::LoadImage(L"イモータリティ.png", 123, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\イモータリティ.png", 123, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[1] = 817.0f;
@@ -2259,7 +2259,7 @@ void CObjPreparation::Special_message(int special_id)
 		{
 			//▽2行目
 			//スペシャル技詳細説明画像を123番に登録
-			Draw::LoadImage(L"オーバーワーク.png", 123, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\オーバーワーク.png", 123, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[1] = 832.0f;
@@ -2390,7 +2390,7 @@ void CObjPreparation::Special_message(int special_id)
 		{
 			//▽6行目
 			//スペシャル技詳細説明画像を127番に登録
-			Draw::LoadImage(L"装備中.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\装備中.png", 127, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[5] = 352.0f;

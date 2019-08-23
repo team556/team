@@ -337,7 +337,7 @@ void CObjHome::Draw()
 	{
 	case 1:
 		//エクスプロージョン文字画像を読み込み127番に登録
-		Draw::LoadImage(L"エクスプロージョン.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\エクスプロージョン.png", 127, TEX_SIZE_512);
 
 		//切り取り位置を設定する
 		m_special_clip_right = 1072.0f;
@@ -350,7 +350,7 @@ void CObjHome::Draw()
 		break;
 	case 2:
 		//フラクチャーレイ文字画像を読み込み127番に登録
-		Draw::LoadImage(L"フラクチャーレイ.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\フラクチャーレイ.png", 127, TEX_SIZE_512);
 
 		//切り取り位置を設定する
 		m_special_clip_right = 952.0f;
@@ -363,7 +363,7 @@ void CObjHome::Draw()
 		break;
 	case 3:
 		//イモータリティ文字画像を読み込み127番に登録
-		Draw::LoadImage(L"イモータリティ.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\イモータリティ.png", 127, TEX_SIZE_512);
 
 		//切り取り位置を設定する
 		m_special_clip_right = 817.0f;
@@ -376,7 +376,7 @@ void CObjHome::Draw()
 		break;
 	case 4:
 		//オーバーワーク文字画像を読み込み127番に登録
-		Draw::LoadImage(L"オーバーワーク.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\オーバーワーク.png", 127, TEX_SIZE_512);
 
 		//切り取り位置を設定する
 		m_special_clip_right = 832.0f;
@@ -402,7 +402,7 @@ void CObjHome::Draw()
 		break;
 	default:
 		//未装備文字画像を読み込み127番に登録
-		Draw::LoadImage(L"未装備.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\未装備.png", 127, TEX_SIZE_512);
 
 		//切り取り位置を設定する
 		m_special_clip_right = 367.0f;

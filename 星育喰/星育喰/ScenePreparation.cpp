@@ -123,22 +123,22 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"メッセージウィンドウ.png", 55, TEX_SIZE_512);
 
 	//戻るアイコンを読み込み56番に登録
-	Draw::LoadImage(L"戻る.png", 56, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\戻る.png", 56, TEX_SIZE_512);
 
 	//スペシャル技アイコン(Explosion)を読み込み57番に登録
-	Draw::LoadImage(L"スペシャル技1.png", 57, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技1.png", 57, TEX_SIZE_512);
 
 	//スペシャル技アイコン(Fracture_Ray)を読み込み58番に登録
-	Draw::LoadImage(L"スペシャル技2.png", 58, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技2.png", 58, TEX_SIZE_512);
 
 	//スペシャル技アイコン(Immortality)を読み込み59番に登録
-	Draw::LoadImage(L"スペシャル技3.png", 59, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技3.png", 59, TEX_SIZE_512);
 
 	//スペシャル技アイコン(リミットブレイク)を読み込み60番に登録
-	Draw::LoadImage(L"スペシャル技4.png", 60, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技4.png", 60, TEX_SIZE_512);
 
 	//スペシャル技アイコン(ステロイド投与)を読み込み61番に登録
-	Draw::LoadImage(L"スペシャル技5.png", 61, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技5.png", 61, TEX_SIZE_512);
 
 	//スペシャル技選択ウインドウを読み込み62番に登録
 	Draw::LoadImage(L"スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);
@@ -162,40 +162,40 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"スペシャル技選択.png", 68, TEX_SIZE_512);
 
 	//あと3体文字画像読み込み69番に登録
-	Draw::LoadImage(L"あと3体.png", 69, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\あと3体.png", 69, TEX_SIZE_512);
 
 	//あと2体文字画像読み込み70番に登録
-	Draw::LoadImage(L"あと2体.png", 70, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\あと2体.png", 70, TEX_SIZE_512);
 
 	//あと1体文字画像読み込み71番に登録
-	Draw::LoadImage(L"あと1体.png", 71, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\あと1体.png", 71, TEX_SIZE_512);
 
 	//あと0体文字画像読み込み72番に登録
-	Draw::LoadImage(L"あと0体.png", 72, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\あと0体.png", 72, TEX_SIZE_512);
 
 	//★画像読み込み73番に登録
 	Draw::LoadImage(L"★.png", 73, TEX_SIZE_512);
 
 	//測定不能文字画像74番に登録
-	Draw::LoadImage(L"測定不能.png", 74, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\測定不能.png", 74, TEX_SIZE_512);
 
 	//ボロボロン文字画像75番に登録
 	Draw::LoadImage(L"ボロボロン.png", 75, TEX_SIZE_512);
 
 	//O阪魂文字画像76番に登録
-	Draw::LoadImage(L"O阪魂.png", 76, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\惑星\\O阪魂.png", 76, TEX_SIZE_512);
 
 	//再星文字画像77番に登録
-	Draw::LoadImage(L"再星.png", 77, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\惑星\\再星.png", 77, TEX_SIZE_512);
 
 	//アモイ文字画像78番に登録
-	Draw::LoadImage(L"アモイ.png", 78, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\惑星\\アモイ.png", 78, TEX_SIZE_512);
 
 	//コワモーテ文字画像79番に登録
-	Draw::LoadImage(L"コワモーテ.png", 79, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\惑星\\コワモーテ.png", 79, TEX_SIZE_512);
 
 	//アマテラス文字画像80番に登録
-	Draw::LoadImage(L"アマテラス.png", 80, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\惑星\\アマテラス.png", 80, TEX_SIZE_512);
 
 	//ウィンドウ画像89番に登録
 	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
@@ -207,7 +207,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"ポーズ画面背景.png", 91, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
-	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
 	//詳細説明画像を読み込む為に、
 	//読み込み番号122～127番を使用しているので

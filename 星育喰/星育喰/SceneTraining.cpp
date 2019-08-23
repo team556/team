@@ -96,7 +96,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"育成画面Lv1.png", 0, TEX_SIZE_512);
 
 	//戻るアイコンを読み込み1番に登録
-	Draw::LoadImage(L"戻る.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\戻る.png", 1, TEX_SIZE_512);
 
 	//兵舎Lv1を読み込み2番に登録
 	Draw::LoadImage(L"兵舎Lv1.png", 2, TEX_SIZE_512);
@@ -159,13 +159,13 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"メッセージウィンドウ.png", 21, TEX_SIZE_512);
 
 	//矢印を読み込み22番に登録
-	Draw::LoadImage(L"レベルアップ.png", 22, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\レベルアップ.png", 22, TEX_SIZE_512);
 
 	//住民振り分けUPを読み込み23番に登録
-	Draw::LoadImage(L"戦上01.png", 23, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\戦上01.png", 23, TEX_SIZE_512);
 
 	//住民振り分けDOWNを読み込み24番に登録
-	Draw::LoadImage(L"戦下.png", 24, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\戦下.png", 24, TEX_SIZE_512);
 
 	//ミサイルメニューボタンを読み込み25番に登録
 	Draw::LoadImage(L"ミサイルメニューボタン.png", 25, TEX_SIZE_512);
@@ -213,19 +213,19 @@ void CSceneTraining::InitScene()
 	//Draw::LoadImage(L"レアメタル.png", 39, TEX_SIZE_512);
 
 	//スペシャル技1画像40番に登録
-	Draw::LoadImage(L"スペシャル技1.png", 40, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技1.png", 40, TEX_SIZE_512);
 
 	//スペシャル技2画像41番に登録
-	Draw::LoadImage(L"スペシャル技2.png", 41, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技2.png", 41, TEX_SIZE_512);
 
 	//スペシャル技3画像42番に登録
-	Draw::LoadImage(L"スペシャル技3.png", 42, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技3.png", 42, TEX_SIZE_512);
 
 	//スペシャル技4画像43番に登録
-	Draw::LoadImage(L"スペシャル技4.png", 43, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技4.png", 43, TEX_SIZE_512);
 
 	//スペシャル技5画像44番に登録
-	Draw::LoadImage(L"スペシャル技5.png", 44, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技5.png", 44, TEX_SIZE_512);
 
 	//スペシャル技メッセージウィンドウ画像45番に登録
 	Draw::LoadImage(L"スペシャル技メッセージウィンドウ.png", 45, TEX_SIZE_512);
@@ -294,13 +294,13 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"LvUP条件　所持必要.png", 66, TEX_SIZE_512);
 
 	//惑星HP文字画像を読み込み67番に登録
-	Draw::LoadImage(L"惑星HP.png", 67, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星HP.png", 67, TEX_SIZE_512);
 
 	////50音文字画像読み込み68番に登録
 	//Draw::LoadImage(L"", 68, TEX_SIZE_512);
 
 	//鉄文字画像読み込み69番に登録
-	Draw::LoadImage(L"鉄文字.png", 69, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\鉄文字.png", 69, TEX_SIZE_512);
 
 	//LvUP可能!文字画像読み込み70番に登録
 	Draw::LoadImage(L"LvUP可能!.png", 70, TEX_SIZE_512);
@@ -360,19 +360,19 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"倉庫文字.png", 88, TEX_SIZE_512);
 
 	//木材文字画像を読み込み89番に登録
-	Draw::LoadImage(L"木材文字.png", 89, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\木材文字.png", 89, TEX_SIZE_512);
 
 	//銀文字画像を読み込み90番に登録
-	Draw::LoadImage(L"銀文字.png", 90, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\銀文字.png", 90, TEX_SIZE_512);
 
 	//プラスチック文字画像を読み込み91番に登録
-	Draw::LoadImage(L"プラスチック文字.png", 91, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\プラスチック文字.png", 91, TEX_SIZE_512);
 
 	//アルミニウム文字画像を読み込み92番に登録
-	Draw::LoadImage(L"アルミ.png", 92, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\アルミ.png", 92, TEX_SIZE_512);
 
 	//ガス文字画像を読み込み93番に登録
-	Draw::LoadImage(L"ガス文字.png", 93, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\ガス文字.png", 93, TEX_SIZE_512);
 
 	//残り住民数がいません文字画像を読み込み94番に登録
 	Draw::LoadImage(L"残り住民数がいません.png", 94, TEX_SIZE_512);
@@ -408,7 +408,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"ポッド5機の攻撃力UP.png", 104, TEX_SIZE_512);
 
 	//未装備の文字画像(装備部分だけ)を読み込み105番に登録
-	Draw::LoadImage(L"未装備.png", 105, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\未装備.png", 105, TEX_SIZE_512);
 
 	//※惑星HPが0以下になる場合LvUPは出来ません文字画像を読み込み106番に登録
 	Draw::LoadImage(L"※惑星HPが0以下になる場合LvUPは出来ません.png", 106, TEX_SIZE_512);
@@ -426,16 +426,16 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"兵舎レベルUP.png", 117, TEX_SIZE_512);
 
 	//研究所住人UP文字画像を読み込み118番に登録
-	Draw::LoadImage(L"研下.png", 118, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\研下.png", 118, TEX_SIZE_512);
 
 	//研究所住人UP文字画像を読み込み119番に登録
-	Draw::LoadImage(L"研上01.png", 119, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\研上01.png", 119, TEX_SIZE_512);
 
 	//黒文字画像を読み込み120番に登録
-	Draw::LoadImage(L"黒文字集.png", 120, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\黒文字集.png", 120, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
-	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
 	//Sを読み込み122番に登録
 	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
@@ -510,10 +510,10 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"コア文字画像.png", 146, TEX_SIZE_512);
 
 	//資材文字画像を読み込み147番に登録
-	Draw::LoadImage(L"資材.png", 147, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\素材\\資材.png", 147, TEX_SIZE_512);
 
 	//スペシャル技文字画像を読み込み148番に登録
-	Draw::LoadImage(L"スペシャル技.png", 148, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\スペシャル技.png", 148, TEX_SIZE_512);
 
 	//ポッド文字画像を読み込み149番に登録
 	Draw::LoadImage(L"ポッド.png", 149, TEX_SIZE_512);
@@ -525,13 +525,13 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"青住民.png", 151, TEX_SIZE_512);
 
 	//緑住民画像を読み込み152番に登録
-	Draw::LoadImage(L"緑住民.png", 152, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\緑住民.png", 152, TEX_SIZE_512);
 
 	//白住民画像を読み込み153番に登録
-	Draw::LoadImage(L"白住民.png", 153, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\白住民.png", 153, TEX_SIZE_512);
 
 	//白研究員文字画像を読み込み154番に登録
-	Draw::LoadImage(L"白研究員.png", 154, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\白研究員.png", 154, TEX_SIZE_512);
 
 	//メッセージウィンドウ白1画像を読み込み155番に登録
 	Draw::LoadImage(L"メッセージウィンドウ白1.png", 155, TEX_SIZE_512);
