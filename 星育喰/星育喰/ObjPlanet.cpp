@@ -19,7 +19,7 @@ using namespace GameL;
 #define ONE_DELAY (150)
 #define SEC_DELAY (120)
 #define THI_DELAY (135)
-#define FOU_DELAY (120)
+#define FOU_DELAY (180)
 #define FIV_DELAY (120)
 #define SIX_DELAY (200)
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
