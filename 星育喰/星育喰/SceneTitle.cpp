@@ -60,7 +60,7 @@ void CSceneTitle::InitScene()
 	Draw::LoadImage(L"クリックでスタート.png", 53, TEX_SIZE_512);
 
 	//データ消去ボタン画像を54番に登録
-	Draw::LoadImage(L"データ消去ボタン.png", 54, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\データ消去ボタン.png", 54, TEX_SIZE_512);
 
 	//はい文字画像読み込み55番に登録
 	Draw::LoadImage(L"はい.png", 55, TEX_SIZE_512);
@@ -72,7 +72,7 @@ void CSceneTitle::InitScene()
 	Draw::LoadImage(L"ウインドウ01.png", 57, TEX_SIZE_512);
 
 	//白文字集を読み込み121番に登録
-	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
 	//float v = Audio::VolumeMaster(0);
 	//v = Audio::VolumeMaster((0.0 - v));

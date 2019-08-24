@@ -48,13 +48,13 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
 
 	//育アイコンを読み込み1番に登録
-	Draw::LoadImage(L"育２.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\育２.png", 1, TEX_SIZE_512);
 
 	//喰アイコンを読み込み2番に登録
-	Draw::LoadImage(L"喰２.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\喰２.png", 2, TEX_SIZE_512);
 
 	//戻るを読み込み3番に登録
-	Draw::LoadImage(L"戻る.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\戻る.png", 3, TEX_SIZE_512);
 
 	//ヘルプボタンを読み込み4番に登録
 	Draw::LoadImage(L"ヘルプボタン.png", 4, TEX_SIZE_512);
@@ -89,19 +89,19 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"img\\惑星\\P惑星_Lv3new.png", 52, TEX_SIZE_512);
 
 	//惑星HP文字画像を読み込み53番に登録
-	Draw::LoadImage(L"惑星HP.png", 53, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星HP.png", 53, TEX_SIZE_512);
 
 	//装備中のスペシャル技文字画像を読み込み54番に登録
 	Draw::LoadImage(L"装備中のスペシャル技.png", 54, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
-	Draw::LoadImage(L"白文字集.png", 121, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 	
 	//現在装備中のスペシャル技文字画像全てを読み込む為に、
 	//読み込み番号127番を使用しているので使わないように！
 
 	//惑星名を読み込み128番に登録
-	Draw::LoadImage(L"惑星名.png", 128, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星名.png", 128, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);

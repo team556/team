@@ -3249,7 +3249,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 	{
 		//▽最下部メッセージ画像設定
 		//装備中文字画像を読み込み127番に登録
-		Draw::LoadImage(L"装備中.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\装備中.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 		//切り取り位置を設定する
 		m_message_clip_right = 352.0f;

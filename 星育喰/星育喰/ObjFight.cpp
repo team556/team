@@ -38,8 +38,8 @@ void CObjFight::Init()
 	m_mou_r = false;//右クリック
 	m_mou_l = false;//左クリック
 	
-	m_line = 3;		//初期値、
-	m_line_nam = 3; //初期値、無選択
+	m_line = 1;		//初期値、
+	m_line_nam = 1; //初期値、真ん中選択
 
 	m_cnt = 60 * 300;//戦闘時間(60 * X = X秒)
 	m_a = 1;		//初期値、不透明
@@ -338,7 +338,7 @@ void CObjFight::Action()
 		if (g_Challenge_enemy == 5)
 		{
 			//エラーを回避するために木材を0個獲得するようにしている
-			CObjFightClear* crer = new CObjFightClear(5000, 20, L"なし", &g_Wood_num, 0, 4);
+			CObjFightClear* crer = new CObjFightClear(10000 - (g_Power_num + g_Defense_num + g_Speed_num + g_Balance_num), 20, L"なし", &g_Wood_num, 0, 4);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 	}
