@@ -16,11 +16,11 @@
 using namespace GameL;
 
 //マクロ
-#define ONE_DELAY (150)
-#define SEC_DELAY (120)
-#define THI_DELAY (135)
-#define FOU_DELAY (120)
-#define FIV_DELAY (120)
+#define ONE_DELAY (170)
+#define SEC_DELAY (140)
+#define THI_DELAY (155)
+#define FOU_DELAY (140)
+#define FIV_DELAY (140)
 #define SIX_DELAY (200)
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
@@ -112,35 +112,40 @@ void CObjPlanet::Init()
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
 	//それに加え各惑星のHP、画像番号等も設定している。
-	if (m_type == 0) {		//プレイヤー惑星
+	if (m_type == 0)//プレイヤー惑星
+	{		
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
 		m_img_nam = 3 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1;
 	}
-	else if (m_type == 1) {	//左から1番目の敵惑星
+	else if (m_type == 1)//左から1番目の敵惑星(たこ焼き)
+	{	
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 26;
 		m_size = 100;
 		m_siz_max = 100;
 	}
-	else if (m_type == 2) {	//左から2番目の敵惑星
+	else if (m_type == 2)//左から2番目の敵惑星(モアイ)
+	{	
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 27;
 		m_size = 270;
 		m_siz_max = 270;
 	}
-	else if (m_type == 3) { //左から3番目の敵惑星
+	else if (m_type == 3)//左から3番目の敵惑星(コワモーテ)
+	{ 
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 28;
 		m_size = 360;
 		m_siz_max = 360;
 	}
-	else if (m_type == 4) { //左から4番目の敵惑星
+	else if (m_type == 4)//左から4番目の敵惑星(再星)
+	{ 
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 29;
 		m_size = 200;
 		m_siz_max = 200;
 	}
-	else  if(m_type == 5)   //ボス惑星
+	else  if(m_type == 5)   //ボス惑星(アマテラス)
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;

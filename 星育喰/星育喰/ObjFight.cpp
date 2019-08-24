@@ -304,37 +304,37 @@ void CObjFight::Action()
 		// スペシャル技:  獲得できるスペシャル技。以下の数字を入力すると、その値に対応するスペシャル技を取得出来ます。※獲得できない場合は0を入力してください。
 		//	(1:Explosion　2:Fracture_Ray　3:Immortality　4:リミットブレイク　5:ステロイド投与)
 
-		//左から１番目
+		//左から１番目(たこ焼き)
 		if (g_Challenge_enemy == 0)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(5500, 200, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
+			CObjFightClear* crer = new CObjFightClear(5500, 240, L"木材", &g_Wood_num, 50, L"鉄", &g_Iron_num, 70, 2);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		//左から２番目
+		//左から２番目(モアイ)
 		if (g_Challenge_enemy == 1)									
 		{				
-			CObjFightClear* crer = new CObjFightClear(10000, 350, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
+			CObjFightClear* crer = new CObjFightClear(10000, 430, L"プラスチック",  &g_Plastic_num, 40, L"ガス", &g_gus_num, 50, 1);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		//左から３番目
+		//左から３番目(コワモーテ)
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(12000, 400, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
+			CObjFightClear* crer = new CObjFightClear(12000, 500, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		//左から４番目
+		//左から４番目(再星)
 		if (g_Challenge_enemy == 3)									
 		{
-			CObjFightClear* crer = new CObjFightClear(8000, 300, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
+			CObjFightClear* crer = new CObjFightClear(8000, 340, L"鉄", &g_Iron_num, 30, L"アルミ", &g_Aluminum_num, 80, 3);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		//ボス
+		//ボス(アマテラス)
 		if (g_Challenge_enemy == 4)									
 		{
 			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 80, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
-		//チュートリアル
+		//チュートリアル(チュートリアル惑星)
 		if (g_Challenge_enemy == 5)
 		{
 			//エラーを回避するために木材を0個獲得するようにしている

@@ -104,6 +104,8 @@ void CObjFightClear::Init()
 		m_Game_Clear_f = true;
 	}
 
+	//m_Game_Clear_f = true;//debag
+
 	//¥Šl“¾‚µ‚½‚à‚Ì‚ğƒOƒ[ƒoƒ‹•Ï”‚É‘ã“ü‚·‚é
 	g_Remain_num += m_people;		//Šl“¾Z–¯”‚ğ‰ÁZ
 	g_Player_max_size += m_large;	//Šl“¾ƒTƒCƒY(HP)”‚ğ‰ÁZ
@@ -1151,14 +1153,14 @@ void CObjFightClear::Draw()
 	{
 		//¥Thank You for Playing!!!
 		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 2875.0f;
-		src.m_bottom = 375.0f;
+		src.m_left = 297.0f;
+		src.m_right = 899.0f;
+		src.m_bottom = 100.0f;
 
 		dst.m_top = 50.0f;
 		dst.m_left = 50.0f;
-		dst.m_right = 1150.0f;
-		dst.m_bottom = 650.0f;
+		dst.m_right = 1110.0f;
+		dst.m_bottom = 224.0f;
 		Draw::Draw(187, &src, &dst, clear, 0.0f);
 	}	
 }
