@@ -104,8 +104,6 @@ void CObjFightClear::Init()
 		m_Game_Clear_f = true;
 	}
 
-	//m_Game_Clear_f = true;//debag
-
 	//▼獲得したものをグローバル変数に代入する
 	g_Remain_num += m_people;		//獲得住民数を加算
 	g_Player_max_size += m_large;	//獲得サイズ(HP)数を加算
@@ -1151,17 +1149,53 @@ void CObjFightClear::Draw()
 	//ゲームクリア時のみ表示
 	if (g_tutorial_progress == 31)
 	{
-		//▼Thank You for Playing!!!
+		//▼ThankYou
 		src.m_top = 0.0f;
-		src.m_left = 297.0f;
-		src.m_right = 899.0f;
-		src.m_bottom = 100.0f;
+		src.m_left = 2.0f;
+		src.m_right = 500.0f;
+		src.m_bottom = 84.0f;
 
-		dst.m_top = 50.0f;
-		dst.m_left = 50.0f;
-		dst.m_right = 1110.0f;
-		dst.m_bottom = 224.0f;
+		dst.m_top = 25.0f;
+		dst.m_left = 325.0f;
+		dst.m_right = 875.0f;
+		dst.m_bottom = 100.0f;
 		Draw::Draw(187, &src, &dst, clear, 0.0f);
+
+		//▼for
+		src.m_top = 0.0f;
+		src.m_left = 505.0f;
+		src.m_right = 650.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = 150.0f;
+		dst.m_left = 530.0f;
+		dst.m_right = 690.0f;
+		dst.m_bottom = 225.0f;
+		Draw::Draw(187, &src, &dst, clear, 0.0f);
+
+		//▼Playing!!!
+		src.m_top = 0.0f;
+		src.m_left = 655.0f;
+		src.m_right = 1080.0f;
+		src.m_bottom = 84.0f;
+
+		dst.m_top = 275.0f;
+		dst.m_left = 350.0f;
+		dst.m_right = 850.0f;
+		dst.m_bottom = 350.0f;
+		Draw::Draw(187, &src, &dst, clear, 0.0f);
+
+		//▼このゲームを遊んでくれてありがとうございます文字画像
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1140.0f;
+		src.m_bottom = 214.0f;
+
+		dst.m_top = 410.0f;
+		dst.m_left = 100.0f;
+		dst.m_right = 1100.0f;
+		dst.m_bottom = 670.0f;
+		Draw::Draw(188, &src, &dst, clear, 0.0f);
 	}	
 }
 

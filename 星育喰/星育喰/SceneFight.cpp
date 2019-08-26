@@ -288,6 +288,15 @@ void CSceneFight::InitScene()
 	//ボロ画像を読み込み122番に登録
 	Draw::LoadImage(L"img\\惑星\\ボロ.png", 122, TEX_SIZE_512);
 
+	//ポッドレーザー読み込み123番に登録
+	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);
+
+	//ThankYouforPlaying!!!文字画像読み込み187番に登録
+	Draw::LoadImage(L"img\\テキスト\\Ending\\ThankYouforPlaying!!!文字画像.png", 187, TEX_SIZE_512);
+
+	//このゲームを遊んでくれてありがとうございます文字画像読み込み188番に登録
+	Draw::LoadImage(L"img\\テキスト\\Ending\\このゲームを遊んでくれてありがとうございます文字画像.png", 188, TEX_SIZE_512);
+
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
 
@@ -297,11 +306,7 @@ void CSceneFight::InitScene()
 	//矢印画像を読み込み191番に登録
 	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
 
-	//Thank You for Playing!!!読み込み187番に登録
-	Draw::LoadImage(L"Thank You for Playing!!!.png", 187, TEX_SIZE_512);
 
-	//ポッドレーザー読み込み123番に登録
-	Draw::LoadImage(L"ポッドレーザー.png", 123, TEX_SIZE_512);
 
 	////プレイヤー惑星(クリア画面用)を読み込み34番に登録
 	//Draw::LoadImage(L"プレイヤー惑星.png", 34, TEX_SIZE_512);
