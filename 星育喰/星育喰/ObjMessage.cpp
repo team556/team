@@ -1466,8 +1466,11 @@ void CObjMessage::Action()
 			m_key_f = true;//キーフラグを立てる
 			m_reminder_f = false;//クリック催促画像非表示
 
-			//選択音
-			Audio::Start(1);
+			if (m_skip_f == false)
+			{
+				//選択音
+				Audio::Start(1);
+			}
 		}
 
 		return;
@@ -1587,8 +1590,11 @@ void CObjMessage::Action()
 			m_reminder_f = false;//クリック催促画像非表示
 			m_progress++;//メッセージ進行度を増加させ、次のメッセージへと移行。
 
-			//選択音
-			Audio::Start(1);
+			if (m_skip_f == false)
+			{
+				//選択音
+				Audio::Start(1);
+			}
 		}
 	}
 	else if (m_time <= 0 || m_fast_f == true)
@@ -1684,6 +1690,9 @@ void CObjMessage::Action()
 	else if (Input::GetVKey(VK_CONTROL) == true)
 	{
 		m_skip_f = true;
+
+		//選択音
+		Audio::Start(1);
 	}
 }
 

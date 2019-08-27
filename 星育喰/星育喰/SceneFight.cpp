@@ -183,13 +183,13 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"発動！.png", 50, TEX_SIZE_512);
 
 	//クリックでタイトルに戻る文字画像を５１番に登録
-	Draw::LoadImage(L"クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\クリックでタイトルに戻る.png", 51, TEX_SIZE_512);
 
 	//クリックでホーム画面文字画像を52番に登録
-	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\クリックでホーム画面.png", 52, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘画面\\クリックでホーム画面.png", 52, TEX_SIZE_512);
 
 	//捕食成功！文字画像を53番に登録
-	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\捕食成功！.png", 53, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘画面\\捕食成功！.png", 53, TEX_SIZE_512);
 
 	//スペシャル技文字画像を54番に登録
 	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\スペシャル技.png", 54, TEX_SIZE_512);
@@ -204,7 +204,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\素材\\資材.png", 57, TEX_SIZE_512);
 
 	//クリックでタイトルに戻る文字画像を５8番に登録
-	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\GAME_OVER.png", 58, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘画面\\GAME_OVER.png", 58, TEX_SIZE_512);
 
 	//木材文字画像を59番に登録
 	Draw::LoadImage(L"img\\テキスト\\素材\\木材文字.png", 59, TEX_SIZE_512);

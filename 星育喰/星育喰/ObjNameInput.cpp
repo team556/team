@@ -177,7 +177,7 @@ void CObjNameInput::Action()
 			g_tutorial_progress = 17;//チュートリアルスキップの値とする。
 
 			//ボロボロン報酬をスキップする為、受け取っておく処理
-			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
+			g_Remain_num += 4000;//(最初の合計住民数は10000になるようにしている)
 			g_Player_max_size += 20;//HP取得
 			g_Special_mastering[3] = true;//オーバーワーク取得
 
