@@ -106,8 +106,15 @@ void CSceneGameClear::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\Ending\\プランナ.png", 39, TEX_SIZE_512);
 
 
+	//先生の名前
+	Draw::LoadImage(L"img\\テキスト\\Ending\\監督文字画像.png", 40, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\木村先生文字画像.png", 41, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\田中先生文字画像.png", 42, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\脇坂先生文字画像.png", 43, TEX_SIZE_512);
 
-
+	//学校名
+	Draw::LoadImage(L"img\\テキスト\\Ending\\学校名文字画像.png", 44, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\Ending\\近畿コンピュータ電子専門学校文字画像.png", 45, TEX_SIZE_512);
 
 
 	
