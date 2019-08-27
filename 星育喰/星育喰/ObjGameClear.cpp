@@ -106,7 +106,7 @@ void CObjGameClear::Action()
 	}
 
 	//23番目スクロールに登録された画像が下から上に流れてきたら
-	if (m_cy[79]+125.0f <= 0.0f)
+	if (m_cy[95]+125.0f <= 0.0f)
 	{
 		m_y_vec = 0;	//スクロールを止める
 		m_end_f = true;
@@ -551,16 +551,89 @@ void CObjGameClear::Draw()
 	dst.m_bottom = 280.0f + m_cy[63];
 	Draw::Draw(25, &src, &dst, w, 0.0);
 
+	//監督文字画像描画
+	src.m_top = 1.0f;
+	src.m_left = 0.0f;
+	src.m_right = 186.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 300.0f + m_cy[64];
+	dst.m_left = 562.5f;
+	dst.m_right = 637.5f;
+	dst.m_bottom = 310.0f + m_cy[65];
+	Draw::Draw(40, &src, &dst, w, 0.0);
+
+	//木村先生文字画像描画
+	src.m_top = 1.0f;
+	src.m_left = 0.0f;
+	src.m_right = 666.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 310.0f + m_cy[66];
+	dst.m_left = 512.5f;
+	dst.m_right = 687.5f;
+	dst.m_bottom = 310.0f + m_cy[67];
+	Draw::Draw(41, &src, &dst, w, 0.0);
+
+	//田中先生文字画像描画
+	src.m_top = 1.0f;
+	src.m_left = 0.0f;
+	src.m_right = 666.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 320.0f + m_cy[68];
+	dst.m_left = 512.5f;
+	dst.m_right = 687.5f;
+	dst.m_bottom = 320.0f + m_cy[69];
+	Draw::Draw(42, &src, &dst, w, 0.0);
+
+	//脇坂先生文字画像描画
+	src.m_top = 1.0f;
+	src.m_left = 0.0f;
+	src.m_right = 666.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 330.0f + m_cy[70];
+	dst.m_left = 512.5f;
+	dst.m_right = 687.5f;
+	dst.m_bottom = 330.0f + m_cy[71];
+	Draw::Draw(43, &src, &dst, w, 0.0);
+
+	//学校名文字画像描画
+	src.m_top = 1.0f;
+	src.m_left = 0.0f;
+	src.m_right = 282.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 360.0f + m_cy[72];
+	dst.m_left = 550.0f;
+	dst.m_right = 650.0f;
+	dst.m_bottom = 370.0f + m_cy[73];
+	Draw::Draw(44, &src, &dst, w, 0.0);
+
+	//近畿コンピュータ電子専門学校文字画像描画
+	src.m_top = 1.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1338.0f;
+	src.m_bottom = 90.0f;
+
+	dst.m_top = 380.0f + m_cy[74];
+	dst.m_left = 425.0f;
+	dst.m_right = 775.0f;
+	dst.m_bottom = 390.0f + m_cy[75];
+	Draw::Draw(45, &src, &dst, w, 0.0);
+
+
 	//END描画
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 269.0f;
 	src.m_bottom = 117.0f;
 
-	dst.m_top = 265.0f + m_cy[71];
+	dst.m_top = 390.0f + m_cy[80];
 	dst.m_left = 525.0f;
 	dst.m_right = 675.0f;
-	dst.m_bottom = 290.0f + m_cy[72];
+	dst.m_bottom = 410.0f + m_cy[81];
 	Draw::Draw(2, &src, &dst, w, 0.0);
 
 	//タイトルロゴ描画
@@ -569,14 +642,12 @@ void CObjGameClear::Draw()
 	src.m_right = 1557.0f;
 	src.m_bottom = 929.0f;
 
-	dst.m_top = 275.0f + m_cy[78];
+	dst.m_top = 400.0f + m_cy[85];
 	dst.m_left = 216.0f;
 	dst.m_right = 935.0f;
-	dst.m_bottom = 725.0f + m_cy[79];
+	dst.m_bottom = 850.0f + m_cy[86];
 	Draw::Draw(1, &src, &dst, w, 0.0);
 	
-
-
 	//右クリックをすると描画
 	src.m_top = 3.0f;
 	src.m_left = 3.0f;
