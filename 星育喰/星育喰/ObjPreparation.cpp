@@ -563,7 +563,7 @@ void CObjPreparation::Action()
 		}
 
 		//チュートリアル惑星[チュートリアル惑星出現時のみ選択可能]
-		else if (426 < m_mou_x && m_mou_x < 767 && 123 < m_mou_y && m_mou_y < 460 && m_destroy_count == 4 && g_tutorial_progress == 1)
+		else if (426 < m_mou_x && m_mou_x < 767 && 133 < m_mou_y && m_mou_y < 350 && m_destroy_count == 4 && g_tutorial_progress == 1)
 		{
 			//▼敵惑星詳細説明を表示
 			Enemy_message(5);//敵惑星詳細説明表示関数を呼び出す
@@ -649,9 +649,12 @@ void CObjPreparation::Action()
 				{
 					m_is_operatable = true;
 
-					//ObjHelpに操作可能を伝える
-					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-					help->SetOperatable(true);
+					if (g_tutorial_progress != 15)
+					{
+						//ObjHelpに操作可能を伝える
+						CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+						help->SetOperatable(true);
+					}
 
 					if (g_tutorial_progress <= 15)
 					{
@@ -676,8 +679,13 @@ void CObjPreparation::Action()
 				//警告メッセージサイズ、位置を
 				//演出終了後のものに即座に変更する。
 				
+				//チュートリアル惑星時の処理
+				if (g_tutorial_progress == 1)
+				{
+					m_warning_message_x[0] = 16.25f;
+				}
 				//ボス惑星出現時の処理
-				if (m_destroy_count == 4)
+				else if (m_destroy_count == 4)
 				{
 					m_warning_message_x[0] = 97.2f;
 				}
@@ -856,10 +864,13 @@ void CObjPreparation::Action()
 		{
 			m_is_operatable = true;
 
-			//ObjHelpに操作可能を伝える
-			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-			help->SetOperatable(true);
-
+			if (g_tutorial_progress != 15)
+			{
+				//ObjHelpに操作可能を伝える
+				CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+				help->SetOperatable(true);
+			}
+			
 			if (g_tutorial_progress <= 15)
 			{
 				g_is_operatable = false;//操作不可に
@@ -876,8 +887,13 @@ void CObjPreparation::Action()
 		//警告メッセージサイズを徐々に小さくしながら、
 		//画面上部へと警告メッセージを移動させる
 
+		//チュートリアル惑星時の処理
+		if (g_tutorial_progress == 1)
+		{
+			m_warning_message_x[0] += 3.25f;
+		}
 		//ボス惑星出現時の処理
-		if (m_destroy_count == 4)
+		else if (m_destroy_count == 4)
 		{
 			m_warning_message_x[0] += 5.05f;
 		}
@@ -1137,6 +1153,8 @@ void CObjPreparation::Draw()
 	
 	if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
 	{
+		src.m_right = INI_PLANET + m_Boss_clip_pos_x;
+
 		Draw::Draw(6, &src, &dst, d, 0.0f);
 	}
 	else
@@ -1466,6 +1484,17 @@ void CObjPreparation::Draw()
 		dst.m_left = m_warning_message_x[0] + (m_warning_message_size) + 240.0f - (m_warning_message_size - 45);
 		dst.m_right = m_warning_message_x[0] + (m_warning_message_size * 8.5) + 240.0f + (m_warning_message_size - 45);
 		dst.m_bottom = m_warning_message_y[0] + (m_warning_message_size);
+
+		//チュートリアル惑星の時は「惑星　出現中」という風にしたいため、
+		//切り取り位置、描画位置をそれ用に調整している。
+		if (g_tutorial_progress == 1 || g_tutorial_progress == 2)
+		{
+			src.m_left = 360.0f;
+
+			dst.m_left = m_warning_message_x[0] + (m_warning_message_size) + 415.0f - (m_warning_message_size - 45);
+			dst.m_right = m_warning_message_x[0] + (m_warning_message_size * 5.5) + 415.0f + (m_warning_message_size - 45);
+		}
+
 		Draw::Draw(63, &src, &dst, warning_message, 0.0);
 	}
 

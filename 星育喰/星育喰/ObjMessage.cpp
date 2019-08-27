@@ -1376,6 +1376,10 @@ void CObjMessage::Action()
 
 			g_tutorial_progress = 16;//チュートリアル進行度を16にする
 
+			//ObjHelpに操作可能を伝える
+			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+			help->SetOperatable(true);
+
 			g_is_operatable = true;//操作可能に
 		}
 
@@ -1466,6 +1470,7 @@ void CObjMessage::Action()
 			m_key_f = true;//キーフラグを立てる
 			m_reminder_f = false;//クリック催促画像非表示
 
+			//スキップ時は音が鳴らないようにしている
 			if (m_skip_f == false)
 			{
 				//選択音
@@ -1590,6 +1595,7 @@ void CObjMessage::Action()
 			m_reminder_f = false;//クリック催促画像非表示
 			m_progress++;//メッセージ進行度を増加させ、次のメッセージへと移行。
 
+			//スキップ時は音が鳴らないようにしている
 			if (m_skip_f == false)
 			{
 				//選択音
@@ -1689,10 +1695,14 @@ void CObjMessage::Action()
 	//メッセージ表示機能停止までのメッセージを全て飛ばすフラグを立てる
 	else if (Input::GetVKey(VK_CONTROL) == true)
 	{
-		m_skip_f = true;
+		//スキップ時は一度のみ音を鳴らす
+		if (m_skip_f == false)
+		{
+			//選択音
+			Audio::Start(1);
+		}
 
-		//選択音
-		Audio::Start(1);
+		m_skip_f = true;
 	}
 }
 
