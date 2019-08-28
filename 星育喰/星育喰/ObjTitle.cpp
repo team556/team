@@ -95,6 +95,7 @@ void CObjTitle::Init()
 	m_flag  = false;
 	m_key_f = false;
 	m_alpha = INI_ALPHA;
+	m_fast_a = 0.0f;
 
 	//▼二回目以降訪れた時の演出
 	//「画面暗転状態→明転する」
@@ -318,6 +319,22 @@ void CObjTitle::Action()
 			m_black_out_a += 0.01f;//画面徐々に暗転
 		}
 
+		//「左クリック長押しで早送り」フォント画像の表示処理
+		if (m_des_a >= 4.0f)
+		{
+			if (m_fast_a > 0.0f)
+			{
+				m_fast_a -= 0.025f;
+			}
+		}
+		else if (m_des_a >= 0.1f)
+		{
+			if (m_fast_a < 1.0f)
+			{
+				m_fast_a += 0.025f;
+			}
+		}
+
 		return;
 	}
 	//左クリックもしくは右クリックでホーム画面へシーン移行(二回目以降の処理)
@@ -413,8 +430,8 @@ void CObjTitle::Draw()
 	//白＆動く画像用(クリックでスタート、敵惑星)[シーン移行時フェードアウト]
 	float w[4] = { 1.0f,1.0f,1.0f,m_alpha };
 
-	//黄色(☆育喰)[シーン移行時フェードアウト]
-	float y[4] = { 1.0f,1.0f,0.0f,m_alpha };
+	//黄色(左クリック長押しで早送り)
+	float y[4] = { 1.0f,1.0f,0.0f,m_fast_a };
 
 	//赤色
 	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
@@ -618,6 +635,9 @@ void CObjTitle::Draw()
 	FontDraw(L"喰うか喰われるか－－", 135.0f, m_des_y + 400.0f, 35.0f, 35.0f, description[3], false);
 	FontDraw(L"そんな宇宙で生まれたての惑星がいた。", 485.0f, m_des_y + 500.0f, 35.0f, 35.0f, description[4], false);
 	FontDraw(L"その惑星の名は……？", 435.0f, m_des_y + 600.0f, 35.0f, 35.0f, description[5], false);
+
+	//「左クリック長押しで早送り」フォント画像表示
+	FontDraw(L"左クリック長押しで早送り", 750.0f, 30.0f, 35.0f, 35.0f, y, false);
 
 
 	//▼データ消去最終確認ウインドウ表示管理フラグがtrueの時、描画。

@@ -32,6 +32,7 @@ private:
 	bool  m_flag;		//true=クリックした　false=クリックしてない
 	bool  m_key_f;		//キーフラグ
 	float m_alpha;		//透過度(アルファ値)
+	float m_fast_a;		//左クリック長押しで早送りフォント画像の透過度
 	float m_black_out_a;//画面暗転透過度
 	float m_des_y;		//世界観説明画像の位置Y
 	float m_des_vec;	//世界観説明画像のベクトル
