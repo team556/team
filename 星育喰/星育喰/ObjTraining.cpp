@@ -308,7 +308,7 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	else if (Tmp_remain < 0) //残り住民数がいない場合
 	{
 		//残り住民数がいません文字画像を読み込み127番に登録
-		Draw::LoadImage(L"残り住民数がいません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\残り住民数がいません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 		//切り取り位置を設定する
 		m_message_clip_right = 1192.0f;
@@ -328,7 +328,7 @@ int CObjTraining::Allocation(int type_num, int up_down_check)
 	else  //(Tmp_human < 0 || 999900 < Tmp_human) これ以上振り分けられない場合
 	{
 		//これ以上振り分けられません文字画像を読み込み127番に登録
-		Draw::LoadImage(L"これ以上振り分けられません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\これ以上振り分けられません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 		//切り取り位置を設定する
 		m_message_clip_right = 1552.0f;
