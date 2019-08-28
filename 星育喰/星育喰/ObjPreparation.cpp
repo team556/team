@@ -2172,7 +2172,7 @@ void CObjPreparation::Special_message(int special_id)
 
 			//▽4行目
 			//スペシャル技詳細説明画像を125番に登録
-			Draw::LoadImage(L"固定ダメージを与える.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\固定ダメージを与える.png", 125, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 1182.0f;
@@ -2283,7 +2283,7 @@ void CObjPreparation::Special_message(int special_id)
 
 			//▽4行目
 			//スペシャル技詳細説明画像を125番に登録
-			Draw::LoadImage(L"ミサイル生産速度UP.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ミサイル生産速度UP.png", 125, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 1134.0f;
@@ -2320,7 +2320,7 @@ void CObjPreparation::Special_message(int special_id)
 
 			//▽4行目
 			//スペシャル技詳細説明画像を125番に登録
-			Draw::LoadImage(L"ポッド5機の攻撃力UP.png", 125, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ポッド5機の攻撃力UP.png", 125, TEX_SIZE_512);
 
 			//スペシャル技詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[3] = 1222.0f;
