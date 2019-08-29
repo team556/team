@@ -1562,7 +1562,7 @@ void CObjWarehouse::Draw()
 			src.m_right = 795.0f;
 			src.m_bottom = 800.0f;
 
-			dst.m_top = 140.0f + ( i * 100 );
+			dst.m_top = 140.0f + (i * 100);
 			dst.m_left = 290.0f;
 			dst.m_right = 340.0f;
 			dst.m_bottom = 190.0f + (i * 100);
@@ -1653,43 +1653,31 @@ void CObjWarehouse::Draw()
 		dst.m_left = 130.0f;
 		dst.m_right = 260.0f;
 		dst.m_bottom = 252.5f;
+		Draw::Draw(40, &src, &dst, it, 0.0f);
 
-		//Explosionを覚えているならば
-		if (g_Special_mastering[0] == true)
-		{
-			if(g_Special_equipment == 1)
-				Draw::Draw(40, &src, &dst, it, 0.0f);
-			else
-				Draw::Draw(40, &src, &dst, gray, 0.0f);
+		//▼相手の惑星に文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 713.0f;
+		src.m_bottom = 112.0f;
 
-			//▼相手の惑星に文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 713.0f;
-			src.m_bottom = 112.0f;
+		dst.m_top = 168.5f;
+		dst.m_left = 310.0f;
+		dst.m_right = 520.0f;
+		dst.m_bottom = 203.5f;
+		Draw::Draw(95, &src, &dst, black, 0.0f);
 
-			dst.m_top = 168.5f;
-			dst.m_left = 310.0f;
-			dst.m_right = 520.0f;
-			dst.m_bottom = 203.5f;
-			Draw::Draw(95, &src, &dst, black, 0.0f);
+		//▼固定ダメージを与える文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1180.0f;
+		src.m_bottom = 112.0f;
 
-			//▼固定ダメージを与える文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1180.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 168.5f;
-			dst.m_left = 525.0f;
-			dst.m_right = 875.0f;
-			dst.m_bottom = 203.5f;
-			Draw::Draw(96, &src, &dst, black, 0.0f);
-		}
-		else
-		{
-			Draw::Draw(40, &src, &dst, black, 0.0f);
-		}
+		dst.m_top = 168.5f;
+		dst.m_left = 525.0f;
+		dst.m_right = 875.0f;
+		dst.m_bottom = 203.5f;
+		Draw::Draw(96, &src, &dst, black, 0.0f);
 
 		//Fracture Rayの判定
 		//スペシャルボタンの共通切り取り位置設定
@@ -1703,45 +1691,31 @@ void CObjWarehouse::Draw()
 		dst.m_left = 130.0f;
 		dst.m_right = 260.0f;
 		dst.m_bottom = 352.5f;
-		
-		//Fracture Rayを覚えているならば
-		if (g_Special_mastering[1] == true)
-		{
-			if (g_Special_equipment == 2)
-				Draw::Draw(41, &src, &dst, it, 0.0f);
-			else
-				Draw::Draw(41, &src, &dst, gray, 0.0f);
+		Draw::Draw(41, &src, &dst, it, 0.0f);
 
-			//▼選択ライン上の文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 832.0f;
-			src.m_bottom = 112.0f;
+		//▼選択ライン上の文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 832.0f;
+		src.m_bottom = 112.0f;
 
-			dst.m_top = 268.5f;
-			dst.m_left = 310.0f;
-			dst.m_right = 555.0f;
-			dst.m_bottom = 303.5f;
-			Draw::Draw(97, &src, &dst, black, 0.0f);
+		dst.m_top = 268.5f;
+		dst.m_left = 310.0f;
+		dst.m_right = 555.0f;
+		dst.m_bottom = 303.5f;
+		Draw::Draw(97, &src, &dst, black, 0.0f);
 
-			//▼相手ポッド等を破壊する文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1304.0f;
-			src.m_bottom = 112.0f;
+		//▼相手ポッド等を破壊する文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1304.0f;
+		src.m_bottom = 112.0f;
 
-			dst.m_top = 268.5f;
-			dst.m_left = 558.0f;
-			dst.m_right = 943.0f;
-			dst.m_bottom = 303.5f;
-			Draw::Draw(98, &src, &dst, black, 0.0f);
-
-
-		}
-		else
-		{
-			Draw::Draw(41, &src, &dst, black, 0.0f);
-		}
+		dst.m_top = 268.5f;
+		dst.m_left = 558.0f;
+		dst.m_right = 943.0f;
+		dst.m_bottom = 303.5f;
+		Draw::Draw(98, &src, &dst, black, 0.0f);
 
 		//Immotalityの判定
 		//スペシャルボタンの共通切り取り位置設定
@@ -1755,44 +1729,31 @@ void CObjWarehouse::Draw()
 		dst.m_left = 130.0f;
 		dst.m_right = 260.0f;
 		dst.m_bottom = 452.5f;
+		Draw::Draw(42, &src, &dst, it, 0.0f);
 
-		//Immotalityを覚えているならば
-		if (g_Special_mastering[2] == true)
-		{
-			if (g_Special_equipment == 3)
-				Draw::Draw(42, &src, &dst, it, 0.0f);
-			else
-				Draw::Draw(42, &src, &dst, gray, 0.0f);
+		//▼約10秒間の文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 532.0f;
+		src.m_bottom = 112.0f;
 
-			//▼約10秒間の文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 532.0f;
-			src.m_bottom = 112.0f;
+		dst.m_top = 368.5f;
+		dst.m_left = 310.0f;
+		dst.m_right = 485.0f;
+		dst.m_bottom = 403.5f;
+		Draw::Draw(99, &src, &dst, black, 0.0f);
 
-			dst.m_top = 368.5f;
-			dst.m_left = 310.0f;
-			dst.m_right = 485.0f;
-			dst.m_bottom = 403.5f;
-			Draw::Draw(99, &src, &dst, black, 0.0f);
+		//▼無敵となる文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 584.0f;
+		src.m_bottom = 112.0f;
 
-			//▼無敵となる文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 584.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 368.5f;
-			dst.m_left = 488.0f;
-			dst.m_right = 663.0f;
-			dst.m_bottom = 403.5f;
-			Draw::Draw(100, &src, &dst, black, 0.0f);
-
-		}
-		else
-		{
-			Draw::Draw(42, &src, &dst, black, 0.0f);
-		}
+		dst.m_top = 368.5f;
+		dst.m_left = 488.0f;
+		dst.m_right = 663.0f;
+		dst.m_bottom = 403.5f;
+		Draw::Draw(100, &src, &dst, black, 0.0f);
 
 		//オーバーワークの判定
 		//スペシャルボタンの共通切り取り位置設定
@@ -1806,43 +1767,31 @@ void CObjWarehouse::Draw()
 		dst.m_left = 130.0f;
 		dst.m_right = 260.0f;
 		dst.m_bottom = 552.5f;
+		Draw::Draw(43, &src, &dst, it, 0.0f);
 
-		//オーバーワークを覚えているならば
-		if (g_Special_mastering[3] == true)
-		{
-			if (g_Special_equipment == 4)
-				Draw::Draw(43, &src, &dst, it, 0.0f);
-			else
-				Draw::Draw(43, &src, &dst, gray, 0.0f);
+		//▼10秒間ポッド生産速度の文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1252.0f;
+		src.m_bottom = 112.0f;
 
-			//▼10秒間ポッド生産速度の文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1252.0f;
-			src.m_bottom = 112.0f;
+		dst.m_top = 466.5f;
+		dst.m_left = 305.0f;
+		dst.m_right = 690.0f;
+		dst.m_bottom = 501.5f;
+		Draw::Draw(101, &src, &dst, black, 0.0f);
 
-			dst.m_top = 466.5f;
-			dst.m_left = 305.0f;
-			dst.m_right = 690.0f;
-			dst.m_bottom = 501.5f;
-			Draw::Draw(101, &src, &dst, black, 0.0f);
+		//▼ミサイル生産速度UPの文字画像を表示
+		src.m_top = 2.0f;
+		src.m_left = 0.0f;
+		src.m_right = 1134.0f;
+		src.m_bottom = 112.0f;
 
-			//▼ミサイル生産速度UPの文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1134.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 466.5f;
-			dst.m_left = 693.0f;
-			dst.m_right = 1043.0f;
-			dst.m_bottom = 501.5f;
-			Draw::Draw(102, &src, &dst, black, 0.0f);
-		}
-		else
-		{
-			Draw::Draw(43, &src, &dst, black, 0.0f);
-		}
+		dst.m_top = 466.5f;
+		dst.m_left = 693.0f;
+		dst.m_right = 1043.0f;
+		dst.m_bottom = 501.5f;
+		Draw::Draw(102, &src, &dst, black, 0.0f);
 
 		//リミットブレイクの判定
 		//スペシャルボタンの共通切り取り位置設定
@@ -1856,493 +1805,481 @@ void CObjWarehouse::Draw()
 		dst.m_left = 130.0f;
 		dst.m_right = 260.0f;
 		dst.m_bottom = 652.5f;
+		Draw::Draw(44, &src, &dst, it, 0.0f);
 
-		//リミットブレイクを覚えているならば
-		if (g_Special_mastering[4] == true)
-		{
-			if (g_Special_equipment == 6)
-				Draw::Draw(44, &src, &dst, it, 0.0f);
-			else
-				Draw::Draw(44, &src, &dst, gray, 0.0f);
-
-			//▼出撃する文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 464.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 566.5f;
-			dst.m_left = 310.0f;
-			dst.m_right = 450.0f;
-			dst.m_bottom = 601.5f;
-			Draw::Draw(103, &src, &dst, black, 0.0f);
-
-			//▼ポッド5機の攻撃力UP文字画像を表示
-			src.m_top = 2.0f;
-			src.m_left = 0.0f;
-			src.m_right = 1222.0f;
-			src.m_bottom = 112.0f;
-
-			dst.m_top = 566.5f;
-			dst.m_left = 453.0f;
-			dst.m_right = 838.0f;
-			dst.m_bottom = 601.5f;
-			Draw::Draw(104, &src, &dst, black, 0.0f);
-		}
-		else
-		{
-			Draw::Draw(44, &src, &dst, black, 0.0f);
-		}
-	}
-
-	//装備ボタンを押して描画する画像
-	else if (window_start_manage == Soubicheck)
-	{
-		//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
-
-		dst.m_top = 20.0f;
-		dst.m_left = 20.0f;
-		dst.m_right = 1180.0f;
-		dst.m_bottom = 680.0f;
-		Draw::Draw(20, &src, &dst, sb, 0.0f);
-
-		//▼ウィンドウ表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1200.0f;
-		src.m_bottom = 700.0f;
-
-		dst.m_top = 40.0f;
-		dst.m_left = 40.0f;
-		dst.m_right = 1160.0f;
-		dst.m_bottom = 660.0f;
-		Draw::Draw(20, &src, &dst, sb, 0.0f);
-
-		//▼戻るボタン表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-		dst.m_top = 80.0f;
-		dst.m_left = 80.0f;
-		dst.m_right = 130.0f;
-		dst.m_bottom = 130.0f;
-		Draw::Draw(1, &src, &dst, md, 0.0f);
-
-		//▼ポッド文字画像文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 344.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 80.0f;
-		dst.m_left = 525.0f;
-		dst.m_right = 675.0f;
-		dst.m_bottom = 130.0f;
-		Draw::Draw(149, &src, &dst, white, 0.0f);
-
-		//▼レッド文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 336.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 200.0f;
-		dst.m_left = 150.0f;
-		dst.m_right = 270.0f;
-		dst.m_bottom = 240.0f;
-		Draw::Draw(82, &src, &dst, red, 0.0f);
-
-		//▼コア文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 186.0f;
-		src.m_bottom = 84.0f;
-
-		dst.m_top = 202.5f;
-		dst.m_left = 283.0f;
-		dst.m_right = 358.0f;
-		dst.m_bottom = 237.5f;
-		Draw::Draw(146, &src, &dst, red, 0.0f);
-
-		if(g_Pow_equip_Level==1)
-		{
-			//▼レッドコアLv.1画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 150.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 270.0f;
-			Draw::Draw(49, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Pow_equip_Level == 2)
-		{
-			//▼レッドコアLv.2画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 150.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 270.0f;
-			Draw::Draw(50, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Pow_equip_Level == 3)
-		{
-			//▼レッドコアLv.3画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 150.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 270.0f;
-			Draw::Draw(51, &src, &dst, white, 0.0f);
-		}
-
-		//▼ブルー文字画像を表示
-		src.m_top = 2.0f;
-		src.m_left = 0.0f;
-		src.m_right = 352.0f;
-		src.m_bottom = 112.0f;
-
-		dst.m_top = 350.0f;
-		dst.m_left = 150.0f;
-		dst.m_right = 270.0f;
-		dst.m_bottom = 390.0f;
-		Draw::Draw(83, &src, &dst, blue, 0.0f);
-
-		//▼コア文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 186.0f;
-		src.m_bottom = 84.0f;
-
-		dst.m_top = 352.5f;
-		dst.m_left = 283.0f;
-		dst.m_right = 358.0f;
-		dst.m_bottom = 390.0f;
-		Draw::Draw(146, &src, &dst, blue, 0.0f);
-
-		if (g_Def_equip_Level == 1)
-		{
-			//▼ブルーコアLv.1画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 300.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 420.0f;
-			Draw::Draw(52, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Def_equip_Level == 2)
-		{
-			//▼ブルーコアLv.2画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 300.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 420.0f;
-			Draw::Draw(53, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Def_equip_Level == 3)
-		{
-			//▼ブルーコアLv.3画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 300.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 420.0f;
-			Draw::Draw(54, &src, &dst, white, 0.0f);
-		}
-
-		//▼グリーン文字画像表示
-		src.m_top = 2.0f;
-		src.m_left = 2.0f;
-		src.m_right = 472.0f;
-		src.m_bottom = 110.0f;
-
-		dst.m_top = 490.0f;
-		dst.m_left = 150.0f;
-		dst.m_right = 310.0f;
-		dst.m_bottom = 530.0f;
-		Draw::Draw(84, &src, &dst, green, 0.0f);
-
-		//▼コア文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 186.0f;
-		src.m_bottom = 84.0f;
-
-		dst.m_top = 492.5f;
-		dst.m_left = 318.0f;
-		dst.m_right = 398.0f;
-		dst.m_bottom = 530.0f;
-		Draw::Draw(146, &src, &dst, green, 0.0f);
-
-		if (g_Spe_equip_Level == 1)
-		{
-			//▼グリーンコアLv.1画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 450.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 570.0f;
-			Draw::Draw(55, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Spe_equip_Level == 2)
-		{
-			//▼グリーンコアLv.2画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 450.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 570.0f;
-			Draw::Draw(56, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Spe_equip_Level == 3)
-		{
-			//▼グリーンコアLv.3画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 430.0f;
-			dst.m_left = 420.0f;
-			dst.m_right = 540.0f;
-			dst.m_bottom = 550.0f;
-			Draw::Draw(57, &src, &dst, white, 0.0f);
-		}
-
-		//▼ホワイト文字画像表示
+		//▼出撃する文字画像を表示
 		src.m_top = 2.0f;
 		src.m_left = 0.0f;
 		src.m_right = 464.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 280.0f;
-		dst.m_left = 590.0f;
-		dst.m_right = 750.0f;
-		dst.m_bottom = 320.0f;
-		Draw::Draw(85, &src, &dst, white, 0.0f);
+		dst.m_top = 566.5f;
+		dst.m_left = 310.0f;
+		dst.m_right = 450.0f;
+		dst.m_bottom = 601.5f;
+		Draw::Draw(103, &src, &dst, black, 0.0f);
 
-		//▼コア文字画像を表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 186.0f;
-		src.m_bottom = 84.0f;
-
-		dst.m_top = 282.5f;
-		dst.m_left = 758.0f;
-		dst.m_right = 838.0f;
-		dst.m_bottom = 320.0f;
-		Draw::Draw(146, &src, &dst, white, 0.0f);
-
-		if (g_Bal_equip_Level == 1)
-		{
-			//▼ホワイトコアLv.1画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 230.0f;
-			dst.m_left = 860.0f;
-			dst.m_right = 980.0f;
-			dst.m_bottom = 350.0f;
-			Draw::Draw(58, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Bal_equip_Level == 2)
-		{
-			//▼ホワイトコアLv.2画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 230.0f;
-			dst.m_left = 860.0f;
-			dst.m_right = 980.0f;
-			dst.m_bottom = 350.0f;
-			Draw::Draw(59, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Bal_equip_Level == 3)
-		{
-			//▼ホワイトコアLv.3画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 230.0f;
-			dst.m_left = 860.0f;
-			dst.m_right = 980.0f;
-			dst.m_bottom = 350.0f;
-			Draw::Draw(60, &src, &dst, white, 0.0f);
-		}
-
-		//▼ポッド文字画像表示
+		//▼ポッド5機の攻撃力UP文字画像を表示
 		src.m_top = 2.0f;
 		src.m_left = 0.0f;
-		src.m_right = 344.0f;
+		src.m_right = 1222.0f;
 		src.m_bottom = 112.0f;
 
-		dst.m_top = 420.0f;
-		dst.m_left = 590.0f;
-		dst.m_right = 710.0f;
-		dst.m_bottom = 460.0f;
-		Draw::Draw(86, &src, &dst, yellow, 0.0f);
-
-		if (g_Pod_equip_Level == 1)
-		{
-			//▼ポッドLv.1画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 380.0f;
-			dst.m_left = 860.0f;
-			dst.m_right = 980.0f;
-			dst.m_bottom = 500.0f;
-			Draw::Draw(128, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Pod_equip_Level == 2)
-		{
-			//▼ポッドLv.2画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 380.0f;
-			dst.m_left = 860.0f;
-			dst.m_right = 980.0f;
-			dst.m_bottom = 500.0f;
-			Draw::Draw(129, &src, &dst, white, 0.0f);
-		}
-
-		if (g_Pod_equip_Level == 3)
-		{
-			//▼ポッドLv.3画像を表示
-			src.m_top = 0.0f;
-			src.m_left = 0.0f;
-			src.m_right = 130.0f;
-			src.m_bottom = 130.0f;
-
-			dst.m_top = 380.0f;
-			dst.m_left = 860.0f;
-			dst.m_right = 980.0f;
-			dst.m_bottom = 500.0f;
-			Draw::Draw(130, &src, &dst, white, 0.0f);
-		}
-
-		////レッドレベル表示文字画像
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 312.0f;
-		//src.m_bottom = 107.0f;
-
-		//dst.m_top = 200.0f;
-		//dst.m_left = 360.0f;
-		//dst.m_right = 480.0f;
-		//dst.m_bottom = 240.0f;
-		//Draw::Draw(122 + g_Pow_equip_Level, &src, &dst, black, 0.0f);
-		////Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
-
-		////ブルーレベル表示文字画像
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 312.0f;
-		//src.m_bottom = 107.0f;
-
-		//dst.m_top = 330.0f;
-		//dst.m_left = 360.0f;
-		//dst.m_right = 480.0f;
-		//dst.m_bottom = 370.0f;
-		//Draw::Draw(122 + g_Def_equip_Level, &src, &dst, black, 0.0f);
-		////Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
-
-		////グリーンレベル表示文字画像
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 312.0f;
-		//src.m_bottom = 107.0f;
-
-		//dst.m_top = 460.0f;
-		//dst.m_left = 360.0f;
-		//dst.m_right = 480.0f;
-		//dst.m_bottom = 500.0f;
-		//Draw::Draw(122 + g_Spe_equip_Level, &src, &dst, black, 0.0f);
-		////Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
-
-		////ホワイトレベル表示文字画像
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 312.0f;
-		//src.m_bottom = 107.0f;
-
-		//dst.m_top = 260.0f;
-		//dst.m_left = 900.0f;
-		//dst.m_right = 1020.0f;
-		//dst.m_bottom = 300.0f;
-		//Draw::Draw(122 + g_Bal_equip_Level, &src, &dst, black, 0.0f);
-		////Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
-
-		////▼ポッドレベル表示文字画像
-		//src.m_top = 0.0f;
-		//src.m_left = 0.0f;
-		//src.m_right = 312.0f;
-		//src.m_bottom = 107.0f;
-
-		//dst.m_top = 400.0f;
-		//dst.m_left = 900.0f;
-		//dst.m_right = 1020.0f;
-		//dst.m_bottom = 440.0f;
-		//Draw::Draw(122 + g_Pod_equip_Level, &src, &dst, black, 0.0f);
-		////Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
+		dst.m_top = 566.5f;
+		dst.m_left = 453.0f;
+		dst.m_right = 838.0f;
+		dst.m_bottom = 601.5f;
+		Draw::Draw(104, &src, &dst, black, 0.0f);
 
 	}
-}
+		//装備ボタンを押して描画する画像
+		else if (window_start_manage == Soubicheck)
+		{
+			//▼ウィンドウ表示(ダミー倉庫ウィンドウ用)
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1200.0f;
+			src.m_bottom = 700.0f;
+
+			dst.m_top = 20.0f;
+			dst.m_left = 20.0f;
+			dst.m_right = 1180.0f;
+			dst.m_bottom = 680.0f;
+			Draw::Draw(20, &src, &dst, sb, 0.0f);
+
+			//▼ウィンドウ表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 1200.0f;
+			src.m_bottom = 700.0f;
+
+			dst.m_top = 40.0f;
+			dst.m_left = 40.0f;
+			dst.m_right = 1160.0f;
+			dst.m_bottom = 660.0f;
+			Draw::Draw(20, &src, &dst, sb, 0.0f);
+
+			//▼戻るボタン表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = 80.0f;
+			dst.m_left = 80.0f;
+			dst.m_right = 130.0f;
+			dst.m_bottom = 130.0f;
+			Draw::Draw(1, &src, &dst, md, 0.0f);
+
+			//▼ポッド文字画像文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 344.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 80.0f;
+			dst.m_left = 525.0f;
+			dst.m_right = 675.0f;
+			dst.m_bottom = 130.0f;
+			Draw::Draw(149, &src, &dst, white, 0.0f);
+
+			//▼レッド文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 336.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 200.0f;
+			dst.m_left = 150.0f;
+			dst.m_right = 270.0f;
+			dst.m_bottom = 240.0f;
+			Draw::Draw(82, &src, &dst, red, 0.0f);
+
+			//▼コア文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 186.0f;
+			src.m_bottom = 84.0f;
+
+			dst.m_top = 202.5f;
+			dst.m_left = 283.0f;
+			dst.m_right = 358.0f;
+			dst.m_bottom = 237.5f;
+			Draw::Draw(146, &src, &dst, red, 0.0f);
+
+			if (g_Pow_equip_Level == 1)
+			{
+				//▼レッドコアLv.1画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 150.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 270.0f;
+				Draw::Draw(49, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Pow_equip_Level == 2)
+			{
+				//▼レッドコアLv.2画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 150.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 270.0f;
+				Draw::Draw(50, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Pow_equip_Level == 3)
+			{
+				//▼レッドコアLv.3画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 150.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 270.0f;
+				Draw::Draw(51, &src, &dst, white, 0.0f);
+			}
+
+			//▼ブルー文字画像を表示
+			src.m_top = 2.0f;
+			src.m_left = 0.0f;
+			src.m_right = 352.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 350.0f;
+			dst.m_left = 150.0f;
+			dst.m_right = 270.0f;
+			dst.m_bottom = 390.0f;
+			Draw::Draw(83, &src, &dst, blue, 0.0f);
+
+			//▼コア文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 186.0f;
+			src.m_bottom = 84.0f;
+
+			dst.m_top = 352.5f;
+			dst.m_left = 283.0f;
+			dst.m_right = 358.0f;
+			dst.m_bottom = 390.0f;
+			Draw::Draw(146, &src, &dst, blue, 0.0f);
+
+			if (g_Def_equip_Level == 1)
+			{
+				//▼ブルーコアLv.1画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 420.0f;
+				Draw::Draw(52, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Def_equip_Level == 2)
+			{
+				//▼ブルーコアLv.2画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 420.0f;
+				Draw::Draw(53, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Def_equip_Level == 3)
+			{
+				//▼ブルーコアLv.3画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 300.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 420.0f;
+				Draw::Draw(54, &src, &dst, white, 0.0f);
+			}
+
+			//▼グリーン文字画像表示
+			src.m_top = 2.0f;
+			src.m_left = 2.0f;
+			src.m_right = 472.0f;
+			src.m_bottom = 110.0f;
+
+			dst.m_top = 490.0f;
+			dst.m_left = 150.0f;
+			dst.m_right = 310.0f;
+			dst.m_bottom = 530.0f;
+			Draw::Draw(84, &src, &dst, green, 0.0f);
+
+			//▼コア文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 186.0f;
+			src.m_bottom = 84.0f;
+
+			dst.m_top = 492.5f;
+			dst.m_left = 318.0f;
+			dst.m_right = 398.0f;
+			dst.m_bottom = 530.0f;
+			Draw::Draw(146, &src, &dst, green, 0.0f);
+
+			if (g_Spe_equip_Level == 1)
+			{
+				//▼グリーンコアLv.1画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 450.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 570.0f;
+				Draw::Draw(55, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Spe_equip_Level == 2)
+			{
+				//▼グリーンコアLv.2画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 450.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 570.0f;
+				Draw::Draw(56, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Spe_equip_Level == 3)
+			{
+				//▼グリーンコアLv.3画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 430.0f;
+				dst.m_left = 420.0f;
+				dst.m_right = 540.0f;
+				dst.m_bottom = 550.0f;
+				Draw::Draw(57, &src, &dst, white, 0.0f);
+			}
+
+			//▼ホワイト文字画像表示
+			src.m_top = 2.0f;
+			src.m_left = 0.0f;
+			src.m_right = 464.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 280.0f;
+			dst.m_left = 590.0f;
+			dst.m_right = 750.0f;
+			dst.m_bottom = 320.0f;
+			Draw::Draw(85, &src, &dst, white, 0.0f);
+
+			//▼コア文字画像を表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 186.0f;
+			src.m_bottom = 84.0f;
+
+			dst.m_top = 282.5f;
+			dst.m_left = 758.0f;
+			dst.m_right = 838.0f;
+			dst.m_bottom = 320.0f;
+			Draw::Draw(146, &src, &dst, white, 0.0f);
+
+			if (g_Bal_equip_Level == 1)
+			{
+				//▼ホワイトコアLv.1画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 230.0f;
+				dst.m_left = 860.0f;
+				dst.m_right = 980.0f;
+				dst.m_bottom = 350.0f;
+				Draw::Draw(58, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Bal_equip_Level == 2)
+			{
+				//▼ホワイトコアLv.2画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 230.0f;
+				dst.m_left = 860.0f;
+				dst.m_right = 980.0f;
+				dst.m_bottom = 350.0f;
+				Draw::Draw(59, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Bal_equip_Level == 3)
+			{
+				//▼ホワイトコアLv.3画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 230.0f;
+				dst.m_left = 860.0f;
+				dst.m_right = 980.0f;
+				dst.m_bottom = 350.0f;
+				Draw::Draw(60, &src, &dst, white, 0.0f);
+			}
+
+			//▼ポッド文字画像表示
+			src.m_top = 2.0f;
+			src.m_left = 0.0f;
+			src.m_right = 344.0f;
+			src.m_bottom = 112.0f;
+
+			dst.m_top = 420.0f;
+			dst.m_left = 590.0f;
+			dst.m_right = 710.0f;
+			dst.m_bottom = 460.0f;
+			Draw::Draw(86, &src, &dst, yellow, 0.0f);
+
+			if (g_Pod_equip_Level == 1)
+			{
+				//▼ポッドLv.1画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 380.0f;
+				dst.m_left = 860.0f;
+				dst.m_right = 980.0f;
+				dst.m_bottom = 500.0f;
+				Draw::Draw(128, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Pod_equip_Level == 2)
+			{
+				//▼ポッドLv.2画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 380.0f;
+				dst.m_left = 860.0f;
+				dst.m_right = 980.0f;
+				dst.m_bottom = 500.0f;
+				Draw::Draw(129, &src, &dst, white, 0.0f);
+			}
+
+			if (g_Pod_equip_Level == 3)
+			{
+				//▼ポッドLv.3画像を表示
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = 130.0f;
+				src.m_bottom = 130.0f;
+
+				dst.m_top = 380.0f;
+				dst.m_left = 860.0f;
+				dst.m_right = 980.0f;
+				dst.m_bottom = 500.0f;
+				Draw::Draw(130, &src, &dst, white, 0.0f);
+			}
+
+			////レッドレベル表示文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 312.0f;
+			//src.m_bottom = 107.0f;
+
+			//dst.m_top = 200.0f;
+			//dst.m_left = 360.0f;
+			//dst.m_right = 480.0f;
+			//dst.m_bottom = 240.0f;
+			//Draw::Draw(122 + g_Pow_equip_Level, &src, &dst, black, 0.0f);
+			////Font::StrDraw(type_num[0], 355.0f, 200.0f, 40.0f, black);
+
+			////ブルーレベル表示文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 312.0f;
+			//src.m_bottom = 107.0f;
+
+			//dst.m_top = 330.0f;
+			//dst.m_left = 360.0f;
+			//dst.m_right = 480.0f;
+			//dst.m_bottom = 370.0f;
+			//Draw::Draw(122 + g_Def_equip_Level, &src, &dst, black, 0.0f);
+			////Font::StrDraw(type_num[1], 360.0f, 460.0f, 40.0f, black);
+
+			////グリーンレベル表示文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 312.0f;
+			//src.m_bottom = 107.0f;
+
+			//dst.m_top = 460.0f;
+			//dst.m_left = 360.0f;
+			//dst.m_right = 480.0f;
+			//dst.m_bottom = 500.0f;
+			//Draw::Draw(122 + g_Spe_equip_Level, &src, &dst, black, 0.0f);
+			////Font::StrDraw(type_num[2], 360.0f, 330.0f, 40.0f, black);
+
+			////ホワイトレベル表示文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 312.0f;
+			//src.m_bottom = 107.0f;
+
+			//dst.m_top = 260.0f;
+			//dst.m_left = 900.0f;
+			//dst.m_right = 1020.0f;
+			//dst.m_bottom = 300.0f;
+			//Draw::Draw(122 + g_Bal_equip_Level, &src, &dst, black, 0.0f);
+			////Font::StrDraw(type_num[3], 880.0f, 200.0f, 40.0f, black);
+
+			////▼ポッドレベル表示文字画像
+			//src.m_top = 0.0f;
+			//src.m_left = 0.0f;
+			//src.m_right = 312.0f;
+			//src.m_bottom = 107.0f;
+
+			//dst.m_top = 400.0f;
+			//dst.m_left = 900.0f;
+			//dst.m_right = 1020.0f;
+			//dst.m_bottom = 440.0f;
+			//Draw::Draw(122 + g_Pod_equip_Level, &src, &dst, black, 0.0f);
+			////Font::StrDraw(type_num[4], 880.0f, 330.0f, 40.0f, black);
+
+		}
+	}
