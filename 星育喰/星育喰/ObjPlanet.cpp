@@ -93,6 +93,7 @@ void CObjPlanet::Init()
 	m_ani_frame[0] = 0;
 	m_ani_frame[1] = 0;
 	m_ani_time = 0;
+	m_vib_time = 0;
 	m_cntf = 0;
 	m_eat_f = false;	//喰うフラグ(true = 喰う)
 	m_eat_me = false;
@@ -152,7 +153,7 @@ void CObjPlanet::Init()
 		m_size = 500;
 		m_siz_max = 500;
 	}
-	else //(m_type == 6)	//チュートリアル惑星
+	else if(m_type == 6)	//チュートリアル惑星
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 122;
@@ -190,16 +191,68 @@ void CObjPlanet::Action()
 	}
 
 	//-------------------------------------------------アニメーション、星の動き
-	if (m_ani_time == 60) {	//フレーム切り替え時間
-		m_ani_time = 0;		//タイムリセット
-		m_ani_frame[0]++;		//フレーム切り替え
-		m_ani_frame[1]++;
+	if (m_ani_time == 60 || m_vib_time >= 1) {	//フレーム切り替え時間(捕食後の振動処理中は関係なくこの処理に入る)
+		
+		//惑星振動＆巨大化処理(相手惑星を喰うとこの処理に入る)
+		if (m_ani_frame[0] == 3)
+		{
+			//vib_time加算処理(惑星捕食後から開始)
+			if (m_vib_time >= 1)
+			{
+				m_vib_time++;		//vib_time 加算
+			}
+
+			//約0.6～1.6秒中、左右に振動する処理
+			if (40 < m_vib_time && m_vib_time < 100)
+			{
+				if (m_vib_time % 5 == 0)
+				{
+					if (m_vib_time % 2 == 0)
+					{
+						m_px += 10.0f;
+					}
+					else
+					{
+						m_px -= 10.0f;
+					}
+				}
+			}
+
+			//約2.8秒後リザルト画面に移行できるように
+			//フレームを４に切り替える。
+			if (m_vib_time == 170)
+			{
+				m_ani_frame[0] = 4;
+				m_ani_frame[1] = 4;
+			}
+			//1.6秒後、惑星サイズを大きくする。
+			//ＳＥも鳴らす。
+			else if (m_vib_time == 100)
+			{
+				//▼演出用サイズ変更処理
+				m_size = m_siz_max;//m_size(HP)を満タンに設定
+				m_siz_change_range *= 1.5f;//その後、1.5倍化する
+
+				Audio::Start(8);
+			}
+		}
+		//相手惑星を喰っていない時は以下の処理を実行
+		else
+		{
+			m_ani_time = 0;		//タイムリセット
+
+			m_ani_frame[0]++;		//フレーム切り替え
+			m_ani_frame[1]++;
+		}
+		
+
 		CObjPlanet* pla = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 		/*if(pla != nullptr && )
 			pla->SetEmF();*/
 		if (m_ani_frame[0] == 4) {			//最終初期フレームにする前
 			m_eat_f = false;	//食べるフラグ★OFF
 			m_ani_time = -1;							//ループ制御☆
+			m_vib_time = 0;								//ループ制御☆
 			if (m_type == 0) {		//主人公の場合
 				//CObjFightClear* crer = new CObjFightClear(100,50,0,20);	//(住人,資材,スキル,大きさ)
 				//Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);	//クリア画面
@@ -320,10 +373,9 @@ void CObjPlanet::Action()
 
 	if (m_eat_f == true) {	//食べるフラグ★処理
 		m_ani_time++;		//ani_time 加算
-		if ((m_ani_frame[0] == 3) && (m_ani_time == 1)) {//口閉じた瞬間
-			//▼演出用サイズ変更処理
-			m_size = m_siz_max;//m_size(HP)を満タンに設定
-			m_siz_change_range *= 1.5f;//その後、1.5倍化する
+		if ((m_ani_frame[0] == 3) && (m_ani_time == 1) && (m_vib_time == 0)) {//口閉じた瞬間
+
+			m_vib_time = 1;		//vib_time加算処理を開始
 			m_r = 0.0f;
 
 			if (m_type == 0) {
@@ -886,8 +938,8 @@ void CObjPlanet::Action()
 	{
 		if (m_size >= 60.0f) {
 			m_subsize = m_size;
-			if (m_subsize >= MIN_SIZE)
-				m_subsize = MIN_SIZE;
+			if (m_subsize <= (MIN_SIZE * (m_siz_max / 100)) * 0.7f)	//subsizeの最小の値を決める
+				m_subsize = MIN_SIZE * (m_siz_max / 100) * 0.7f;	//汗表示の際に使う式の分母の数が惑星によって変動するので仕方なくこうしている
 		}
 	}
 }
@@ -936,7 +988,7 @@ void CObjPlanet::Draw()
 
 
 	//▽HPゲージ表示(戦闘終了後は表示しない)
-	if (battle_end == false)
+	if (m_type != 0 && battle_end == false)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -982,15 +1034,15 @@ void CObjPlanet::Draw()
 			src.m_right = 128.0f;
 			src.m_bottom= 128.0f;
 
-			dst.m_top	= m_py - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
-			dst.m_left	= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
-			dst.m_right = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
-			dst.m_bottom= m_py + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
+			dst.m_top	= m_py - ((m_subsize / m_siz_max) * m_siz_change_range * 2) - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy;
+			dst.m_left	= m_px + ((m_subsize / m_siz_max) * m_siz_change_range * 2) - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+			dst.m_right = m_px + ((m_subsize / m_siz_max) * m_siz_change_range * 2) + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+			dst.m_bottom= m_py - ((m_subsize / m_siz_max) * m_siz_change_range * 2) + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy;
 
 			if (m_type != 0)//惑星がプレイヤー以外の時、汗の位置を左上に表示して反転させる
 			{
-				dst.m_left = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
-				dst.m_right= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
+				dst.m_left  = m_px - ((m_subsize / m_siz_max) * m_siz_change_range * 2) + ((m_subsize / m_siz_max) * m_siz_change_range) - m_scale_down_move * -1;
+				dst.m_right = m_px - ((m_subsize / m_siz_max) * m_siz_change_range * 2) - ((m_subsize / m_siz_max) * m_siz_change_range) - m_scale_down_move * -1;
 			}
 			
 			//汗

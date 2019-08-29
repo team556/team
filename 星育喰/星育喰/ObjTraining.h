@@ -24,7 +24,9 @@ public:
 private:
 	float m_size;		//プレイヤー惑星のサイズ
 
-	int m_Mig_time;		//ホーム画面にシーン移行する際の時間管理変数
+	int   m_Mig_time;	//ホーム画面にシーン移行する際の時間管理変数
+
+	float m_Eat_color;	//喰アイコンカラー明度
 protected:
 	int Allocation(int type_num, int up_down_check);//振り分け関数
 	void Facility_message(int Facility_Level);//施設(兵舎、研究所)の必要素材&サイズメッセージ描画関数
@@ -77,6 +79,7 @@ protected:
 	{
 		Default,	//デフォルト。どのウインドウも開いていない状態。
 		BackButton,	//戻るボタンを押して、ホーム画面に戻ろうとしている状態。
+		EatButton,	//喰ボタンを押して、戦闘準備画面に移行しようとしている状態。
 		Barracks,	//兵舎ウインドウを開いている状態。
 		Institute,	//研究所ウインドウを開いている状態。
 		Missile,	//ミサイルウインドウを開いている状態。

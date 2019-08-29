@@ -34,28 +34,28 @@ void CSceneTest::InitScene()
 	Draw::LoadImage(L"Human.png", 0, TEX_SIZE_512);
 
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
-	Draw::LoadImage(L"w.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\w.png", 1, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み2番に登録
-	Draw::LoadImage(L"メッセージウィンドウ.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\メッセージウィンドウ.png", 2, TEX_SIZE_512);
 
 	//ウインドウ01を読み込み3番に登録
-	Draw::LoadImage(L"ウインドウ01.png", 3, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\ウインドウ01.png", 3, TEX_SIZE_512);
 
 	//ポーズ画面背景(画面暗転用)を読み込み5番に登録
-	Draw::LoadImage(L"ポーズ画面背景.png", 5, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\ポーズ画面背景.png", 5, TEX_SIZE_512);
 
 	//白文字集を読み込み121番に登録
 	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
-	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\会話矢印.png", 189, TEX_SIZE_512);
 	
 	//戦闘員x10(山田)を読み込み190番に登録
-	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\住民\\戦闘員x10.png", 190, TEX_SIZE_512);
 
 	//矢印画像を読み込み191番に登録
-	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\矢印.png", 191, TEX_SIZE_512);
 
 	////10番に登録
 	//Draw::LoadImage(L".png", 2, TEX_SIZE_512);

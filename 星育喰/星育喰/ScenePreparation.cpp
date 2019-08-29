@@ -45,7 +45,7 @@ void CScenePreparation::InitScene()
 	}
 
 	//背景を読み込み0番に登録
-	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\背景.png", 0, TEX_SIZE_512);
 
 	//敵惑星1(1ステージ)を読み込み1番に登録
 	Draw::LoadImage(L"img\\惑星\\lv1x3クチナシ.png", 1, TEX_SIZE_512);
@@ -96,7 +96,7 @@ void CScenePreparation::InitScene()
 	//Draw::LoadImage(L"パンダ顔.png", 15, TEX_SIZE_512);
 
 	//戦闘画面移行演出(黒星)を読み込み18番に登録
-	Draw::LoadImage(L"戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\戦闘画面\\戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 
 	////ヘルプボタンを読み込み21番に登録
 	//Draw::LoadImage(L"ヘルプボタン.png", 21, TEX_SIZE_512);
@@ -108,7 +108,7 @@ void CScenePreparation::InitScene()
 	//Draw::LoadImage(L"ヘルプ戦闘.png", 23, TEX_SIZE_512);
 	
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み47番に登録
 	Draw::LoadImage(L"img\\惑星\\P惑星_Lv1修正クチナシ.png", 47, TEX_SIZE_512);
@@ -120,7 +120,7 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"img\\惑星\\P惑星_Lv3new.png", 49, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み55番に登録
-	Draw::LoadImage(L"メッセージウィンドウ.png", 55, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\メッセージウィンドウ.png", 55, TEX_SIZE_512);
 
 	//戻るアイコンを読み込み56番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\戻る.png", 56, TEX_SIZE_512);
@@ -141,25 +141,25 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"img\\ボタンUI\\スペシャル技5.png", 61, TEX_SIZE_512);
 
 	//スペシャル技選択ウインドウを読み込み62番に登録
-	Draw::LoadImage(L"スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\スペシャル技選択ウインドウ(仮).png", 62, TEX_SIZE_512);
 
 	//強大な惑星出現中文字画像読み込み63番に登録
-	Draw::LoadImage(L"強大な惑星出現中.png", 63, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\強大な惑星出現中.png", 63, TEX_SIZE_512);
 
 	//強大な惑星接近まで文字画像読み込み64番に登録
-	Draw::LoadImage(L"強大な惑星接近まで.png", 64, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\強大な惑星接近まで.png", 64, TEX_SIZE_512);
 
 	//喰う？文字画像読み込み65番に登録
-	Draw::LoadImage(L"喰う？.png", 65, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\喰う？.png", 65, TEX_SIZE_512);
 
 	//はい文字画像読み込み66番に登録
-	Draw::LoadImage(L"はい.png", 66, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\よく使われる画像\\はい.png", 66, TEX_SIZE_512);
 
 	//いいえ文字画像読み込み67番に登録
-	Draw::LoadImage(L"いいえ.png", 67, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\よく使われる画像\\いいえ.png", 67, TEX_SIZE_512);
 
 	//スペシャル技選択文字画像読み込み68番に登録
-	Draw::LoadImage(L"スペシャル技選択.png", 68, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\スペシャル技選択.png", 68, TEX_SIZE_512);
 
 	//あと3体文字画像読み込み69番に登録
 	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\あと3体.png", 69, TEX_SIZE_512);
@@ -174,13 +174,13 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\あと0体.png", 72, TEX_SIZE_512);
 
 	//★画像読み込み73番に登録
-	Draw::LoadImage(L"★.png", 73, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\移行演出\\★.png", 73, TEX_SIZE_512);
 
 	//測定不能文字画像74番に登録
 	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\測定不能.png", 74, TEX_SIZE_512);
 
 	//ボロボロン文字画像75番に登録
-	Draw::LoadImage(L"ボロボロン.png", 75, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\惑星\\ボロボロン.png", 75, TEX_SIZE_512);
 
 	//O阪魂文字画像76番に登録
 	Draw::LoadImage(L"img\\テキスト\\惑星\\O阪魂.png", 76, TEX_SIZE_512);
@@ -198,13 +198,13 @@ void CScenePreparation::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\惑星\\アマテラス.png", 80, TEX_SIZE_512);
 
 	//ウィンドウ画像89番に登録
-	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\ウインドウ01.png", 89, TEX_SIZE_512);
 
 	//メッセージウィンドウ01画像90番に登録
-	Draw::LoadImage(L"メッセージウィンドウ01.png", 90, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\メッセージウィンドウ01.png", 90, TEX_SIZE_512);
 
 	//ポーズ画面背景(画面暗転用)を読み込み91番に登録
-	Draw::LoadImage(L"ポーズ画面背景.png", 91, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\ポーズ画面背景.png", 91, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
@@ -214,37 +214,43 @@ void CScenePreparation::InitScene()
 	//この番号は使わないように！
 
 	//モアイ正面画像を読み込み128番に登録
-	Draw::LoadImage(L"モアイ正面.png", 128, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\モアイ正面.png", 128, TEX_SIZE_512);
 
 	//ヘルプボタンを読み込み129番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 129, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ヘルプボタン.png", 129, TEX_SIZE_512);
 
 	//説明文準備画面を読み込み130番に登録
-	Draw::LoadImage(L"説明文準備画面.png", 130, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\説明文準備画面.png", 130, TEX_SIZE_512);
 
 	//説明文戦闘1を読み込み131番に登録
-	Draw::LoadImage(L"説明文戦闘1.png", 131, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\説明文戦闘1.png", 131, TEX_SIZE_512);
 
 	//説明文戦闘2を読み込み130番に登録
-	Draw::LoadImage(L"説明文戦闘2.png", 132, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\説明文戦闘2.png", 132, TEX_SIZE_512);
 
 	//説明文スペシャル技を読み込み130番に登録
-	Draw::LoadImage(L"説明文スペシャル技.png", 133, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\説明文スペシャル技.png", 133, TEX_SIZE_512);
 
 	//説明文三竦みを読み込み130番に登録
-	Draw::LoadImage(L"説明文三竦み.png", 134, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\説明文三竦み.png", 134, TEX_SIZE_512);
 
 	//説明文戦闘デメリットを読み込み130番に登録
-	Draw::LoadImage(L"説明文戦闘デメリット.png", 135, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\説明文戦闘デメリット.png", 135, TEX_SIZE_512);
+
+	//育アイコンを読み込み188番に登録
+	Draw::LoadImage(L"img\\ボタンUI\\育２.png", 188, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
-	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\会話矢印.png", 189, TEX_SIZE_512);
 
 	//戦闘員x10(山田)を読み込み190番に登録
-	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\住民\\戦闘員x10.png", 190, TEX_SIZE_512);
 
 	//矢印画像を読み込み191番に登録
-	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\矢印.png", 191, TEX_SIZE_512);
+
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);

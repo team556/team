@@ -542,7 +542,7 @@ void CObjInstitute::Action()
 							//▽レベルMAX時の処理
 							//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
 							//LvUP出来ません文字画像を読み込み127番に登録
-							Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+							Draw::LoadImage(L"img\\テキスト\\育成画面\\LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 							//切り取り位置を設定する
 							m_message_clip_right = 937.0f;
@@ -582,7 +582,7 @@ void CObjInstitute::Action()
 							//▽レベルUP不可時の処理
 							//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
 							//LvUP出来ません文字画像を読み込み127番に登録
-							Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+							Draw::LoadImage(L"img\\テキスト\\育成画面\\LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 							//切り取り位置を設定する
 							m_message_clip_right = 937.0f;
@@ -740,7 +740,7 @@ void CObjInstitute::Action()
 							//▼ミサイルリキャストがレベルDOWNした事を簡易メッセージ画像にて知らせる
 
 							//ミサイルリキャストレベルDOWN…文字画像を読み込み127番に登録
-							Draw::LoadImage(L"ミサイルリキャストレベルDOWN….png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+							Draw::LoadImage(L"img\\テキスト\\育成画面\\ミサイルリキャストレベルDOWN….png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 							//切り取り位置を設定する
 							m_message_clip_right = 1919.0f;
@@ -1376,7 +1376,7 @@ void CObjInstitute::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//施設ウインドウ(兵舎、研究所、倉庫)が開いてない時に表示するグラフィック
-	if (window_start_manage == Default || window_start_manage == BackButton)
+	if (window_start_manage == Default || window_start_manage == BackButton || window_start_manage == EatButton)
 	{
 		//▼研究所表示 
 		src.m_top = 0.0f;
@@ -2801,7 +2801,7 @@ void CObjInstitute::Missile_Lvup_check()
 		//▼ミサイルリキャストがレベルUPした事を簡易メッセージにて知らせる
 
 		//ミサイルリキャストレベルUP文字画像を読み込み127番に登録
-		Draw::LoadImage(L"ミサイルリキャストレベルUP.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\ミサイルリキャストレベルUP.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 		//切り取り位置を設定する
 		m_message_clip_right = 1690.0f;
@@ -2866,7 +2866,7 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		if (equip_id == 0)
 		{
 			//レッド武器レベルUP!文字画像を読み込み127番に登録1200*112
-			Draw::LoadImage(L"レッド武器レベルUP!.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\レッド武器レベルUP!.png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1200.0f;
@@ -2879,7 +2879,7 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		else if (equip_id == 1)
 		{
 			//ブルー武器レベルUP!文字画像を読み込み127番に登録1200*112
-			Draw::LoadImage(L"ブルー武器レベルUP!.png", 127, TEX_SIZE_512);										 
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ブルー武器レベルUP!.png", 127, TEX_SIZE_512);										 
 			
 			//切り取り位置を設定する
 			m_message_clip_right = 1200.0f;
@@ -2892,7 +2892,7 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		else if (equip_id == 2)
 		{
 			//グリーン武器レベルUP!文字画像を読み込み127番に登録1327*112
-			Draw::LoadImage(L"グリーン武器レベルUP!.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\グリーン武器レベルUP!.png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1327.0f;
@@ -2905,7 +2905,7 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		else if (equip_id == 3)
 		{
 			//ホワイト武器レベルUP!文字画像を読み込み127番に登録1327*112
-			Draw::LoadImage(L"ホワイト武器レベルUP!.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ホワイト武器レベルUP!.png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1327.0f;
@@ -2918,7 +2918,7 @@ int CObjInstitute::Equip_Lvup_check(int equip_id, int equip_Level, int equip_Lv_
 		else  //(equip_id == 4)
 		{
 			//ポッドレベルUP!文字画像を読み込み127番に登録967*112
-			Draw::LoadImage(L"ポッドレベルUP!.png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ポッドレベルUP!.png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 967.0f;
@@ -2975,7 +2975,7 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 		if (equip_id == 0)
 		{
 			//レッド武器レベルDOWN…文字画像を読み込み127番に登録1431*112
-			Draw::LoadImage(L"レッド武器レベルDOWN….png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\レッド武器レベルDOWN….png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1431.0f;
@@ -2988,7 +2988,7 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 		else if (equip_id == 1)
 		{
 			//ブルー武器レベルDOWN…文字画像を読み込み127番に登録1435*112
-			Draw::LoadImage(L"ブルー武器レベルDOWN….png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ブルー武器レベルDOWN….png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1435.0f;
@@ -3001,7 +3001,7 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 		else if (equip_id == 2)
 		{
 			//グリーン武器レベルDOWN…文字画像を読み込み127番に登録1559*112
-			Draw::LoadImage(L"グリーン武器レベルDOWN….png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\グリーン武器レベルDOWN….png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1559.0f;
@@ -3014,7 +3014,7 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 		else if (equip_id == 3)
 		{
 			//ホワイト武器レベルDOWN…文字画像を読み込み127番に登録1559*112
-			Draw::LoadImage(L"ホワイト武器レベルDOWN….png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ホワイト武器レベルDOWN….png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1559.0f;
@@ -3027,7 +3027,7 @@ int CObjInstitute::Equip_Lvdown_check(int equip_id, int equip_Level)
 		else  //(equip_id == 4)
 		{
 			//ポッドレベルDOWN…文字画像を読み込み127番に登録1199*112
-			Draw::LoadImage(L"ポッドレベルDOWN….png", 127, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\ポッドレベルDOWN….png", 127, TEX_SIZE_512);
 
 			//切り取り位置を設定する
 			m_message_clip_right = 1199.0f;
@@ -3137,7 +3137,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 	{
 		//▽最下部メッセージ画像設定
 		//クリックでLvUP可文字画像を読み込み127番に登録
-		Draw::LoadImage(L"クリックでLvUP可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\クリックでLvUP可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 		//切り取り位置を設定する
 		m_message_clip_right = 1057.0f;
@@ -3220,7 +3220,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 	{
 		//▽最下部メッセージ画像設定
 		//LvUP不可文字画像を読み込み127番に登録
-		Draw::LoadImage(L"LvUP不可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\LvUP不可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 		//切り取り位置を設定する
 		m_message_clip_right = 577.0f;
@@ -3306,7 +3306,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		if (Lv_id + 1 < Tmp_equip_Level) 
 		{
 			//研究員%6d人　未満で装備可文字画像を読み込み127番に登録
-			Draw::LoadImage(L"研究員%6d人　未満で装備可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\研究員%6d人　未満で装備可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 			m_equipable_count = m_Equ_next_Hum_num[equip_id][Lv_id];//装備可能となる研究員数を変数に保存。(ドロー処理部分で使用)
 		}
@@ -3314,7 +3314,7 @@ void CObjInstitute::Equip_message(int equip_id, int Lv_id)
 		else
 		{
 			//研究員%6d人　以上で装備可文字画像を読み込み127番に登録
-			Draw::LoadImage(L"研究員%6d人　以上で装備可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+			Draw::LoadImage(L"img\\テキスト\\育成画面\\研究員%6d人　以上で装備可.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 			m_equipable_count = m_Equ_next_Hum_num[equip_id][Lv_id - 1];//装備可能となる研究員数を変数に保存。(ドロー処理部分で使用)
 		}

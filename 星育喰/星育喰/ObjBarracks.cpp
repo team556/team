@@ -312,7 +312,7 @@ void CObjBarracks::Action()
 							//▽レベルMAX時の処理
 							//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
 							//LvUP出来ません文字画像を読み込み127番に登録
-							Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+							Draw::LoadImage(L"img\\テキスト\\育成画面\\LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 							//切り取り位置を設定する
 							m_message_clip_right = 937.0f;
@@ -352,7 +352,7 @@ void CObjBarracks::Action()
 							//▽レベルUP不可時の処理
 							//左クリックされたら簡易メッセージ画像でレベルUP不可を伝える
 							//LvUP出来ません文字画像を読み込み127番に登録
-							Draw::LoadImage(L"LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
+							Draw::LoadImage(L"img\\テキスト\\育成画面\\LvUP出来ません.png", 127, TEX_SIZE_512);//簡易メッセージ画像読み込み番号に画像データを入れる
 
 							//切り取り位置を設定する
 							m_message_clip_right = 937.0f;
@@ -953,7 +953,7 @@ void CObjBarracks::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//施設ウインドウ(兵舎、研究所、倉庫)が開いてない時に表示するグラフィック
-	if (window_start_manage == Default || window_start_manage == BackButton)
+	if (window_start_manage == Default || window_start_manage == BackButton || window_start_manage == EatButton)
 	{
 		//▼兵舎表示 
 		src.m_top = 0.0f;

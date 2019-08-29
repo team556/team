@@ -65,6 +65,7 @@ private:
 	float m_Special_icon_color[5];	//スペシャル技アイコンカラー明度
 	float m_Yes_Button_color;		//最終確認[はい]ボタンカラー(Red)調節用
 	float m_No_Button_color;		//最終確認[いいえ]ボタンカラー(Blue)調節用
+	float m_Tra_color;				//育アイコンカラー明度
 
 	bool  m_Back_flag;				//「戦闘準備画面→ホーム画面」移行開始フラグ
 	bool  m_Go_flag;				//「戦闘準備画面→戦闘画面」移行開始フラグ
