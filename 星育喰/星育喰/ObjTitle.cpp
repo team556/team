@@ -162,12 +162,12 @@ void CObjTitle::Init()
 	g_Remain_num	= 0;
 	g_Recast_time	= 3.0f;
 
-	g_Iron_num		= 10000;
-	g_Wood_num		= 10000;
-	g_Silver_num	= 10000;
-	g_Plastic_num	= 10000;
-	g_Aluminum_num	= 10000;
-	g_gus_num		= 10000;
+	g_Iron_num		= 0;
+	g_Wood_num		= 0;
+	g_Silver_num	= 0;
+	g_Plastic_num	= 0;
+	g_Aluminum_num	= 0;
+	g_gus_num		= 0;
 
 	g_tutorial_progress = 17;//２周目、もしくはゲームオーバー時、チュートリアル進行度が18以上のままだと不都合があるので17(チュートリアルスキップ)状態にしておく。
 }
