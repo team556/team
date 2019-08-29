@@ -177,7 +177,7 @@ void CObjNameInput::Action()
 			g_tutorial_progress = 17;//チュートリアルスキップの値とする。
 
 			//ボロボロン報酬をスキップする為、受け取っておく処理
-			g_Remain_num += 4000;//(5000[報酬] - 1000[チュートリアル消費分(大体)] = 4000)
+			g_Remain_num += 4000;//(最初の合計住民数は10000になるようにしている)
 			g_Player_max_size += 20;//HP取得
 			g_Special_mastering[3] = true;//オーバーワーク取得
 
@@ -222,6 +222,12 @@ void CObjNameInput::Action()
 		//この下にある文がグローバル変数に文字を入れる処理
 		switch (m_cut)
 		{
+		case 1:
+			swprintf_s(g_Player_Name, L"%c", m_c[0]);
+			break;
+		case 2:
+			swprintf_s(g_Player_Name, L"%c%c", m_c[0], m_c[1]);
+			break;
 		case 3://入力された値が3の時
 			swprintf_s(g_Player_Name, L"%c%c%c", m_c[0], m_c[1], m_c[2]);
 			break;
@@ -1143,7 +1149,7 @@ void CObjNameInput::Draw()
 	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-	if (m_finalcheck_f == true && m_cut>=3 && m_finalcheck_f_yes == false)
+	if (m_finalcheck_f == true && m_cut>=0 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1233,8 +1239,8 @@ void CObjNameInput::Draw()
 		
 		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
-	//決定ボタンをおした時m_cutが三以下なら警告文を出させる
-	else if (m_finalcheck_f == true && m_cut < 3 && m_finalcheck_f_yes == false)
+	//決定ボタンをおした時m_cutが0以下なら警告文を出させる
+	else if (m_finalcheck_f == true && m_cut <0 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1258,7 +1264,7 @@ void CObjNameInput::Draw()
 		dst.m_bottom = 480.0f;
 		Draw::Draw(89, &src, &dst, c, 0.0f);
 
-		FontDraw(L"名前を三文字以上入力してください", 357.5f, 325.0f, 30.0f, 30.0f, c, false);
+		FontDraw(L"名前を入力してください", 357.5f, 325.0f, 30.0f, 30.0f, c, false);
 		//描画されるのを止める処理
 		if (m_mou_l == false)
 		{
