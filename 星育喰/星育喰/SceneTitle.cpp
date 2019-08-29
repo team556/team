@@ -37,13 +37,13 @@ void CSceneTitle::InitScene()
 	Objs::InsertObj(obj, OBJ_TITLE, 10);  //タイトルオブジェクト登録
 
 	//背景を読み込み0番に登録
-	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\背景.png", 0, TEX_SIZE_512);
 
 	//タイトルロゴ
-	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\タイトル\\タイトルロゴ.png", 1, TEX_SIZE_512);
 
 	//ポーズ画面背景を読み込み2番に登録
-	Draw::LoadImage(L"ポーズ画面背景.png", 2, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\ポーズ画面背景.png", 2, TEX_SIZE_512);
 
 	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
 
@@ -57,19 +57,19 @@ void CSceneTitle::InitScene()
 	//Draw::LoadImage(L"プレイヤー惑星.png", 52, TEX_SIZE_512);
 
 	//クリックでスタート文字画像を53番に登録
-	Draw::LoadImage(L"クリックでスタート.png", 53, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\オープニング\\クリックでスタート.png", 53, TEX_SIZE_512);
 
 	//データ消去ボタン画像を54番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\データ消去ボタン.png", 54, TEX_SIZE_512);
 
 	//はい文字画像読み込み55番に登録
-	Draw::LoadImage(L"はい.png", 55, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\よく使われる画像\\はい.png", 55, TEX_SIZE_512);
 
 	//いいえ文字画像読み込み56番に登録
-	Draw::LoadImage(L"いいえ.png", 56, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\よく使われる画像\\いいえ.png", 56, TEX_SIZE_512);
 
 	//ウインドウ01を読み込み57番に登録
-	Draw::LoadImage(L"ウインドウ01.png", 57, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\ウインドウ01.png", 57, TEX_SIZE_512);
 
 	//白文字集を読み込み121番に登録
 	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);

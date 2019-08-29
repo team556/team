@@ -45,7 +45,7 @@ void CSceneHome::InitScene()
 	//Objs::InsertObj(help, OBJ_HELP, 20);  //ヘルプオブジェクト登録
 
 	//背景を読み込み0番に登録
-	Draw::LoadImage(L"背景.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\背景.png", 0, TEX_SIZE_512);
 
 	//育アイコンを読み込み1番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\育２.png", 1, TEX_SIZE_512);
@@ -57,27 +57,27 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"img\\ボタンUI\\戻る.png", 3, TEX_SIZE_512);
 
 	//ヘルプボタンを読み込み4番に登録
-	Draw::LoadImage(L"ヘルプボタン.png", 4, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\ヘルプボタン.png", 4, TEX_SIZE_512);
 
-	//ヘルプ画像を読み込み5番に登録
-	Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
+	////ヘルプ画像を読み込み5番に登録
+	//Draw::LoadImage(L"ヘルプホーム.png", 5, TEX_SIZE_512);
 
 	//メッセージウインドウを読み込み6番に登録
-	Draw::LoadImage(L"メッセージウィンドウ.png", 6, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\メッセージウィンドウ.png", 6, TEX_SIZE_512);
 
 	//ウインドウ01を読み込み7番に登録
-	Draw::LoadImage(L"ウインドウ01.png", 7, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\ウインドウ01.png", 7, TEX_SIZE_512);
 
 	//ポーズ画面背景(画面暗転用)を読み込み8番に登録
-	Draw::LoadImage(L"ポーズ画面背景.png", 8, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\ポーズ画面背景.png", 8, TEX_SIZE_512);
 
 	//雲を読み込み15番に登録
-	Draw::LoadImage(L"画面移行雲.png", 15, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\移行演出\\画面移行雲.png", 15, TEX_SIZE_512);
 
 	//20,22,24の番号は敵惑星描画で使用しているので使用しないように。
 
 	//ページを進めるボタンを読み込み46番に登録
-	Draw::LoadImage(L"ページを進めるボタン.png", 46, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ヘルプ\\ページを進めるボタン.png", 46, TEX_SIZE_512);
 
 	//プレイヤー惑星Lv1を読み込み50番に登録
 	Draw::LoadImage(L"img\\惑星\\P惑星_Lv1修正クチナシ.png", 50, TEX_SIZE_512);
@@ -92,7 +92,7 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星HP.png", 53, TEX_SIZE_512);
 
 	//装備中のスペシャル技文字画像を読み込み54番に登録
-	Draw::LoadImage(L"装備中のスペシャル技.png", 54, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\スペシャル技\\装備中のスペシャル技.png", 54, TEX_SIZE_512);
 
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
@@ -104,13 +104,13 @@ void CSceneHome::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\惑星名.png", 128, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
-	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\会話矢印.png", 189, TEX_SIZE_512);
 
 	//戦闘員x10(山田)を読み込み190番に登録
-	Draw::LoadImage(L"戦闘員x10.png", 190, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\住民\\戦闘員x10.png", 190, TEX_SIZE_512);
 
 	//矢印画像を読み込み191番に登録
-	Draw::LoadImage(L"矢印.png", 191, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\ボタンUI\\矢印.png", 191, TEX_SIZE_512);
 
 	//float v = Audio::VolumeMaster(0);
 	//v = Audio::VolumeMaster((0.0 - v));

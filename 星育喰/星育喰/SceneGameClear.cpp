@@ -31,7 +31,7 @@ CSceneGameClear::~CSceneGameClear()
 void CSceneGameClear::InitScene()
 {
 	//外部グラフィックを読み込み1番に登録(512×512ピクセル)
-	Draw::LoadImage(L"w.png", 0, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\背景\\w.png", 0, TEX_SIZE_512);
 
 	//タイトルロゴ
 	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
