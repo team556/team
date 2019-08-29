@@ -73,6 +73,7 @@ private:
 	int m_mani[6];		//モアイ
 	int m_ani_time;
 	int m_ani_frame[2];	//[0] = 通常ani用、[1] = 特殊ani用
+	int m_vib_time;		//捕食後の振動時間管理用
 
 	bool m_eat_f;		//喰うフラグ(true = 喰う)
 	bool m_eat_me;		//食べられる

@@ -246,6 +246,9 @@ void CScenePreparation::InitScene()
 	//矢印画像を読み込み191番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\矢印.png", 191, TEX_SIZE_512);
 
+	//float v = Audio::VolumeMaster(0);
+	//v = Audio::VolumeMaster((0.0 - v));
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
 
