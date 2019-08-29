@@ -25,7 +25,7 @@ CSceneNameInput::~CSceneNameInput()
 void CSceneNameInput::InitScene()
 {
 	//グラフィック登録
-	Draw::LoadImage(L"w.png", 0, TEX_SIZE_64);
+	Draw::LoadImage(L"img\\背景\\w.png", 0, TEX_SIZE_64);
 	//仮画像を一番目に登録
 	Draw::LoadImage(L"img\\テキスト\\オープニング\\名前.png", 1, TEX_SIZE_64);
 
@@ -39,17 +39,17 @@ void CSceneNameInput::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\オープニング\\惑星.png", 4, TEX_SIZE_64);
 
 	//仮画像を一番目に登録
-	Draw::LoadImage(L"w.png", 5, TEX_SIZE_64);
+	Draw::LoadImage(L"img\\背景\\w.png", 5, TEX_SIZE_64);
 
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 	//ウィンドウ画像89番に登録
-	Draw::LoadImage(L"ウインドウ01.png", 89, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\メッセージウィンドウ\\ウインドウ01.png", 89, TEX_SIZE_512);
 	//はい文字画像読み込み66番に登録
-	Draw::LoadImage(L"はい.png", 66, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\よく使われる画像\\はい.png", 66, TEX_SIZE_512);
 
 	//いいえ文字画像読み込み67番に登録
-	Draw::LoadImage(L"いいえ.png", 67, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\よく使われる画像\\いいえ.png", 67, TEX_SIZE_512);
 
 	//SE読み込み
 	//選択
