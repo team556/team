@@ -152,7 +152,7 @@ void CObjPlanet::Init()
 		m_size = 500;
 		m_siz_max = 500;
 	}
-	else //(m_type == 6)	//チュートリアル惑星
+	else if(m_type == 6)	//チュートリアル惑星
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 122;
@@ -886,8 +886,8 @@ void CObjPlanet::Action()
 	{
 		if (m_size >= 60.0f) {
 			m_subsize = m_size;
-			if (m_subsize >= MIN_SIZE)
-				m_subsize = MIN_SIZE;
+			if (m_subsize <= (MIN_SIZE * (m_siz_max / 100)) * 0.7f)	//subsizeの最小の値を決める
+				m_subsize = MIN_SIZE * (m_siz_max / 100) * 0.7f;	//汗表示の際に使う式の分母の数が惑星によって変動するので仕方なくこうしている
 		}
 	}
 }
@@ -936,7 +936,7 @@ void CObjPlanet::Draw()
 
 
 	//▽HPゲージ表示(戦闘終了後は表示しない)
-	if (battle_end == false)
+	if (m_type != 0 && battle_end == false)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -982,15 +982,15 @@ void CObjPlanet::Draw()
 			src.m_right = 128.0f;
 			src.m_bottom= 128.0f;
 
-			dst.m_top	= m_py - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
-			dst.m_left	= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
-			dst.m_right = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1);
-			dst.m_bottom= m_py + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy - (m_subsize * 1);
+			dst.m_top	= m_py - ((m_subsize / m_siz_max) * m_siz_change_range * 2) - ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy;
+			dst.m_left	= m_px + ((m_subsize / m_siz_max) * m_siz_change_range * 2) - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+			dst.m_right = m_px + ((m_subsize / m_siz_max) * m_siz_change_range * 2) + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move;
+			dst.m_bottom= m_py - ((m_subsize / m_siz_max) * m_siz_change_range * 2) + ((m_subsize / m_siz_max) * m_siz_change_range) + m_sweat_vy;
 
 			if (m_type != 0)//惑星がプレイヤー以外の時、汗の位置を左上に表示して反転させる
 			{
-				dst.m_left = m_px + ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
-				dst.m_right= m_px - ((m_subsize / m_siz_max) * m_siz_change_range) + m_scale_down_move + (m_subsize * 1) * -1;
+				dst.m_left  = m_px - ((m_subsize / m_siz_max) * m_siz_change_range * 2) + ((m_subsize / m_siz_max) * m_siz_change_range) - m_scale_down_move * -1;
+				dst.m_right = m_px - ((m_subsize / m_siz_max) * m_siz_change_range * 2) - ((m_subsize / m_siz_max) * m_siz_change_range) - m_scale_down_move * -1;
 			}
 			
 			//汗
