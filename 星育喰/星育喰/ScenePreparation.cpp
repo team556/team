@@ -95,6 +95,9 @@ void CScenePreparation::InitScene()
 	////ボス惑星(3ステージ)を読み込み15番に登録
 	//Draw::LoadImage(L"パンダ顔.png", 15, TEX_SIZE_512);
 
+	//雲を読み込み15番に登録
+	Draw::LoadImage(L"img\\移行演出\\画面移行雲.png", 15, TEX_SIZE_512);
+
 	//戦闘画面移行演出(黒星)を読み込み18番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 

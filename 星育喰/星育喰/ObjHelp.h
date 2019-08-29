@@ -38,7 +38,7 @@ private:
 
 	bool  m_mig_staging_f;	//シーン移行演出フラグ(true:移行演出中　false:移行演出前)
 	bool  m_Tra_Eat_f;		//育成or戦闘判断フラグ(true:育成画面移行　false:戦闘準備画面移行)[ホーム画面シーン移行演出でのみ使用]
-	bool  m_is_operatable;	//ヘルプボタン操作可能か確認フラグ(true:操作可能　false;操作不可)[戦闘準備画面ヘルプボタン表示処理でのみ使用]
+	bool  m_is_operatable;	//ヘルプボタン操作可能か確認フラグ(true:操作可能　false;操作不可)
 
 	int m_page_num;		//現在表示中のヘルプ画像番号(ページ)
 	int m_page_max;		//現在シーンで表示するヘルプ画像(ページ)の最大数

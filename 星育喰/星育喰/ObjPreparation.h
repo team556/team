@@ -56,6 +56,7 @@ private:
 
 	float m_speed;		//各演出で移動する各オブジェクト(プレイヤー惑星、各敵惑星、ボス惑星等)の移動速度
 	float m_save_speed;	//移動速度保存用変数
+	int	  m_Mig_time;	//育成画面にシーン移行する際の時間管理変数
 
 	bool  m_black_star_effect_f;	//戦闘画面移行演出(黒星)のフラグ(true=演出終了→戦闘シーンへ移行)
 	int	  m_staging_time;			//演出時間管理変数
@@ -69,6 +70,7 @@ private:
 
 	bool  m_Back_flag;				//「戦闘準備画面→ホーム画面」移行開始フラグ
 	bool  m_Go_flag;				//「戦闘準備画面→戦闘画面」移行開始フラグ
+	bool  m_Tra_flag;				//「戦闘準備画面→育成画面」移行開始フラグ
 	bool  m_boss_emerge_staging_f;	//ボス惑星出現演出開始フラグ
 	bool  m_finalcheck_f;			//最終確認ウインドウ表示管理フラグ(true:表示 / false:非表示)
 
