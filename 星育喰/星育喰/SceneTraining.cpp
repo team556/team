@@ -336,7 +336,7 @@ void CSceneTraining::InitScene()
 	Draw::LoadImage(L"img\\テキスト\\育成画面\\NEXT LV UP.png", 80, TEX_SIZE_512);
 
 	//LV. 文字画像読み込み81番に登録
-	Draw::LoadImage(L"LV.png", 81, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\テキスト\\育成画面\\Lv.png", 81, TEX_SIZE_512);
 
 	//レッド文字画像読み込み82番に登録
 	Draw::LoadImage(L"img\\テキスト\\育成画面\\レッド.png", 82, TEX_SIZE_512);
@@ -437,8 +437,8 @@ void CSceneTraining::InitScene()
 	//白文字画像を読み込み121番に登録
 	Draw::LoadImage(L"img\\テキスト\\文字集\\白文字集.png", 121, TEX_SIZE_512);
 
-	//Sを読み込み122番に登録
-	Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
+	////Sを読み込み122番に登録
+	//Draw::LoadImage(L"S.png", 122, TEX_SIZE_512);
 
 	//Lv1を読み込み123番に登録
 	Draw::LoadImage(L"img\\テキスト\\育成画面\\Lv1.png", 123, TEX_SIZE_512);
