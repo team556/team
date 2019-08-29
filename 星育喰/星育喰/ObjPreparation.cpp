@@ -138,7 +138,7 @@ void CObjPreparation::Init()
 		//未習得の処理
 		else
 		{
-			m_Special_icon_color[i] = 0.1f;
+			m_Special_icon_color[i] = 0.15f;
 		}
 	}
 
@@ -2331,7 +2331,7 @@ void CObjPreparation::Special_message(int special_id)
 
 
 	//▽以下はスペシャル技アイコンが黒色(未習得)の時のみ行う処理
-	if (m_Special_icon_color[special_id] == 0.1f)
+	if (m_Special_icon_color[special_id] == 0.15f)
 	{
 		//▽6行目
 		//スペシャル技詳細説明画像を127番に登録
