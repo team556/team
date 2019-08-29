@@ -1149,7 +1149,7 @@ void CObjNameInput::Draw()
 	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-	if (m_finalcheck_f == true && m_cut>=0 && m_finalcheck_f_yes == false)
+	if (m_finalcheck_f == true && m_cut>=1 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1240,7 +1240,7 @@ void CObjNameInput::Draw()
 		FontDraw(L"でよろしいですか？", 375, 325.0, 50.0f, 50.0f, c, false);
 	}
 	//決定ボタンをおした時m_cutが0以下なら警告文を出させる
-	else if (m_finalcheck_f == true && m_cut <0 && m_finalcheck_f_yes == false)
+	else if (m_finalcheck_f == true && m_cut <1 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1264,7 +1264,7 @@ void CObjNameInput::Draw()
 		dst.m_bottom = 480.0f;
 		Draw::Draw(89, &src, &dst, c, 0.0f);
 
-		FontDraw(L"名前を入力してください", 357.5f, 325.0f, 30.0f, 30.0f, c, false);
+		FontDraw(L"名前を入力してください", 430.5f, 325.0f, 30.0f, 30.0f, c, false);
 		//描画されるのを止める処理
 		if (m_mou_l == false)
 		{
