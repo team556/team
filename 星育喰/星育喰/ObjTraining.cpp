@@ -95,7 +95,7 @@ void CObjTraining::Action()
 		{
 			//ƒz[ƒ€‰æ–Ê‚Ì”wŒi‚ğƒvƒŒƒCƒ„[˜f¯‚ÌƒŒƒxƒ‹‚É‡‚í‚¹‚½“Ç‚İ‚İ”Ô†•”•ª‚É“o˜^
 			//Draw::LoadImage(L"TitleBackgroundTest.jpg", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
-			Draw::LoadImage(L"”wŒi.png", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
+			Draw::LoadImage(L"img\\”wŒi\\”wŒi.png", 7 * (((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1), TEX_SIZE_512);
 
 			//ObjHelp‚ÉƒV[ƒ“ˆÚs‰‰o‚ğ“`‚¦‚é
 			CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);

@@ -1933,7 +1933,7 @@ void CObjPreparation::Enemy_message(int enemy_id)
 
 			//▽5行目
 			//敵惑星詳細説明画像を126番に登録
-			Draw::LoadImage(L"リミットブレイク.png", 126, TEX_SIZE_512);
+			Draw::LoadImage(L"img\\テキスト\\スペシャル技\\リミットブレイク.png", 126, TEX_SIZE_512);
 
 			//敵惑星詳細説明画像の切り取り位置を設定
 			m_detail_message_clip_right[4] = 952.0f;
@@ -2166,7 +2166,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽3行目
 		//スペシャル技詳細説明画像を124番に登録
-		Draw::LoadImage(L"相手の惑星に.png", 124, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\相手の惑星に.png", 124, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[2] = 713.0f;
@@ -2203,7 +2203,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽3行目
 		//スペシャル技詳細説明画像を124番に登録
-		Draw::LoadImage(L"選択ライン上の.png", 124, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\選択ライン上の.png", 124, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[2] = 832.0f;
@@ -2215,7 +2215,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽4行目
 		//スペシャル技詳細説明画像を125番に登録
-		Draw::LoadImage(L"相手ポッド等を破壊する.png", 125, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\相手ポッド等を破壊する.png", 125, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[3] = 1304.0f;
@@ -2240,7 +2240,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽3行目
 		//スペシャル技詳細説明画像を124番に登録
-		Draw::LoadImage(L"約10秒間.png", 124, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\約10秒間.png", 124, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[2] = 532.0f;
@@ -2252,7 +2252,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽4行目
 		//スペシャル技詳細説明画像を125番に登録
-		Draw::LoadImage(L"無敵となる.png", 125, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\無敵となる.png", 125, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[3] = 584.0f;
@@ -2277,7 +2277,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽3行目
 		//スペシャル技詳細説明画像を124番に登録
-		Draw::LoadImage(L"10秒間ポッド生産速度.png", 124, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\10秒間ポッド生産速度.png", 124, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[2] = 1252.0f;
@@ -2302,7 +2302,7 @@ void CObjPreparation::Special_message(int special_id)
 	{
 		//▽2行目
 		//スペシャル技詳細説明画像を123番に登録
-		Draw::LoadImage(L"リミットブレイク.png", 123, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\リミットブレイク.png", 123, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[1] = 952.0f;
@@ -2314,7 +2314,7 @@ void CObjPreparation::Special_message(int special_id)
 
 		//▽3行目
 		//スペシャル技詳細説明画像を124番に登録
-		Draw::LoadImage(L"出撃する.png", 124, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\育成画面\\出撃する.png", 124, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[2] = 464.0f;
@@ -2366,7 +2366,7 @@ void CObjPreparation::Special_message(int special_id)
 	{
 		//▽6行目
 		//スペシャル技詳細説明画像を127番に登録
-		Draw::LoadImage(L"クリックで装備可.png", 127, TEX_SIZE_512);
+		Draw::LoadImage(L"img\\テキスト\\スペシャル技\\クリックで装備可.png", 127, TEX_SIZE_512);
 
 		//スペシャル技詳細説明画像の切り取り位置を設定
 		m_detail_message_clip_right[5] = 952.0f;

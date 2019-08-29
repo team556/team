@@ -845,7 +845,7 @@ void CObjRocket::Action()
 
 						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.5f * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.5f * m_One_pat_dem + (float)g_Pow_equip_Level + (float)(g_Bar_Level - 1);
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//プレイヤーのブルーポッド当たり時のHP
 					{
@@ -854,7 +854,7 @@ void CObjRocket::Action()
 
 						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.5f * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.5f * m_One_pat_dem + (float)g_Def_equip_Level + (float)(g_Bar_Level - 1);
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//プレイヤーのグリーンポッド当たり時のHP
 					{
@@ -863,7 +863,7 @@ void CObjRocket::Action()
 
 						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.5f * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
+						m_podhp -= m_Enemy_damage * damage_buff[0] * 0.5f * m_One_pat_dem + (float)g_Spe_equip_Level + (float)(g_Bar_Level - 1);
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//プレイヤーのホワイトポッド当たり時のHP
 					{
@@ -872,7 +872,7 @@ void CObjRocket::Action()
 
 						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.5f * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
+						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
@@ -1033,25 +1033,25 @@ void CObjRocket::Action()
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.5f * m_One_pat_dem;
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.5f * m_One_pat_dem;
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODD) != nullptr)		//敵のブルーポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.5f * m_One_pat_dem;
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.5f * m_One_pat_dem;
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODS) != nullptr)		//敵のグリーンポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.5f * m_One_pat_dem;
+						m_podhp -= m_Player_damage * damage_buff[1] * 0.5f * m_One_pat_dem;
 					}
 					else if (hit->CheckObjNameHit(OBJ_PODB) != nullptr)	//敵のホワイトポッド当たり時のHP
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.5f * m_One_pat_dem;
+						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
