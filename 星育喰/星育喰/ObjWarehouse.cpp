@@ -467,7 +467,7 @@ void CObjWarehouse::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//施設紹介ウィンドウ(兵舎、研究所、倉庫)が開いていない時に表示するグラフィック
-	if (window_start_manage == Default || window_start_manage == BackButton)
+	if (window_start_manage == Default || window_start_manage == BackButton || window_start_manage == EatButton)
 	{
 		//▼倉庫表示
 		src.m_top = 0.0f;
@@ -646,8 +646,8 @@ void CObjWarehouse::Draw()
 		Draw::Draw(31, &src, &dst, eq, 0.0f);
 	}
 
-	//戻るボタンを選択して描画する画像
-	else if (window_start_manage == Default || window_start_manage == BackButton)
+	//戻るボタン、喰ボタンを選択して描画する画像（どのウインドウも開いてない時も描画する）
+	else if (window_start_manage == Default || window_start_manage == BackButton || window_start_manage == EatButton)
 	{
 		//▼倉庫表示
 		src.m_top = 0.0f;

@@ -73,6 +73,7 @@ void CObjPreparation::Init()
 	m_Back_Button_color = INI_COLOR;
 	m_Yes_Button_color = 1.0f;
 	m_No_Button_color = 1.0f;
+	m_Tra_color = INI_COLOR;
 
 	m_Back_flag = false;
 	m_Go_flag = false;
@@ -968,6 +969,9 @@ void CObjPreparation::Draw()
 	//戻るボタン用
 	float back[4] = { m_Back_Button_color,m_Back_Button_color,m_Back_Button_color,1.0f };
 
+	//育ボタン用
+	float t[4] = { m_Tra_color,m_Tra_color,m_Tra_color,1.0f };
+
 	//ボス出現警告メッセージ用
 	float warning_message[4] = { 1.0f,0.0f,0.0f,m_warning_message_alpha };
 
@@ -1050,6 +1054,18 @@ void CObjPreparation::Draw()
 		dst.m_right = -10.0f + m_Bvx;
 		dst.m_bottom = -10.0f + m_Bvy;
 		Draw::Draw(56, &src, &dst, back, 0.0f);
+
+		//▼育ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 200.0f;
+		src.m_bottom = 200.0f;
+
+		dst.m_top = -60.0f + m_Bvy;
+		dst.m_left = 0.0f + m_Bvx;
+		dst.m_right = 50.0f + m_Bvx;
+		dst.m_bottom = -10.0f + m_Bvy;
+		Draw::Draw(188, &src, &dst, t, 0.0f);
 	}
 
 	//未撃破時のみ表示

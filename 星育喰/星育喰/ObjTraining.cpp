@@ -26,6 +26,7 @@ void CObjTraining::Init()
 {
 	m_size = INI_PLAYER_SIZE;
 	m_Mig_time = 0;
+	m_Eat_color = INI_COLOR;
 
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
@@ -61,8 +62,8 @@ void CObjTraining::Action()
 		return;
 	}
 
-	//戻るボタンクリック、もしくは右クリック(どこでも)時実行
-	if (window_start_manage == BackButton)
+	//戻るボタンクリック、喰ボタンクリック、もしくは右クリック(どこでも)時実行
+	if (window_start_manage == BackButton || window_start_manage == EatButton)
 	{
 		m_Mig_time++;
 
@@ -73,13 +74,21 @@ void CObjTraining::Action()
 		//雲演出OUTを行い、画面を見せる。
 		//プレイヤー惑星サイズがデフォルトの状態に戻った事を確認すると
 		//ホーム画面へシーン移行を行う。
+		//※喰ボタンを押した場合は、戦闘準備画面へシーン移行を行う。
 		if (scene_change_start == true)
 		{
 			m_size -= 20.0f;
 
 			if (m_size <= 0.0f)
 			{
-				Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
+				if (window_start_manage == BackButton)
+				{
+					Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
+				}
+				else
+				{
+					Scene::SetScene(new CScenePreparation());//戦闘準備画面へシーン移行
+				}
 			}
 		}
 		else if (m_Mig_time >= 120)
@@ -155,9 +164,10 @@ void CObjTraining::Action()
 		m_key_rf = true;
 	}
 
-	//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
+
 	if (g_tutorial_progress >= 15)//チュートリアル中は選択不可
 	{
+		//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
 		if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 		{
 			m_Back_Button_color = 1.0f;
@@ -208,6 +218,42 @@ void CObjTraining::Action()
 		{
 			m_Back_Button_color = INI_COLOR;
 		}
+
+
+		//喰ボタン左クリックする事で戦闘準備画面にシーン移行する
+		if (70 < m_mou_x && m_mou_x < 120 && 10 < m_mou_y && m_mou_y < 60)
+		{
+			m_Eat_color = 1.0f;
+
+			//▼移行フラグを立て、戦闘準備画面へ演出を交えながらシーン移行
+			//左クリック入力時
+			if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					//雲演出INを行う
+					CObjCloud_Effect* obj_cloud = (CObjCloud_Effect*)Objs::GetObj(OBJ_CLOUD);
+					obj_cloud->SetCheck(true);
+
+					//移行フラグ立て
+					window_start_manage = EatButton;
+
+					//選択ボタン音
+					Audio::Start(1);
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Eat_color = INI_COLOR;
+		}
 	}
 }
 
@@ -217,6 +263,9 @@ void CObjTraining::Draw()
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	//戻るボタン用
 	float b[4] = { m_Back_Button_color,m_Back_Button_color,m_Back_Button_color,1.0f };
+
+	//喰ボタン用
+	float e[4] = { m_Eat_color,m_Eat_color,m_Eat_color,1.0f };
 
 	//それ以外の画像用
 	float d[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -253,22 +302,37 @@ void CObjTraining::Draw()
 		dst.m_right = 60.0f;
 		dst.m_bottom = 60.0f;
 		Draw::Draw(1, &src, &dst, b, 0.0f);
+
+		//▼喰ボタン表示
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 200.0f;
+		src.m_bottom = 200.0f;
+
+		dst.m_top = 10.0f;
+		dst.m_left = 70.0f;
+		dst.m_right = 120.0f;
+		dst.m_bottom = 60.0f;
+		Draw::Draw(156, &src, &dst, e, 0.0f);
 	}
 	//▼シーン切り替え演出後に表示するグラフィック
 	else
 	{
-		//▼プレイヤー惑星表示
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 448.0f;
-		src.m_bottom = 448.0f;
+		//戻るボタンを押した時のみ表示
+		if (window_start_manage == BackButton)
+		{
+			//▼プレイヤー惑星表示
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 448.0f;
+			src.m_bottom = 448.0f;
 
-		dst.m_top = 250.0f - m_size;
-		dst.m_left = 450.0f - m_size;
-		dst.m_right = 750.0f + m_size;
-		dst.m_bottom = 550.0f + m_size;
-		Draw::Draw(16 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
-
+			dst.m_top = 250.0f - m_size;
+			dst.m_left = 450.0f - m_size;
+			dst.m_right = 750.0f + m_size;
+			dst.m_bottom = 550.0f + m_size;
+			Draw::Draw(16 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1, &src, &dst, d, 0.0f);
+		}
 	}
 
 

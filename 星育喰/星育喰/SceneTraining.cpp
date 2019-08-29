@@ -536,6 +536,9 @@ void CSceneTraining::InitScene()
 	//メッセージウィンドウ白1画像を読み込み155番に登録
 	Draw::LoadImage(L"メッセージウィンドウ白1.png", 155, TEX_SIZE_512);
 
+	//喰アイコンを読み込み156番に登録
+	Draw::LoadImage(L"img\\ボタンUI\\喰２.png", 156, TEX_SIZE_512);
+
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"会話矢印.png", 189, TEX_SIZE_512);
 

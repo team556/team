@@ -953,7 +953,7 @@ void CObjBarracks::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//施設ウインドウ(兵舎、研究所、倉庫)が開いてない時に表示するグラフィック
-	if (window_start_manage == Default || window_start_manage == BackButton)
+	if (window_start_manage == Default || window_start_manage == BackButton || window_start_manage == EatButton)
 	{
 		//▼兵舎表示 
 		src.m_top = 0.0f;
