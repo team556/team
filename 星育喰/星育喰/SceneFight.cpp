@@ -366,33 +366,33 @@ void CSceneFight::InitScene()
 	Objs::InsertObj(before_fight_effect, OBJ_BEFORE_FIGHT_EFFECT, 100);					//戦闘前演出オブジェクト登録
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"攻防戦.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM\\戦闘画面BGM\\攻防戦.wav", BACK_MUSIC);
 
 	//決定音(ObjMessage用)
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(1, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 
 	//敗北
-	Audio::LoadAudio(2, L"過ぎ行く日々.wav", BACK_MUSIC);
+	Audio::LoadAudio(2, L"BGM\\戦闘画面BGM\\過ぎ行く日々.wav", BACK_MUSIC);
 
 	//SE読み込み
-	Audio::LoadAudio(3, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(3, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 
 	//勝利
-	Audio::LoadAudio(4, L"Sunset.wav", BACK_MUSIC);
+	Audio::LoadAudio(4, L"BGM\\戦闘画面BGM\\Sunset.wav", BACK_MUSIC);
 
-	Audio::LoadAudio(5, L"大きい爆発.wav", EFFECT);
+	Audio::LoadAudio(5, L"BGM\\効果音戦闘\\大きい爆発.wav", EFFECT);
 
-	Audio::LoadAudio(6, L"ビーム音１.wav", EFFECT);//Explosion&FractureLay
+	Audio::LoadAudio(6, L"BGM\\効果音戦闘\\ビーム音１.wav", EFFECT);//Explosion&FractureLay
 
-	Audio::LoadAudio(7, L"バリア２.wav", EFFECT);//Immortality
+	Audio::LoadAudio(7, L"BGM\\効果音戦闘\\バリア２.wav", EFFECT);//Immortality
 
-	Audio::LoadAudio(8, L"ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
+	Audio::LoadAudio(8, L"BGM\\効果音育成\\ポッドアップ１.wav", EFFECT);//リミットブレイク＆ステロイド投与
 
-	Audio::LoadAudio(9, L"食べる音.wav", EFFECT);
+	Audio::LoadAudio(9, L"BGM\\効果音戦闘\\食べる音.wav", EFFECT);
 
-	Audio::LoadAudio(10, L"スぺシャル技発動音.wav", EFFECT);
+	Audio::LoadAudio(10, L"BGM\\効果音戦闘\\スぺシャル技発動音.wav", EFFECT);
 
-	Audio::LoadAudio(11, L"ポッドレーザー.wav", EFFECT);
+	Audio::LoadAudio(11, L"BGM\\効果音戦闘\\ポッドレーザー.wav", EFFECT);
 
 	//音楽スタート
 	Audio::Start(0);
