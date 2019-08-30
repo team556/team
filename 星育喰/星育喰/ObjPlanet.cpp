@@ -118,6 +118,7 @@ void CObjPlanet::Init()
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
 		m_img_nam = 3 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1;
 	}
+	//60以下に設定すると汗が出なくなるので調節が必要
 	else if (m_type == 1)//左から1番目の敵惑星(たこ焼き)
 	{	
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
@@ -265,7 +266,7 @@ void CObjPlanet::Action()
 				{
 					//ObjMessageのメッセージ進行度を増加させる
 					CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
-					message->Setprogress(38);
+					message->Setprogress(39);
 				}
 
 				if (g_tutorial_progress != 6)

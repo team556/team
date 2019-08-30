@@ -30,6 +30,9 @@ void CObjNameInput::Init()
 	m_num_cnt = 0;
 	m_c_cut = 0;
 	m_alpha = 0.0f;
+	click_cut = 0;
+	m_tex_clar = true;
+	m_check_f = false;
 	//クリックされた時の場所
 	for (int i = 0; i < 5; i++)
 	{
@@ -96,9 +99,7 @@ void CObjNameInput::Init()
 		}
 
 	}
-	click_cut=0;
 
-	m_tex_clar = true;
 	for (int i = 0; i < 6; i++)
 	{
 		m_tex_discri[i] = 99;
@@ -106,7 +107,7 @@ void CObjNameInput::Init()
 	}
 	for (int i = 0; i < 50; i++)
 	{
-		word_w[i]=i;
+		m_word_w[i]=i;
 	}
 
 }
@@ -149,7 +150,7 @@ void CObjNameInput::Action()
 	}
 
 	//▼チュートリアル見るor見ないチェック後、ホーム画面移行
-	if (m_finalcheck_f_yes == true)
+	if (m_finalcheck_f_yes == true&& m_cut>0)
 	{
 		//最終確認ウィンドウのはいを押したときの処理
 		if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true)
@@ -206,16 +207,24 @@ void CObjNameInput::Action()
 	//文字決定を押したときの処理
 	if (m_mou_l == true && m_mou_x > 1000 && m_mou_x < 1150 && 500 < m_mou_y && 600 > m_mou_y && m_key_f == false && m_finalcheck_f == false)
 	{
+		//m_finalcheck_fとm_key_fのフラグにtrueを入れる
 		m_finalcheck_f = true;
 		m_key_f = true;
 
+		//カウントが1以上ならm_checkフラグをtrueにする。
+		if (m_cut > 0)
+		{
+			m_check_f = true;
+		}
+		
 		//決定ボタン音
 		Audio::Start(1);
 
 		return;
 	}
 	//最終確認ウィンドウのはいを押したときの処理
-	if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y && m_finalcheck_f == true && m_key_f == false)
+	if (m_mou_l == true && m_mou_x > 410 && m_mou_x < 510 && 410 < m_mou_y && 460 > m_mou_y &&
+		m_finalcheck_f == true && m_key_f == false&& m_check_f == true)
 	{
 		m_key_f = true;
 
@@ -251,11 +260,22 @@ void CObjNameInput::Action()
 	{
 		m_key_f = true;
 		m_finalcheck_f = false;
+		m_check_f = false;
 
 		//戻るボタン音
 		Audio::Start(2);
 
 		return;
+	}
+	//決定ボタンをおした時m_cutが0以下かつ警告文が表示された後にデータをすべてリセットする
+	if (m_finalcheck_f == true && m_cut < 1 && m_finalcheck_f_yes == false)
+	{
+		if (m_mou_l == true && m_f == true)
+		{
+			m_finalcheck_f = false;
+			m_f = false;
+			m_key_f = false;
+		}
 	}
 
 	//m_key_fがfalseの時だけ入るようにする
@@ -271,9 +291,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[0];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[0];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'あ';
 					m_cut++;
@@ -286,9 +306,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[1];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[1];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'い';
 					m_cut++;
@@ -301,9 +321,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[2];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[2];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'う';
 					m_f = true;
@@ -316,9 +336,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[3];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[3];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'え';
 					m_f = true;
@@ -331,9 +351,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[4];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[4];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'お';
 					m_f = true;
@@ -346,9 +366,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[5];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[5];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'は';
 					m_f = true;
@@ -361,9 +381,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[6];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[6];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ひ';
 					m_f = true;
@@ -376,9 +396,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[7];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[7];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ふ';
 					m_f = true;
@@ -391,9 +411,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[8];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[8];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'へ';
 					m_f = true;
@@ -406,9 +426,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[9];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[9];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ほ';
 					m_f = true;
@@ -429,9 +449,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[10];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[10];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'か';
 					m_f = true;
@@ -444,9 +464,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[11];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[11];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'き';
 					m_f = true;
@@ -459,9 +479,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[12];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[12];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'く';
 					m_f = true;
@@ -474,9 +494,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[13];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[13];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'け';
 					m_f = true;
@@ -489,9 +509,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[14];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[14];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'こ';
 					m_f = true;
@@ -504,9 +524,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[15];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[15];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ま';
 					m_f = true;
@@ -519,9 +539,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[16];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[16];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'み';
 					m_f = true;
@@ -534,9 +554,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[17];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[17];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'む';
 					m_f = true;
@@ -549,9 +569,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[18];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[18];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'め';
 					m_f = true;
@@ -564,9 +584,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[19];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[19];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'も';
 					m_f = true;
@@ -587,9 +607,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[20];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[20];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'さ';
 					m_f = true;
@@ -602,9 +622,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[21];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[21];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'し';
 					m_f = true;
@@ -617,9 +637,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[22];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[22];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'す';
 					m_f = true;
@@ -632,9 +652,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[23];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[23];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'せ';
 					m_f = true;
@@ -647,9 +667,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[24];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[24];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'そ';
 					m_f = true;
@@ -662,9 +682,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[25];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[25];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'や';
 					m_f = true;
@@ -677,9 +697,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[26];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[26];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ゆ';
 					m_f = true;
@@ -692,9 +712,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[27];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[27];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'よ';
 					m_f = true;
@@ -715,9 +735,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[28];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[28];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'た';
 					m_f = true;
@@ -730,9 +750,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[29];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[29];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ち';
 					m_f = true;
@@ -745,9 +765,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[30];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[30];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'つ';
 					m_f = true;
@@ -760,9 +780,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[31];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[31];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'て';
 					m_f = true;
@@ -775,9 +795,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[32];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[32];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'と';
 					m_f = true;
@@ -790,9 +810,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[33];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[33];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ら';
 					m_f = true;
@@ -805,9 +825,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[34];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[34];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'り';
 					m_f = true;
@@ -820,9 +840,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[35];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[35];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'る';
 					m_f = true;
@@ -835,9 +855,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[36];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[36];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'れ';
 					m_f = true;
@@ -850,9 +870,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[37];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[37];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ろ';
 					m_f = true;
@@ -873,9 +893,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[38];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[38];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'な';
 					m_f = true;
@@ -888,9 +908,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[39];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[39];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'に';
 					m_f = true;
@@ -903,9 +923,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[40];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[40];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ぬ';
 					m_f = true;
@@ -918,9 +938,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[41];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[41];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ね';
 					m_f = true;
@@ -933,9 +953,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[42];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[42];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'の';
 					m_f = true;
@@ -948,9 +968,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[43];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[43];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'わ';
 					m_f = true;
@@ -963,9 +983,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[44];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[44];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'を';
 					m_f = true;
@@ -978,9 +998,9 @@ void CObjNameInput::Action()
 				//クリックした判定を一回だけにするif文
 				if (m_f == false)
 				{
-					//m_tex_discri配列にword_wの値を代入する
+					//m_tex_discri配列にm_word_wの値を代入する
 					//m_tex_discriにclick_cutの値を代入することによって描画する際に横にずらすことができる
-					m_tex_discri[click_cut] = word_w[45];	//click_cutをm_tex_discriに入れて表示させる位置を決める
+					m_tex_discri[click_cut] = m_word_w[45];	//click_cutをm_tex_discriに入れて表示させる位置を決める
 					click_cut++;					//クリックされたよ～ってことをカウント
 					m_c[m_cut] = L'ん';
 					m_f = true;
@@ -1149,7 +1169,7 @@ void CObjNameInput::Draw()
 	dst.m_bottom = 190.0f;
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-	if (m_finalcheck_f == true && m_cut>=1 && m_finalcheck_f_yes == false)
+	if (m_finalcheck_f == true && m_cut>0 && m_finalcheck_f_yes == false)
 	{
 		//↓クリックされた時の描画----------------------------------
 		wchar_t str[46][2]
@@ -1270,20 +1290,20 @@ void CObjNameInput::Draw()
 		{
 			m_f = true;
 		}
-		//もう一回クリックするとすべてが消える
-		if (m_mou_l == true&&m_f==true)
-		{
-			m_finalcheck_f = false;
-			m_f = false;
-			m_key_f = false;
-		}
+		////もう一回クリックするとすべてが消える
+		//if (m_mou_l == true&&m_f==true)
+		//{
+		//	m_finalcheck_f = false;
+		//	m_f = false;
+		//	m_key_f = false;
+		//}
 
 	}
 
 
 
 	//チュートリアルスキップチェック画像
-	if (m_finalcheck_f_yes == true)
+	if (m_finalcheck_f_yes == true && m_cut>0)
 	{
 		//▼最終確認ウインドウ表示
 		src.m_top = 0.0f;
