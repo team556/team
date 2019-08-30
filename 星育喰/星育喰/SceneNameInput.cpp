@@ -53,10 +53,10 @@ void CSceneNameInput::InitScene()
 
 	//SE読み込み
 	//選択
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(1, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 
 	//戻る
-	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
+	Audio::LoadAudio(2, L"BGM\\効果音育成\\戻る＆振り分けダウン４.wav", EFFECT);
 
 	CObjNameInput*obj = new CObjNameInput();
 	Objs::InsertObj(obj, OBJ_NAME_INPUT, 1);

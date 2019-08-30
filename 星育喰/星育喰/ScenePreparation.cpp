@@ -95,6 +95,9 @@ void CScenePreparation::InitScene()
 	////ボス惑星(3ステージ)を読み込み15番に登録
 	//Draw::LoadImage(L"パンダ顔.png", 15, TEX_SIZE_512);
 
+	//雲を読み込み15番に登録
+	Draw::LoadImage(L"img\\移行演出\\画面移行雲.png", 15, TEX_SIZE_512);
+
 	//戦闘画面移行演出(黒星)を読み込み18番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\戦闘画面移行演出(黒星)(仮).png", 18, TEX_SIZE_512);
 
@@ -253,14 +256,14 @@ void CScenePreparation::InitScene()
 	//v = Audio::VolumeMaster((0.0 - v));
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"試練の山.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM\\Home&Title\\試練の山.wav", BACK_MUSIC);
 
 	//SE読み込み
 	//選択
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(1, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 
 	//戻る
-	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
+	Audio::LoadAudio(2, L"BGM\\効果音育成\\戻る＆振り分けダウン４.wav", EFFECT);
 
 	////音楽スタート
 	Audio::Start(0);

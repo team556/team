@@ -65,6 +65,7 @@ void CObjPreparation::Init()
 
 	m_speed = INI_SPEED;
 	m_save_speed = 0.0f;
+	m_Mig_time = 0;
 
 	m_black_star_effect_f = false;
 	m_staging_time = 0;
@@ -77,6 +78,7 @@ void CObjPreparation::Init()
 
 	m_Back_flag = false;
 	m_Go_flag = false;
+	m_Tra_flag = false;
 	m_boss_emerge_staging_f = false;
 	m_finalcheck_f = false;
 
@@ -346,6 +348,21 @@ void CObjPreparation::Action()
 		
 		return;
 	}
+	//▼育成画面移行演出
+	else if (m_Tra_flag == true)
+	{
+		//曇演出INを行い、曇が画面が覆いつくした後に
+		//育成画面へシーン移行を行う。
+
+		m_Mig_time++;
+
+		if(m_Mig_time >= 120)
+		{
+			Scene::SetScene(new CSceneTraining());//育成画面へシーン移行
+		}
+
+		return;
+	}
 
 
 
@@ -481,9 +498,10 @@ void CObjPreparation::Action()
 			return;
 		}
 
-		//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
+		
 		if (g_tutorial_progress != 1)
 		{
+			//戻るボタン左クリック、もしくは右クリックする事でホーム画面に戻る
 			if (10 < m_mou_x && m_mou_x < 60 && 10 < m_mou_y && m_mou_y < 60 || m_mou_r == true)
 			{
 				m_Back_Button_color = 1.0f;
@@ -526,6 +544,45 @@ void CObjPreparation::Action()
 			{
 				m_Back_Button_color = INI_COLOR;
 			}
+		}
+
+		//育ボタン左クリックする事で育成画面にシーン移行する
+		if (70 < m_mou_x && m_mou_x < 120 && 10 < m_mou_y && m_mou_y < 60)
+		{
+			m_Tra_color = 1.0f;
+
+			//▼移行フラグを立て、育成画面へ演出を交えながらシーン移行
+			//左クリック入力時
+			if (m_mou_l == true)
+			{
+				//左クリック押したままの状態では入力出来ないようにしている
+				if (m_key_lf == true)
+				{
+					m_key_lf = false;
+
+					//雲演出オブジェクト(雲演出IN)
+					CObjCloud_Effect* obj_cloud = new CObjCloud_Effect(true);	//雲演出オブジェクト作成
+					Objs::InsertObj(obj_cloud, OBJ_CLOUD, 100);					//雲演出オブジェクト登録
+
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
+
+					//移行開始フラグ立て
+					m_Tra_flag = true;
+
+					//選択ボタン音
+					Audio::Start(1);
+				}
+			}
+			else
+			{
+				m_key_lf = true;
+			}
+		}
+		else
+		{
+			m_Tra_color = INI_COLOR;
 		}
 		
 		//敵惑星1(左から1番目の敵惑星)[未撃破時のみ選択可能]

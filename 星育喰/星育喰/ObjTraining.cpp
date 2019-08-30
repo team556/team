@@ -74,21 +74,18 @@ void CObjTraining::Action()
 		//雲演出OUTを行い、画面を見せる。
 		//プレイヤー惑星サイズがデフォルトの状態に戻った事を確認すると
 		//ホーム画面へシーン移行を行う。
-		//※喰ボタンを押した場合は、戦闘準備画面へシーン移行を行う。
+		//※喰ボタンを押した場合は、少し早めに戦闘準備画面へシーン移行を行う。
 		if (scene_change_start == true)
 		{
 			m_size -= 20.0f;
 
-			if (m_size <= 0.0f)
+			if (window_start_manage == EatButton && m_size <= 260.0f)
 			{
-				if (window_start_manage == BackButton)
-				{
-					Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
-				}
-				else
-				{
-					Scene::SetScene(new CScenePreparation());//戦闘準備画面へシーン移行
-				}
+				Scene::SetScene(new CScenePreparation());//戦闘準備画面へシーン移行
+			}
+			else if (m_size <= 0.0f)
+			{
+				Scene::SetScene(new CSceneHome());//ホーム画面へシーン移行
 			}
 		}
 		else if (m_Mig_time >= 120)
@@ -186,6 +183,10 @@ void CObjTraining::Action()
 					//移行フラグ立て
 					window_start_manage = BackButton;
 
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
+
 					//戻るボタン音
 					Audio::Start(2);
 				}
@@ -204,6 +205,10 @@ void CObjTraining::Action()
 
 					//移行フラグ立て
 					window_start_manage = BackButton;
+
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
 
 					//戻るボタン音
 					Audio::Start(2);
@@ -240,6 +245,10 @@ void CObjTraining::Action()
 
 					//移行フラグ立て
 					window_start_manage = EatButton;
+
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
 
 					//選択ボタン音
 					Audio::Start(1);
