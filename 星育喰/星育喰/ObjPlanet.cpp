@@ -118,6 +118,7 @@ void CObjPlanet::Init()
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_PLAYER, OBJ_PLANET, 1);
 		m_img_nam = 3 + ((int)((g_Bar_Level + g_Ins_Level) / 2)) - 1;
 	}
+	//60ˆÈ‰º‚Éİ’è‚·‚é‚ÆŠ¾‚ªo‚È‚­‚È‚é‚Ì‚Å’²ß‚ª•K—v
 	else if (m_type == 1)//¶‚©‚ç1”Ô–Ú‚Ì“G˜f¯(‚½‚±Ä‚«)
 	{	
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
