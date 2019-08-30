@@ -552,23 +552,23 @@ void CSceneTraining::InitScene()
 	//v = Audio::VolumeMaster((0.0 - v));
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"きっといい日.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM\\育成画面BGM\\きっといい日.wav", BACK_MUSIC);
 
 	//SE読み込み
 	//選択
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(1, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 
 	//戻る
-	Audio::LoadAudio(2, L"戻る＆振り分けダウン４.wav", EFFECT);
+	Audio::LoadAudio(2, L"BGM\\効果音育成\\戻る＆振り分けダウン４.wav", EFFECT);
 
 	//施設レベルアップの音
-	Audio::LoadAudio(3, L"施設レベルアップ音.wav", EFFECT);
+	Audio::LoadAudio(3, L"BGM\\効果音育成\\施設レベルアップ音.wav", EFFECT);
 
 	//ホワイトアウトの音
-	Audio::LoadAudio(4, L"ホワイトアウト音.wav", EFFECT);
+	Audio::LoadAudio(4, L"BGM\\効果音育成\\ホワイトアウト音.wav", EFFECT);
 
 	//選択
-	Audio::LoadAudio(5, L"住民振り分けアップ用.wav", EFFECT);
+	Audio::LoadAudio(5, L"BGM\\効果音育成\\住民振り分けアップ用.wav", EFFECT);
 
 	//音楽スタート
 	Audio::Start(0);

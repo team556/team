@@ -34,7 +34,7 @@ void CSceneGameClear::InitScene()
 	Draw::LoadImage(L"img\\背景\\w.png", 0, TEX_SIZE_512);
 
 	//タイトルロゴ
-	Draw::LoadImage(L"タイトルロゴ.png", 1, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\タイトル\\タイトルロゴ.png", 1, TEX_SIZE_512);
 
 	//↓エンディングのテキスト用
 	//END描画登録
@@ -124,10 +124,10 @@ void CSceneGameClear::InitScene()
 	Objs::InsertObj(obj, OBJ_GAME_CLEAR, 10);	//オブジェクト登録
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"エンドロール.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM\\EndBGM\\エンドロール.wav", BACK_MUSIC);
 
 	//クリック音
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(1, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 
 	//音楽スタート
 	Audio::Start(0);
