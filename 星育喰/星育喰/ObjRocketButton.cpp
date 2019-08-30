@@ -45,7 +45,7 @@ void CObjRocketButton::Init()
 
 	m_cnt = 0;		//カウント
 
-	m_player_recast_buff = 0.0f;
+	m_player_recast_buff = 1.0f;
 	m_is_empty = false;
 	
 	//ユニット数が空(0以下)かチェック処理

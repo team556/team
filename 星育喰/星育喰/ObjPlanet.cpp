@@ -157,8 +157,8 @@ void CObjPlanet::Init()
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 122;
-		m_size = 50;
-		m_siz_max = 50;
+		m_size = 60;
+		m_siz_max = 60;
 	}
 }
 
@@ -937,9 +937,9 @@ void CObjPlanet::Action()
 	if (battle_end == false)	//バトル終了時、処理しない
 	{
 		if (m_size >= 60.0f) {
-			m_subsize = m_size;
-			if (m_subsize <= (MIN_SIZE * (m_siz_max / 100)) * 0.7f)	//subsizeの最小の値を決める
-				m_subsize = MIN_SIZE *(m_siz_max / 100) * 0.7f;	//汗表示の際に使う式の分母の数が惑星によって変動するので仕方なくこうしている
+			m_subsize = m_size;			
+			if (m_subsize  <= (MIN_SIZE * (m_siz_max / 100)) * 0.7f)	//subsizeの最小の値を決める
+				m_subsize	=  MIN_SIZE * (m_siz_max / 100)  * 0.7f;	//汗表示の際に使う式の分母の数が惑星によって変動するので仕方なくこうしている
 		}
 	}
 }
