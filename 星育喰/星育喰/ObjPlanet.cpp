@@ -988,7 +988,7 @@ void CObjPlanet::Draw()
 
 
 	//▽HPゲージ表示(戦闘終了後は表示しない)
-	if (m_type != 0 && battle_end == false)
+	if (battle_end == false)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
