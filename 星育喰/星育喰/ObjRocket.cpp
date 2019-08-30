@@ -872,7 +872,7 @@ void CObjRocket::Action()
 
 						//m_Enemy_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Enemy_damage * damage_buff[0] * 1.25f * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
+						m_podhp -= m_Enemy_damage * damage_buff[0] * m_One_pat_dem + (float)g_Bal_equip_Level + (float)(g_Bar_Level - 1);
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
@@ -1051,7 +1051,7 @@ void CObjRocket::Action()
 					{
 						//m_Player_damage *= m_One_pat_dem;//ワンパターンデメリット値の乗算を行う
 
-						m_podhp -= m_Player_damage * damage_buff[1] * 1.25f * m_One_pat_dem;
+						m_podhp -= m_Player_damage * damage_buff[1] * m_One_pat_dem;
 					}
 				}
 				if (hit->CheckObjNameHit(OBJ_ROCKET) != nullptr)//敵のミサイルに当たった時のHP処理
