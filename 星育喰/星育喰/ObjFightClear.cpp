@@ -151,7 +151,7 @@ void CObjFightClear::Action()
 			{
 				//ObjMessageのメッセージ進行度を増加させる
 				CObjMessage* message = (CObjMessage*)Objs::GetObj(OBJ_MESSAGE);
-				message->Setprogress(42);
+				message->Setprogress(43);
 
 				m_tuto_f = true;//フラグON
 
