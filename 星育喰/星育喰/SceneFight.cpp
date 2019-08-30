@@ -120,7 +120,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\惑星\\lv2x3修正.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"img\\惑星\\lv4x3修正.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv4x3修正クチナシ.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\人数不足new.png", 31, TEX_SIZE_512);
@@ -268,7 +268,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\惑星\\lv1x3口のみ.png", 81, TEX_SIZE_512);
 
 	//lv4口のみを82番に登録
-	Draw::LoadImage(L"img\\惑星\\lv4口のみ.png", 82, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv4x3修正口のみ.png", 82, TEX_SIZE_512);
 
 	//爆発Bを83番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\爆発B.png", 83, TEX_SIZE_512);
