@@ -223,7 +223,7 @@ extern bool g_is_operatable;		//チュートリアルにて操作可能か確認フラグ(true:操作
 //#define SET_GAME_START CSceneHome
 //#define SET_GAME_START CSceneFight
 //#define SET_GAME_START CSceneTraining
-#define SET_GAME_START CSceneGameClear
-//#define SET_GAME_START CScenePreparation
+//#define SET_GAME_START CSceneGameClear
+#define SET_GAME_START CScenePreparation
 //#define SET_GAME_START CSceneNameInput
 //----------------------------------------------
