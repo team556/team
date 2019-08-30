@@ -42,14 +42,14 @@ void CObjRocket::Init()
 		m_One_pat_dem = Pla_One_pat_dem[obj->GetLine()];
 
 		//発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
-		//※最低値の0.5の場合、実行されない。
+		//※最低値の1.5倍の場合、実行されない。
 		if (Pla_One_pat_dem[obj->GetLine()] < 1.5f)
 		{
 			Pla_One_pat_dem[obj->GetLine()] += 0.1f;
 		}
 
 		//発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
-		//※最高値の1.0の場合、実行されない。
+		//※最高値の1.0倍の場合、実行されない。
 		for (int i = 0; i < 3; i++)
 		{
 			if (Pla_One_pat_dem[i] > 1.0f && obj->GetLine() != i)
@@ -67,14 +67,14 @@ void CObjRocket::Init()
 		m_One_pat_dem = Ene_One_pat_dem[ene->GetLine() - 1];
 
 		//発射されたレーンでのワンパターンデメリット値を減少させる(次回以降のミサイルポッドの攻撃力を減少させる)
-		//※最低値の0.5の場合、実行されない。
+		//※最低値の1.5倍の場合、実行されない。
 		if (Ene_One_pat_dem[ene->GetLine() - 1] < 1.5f)
 		{
 			Ene_One_pat_dem[ene->GetLine() - 1] += 0.1f;
 		}
 
 		//発射されたレーン以外のレーンのワンパターンデメリット値を回復させる(次回以降のミサイルポッドの攻撃力が元の攻撃力に近づく)
-		//※最高値の1.0の場合、実行されない。
+		//※最高値の1.0倍の場合、実行されない。
 		for (int i = 0; i < 3; i++)
 		{
 			if (Ene_One_pat_dem[i] > 1.0f && ene->GetLine() - 1 != i)
@@ -1142,6 +1142,12 @@ void CObjRocket::Action()
 //ドロー
 void CObjRocket::Draw()
 {
+	//ワンパターンデメリット値の取りうる範囲情報管理配列(ポッドワンパターンデメリットアイコンで使用)
+	float One_pat_dem_range[6] = { 1.0f,1.10000002f,1.20000005f,1.30000007f,1.40000010f,1.50000012f };
+
+	//ポッドワンパターンデメリットアイコン切り取り位置情報管理配列
+	float One_pat_dem_icon_clip[6] = { 0.0f,64.0f,128.0f,192.0f,256.0f,320.0f };
+
 	//描画カラー情報  R=RED  G=Green  B=Blue A=alpha(透過情報)
 	float d[4] =	{ 1.0f, 1.0f, 1.0f, 1.0f }; //元の色
 	float r[4] =	{ 1.0f, 0.0f, 0.0f, 1.0f }; //赤
@@ -1294,9 +1300,10 @@ void CObjRocket::Draw()
 			}
 		}
 	}
-	//HPゲージ表示(ミサイル以外かつ破壊されていない時に表示される)
+	//HPゲージ & ポッドワンパターンデメリットアイコン表示(ミサイル以外かつ破壊されていない時に表示される)
 	if (ButtonU != 5 && m_del == false)
 	{
+		//▼HPゲージ表示
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 128.0f;
@@ -1306,13 +1313,37 @@ void CObjRocket::Draw()
 		dst.m_left = m_x;
 		dst.m_bottom = m_y + m_size + 5.0f;
 
-		//▼最大値表示
+		//▽最大値表示
 		dst.m_right = m_x + m_size;
 		Draw::Draw(32, &src, &dst, black, 0.0f);
 
-		//▼現在値表示		
+		//▽現在値表示		
 		dst.m_right = m_x + (m_size * ((float)m_podhp / (float)m_pod_max_hp));
 		Draw::Draw(32, &src, &dst, g, 0.0f);
+
+
+
+		//▼ポッドワンパターンデメリットアイコン表示
+		for (int i = 0; i < 6; i++)
+		{
+			//ワンパターンデメリットが何段階目なのか確認するif文
+			if (One_pat_dem_range[i] == m_One_pat_dem)
+			{
+				src.m_top = 0.0f;
+				src.m_left = One_pat_dem_icon_clip[i];
+				src.m_right = One_pat_dem_icon_clip[i] + 64.0f;
+				src.m_bottom = 64.0f;
+
+				dst.m_top = m_y - m_size - 1.0f;
+				dst.m_left = m_x;
+				dst.m_right = m_x + m_size;
+				dst.m_bottom = m_y - 1.0f;
+
+				Draw::Draw(124, &src, &dst, d, 0.0f);
+
+				break;
+			}
+		}
 	}
 	
 

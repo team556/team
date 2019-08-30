@@ -291,6 +291,9 @@ void CSceneFight::InitScene()
 	//ポッドレーザー読み込み123番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\ポッドレーザー.png", 123, TEX_SIZE_512);
 
+	//ポッドワンパターンデメリットアイコンを読み込み124番に登録
+	Draw::LoadImage(L"ポッドワンパターンデメリットアイコン(仮)(後で消すべし).png", 124, TEX_SIZE_512);
+
 	//ThankYouforPlaying!!!文字画像読み込み187番に登録
 	Draw::LoadImage(L"img\\テキスト\\Ending\\ThankYouforPlaying!!!文字画像.png", 187, TEX_SIZE_512);
 
