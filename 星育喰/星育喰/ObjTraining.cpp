@@ -183,6 +183,10 @@ void CObjTraining::Action()
 					//移行フラグ立て
 					window_start_manage = BackButton;
 
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
+
 					//戻るボタン音
 					Audio::Start(2);
 				}
@@ -201,6 +205,10 @@ void CObjTraining::Action()
 
 					//移行フラグ立て
 					window_start_manage = BackButton;
+
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
 
 					//戻るボタン音
 					Audio::Start(2);
@@ -237,6 +245,10 @@ void CObjTraining::Action()
 
 					//移行フラグ立て
 					window_start_manage = EatButton;
+
+					//ObjHelpに操作不可を伝える
+					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
+					help->SetOperatable(false);
 
 					//選択ボタン音
 					Audio::Start(1);
