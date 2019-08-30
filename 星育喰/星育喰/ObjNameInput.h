@@ -26,7 +26,7 @@ private:
 	int word_x[100];
 	int word_y[100];
 	int word[100][100];
-	int word_w[50];
+	int m_word_w[50];
 	int click_cut;
 	float click_win[5];
 	int m_tex_discri[6];
@@ -40,6 +40,7 @@ private:
 	int m_No_Button_color;
 	bool m_key_f;
 	int m_num_cnt;
+	bool m_check_f;
 
 	float m_alpha;
 
