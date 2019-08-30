@@ -86,7 +86,7 @@ void CSceneTest::InitScene()
 
 	//SE読み込み
 	//選択
-	Audio::LoadAudio(1, L"選択＆振り分けアップ３.wav", EFFECT);
+	Audio::LoadAudio(1, L"BGM\\効果音育成\\選択＆振り分けアップ３.wav", EFFECT);
 }
 
 //ゲームメイン実行中メソッド
