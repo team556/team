@@ -311,7 +311,7 @@ void CObjMessage::Init()
 		swprintf_s(m_font[40], L"最後に補足なんだが、￥研究所や兵舎を強化していくと￥Ｒ惑星が発展していくＷぜ！～￥だからどんどん強化してくれよ！");
 		swprintf_s(m_font[41], L"よし、これで説明は以上だ。～￥まずは今説明したことを基に￥すきなように住民を￥割り振ってみるのがいいかもな。");
 		swprintf_s(m_font[42], L"それで準備が出来たら、￥次はこっちから他の惑星を攻めにいこうぜ！～￥強くなるためには資材が必要だが、￥今はその資材がまったくないからな。");
-		swprintf_s(m_font[43], L"攻めにいく方法は、￥左上の戻るボタンを押すか、右クリックを押して￥その後に喰ボタンだぜ！");
+		swprintf_s(m_font[43], L"攻めにいく方法は、￥左上の戻るボタンを押すか、右クリックを押して￥その後に喰ボタン、￥もしくは左上のミニ喰ボタンだぜ！");
 		swprintf_s(m_font[44], L"｜");
 
 		m_message_window_num = 21;
@@ -811,7 +811,7 @@ void CObjMessage::Action()
 			//矢印表示
 			m_arrow_display_f = 1;
 			m_arrow_angle_f = 0;
-			m_arrow_x = 5.0f;
+			m_arrow_x = 34.0f;
 			m_arrow_y = 60.0f;
 		}
 

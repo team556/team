@@ -566,7 +566,7 @@ void CObjPreparation::Action()
 
 					//ObjHelpに操作不可を伝える
 					CObjHelp* help = (CObjHelp*)Objs::GetObj(OBJ_HELP);
-					help->SetOperatable(true);
+					help->SetOperatable(false);
 
 					//移行開始フラグ立て
 					m_Tra_flag = true;
