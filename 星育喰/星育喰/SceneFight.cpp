@@ -394,6 +394,9 @@ void CSceneFight::InitScene()
 
 	Audio::LoadAudio(11, L"BGM\\効果音戦闘\\ポッドレーザー.wav", EFFECT);
 
+	Audio::LoadAudio(12, L"BGM\\効果音戦闘\\惑星大きくなる音.wav", EFFECT);
+
+
 	//音楽スタート
 	Audio::Start(0);
 }
