@@ -201,9 +201,6 @@ void CObjPlanet::Action()
 			if (m_vib_time >= 1)
 			{
 				m_vib_time++;		//vib_time ‰ÁZ
-				//ƒ{ƒŠƒ…[ƒ€‚ğ0.5‚É‚·‚é
-				float v = Audio::VolumeMaster(0);
-				v = Audio::VolumeMaster(0.5 - v);
 			}
 
 			//–ñ0.6`1.6•b’†A¶‰E‚ÉU“®‚·‚éˆ—
