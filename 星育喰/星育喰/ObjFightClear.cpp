@@ -28,6 +28,18 @@ CObjFightClear::CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int
 	m_mat_num[0] = Mat_numA;
 	m_mat_num[1] = NULL;
 	m_skill = skill;
+
+	//コワモーテの場合、全素材という例外的な処理のため、
+	//ここで木材以外の素材の獲得処理を行う。
+	if (g_Challenge_enemy == 2)
+	{
+		//▼獲得素材数を加算
+		g_Iron_num = 90;
+		g_Silver_num = 90;
+		g_Plastic_num = 90;
+		g_Aluminum_num = 90;
+		g_gus_num = 90;
+	}
 }
 
 CObjFightClear::CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int *Mat_typeA, int Mat_numA, wchar_t Mat_nameB[20], int *Mat_typeB, int Mat_numB, int skill)
@@ -707,8 +719,23 @@ void CObjFightClear::Draw()
 			//一つ目の資材名表示------------------------------------------------
 			//▼チュートリアル惑星のリザルト時に誤った資材が表示されないように
 			if (m_mat_num[0] != 0) {
+				//コワモーテ(コワモーテの場合、資材名関係なしに問答無用でこの処理に入る。)
+				if (g_Challenge_enemy == 2)
+				{
+					//▼「全素材」と表示(現状、全素材の画像ないので仮に木材の画像でやっている。)
+					src.m_top = 2.0f;
+					src.m_left = 0.0f;
+					src.m_right = 230.0f;
+					src.m_bottom = 112.0f;
+
+					dst.m_top = FONT_Y + 150;
+					dst.m_left = FONT_X;
+					dst.m_right = FONT_X + 120;
+					dst.m_bottom = FONT_Y + 190;
+					Draw::Draw(59, &src, &dst, c[4], 0.0f);
+				}
 				//木材
-				if (m_mat_type[0] == &g_Wood_num)
+				else if (m_mat_type[0] == &g_Wood_num)
 				{
 					src.m_top = 2.0f;
 					src.m_left = 0.0f;

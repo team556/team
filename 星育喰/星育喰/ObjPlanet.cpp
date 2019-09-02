@@ -216,6 +216,7 @@ void CObjPlanet::Action()
 					{
 						m_px -= 10.0f;
 					}
+
 				}
 			}
 
@@ -233,8 +234,8 @@ void CObjPlanet::Action()
 				//▼演出用サイズ変更処理
 				m_size = m_siz_max;//m_size(HP)を満タンに設定
 				m_siz_change_range *= 1.5f;//その後、1.5倍化する
-
 				Audio::Start(12);
+
 			}
 		}
 		//相手惑星を喰っていない時は以下の処理を実行
