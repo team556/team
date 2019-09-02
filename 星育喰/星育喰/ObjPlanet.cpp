@@ -937,7 +937,7 @@ void CObjPlanet::Action()
 
 	if (battle_end == false)	//バトル終了時、処理しない
 	{
-		if (m_size >= (MIN_SIZE * (m_siz_max / 100)) * 0.5f) {
+		if (m_size >= (MIN_SIZE * (m_siz_max / 100))) {
 			m_subsize = m_size;	
 		}
 		else if (m_subsize <= (MIN_SIZE * (m_siz_max / 100)) * 0.7f) {	//subsizeの最小の値を決める
