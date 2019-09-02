@@ -334,7 +334,7 @@ void CObjRocket::Init()
 	}
 	else if (m_type == 3)//コワモーテ
 	{
-		m_pod_max_hp = 18.0f;
+		m_pod_max_hp = 25.0f;
 	}
 	else if (m_type == 4)//再星
 	{
@@ -402,12 +402,12 @@ void CObjRocket::Init()
 		break;
 	case 2://(モアイ)
 		m_Enemy_Pod_Level = 2;		//ポッドレベル設定
-		m_Player_damage = 10.0f;
+		m_Player_damage = 12.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 3://(コワモーテ)
 		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-		m_Player_damage = 12.0f;
+		m_Player_damage = 18.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 4://(再星)
@@ -417,7 +417,7 @@ void CObjRocket::Init()
 		break;
 	case 5://(アマテラス)
 		m_Enemy_Pod_Level = 3;		//ポッドレベル設定
-		m_Player_damage = 11.0f;
+		m_Player_damage = 15.0f;
 		g_P_Planet_damage = m_Player_damage;
 		break;
 	case 6://(チュートリアル)
