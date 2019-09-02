@@ -34,11 +34,11 @@ CObjFightClear::CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int
 	if (g_Challenge_enemy == 2)
 	{
 		//Å•älìæëfçﬁêîÇâ¡éZ
-		g_Iron_num = 90;
-		g_Silver_num = 90;
-		g_Plastic_num = 90;
-		g_Aluminum_num = 90;
-		g_gus_num = 90;
+		g_Iron_num = 100;
+		g_Silver_num = 100;
+		g_Plastic_num = 100;
+		g_Aluminum_num = 100;
+		g_gus_num = 100;
 	}
 }
 
@@ -840,30 +840,31 @@ void CObjFightClear::Draw()
 				dst.m_bottom = FONT_Y + 190.0f;
 				Draw::Draw(41, &src, &dst, c[4], 0.0f);
 
-				//è\ÇÃà 
-				src.m_top = 1250.0f;
-				src.m_left = CUT_ZERO + (floor(m_mat_num[0] / 10) * 125);
-				src.m_right = END_ZERO + (floor(m_mat_num[0] / 10) * 125);
-				src.m_bottom = 1375.0f;
+				////è\ÇÃà 
+				//src.m_top = 1250.0f;
+				//src.m_left = CUT_ZERO + (floor(m_mat_num[0] / 10) * 125);
+				//src.m_right = END_ZERO + (floor(m_mat_num[0] / 10) * 125);
+				//src.m_bottom = 1375.0f;
 
-				dst.m_top = FONT_Y + 150.0f;
-				dst.m_left = FONT_X + 340.0f;
-				dst.m_right = FONT_X + 360.0f;
-				dst.m_bottom = FONT_Y + 190.0f;
-				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+				//dst.m_top = FONT_Y + 150.0f;
+				//dst.m_left = FONT_X + 340.0f;
+				//dst.m_right = FONT_X + 360.0f;
+				//dst.m_bottom = FONT_Y + 190.0f;
+				//Draw::Draw(41, &src, &dst, c[4], 0.0f);
 
-				//àÍÇÃà 
-				src.m_top = 1250.0f;
-				src.m_left = CUT_ZERO + ((m_mat_num[0] % 10) * 125);
-				src.m_right = END_ZERO + ((m_mat_num[0] % 10) * 125);
-				src.m_bottom = 1375.0f;
+				////àÍÇÃà 
+				//src.m_top = 1250.0f;
+				//src.m_left = CUT_ZERO + ((m_mat_num[0] % 10) * 125);
+				//src.m_right = END_ZERO + ((m_mat_num[0] % 10) * 125);
+				//src.m_bottom = 1375.0f;
 
-				dst.m_top = FONT_Y + 150.0f;
-				dst.m_left = FONT_X + 360.0f;
-				dst.m_right = FONT_X + 380.0f;
-				dst.m_bottom = FONT_Y + 190.0f;
-				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+				//dst.m_top = FONT_Y + 150.0f;
+				//dst.m_left = FONT_X + 360.0f;
+				//dst.m_right = FONT_X + 380.0f;
+				//dst.m_bottom = FONT_Y + 190.0f;
+				//Draw::Draw(41, &src, &dst, c[4], 0.0f);
 				//swprintf_s(str, L"Å{%då¬", m_mat_num[0]);
+				FontDraw(NumConversion(m_mat_num[0]), FONT_X + 340, FONT_Y + 150, 20, 40, c[4], false);
 				//Font::StrDraw(str, FONT_X + 300, FONT_Y + 150, 40, c[4]);		//éëçﬁêîAï\é¶
 			}
 			//^------------------------------------------------------------------------
@@ -971,30 +972,31 @@ void CObjFightClear::Draw()
 				dst.m_bottom = FONT_Y + 240.0f;
 				Draw::Draw(41, &src, &dst, c[4], 0.0f);
 
-				//è\ÇÃà 
-				src.m_top = 1250.0f;
-				src.m_left =  CUT_ZERO + (floor(m_mat_num[1] / 10) * 125);
-				src.m_right =  END_ZERO + (floor(m_mat_num[1] / 10) * 125);
-				src.m_bottom = 1375.0f;
+				////è\ÇÃà 
+				//src.m_top = 1250.0f;
+				//src.m_left =  CUT_ZERO + (floor(m_mat_num[1] / 10) * 125);
+				//src.m_right =  END_ZERO + (floor(m_mat_num[1] / 10) * 125);
+				//src.m_bottom = 1375.0f;
 
-				dst.m_top = FONT_Y + 200.0f;
-				dst.m_left = FONT_X + 340.0f;
-				dst.m_right = FONT_X + 360.0f;
-				dst.m_bottom = FONT_Y + 240.0f;
-				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+				//dst.m_top = FONT_Y + 200.0f;
+				//dst.m_left = FONT_X + 340.0f;
+				//dst.m_right = FONT_X + 360.0f;
+				//dst.m_bottom = FONT_Y + 240.0f;
+				//Draw::Draw(41, &src, &dst, c[4], 0.0f);
 
-				//àÍÇÃà 
-				src.m_top = 1250.0f;
-				src.m_left =  CUT_ZERO + ((m_mat_num[1] % 10) * 125);
-				src.m_right =  END_ZERO + ((m_mat_num[1] % 10) * 125);
-				src.m_bottom = 1375.0f;
+				////àÍÇÃà 
+				//src.m_top = 1250.0f;
+				//src.m_left =  CUT_ZERO + ((m_mat_num[1] % 10) * 125);
+				//src.m_right =  END_ZERO + ((m_mat_num[1] % 10) * 125);
+				//src.m_bottom = 1375.0f;
 
-				dst.m_top = FONT_Y + 200.0f;
-				dst.m_left = FONT_X + 360.0f;
-				dst.m_right = FONT_X + 380.0f;
-				dst.m_bottom = FONT_Y + 240.0f;
-				Draw::Draw(41, &src, &dst, c[4], 0.0f);
+				//dst.m_top = FONT_Y + 200.0f;
+				//dst.m_left = FONT_X + 360.0f;
+				//dst.m_right = FONT_X + 380.0f;
+				//dst.m_bottom = FONT_Y + 240.0f;
+				//Draw::Draw(41, &src, &dst, c[4], 0.0f);
 				//swprintf_s(str, L"Å{%då¬", m_mat_num[1]);
+				FontDraw(NumConversion(m_mat_num[1]), FONT_X + 340, FONT_Y + 150, 20, 40, c[4], false);
 				//Font::StrDraw(str, FONT_X + 300, FONT_Y + 200, 40, c[4]);	//éëçﬁêîBï\é¶
 			}
 
