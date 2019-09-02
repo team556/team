@@ -234,7 +234,7 @@ void CObjPlanet::Action()
 				m_size = m_siz_max;//m_size(HP)‚ğ–ƒ^ƒ“‚Éİ’è
 				m_siz_change_range *= 1.5f;//‚»‚ÌŒãA1.5”{‰»‚·‚é
 
-				Audio::Start(8);
+				Audio::Start(12);
 			}
 		}
 		//‘Šè˜f¯‚ğ‹ò‚Á‚Ä‚¢‚È‚¢‚ÍˆÈ‰º‚Ìˆ—‚ğÀs
