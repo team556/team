@@ -319,7 +319,13 @@ void CObjFight::Action()
 		//左から３番目(コワモーテ)
 		if (g_Challenge_enemy == 2)									
 		{
-			CObjFightClear* crer = new CObjFightClear(12000, 500, L"銀", &g_Silver_num, 65, L"ガス", &g_gus_num, 50, 5);
+			//全素材獲得処理は急遽追加されたものであり、
+			//このクリア処理では対応出来ないため、
+			//とりあえずここでは木材の獲得処理のみを行い、
+			//それ以外の素材取得の処理は、
+			//ObjFightClearのコンストラクタで対応している。
+			//※ちなみに「全素材」の表記は直接ドロー処理を書き換えた。
+			CObjFightClear* crer = new CObjFightClear(12000, 500, L"木材", &g_Wood_num, 90, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目(再星)
@@ -331,7 +337,7 @@ void CObjFight::Action()
 		//ボス(アマテラス)
 		if (g_Challenge_enemy == 4)									
 		{
-			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 80, 0);
+			CObjFightClear* crer = new CObjFightClear(1000, 20, L"木材", &g_Wood_num, 0, 0);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//チュートリアル(チュートリアル惑星)
