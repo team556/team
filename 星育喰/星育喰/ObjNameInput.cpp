@@ -256,7 +256,8 @@ void CObjNameInput::Action()
 		return;
 	}
 	//最終確認ウィンドウのいいえを押したときの処理
-	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&m_finalcheck_f == true && m_key_f == false)
+	if (m_mou_l == true && m_mou_x > 650 && m_mou_x < 800 && 410 < m_mou_y && 460 > m_mou_y&&
+		m_finalcheck_f == true && m_key_f == false && m_check_f == true)
 	{
 		m_key_f = true;
 		m_finalcheck_f = false;

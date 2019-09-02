@@ -120,7 +120,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\惑星\\lv2x3修正.png", 29, TEX_SIZE_512);
 
 	//ボス星(1ステージ)を読み込み30番に登録
-	Draw::LoadImage(L"img\\惑星\\lv4x3修正.png", 30, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv4x3修正クチナシ.png", 30, TEX_SIZE_512);
 
 	//人数不足アイコンを読み込み31番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\人数不足new.png", 31, TEX_SIZE_512);
@@ -268,7 +268,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\惑星\\lv1x3口のみ.png", 81, TEX_SIZE_512);
 
 	//lv4口のみを82番に登録
-	Draw::LoadImage(L"img\\惑星\\lv4口のみ.png", 82, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\惑星\\lv4x3修正口のみ.png", 82, TEX_SIZE_512);
 
 	//爆発Bを83番に登録
 	Draw::LoadImage(L"img\\戦闘画面\\爆発B.png", 83, TEX_SIZE_512);
@@ -292,7 +292,7 @@ void CSceneFight::InitScene()
 	Draw::LoadImage(L"img\\戦闘画面\\ポッドレーザー.png", 123, TEX_SIZE_512);
 
 	//ポッドワンパターンデメリットアイコンを読み込み124番に登録
-	Draw::LoadImage(L"ポッドワンパターンデメリットアイコン(仮)(後で消すべし).png", 124, TEX_SIZE_512);
+	Draw::LoadImage(L"img\\戦闘画面\\ポッドワンパターンデメリットアイコン(仮)(後で消すべし).png", 124, TEX_SIZE_512);
 
 	//ThankYouforPlaying!!!文字画像読み込み187番に登録
 	Draw::LoadImage(L"img\\テキスト\\Ending\\ThankYouforPlaying!!!文字画像.png", 187, TEX_SIZE_512);
@@ -393,6 +393,9 @@ void CSceneFight::InitScene()
 	Audio::LoadAudio(10, L"BGM\\効果音戦闘\\スぺシャル技発動音.wav", EFFECT);
 
 	Audio::LoadAudio(11, L"BGM\\効果音戦闘\\ポッドレーザー.wav", EFFECT);
+
+	Audio::LoadAudio(12, L"BGM\\効果音戦闘\\惑星大きくなる音.wav", EFFECT);
+
 
 	//音楽スタート
 	Audio::Start(0);
