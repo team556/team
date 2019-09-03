@@ -325,7 +325,7 @@ void CObjFight::Action()
 			//それ以外の素材取得の処理は、
 			//ObjFightClearのコンストラクタで対応している。
 			//※ちなみにリザルト画面の「全素材」の表記は直接ドロー処理を書き換えた。
-			CObjFightClear* crer = new CObjFightClear(12000, 500, L"木材", &g_Wood_num, 90, 5);
+			CObjFightClear* crer = new CObjFightClear(12000, 500, L"木材", &g_Wood_num, 100, 5);
 			Objs::InsertObj(crer, OBJ_FIGHT_CLEAR, 15);
 		}
 		//左から４番目(再星)

@@ -34,11 +34,11 @@ CObjFightClear::CObjFightClear(int people, int large, wchar_t Mat_nameA[20], int
 	if (g_Challenge_enemy == 2)
 	{
 		//¥Šl“¾‘fŞ”‚ğ‰ÁZ
-		g_Iron_num = 90;
-		g_Silver_num = 90;
-		g_Plastic_num = 90;
-		g_Aluminum_num = 90;
-		g_gus_num = 90;
+		g_Iron_num = 100;
+		g_Silver_num = 100;
+		g_Plastic_num = 100;
+		g_Aluminum_num = 100;
+		g_gus_num = 100;
 	}
 }
 

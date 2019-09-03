@@ -158,8 +158,8 @@ void CObjPlanet::Init()
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 122;
-		m_size = 100;
-		m_siz_max = 100;
+		m_size = 80;
+		m_siz_max = 80;
 	}
 }
 
@@ -235,7 +235,6 @@ void CObjPlanet::Action()
 				m_size = m_siz_max;//m_size(HP)‚ğ–ƒ^ƒ“‚Éİ’è
 				m_siz_change_range *= 1.5f;//‚»‚ÌŒãA1.5”{‰»‚·‚é
 				Audio::Start(12);
-
 			}
 		}
 		//‘Šè˜f¯‚ğ‹ò‚Á‚Ä‚¢‚È‚¢‚ÍˆÈ‰º‚Ìˆ—‚ğÀs
