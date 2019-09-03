@@ -21,7 +21,7 @@ DELAYの値を増やすと発射速度が遅くなり、
 値を減らすと発射速度が速くなります*/
 #define ONE_DELAY (170)//たこ焼き
 #define SEC_DELAY (140)//モアイ
-#define THI_DELAY (155)//コワモーテ
+#define THI_DELAY (180)//コワモーテ
 #define FOU_DELAY (140)//再星
 #define FIV_DELAY (140)//アマテラス
 #define SIX_DELAY (200)//ボロボロン
@@ -769,11 +769,8 @@ void CObjPlanet::Action()
 			{
 				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-
-
 				switch (m_type)
 				{
-
 				case 1:
 					m_time = ONE_DELAY * m_enemy_recast_buff;
 					break;
@@ -801,7 +798,6 @@ void CObjPlanet::Action()
 				/*m_time = 100 * m_enemy_recast_buff;*/
 				switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
 				{
-
 				case 1:
 					m_time = ONE_DELAY * m_enemy_recast_buff;
 					break;
@@ -829,7 +825,6 @@ void CObjPlanet::Action()
 			/*	m_time = 100 * m_enemy_recast_buff;*/
 				switch (m_type)
 				{
-
 				case 1:
 					m_time = ONE_DELAY * m_enemy_recast_buff;
 					break;
@@ -857,7 +852,6 @@ void CObjPlanet::Action()
 				//m_time = 100 * m_enemy_recast_buff;
 				switch (m_type)
 				{
-
 				case 1:
 					m_time = ONE_DELAY * m_enemy_recast_buff;
 					break;
@@ -885,7 +879,6 @@ void CObjPlanet::Action()
 				//m_time = 100 * m_enemy_recast_buff;
 				switch (m_type)
 				{
-
 				case 1:
 					m_time = ONE_DELAY * m_enemy_recast_buff;
 					break;
@@ -905,7 +898,6 @@ void CObjPlanet::Action()
 					m_time = SIX_DELAY * m_enemy_recast_buff;
 					break;
 				}
-
 			}
 			else if (m_attackf == 6 && m_time <= 0 && m_type != 0)//スペシャル技
 			{
@@ -918,7 +910,6 @@ void CObjPlanet::Action()
 					m_time = 100 * m_enemy_recast_buff;
 				}
 			}
-
 			m_time--;
 		}
 	}
