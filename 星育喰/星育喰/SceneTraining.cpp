@@ -539,6 +539,36 @@ void CSceneTraining::InitScene()
 	//喰アイコンを読み込み156番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\喰２.png", 156, TEX_SIZE_512);
 
+	//ヘルプボタンを読み込み166番に登録
+	Draw::LoadImage(L"img\\ボタンUI\\ヘルプボタン.png", 166, TEX_SIZE_512);
+
+	//説明文育成画面を167番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文育成画面.png", 167, TEX_SIZE_512);
+
+	//説明文研究所を168番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文研究所.png", 168, TEX_SIZE_512);
+
+	//説明文ミサイル画面を169番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文ミサイル画面.png", 169, TEX_SIZE_512);
+
+	//説明文コアについてを170番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文コアについて.png", 170, TEX_SIZE_512);
+
+	//説明文ポッドについてを171番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文ポッドについて.png", 171, TEX_SIZE_512);
+
+	//説明文三竦みを読み込み172番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文三竦み.png", 172, TEX_SIZE_512);
+
+	//説明文兵舎を173番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文兵舎.png", 173, TEX_SIZE_512);
+
+	//説明文倉庫を174番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文倉庫.png", 174, TEX_SIZE_512);
+
+	//説明文倉庫を175番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文惑星発展度.png", 175, TEX_SIZE_512);
+
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\会話矢印.png", 189, TEX_SIZE_512);
 

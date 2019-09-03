@@ -53,7 +53,7 @@ void CObjHelp::Init()
 	else if (m_Scene_num == 2)//育成	2
 	{
 		m_page_max = 9;
-		m_help_reg_num = 136;
+		m_help_reg_num = 166;
 		m_Back_reg_num = 1;
 
 		//ついでにヘルプボタン表示処理を1回のみ行うように準備しておく
