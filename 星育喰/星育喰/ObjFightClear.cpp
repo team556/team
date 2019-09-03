@@ -996,7 +996,7 @@ void CObjFightClear::Draw()
 				//dst.m_bottom = FONT_Y + 240.0f;
 				//Draw::Draw(41, &src, &dst, c[4], 0.0f);
 				//swprintf_s(str, L"Å{%då¬", m_mat_num[1]);
-				FontDraw(NumConversion(m_mat_num[1]), FONT_X + 340, FONT_Y + 150, 20, 40, c[4], false);
+				FontDraw(NumConversion(m_mat_num[1]), FONT_X + 340, FONT_Y + 200, 20, 40, c[4], false);
 				//Font::StrDraw(str, FONT_X + 300, FONT_Y + 200, 40, c[4]);	//éëçﬁêîBï\é¶
 			}
 
