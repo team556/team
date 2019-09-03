@@ -16,12 +16,15 @@
 using namespace GameL;
 
 //マクロ
-#define ONE_DELAY (170)
-#define SEC_DELAY (140)
-#define THI_DELAY (155)
-#define FOU_DELAY (140)
-#define FIV_DELAY (140)
-#define SIX_DELAY (200)
+/*DELAYのマクロは敵のポッド発射速度です
+DELAYの値を増やすと発射速度が遅くなり、
+値を減らすと発射速度が速くなります*/
+#define ONE_DELAY (170)//たこ焼き
+#define SEC_DELAY (140)//モアイ
+#define THI_DELAY (155)//コワモーテ
+#define FOU_DELAY (140)//再星
+#define FIV_DELAY (140)//アマテラス
+#define SIX_DELAY (200)//ボロボロン
 #define MIN_SIZE (60.0f)//各惑星の最小サイズ(これ以上は小さくならない)
 
 #define MOAI_NAM (2)	//モアイの番号type設定(仮
