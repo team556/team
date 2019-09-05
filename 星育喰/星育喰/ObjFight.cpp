@@ -56,14 +56,14 @@ void CObjFight::Init()
 
 	m_end_f = false;
 
-	m_line_dis = false;
+	//m_line_dis = false;
 
 	m_key_U_f = false;
 	m_key_D_f = false;
 
 	m_special_f = false;
 
-	m_line_choice = 1;
+	//m_line_choice = 1;
 
 	m_cuta =0;
 
@@ -141,10 +141,10 @@ void CObjFight::Action()
 
 	//戦闘開始のカウントが終わった時にラインを表示させる
 	//※一度しか動かない
-	if (m_line_dis == false) {
-		m_line_nam = 1;
-		m_line_dis = true;
-	}
+	//if (m_line_dis == false) {
+	//	m_line_nam = 1;
+	//	m_line_dis = true;
+	//}
 
 	//▼戦闘終了間際(残り1秒)のタイミングで戦闘終了フラグを立てる
 	if (m_cnt <= 60)
@@ -190,11 +190,11 @@ void CObjFight::Action()
 		if (m_key_U_f == false && Input::GetVKey(VK_UP) == true) {
 
 			//選択中のラインが一番上に来た時に下に移動させる
-			if (m_line_choice <= 0) {
-				m_line_choice = 2;
+			if (m_line_nam <= 0) {
+				m_line_nam = 2;
 			}
 			else {
-				m_line_choice--;
+				m_line_nam--;
 			}
 			m_key_U_f = true;
 		}
@@ -202,11 +202,11 @@ void CObjFight::Action()
 		if (m_key_D_f == false && Input::GetVKey(VK_DOWN) == true) {
 
 			//選択中のラインが一番下に来た時に上に移動させる
-			if (m_line_choice >= 2) {
-				m_line_choice = 0;
+			if (m_line_nam >= 2) {
+				m_line_nam = 0;
 			}
 			else {
-				m_line_choice++;
+				m_line_nam++;
 			}
 			m_key_D_f = true;
 		}
@@ -230,17 +230,17 @@ void CObjFight::Action()
 			else {};//ライン外何もしない
 
 		}
-		else if (m_key_U_f == true || m_key_D_f == true) {
-			if (m_line_choice == 0) {
-				m_line_nam = 0;
-			}
-			else if (m_line_choice == 1) {
-				m_line_nam = 1;
-			}
-			else if (m_line_choice == 2) {
-				m_line_nam = 2;
-			}
-		}
+		//else if (m_key_U_f == true || m_key_D_f == true) {
+		//	if (m_line_nam == 0) {
+		//		m_line_nam = 0;
+		//	}
+		//	else if (m_line_nam == 1) {
+		//		m_line_nam = 1;
+		//	}
+		//	else if (m_line_nam == 2) {
+		//		m_line_nam = 2;
+		//	}
+		//}
 
 
 		//キーフラグ制御---------------

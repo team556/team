@@ -167,8 +167,11 @@ extern int  g_tutorial_progress;	//Œ»Ý‚Ìƒ`ƒ…[ƒgƒŠƒAƒ‹is“x(0:ƒz[ƒ€‰æ–Ê1‰ñ–Ú
 extern bool g_is_operatable;		//ƒ`ƒ…[ƒgƒŠƒAƒ‹‚É‚Ä‘€ì‰Â”\‚©Šm”Fƒtƒ‰ƒO(true:‘€ì‰Â”\@false;‘€ì•s‰Â)[ƒƒbƒZ[ƒW‚ð“Ç‚Ýi‚ß‚éŽž‚ÉŒã‚ë‚Ìƒ{ƒ^ƒ““™‚ª”½‰ž‚µ‚È‚¢‚æ‚¤‚É‚·‚éˆ×‚ÉŽg—p]
 
 //¥’è”
-#define CUT_ZERO 1625		//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
-#define END_ZERO 1750		//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
+#define CUT_ZERO 1625			//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
+#define END_ZERO 1750			//•¶ŽšW‚Å”Žš‚ðØ‚èŽæ‚é‚Æ‚«‚Ì0‚ÌˆÊ’u
+#define POD_FAVORABLE 0.5f		//Ž©•ª‚ª—L—˜‚ÈŽž‚Ì”íƒ_ƒ[ƒW”{—¦
+#define POD_UNFAVORABLE 1.75f	//Ž©•ª‚ª•s—˜‚ÈŽž‚Ì”íƒ_ƒ[ƒW”{—¦
+#define POD_WHITE_MAG 1.25f		//“G‚ª”’ƒ|ƒbƒh‚ÌŽž‚Ìƒ_ƒ[ƒW”{—¦
 
 //------------------------------------------------
 //ƒQ[ƒ€“à‚ÅŽg—p‚·‚éƒNƒ‰ƒXƒwƒbƒ_------------------
