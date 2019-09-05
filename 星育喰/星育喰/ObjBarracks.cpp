@@ -879,7 +879,6 @@ void CObjBarracks::Draw()
 		return;
 	}
 
-
 	//¤•`‰æƒJƒ‰[î•ñ  R=RED  G=Green  B=Blue A=alpha(“§‰ßî•ñ)
 	//ÔF
 	float red[4] = { 1.0f,0.0f,0.0f,1.0f };
