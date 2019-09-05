@@ -140,8 +140,8 @@ void CObjPlanet::Init()
 	{ 
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 28;
-		m_size = 400;
-		m_siz_max = 400;
+		m_size = 500;
+		m_siz_max = 500;
 	}
 	else if (m_type == 4)//左から4番目の敵惑星(再星)
 	{ 
@@ -154,8 +154,8 @@ void CObjPlanet::Init()
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;
-		m_size = 500;
-		m_siz_max = 500;
+		m_size = 600;
+		m_siz_max = 600;
 	}
 	else if(m_type == 6)	//チュートリアル惑星
 	{
