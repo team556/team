@@ -113,6 +113,8 @@ void CObjPlanet::Init()
 	if(m_type == 6)//チュートリアル惑星のみ(最初から打てない設定にするとき用)
 		m_inject_f = false;
 	//m_img_nam = 0;
+
+	m_rank_size = 0.0f;
 	
 	//当たり判定用HitBoxを作成(アクション中に更新される為、幅と高さはこの時点では0.0fでOK。)
 	//それに加え各惑星のHP、画像番号等も設定している。
@@ -355,6 +357,8 @@ void CObjPlanet::Action()
 					//勝利惑星の口(背面)を描画させる
 					CObjFight* fight = (CObjFight*)Objs::GetObj(OBJ_FIGHT);
 					fight->SetPrey_f(m_type);
+
+					m_rank_size = m_size / m_siz_max;//戦闘終了直後のＨＰ割合を保存する(ランクを決める際に使用)
 				}
 			}
 

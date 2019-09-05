@@ -27,6 +27,7 @@ public:
 	int  GetType() { return m_type; }
 	int  GetLine() { return m_get_line; }
 	bool GetInvincible() { return m_invincible_f; }//無敵であるかどうか返す
+	float GetRank_size() { return m_rank_size; } //戦闘終了直後のＨＰ割合を返す(ランクを決める際に使用)
 	void SetVX(float vector) { m_px += vector; }//X移動用
 	void SetDamage() { m_size -= m_siz_max * 0.04f; }//呼び出すとダメージ処理を行う[スペシャル技:Explosion用]
 	void SetScale_down_move(int Planet_id) //呼び出すとサイズ縮小分、X座標の移動を行う(Planet_id:プレイヤー or エネミー判別用)[スペシャル技:Explosion用]
@@ -96,6 +97,8 @@ private:
 	int m_get_line;				//取得したラインナンバー
 
 	bool m_inject_f;	//チュートリアル惑星の攻撃制御用(true = 撃つ)
+
+	float m_rank_size;		//戦闘終了直後のＨＰ割合保存用(ランクを決める際に使用)
 
 	//メモ：↓m_rはモアイ用角度が使っており被っていたので、仮でm_r2としておきました。(後庵)
 	float m_r2;			//体力減少時の汗の動き用変数
