@@ -47,14 +47,14 @@ private:
 	int	  m_start_count;		//戦闘開始カウント用
 	bool  m_start_count_f;		//「戦闘開始カウント」開始フラグ(trueの時、動作を開始する)
 
-	bool m_line_dis;	//初期ライン選択表示用
+	//bool m_line_dis;	//初期ライン選択表示用(必要ないと思ったのでコメントアウト)
 
 	bool m_end_f;		//クリア画面作成用
 	bool m_key_U_f;		//UP用キーフラグ
 	bool m_key_D_f;		//DOWN用キーフラグ
 	bool m_special_f;   //スペシャル技を打った時のフラグ
 
-	int m_line_choice;	//ライン選択用
+	//int m_line_choice;	//ライン選択用(必要ないと思ったのでコメントアウト)
 
 	int m_cuta;
 
