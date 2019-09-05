@@ -1633,6 +1633,24 @@ void CObjPreparation::Draw()
 		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 63.0f;
 		Draw::Draw(74, &src, &dst, detail_message_font[1], 0.0f);
 	}
+	//ƒRƒƒ‚[ƒe‚Ìê‡
+	else if (m_level_star_num == 4)
+	{
+		//¥‚d‚w•¶š‰æ‘œ•\¦
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 180.0f;
+		src.m_bottom = 101.0f;
+
+		dst.m_top = m_mou_y + m_detail_message_draw_y + 38.0f;
+		dst.m_left = m_mou_x + m_detail_message_draw_left + 100.0f;
+		dst.m_right = m_mou_x + m_detail_message_draw_left + 150.0f;
+		dst.m_bottom = m_mou_y + m_detail_message_draw_y + 63.0f;
+		Draw::Draw(187, &src, &dst, detail_message_font[1], 0.0f);
+
+		//u‘S‘fŞ100v‚Ìu100v‚Ì•”•ª‚ğ•\¦
+		FontDraw(L"‚P‚O‚O", m_mou_x + m_detail_message_draw_left + 75.0f, m_mou_y + m_detail_message_draw_y + 114.0f, 25.0f, 25.0f, detail_message_font[3], false);
+	}
 	//‚»‚Ì‘¼‚ÌƒUƒR˜f¯‚Ìê‡
 	else
 	{
@@ -1977,15 +1995,15 @@ void CObjPreparation::Enemy_message(int enemy_id)
 		else if (enemy_id == 2)
 		{
 			//¤4s–Ú
-			//“G˜f¯Ú×à–¾‰æ‘œ‚ğ125”Ô‚É“o˜^	(‰æ‘œ‚ª‚È‚©‚Á‚½‚½‚ß“K—p‚µ‚Ä‚È‚¢)
-			Draw::LoadImage(L"img\\ƒeƒLƒXƒg\\‘fŞ\\‹â65EƒKƒX50.png", 125, TEX_SIZE_512);
+			//“G˜f¯Ú×à–¾‰æ‘œ‚ğ125”Ô‚É“o˜^
+			Draw::LoadImage(L"img\\ƒeƒLƒXƒg\\í“¬€”õ‰æ–Ê\\‘S‘fŞ.png", 125, TEX_SIZE_512);
 
 			//“G˜f¯Ú×à–¾‰æ‘œ‚ÌØ‚èæ‚èˆÊ’u‚ğİ’è
-			m_detail_message_clip_right[3] = 666.0f;
-			m_detail_message_clip_bottom[3] = 90.0f;
+			m_detail_message_clip_right[3] = 367.0f;
+			m_detail_message_clip_bottom[3] = 117.0f;
 
 			//“G˜f¯Ú×à–¾‰æ‘œ‚Ì•`‰æˆÊ’u(right)‚ğİ’è(‘SŠpˆê•¶š‚Ì‘å‚«‚³‚Í25.0f)
-			m_detail_message_draw_right[3] = m_detail_message_draw_left + 200.0f;
+			m_detail_message_draw_right[3] = m_detail_message_draw_left + 75.0f;
 
 
 			//¤5s–Ú
