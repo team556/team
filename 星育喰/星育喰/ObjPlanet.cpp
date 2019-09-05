@@ -140,8 +140,8 @@ void CObjPlanet::Init()
 	{ 
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 28;
-		m_size = 360;
-		m_siz_max = 360;
+		m_size = 500;
+		m_siz_max = 500;
 	}
 	else if (m_type == 4)//左から4番目の敵惑星(再星)
 	{ 
@@ -154,8 +154,8 @@ void CObjPlanet::Init()
 	{
 		Hits::SetHitBox(this, m_px, m_py, 0.0f, 0.0f, ELEMENT_ENEMY, OBJ_PLANET, 1);
 		m_img_nam = 30;
-		m_size = 500;
-		m_siz_max = 500;
+		m_size = 600;
+		m_siz_max = 600;
 	}
 	else if(m_type == 6)	//チュートリアル惑星
 	{
@@ -764,30 +764,30 @@ void CObjPlanet::Action()
 				}
 			}
 
-			//▼ミサイルポッド作成X位置を設定
+			//▼ミサイル、ポッド作成X位置を設定
 			if (m_attackf == 1 && m_time <= 0 && m_type != 0)//赤色ポッド
 			{
 				CObjRocket* M = new CObjRocket(m_px + (140.0f + m_scale_down_move + ((m_size / m_siz_max) * m_siz_change_range)), 225, m_type, 1);//オブジェクト作成
 				Objs::InsertObj(M, OBJ_ROCKET, 20);		//オブジェクト登録
-				switch (m_type)
+				switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
 				{
 				case 1:
-					m_time = ONE_DELAY * m_enemy_recast_buff;
+					m_time = ONE_DELAY * m_enemy_recast_buff;//たこ焼き
 					break;
 				case 2:
-					m_time = SEC_DELAY * m_enemy_recast_buff;
+					m_time = SEC_DELAY * m_enemy_recast_buff;//モアイ
 					break;
 				case 3:
-					m_time = THI_DELAY * m_enemy_recast_buff;
+					m_time = THI_DELAY * m_enemy_recast_buff;//コワモーテ
 					break;
 				case 4:
-					m_time = FOU_DELAY * m_enemy_recast_buff;
+					m_time = FOU_DELAY * m_enemy_recast_buff;//再星
 					break;
 				case 5:
-					m_time = FIV_DELAY * m_enemy_recast_buff;
+					m_time = FIV_DELAY * m_enemy_recast_buff;//アマテラス
 					break;
 				case 6:
-					m_time = SIX_DELAY * m_enemy_recast_buff;
+					m_time = SIX_DELAY * m_enemy_recast_buff;//ボロボロン
 					break;
 				}
 			}
@@ -799,22 +799,22 @@ void CObjPlanet::Action()
 				switch (m_type)//敵の種類によって攻撃のリキャストタイム変更
 				{
 				case 1:
-					m_time = ONE_DELAY * m_enemy_recast_buff;
+					m_time = ONE_DELAY * m_enemy_recast_buff;//たこ焼き
 					break;
 				case 2:
-					m_time = SEC_DELAY * m_enemy_recast_buff;
+					m_time = SEC_DELAY * m_enemy_recast_buff;//モアイ
 					break;
 				case 3:
-					m_time = THI_DELAY * m_enemy_recast_buff;
+					m_time = THI_DELAY * m_enemy_recast_buff;//コワモーテ
 					break;
 				case 4:
-					m_time = FOU_DELAY * m_enemy_recast_buff;
+					m_time = FOU_DELAY * m_enemy_recast_buff;//再星
 					break;
 				case 5:
-					m_time = FIV_DELAY * m_enemy_recast_buff;
+					m_time = FIV_DELAY * m_enemy_recast_buff;//アマテラス
 					break;
 				case 6:
-					m_time = SIX_DELAY * m_enemy_recast_buff;
+					m_time = SIX_DELAY * m_enemy_recast_buff;//ボロボロン
 					break;
 				}
 			}
@@ -826,22 +826,22 @@ void CObjPlanet::Action()
 				switch (m_type)
 				{
 				case 1:
-					m_time = ONE_DELAY * m_enemy_recast_buff;
+					m_time = ONE_DELAY * m_enemy_recast_buff;//たこ焼き
 					break;
 				case 2:
-					m_time = SEC_DELAY * m_enemy_recast_buff;
+					m_time = SEC_DELAY * m_enemy_recast_buff;//モアイ
 					break;
 				case 3:
-					m_time = THI_DELAY * m_enemy_recast_buff;
+					m_time = THI_DELAY * m_enemy_recast_buff;//コワモーテ
 					break;
 				case 4:
-					m_time = FOU_DELAY * m_enemy_recast_buff;
+					m_time = FOU_DELAY * m_enemy_recast_buff;//再星
 					break;
 				case 5:
-					m_time = FIV_DELAY * m_enemy_recast_buff;
+					m_time = FIV_DELAY * m_enemy_recast_buff;//アマテラス
 					break;
 				case 6:
-					m_time = SIX_DELAY * m_enemy_recast_buff;
+					m_time = SIX_DELAY * m_enemy_recast_buff;//ボロボロン
 					break;
 				}
 			}
@@ -853,22 +853,22 @@ void CObjPlanet::Action()
 				switch (m_type)
 				{
 				case 1:
-					m_time = ONE_DELAY * m_enemy_recast_buff;
+					m_time = ONE_DELAY * m_enemy_recast_buff;//たこ焼き
 					break;
 				case 2:
-					m_time = SEC_DELAY * m_enemy_recast_buff;
+					m_time = SEC_DELAY * m_enemy_recast_buff;//モアイ
 					break;
 				case 3:
-					m_time = THI_DELAY * m_enemy_recast_buff;
+					m_time = THI_DELAY * m_enemy_recast_buff;//コワモーテ
 					break;
 				case 4:
-					m_time = FOU_DELAY * m_enemy_recast_buff;
+					m_time = FOU_DELAY * m_enemy_recast_buff;//再星
 					break;
 				case 5:
-					m_time = FIV_DELAY * m_enemy_recast_buff;
+					m_time = FIV_DELAY * m_enemy_recast_buff;//アマテラス
 					break;
 				case 6:
-					m_time = SIX_DELAY * m_enemy_recast_buff;
+					m_time = SIX_DELAY * m_enemy_recast_buff;//ボロボロン
 					break;
 				}
 			}
@@ -880,22 +880,22 @@ void CObjPlanet::Action()
 				switch (m_type)
 				{
 				case 1:
-					m_time = ONE_DELAY * m_enemy_recast_buff;
+					m_time = ONE_DELAY * m_enemy_recast_buff;//たこ焼き
 					break;
 				case 2:
-					m_time = SEC_DELAY * m_enemy_recast_buff;
+					m_time = SEC_DELAY * m_enemy_recast_buff;//モアイ
 					break;
 				case 3:
-					m_time = THI_DELAY * m_enemy_recast_buff;
+					m_time = THI_DELAY * m_enemy_recast_buff;//コワモーテ
 					break;
 				case 4:
-					m_time = FOU_DELAY * m_enemy_recast_buff;
+					m_time = FOU_DELAY * m_enemy_recast_buff;//再星
 					break;
 				case 5:
-					m_time = FIV_DELAY * m_enemy_recast_buff;
+					m_time = FIV_DELAY * m_enemy_recast_buff;//アマテラス
 					break;
 				case 6:
-					m_time = SIX_DELAY * m_enemy_recast_buff;
+					m_time = SIX_DELAY * m_enemy_recast_buff;//ボロボロン
 					break;
 				}
 			}
