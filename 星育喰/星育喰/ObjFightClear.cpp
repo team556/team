@@ -722,17 +722,17 @@ void CObjFightClear::Draw()
 				//コワモーテ(コワモーテの場合、資材名関係なしに問答無用でこの処理に入る。)
 				if (g_Challenge_enemy == 2)
 				{
-					//▼「全素材」と表示(現状、全素材の画像ないので仮に木材の画像でやっている。)
-					src.m_top = 2.0f;
+					//▼「全素材」と表示
+					src.m_top = 0.0f;
 					src.m_left = 0.0f;
-					src.m_right = 230.0f;
-					src.m_bottom = 112.0f;
+					src.m_right = 367.0f;
+					src.m_bottom = 117.0f;
 
 					dst.m_top = FONT_Y + 150;
 					dst.m_left = FONT_X;
 					dst.m_right = FONT_X + 120;
 					dst.m_bottom = FONT_Y + 190;
-					Draw::Draw(59, &src, &dst, c[4], 0.0f);
+					Draw::Draw(125, &src, &dst, c[4], 0.0f);
 				}
 				//木材
 				else if (m_mat_type[0] == &g_Wood_num)

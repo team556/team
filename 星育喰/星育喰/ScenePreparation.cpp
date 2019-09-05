@@ -240,6 +240,9 @@ void CScenePreparation::InitScene()
 	//説明文戦闘デメリットを読み込み130番に登録
 	Draw::LoadImage(L"img\\ヘルプ\\説明文戦闘デメリット.png", 135, TEX_SIZE_512);
 
+	//ＥＸを読み込み187番に登録
+	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\EX.png", 187, TEX_SIZE_512);
+
 	//育アイコンを読み込み188番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\育２.png", 188, TEX_SIZE_512);
 

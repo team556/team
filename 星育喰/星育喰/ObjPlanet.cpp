@@ -21,7 +21,7 @@ DELAYの値を増やすと発射速度が遅くなり、
 値を減らすと発射速度が速くなります*/
 #define ONE_DELAY (170)//たこ焼き
 #define SEC_DELAY (140)//モアイ
-#define THI_DELAY (155)//コワモーテ
+#define THI_DELAY (180)//コワモーテ
 #define FOU_DELAY (140)//再星
 #define FIV_DELAY (140)//アマテラス
 #define SIX_DELAY (200)//ボロボロン
@@ -910,7 +910,6 @@ void CObjPlanet::Action()
 					m_time = 100 * m_enemy_recast_buff;
 				}
 			}
-
 			m_time--;
 		}
 	}
