@@ -1076,9 +1076,9 @@ void CObjFightClear::Draw()
 					//Font::StrDraw(L"Immortality GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
 				case 4:
 					//オーバーワーク
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = 832.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
+					src.m_right = 830.0f;
 					src.m_bottom = 112.0f;
 
 					dst.m_top = FONT_Y + 250.0f;
