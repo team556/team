@@ -272,8 +272,26 @@ void CObjFightClear::Action()
 			}
 		}
 		//m_end_fを使い、一度のみObjMessage(Scene_id = 30)を呼び出す。
+		//ついでに、アマテラスをノーダメージクリア出来たかどうかの判定も行う。
 		else if (m_end_f == false)
 		{
+			//「ＶＳアマテラス」のランクを表示こそはしないものの、
+			//内部でランク判定処理を行い、Ｓかそれ以外かを判定する。
+			//[理由：山田のセリフ変更イベントでＳかそれ以外かは重要なポイントとなるので。]
+			//※ObjMessageを呼び出す前に判定しないといけない。
+			//何故なら山田のセリフ決定処理はObjMessageのイニシャライズで行われるからである。
+			CObjPlanet* player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+			//Ｓランクの時の処理
+			if (player->GetRank_size() == 1.0f)
+			{
+				;//何の処理も行わない。
+			}
+			//それ以外の時の処理
+			else
+			{
+				g_no_damage_clear_f = false;//全ステージのノーダメージクリアを出来なかったと記録する
+			}
+
 			CObjMessage* message = new CObjMessage(30);	//メッセージ表示オブジェクト作成
 			Objs::InsertObj(message, OBJ_MESSAGE, 90);	//メッセージ表示オブジェクト登録
 
@@ -1076,9 +1094,9 @@ void CObjFightClear::Draw()
 					//Font::StrDraw(L"Immortality GET!",		FONT_X + 300, FONT_Y + 250, 40, c[5]); break;
 				case 4:
 					//オーバーワーク
-					src.m_top = 0.0f;
-					src.m_left = 0.0f;
-					src.m_right = 832.0f;
+					src.m_top = 2.0f;
+					src.m_left = 2.0f;
+					src.m_right = 830.0f;
 					src.m_bottom = 112.0f;
 
 					dst.m_top = FONT_Y + 250.0f;
