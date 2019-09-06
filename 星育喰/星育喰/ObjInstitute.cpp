@@ -2319,6 +2319,9 @@ void CObjInstitute::Draw()
 			Draw::Draw(120, &src, &dst, black, 0.0f);
 			//Font::StrDraw(Mis_recast, 660.0f, 350.0f, 75.0f, black);
 
+			//▼s
+			FontDraw(L"Ｓ", 820, 380, 40, 40, black, true);
+
 			//ミサイルリキャスト次のLVUPに関する情報--------------------------------
 			if (g_Mis_Recast_Level < 4) {
 				//▼NEXT LV UP文字画像表示
@@ -2480,17 +2483,14 @@ void CObjInstitute::Draw()
 				dst.m_bottom = 610;
 				Draw::Draw(120, &src, &dst, black, 0.0f);
 
-				//▼50音(s)文字画像表示(仮)に人文字画像を表示しています
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = 112.0f;
-				src.m_bottom = 112.0f;
+				//▼s
+				FontDraw(L"Ｓ", 1040, 580, 30, 30, black, true);
 
-				dst.m_top = 580.0f;
-				dst.m_left = 1040.0f;
-				dst.m_right = 1070.0f;
-				dst.m_bottom = 610.0f;
-				Draw::Draw(122, &src, &dst, black, 0.0f);
+				//dst.m_top = 580.0f;
+				//dst.m_left = 1040.0f;
+				//dst.m_right = 1070.0f;
+				//dst.m_bottom = 610.0f;
+				//Draw::Draw(122, &src, &dst, black, 0.0f);
 				//Font::StrDraw(Next_Lvup, 450.0f, 560.0f, 50.0f, black);
 			}
 
