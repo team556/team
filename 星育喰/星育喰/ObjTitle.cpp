@@ -59,6 +59,7 @@ int g_Remain_num	= 0;
 float g_Recast_time = 3.0f;//デバッグ状態。3.0fに戻すように。
 float g_P_Planet_damage = 0.0f;
 wchar_t g_Player_Name[6];
+bool g_no_damage_clear_f = true;
 
 int g_Iron_num		= 0;
 int g_Wood_num		= 0;
@@ -169,6 +170,7 @@ void CObjTitle::Init()
 	g_Aluminum_num	= 0;
 	g_gus_num		= 0;
 
+	g_no_damage_clear_f = true;//２週目、ゲームオーバー時の為にノーダメージフラグをリセットする。
 	g_tutorial_progress = 17;//２周目、もしくはゲームオーバー時、チュートリアル進行度が18以上のままだと不都合があるので17(チュートリアルスキップ)状態にしておく。
 }
 

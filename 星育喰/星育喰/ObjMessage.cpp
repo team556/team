@@ -219,7 +219,7 @@ void CObjMessage::Init()
 		swprintf_s(m_font[29], L"ポッドやミサイルを同じレーンに撃つ度に￥レーンの色や￥ポッドの上のアイコンが赤くなっていくんだが、￥それはこのデメリット度合いを表してるってわけだ。");
 		swprintf_s(m_font[30], L"要はＯ赤くなればなるほど￥ポッドの防御力が下がってヤバいＷってことだな。");
 		swprintf_s(m_font[31], L"このデメリットは￥他のレーンにポッドやミサイルを射出していけば￥次第にＯそのレーンに出撃する￥ポッドの防御力がもとに戻っていくＷぜ。");
-		swprintf_s(m_font[32], L"要はＯ同じレーンに撃ちつづけるのは￥やめた方がいいＷってことだぜ。");
+		swprintf_s(m_font[32], L"要はＯ同じレーンに撃ちつづけるのはやめて、￥レーンやポッドの上のアイコンの色を￥なるべく白色の状態でキープした方がいいＷ￥……ってことだぜ。");
 		swprintf_s(m_font[33], L"あ、ちなみにレーン選択は￥Ｏ方向キーの上下でも操作できるＷからな。");
 		swprintf_s(m_font[34], L"さて、これが戦闘最後の説明だ。");
 		swprintf_s(m_font[35], L"画面上に時間が表示されてるだろ？～￥この時間は惑星同士が引力で引き合って￥衝突するまでの大体の時間だぜ。");
@@ -235,8 +235,10 @@ void CObjMessage::Init()
 		swprintf_s(m_font[48], L"その下は獲得したＯ資材Ｗのことを書いてあるぜ。～￥まあ今回は資材を獲得できなかったみたいだけどな。～￥次の戦いからはＯ集められる資材Ｗのことも考えろよ。￥資材は有限だからな。");
 		swprintf_s(m_font[49], L"これが最後だな。￥さっきも言ったＯスペシャル技Ｗってやつだ。");
 		swprintf_s(m_font[50], L"これはＯ戦闘においての切り札Ｗみたいなもんで￥ピンチを乗り切ったりすることができるぜ。～￥またあとで詳しく説明してやるよ。");
-		swprintf_s(m_font[51], L"説明はこんなもんだな。～￥Ｏ自分が何が欲しいかをしっかり把握して￥どの敵と戦うかを考えていくＷのが￥これから生き残っていく秘訣だぜ。");
-		swprintf_s(m_font[52], L"｜");
+		swprintf_s(m_font[51], L"おっと、能力や素材には関係ないが、￥右上のＯランクＷについても説明しとかねえとな。");
+		swprintf_s(m_font[52], L"こいつはＹ%sＷの今回の戦いぶりを￥Ｓ、Ａ、Ｂ、Ｃの４つのランクで評価したものだぜ。～￥Ｏ被ダメージ量が低ければ低いほど高く評価されるＷから、￥余裕があればお前も最高ランクのＳを目指してみな。", g_Player_Name);
+		swprintf_s(m_font[53], L"説明はこんなもんだな。～￥Ｏ自分が何が欲しいかをしっかり把握して￥どの敵と戦うかを考えていくＷのが￥これから生き残っていく秘訣だぜ。");
+		swprintf_s(m_font[54], L"｜");
 
 		m_message_window_num = 33;
 		m_yamada_window_num = 79;
@@ -364,11 +366,22 @@ void CObjMessage::Init()
 	{
 		swprintf_s(m_font[0], L"よお、久しぶりだな。～￥今回の敵は物凄く強かったな。");
 		
+		//スペシャル技を一切使わず、ノーダメージクリア(全てＳランククリア)の場合、セリフが若干変わる。
+		if (g_tutorial_progress == 16 || g_tutorial_progress == 17 && g_no_damage_clear_f == true)
+		{
+			swprintf_s(m_font[1], L"しかしずっとスペシャル技を使わず、￥さらにＳランクで勝ちつづけるとは……。～￥Ｙ%sＷ、おまえホントは生まれたてじゃないだろ？￥その凄まじい戦いっぷり、すばらしいの一言に尽きるぜ。", g_Player_Name);
+		}
 		//スペシャル技を一切使わなかった場合、セリフが若干変わる。
-		if (g_tutorial_progress == 16 || g_tutorial_progress == 17)
+		else if (g_tutorial_progress == 16 || g_tutorial_progress == 17)
 		{
 			swprintf_s(m_font[1], L"しかしずっとスペシャル技を使わずに￥勝ちつづけるとは……。～￥Ｙ%sＷ、おまえホントに生まれたてか？￥そう思うくらいすげえよ。", g_Player_Name);
 		}
+		//ノーダメージクリア(全てＳランククリア)の場合、セリフが若干変わる。
+		else if (g_no_damage_clear_f == true)
+		{
+			swprintf_s(m_font[1], L"しかしずっとＳランクで￥勝ちつづけるとは……。～￥Ｙ%sＷ、おまえホントに生まれたてか？￥そう思うくらいすげえよ。", g_Player_Name);
+		}
+		//通常クリア時のセリフ
 		else
 		{
 			swprintf_s(m_font[1], L"成長したとはいえ、￥つい最近まで生まれたてだった￥Ｙ%sＷがよく勝てたもんだ。～￥勝てたことが本当に奇跡だぜ。", g_Player_Name);
@@ -617,7 +630,14 @@ void CObjMessage::Action()
 			m_arrow_x = 1030.0f;
 			m_arrow_y = 435.0f;
 		}
-		else if (m_Scene_id == 2 && m_progress == 51)
+		else if (m_Scene_id == 2 && (m_progress == 51 || m_progress == 52))
+		{
+			//矢印表示
+			m_arrow_angle_f = 0;
+			m_arrow_x = 1021.0f;
+			m_arrow_y = 355.0f;
+		}
+		else if (m_Scene_id == 2 && m_progress == 53)
 		{
 			m_black_out_f = true;//徐々に暗転
 
@@ -1122,7 +1142,7 @@ void CObjMessage::Action()
 				m_progress = 44;//進行度上昇させてこの処理から抜ける
 			}
 		}
-		else if (m_Scene_id == 2 && m_progress == 52)
+		else if (m_Scene_id == 2 && m_progress == 54)
 		{
 			m_black_out_f = false;//徐々に明転
 
