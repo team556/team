@@ -152,7 +152,7 @@ void CObjFightClear::Action()
 
 
 		//▼戦闘結果表示終了後の処理
-		if (m_result_a >= 6.0f)
+		if (m_result_a >= 7.0f)
 		{
 			//チュートリアル説明中はホーム画面に戻れない処理
 			if (g_tutorial_progress == 6 && m_tuto_f == true)
@@ -365,7 +365,7 @@ void CObjFightClear::Draw()
 	float c0[4] = { 1.0f,1.0f,1.0f,m_click_a };//クリック催促フォント用
 	
 	//戦闘結果ウインドウ&フォント用
-	float c[6][4] = 
+	float c[7][4] = 
 	{ 
 		{ 1.0f,1.0f,0.0f,m_result_a },			//捕食成功フォントは黄色
 		{ 1.0f,1.0f,1.0f,m_result_a - 1.0f },	//ウインドウ表示用
@@ -373,6 +373,7 @@ void CObjFightClear::Draw()
 		{ 1.0f,1.0f,1.0f,m_result_a - 3.0f },	//サイズ(HP)フォントは白色
 		{ 1.0f,1.0f,1.0f,m_result_a - 4.0f },	//資材フォントは白色
 		{ 1.0f,1.0f,1.0f,m_result_a - 5.0f },	//スペシャル技フォントは白色
+		{ 1.0f,0.5f,0.0f,m_result_a - 6.0f },	//ランクフォントは橙色
 	};
 
 	float blackout[4] = { 1.0f,1.0f,1.0f,m_black_out_a };	//画面全体暗転画像用
@@ -1105,6 +1106,32 @@ void CObjFightClear::Draw()
 					break;
 				}
 			}
+
+			//▼ランク表示
+			FontDraw(L"ランク",1000.0f,300.0f,35.0f,35.0f,c[6],false);
+			
+			CObjPlanet* player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
+			//Ｓランク(HPが満タン)
+			if (player->GetRank_size() == 1.0f)
+			{
+				FontDraw(L"Ｓ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+			}
+			//Ａランク(HPが66%以上)
+			else if (player->GetRank_size() >= 0.66f)
+			{
+				FontDraw(L"Ａ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+			}
+			//Ｂランク(HPが33%以上)
+			else if (player->GetRank_size() >= 0.33f)
+			{
+				FontDraw(L"Ｂ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+			}
+			//Ｃランク(HPが33%未満)
+			else
+			{
+				FontDraw(L"Ｃ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+			}
+
 
 			//▼クリック催促フォント表示
 			src.m_top = 0.0f;
