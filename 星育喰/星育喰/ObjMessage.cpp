@@ -369,7 +369,7 @@ void CObjMessage::Init()
 		//スペシャル技を一切使わず、ノーダメージクリア(全てＳランククリア)の場合、セリフが若干変わる。
 		if (g_tutorial_progress == 16 || g_tutorial_progress == 17 && g_no_damage_clear_f == true)
 		{
-			swprintf_s(m_font[1], L"しかしずっとスペシャル技を使わず、￥さらにＳランクで勝ちつづけるとは……。～￥Ｙ%sＷ、おまえホントは生まれたてじゃないだろ？￥その凄まじい戦いっぷり、すばらしいの一言に尽きるぜ。", g_Player_Name);
+			swprintf_s(m_font[1], L"しかしずっとスペシャル技を使わず、￥さらにＳランクで勝ちつづけるとは……。～￥Ｙ%sＷ、おまえホントは生まれたてじゃないだろ？￥凄まじい戦いぶり、すばらしいの一言に尽きるぜ。", g_Player_Name);
 		}
 		//スペシャル技を一切使わなかった場合、セリフが若干変わる。
 		else if (g_tutorial_progress == 16 || g_tutorial_progress == 17)
