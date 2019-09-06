@@ -724,7 +724,7 @@ void CObjFightClear::Draw()
 				if (g_Challenge_enemy == 2)
 				{
 					//▼「全素材」と表示
-					src.m_top = 0.0f;
+					src.m_top = 2.0f;
 					src.m_left = 0.0f;
 					src.m_right = 367.0f;
 					src.m_bottom = 117.0f;
@@ -794,7 +794,7 @@ void CObjFightClear::Draw()
 				//アルミ
 				else if (m_mat_type[0] == &g_Aluminum_num)
 				{
-					src.m_top = 0.0f;
+					src.m_top = 2.0f;
 					src.m_left = 0.0f;
 					src.m_right = 352.0f;
 					src.m_bottom = 112.0f;
@@ -808,7 +808,7 @@ void CObjFightClear::Draw()
 				//ガス
 				else if (m_mat_type[0] == &g_gus_num)
 				{
-					src.m_top = 0.0f;
+					src.m_top = 2.0f;
 					src.m_left = 0.0f;
 					src.m_right = 232.0f;
 					src.m_bottom = 112.0f;
