@@ -240,6 +240,12 @@ void CScenePreparation::InitScene()
 	//説明文戦闘デメリットを読み込み130番に登録
 	Draw::LoadImage(L"img\\ヘルプ\\説明文戦闘デメリット.png", 135, TEX_SIZE_512);
 
+	//説明文ポッドの爆発を読み込み130番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文ポッドの爆発.png", 136, TEX_SIZE_512);
+
+	//説明文惑星HPを読み込み130番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文惑星HP.png", 137, TEX_SIZE_512);
+
 	//ＥＸを読み込み187番に登録
 	Draw::LoadImage(L"img\\テキスト\\戦闘準備画面\\EX.png", 187, TEX_SIZE_512);
 
