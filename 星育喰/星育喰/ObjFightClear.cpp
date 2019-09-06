@@ -1108,28 +1108,36 @@ void CObjFightClear::Draw()
 			}
 
 			//▼ランク表示
-			FontDraw(L"ランク",1000.0f,300.0f,35.0f,35.0f,c[6],false);
+			FontDraw(L"ランク",1000.0f,240.0f,35.0f,35.0f,c[6],false);
 			
 			CObjPlanet* player = (CObjPlanet*)Objs::GetObj(OBJ_PLANET);
 			//Ｓランク(HPが満タン)
 			if (player->GetRank_size() == 1.0f)
 			{
-				FontDraw(L"Ｓ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+				c[6][1] = 1.0f;//Ｓの文字を黄色に変更
+
+				FontDraw(L"Ｓ", 1022.0f, 290.0f, 60.0f, 60.0f, c[6], false);
 			}
 			//Ａランク(HPが66%以上)
 			else if (player->GetRank_size() >= 0.66f)
 			{
-				FontDraw(L"Ａ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+				FontDraw(L"Ａ", 1022.0f, 290.0f, 60.0f, 60.0f, c[6], false);
+
+				g_no_damage_clear_f = false;//全ステージのノーダメージクリアを出来なかったと記録する
 			}
 			//Ｂランク(HPが33%以上)
 			else if (player->GetRank_size() >= 0.33f)
 			{
-				FontDraw(L"Ｂ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+				FontDraw(L"Ｂ", 1022.0f, 290.0f, 60.0f, 60.0f, c[6], false);
+
+				g_no_damage_clear_f = false;//全ステージのノーダメージクリアを出来なかったと記録する
 			}
 			//Ｃランク(HPが33%未満)
 			else
 			{
-				FontDraw(L"Ｃ", 1020.0f, 350.0f, 50.0f, 50.0f, c[6], false);
+				FontDraw(L"Ｃ", 1022.0f, 290.0f, 60.0f, 60.0f, c[6], false);
+
+				g_no_damage_clear_f = false;//全ステージのノーダメージクリアを出来なかったと記録する
 			}
 
 

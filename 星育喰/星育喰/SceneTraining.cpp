@@ -476,35 +476,35 @@ void CSceneTraining::InitScene()
 	//ポーズ画面背景(画面暗転用)を読み込み135番に登録
 	Draw::LoadImage(L"img\\背景\\ポーズ画面背景.png", 135, TEX_SIZE_512);
 
-	//ヘルプボタンを読み込み136番に登録
-	Draw::LoadImage(L"img\\ボタンUI\\ヘルプボタン.png", 136, TEX_SIZE_512);
+	////ヘルプボタンを読み込み136番に登録
+	//Draw::LoadImage(L"img\\ボタンUI\\ヘルプボタン.png", 136, TEX_SIZE_512);
 
-	//説明文育成画面を137番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文育成画面.png", 137, TEX_SIZE_512);
+	////説明文育成画面を137番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文育成画面.png", 137, TEX_SIZE_512);
 
-	//説明文研究所を138番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文研究所.png", 138, TEX_SIZE_512);
+	////説明文研究所を138番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文研究所.png", 138, TEX_SIZE_512);
 
-	//説明文ミサイル画面を139番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文ミサイル画面.png", 139, TEX_SIZE_512);
+	////説明文ミサイル画面を139番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文ミサイル画面.png", 139, TEX_SIZE_512);
 
-	//説明文コアについてを140番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文コアについて.png", 140, TEX_SIZE_512);
+	////説明文コアについてを140番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文コアについて.png", 140, TEX_SIZE_512);
 
-	//説明文ポッドについてを141番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文ポッドについて.png", 141, TEX_SIZE_512);
+	////説明文ポッドについてを141番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文ポッドについて.png", 141, TEX_SIZE_512);
 
-	//説明文三竦みを読み込み142番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文三竦み.png", 142, TEX_SIZE_512);
+	////説明文三竦みを読み込み142番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文三竦み.png", 142, TEX_SIZE_512);
 
-	//説明文兵舎を143番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文兵舎.png", 143, TEX_SIZE_512);
+	////説明文兵舎を143番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文兵舎.png", 143, TEX_SIZE_512);
 
-	//説明文倉庫を144番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文倉庫.png", 144, TEX_SIZE_512);
+	////説明文倉庫を144番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文倉庫.png", 144, TEX_SIZE_512);
 
-	//説明文倉庫を145番に登録
-	Draw::LoadImage(L"img\\ヘルプ\\説明文惑星発展度.png", 145, TEX_SIZE_512);
+	////説明文倉庫を145番に登録
+	//Draw::LoadImage(L"img\\ヘルプ\\説明文惑星発展度.png", 145, TEX_SIZE_512);
 
 	//コア文字画像を読み込み146番に登録
 	Draw::LoadImage(L"img\\テキスト\\育成画面\\コア文字画像.png", 146, TEX_SIZE_512);
@@ -568,6 +568,9 @@ void CSceneTraining::InitScene()
 
 	//説明文倉庫を175番に登録
 	Draw::LoadImage(L"img\\ヘルプ\\説明文惑星発展度.png", 175, TEX_SIZE_512);
+
+	//説明文倉庫を176番に登録
+	Draw::LoadImage(L"img\\ヘルプ\\説明文移動について.png", 176, TEX_SIZE_512);
 
 	//会話矢印を読み込み189番に登録
 	Draw::LoadImage(L"img\\ボタンUI\\会話矢印.png", 189, TEX_SIZE_512);

@@ -52,7 +52,7 @@ void CObjHelp::Init()
 	}
 	else if (m_Scene_num == 2)//ˆç¬	2
 	{
-		m_page_max = 9;
+		m_page_max = 10;
 		m_help_reg_num = 166;
 		m_Back_reg_num = 1;
 
@@ -65,7 +65,7 @@ void CObjHelp::Init()
 	}
 	else  //(m_Scene_num == 3)//€”õ	3
 	{
-		m_page_max = 6;
+		m_page_max = 8;
 		m_help_reg_num = 129;
 		m_Back_reg_num = 56;
 

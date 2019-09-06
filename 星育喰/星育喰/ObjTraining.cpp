@@ -504,7 +504,17 @@ void CObjTraining::Facility_message(int Facility_Level)
 		FontDraw(NumConversion((unsigned int)m_Facility_next_Size_num[Facility_Level - 1]), 420.0f, 475.0f, 15.0f, 25.0f, black, true);
 
 		//▼施設(兵舎、研究所)の次のLVUPに必要な素材名表示
-		FontDraw(m_Facility_next_Mat_name[Facility_Level - 1], 165.0f, 510.0f, 25.0f, 25.0f, black, false);
+		//▽素材名がプラスチックの時の処理
+		if (wcscmp(m_Facility_next_Mat_name[Facility_Level - 1], L"プラスチック") == 0)
+		{
+			//フォントのサイズX(横幅)を狭める[理由は素材名と素材数が被ってしまうため]
+			FontDraw(m_Facility_next_Mat_name[Facility_Level - 1], 165.0f, 510.0f, 20.0f, 25.0f, black, false);
+		}
+		//▽それ以外の時の処理
+		else
+		{
+			FontDraw(m_Facility_next_Mat_name[Facility_Level - 1], 165.0f, 510.0f, 25.0f, 25.0f, black, false);
+		}
 
 		//▼施設(兵舎、研究所)の次のLVUPに必要な現在の素材所持数を表示
 		FontDraw(NumConversion(*m_Facility_next_Mat_type[Facility_Level - 1]), 338.0f, 510.0f, 15.0f, 25.0f, black, true);

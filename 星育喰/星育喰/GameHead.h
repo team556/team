@@ -152,6 +152,7 @@ extern float g_Recast_time;			//ミサイルのリキャストタイム用
 extern float g_P_Planet_damage;					//敵ポッドが惑星に与えるダメージ保存用
 //extern int g_Enemy_Pod_LV;			//テスト用敵ポッドレベル
 extern wchar_t g_Player_Name[6];
+extern bool g_no_damage_clear_f;		//ノーダメージクリア(全てＳランククリア)管理フラグ(true:ノーダメージクリア　false:一度でもダメージを食らってしまった)[初期値はtrue。Ａランク以下を取るとそのバトル終了時にfalseになる。]
 //--------------------------------------------------資源----
 extern int g_Iron_num;				//鉄の所持数
 extern int g_Wood_num;				//木の所持数
